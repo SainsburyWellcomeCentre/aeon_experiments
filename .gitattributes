@@ -1,6 +1,7 @@
 * text=auto
 *.cmd text eol=crlf
 *.bat text eol=crlf
+*.bonsai text
 *.xml text
 *.pdf binary
 *.png binary
