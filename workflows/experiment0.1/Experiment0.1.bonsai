@@ -115,7 +115,6 @@
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:WeightScale.bonsai">
               <PortName>COM8</PortName>
-              <TimingSource>LocalTrigger</TimingSource>
               <WeightEvents>WeightEvents</WeightEvents>
             </Expression>
           </Nodes>
@@ -271,9 +270,16 @@ Item3 as Delta)</scr:Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>WeightEvents</Name>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
-              <LogName>WeightData</LogName>
-              <Selector>Seconds,Value.Weight,Value.Stable</Selector>
+            <Expression xsi:type="InputMapping">
+              <PropertyMappings />
+              <Selector>Seconds,Value.Weight,Value.Confidence</Selector>
+              <TypeMapping xsi:type="TypeMapping" TypeArguments="p1:WeightMeasurement" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="p1:FormatWeight" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>Nest</LogName>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>SessionData</Name>
@@ -361,10 +367,12 @@ Item3 as Delta)</scr:Expression>
             <Edge From="36" To="37" Label="Source1" />
             <Edge From="38" To="39" Label="Source1" />
             <Edge From="40" To="41" Label="Source1" />
+            <Edge From="41" To="42" Label="Source1" />
             <Edge From="42" To="43" Label="Source1" />
-            <Edge From="42" To="45" Label="Source1" />
-            <Edge From="43" To="44" Label="Source1" />
+            <Edge From="44" To="45" Label="Source1" />
+            <Edge From="44" To="47" Label="Source1" />
             <Edge From="45" To="46" Label="Source1" />
+            <Edge From="47" To="48" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
