@@ -128,7 +128,7 @@
         <Workflow>
           <Nodes>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogController.bonsai">
-              <Path>D:\ProjectAeon\experiment0.1</Path>
+              <Path>D:\ProjectAeon\experiment0.2</Path>
               <BinSize>1</BinSize>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
