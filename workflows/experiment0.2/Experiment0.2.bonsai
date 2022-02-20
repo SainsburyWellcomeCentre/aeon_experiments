@@ -135,9 +135,9 @@
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:WeightScale.bonsai">
               <PortName>COM8</PortName>
-              <WeightEvents>NestWeight</WeightEvents>
-              <TareWeight>TareNestWeight</TareWeight>
-              <TareEvents>NestTare</TareEvents>
+              <WeightEvents>WeightNest</WeightEvents>
+              <TareWeight>TareWeightNest</TareWeight>
+              <TareEvents>TareNest</TareEvents>
             </Expression>
           </Nodes>
           <Edges>
@@ -845,7 +845,7 @@ Item3 as Delta)</scr:Expression>
               <SampleRate>192000</SampleRate>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>NestWeight</Name>
+              <Name>WeightNest</Name>
             </Expression>
             <Expression xsi:type="InputMapping">
               <PropertyMappings />
@@ -856,7 +856,7 @@ Item3 as Delta)</scr:Expression>
               <Combinator xsi:type="aeon:FormatWeight" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>NestTare</Name>
+              <Name>TareNest</Name>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Merge" />
@@ -1471,7 +1471,7 @@ Item2 as Patch2)</scr:Expression>
               <Name>TimeSinceLastVisit2</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>NestWeight</Name>
+              <Name>WeightNest</Name>
             </Expression>
             <Expression xsi:type="InputMapping">
               <PropertyMappings />
@@ -1484,7 +1484,7 @@ Item2 as Patch2)</scr:Expression>
               </Combinator>
             </Expression>
             <Expression xsi:type="PublishSubject">
-              <Name>FilteredNestWeight</Name>
+              <Name>FilteredWeightNest</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>BaselineTrigger</Name>
@@ -1555,7 +1555,7 @@ Item2 as Patch2)</scr:Expression>
               <Name>SubjectWeight</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>NestWeight</Name>
+              <Name>WeightNest</Name>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Skip">
@@ -1566,7 +1566,7 @@ Item2 as Patch2)</scr:Expression>
               <Selector>Value.Weight</Selector>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>FilteredNestWeight</Name>
+              <Name>FilteredWeightNest</Name>
             </Expression>
             <Expression xsi:type="scr:ExpressionTransform">
               <scr:Expression>Confidence == 1 ? Value : single.NaN</scr:Expression>
@@ -1580,7 +1580,7 @@ Item1 as Stable,
 Item2 as Raw)</scr:Expression>
             </Expression>
             <Expression xsi:type="PublishSubject">
-              <Name>NestWeightMonitor</Name>
+              <Name>WeightNestMonitor</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>ActivityCenter</Name>
@@ -2194,10 +2194,10 @@ Item3 as Delta)</scr:Expression>
         <Combinator xsi:type="aeon:TareWeight" />
       </Expression>
       <Expression xsi:type="MulticastSubject">
-        <Name>TareNestWeight</Name>
+        <Name>TareWeightNest</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>NestWeightMonitor</Name>
+        <Name>WeightNestMonitor</Name>
       </Expression>
       <Expression xsi:type="viz:RollingGraphBuilder">
         <viz:ValueSelector>Stable,Raw</viz:ValueSelector>
