@@ -4555,7 +4555,7 @@
           <VisualizerSettings>
             <XMin>0</XMin>
             <XMax>1500</XMax>
-            <YMin>-20.000000000000004</YMin>
+            <YMin>-20</YMin>
             <YMax>120</YMax>
             <AutoScaleX>true</AutoScaleX>
             <AutoScaleY>true</AutoScaleY>

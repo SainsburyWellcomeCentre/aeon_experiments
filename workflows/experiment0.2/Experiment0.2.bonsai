@@ -2112,13 +2112,13 @@ Item4 as PatchDispenser2)</scr:Expression>
                       </Edges>
                     </Workflow>
                   </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="aeon:EnvironmentState" />
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>EnvironmentState</Name>
                   </Expression>
                   <Expression xsi:type="Format">
                     <Format>## Arena {0} Mode Change
 Mode: {1}</Format>
-                    <Selector>Name,Type</Selector>
+                    <Selector>Value.Name,Value.Type</Selector>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Merge" />
