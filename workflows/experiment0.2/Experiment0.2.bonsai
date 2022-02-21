@@ -783,8 +783,9 @@ Item2 as CurrentPercent)</scr:Expression>
               <harp:Type>Timestamp</harp:Type>
               <harp:IsArray>false</harp:IsArray>
             </Expression>
-            <Expression xsi:type="BehaviorSubject" TypeArguments="sys:Tuple(sys:Double,sys:Double,sys:Double)">
-              <Name>PatchState1</Name>
+            <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
+              <aeon:Name>PatchState1</aeon:Name>
+              <aeon:MinUpdatePeriod>PT0S</aeon:MinUpdatePeriod>
             </Expression>
             <Expression xsi:type="scr:ExpressionTransform">
               <scr:Expression>new(
@@ -821,8 +822,9 @@ Item3 as Delta)</scr:Expression>
               <harp:Type>Timestamp</harp:Type>
               <harp:IsArray>false</harp:IsArray>
             </Expression>
-            <Expression xsi:type="BehaviorSubject" TypeArguments="sys:Tuple(sys:Double,sys:Double,sys:Double)">
-              <Name>PatchState2</Name>
+            <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
+              <aeon:Name>PatchState2</aeon:Name>
+              <aeon:MinUpdatePeriod>PT0S</aeon:MinUpdatePeriod>
             </Expression>
             <Expression xsi:type="scr:ExpressionTransform">
               <scr:Expression>new(
@@ -1872,8 +1874,9 @@ Item1 as CurrentWeight,
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\LinearDepletion.bonsai">
         <DistanceThreshold>100</DistanceThreshold>
         <Delta>0</Delta>
+        <DeliveryCount>DeliveryCount1</DeliveryCount>
         <PatchState>PatchState1</PatchState>
-        <TrialCount>TrialCount1</TrialCount>
+        <MinUpdatePeriod>PT1S</MinUpdatePeriod>
       </Expression>
       <Expression xsi:type="MulticastSubject">
         <Name>DeliverPelletPatch1</Name>
@@ -1888,8 +1891,9 @@ Item1 as CurrentWeight,
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\LinearDepletion.bonsai">
         <DistanceThreshold>100</DistanceThreshold>
         <Delta>0</Delta>
+        <DeliveryCount>DeliveryCount2</DeliveryCount>
         <PatchState>PatchState2</PatchState>
-        <TrialCount>TrialCount2</TrialCount>
+        <MinUpdatePeriod>PT1S</MinUpdatePeriod>
       </Expression>
       <Expression xsi:type="MulticastSubject">
         <Name>DeliverPelletPatch2</Name>
