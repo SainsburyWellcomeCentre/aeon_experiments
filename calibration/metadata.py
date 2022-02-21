@@ -23,7 +23,11 @@ ns = {
 }
 
 def recursive_dict(element):
-    return etree.QName(element).localname, \
+    ename = etree.QName(element)
+    if "ArrayOf" in ename.localname:
+        values = [value for name,value in map(recursive_dict, element)]
+        return ename.localname, values
+    return ename.localname, \
         dict(map(recursive_dict, element)) or element.text
 
 def list_metadata(elements, key, **kwargs):
@@ -46,6 +50,7 @@ audio_sources = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:AudioSour
 patches = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:PatchController.bonsai"]', namespaces=ns)
 weight_scales = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:WeightScale.bonsai"]', namespaces=ns)
 position_tracking = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:PositionTracking.bonsai"]', namespaces=ns)
+activity_tracking = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:ActivityTracking.bonsai"]', namespaces=ns)
 
 metadata = {
     'Workflow' : args.workflow,
@@ -55,7 +60,8 @@ metadata = {
                 list_metadata(audio_sources, 'AudioAmbient', Type='AudioSource') +
                 list_metadata(patches, 'PatchEvents', Type='Patch') +
                 list_metadata(weight_scales, 'WeightEvents', Type='WeightScale') +
-                list_metadata(position_tracking, 'TrackingEvents', Type='PositionTracking')
+                list_metadata(position_tracking, 'TrackingEvents', Type='PositionTracking') +
+                list_metadata(activity_tracking, 'TrackingEvents', Type='ActivityTracking')
 }
 
 if args.output:
