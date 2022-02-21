@@ -256,10 +256,8 @@
               <Path>D:\ProjectAeon\experiment0.2</Path>
               <BinSize>1</BinSize>
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
-                <WorkflowName>Experiment0.2.bonsai</WorkflowName>
-              </Builder>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
+              <WorkflowName>Experiment0.2.bonsai</WorkflowName>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>VideoEvents</Name>
