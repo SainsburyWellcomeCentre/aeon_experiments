@@ -2126,7 +2126,6 @@ Mode: {1}</Format>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SendAlert.bonsai">
                     <ConfigFile>Z:\aeon\config\status.config</ConfigFile>
                   </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
                   <Expression xsi:type="SubscribeSubject">
                     <Name>VideoEvents</Name>
                   </Expression>
@@ -2254,24 +2253,23 @@ Mode: {1}</Format>
                   <Edge From="4" To="5" Label="Source1" />
                   <Edge From="5" To="6" Label="Source2" />
                   <Edge From="6" To="7" Label="Source1" />
-                  <Edge From="7" To="8" Label="Source1" />
+                  <Edge From="8" To="9" Label="Source1" />
                   <Edge From="9" To="10" Label="Source1" />
                   <Edge From="10" To="11" Label="Source1" />
                   <Edge From="11" To="12" Label="Source1" />
                   <Edge From="12" To="13" Label="Source1" />
-                  <Edge From="13" To="14" Label="Source1" />
-                  <Edge From="14" To="25" Label="Source2" />
-                  <Edge From="15" To="23" Label="Source1" />
-                  <Edge From="16" To="23" Label="Source8" />
-                  <Edge From="17" To="23" Label="Source7" />
-                  <Edge From="18" To="23" Label="Source6" />
-                  <Edge From="19" To="23" Label="Source5" />
-                  <Edge From="20" To="23" Label="Source4" />
-                  <Edge From="21" To="23" Label="Source3" />
-                  <Edge From="22" To="23" Label="Source2" />
+                  <Edge From="13" To="24" Label="Source2" />
+                  <Edge From="14" To="22" Label="Source1" />
+                  <Edge From="15" To="22" Label="Source8" />
+                  <Edge From="16" To="22" Label="Source7" />
+                  <Edge From="17" To="22" Label="Source6" />
+                  <Edge From="18" To="22" Label="Source5" />
+                  <Edge From="19" To="22" Label="Source4" />
+                  <Edge From="20" To="22" Label="Source3" />
+                  <Edge From="21" To="22" Label="Source2" />
+                  <Edge From="22" To="23" Label="Source1" />
                   <Edge From="23" To="24" Label="Source1" />
                   <Edge From="24" To="25" Label="Source1" />
-                  <Edge From="25" To="26" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
