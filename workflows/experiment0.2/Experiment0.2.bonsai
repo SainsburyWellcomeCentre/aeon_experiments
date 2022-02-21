@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.6.4-preview"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                 xmlns:scr="clr-namespace:Bonsai.Scripting;assembly=Bonsai.Scripting"
-                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                 xmlns:scr="clr-namespace:Bonsai.Scripting;assembly=Bonsai.Scripting"
                  xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
                  xmlns:viz="clr-namespace:Bonsai.Design.Visualizers;assembly=Bonsai.Design.Visualizers"
@@ -26,7 +26,7 @@
               <Gain>4</Gain>
               <Binning>1</Binning>
               <TriggerSource>GlobalTrigger</TriggerSource>
-              <FrameEvents>FrameTop</FrameEvents>
+              <FrameEvents>CameraTop</FrameEvents>
               <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PositionTracking.bonsai">
@@ -35,31 +35,128 @@
               <TrackingEvents>TrackingTop</TrackingEvents>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ActivityTracking.bonsai">
-              <RegionOfInterest>
-                <X>1008</X>
-                <Y>472</Y>
-                <Width>292</Width>
-                <Height>234</Height>
-              </RegionOfInterest>
               <ThresholdValue>10</ThresholdValue>
               <TrackingEvents>ActivityCenter</TrackingEvents>
+              <Regions>
+                <ArrayOfPoint>
+                  <Point>
+                    <X>936</X>
+                    <Y>463</Y>
+                  </Point>
+                  <Point>
+                    <X>1264</X>
+                    <Y>463</Y>
+                  </Point>
+                  <Point>
+                    <X>1264</X>
+                    <Y>697</Y>
+                  </Point>
+                  <Point>
+                    <X>936</X>
+                    <Y>697</Y>
+                  </Point>
+                </ArrayOfPoint>
+              </Regions>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ActivityTracking.bonsai">
-              <RegionOfInterest>
-                <X>0</X>
-                <Y>0</Y>
-                <Width>0</Width>
-                <Height>0</Height>
-              </RegionOfInterest>
               <ThresholdValue>10</ThresholdValue>
               <TrackingEvents>ActivityArena</TrackingEvents>
+              <Regions xsi:nil="true" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ActivityTracking.bonsai">
+              <ThresholdValue>10</ThresholdValue>
+              <TrackingEvents>ActivityNest</TrackingEvents>
+              <Regions>
+                <ArrayOfPoint>
+                  <Point>
+                    <X>159</X>
+                    <Y>471</Y>
+                  </Point>
+                  <Point>
+                    <X>213</X>
+                    <Y>480</Y>
+                  </Point>
+                  <Point>
+                    <X>212</X>
+                    <Y>515</Y>
+                  </Point>
+                  <Point>
+                    <X>240</X>
+                    <Y>518</Y>
+                  </Point>
+                  <Point>
+                    <X>238</X>
+                    <Y>540</Y>
+                  </Point>
+                  <Point>
+                    <X>212</X>
+                    <Y>538</Y>
+                  </Point>
+                  <Point>
+                    <X>209</X>
+                    <Y>574</Y>
+                  </Point>
+                  <Point>
+                    <X>153</X>
+                    <Y>569</Y>
+                  </Point>
+                </ArrayOfPoint>
+              </Regions>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ActivityTracking.bonsai">
+              <ThresholdValue>10</ThresholdValue>
+              <TrackingEvents>ActivityPatch1</TrackingEvents>
+              <Regions>
+                <ArrayOfPoint>
+                  <Point>
+                    <X>550</X>
+                    <Y>819</Y>
+                  </Point>
+                  <Point>
+                    <X>567</X>
+                    <Y>830</Y>
+                  </Point>
+                  <Point>
+                    <X>558</X>
+                    <Y>847</Y>
+                  </Point>
+                  <Point>
+                    <X>541</X>
+                    <Y>832</Y>
+                  </Point>
+                </ArrayOfPoint>
+              </Regions>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ActivityTracking.bonsai">
+              <ThresholdValue>10</ThresholdValue>
+              <TrackingEvents>ActivityPatch2</TrackingEvents>
+              <Regions>
+                <ArrayOfPoint>
+                  <Point>
+                    <X>579</X>
+                    <Y>253</Y>
+                  </Point>
+                  <Point>
+                    <X>596</X>
+                    <Y>243</Y>
+                  </Point>
+                  <Point>
+                    <X>601</X>
+                    <Y>261</Y>
+                  </Point>
+                  <Point>
+                    <X>585</X>
+                    <Y>270</Y>
+                  </Point>
+                </ArrayOfPoint>
+              </Regions>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
               <SerialNumber>21196927</SerialNumber>
               <Gain>4</Gain>
               <Binning>1</Binning>
               <TriggerSource>GlobalTrigger</TriggerSource>
-              <FrameEvents>FrameWest</FrameEvents>
+              <FrameEvents>CameraWest</FrameEvents>
               <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
@@ -67,7 +164,7 @@
               <Gain>4</Gain>
               <Binning>1</Binning>
               <TriggerSource>GlobalTrigger</TriggerSource>
-              <FrameEvents>FrameEast</FrameEvents>
+              <FrameEvents>CameraEast</FrameEvents>
               <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
@@ -75,7 +172,7 @@
               <Gain>4</Gain>
               <Binning>1</Binning>
               <TriggerSource>GlobalTrigger</TriggerSource>
-              <FrameEvents>FrameNorth</FrameEvents>
+              <FrameEvents>CameraNorth</FrameEvents>
               <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
@@ -83,7 +180,7 @@
               <Gain>4</Gain>
               <Binning>1</Binning>
               <TriggerSource>GlobalTrigger</TriggerSource>
-              <FrameEvents>FrameSouth</FrameEvents>
+              <FrameEvents>CameraSouth</FrameEvents>
               <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
@@ -91,7 +188,7 @@
               <Gain>10</Gain>
               <Binning>2</Binning>
               <TriggerSource>LocalTrigger</TriggerSource>
-              <FrameEvents>FramePatch1</FrameEvents>
+              <FrameEvents>CameraPatch1</FrameEvents>
               <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
@@ -99,7 +196,7 @@
               <Gain>10</Gain>
               <Binning>2</Binning>
               <TriggerSource>LocalTrigger</TriggerSource>
-              <FrameEvents>FramePatch2</FrameEvents>
+              <FrameEvents>CameraPatch2</FrameEvents>
               <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
@@ -107,7 +204,7 @@
               <Gain>10</Gain>
               <Binning>2</Binning>
               <TriggerSource>LocalTrigger</TriggerSource>
-              <FrameEvents>FrameGate</FrameEvents>
+              <FrameEvents>CameraNest</FrameEvents>
               <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:AudioSource.bonsai">
@@ -144,6 +241,9 @@
             <Edge From="1" To="2" Label="Source1" />
             <Edge From="1" To="3" Label="Source1" />
             <Edge From="1" To="4" Label="Source1" />
+            <Edge From="1" To="5" Label="Source1" />
+            <Edge From="1" To="6" Label="Source1" />
+            <Edge From="1" To="7" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -154,6 +254,988 @@
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogController.bonsai">
               <Path>D:\ProjectAeon\experiment0.2</Path>
               <BinSize>1</BinSize>
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
+                <WorkflowName>Experiment0.2.bonsai</WorkflowName>
+              </Builder>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>VideoEvents</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>VideoController</LogName>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CameraTop</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <LogName>CameraTop</LogName>
+              <FrameRate>50</FrameRate>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>TrackingTop</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="aeon:FormatBinaryRegions" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>CameraTop</LogName>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CameraWest</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <LogName>CameraWest</LogName>
+              <FrameRate>50</FrameRate>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CameraEast</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <LogName>CameraEast</LogName>
+              <FrameRate>50</FrameRate>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CameraNorth</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <LogName>CameraNorth</LogName>
+              <FrameRate>50</FrameRate>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CameraSouth</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <LogName>CameraSouth</LogName>
+              <FrameRate>50</FrameRate>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CameraPatch1</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <LogName>CameraPatch1</LogName>
+              <FrameRate>125</FrameRate>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CameraPatch2</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <LogName>CameraPatch2</LogName>
+              <FrameRate>125</FrameRate>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CameraNest</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <LogName>CameraNest</LogName>
+              <FrameRate>125</FrameRate>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Patch1</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Patch1Dispenser</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="aeon:FormatDispenserState" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>ManualPellet1</Name>
+            </Expression>
+            <Expression xsi:type="harp:Format">
+              <harp:MessageType>Write</harp:MessageType>
+              <harp:Address>201</harp:Address>
+              <harp:PayloadType>TimestampedU8</harp:PayloadType>
+            </Expression>
+            <Expression xsi:type="PublishSubject" TypeArguments="harp:Timestamped(sys:Byte)">
+              <Name>MissedPellets1</Name>
+            </Expression>
+            <Expression xsi:type="harp:Format">
+              <harp:MessageType>Event</harp:MessageType>
+              <harp:Address>202</harp:Address>
+              <harp:PayloadType>TimestampedU8</harp:PayloadType>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Merge" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>Patch1</LogName>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Patch1</Name>
+            </Expression>
+            <Expression xsi:type="harp:Parse">
+              <harp:Type>Timestamp</harp:Type>
+              <harp:IsArray>false</harp:IsArray>
+            </Expression>
+            <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
+              <aeon:Name>PatchState1</aeon:Name>
+            </Expression>
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Expression>new(
+Item1 as Threshold,
+Item2 as D1,
+Item3 as Delta)</scr:Expression>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WithLatestFrom" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <LogName>Patch1_State</LogName>
+              <Selector xsi:nil="true" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Patch2</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Patch2Dispenser</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="aeon:FormatDispenserState" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>ManualPellet2</Name>
+            </Expression>
+            <Expression xsi:type="harp:Format">
+              <harp:MessageType>Write</harp:MessageType>
+              <harp:Address>201</harp:Address>
+              <harp:PayloadType>TimestampedU8</harp:PayloadType>
+            </Expression>
+            <Expression xsi:type="PublishSubject" TypeArguments="harp:Timestamped(sys:Byte)">
+              <Name>MissedPellets2</Name>
+            </Expression>
+            <Expression xsi:type="harp:Format">
+              <harp:MessageType>Event</harp:MessageType>
+              <harp:Address>202</harp:Address>
+              <harp:PayloadType>TimestampedU8</harp:PayloadType>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Merge" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>Patch2</LogName>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Patch2</Name>
+            </Expression>
+            <Expression xsi:type="harp:Parse">
+              <harp:Type>Timestamp</harp:Type>
+              <harp:IsArray>false</harp:IsArray>
+            </Expression>
+            <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
+              <aeon:Name>PatchState2</aeon:Name>
+            </Expression>
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Expression>new(
+Item1 as Threshold,
+Item2 as D1,
+Item3 as Delta)</scr:Expression>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WithLatestFrom" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <LogName>Patch2_State</LogName>
+              <Selector xsi:nil="true" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>AudioAmbient</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogAudio.bonsai">
+              <LogName>AudioAmbient</LogName>
+              <SampleRate>192000</SampleRate>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>WeightNest</Name>
+            </Expression>
+            <Expression xsi:type="InputMapping">
+              <PropertyMappings />
+              <Selector>Seconds,Value.Weight,Value.Confidence</Selector>
+              <TypeMapping xsi:type="TypeMapping" TypeArguments="aeon:WeightMeasurement" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="aeon:FormatWeight" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>TareNest</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Merge" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>Nest</LogName>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>SubjectState</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <LogName>ExperimentalMetadata_SubjectState</LogName>
+              <Selector>Seconds,Value.Id,Value.Weight,Value.Type</Selector>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Annotations</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <LogName>ExperimentalMetadata_MessageLog</LogName>
+              <Selector>Seconds,Value.Type,Value.Message</Selector>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>EnvironmentState</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <LogName>ExperimentalMetadata_EnvironmentState</LogName>
+              <Selector>Seconds,Value.Type</Selector>
+            </Expression>
+          </Nodes>
+          <Edges>
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="9" To="10" Label="Source1" />
+            <Edge From="11" To="12" Label="Source1" />
+            <Edge From="13" To="14" Label="Source1" />
+            <Edge From="15" To="16" Label="Source1" />
+            <Edge From="17" To="18" Label="Source1" />
+            <Edge From="19" To="20" Label="Source1" />
+            <Edge From="21" To="22" Label="Source1" />
+            <Edge From="23" To="30" Label="Source1" />
+            <Edge From="24" To="25" Label="Source1" />
+            <Edge From="25" To="30" Label="Source2" />
+            <Edge From="26" To="27" Label="Source1" />
+            <Edge From="27" To="30" Label="Source3" />
+            <Edge From="28" To="29" Label="Source1" />
+            <Edge From="29" To="30" Label="Source4" />
+            <Edge From="30" To="31" Label="Source1" />
+            <Edge From="32" To="33" Label="Source1" />
+            <Edge From="33" To="36" Label="Source2" />
+            <Edge From="34" To="35" Label="Source1" />
+            <Edge From="35" To="36" Label="Source1" />
+            <Edge From="36" To="37" Label="Source1" />
+            <Edge From="38" To="45" Label="Source1" />
+            <Edge From="39" To="40" Label="Source1" />
+            <Edge From="40" To="45" Label="Source2" />
+            <Edge From="41" To="42" Label="Source1" />
+            <Edge From="42" To="45" Label="Source3" />
+            <Edge From="43" To="44" Label="Source1" />
+            <Edge From="44" To="45" Label="Source4" />
+            <Edge From="45" To="46" Label="Source1" />
+            <Edge From="47" To="48" Label="Source1" />
+            <Edge From="48" To="51" Label="Source2" />
+            <Edge From="49" To="50" Label="Source1" />
+            <Edge From="50" To="51" Label="Source1" />
+            <Edge From="51" To="52" Label="Source1" />
+            <Edge From="53" To="54" Label="Source1" />
+            <Edge From="55" To="56" Label="Source1" />
+            <Edge From="56" To="57" Label="Source1" />
+            <Edge From="57" To="59" Label="Source1" />
+            <Edge From="58" To="59" Label="Source2" />
+            <Edge From="59" To="60" Label="Source1" />
+            <Edge From="61" To="62" Label="Source1" />
+            <Edge From="63" To="64" Label="Source1" />
+            <Edge From="65" To="66" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>Visualization</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>TrackingTop</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Item1.Centroid</Selector>
+            </Expression>
+            <Expression xsi:type="PublishSubject">
+              <Name>Trajectory</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CameraNest</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value.Image</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:SampleInterval">
+                <rx:Interval>PT0.03S</rx:Interval>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="PublishSubject">
+              <Name>NestMonitor</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CameraTop</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value.Image</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:SampleInterval">
+                <rx:Interval>PT0.03S</rx:Interval>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="PublishSubject">
+              <Name>FrameTrajectory</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>TrackingTop</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Item1.Centroid</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="dsp:Histogram2D">
+                <dsp:MinX>0</dsp:MinX>
+                <dsp:MaxX>1440</dsp:MaxX>
+                <dsp:MinY>0</dsp:MinY>
+                <dsp:MaxY>1080</dsp:MaxY>
+                <dsp:BinsX>288</dsp:BinsX>
+                <dsp:BinsY>216</dsp:BinsY>
+                <dsp:Normalize>false</dsp:Normalize>
+                <dsp:Accumulate>true</dsp:Accumulate>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="dsp:ConvertScale">
+                <dsp:Depth>U8</dsp:Depth>
+                <dsp:Scale>20</dsp:Scale>
+                <dsp:Shift>0</dsp:Shift>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:SampleInterval">
+                <rx:Interval>PT0.03S</rx:Interval>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="PublishSubject">
+              <Name>Heatmap</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CameraPatch1</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:SampleInterval">
+                <rx:Interval>PT0.02S</rx:Interval>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value.Image</Selector>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CameraPatch2</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:SampleInterval">
+                <rx:Interval>PT0.02S</rx:Interval>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value.Image</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WithLatestFrom" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="dsp:Concat">
+                <dsp:Axis>1</dsp:Axis>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="PublishSubject">
+              <Name>CameraSide</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>DistanceState1</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>DistanceState2</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>PatchState1</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Item1</Selector>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>PatchState2</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Item1</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:CombineLatest" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Sample" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="dsp:Buffer">
+                <dsp:Count>15</dsp:Count>
+                <dsp:Skip xsi:nil="true" />
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="PublishSubject">
+              <Name>PatchState</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>PatchState1</Name>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>ToArray</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="SelectMany">
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Item1</Selector>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:ToArray" />
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:DelaySubscription">
+                      <rx:DueTime>PT0.1S</rx:DueTime>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="DoubleProperty">
+                      <Value>0</Value>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Take">
+                      <rx:Count>1</rx:Count>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:IgnoreElements" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:ToArray" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Concat" />
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="7" Label="Source2" />
+                  <Edge From="3" To="4" Label="Source1" />
+                  <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="5" To="6" Label="Source1" />
+                  <Edge From="6" To="7" Label="Source1" />
+                  <Edge From="7" To="8" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:ElementIndex" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Expression>new(
+Index as TrialIndex,
+Value as Threshold)</scr:Expression>
+            </Expression>
+            <Expression xsi:type="PublishSubject">
+              <Name>ThresholdPatch1</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>PatchState2</Name>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>ToArray</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="SelectMany">
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Item1</Selector>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:ToArray" />
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:DelaySubscription">
+                      <rx:DueTime>PT0.1S</rx:DueTime>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="DoubleProperty">
+                      <Value>0</Value>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Take">
+                      <rx:Count>1</rx:Count>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:IgnoreElements" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:ToArray" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Concat" />
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="7" Label="Source2" />
+                  <Edge From="3" To="4" Label="Source1" />
+                  <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="5" To="6" Label="Source1" />
+                  <Edge From="6" To="7" Label="Source1" />
+                  <Edge From="7" To="8" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:ElementIndex" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Expression>new(
+Index as TrialIndex,
+Value as Threshold)</scr:Expression>
+            </Expression>
+            <Expression xsi:type="PublishSubject">
+              <Name>ThresholdPatch2</Name>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>PelletMonitor1</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Name" DisplayName="DeliverPellet" />
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>DeliverPelletPatch1</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="BooleanProperty">
+                      <Value>false</Value>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Name" DisplayName="PelletDelivered" />
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>PelletDeliveredPatch1</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="BooleanProperty">
+                      <Value>true</Value>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Merge" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="6" Label="Source1" />
+                  <Edge From="3" To="4" Label="Source1" />
+                  <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="5" To="6" Label="Source2" />
+                  <Edge From="6" To="7" Label="Source1" />
+                  <Edge From="7" To="8" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>PelletMonitor1</Name>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>PelletMonitor2</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Name" DisplayName="DeliverPellet" />
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>DeliverPelletPatch2</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="BooleanProperty">
+                      <Value>false</Value>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Name" DisplayName="PelletDelivered" />
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>PelletDeliveredPatch2</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="BooleanProperty">
+                      <Value>true</Value>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Merge" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="6" Label="Source1" />
+                  <Edge From="3" To="4" Label="Source1" />
+                  <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="5" To="6" Label="Source2" />
+                  <Edge From="6" To="7" Label="Source1" />
+                  <Edge From="7" To="8" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>PelletMonitor2</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>TimeOnPatch1</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>TimeOnPatch2</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:CombineLatest" />
+            </Expression>
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Expression>new(
+"Time Spent on Patch (s)" as Id,
+Item1 as Patch1,
+Item2 as Patch2)</scr:Expression>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:SampleInterval">
+                <rx:Interval>PT0.05S</rx:Interval>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="PublishSubject">
+              <Name>TimeSpentOnPatches</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>TimeSinceLastVisit1</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>TimeSinceLastVisit2</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:CombineLatest" />
+            </Expression>
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Expression>new(
+"Time Since Last Visit (s)" as Id,
+Item1 as Patch1,
+Item2 as Patch2)</scr:Expression>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:SampleInterval">
+                <rx:Interval>PT0.05S</rx:Interval>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="PublishSubject">
+              <Name>TimeSinceLastVisit</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>WheelPatch1</Name>
+            </Expression>
+            <Expression xsi:type="rx:Accumulate" />
+            <Expression xsi:type="SubscribeSubject">
+              <Name>WheelPatch2</Name>
+            </Expression>
+            <Expression xsi:type="rx:Accumulate" />
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:CombineLatest" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Expression>new(
+"Total Distance Travelled (cm)" as Id,
+Item1 as Patch1,
+Item2 as Patch2)</scr:Expression>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:SampleInterval">
+                <rx:Interval>PT0.05S</rx:Interval>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="PublishSubject">
+              <Name>TotalDistanceTravelled</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimeSpentOnWheel.bonsai">
+              <Patch>Patch1</Patch>
+              <WheelPatch>WheelPatch1</WheelPatch>
+              <Threshold>0.0003</Threshold>
+              <LowPass>1</LowPass>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
+            <Expression xsi:type="BehaviorSubject">
+              <Name>TimeOnPatch1</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>TimeOnPatch1</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:DistinctUntilChanged" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimeSinceLastEvent.bonsai" />
+            <Expression xsi:type="BehaviorSubject">
+              <Name>TimeSinceLastVisit1</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimeSpentOnWheel.bonsai">
+              <Patch>Patch2</Patch>
+              <WheelPatch>WheelPatch2</WheelPatch>
+              <Threshold>0.0003</Threshold>
+              <LowPass>1</LowPass>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
+            <Expression xsi:type="BehaviorSubject">
+              <Name>TimeOnPatch2</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>TimeOnPatch2</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:DistinctUntilChanged" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimeSinceLastEvent.bonsai" />
+            <Expression xsi:type="BehaviorSubject">
+              <Name>TimeSinceLastVisit2</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>WeightNest</Name>
+            </Expression>
+            <Expression xsi:type="InputMapping">
+              <PropertyMappings />
+              <Selector>Seconds,Value.Weight,Value.Confidence</Selector>
+              <TypeMapping xsi:type="TypeMapping" TypeArguments="aeon:WeightMeasurement" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="aeon:WeightFilter">
+                <aeon:Count>10</aeon:Count>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="PublishSubject">
+              <Name>FilteredWeightNest</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>BaselineTrigger</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="aeon:WeightBaseline" />
+            </Expression>
+            <Expression xsi:type="Condition">
+              <Name>StableWeight</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Confidence</Selector>
+                  </Expression>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Value" DisplayName="ConfidenceThreshold" />
+                  </Expression>
+                  <Expression xsi:type="Equal">
+                    <Operand xsi:type="FloatProperty">
+                      <Value>1</Value>
+                    </Operand>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="3" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source2" />
+                  <Edge From="3" To="4" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="Condition">
+              <Name>SubjectOnScale</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Value</Selector>
+                  </Expression>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Value" DisplayName="WeightThreshold" />
+                  </Expression>
+                  <Expression xsi:type="GreaterThan">
+                    <Operand xsi:type="FloatProperty">
+                      <Value>10</Value>
+                    </Operand>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="3" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source2" />
+                  <Edge From="3" To="4" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value</Selector>
+            </Expression>
+            <Expression xsi:type="PublishSubject">
+              <Name>SubjectWeight</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>WeightNest</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Skip">
+                <rx:Count>9</rx:Count>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value.Weight</Selector>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>FilteredWeightNest</Name>
+            </Expression>
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Expression>Confidence == 1 ? Value : single.NaN</scr:Expression>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Zip" />
+            </Expression>
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Expression>new(
+Item1 as Stable,
+Item2 as Raw)</scr:Expression>
+            </Expression>
+            <Expression xsi:type="PublishSubject">
+              <Name>WeightNestMonitor</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>ActivityCenter</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value</Selector>
+            </Expression>
+            <Expression xsi:type="GreaterThan">
+              <Operand xsi:type="DoubleProperty">
+                <Value>0.5</Value>
+              </Operand>
+            </Expression>
+            <Expression xsi:type="Condition">
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Interval" DisplayName="BaselineRefractoryPeriod" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:GateInterval">
+                <rx:Interval>PT5S</rx:Interval>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="PublishSubject">
+              <Name>BaselineTrigger</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>SubjectWeight</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>SubjectStart</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value.ReferenceWeight</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WithLatestFrom" />
+            </Expression>
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Expression>new(
+Item1 as CurrentWeight,
+100 * Item1 / Item2 as CurrentPercent)</scr:Expression>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>CurrentWeight,CurrentPercent</Selector>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>PercentWeightLoss</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\PelletMissed.bonsai">
+              <TimeToMiss>PT1S</TimeToMiss>
+              <DistanceToMiss>6</DistanceToMiss>
+              <TimeInChute>PT0S</TimeInChute>
+              <Name>PelletDeliveredPatch1</Name>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>MissedPellets1</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\PelletMissed.bonsai">
+              <TimeToMiss>PT1S</TimeToMiss>
+              <DistanceToMiss>6</DistanceToMiss>
+              <TimeInChute>PT0S</TimeInChute>
+              <Name>PelletDeliveredPatch2</Name>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>MissedPellets2</Name>
             </Expression>
             <Expression xsi:type="GroupWorkflow">
               <Name>Alerts</Name>
@@ -628,6 +1710,234 @@ Item2 as CurrentPercent)</scr:Expression>
 </Format>
                     <Selector />
                   </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>MissedPellets1</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:ElementIndex" />
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Index</Selector>
+                  </Expression>
+                  <Expression xsi:type="Add">
+                    <Operand xsi:type="IntProperty">
+                      <Value>1</Value>
+                    </Operand>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\AlertGate.bonsai">
+                    <AlertRefractoryPeriod>PT5M</AlertRefractoryPeriod>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>SubjectState</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:WithLatestFrom" />
+                  </Expression>
+                  <Expression xsi:type="Format">
+                    <Format>## **Missed Pellet**
+**Subject**: {0}
+**Patch:**: Patch1
+**Total Missed**: {1}
+</Format>
+                    <Selector>Item2.Value.Id,Item1</Selector>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>MissedPellets2</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:ElementIndex" />
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Index</Selector>
+                  </Expression>
+                  <Expression xsi:type="Add">
+                    <Operand xsi:type="IntProperty">
+                      <Value>1</Value>
+                    </Operand>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\AlertGate.bonsai">
+                    <AlertRefractoryPeriod>PT5M</AlertRefractoryPeriod>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>SubjectState</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:WithLatestFrom" />
+                  </Expression>
+                  <Expression xsi:type="Format">
+                    <Format>## **Missed Pellet**
+**Subject**: {0}
+**Patch:**: Patch2
+**Total Missed**: {1}
+</Format>
+                    <Selector>Item2.Value.Id,Item1</Selector>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>VideoEvents</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="aeon:GroupByTime">
+                      <aeon:BinSize>1</aeon:BinSize>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="SelectMany">
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>PatchState1</Name>
+                        </Expression>
+                        <Expression xsi:type="scr:ExpressionTransform">
+                          <scr:Expression>new(
+Item1 as Threshold,
+Item2 as D0,
+Item3 as Delta)</scr:Expression>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>PatchState2</Name>
+                        </Expression>
+                        <Expression xsi:type="scr:ExpressionTransform">
+                          <scr:Expression>new(
+Item1 as Threshold,
+Item2 as D0,
+Item3 as Delta)</scr:Expression>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>SubjectState</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Value.Id</Selector>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>Patch1Dispenser</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Value.Value</Selector>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>TimeSinceLastVisit1</Name>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>TimeSinceLastVisit2</Name>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>TimeOnPatch1</Name>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>TimeOnPatch2</Name>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:Zip" />
+                        </Expression>
+                        <Expression xsi:type="scr:ExpressionTransform">
+                          <scr:Expression>new(
+Item1 as TimeOnPatch2,
+Item2 as TimeOnPatch1,
+Item3 as TimeSinceLastVisit2,
+Item4 as TimeSinceLastVisit1)</scr:Expression>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>PercentWeightLoss</Name>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>Patch2Dispenser</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Value.Value</Selector>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:Zip" />
+                        </Expression>
+                        <Expression xsi:type="scr:ExpressionTransform">
+                          <scr:Expression>new(
+Item1 as PatchState1,
+Item2 as PatchState2,
+Item3 as PatchDispenser1,
+Item4 as PatchDispenser2)</scr:Expression>
+                        </Expression>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Key</Selector>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:Zip" />
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:Take">
+                            <rx:Count>1</rx:Count>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="Format">
+                          <Format>## Arena Status
+**Time**: {0}
+**Subject**: {1}
+**Weight**: {2}
+**Weight Loss**: {3}</Format>
+                          <Selector>Item5,Item3,Item4.Item1,Item4.Item2</Selector>
+                        </Expression>
+                        <Expression xsi:type="Format">
+                          <Format>
+### Patch1
+**Pellets**: {0}
+**Threshold**: {1}
+**D0**: {2}
+**Delta**: {3}
+**Time On Patch**: {4}
+**Time Since Last Visit**: {5}</Format>
+                          <Selector>Item1.PatchDispenser1,Item1.PatchState1.Threshold,Item1.PatchState1.D0,Item1.PatchState1.Delta,Item2.TimeOnPatch1,Item2.TimeSinceLastVisit1</Selector>
+                        </Expression>
+                        <Expression xsi:type="Format">
+                          <Format>
+### Patch2
+**Pellets**: {0}
+**Threshold**: {1}
+**D0**: {2}
+**Delta**: {3}
+**Time On Patch**: {4}
+**Time Since Last Visit**: {5}</Format>
+                          <Selector>Item1.PatchDispenser2,Item1.PatchState2.Threshold,Item1.PatchState2.D0,Item1.PatchState2.Delta,Item2.TimeOnPatch2,Item2.TimeSinceLastVisit2</Selector>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:Zip" />
+                        </Expression>
+                        <Expression xsi:type="Add" />
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="17" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                        <Edge From="3" To="17" Label="Source2" />
+                        <Edge From="4" To="5" Label="Source1" />
+                        <Edge From="5" To="21" Label="Source3" />
+                        <Edge From="6" To="7" Label="Source1" />
+                        <Edge From="7" To="17" Label="Source3" />
+                        <Edge From="8" To="12" Label="Source4" />
+                        <Edge From="9" To="12" Label="Source3" />
+                        <Edge From="10" To="12" Label="Source2" />
+                        <Edge From="11" To="12" Label="Source1" />
+                        <Edge From="12" To="13" Label="Source1" />
+                        <Edge From="13" To="21" Label="Source2" />
+                        <Edge From="14" To="21" Label="Source4" />
+                        <Edge From="15" To="16" Label="Source1" />
+                        <Edge From="16" To="17" Label="Source4" />
+                        <Edge From="17" To="18" Label="Source1" />
+                        <Edge From="18" To="21" Label="Source1" />
+                        <Edge From="19" To="20" Label="Source1" />
+                        <Edge From="20" To="21" Label="Source5" />
+                        <Edge From="21" To="22" Label="Source1" />
+                        <Edge From="22" To="23" Label="Source1" />
+                        <Edge From="22" To="24" Label="Source1" />
+                        <Edge From="22" To="25" Label="Source1" />
+                        <Edge From="23" To="26" Label="Source1" />
+                        <Edge From="24" To="26" Label="Source2" />
+                        <Edge From="25" To="26" Label="Source3" />
+                        <Edge From="26" To="27" Label="Source1" />
+                        <Edge From="27" To="28" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Merge" />
                   </Expression>
@@ -645,7 +1955,7 @@ Item2 as CurrentPercent)</scr:Expression>
                   <Edge From="3" To="4" Label="Source1" />
                   <Edge From="4" To="5" Label="Source1" />
                   <Edge From="5" To="6" Label="Source1" />
-                  <Edge From="6" To="45" Label="Source1" />
+                  <Edge From="6" To="64" Label="Source1" />
                   <Edge From="7" To="8" Label="Source1" />
                   <Edge From="8" To="9" Label="Source1" />
                   <Edge From="9" To="13" Label="Source1" />
@@ -653,7 +1963,7 @@ Item2 as CurrentPercent)</scr:Expression>
                   <Edge From="11" To="12" Label="Source1" />
                   <Edge From="12" To="13" Label="Source2" />
                   <Edge From="13" To="14" Label="Source1" />
-                  <Edge From="14" To="45" Label="Source2" />
+                  <Edge From="14" To="64" Label="Source2" />
                   <Edge From="15" To="16" Label="Source1" />
                   <Edge From="16" To="17" Label="Source1" />
                   <Edge From="17" To="18" Label="Source1" />
@@ -662,7 +1972,7 @@ Item2 as CurrentPercent)</scr:Expression>
                   <Edge From="20" To="22" Label="Source1" />
                   <Edge From="21" To="22" Label="Source2" />
                   <Edge From="22" To="23" Label="Source1" />
-                  <Edge From="23" To="45" Label="Source3" />
+                  <Edge From="23" To="64" Label="Source3" />
                   <Edge From="24" To="25" Label="Source1" />
                   <Edge From="25" To="26" Label="Source1" />
                   <Edge From="26" To="27" Label="Source1" />
@@ -671,965 +1981,44 @@ Item2 as CurrentPercent)</scr:Expression>
                   <Edge From="29" To="31" Label="Source1" />
                   <Edge From="30" To="31" Label="Source2" />
                   <Edge From="31" To="32" Label="Source1" />
-                  <Edge From="32" To="45" Label="Source4" />
+                  <Edge From="32" To="64" Label="Source4" />
                   <Edge From="33" To="34" Label="Source1" />
                   <Edge From="34" To="35" Label="Source1" />
                   <Edge From="35" To="36" Label="Source1" />
                   <Edge From="36" To="37" Label="Source1" />
                   <Edge From="37" To="38" Label="Source1" />
-                  <Edge From="38" To="45" Label="Source5" />
+                  <Edge From="38" To="64" Label="Source5" />
                   <Edge From="39" To="40" Label="Source1" />
                   <Edge From="40" To="41" Label="Source1" />
                   <Edge From="41" To="42" Label="Source1" />
                   <Edge From="42" To="43" Label="Source1" />
                   <Edge From="43" To="44" Label="Source1" />
-                  <Edge From="44" To="45" Label="Source6" />
+                  <Edge From="44" To="64" Label="Source6" />
                   <Edge From="45" To="46" Label="Source1" />
                   <Edge From="46" To="47" Label="Source1" />
+                  <Edge From="47" To="48" Label="Source1" />
+                  <Edge From="48" To="49" Label="Source1" />
+                  <Edge From="49" To="51" Label="Source1" />
+                  <Edge From="50" To="51" Label="Source2" />
+                  <Edge From="51" To="52" Label="Source1" />
+                  <Edge From="52" To="64" Label="Source7" />
+                  <Edge From="53" To="54" Label="Source1" />
+                  <Edge From="54" To="55" Label="Source1" />
+                  <Edge From="55" To="56" Label="Source1" />
+                  <Edge From="56" To="57" Label="Source1" />
+                  <Edge From="57" To="59" Label="Source1" />
+                  <Edge From="58" To="59" Label="Source2" />
+                  <Edge From="59" To="60" Label="Source1" />
+                  <Edge From="60" To="64" Label="Source8" />
+                  <Edge From="61" To="62" Label="Source1" />
+                  <Edge From="62" To="63" Label="Source1" />
+                  <Edge From="63" To="64" Label="Source9" />
+                  <Edge From="64" To="65" Label="Source1" />
+                  <Edge From="65" To="66" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
-            <Expression xsi:type="SubscribeSubject">
-              <Name>VideoEvents</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>VideoController</LogName>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>FrameTop</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
-              <LogName>FrameTop</LogName>
-              <FrameRate>50</FrameRate>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>TrackingTop</Name>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="aeon:FormatBinaryRegions" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>FrameTop</LogName>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>FrameWest</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
-              <LogName>FrameWest</LogName>
-              <FrameRate>50</FrameRate>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>FrameEast</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
-              <LogName>FrameEast</LogName>
-              <FrameRate>50</FrameRate>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>FrameNorth</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
-              <LogName>FrameNorth</LogName>
-              <FrameRate>50</FrameRate>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>FrameSouth</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
-              <LogName>FrameSouth</LogName>
-              <FrameRate>50</FrameRate>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>FramePatch1</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
-              <LogName>FramePatch1</LogName>
-              <FrameRate>125</FrameRate>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>FramePatch2</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
-              <LogName>FramePatch2</LogName>
-              <FrameRate>125</FrameRate>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>FrameGate</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
-              <LogName>FrameGate</LogName>
-              <FrameRate>125</FrameRate>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>Patch1</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>Patch1Dispenser</Name>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="aeon:FormatDispenserState" />
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>ManualPellet1</Name>
-            </Expression>
-            <Expression xsi:type="harp:Format">
-              <harp:MessageType>Write</harp:MessageType>
-              <harp:Address>201</harp:Address>
-              <harp:PayloadType>TimestampedU8</harp:PayloadType>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Merge" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>Patch1</LogName>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>Patch1</Name>
-            </Expression>
-            <Expression xsi:type="harp:Parse">
-              <harp:Type>Timestamp</harp:Type>
-              <harp:IsArray>false</harp:IsArray>
-            </Expression>
-            <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
-              <aeon:Name>PatchState1</aeon:Name>
-            </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>new(
-Item1 as Threshold,
-Item2 as D1,
-Item3 as Delta)</scr:Expression>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:WithLatestFrom" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
-              <LogName>Patch1_State</LogName>
-              <Selector xsi:nil="true" />
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>Patch2</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>Patch2Dispenser</Name>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="aeon:FormatDispenserState" />
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>ManualPellet2</Name>
-            </Expression>
-            <Expression xsi:type="harp:Format">
-              <harp:MessageType>Write</harp:MessageType>
-              <harp:Address>201</harp:Address>
-              <harp:PayloadType>TimestampedU8</harp:PayloadType>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Merge" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>Patch2</LogName>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>Patch2</Name>
-            </Expression>
-            <Expression xsi:type="harp:Parse">
-              <harp:Type>Timestamp</harp:Type>
-              <harp:IsArray>false</harp:IsArray>
-            </Expression>
-            <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
-              <aeon:Name>PatchState2</aeon:Name>
-            </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>new(
-Item1 as Threshold,
-Item2 as D1,
-Item3 as Delta)</scr:Expression>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:WithLatestFrom" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
-              <LogName>Patch2_State</LogName>
-              <Selector xsi:nil="true" />
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>AudioAmbient</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogAudio.bonsai">
-              <LogName>AudioAmbient</LogName>
-              <SampleRate>192000</SampleRate>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>WeightNest</Name>
-            </Expression>
-            <Expression xsi:type="InputMapping">
-              <PropertyMappings />
-              <Selector>Seconds,Value.Weight,Value.Confidence</Selector>
-              <TypeMapping xsi:type="TypeMapping" TypeArguments="aeon:WeightMeasurement" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="aeon:FormatWeight" />
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>TareNest</Name>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Merge" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>Nest</LogName>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>SubjectState</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
-              <LogName>ExperimentalMetadata_SubjectState</LogName>
-              <Selector>Seconds,Value.Id,Value.Weight,Value.Type</Selector>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>Annotations</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
-              <LogName>ExperimentalMetadata_MessageLog</LogName>
-              <Selector>Seconds,Value.Type,Value.Message</Selector>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>EnvironmentState</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
-              <LogName>ExperimentalMetadata_EnvironmentState</LogName>
-              <Selector>Seconds,Value.Type</Selector>
-            </Expression>
-          </Nodes>
-          <Edges>
-            <Edge From="1" To="2" Label="Source1" />
-            <Edge From="3" To="4" Label="Source1" />
-            <Edge From="5" To="6" Label="Source1" />
-            <Edge From="7" To="8" Label="Source1" />
-            <Edge From="8" To="9" Label="Source1" />
-            <Edge From="10" To="11" Label="Source1" />
-            <Edge From="12" To="13" Label="Source1" />
-            <Edge From="14" To="15" Label="Source1" />
-            <Edge From="16" To="17" Label="Source1" />
-            <Edge From="18" To="19" Label="Source1" />
-            <Edge From="20" To="21" Label="Source1" />
-            <Edge From="22" To="23" Label="Source1" />
-            <Edge From="24" To="29" Label="Source1" />
-            <Edge From="25" To="26" Label="Source1" />
-            <Edge From="26" To="29" Label="Source2" />
-            <Edge From="27" To="28" Label="Source1" />
-            <Edge From="28" To="29" Label="Source3" />
-            <Edge From="29" To="30" Label="Source1" />
-            <Edge From="31" To="32" Label="Source1" />
-            <Edge From="32" To="35" Label="Source2" />
-            <Edge From="33" To="34" Label="Source1" />
-            <Edge From="34" To="35" Label="Source1" />
-            <Edge From="35" To="36" Label="Source1" />
-            <Edge From="37" To="42" Label="Source1" />
-            <Edge From="38" To="39" Label="Source1" />
-            <Edge From="39" To="42" Label="Source2" />
-            <Edge From="40" To="41" Label="Source1" />
-            <Edge From="41" To="42" Label="Source3" />
-            <Edge From="42" To="43" Label="Source1" />
-            <Edge From="44" To="45" Label="Source1" />
-            <Edge From="45" To="48" Label="Source2" />
-            <Edge From="46" To="47" Label="Source1" />
-            <Edge From="47" To="48" Label="Source1" />
-            <Edge From="48" To="49" Label="Source1" />
-            <Edge From="50" To="51" Label="Source1" />
-            <Edge From="52" To="53" Label="Source1" />
-            <Edge From="53" To="54" Label="Source1" />
-            <Edge From="54" To="56" Label="Source1" />
-            <Edge From="55" To="56" Label="Source2" />
-            <Edge From="56" To="57" Label="Source1" />
-            <Edge From="58" To="59" Label="Source1" />
-            <Edge From="60" To="61" Label="Source1" />
-            <Edge From="62" To="63" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>Visualization</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>TrackingTop</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Item1.Centroid</Selector>
-            </Expression>
-            <Expression xsi:type="PublishSubject">
-              <Name>Trajectory</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>FrameGate</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value.Image</Selector>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:SampleInterval">
-                <rx:Interval>PT0.03S</rx:Interval>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="PublishSubject">
-              <Name>NestMonitor</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>FrameTop</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value.Image</Selector>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:SampleInterval">
-                <rx:Interval>PT0.03S</rx:Interval>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="PublishSubject">
-              <Name>FrameTrajectory</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>TrackingTop</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Item1.Centroid</Selector>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="dsp:Histogram2D">
-                <dsp:MinX>0</dsp:MinX>
-                <dsp:MaxX>1440</dsp:MaxX>
-                <dsp:MinY>0</dsp:MinY>
-                <dsp:MaxY>1080</dsp:MaxY>
-                <dsp:BinsX>288</dsp:BinsX>
-                <dsp:BinsY>216</dsp:BinsY>
-                <dsp:Normalize>false</dsp:Normalize>
-                <dsp:Accumulate>true</dsp:Accumulate>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="dsp:ConvertScale">
-                <dsp:Depth>U8</dsp:Depth>
-                <dsp:Scale>20</dsp:Scale>
-                <dsp:Shift>0</dsp:Shift>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:SampleInterval">
-                <rx:Interval>PT0.03S</rx:Interval>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="PublishSubject">
-              <Name>Heatmap</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>FramePatch1</Name>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:SampleInterval">
-                <rx:Interval>PT0.02S</rx:Interval>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value.Image</Selector>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>FramePatch2</Name>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:SampleInterval">
-                <rx:Interval>PT0.02S</rx:Interval>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value.Image</Selector>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:WithLatestFrom" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="dsp:Concat">
-                <dsp:Axis>1</dsp:Axis>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="PublishSubject">
-              <Name>FrameSide</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>DistanceState1</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>DistanceState2</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>PatchState1</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Item1</Selector>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>PatchState2</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Item1</Selector>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:CombineLatest" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Sample" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="dsp:Buffer">
-                <dsp:Count>15</dsp:Count>
-                <dsp:Skip xsi:nil="true" />
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="PublishSubject">
-              <Name>PatchState</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>PatchState1</Name>
-            </Expression>
-            <Expression xsi:type="GroupWorkflow">
-              <Name>ToArray</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="SelectMany">
-                    <Workflow>
-                      <Nodes>
-                        <Expression xsi:type="WorkflowInput">
-                          <Name>Source1</Name>
-                        </Expression>
-                        <Expression xsi:type="MemberSelector">
-                          <Selector>Item1</Selector>
-                        </Expression>
-                        <Expression xsi:type="Combinator">
-                          <Combinator xsi:type="rx:ToArray" />
-                        </Expression>
-                        <Expression xsi:type="WorkflowOutput" />
-                      </Nodes>
-                      <Edges>
-                        <Edge From="0" To="1" Label="Source1" />
-                        <Edge From="1" To="2" Label="Source1" />
-                        <Edge From="2" To="3" Label="Source1" />
-                      </Edges>
-                    </Workflow>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:DelaySubscription">
-                      <rx:DueTime>PT0.1S</rx:DueTime>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="DoubleProperty">
-                      <Value>0</Value>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:Take">
-                      <rx:Count>1</rx:Count>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:IgnoreElements" />
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:ToArray" />
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:Concat" />
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                  <Edge From="2" To="7" Label="Source2" />
-                  <Edge From="3" To="4" Label="Source1" />
-                  <Edge From="4" To="5" Label="Source1" />
-                  <Edge From="5" To="6" Label="Source1" />
-                  <Edge From="6" To="7" Label="Source1" />
-                  <Edge From="7" To="8" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:ElementIndex" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>new(
-Index as TrialIndex,
-Value as Threshold)</scr:Expression>
-            </Expression>
-            <Expression xsi:type="PublishSubject">
-              <Name>ThresholdPatch1</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>PatchState2</Name>
-            </Expression>
-            <Expression xsi:type="GroupWorkflow">
-              <Name>ToArray</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="SelectMany">
-                    <Workflow>
-                      <Nodes>
-                        <Expression xsi:type="WorkflowInput">
-                          <Name>Source1</Name>
-                        </Expression>
-                        <Expression xsi:type="MemberSelector">
-                          <Selector>Item1</Selector>
-                        </Expression>
-                        <Expression xsi:type="Combinator">
-                          <Combinator xsi:type="rx:ToArray" />
-                        </Expression>
-                        <Expression xsi:type="WorkflowOutput" />
-                      </Nodes>
-                      <Edges>
-                        <Edge From="0" To="1" Label="Source1" />
-                        <Edge From="1" To="2" Label="Source1" />
-                        <Edge From="2" To="3" Label="Source1" />
-                      </Edges>
-                    </Workflow>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:DelaySubscription">
-                      <rx:DueTime>PT0.1S</rx:DueTime>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="DoubleProperty">
-                      <Value>0</Value>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:Take">
-                      <rx:Count>1</rx:Count>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:IgnoreElements" />
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:ToArray" />
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:Concat" />
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                  <Edge From="2" To="7" Label="Source2" />
-                  <Edge From="3" To="4" Label="Source1" />
-                  <Edge From="4" To="5" Label="Source1" />
-                  <Edge From="5" To="6" Label="Source1" />
-                  <Edge From="6" To="7" Label="Source1" />
-                  <Edge From="7" To="8" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:ElementIndex" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>new(
-Index as TrialIndex,
-Value as Threshold)</scr:Expression>
-            </Expression>
-            <Expression xsi:type="PublishSubject">
-              <Name>ThresholdPatch2</Name>
-            </Expression>
-            <Expression xsi:type="GroupWorkflow">
-              <Name>PelletMonitor1</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="ExternalizedMapping">
-                    <Property Name="Name" DisplayName="DeliverPellet" />
-                  </Expression>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>DeliverPelletPatch1</Name>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="BooleanProperty">
-                      <Value>false</Value>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="ExternalizedMapping">
-                    <Property Name="Name" DisplayName="PelletDelivered" />
-                  </Expression>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>PelletDeliveredPatch1</Name>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="BooleanProperty">
-                      <Value>true</Value>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:Merge" />
-                  </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                  <Edge From="2" To="6" Label="Source1" />
-                  <Edge From="3" To="4" Label="Source1" />
-                  <Edge From="4" To="5" Label="Source1" />
-                  <Edge From="5" To="6" Label="Source2" />
-                  <Edge From="6" To="7" Label="Source1" />
-                  <Edge From="7" To="8" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>PelletMonitor1</Name>
-            </Expression>
-            <Expression xsi:type="GroupWorkflow">
-              <Name>PelletMonitor2</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="ExternalizedMapping">
-                    <Property Name="Name" DisplayName="DeliverPellet" />
-                  </Expression>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>DeliverPelletPatch2</Name>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="BooleanProperty">
-                      <Value>false</Value>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="ExternalizedMapping">
-                    <Property Name="Name" DisplayName="PelletDelivered" />
-                  </Expression>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>PelletDeliveredPatch2</Name>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="BooleanProperty">
-                      <Value>true</Value>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:Merge" />
-                  </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                  <Edge From="2" To="6" Label="Source1" />
-                  <Edge From="3" To="4" Label="Source1" />
-                  <Edge From="4" To="5" Label="Source1" />
-                  <Edge From="5" To="6" Label="Source2" />
-                  <Edge From="6" To="7" Label="Source1" />
-                  <Edge From="7" To="8" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>PelletMonitor2</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>TimeOnPatch1</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>TimeOnPatch2</Name>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:CombineLatest" />
-            </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>new(
-"Time Spent on Patch (s)" as Id,
-Item1 as Patch1,
-Item2 as Patch2)</scr:Expression>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:SampleInterval">
-                <rx:Interval>PT0.05S</rx:Interval>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="PublishSubject">
-              <Name>TimeSpentOnPatches</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>TimeSinceLastVisit1</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>TimeSinceLastVisit2</Name>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:CombineLatest" />
-            </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>new(
-"Time Since Last Visit (s)" as Id,
-Item1 as Patch1,
-Item2 as Patch2)</scr:Expression>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:SampleInterval">
-                <rx:Interval>PT0.05S</rx:Interval>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="PublishSubject">
-              <Name>TimeSinceLastVisit</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>WheelPatch1</Name>
-            </Expression>
-            <Expression xsi:type="rx:Accumulate" />
-            <Expression xsi:type="SubscribeSubject">
-              <Name>WheelPatch2</Name>
-            </Expression>
-            <Expression xsi:type="rx:Accumulate" />
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:CombineLatest" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>new(
-"Total Distance Travelled (cm)" as Id,
-Item1 as Patch1,
-Item2 as Patch2)</scr:Expression>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:SampleInterval">
-                <rx:Interval>PT0.05S</rx:Interval>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="PublishSubject">
-              <Name>TotalDistanceTravelled</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimeSpentOnWheel.bonsai">
-              <Patch>Patch1</Patch>
-              <WheelPatch>WheelPatch1</WheelPatch>
-              <Threshold>0.0003</Threshold>
-              <LowPass>1</LowPass>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
-            <Expression xsi:type="PublishSubject">
-              <Name>TimeOnPatch1</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>TimeOnPatch1</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:DistinctUntilChanged" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimeSinceLastEvent.bonsai" />
-            <Expression xsi:type="PublishSubject">
-              <Name>TimeSinceLastVisit1</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimeSpentOnWheel.bonsai">
-              <Patch>Patch2</Patch>
-              <WheelPatch>WheelPatch2</WheelPatch>
-              <Threshold>0.0003</Threshold>
-              <LowPass>1</LowPass>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
-            <Expression xsi:type="PublishSubject">
-              <Name>TimeOnPatch2</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>TimeOnPatch2</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:DistinctUntilChanged" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimeSinceLastEvent.bonsai" />
-            <Expression xsi:type="PublishSubject">
-              <Name>TimeSinceLastVisit2</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>WeightNest</Name>
-            </Expression>
-            <Expression xsi:type="InputMapping">
-              <PropertyMappings />
-              <Selector>Seconds,Value.Weight,Value.Confidence</Selector>
-              <TypeMapping xsi:type="TypeMapping" TypeArguments="aeon:WeightMeasurement" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="aeon:WeightFilter">
-                <aeon:Count>10</aeon:Count>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="PublishSubject">
-              <Name>FilteredWeightNest</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>BaselineTrigger</Name>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="aeon:WeightBaseline" />
-            </Expression>
-            <Expression xsi:type="Condition">
-              <Name>StableWeight</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Confidence</Selector>
-                  </Expression>
-                  <Expression xsi:type="ExternalizedMapping">
-                    <Property Name="Value" DisplayName="ConfidenceThreshold" />
-                  </Expression>
-                  <Expression xsi:type="Equal">
-                    <Operand xsi:type="FloatProperty">
-                      <Value>1</Value>
-                    </Operand>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="3" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source2" />
-                  <Edge From="3" To="4" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="Condition">
-              <Name>SubjectOnScale</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Value</Selector>
-                  </Expression>
-                  <Expression xsi:type="ExternalizedMapping">
-                    <Property Name="Value" DisplayName="WeightThreshold" />
-                  </Expression>
-                  <Expression xsi:type="GreaterThan">
-                    <Operand xsi:type="FloatProperty">
-                      <Value>10</Value>
-                    </Operand>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="3" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source2" />
-                  <Edge From="3" To="4" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value</Selector>
-            </Expression>
-            <Expression xsi:type="PublishSubject">
-              <Name>SubjectWeight</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>WeightNest</Name>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Skip">
-                <rx:Count>9</rx:Count>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value.Weight</Selector>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>FilteredWeightNest</Name>
-            </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>Confidence == 1 ? Value : single.NaN</scr:Expression>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Zip" />
-            </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>new(
-Item1 as Stable,
-Item2 as Raw)</scr:Expression>
-            </Expression>
-            <Expression xsi:type="PublishSubject">
-              <Name>WeightNestMonitor</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>ActivityCenter</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value</Selector>
-            </Expression>
-            <Expression xsi:type="GreaterThan">
-              <Operand xsi:type="DoubleProperty">
-                <Value>0.5</Value>
-              </Operand>
-            </Expression>
-            <Expression xsi:type="Condition">
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Interval" DisplayName="BaselineRefractoryPeriod" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:GateInterval">
-                <rx:Interval>PT5S</rx:Interval>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="PublishSubject">
-              <Name>BaselineTrigger</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>SubjectWeight</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>SubjectStart</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value.ReferenceWeight</Selector>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:WithLatestFrom" />
-            </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>new(
-Item1 as CurrentWeight,
-100 * Item1 / Item2 as CurrentPercent)</scr:Expression>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>CurrentWeight,CurrentPercent</Selector>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>PercentWeightLoss</Name>
-            </Expression>
           </Nodes>
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
@@ -1734,6 +2123,9 @@ Item1 as CurrentWeight,
             <Edge From="118" To="119" Label="Source1" />
             <Edge From="119" To="120" Label="Source1" />
             <Edge From="120" To="121" Label="Source1" />
+            <Edge From="122" To="123" Label="Source1" />
+            <Edge From="124" To="125" Label="Source1" />
+            <Edge From="126" To="127" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -1992,7 +2384,7 @@ Item1 as CurrentWeight,
         </viz:CellSpans>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>FrameSide</Name>
+        <Name>CameraSide</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>PatchState</Name>
