@@ -2510,8 +2510,8 @@ Mode: {1}</Format>
         <Property Name="Delta" DisplayName="DeltaPatch1" />
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\LinearDepletion.bonsai">
-        <DistanceThreshold>180</DistanceThreshold>
-        <Delta>10</Delta>
+        <DistanceThreshold>100</DistanceThreshold>
+        <Delta>0</Delta>
         <DeliveryCount>DeliveryCount1</DeliveryCount>
         <PatchState>PatchState1</PatchState>
         <DistanceState>DistanceState1</DistanceState>
@@ -2528,7 +2528,7 @@ Mode: {1}</Format>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\LinearDepletion.bonsai">
         <DistanceThreshold>100</DistanceThreshold>
-        <Delta>10</Delta>
+        <Delta>0</Delta>
         <DeliveryCount>DeliveryCount2</DeliveryCount>
         <PatchState>PatchState2</PatchState>
         <DistanceState>DistanceState2</DistanceState>
