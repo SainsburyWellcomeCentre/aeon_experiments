@@ -840,96 +840,16 @@ Value as Threshold)</scr:Expression>
             <Expression xsi:type="PublishSubject">
               <Name>ThresholdPatch2</Name>
             </Expression>
-            <Expression xsi:type="GroupWorkflow">
-              <Name>PelletMonitor1</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="ExternalizedMapping">
-                    <Property Name="Name" DisplayName="DeliverPellet" />
-                  </Expression>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>DeliverPelletPatch1</Name>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="BooleanProperty">
-                      <Value>false</Value>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="ExternalizedMapping">
-                    <Property Name="Name" DisplayName="PelletDelivered" />
-                  </Expression>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>PelletDeliveredPatch1</Name>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="BooleanProperty">
-                      <Value>true</Value>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:Merge" />
-                  </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                  <Edge From="2" To="6" Label="Source1" />
-                  <Edge From="3" To="4" Label="Source1" />
-                  <Edge From="4" To="5" Label="Source1" />
-                  <Edge From="5" To="6" Label="Source2" />
-                  <Edge From="6" To="7" Label="Source1" />
-                  <Edge From="7" To="8" Label="Source1" />
-                </Edges>
-              </Workflow>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\PelletMonitor.bonsai">
+              <PelletDelivered>PelletDeliveredPatch1</PelletDelivered>
+              <PelletCommand>Patch1</PelletCommand>
             </Expression>
             <Expression xsi:type="MulticastSubject">
               <Name>PelletMonitor1</Name>
             </Expression>
-            <Expression xsi:type="GroupWorkflow">
-              <Name>PelletMonitor2</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="ExternalizedMapping">
-                    <Property Name="Name" DisplayName="DeliverPellet" />
-                  </Expression>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>DeliverPelletPatch2</Name>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="BooleanProperty">
-                      <Value>false</Value>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="ExternalizedMapping">
-                    <Property Name="Name" DisplayName="PelletDelivered" />
-                  </Expression>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>PelletDeliveredPatch2</Name>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="BooleanProperty">
-                      <Value>true</Value>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:Merge" />
-                  </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                  <Edge From="2" To="6" Label="Source1" />
-                  <Edge From="3" To="4" Label="Source1" />
-                  <Edge From="4" To="5" Label="Source1" />
-                  <Edge From="5" To="6" Label="Source2" />
-                  <Edge From="6" To="7" Label="Source1" />
-                  <Edge From="7" To="8" Label="Source1" />
-                </Edges>
-              </Workflow>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\PelletMonitor.bonsai">
+              <PelletDelivered>PelletDeliveredPatch2</PelletDelivered>
+              <PelletCommand>Patch2</PelletCommand>
             </Expression>
             <Expression xsi:type="MulticastSubject">
               <Name>PelletMonitor2</Name>
