@@ -475,7 +475,7 @@ Item3 as Delta)</scr:Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>Annotations</Name>
             </Expression>
-            <Expression xsi:type="PublishSubject" TypeArguments="harp:Timestamped(aeon:LogMessage)">
+            <Expression xsi:type="BehaviorSubject" TypeArguments="harp:Timestamped(aeon:LogMessage)">
               <Name>AlertLogs</Name>
             </Expression>
             <Expression xsi:type="Combinator">
