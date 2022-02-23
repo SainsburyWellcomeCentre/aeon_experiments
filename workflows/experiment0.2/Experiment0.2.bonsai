@@ -764,7 +764,7 @@ Item3 as Delta)</scr:Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
             <Expression xsi:type="scr:ExpressionTransform">
               <scr:Expression>new(
-Item2 as TrialIndex,
+int32(Item2) as PelletCount,
 Item1 as Threshold)</scr:Expression>
             </Expression>
             <Expression xsi:type="PublishSubject">
@@ -848,7 +848,7 @@ Item1 as Threshold)</scr:Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
             <Expression xsi:type="scr:ExpressionTransform">
               <scr:Expression>new(
-Item2 as TrialIndex,
+int32(Item2) as PelletCount,
 Item1 as Threshold)</scr:Expression>
             </Expression>
             <Expression xsi:type="PublishSubject">
@@ -2880,7 +2880,7 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
         <Name>ThresholdPatch1</Name>
       </Expression>
       <Expression xsi:type="viz:RollingGraphBuilder">
-        <viz:IndexSelector>TrialIndex</viz:IndexSelector>
+        <viz:IndexSelector>PelletCount</viz:IndexSelector>
         <viz:ValueSelector>Threshold</viz:ValueSelector>
         <viz:Capacity xsi:nil="true" />
       </Expression>
@@ -2902,7 +2902,7 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
         <Name>ThresholdPatch2</Name>
       </Expression>
       <Expression xsi:type="viz:RollingGraphBuilder">
-        <viz:IndexSelector>TrialIndex</viz:IndexSelector>
+        <viz:IndexSelector>PelletCount</viz:IndexSelector>
         <viz:ValueSelector>Threshold</viz:ValueSelector>
         <viz:Capacity xsi:nil="true" />
       </Expression>
