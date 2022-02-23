@@ -998,7 +998,7 @@ Item2 as Patch2)</scr:Expression>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="aeon:WeightFilter">
-                <aeon:Count>10</aeon:Count>
+                <aeon:Count>40</aeon:Count>
               </Combinator>
             </Expression>
             <Expression xsi:type="PublishSubject">
