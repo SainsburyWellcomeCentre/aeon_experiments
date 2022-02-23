@@ -49,9 +49,6 @@
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\AlertGate.bonsai">
         <AlertRefractoryPeriod>PT5M</AlertRefractoryPeriod>
       </Expression>
-      <Expression xsi:type="MemberSelector">
-        <Selector>Value.ChunkData.FrameID</Selector>
-      </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Workflow>
           <Nodes>
@@ -81,21 +78,21 @@
       </Expression>
       <Expression xsi:type="scr:ExpressionTransform">
         <scr:Expression>new(
+Item1.Seconds as Timestamp,
 Item2 as Name,
-Item1 as FrameID)</scr:Expression>
+Item1.Value.ChunkData.FrameID as FrameID)</scr:Expression>
       </Expression>
       <Expression xsi:type="WorkflowOutput" />
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
-      <Edge From="0" To="5" Label="Source1" />
+      <Edge From="0" To="4" Label="Source1" />
       <Edge From="1" To="2" Label="Source1" />
       <Edge From="2" To="3" Label="Source1" />
-      <Edge From="3" To="4" Label="Source1" />
-      <Edge From="4" To="6" Label="Source1" />
-      <Edge From="5" To="6" Label="Source2" />
+      <Edge From="3" To="5" Label="Source1" />
+      <Edge From="4" To="5" Label="Source2" />
+      <Edge From="5" To="6" Label="Source1" />
       <Edge From="6" To="7" Label="Source1" />
-      <Edge From="7" To="8" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

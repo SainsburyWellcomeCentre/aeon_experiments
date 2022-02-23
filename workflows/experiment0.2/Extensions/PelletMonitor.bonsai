@@ -3,6 +3,7 @@
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:scr="clr-namespace:Bonsai.Scripting;assembly=Bonsai.Scripting"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Description>Monitors pellet delivery state of commands and beam breaks.</Description>
   <Workflow>
@@ -13,10 +14,10 @@
       <Expression xsi:type="SubscribeSubject">
         <Name>PelletDelivered</Name>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="BooleanProperty">
-          <Value>true</Value>
-        </Combinator>
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Expression>new(
+Seconds as Timestamp,
+True as Value)</scr:Expression>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="Name" DisplayName="PelletCommand" />
@@ -30,10 +31,10 @@
           <harp:MessageType>Write</harp:MessageType>
         </Combinator>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="BooleanProperty">
-          <Value>false</Value>
-        </Combinator>
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Expression>new(
+it.GetTimestamp() as Timestamp,
+False as Value)</scr:Expression>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Merge" />
