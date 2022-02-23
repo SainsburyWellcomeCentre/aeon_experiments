@@ -4893,9 +4893,9 @@
           <VisualizerTypeName>Bonsai.Dsp.Design.MatVisualizer</VisualizerTypeName>
           <VisualizerSettings>
             <XMin>0</XMin>
-            <XMax>1500</XMax>
-            <YMin>30</YMin>
-            <YMax>110</YMax>
+            <XMax>1</XMax>
+            <YMin>0</YMin>
+            <YMax>1.1</YMax>
             <AutoScaleX>true</AutoScaleX>
             <AutoScaleY>true</AutoScaleY>
             <SelectedPage>0</SelectedPage>
@@ -4914,9 +4914,9 @@
           <VisualizerTypeName>Bonsai.Dsp.Design.MatVisualizer</VisualizerTypeName>
           <VisualizerSettings>
             <XMin>0</XMin>
-            <XMax>1500</XMax>
+            <XMax>1</XMax>
             <YMin>0</YMin>
-            <YMax>110</YMax>
+            <YMax>1.1</YMax>
             <AutoScaleX>true</AutoScaleX>
             <AutoScaleY>true</AutoScaleY>
             <SelectedPage>0</SelectedPage>
@@ -5516,7 +5516,7 @@
     <WindowState>Normal</WindowState>
   </DialogSettings>
   <DialogSettings>
-    <Visible>true</Visible>
+    <Visible>false</Visible>
     <Location>
       <X>105</X>
       <Y>972</Y>
@@ -5524,6 +5524,22 @@
     <Size>
       <Width>344</Width>
       <Height>361</Height>
+    </Size>
+    <WindowState>Normal</WindowState>
+    <VisualizerTypeName>Bonsai.Design.ObjectTextVisualizer</VisualizerTypeName>
+    <VisualizerSettings>
+      <ObjectTextVisualizer />
+    </VisualizerSettings>
+  </DialogSettings>
+  <DialogSettings>
+    <Visible>true</Visible>
+    <Location>
+      <X>109</X>
+      <Y>973</Y>
+    </Location>
+    <Size>
+      <Width>338</Width>
+      <Height>350</Height>
     </Size>
     <WindowState>Normal</WindowState>
     <VisualizerTypeName>Bonsai.Design.Visualizers.TimeSeriesVisualizer</VisualizerTypeName>
