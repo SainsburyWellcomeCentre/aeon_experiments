@@ -1010,6 +1010,9 @@ Item2 as Patch2)</scr:Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="aeon:WeightBaseline" />
             </Expression>
+            <Expression xsi:type="PublishSubject">
+              <Name>BaselinedWeight</Name>
+            </Expression>
             <Expression xsi:type="Condition">
               <Name>StableWeight</Name>
               <Workflow>
@@ -1089,10 +1092,92 @@ Item2 as Patch2)</scr:Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Zip" />
             </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>BaselineTrigger</Name>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>CurrentBaseline</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="FloatProperty">
+                      <Value>0</Value>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Take">
+                      <rx:Count>1</rx:Count>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="SelectMany">
+                    <Name>UpdateBaseline</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>BaselinedWeight</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Value</Selector>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>FilteredWeightNest</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Value</Selector>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:CombineLatest" />
+                        </Expression>
+                        <Expression xsi:type="Subtract" />
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:Skip">
+                            <rx:Count>10</rx:Count>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:Take">
+                            <rx:Count>1</rx:Count>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="4" Label="Source2" />
+                        <Edge From="2" To="3" Label="Source1" />
+                        <Edge From="3" To="4" Label="Source1" />
+                        <Edge From="4" To="5" Label="Source1" />
+                        <Edge From="5" To="6" Label="Source1" />
+                        <Edge From="6" To="7" Label="Source1" />
+                        <Edge From="7" To="8" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Concat" />
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="4" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                  <Edge From="3" To="4" Label="Source2" />
+                  <Edge From="4" To="5" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WithLatestFrom" />
+            </Expression>
             <Expression xsi:type="scr:ExpressionTransform">
               <scr:Expression>new(
-Item1 as Stable,
-Item2 as Raw)</scr:Expression>
+Item1.Item1 as Stable,
+Item1.Item2 as Raw,
+Item2 as Baseline)</scr:Expression>
             </Expression>
             <Expression xsi:type="PublishSubject">
               <Name>WeightNestMonitor</Name>
@@ -2494,28 +2579,32 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
             <Edge From="99" To="100" Label="Source1" />
             <Edge From="100" To="101" Label="Source1" />
             <Edge From="101" To="102" Label="Source1" />
-            <Edge From="103" To="104" Label="Source1" />
+            <Edge From="102" To="103" Label="Source1" />
             <Edge From="104" To="105" Label="Source1" />
-            <Edge From="105" To="108" Label="Source2" />
-            <Edge From="106" To="107" Label="Source1" />
+            <Edge From="105" To="106" Label="Source1" />
+            <Edge From="106" To="109" Label="Source2" />
             <Edge From="107" To="108" Label="Source1" />
             <Edge From="108" To="109" Label="Source1" />
-            <Edge From="109" To="110" Label="Source1" />
-            <Edge From="111" To="112" Label="Source1" />
-            <Edge From="112" To="115" Label="Source1" />
-            <Edge From="113" To="117" Label="Source2" />
-            <Edge From="114" To="115" Label="Source2" />
+            <Edge From="109" To="112" Label="Source1" />
+            <Edge From="110" To="111" Label="Source1" />
+            <Edge From="111" To="112" Label="Source2" />
+            <Edge From="112" To="113" Label="Source1" />
+            <Edge From="113" To="114" Label="Source1" />
             <Edge From="115" To="116" Label="Source1" />
-            <Edge From="116" To="117" Label="Source1" />
-            <Edge From="117" To="118" Label="Source1" />
-            <Edge From="119" To="122" Label="Source1" />
+            <Edge From="116" To="119" Label="Source1" />
+            <Edge From="117" To="121" Label="Source2" />
+            <Edge From="118" To="119" Label="Source2" />
+            <Edge From="119" To="120" Label="Source1" />
             <Edge From="120" To="121" Label="Source1" />
-            <Edge From="121" To="122" Label="Source2" />
-            <Edge From="122" To="123" Label="Source1" />
-            <Edge From="123" To="124" Label="Source1" />
-            <Edge From="125" To="126" Label="Source1" />
+            <Edge From="121" To="122" Label="Source1" />
+            <Edge From="123" To="126" Label="Source1" />
+            <Edge From="124" To="125" Label="Source1" />
+            <Edge From="125" To="126" Label="Source2" />
+            <Edge From="126" To="127" Label="Source1" />
             <Edge From="127" To="128" Label="Source1" />
             <Edge From="129" To="130" Label="Source1" />
+            <Edge From="131" To="132" Label="Source1" />
+            <Edge From="133" To="134" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -3004,7 +3093,7 @@ Item3 as Delta)</scr:Expression>
         <Name>WeightNestMonitor</Name>
       </Expression>
       <Expression xsi:type="viz:RollingGraphBuilder">
-        <viz:ValueSelector>Stable,Raw</viz:ValueSelector>
+        <viz:ValueSelector>Stable,Raw,Baseline</viz:ValueSelector>
         <viz:Capacity>200</viz:Capacity>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
