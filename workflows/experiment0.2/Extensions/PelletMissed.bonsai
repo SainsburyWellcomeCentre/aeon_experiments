@@ -52,7 +52,7 @@
             </Expression>
             <Expression xsi:type="GreaterThan">
               <Operand xsi:type="DoubleProperty">
-                <Value>6</Value>
+                <Value>4</Value>
               </Operand>
             </Expression>
             <Expression xsi:type="Condition">
@@ -85,6 +85,11 @@
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="aeon:CreateTimestamped" />
             </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Take">
+                <rx:Count>1</rx:Count>
+              </Combinator>
+            </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
           <Edges>
@@ -103,6 +108,7 @@
             <Edge From="12" To="13" Label="Source2" />
             <Edge From="13" To="14" Label="Source1" />
             <Edge From="14" To="15" Label="Source1" />
+            <Edge From="15" To="16" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
