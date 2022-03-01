@@ -2460,6 +2460,41 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                   <Expression xsi:type="MulticastSubject">
                     <Name>AlertLogs</Name>
                   </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>Annotations</Name>
+                  </Expression>
+                  <Expression xsi:type="Condition">
+                    <Name>Alert</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Value.Priority</Selector>
+                        </Expression>
+                        <Expression xsi:type="Equal">
+                          <Operand xsi:type="WorkflowProperty" TypeArguments="aeon:PriorityLevel">
+                            <Value>Alert</Value>
+                          </Operand>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="Format">
+                    <Format>## **Experimenter Annotation**
+**Message**: {0}</Format>
+                    <Selector>Value.Message</Selector>
+                  </Expression>
+                  <Expression xsi:type="MulticastSubject">
+                    <Name>EnvironmentAlertMessages</Name>
+                  </Expression>
                 </Nodes>
                 <Edges>
                   <Edge From="0" To="1" Label="Source1" />
@@ -2494,6 +2529,9 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                   <Edge From="31" To="34" Label="Source1" />
                   <Edge From="32" To="33" Label="Source1" />
                   <Edge From="34" To="35" Label="Source1" />
+                  <Edge From="36" To="37" Label="Source1" />
+                  <Edge From="37" To="38" Label="Source1" />
+                  <Edge From="38" To="39" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
