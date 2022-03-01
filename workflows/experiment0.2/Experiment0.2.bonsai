@@ -2285,7 +2285,7 @@ Mode: {1}</Format>
                     <ConfigFile>Z:\aeon\config\status.config</ConfigFile>
                   </Expression>
                   <Expression xsi:type="PublishSubject" TypeArguments="sys:String">
-                    <Name>EnvironmnentAlertMessages</Name>
+                    <Name>EnvironmentAlertMessages</Name>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SendAlert.bonsai">
                     <ConfigFile>Z:\aeon\config\alerts.config</ConfigFile>
@@ -2400,7 +2400,7 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                     <Selector>Count</Selector>
                   </Expression>
                   <Expression xsi:type="MulticastSubject">
-                    <Name>EnvironmnentAlertMessages</Name>
+                    <Name>EnvironmentAlertMessages</Name>
                   </Expression>
                   <Expression xsi:type="aeon:FormatLogMessage">
                     <Format />
@@ -2448,7 +2448,7 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                     <Selector>Name,FrameID</Selector>
                   </Expression>
                   <Expression xsi:type="MulticastSubject">
-                    <Name>EnvironmnentAlertMessages</Name>
+                    <Name>EnvironmentAlertMessages</Name>
                   </Expression>
                   <Expression xsi:type="aeon:FormatLogMessage">
                     <Format>{0}	{1}</Format>
