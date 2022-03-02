@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.6.4-preview"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
@@ -1251,7 +1251,8 @@ Item1.Value as CurrentWeight,
               <TimeToMiss>PT1S</TimeToMiss>
               <DistanceToMiss>5</DistanceToMiss>
               <TimeInChute>PT0S</TimeInChute>
-              <Name>PelletDeliveredPatch1</Name>
+              <WheelDisplacement>WheelPatch1</WheelDisplacement>
+              <PelletDelivered>PelletDeliveredPatch1</PelletDelivered>
             </Expression>
             <Expression xsi:type="MulticastSubject">
               <Name>MissedPellets1</Name>
@@ -1260,7 +1261,8 @@ Item1.Value as CurrentWeight,
               <TimeToMiss>PT1S</TimeToMiss>
               <DistanceToMiss>5</DistanceToMiss>
               <TimeInChute>PT0S</TimeInChute>
-              <Name>PelletDeliveredPatch2</Name>
+              <WheelDisplacement>WheelPatch2</WheelDisplacement>
+              <PelletDelivered>PelletDeliveredPatch2</PelletDelivered>
             </Expression>
             <Expression xsi:type="MulticastSubject">
               <Name>MissedPellets2</Name>
