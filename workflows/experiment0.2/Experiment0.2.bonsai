@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.6.4-preview"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
@@ -1268,28 +1268,36 @@ Item1.Value as CurrentWeight,
             <Expression xsi:type="SubscribeSubject">
               <Name>PelletDeliveredPatch1</Name>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\ExperimentRunning.bonsai" />
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentCondition.bonsai">
+              <Value>Experiment</Value>
+            </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\PersistentCounter.bonsai">
               <Name>TotalPelletsDelivered1</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>PelletDeliveredPatch2</Name>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\ExperimentRunning.bonsai" />
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentCondition.bonsai">
+              <Value>Experiment</Value>
+            </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\PersistentCounter.bonsai">
               <Name>TotalPelletsDelivered2</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>MissedPellets1</Name>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\ExperimentRunning.bonsai" />
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentCondition.bonsai">
+              <Value>Experiment</Value>
+            </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\PersistentCounter.bonsai">
               <Name>TotalMissedPellets1</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>MissedPellets2</Name>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\ExperimentRunning.bonsai" />
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentCondition.bonsai">
+              <Value>Experiment</Value>
+            </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\PersistentCounter.bonsai">
               <Name>TotalMissedPellets2</Name>
             </Expression>
