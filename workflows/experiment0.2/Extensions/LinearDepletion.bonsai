@@ -106,7 +106,7 @@
               </Workflow>
             </Expression>
             <Expression xsi:type="Combinator">
-              <Combinator xsi:type="DoubleProperty">
+              <Combinator xsi:type="IntProperty">
                 <Value>0</Value>
               </Combinator>
             </Expression>
