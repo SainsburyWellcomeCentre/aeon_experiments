@@ -1265,6 +1265,34 @@ Item1.Value as CurrentWeight,
             <Expression xsi:type="MulticastSubject">
               <Name>MissedPellets2</Name>
             </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>PelletDeliveredPatch1</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\ExperimentRunning.bonsai" />
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\PersistentCounter.bonsai">
+              <Name>TotalPelletsDelivered1</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>PelletDeliveredPatch2</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\ExperimentRunning.bonsai" />
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\PersistentCounter.bonsai">
+              <Name>TotalPelletsDelivered2</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>MissedPellets1</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\ExperimentRunning.bonsai" />
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\PersistentCounter.bonsai">
+              <Name>TotalMissedPellets1</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>MissedPellets2</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\ExperimentRunning.bonsai" />
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\PersistentCounter.bonsai">
+              <Name>TotalMissedPellets2</Name>
+            </Expression>
             <Expression xsi:type="GroupWorkflow">
               <Name>SubjectAlerts</Name>
               <Workflow>
@@ -2164,6 +2192,28 @@ Item4 as PatchDispenser2)</scr:Expression>
                             <rx:Count>1</rx:Count>
                           </Combinator>
                         </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>TotalPelletsDelivered1</Name>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>TotalPelletsDelivered2</Name>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>TotalMissedPellets1</Name>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>TotalMissedPellets2</Name>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:Zip" />
+                        </Expression>
+                        <Expression xsi:type="scr:ExpressionTransform">
+                          <scr:Expression>new(
+Item1 as TotalPelletsDelivered1,
+Item2 as TotalPelletsDelivered2,
+Item3 as TotalMissedPellets1,
+Item4 as TotalMissedPellets2)</scr:Expression>
+                        </Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="rx:Zip" />
                         </Expression>
@@ -2190,8 +2240,10 @@ Item4 as PatchDispenser2)</scr:Expression>
 **Delta**: {3}
 **Time On Patch**: {4}
 **Time Since Last Visit**: {5}  
+**Total Pellets Delivered**: {6}  
+**Total Missed Pellets**: {7}  
 </Format>
-                          <Selector>Item1.PatchDispenser1,Item1.PatchState1.Threshold,Item1.PatchState1.D0,Item1.PatchState1.Delta,Item2.TimeOnPatch1,Item2.TimeSinceLastVisit1</Selector>
+                          <Selector>Item1.PatchDispenser1,Item1.PatchState1.Threshold,Item1.PatchState1.D0,Item1.PatchState1.Delta,Item2.TimeOnPatch1,Item2.TimeSinceLastVisit1,Item6.TotalPelletsDelivered1,Item6.TotalMissedPellets1</Selector>
                         </Expression>
                         <Expression xsi:type="Format">
                           <Format># Patch2
@@ -2200,8 +2252,11 @@ Item4 as PatchDispenser2)</scr:Expression>
 **D0**: {2}
 **Delta**: {3}
 **Time On Patch**: {4}
-**Time Since Last Visit**: {5}</Format>
-                          <Selector>Item1.PatchDispenser2,Item1.PatchState2.Threshold,Item1.PatchState2.D0,Item1.PatchState2.Delta,Item2.TimeOnPatch2,Item2.TimeSinceLastVisit2</Selector>
+**Time Since Last Visit**: {5}
+**Total Pellets Delivered**: {6}  
+**Total Missed Pellets**: {7}  
+</Format>
+                          <Selector>Item1.PatchDispenser2,Item1.PatchState2.Threshold,Item1.PatchState2.D0,Item1.PatchState2.Delta,Item2.TimeOnPatch2,Item2.TimeSinceLastVisit2,Item6.TotalPelletsDelivered2,Item6.TotalMissedPellets2</Selector>
                         </Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="rx:Zip" />
@@ -2218,7 +2273,7 @@ Item4 as PatchDispenser2)</scr:Expression>
                         <Edge From="5" To="27" Label="Source2" />
                         <Edge From="6" To="7" Label="Source1" />
                         <Edge From="7" To="8" Label="Source1" />
-                        <Edge From="8" To="37" Label="Source3" />
+                        <Edge From="8" To="43" Label="Source3" />
                         <Edge From="9" To="10" Label="Source1" />
                         <Edge From="10" To="11" Label="Source1" />
                         <Edge From="11" To="27" Label="Source3" />
@@ -2231,31 +2286,37 @@ Item4 as PatchDispenser2)</scr:Expression>
                         <Edge From="18" To="19" Label="Source1" />
                         <Edge From="19" To="20" Label="Source1" />
                         <Edge From="20" To="21" Label="Source1" />
-                        <Edge From="21" To="37" Label="Source2" />
+                        <Edge From="21" To="43" Label="Source2" />
                         <Edge From="22" To="23" Label="Source1" />
                         <Edge From="23" To="34" Label="Source1" />
                         <Edge From="24" To="25" Label="Source1" />
                         <Edge From="25" To="26" Label="Source1" />
                         <Edge From="26" To="27" Label="Source4" />
                         <Edge From="27" To="28" Label="Source1" />
-                        <Edge From="28" To="37" Label="Source1" />
+                        <Edge From="28" To="43" Label="Source1" />
                         <Edge From="29" To="30" Label="Source1" />
                         <Edge From="30" To="31" Label="Source1" />
-                        <Edge From="31" To="37" Label="Source5" />
+                        <Edge From="31" To="43" Label="Source5" />
                         <Edge From="32" To="33" Label="Source1" />
                         <Edge From="33" To="34" Label="Source2" />
                         <Edge From="34" To="35" Label="Source1" />
                         <Edge From="35" To="36" Label="Source1" />
-                        <Edge From="36" To="37" Label="Source4" />
-                        <Edge From="37" To="38" Label="Source1" />
-                        <Edge From="38" To="39" Label="Source1" />
-                        <Edge From="38" To="40" Label="Source1" />
-                        <Edge From="38" To="41" Label="Source1" />
-                        <Edge From="39" To="42" Label="Source1" />
-                        <Edge From="40" To="42" Label="Source2" />
-                        <Edge From="41" To="42" Label="Source3" />
-                        <Edge From="42" To="43" Label="Source1" />
+                        <Edge From="36" To="43" Label="Source4" />
+                        <Edge From="37" To="41" Label="Source1" />
+                        <Edge From="38" To="41" Label="Source2" />
+                        <Edge From="39" To="41" Label="Source3" />
+                        <Edge From="40" To="41" Label="Source4" />
+                        <Edge From="41" To="42" Label="Source1" />
+                        <Edge From="42" To="43" Label="Source6" />
                         <Edge From="43" To="44" Label="Source1" />
+                        <Edge From="44" To="45" Label="Source1" />
+                        <Edge From="44" To="46" Label="Source1" />
+                        <Edge From="44" To="47" Label="Source1" />
+                        <Edge From="45" To="48" Label="Source1" />
+                        <Edge From="46" To="48" Label="Source2" />
+                        <Edge From="47" To="48" Label="Source3" />
+                        <Edge From="48" To="49" Label="Source1" />
+                        <Edge From="49" To="50" Label="Source1" />
                       </Edges>
                     </Workflow>
                   </Expression>
@@ -2651,6 +2712,14 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
             <Edge From="131" To="132" Label="Source1" />
             <Edge From="133" To="134" Label="Source1" />
             <Edge From="135" To="136" Label="Source1" />
+            <Edge From="136" To="137" Label="Source1" />
+            <Edge From="138" To="139" Label="Source1" />
+            <Edge From="139" To="140" Label="Source1" />
+            <Edge From="141" To="142" Label="Source1" />
+            <Edge From="142" To="143" Label="Source1" />
+            <Edge From="144" To="145" Label="Source1" />
+            <Edge From="145" To="146" Label="Source1" />
+            <Edge From="147" To="148" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
