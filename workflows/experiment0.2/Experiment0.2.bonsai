@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.6.4-preview"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
@@ -2080,6 +2080,113 @@ Item2.Value.Id as Id)</scr:Expression>
                   <Expression xsi:type="MulticastSubject">
                     <Name>AlertLogs</Name>
                   </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>TrackingTop</Name>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>SpeedThreshold</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Item1.Centroid</Selector>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="dsp:Difference">
+                            <dsp:Order>1</dsp:Order>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="dsp:Norm">
+                            <dsp:NormType>L2</dsp:NormType>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Item2</Selector>
+                        </Expression>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="Value" DisplayName="MaxSpeed" />
+                        </Expression>
+                        <Expression xsi:type="GreaterThan">
+                          <Operand xsi:type="DoubleProperty">
+                            <Value>500</Value>
+                          </Operand>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:Zip" />
+                        </Expression>
+                        <Expression xsi:type="rx:DistinctUntilChangedBy">
+                          <rx:KeySelector>Item1</rx:KeySelector>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="0" To="4" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                        <Edge From="3" To="6" Label="Source1" />
+                        <Edge From="4" To="7" Label="Source2" />
+                        <Edge From="5" To="6" Label="Source2" />
+                        <Edge From="6" To="7" Label="Source1" />
+                        <Edge From="7" To="8" Label="Source1" />
+                        <Edge From="8" To="9" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="Condition">
+                    <Name>TrackingUnstable</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Item1</Selector>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\AlertGate.bonsai">
+                    <AlertRefractoryPeriod>PT5M</AlertRefractoryPeriod>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>SubjectState</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:WithLatestFrom" />
+                  </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Expression>new(
+Item1.Item2 as Timestamp,
+Item2.Value.Id as Id)</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="Format">
+                    <Format>## **Tracking Failure**
+**Subject**: {0}  
+</Format>
+                    <Selector>Id</Selector>
+                  </Expression>
+                  <Expression xsi:type="MulticastSubject">
+                    <Name>SubjectAlertMessages</Name>
+                  </Expression>
+                  <Expression xsi:type="aeon:FormatLogMessage">
+                    <Format>{0}</Format>
+                    <Selector>Id</Selector>
+                    <aeon:Priority>Alert</aeon:Priority>
+                    <aeon:Type>TrackingFailure</aeon:Type>
+                    <aeon:Timestamp>Timestamp</aeon:Timestamp>
+                  </Expression>
+                  <Expression xsi:type="MulticastSubject">
+                    <Name>AlertLogs</Name>
+                  </Expression>
                 </Nodes>
                 <Edges>
                   <Edge From="0" To="1" Label="Source1" />
@@ -2158,6 +2265,16 @@ Item2.Value.Id as Id)</scr:Expression>
                   <Edge From="78" To="81" Label="Source1" />
                   <Edge From="79" To="80" Label="Source1" />
                   <Edge From="81" To="82" Label="Source1" />
+                  <Edge From="83" To="84" Label="Source1" />
+                  <Edge From="84" To="85" Label="Source1" />
+                  <Edge From="85" To="86" Label="Source1" />
+                  <Edge From="86" To="88" Label="Source1" />
+                  <Edge From="87" To="88" Label="Source2" />
+                  <Edge From="88" To="89" Label="Source1" />
+                  <Edge From="89" To="90" Label="Source1" />
+                  <Edge From="89" To="92" Label="Source1" />
+                  <Edge From="90" To="91" Label="Source1" />
+                  <Edge From="92" To="93" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
