@@ -254,7 +254,7 @@
           <Nodes>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogController.bonsai">
               <Path>D:\ProjectAeon\experiment0.2</Path>
-              <BinSize>1</BinSize>
+              <ChunkSize>1</ChunkSize>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
               <WorkflowName>Experiment0.2.bonsai</WorkflowName>
@@ -2163,7 +2163,7 @@ Item2.Value.Id as Id)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="aeon:GroupByTime">
-                      <aeon:BinSize>1</aeon:BinSize>
+                      <aeon:ChunkSize>1</aeon:ChunkSize>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="Combinator">
@@ -2490,7 +2490,7 @@ Mode: {1}</Format>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="aeon:GroupByTime">
-                      <aeon:BinSize>1</aeon:BinSize>
+                      <aeon:ChunkSize>1</aeon:ChunkSize>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="Combinator">
