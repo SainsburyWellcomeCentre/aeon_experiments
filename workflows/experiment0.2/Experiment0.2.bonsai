@@ -1614,6 +1614,7 @@ Item2 as Timestamp)</scr:Expression>
                     <Name>SubjectAlertMessages</Name>
                   </Expression>
                   <Expression xsi:type="aeon:FormatLogMessage">
+                    <Format>{0}</Format>
                     <Selector>Item2.Value.Id</Selector>
                     <aeon:Priority>Alert</aeon:Priority>
                     <aeon:Type>SubjectMissing</aeon:Type>
@@ -1802,6 +1803,7 @@ Item2.Seconds as Timestamp)</scr:Expression>
                     <Name>SubjectAlertMessages</Name>
                   </Expression>
                   <Expression xsi:type="aeon:FormatLogMessage">
+                    <Format>{0}</Format>
                     <Selector>Item2.Value.Id</Selector>
                     <aeon:Priority>Alert</aeon:Priority>
                     <aeon:Type>SubjectInactive</aeon:Type>
@@ -1899,7 +1901,8 @@ Item2.Seconds as Timestamp)</scr:Expression>
                     <Name>SubjectAlertMessages</Name>
                   </Expression>
                   <Expression xsi:type="aeon:FormatLogMessage">
-                    <Selector>Patch1</Selector>
+                    <Format>Patch1</Format>
+                    <Selector />
                     <aeon:Priority>Alert</aeon:Priority>
                     <aeon:Type>DispenserBroken</aeon:Type>
                     <aeon:Timestamp>Timestamp</aeon:Timestamp>
@@ -1993,7 +1996,8 @@ Item2.Seconds as Timestamp)</scr:Expression>
                     <Name>SubjectAlertMessages</Name>
                   </Expression>
                   <Expression xsi:type="aeon:FormatLogMessage">
-                    <Selector>Patch2</Selector>
+                    <Format>Patch2</Format>
+                    <Selector />
                     <aeon:Priority>Alert</aeon:Priority>
                     <aeon:Type>DispenserBroken</aeon:Type>
                     <aeon:Timestamp>Timestamp</aeon:Timestamp>
