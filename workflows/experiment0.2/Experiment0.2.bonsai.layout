@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <VisualizerLayout xmlns:xsd="http://www.w3.org/2001/XMLSchema"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  >
@@ -6006,14 +6006,11 @@
       <Y>972</Y>
     </Location>
     <Size>
-      <Width>344</Width>
-      <Height>361</Height>
+      <Width>0</Width>
+      <Height>0</Height>
     </Size>
     <WindowState>Normal</WindowState>
-    <VisualizerTypeName>Bonsai.Design.ObjectTextVisualizer</VisualizerTypeName>
-    <VisualizerSettings>
-      <ObjectTextVisualizer />
-    </VisualizerSettings>
+    <VisualizerTypeName />
   </DialogSettings>
   <DialogSettings>
     <Visible>true</Visible>
