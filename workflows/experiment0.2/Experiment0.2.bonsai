@@ -2503,11 +2503,11 @@ Item4 as TotalMissedPellets2)</scr:Expression>
                         </Expression>
                         <Expression xsi:type="Format">
                           <Format># Patch1
-**Pellets**: {0}
+**Pellets**: {0}  
 **Threshold**: {1}
 **D0**: {2}
-**Delta**: {3}
-**Time On Patch**: {4}
+**Delta**: {3}  
+**Time On Patch**: {4}  
 **Time Since Last Visit**: {5}  
 **Total Pellets Delivered**: {6}  
 **Total Missed Pellets**: {7}  
@@ -2516,11 +2516,11 @@ Item4 as TotalMissedPellets2)</scr:Expression>
                         </Expression>
                         <Expression xsi:type="Format">
                           <Format># Patch2
-**Pellets**: {0}
+**Pellets**: {0}  
 **Threshold**: {1}
 **D0**: {2}
-**Delta**: {3}
-**Time On Patch**: {4}
+**Delta**: {3}  
+**Time On Patch**: {4}  
 **Time Since Last Visit**: {5}
 **Total Pellets Delivered**: {6}  
 **Total Missed Pellets**: {7}  
