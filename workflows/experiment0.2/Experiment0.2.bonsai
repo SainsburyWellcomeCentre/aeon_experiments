@@ -1249,7 +1249,7 @@ Item1.Value as CurrentWeight,
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\PelletMissed.bonsai">
               <TimeToMiss>PT1S</TimeToMiss>
-              <DistanceToMiss>5</DistanceToMiss>
+              <DistanceToMiss>6</DistanceToMiss>
               <TimeInChute>PT0S</TimeInChute>
               <WheelDisplacement>WheelPatch1</WheelDisplacement>
               <PelletDelivered>PelletDeliveredPatch1</PelletDelivered>
@@ -1259,7 +1259,7 @@ Item1.Value as CurrentWeight,
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\PelletMissed.bonsai">
               <TimeToMiss>PT1S</TimeToMiss>
-              <DistanceToMiss>5</DistanceToMiss>
+              <DistanceToMiss>6</DistanceToMiss>
               <TimeInChute>PT0S</TimeInChute>
               <WheelDisplacement>WheelPatch2</WheelDisplacement>
               <PelletDelivered>PelletDeliveredPatch2</PelletDelivered>
