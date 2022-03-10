@@ -253,8 +253,7 @@
         <Workflow>
           <Nodes>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogController.bonsai">
-              <Path>D:\ProjectAeon</Path>
-              <ExperimentName>experiment0.2</ExperimentName>
+              <Path>D:\ProjectAeon\experiment0.2</Path>
               <ChunkSize>1</ChunkSize>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
