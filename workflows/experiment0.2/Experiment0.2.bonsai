@@ -153,9 +153,10 @@
               <TrackingEvents>ActivityArena</TrackingEvents>
               <Regions xsi:nil="true" />
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ActivityTracking.bonsai">
-              <ThresholdValue>10</ThresholdValue>
-              <TrackingEvents>ActivityNest</TrackingEvents>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>TrackingTop</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RegionTracking.bonsai">
               <Regions>
                 <ArrayOfPoint>
                   <Point>
@@ -192,10 +193,10 @@
                   </Point>
                 </ArrayOfPoint>
               </Regions>
+              <RegionEvents>InNest</RegionEvents>
+              <FrameEvents>CameraTop</FrameEvents>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ActivityTracking.bonsai">
-              <ThresholdValue>10</ThresholdValue>
-              <TrackingEvents>ActivityPatch1</TrackingEvents>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RegionTracking.bonsai">
               <Regions>
                 <ArrayOfPoint>
                   <Point>
@@ -216,10 +217,10 @@
                   </Point>
                 </ArrayOfPoint>
               </Regions>
+              <RegionEvents>InPatch1</RegionEvents>
+              <FrameEvents>CameraTop</FrameEvents>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ActivityTracking.bonsai">
-              <ThresholdValue>10</ThresholdValue>
-              <TrackingEvents>ActivityPatch2</TrackingEvents>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RegionTracking.bonsai">
               <Regions>
                 <ArrayOfPoint>
                   <Point>
@@ -240,48 +241,39 @@
                   </Point>
                 </ArrayOfPoint>
               </Regions>
+              <RegionEvents>InPatch2</RegionEvents>
+              <FrameEvents>CameraTop</FrameEvents>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>TrackingTop</Name>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RegionTracking.bonsai">
-              <Regions xsi:nil="true" />
-              <RegionEvents>InPatch1</RegionEvents>
-              <FrameEvents>CameraTop</FrameEvents>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:DistanceFromPoint.bonsai">
+              <Value>
+                <X>0</X>
+                <Y>0</Y>
+              </Value>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RegionTracking.bonsai">
-              <Regions xsi:nil="true" />
-              <RegionEvents>InPatch2</RegionEvents>
-              <FrameEvents>CameraTop</FrameEvents>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:InRange.bonsai">
+              <RangeEvents>InArena</RangeEvents>
+              <Lower>0</Lower>
+              <Upper>0</Upper>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RegionTracking.bonsai">
-              <Regions xsi:nil="true" />
-              <RegionEvents>InArena</RegionEvents>
-              <FrameEvents>CameraTop</FrameEvents>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RegionTracking.bonsai">
-              <Regions xsi:nil="true" />
-              <RegionEvents>InCorridor</RegionEvents>
-              <FrameEvents>CameraTop</FrameEvents>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RegionTracking.bonsai">
-              <Regions xsi:nil="true" />
-              <RegionEvents>InNest</RegionEvents>
-              <FrameEvents>CameraTop</FrameEvents>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:InRange.bonsai">
+              <RangeEvents>InCorridor</RangeEvents>
+              <Lower>0</Lower>
+              <Upper>0</Upper>
             </Expression>
           </Nodes>
           <Edges>
             <Edge From="1" To="2" Label="Source1" />
             <Edge From="14" To="15" Label="Source1" />
             <Edge From="14" To="16" Label="Source1" />
-            <Edge From="14" To="17" Label="Source1" />
-            <Edge From="14" To="18" Label="Source1" />
-            <Edge From="14" To="19" Label="Source1" />
-            <Edge From="20" To="21" Label="Source1" />
-            <Edge From="20" To="22" Label="Source1" />
-            <Edge From="20" To="23" Label="Source1" />
-            <Edge From="20" To="24" Label="Source1" />
-            <Edge From="20" To="25" Label="Source1" />
+            <Edge From="17" To="18" Label="Source1" />
+            <Edge From="17" To="19" Label="Source1" />
+            <Edge From="17" To="20" Label="Source1" />
+            <Edge From="21" To="22" Label="Source1" />
+            <Edge From="22" To="23" Label="Source1" />
+            <Edge From="22" To="24" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
