@@ -51,6 +51,9 @@ patches = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:PatchController
 weight_scales = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:WeightScale.bonsai"]', namespaces=ns)
 position_tracking = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:PositionTracking.bonsai"]', namespaces=ns)
 activity_tracking = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:ActivityTracking.bonsai"]', namespaces=ns)
+region_tracking = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:RegionTracking.bonsai"]', namespaces=ns)
+arena_center = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:DistanceFromPoint.bonsai"]', namespaces=ns)
+distance_tracking = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:InRange.bonsai"]', namespaces=ns)
 
 metadata = {
     'Workflow' : args.workflow,
@@ -61,7 +64,10 @@ metadata = {
                 list_metadata(patches, 'PatchEvents', Type='Patch') +
                 list_metadata(weight_scales, 'WeightEvents', Type='WeightScale') +
                 list_metadata(position_tracking, 'TrackingEvents', Type='PositionTracking') +
-                list_metadata(activity_tracking, 'TrackingEvents', Type='ActivityTracking')
+                list_metadata(activity_tracking, 'TrackingEvents', Type='ActivityTracking') +
+                list_metadata(region_tracking, 'RegionEvents', Type='RegionTracking') +
+                list_metadata(arena_center, 'ArenaCenter', Type='DistanceFromPoint') +
+                list_metadata(distance_tracking, 'RangeEvents', Type='InRange')
 }
 
 if args.output:
