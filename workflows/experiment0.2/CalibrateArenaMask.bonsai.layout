@@ -81,6 +81,25 @@
   <DialogSettings>
     <Visible>false</Visible>
     <Location>
+      <X>537</X>
+      <Y>909</Y>
+    </Location>
+    <Size>
+      <Width>336</Width>
+      <Height>279</Height>
+    </Size>
+    <WindowState>Normal</WindowState>
+    <VisualizerTypeName>Bonsai.Vision.Design.ContoursVisualizer</VisualizerTypeName>
+    <VisualizerSettings>
+      <ContoursVisualizer />
+    </VisualizerSettings>
+    <Mashups>
+      <int>10</int>
+    </Mashups>
+  </DialogSettings>
+  <DialogSettings>
+    <Visible>false</Visible>
+    <Location>
       <X>0</X>
       <Y>0</Y>
     </Location>
@@ -101,6 +120,34 @@
       <Height>0</Height>
     </Size>
     <WindowState>Normal</WindowState>
+  </DialogSettings>
+  <DialogSettings>
+    <Visible>false</Visible>
+    <Location>
+      <X>0</X>
+      <Y>0</Y>
+    </Location>
+    <Size>
+      <Width>0</Width>
+      <Height>0</Height>
+    </Size>
+    <WindowState>Normal</WindowState>
+  </DialogSettings>
+  <DialogSettings>
+    <Visible>true</Visible>
+    <Location>
+      <X>525</X>
+      <Y>905</Y>
+    </Location>
+    <Size>
+      <Width>336</Width>
+      <Height>65</Height>
+    </Size>
+    <WindowState>Normal</WindowState>
+    <VisualizerTypeName>Bonsai.Vision.Design.PointVisualizer</VisualizerTypeName>
+    <VisualizerSettings>
+      <PointVisualizer />
+    </VisualizerSettings>
   </DialogSettings>
   <DialogSettings xsi:type="WorkflowEditorSettings">
     <Visible>false</Visible>
@@ -169,6 +216,9 @@
     <VisualizerSettings>
       <IplImageVisualizer />
     </VisualizerSettings>
+    <Mashups>
+      <int>10</int>
+    </Mashups>
   </DialogSettings>
   <DialogSettings>
     <Visible>false</Visible>
@@ -197,6 +247,30 @@
     <VisualizerSettings>
       <IplImageVisualizer />
     </VisualizerSettings>
+  </DialogSettings>
+  <DialogSettings>
+    <Visible>false</Visible>
+    <Location>
+      <X>0</X>
+      <Y>0</Y>
+    </Location>
+    <Size>
+      <Width>0</Width>
+      <Height>0</Height>
+    </Size>
+    <WindowState>Normal</WindowState>
+  </DialogSettings>
+  <DialogSettings>
+    <Visible>false</Visible>
+    <Location>
+      <X>0</X>
+      <Y>0</Y>
+    </Location>
+    <Size>
+      <Width>0</Width>
+      <Height>0</Height>
+    </Size>
+    <WindowState>Normal</WindowState>
   </DialogSettings>
   <DialogSettings>
     <Visible>false</Visible>
@@ -273,6 +347,22 @@
       <Height>0</Height>
     </Size>
     <WindowState>Normal</WindowState>
+  </DialogSettings>
+  <DialogSettings>
+    <Visible>false</Visible>
+    <Location>
+      <X>26</X>
+      <Y>26</Y>
+    </Location>
+    <Size>
+      <Width>336</Width>
+      <Height>279</Height>
+    </Size>
+    <WindowState>Normal</WindowState>
+    <VisualizerTypeName>Bonsai.Vision.Design.IplImageVisualizer</VisualizerTypeName>
+    <VisualizerSettings>
+      <IplImageVisualizer />
+    </VisualizerSettings>
   </DialogSettings>
   <DialogSettings>
     <Visible>false</Visible>

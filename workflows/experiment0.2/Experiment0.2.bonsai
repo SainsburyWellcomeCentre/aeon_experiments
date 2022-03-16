@@ -249,19 +249,19 @@
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:DistanceFromPoint.bonsai">
               <Value>
-                <X>0</X>
-                <Y>0</Y>
+                <X>738</X>
+                <Y>563</Y>
               </Value>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:InRange.bonsai">
               <RangeEvents>InArena</RangeEvents>
-              <Lower>0</Lower>
-              <Upper>0</Upper>
+              <Lower xsi:nil="true" />
+              <Upper>480</Upper>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:InRange.bonsai">
               <RangeEvents>InCorridor</RangeEvents>
-              <Lower>0</Lower>
-              <Upper>0</Upper>
+              <Lower>480</Lower>
+              <Upper>502</Upper>
             </Expression>
           </Nodes>
           <Edges>
