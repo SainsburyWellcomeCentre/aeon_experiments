@@ -31,13 +31,13 @@ def recursive_dict(element):
         dict(map(recursive_dict, element)) or element.text
 
 def list_metadata(elements, key, **kwargs):
-    metadata = []
+    metadata = {}
     for x in elements:
         elem_metadata = {}
         elem_metadata = (recursive_dict(x)[1])
         elem_metadata.update(kwargs)
-        elem_metadata['Name'] = elem_metadata.pop(key, key)
-        metadata.append(elem_metadata)
+        name = elem_metadata.pop(key, key)
+        metadata[name] = elem_metadata
     return metadata
 
 root = etree.parse(args.workflow)
@@ -58,15 +58,15 @@ distance_tracking = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:InRan
 metadata = {
     'Workflow' : args.workflow,
     'Revision' : repo.head.commit.hexsha,
-    'Devices' : list_metadata(video_controllers, 'VideoController', Type='VideoController') +
-                list_metadata(video_sources, 'FrameEvents', Type='VideoSource') +
-                list_metadata(audio_sources, 'AudioAmbient', Type='AudioSource') +
-                list_metadata(patches, 'PatchEvents', Type='Patch') +
-                list_metadata(weight_scales, 'WeightEvents', Type='WeightScale') +
-                list_metadata(position_tracking, 'TrackingEvents', Type='PositionTracking') +
-                list_metadata(activity_tracking, 'TrackingEvents', Type='ActivityTracking') +
-                list_metadata(region_tracking, 'RegionEvents', Type='RegionTracking') +
-                list_metadata(arena_center, 'ArenaCenter', Type='DistanceFromPoint') +
+    'Devices' : list_metadata(video_controllers, 'VideoController', Type='VideoController') |
+                list_metadata(video_sources, 'FrameEvents', Type='VideoSource') |
+                list_metadata(audio_sources, 'AudioAmbient', Type='AudioSource') |
+                list_metadata(patches, 'PatchEvents', Type='Patch') |
+                list_metadata(weight_scales, 'WeightEvents', Type='WeightScale') |
+                list_metadata(position_tracking, 'TrackingEvents', Type='PositionTracking') |
+                list_metadata(activity_tracking, 'TrackingEvents', Type='ActivityTracking') |
+                list_metadata(region_tracking, 'RegionEvents', Type='RegionTracking') |
+                list_metadata(arena_center, 'ArenaCenter', Type='DistanceFromPoint') |
                 list_metadata(distance_tracking, 'RangeEvents', Type='InRange')
 }
 
