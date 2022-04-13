@@ -57,7 +57,7 @@ distance_tracking = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:InRan
 
 metadata = {
     'Workflow' : args.workflow,
-    'Revision' : repo.head.commit.hexsha,
+    'Commit' : repo.head.commit.hexsha,
     'Devices' : list_metadata(video_controllers, 'VideoController', Type='VideoController') |
                 list_metadata(video_sources, 'FrameEvents', Type='VideoSource') |
                 list_metadata(audio_sources, 'AudioAmbient', Type='AudioSource') |
