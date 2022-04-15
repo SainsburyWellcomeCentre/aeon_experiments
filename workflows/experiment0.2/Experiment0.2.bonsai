@@ -386,19 +386,25 @@
                     <Property Name="Mask" />
                     <Property Name="ThresholdValue" />
                     <Property Name="TrackingEvents" />
-                    <Property Name="FrameEvents" />
                   </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\PositionTracking.bonsai">
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Name" DisplayName="FrameEvents" />
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>CameraTop</Name>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PositionTracking.bonsai">
                     <Mask>ArenaMask_2022-02-02.png</Mask>
                     <ThresholdValue>72</ThresholdValue>
                     <TrackingEvents>TrackingTop</TrackingEvents>
-                    <FrameEvents>CameraTop</FrameEvents>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
                 <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="0" To="3" Label="Source2" />
                   <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                  <Edge From="3" To="4" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
