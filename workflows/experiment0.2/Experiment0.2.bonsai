@@ -1757,8 +1757,8 @@ Item1.Value as CurrentWeight,
               <Name>PercentWeightLoss</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\PelletMissed.bonsai">
-              <TimeToMiss>PT1S</TimeToMiss>
-              <DistanceToMiss>6</DistanceToMiss>
+              <TimeToMiss>PT2S</TimeToMiss>
+              <DistanceToMiss>20</DistanceToMiss>
               <TimeInChute>PT0S</TimeInChute>
               <WheelDisplacement>WheelPatch1</WheelDisplacement>
               <PelletDelivered>PelletDeliveredPatch1</PelletDelivered>
@@ -1767,8 +1767,8 @@ Item1.Value as CurrentWeight,
               <Name>MissedPellets1</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\PelletMissed.bonsai">
-              <TimeToMiss>PT1S</TimeToMiss>
-              <DistanceToMiss>6</DistanceToMiss>
+              <TimeToMiss>PT2S</TimeToMiss>
+              <DistanceToMiss>20</DistanceToMiss>
               <TimeInChute>PT0S</TimeInChute>
               <WheelDisplacement>WheelPatch2</WheelDisplacement>
               <PelletDelivered>PelletDeliveredPatch2</PelletDelivered>
@@ -3611,7 +3611,7 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
         <Property Name="Delta" DisplayName="DeltaPatch1" />
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\LinearDepletion.bonsai">
-        <DistanceThreshold>100</DistanceThreshold>
+        <DistanceThreshold>50</DistanceThreshold>
         <Delta>0</Delta>
         <DeliveryCount>DeliveryCount1</DeliveryCount>
         <PatchState>PatchState1</PatchState>
@@ -3628,7 +3628,7 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
         <Property Name="Delta" DisplayName="DeltaPatch2" />
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\LinearDepletion.bonsai">
-        <DistanceThreshold>100</DistanceThreshold>
+        <DistanceThreshold>50</DistanceThreshold>
         <Delta>0</Delta>
         <DeliveryCount>DeliveryCount2</DeliveryCount>
         <PatchState>PatchState2</PatchState>
