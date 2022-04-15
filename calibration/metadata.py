@@ -30,45 +30,31 @@ def recursive_dict(element):
     return ename.localname, \
         dict(map(recursive_dict, element)) or element.text
 
-def list_metadata(elements, key, **kwargs):
+def list_metadata(elements, **kwargs):
     metadata = {}
     for x in elements:
-        elem_metadata = {}
-        elem_metadata = (recursive_dict(x)[1])
-        elem_metadata.update(kwargs)
-        name = elem_metadata.pop(key, key)
-        metadata[name] = elem_metadata
+        grouptype = x.get(f'{{{ns["xsi"]}}}type')
+        if grouptype == "GroupWorkflow":
+            name = x.xpath('./x:Name', namespaces=ns)[0].text
+            nodes = x.xpath('./x:Workflow/x:Nodes', namespaces=ns)[0]
+            metadata[name] = list_metadata(nodes)
+        elif grouptype != "ExternalizedMapping":
+            elem_metadata = {}
+            elem_metadata = (recursive_dict(x)[1])
+            if elem_metadata is None:
+                continue
+            elem_metadata.update(kwargs)
+            metadata |= elem_metadata
     return metadata
 
 root = etree.parse(args.workflow)
 workflow = root.xpath('/x:WorkflowBuilder/x:Workflow/x:Nodes', namespaces=ns)[0]
-hardware = workflow.xpath('./x:Expression[@xsi:type="GroupWorkflow" and ./x:Name[text()="Hardware"]]/x:Workflow/x:Nodes', namespaces=ns)[0]
-
-video_controllers = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:VideoController.bonsai"]', namespaces=ns)
-video_sources = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:VideoSource.bonsai"]', namespaces=ns)
-audio_sources = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:AudioSource.bonsai"]', namespaces=ns)
-patches = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:PatchController.bonsai"]', namespaces=ns)
-weight_scales = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:WeightScale.bonsai"]', namespaces=ns)
-position_tracking = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:PositionTracking.bonsai"]', namespaces=ns)
-activity_tracking = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:ActivityTracking.bonsai"]', namespaces=ns)
-region_tracking = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:RegionTracking.bonsai"]', namespaces=ns)
-arena_center = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:DistanceFromPoint.bonsai"]', namespaces=ns)
-distance_tracking = hardware.xpath('./x:Expression[@Path="Aeon.Acquisition:InRange.bonsai"]', namespaces=ns)
-
+metadata_group = workflow.xpath('./x:Expression[@xsi:type="GroupWorkflow" and ./x:Name[text()="Metadata"]]/x:Workflow/x:Nodes', namespaces=ns)[0]
 metadata = {
     'Workflow' : args.workflow,
-    'Commit' : repo.head.commit.hexsha,
-    'Devices' : list_metadata(video_controllers, 'VideoController', Type='VideoController') |
-                list_metadata(video_sources, 'FrameEvents', Type='VideoSource') |
-                list_metadata(audio_sources, 'AudioAmbient', Type='AudioSource') |
-                list_metadata(patches, 'PatchEvents', Type='Patch') |
-                list_metadata(weight_scales, 'WeightEvents', Type='WeightScale') |
-                list_metadata(position_tracking, 'TrackingEvents', Type='PositionTracking') |
-                list_metadata(activity_tracking, 'TrackingEvents', Type='ActivityTracking') |
-                list_metadata(region_tracking, 'RegionEvents', Type='RegionTracking') |
-                list_metadata(arena_center, 'ArenaCenter', Type='DistanceFromPoint') |
-                list_metadata(distance_tracking, 'RangeEvents', Type='InRange')
+    'Commit' : repo.head.commit.hexsha
 }
+metadata |= list_metadata(metadata_group)
 
 if args.output:
     with open(args.output, "w") as outfile:

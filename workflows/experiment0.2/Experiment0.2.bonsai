@@ -15,266 +15,558 @@
   <Workflow>
     <Nodes>
       <Expression xsi:type="GroupWorkflow">
-        <Name>Hardware</Name>
+        <Name>Metadata</Name>
         <Workflow>
           <Nodes>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoController.bonsai">
-              <PortName>COM3</PortName>
-              <GlobalTriggerFrequency>50</GlobalTriggerFrequency>
-              <LocalTriggerFrequency>125</LocalTriggerFrequency>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>Devices</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>VideoController</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="PortName" />
+                          <Property Name="GlobalTriggerFrequency" />
+                          <Property Name="LocalTriggerFrequency" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoController.bonsai">
+                          <PortName>COM3</PortName>
+                          <GlobalTriggerFrequency>50</GlobalTriggerFrequency>
+                          <LocalTriggerFrequency>125</LocalTriggerFrequency>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>CameraTop</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="SerialNumber" />
+                          <Property Name="Gain" />
+                          <Property Name="Binning" />
+                          <Property Name="TriggerSource" />
+                          <Property Name="FrameEvents" />
+                          <Property Name="TriggerFrequency" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                          <SerialNumber>21053810</SerialNumber>
+                          <Gain>4</Gain>
+                          <Binning>1</Binning>
+                          <TriggerSource>GlobalTrigger</TriggerSource>
+                          <FrameEvents>CameraTop</FrameEvents>
+                          <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>CameraWest</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="SerialNumber" />
+                          <Property Name="Gain" />
+                          <Property Name="Binning" />
+                          <Property Name="TriggerSource" />
+                          <Property Name="FrameEvents" />
+                          <Property Name="TriggerFrequency" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                          <SerialNumber>21196927</SerialNumber>
+                          <Gain>4</Gain>
+                          <Binning>1</Binning>
+                          <TriggerSource>GlobalTrigger</TriggerSource>
+                          <FrameEvents>CameraWest</FrameEvents>
+                          <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>CameraEast</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="SerialNumber" />
+                          <Property Name="Gain" />
+                          <Property Name="Binning" />
+                          <Property Name="TriggerSource" />
+                          <Property Name="FrameEvents" />
+                          <Property Name="TriggerFrequency" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                          <SerialNumber>21199215</SerialNumber>
+                          <Gain>4</Gain>
+                          <Binning>1</Binning>
+                          <TriggerSource>GlobalTrigger</TriggerSource>
+                          <FrameEvents>CameraEast</FrameEvents>
+                          <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>CameraNorth</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="SerialNumber" />
+                          <Property Name="Gain" />
+                          <Property Name="Binning" />
+                          <Property Name="TriggerSource" />
+                          <Property Name="FrameEvents" />
+                          <Property Name="TriggerFrequency" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                          <SerialNumber>21177888</SerialNumber>
+                          <Gain>4</Gain>
+                          <Binning>1</Binning>
+                          <TriggerSource>GlobalTrigger</TriggerSource>
+                          <FrameEvents>CameraNorth</FrameEvents>
+                          <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>CameraSouth</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="SerialNumber" />
+                          <Property Name="Gain" />
+                          <Property Name="Binning" />
+                          <Property Name="TriggerSource" />
+                          <Property Name="FrameEvents" />
+                          <Property Name="TriggerFrequency" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                          <SerialNumber>21199217</SerialNumber>
+                          <Gain>4</Gain>
+                          <Binning>1</Binning>
+                          <TriggerSource>GlobalTrigger</TriggerSource>
+                          <FrameEvents>CameraSouth</FrameEvents>
+                          <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>CameraPatch1</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="SerialNumber" />
+                          <Property Name="Gain" />
+                          <Property Name="Binning" />
+                          <Property Name="TriggerSource" />
+                          <Property Name="FrameEvents" />
+                          <Property Name="TriggerFrequency" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                          <SerialNumber>21196933</SerialNumber>
+                          <Gain>10</Gain>
+                          <Binning>2</Binning>
+                          <TriggerSource>LocalTrigger</TriggerSource>
+                          <FrameEvents>CameraPatch1</FrameEvents>
+                          <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>CameraPatch2</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="SerialNumber" />
+                          <Property Name="Gain" />
+                          <Property Name="Binning" />
+                          <Property Name="TriggerSource" />
+                          <Property Name="FrameEvents" />
+                          <Property Name="TriggerFrequency" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                          <SerialNumber>21053811</SerialNumber>
+                          <Gain>10</Gain>
+                          <Binning>2</Binning>
+                          <TriggerSource>LocalTrigger</TriggerSource>
+                          <FrameEvents>CameraPatch2</FrameEvents>
+                          <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>CameraNest</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="SerialNumber" />
+                          <Property Name="Gain" />
+                          <Property Name="Binning" />
+                          <Property Name="TriggerSource" />
+                          <Property Name="FrameEvents" />
+                          <Property Name="TriggerFrequency" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                          <SerialNumber>21199221</SerialNumber>
+                          <Gain>10</Gain>
+                          <Binning>2</Binning>
+                          <TriggerSource>LocalTrigger</TriggerSource>
+                          <FrameEvents>CameraNest</FrameEvents>
+                          <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>AudioAmbient</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="DeviceName" />
+                          <Property Name="SampleRate" />
+                          <Property Name="Name" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:AudioSource.bonsai">
+                          <DeviceName xsi:nil="true" />
+                          <SampleRate>192000</SampleRate>
+                          <Name>AudioAmbient</Name>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>Patch1</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="PortName" />
+                          <Property Name="WheelDisplacement" />
+                          <Property Name="PelletDelivered" />
+                          <Property Name="DeliverPellet" />
+                          <Property Name="PatchEvents" />
+                          <Property Name="Radius" />
+                          <Property Name="SampleRate" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PatchController.bonsai">
+                          <PortName>COM4</PortName>
+                          <WheelDisplacement>WheelPatch1</WheelDisplacement>
+                          <PelletDelivered>PelletDeliveredPatch1</PelletDelivered>
+                          <DeliverPellet>DeliverPelletPatch1</DeliverPellet>
+                          <PatchEvents>Patch1</PatchEvents>
+                          <Radius>4</Radius>
+                          <SampleRate>SampleRate500Hz</SampleRate>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>Patch2</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="PortName" />
+                          <Property Name="WheelDisplacement" />
+                          <Property Name="PelletDelivered" />
+                          <Property Name="DeliverPellet" />
+                          <Property Name="PatchEvents" />
+                          <Property Name="Radius" />
+                          <Property Name="SampleRate" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PatchController.bonsai">
+                          <PortName>COM7</PortName>
+                          <WheelDisplacement>WheelPatch2</WheelDisplacement>
+                          <PelletDelivered>PelletDeliveredPatch2</PelletDelivered>
+                          <DeliverPellet>DeliverPelletPatch2</DeliverPellet>
+                          <PatchEvents>Patch2</PatchEvents>
+                          <Radius>4</Radius>
+                          <SampleRate>SampleRate500Hz</SampleRate>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>Nest</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="PortName" />
+                          <Property Name="WeightEvents" />
+                          <Property Name="TareWeight" />
+                          <Property Name="TareEvents" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:WeightScale.bonsai">
+                          <PortName>COM8</PortName>
+                          <WeightEvents>WeightNest</WeightEvents>
+                          <TareWeight>TareWeightNest</TareWeight>
+                          <TareEvents>TareNest</TareEvents>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                </Nodes>
+                <Edges />
+              </Workflow>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-              <SerialNumber>21053810</SerialNumber>
-              <Gain>4</Gain>
-              <Binning>1</Binning>
-              <TriggerSource>GlobalTrigger</TriggerSource>
-              <FrameEvents>CameraTop</FrameEvents>
-              <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PositionTracking.bonsai">
-              <Mask>ArenaMask_2022-02-02.png</Mask>
-              <ThresholdValue>72</ThresholdValue>
-              <TrackingEvents>TrackingTop</TrackingEvents>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-              <SerialNumber>21196927</SerialNumber>
-              <Gain>4</Gain>
-              <Binning>1</Binning>
-              <TriggerSource>GlobalTrigger</TriggerSource>
-              <FrameEvents>CameraWest</FrameEvents>
-              <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-              <SerialNumber>21199215</SerialNumber>
-              <Gain>4</Gain>
-              <Binning>1</Binning>
-              <TriggerSource>GlobalTrigger</TriggerSource>
-              <FrameEvents>CameraEast</FrameEvents>
-              <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-              <SerialNumber>21177888</SerialNumber>
-              <Gain>4</Gain>
-              <Binning>1</Binning>
-              <TriggerSource>GlobalTrigger</TriggerSource>
-              <FrameEvents>CameraNorth</FrameEvents>
-              <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-              <SerialNumber>21199217</SerialNumber>
-              <Gain>4</Gain>
-              <Binning>1</Binning>
-              <TriggerSource>GlobalTrigger</TriggerSource>
-              <FrameEvents>CameraSouth</FrameEvents>
-              <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-              <SerialNumber>21196933</SerialNumber>
-              <Gain>10</Gain>
-              <Binning>2</Binning>
-              <TriggerSource>LocalTrigger</TriggerSource>
-              <FrameEvents>CameraPatch1</FrameEvents>
-              <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-              <SerialNumber>21053811</SerialNumber>
-              <Gain>10</Gain>
-              <Binning>2</Binning>
-              <TriggerSource>LocalTrigger</TriggerSource>
-              <FrameEvents>CameraPatch2</FrameEvents>
-              <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-              <SerialNumber>21199221</SerialNumber>
-              <Gain>10</Gain>
-              <Binning>2</Binning>
-              <TriggerSource>LocalTrigger</TriggerSource>
-              <FrameEvents>CameraNest</FrameEvents>
-              <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:AudioSource.bonsai">
-              <DeviceName xsi:nil="true" />
-              <SampleRate>192000</SampleRate>
-              <Name>AudioAmbient</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PatchController.bonsai">
-              <PortName>COM4</PortName>
-              <WheelDisplacement>WheelPatch1</WheelDisplacement>
-              <PelletDelivered>PelletDeliveredPatch1</PelletDelivered>
-              <DeliverPellet>DeliverPelletPatch1</DeliverPellet>
-              <PatchEvents>Patch1</PatchEvents>
-              <Radius>4</Radius>
-              <SampleRate>SampleRate500Hz</SampleRate>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PatchController.bonsai">
-              <PortName>COM7</PortName>
-              <WheelDisplacement>WheelPatch2</WheelDisplacement>
-              <PelletDelivered>PelletDeliveredPatch2</PelletDelivered>
-              <DeliverPellet>DeliverPelletPatch2</DeliverPellet>
-              <PatchEvents>Patch2</PatchEvents>
-              <Radius>4</Radius>
-              <SampleRate>SampleRate500Hz</SampleRate>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:WeightScale.bonsai">
-              <PortName>COM8</PortName>
-              <WeightEvents>WeightNest</WeightEvents>
-              <TareWeight>TareWeightNest</TareWeight>
-              <TareEvents>TareNest</TareEvents>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>CameraTop</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ActivityTracking.bonsai">
-              <ThresholdValue>10</ThresholdValue>
-              <TrackingEvents>ActivityCenter</TrackingEvents>
-              <Regions>
-                <ArrayOfPoint>
-                  <Point>
-                    <X>936</X>
-                    <Y>463</Y>
-                  </Point>
-                  <Point>
-                    <X>1264</X>
-                    <Y>463</Y>
-                  </Point>
-                  <Point>
-                    <X>1264</X>
-                    <Y>697</Y>
-                  </Point>
-                  <Point>
-                    <X>936</X>
-                    <Y>697</Y>
-                  </Point>
-                </ArrayOfPoint>
-              </Regions>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ActivityTracking.bonsai">
-              <ThresholdValue>10</ThresholdValue>
-              <TrackingEvents>ActivityArena</TrackingEvents>
-              <Regions xsi:nil="true" />
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
+            <Expression xsi:type="GroupWorkflow">
               <Name>TrackingTop</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Mask" />
+                    <Property Name="ThresholdValue" />
+                    <Property Name="TrackingEvents" />
+                    <Property Name="FrameEvents" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\PositionTracking.bonsai">
+                    <Mask>ArenaMask_2022-02-02.png</Mask>
+                    <ThresholdValue>72</ThresholdValue>
+                    <TrackingEvents>TrackingTop</TrackingEvents>
+                    <FrameEvents>CameraTop</FrameEvents>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RegionTracking.bonsai">
-              <Regions>
-                <ArrayOfPoint>
-                  <Point>
-                    <X>159</X>
-                    <Y>471</Y>
-                  </Point>
-                  <Point>
-                    <X>213</X>
-                    <Y>480</Y>
-                  </Point>
-                  <Point>
-                    <X>212</X>
-                    <Y>515</Y>
-                  </Point>
-                  <Point>
-                    <X>240</X>
-                    <Y>518</Y>
-                  </Point>
-                  <Point>
-                    <X>238</X>
-                    <Y>540</Y>
-                  </Point>
-                  <Point>
-                    <X>212</X>
-                    <Y>538</Y>
-                  </Point>
-                  <Point>
-                    <X>209</X>
-                    <Y>574</Y>
-                  </Point>
-                  <Point>
-                    <X>153</X>
-                    <Y>569</Y>
-                  </Point>
-                </ArrayOfPoint>
-              </Regions>
-              <RegionEvents>InNest</RegionEvents>
-              <FrameEvents>CameraTop</FrameEvents>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>ActivityCenter</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>CameraTop</Name>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ActivityTracking.bonsai">
+                    <ThresholdValue>10</ThresholdValue>
+                    <TrackingEvents>ActivityCenter</TrackingEvents>
+                    <Regions>
+                      <ArrayOfPoint>
+                        <Point>
+                          <X>936</X>
+                          <Y>463</Y>
+                        </Point>
+                        <Point>
+                          <X>1264</X>
+                          <Y>463</Y>
+                        </Point>
+                        <Point>
+                          <X>1264</X>
+                          <Y>697</Y>
+                        </Point>
+                        <Point>
+                          <X>936</X>
+                          <Y>697</Y>
+                        </Point>
+                      </ArrayOfPoint>
+                    </Regions>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RegionTracking.bonsai">
-              <Regions>
-                <ArrayOfPoint>
-                  <Point>
-                    <X>550</X>
-                    <Y>819</Y>
-                  </Point>
-                  <Point>
-                    <X>567</X>
-                    <Y>830</Y>
-                  </Point>
-                  <Point>
-                    <X>558</X>
-                    <Y>847</Y>
-                  </Point>
-                  <Point>
-                    <X>541</X>
-                    <Y>832</Y>
-                  </Point>
-                </ArrayOfPoint>
-              </Regions>
-              <RegionEvents>InPatch1</RegionEvents>
-              <FrameEvents>CameraTop</FrameEvents>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>ActivityArena</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>CameraTop</Name>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ActivityTracking.bonsai">
+                    <ThresholdValue>10</ThresholdValue>
+                    <TrackingEvents>ActivityArena</TrackingEvents>
+                    <Regions xsi:nil="true" />
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RegionTracking.bonsai">
-              <Regions>
-                <ArrayOfPoint>
-                  <Point>
-                    <X>579</X>
-                    <Y>253</Y>
-                  </Point>
-                  <Point>
-                    <X>596</X>
-                    <Y>243</Y>
-                  </Point>
-                  <Point>
-                    <X>601</X>
-                    <Y>261</Y>
-                  </Point>
-                  <Point>
-                    <X>585</X>
-                    <Y>270</Y>
-                  </Point>
-                </ArrayOfPoint>
-              </Regions>
-              <RegionEvents>InPatch2</RegionEvents>
-              <FrameEvents>CameraTop</FrameEvents>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>TrackingTop</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:DistanceFromPoint.bonsai">
-              <Value>
-                <X>738</X>
-                <Y>563</Y>
-              </Value>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:InRange.bonsai">
-              <RangeEvents>InArena</RangeEvents>
-              <Lower xsi:nil="true" />
-              <Upper>480</Upper>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:InRange.bonsai">
-              <RangeEvents>InCorridor</RangeEvents>
-              <Lower>480</Lower>
-              <Upper>502</Upper>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>ActiveRegion</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="NestRegion" />
+                    <Property Name="Patch1Region" />
+                    <Property Name="Patch2Region" />
+                    <Property Name="ArenaCenter" />
+                    <Property Name="ArenaInnerRadius" />
+                    <Property Name="ArenaOuterRadius" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\ActiveRegion.bonsai">
+                    <NestRegion>
+                      <ArrayOfPoint>
+                        <Point>
+                          <X>159</X>
+                          <Y>471</Y>
+                        </Point>
+                        <Point>
+                          <X>213</X>
+                          <Y>480</Y>
+                        </Point>
+                        <Point>
+                          <X>212</X>
+                          <Y>515</Y>
+                        </Point>
+                        <Point>
+                          <X>240</X>
+                          <Y>518</Y>
+                        </Point>
+                        <Point>
+                          <X>238</X>
+                          <Y>540</Y>
+                        </Point>
+                        <Point>
+                          <X>212</X>
+                          <Y>538</Y>
+                        </Point>
+                        <Point>
+                          <X>209</X>
+                          <Y>574</Y>
+                        </Point>
+                        <Point>
+                          <X>153</X>
+                          <Y>569</Y>
+                        </Point>
+                      </ArrayOfPoint>
+                    </NestRegion>
+                    <Patch1Region>
+                      <ArrayOfPoint>
+                        <Point>
+                          <X>550</X>
+                          <Y>819</Y>
+                        </Point>
+                        <Point>
+                          <X>567</X>
+                          <Y>830</Y>
+                        </Point>
+                        <Point>
+                          <X>558</X>
+                          <Y>847</Y>
+                        </Point>
+                        <Point>
+                          <X>541</X>
+                          <Y>832</Y>
+                        </Point>
+                      </ArrayOfPoint>
+                    </Patch1Region>
+                    <Patch2Region>
+                      <ArrayOfPoint>
+                        <Point>
+                          <X>579</X>
+                          <Y>253</Y>
+                        </Point>
+                        <Point>
+                          <X>596</X>
+                          <Y>243</Y>
+                        </Point>
+                        <Point>
+                          <X>601</X>
+                          <Y>261</Y>
+                        </Point>
+                        <Point>
+                          <X>585</X>
+                          <Y>270</Y>
+                        </Point>
+                      </ArrayOfPoint>
+                    </Patch2Region>
+                    <ArenaCenter>
+                      <X>738</X>
+                      <Y>563</Y>
+                    </ArenaCenter>
+                    <ArenaInnerRadius>480</ArenaInnerRadius>
+                    <ArenaOuterRadius>502</ArenaOuterRadius>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
             </Expression>
           </Nodes>
-          <Edges>
-            <Edge From="1" To="2" Label="Source1" />
-            <Edge From="14" To="15" Label="Source1" />
-            <Edge From="14" To="16" Label="Source1" />
-            <Edge From="17" To="18" Label="Source1" />
-            <Edge From="17" To="19" Label="Source1" />
-            <Edge From="17" To="20" Label="Source1" />
-            <Edge From="21" To="22" Label="Source1" />
-            <Edge From="22" To="23" Label="Source1" />
-            <Edge From="22" To="24" Label="Source1" />
-          </Edges>
+          <Edges />
         </Workflow>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
