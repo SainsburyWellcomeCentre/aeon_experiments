@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.7.0-alpha0"
+<WorkflowBuilder Version="2.6.4-preview"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -110,11 +111,13 @@
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="Value" DisplayName="ArenaCenter" />
       </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:DistanceFromPoint.bonsai">
-        <Value>
-          <X>738</X>
-          <Y>563</Y>
-        </Value>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="aeon:DistanceFromPoint">
+          <aeon:Value>
+            <aeon:X>0</aeon:X>
+            <aeon:Y>0</aeon:Y>
+          </aeon:Value>
+        </Combinator>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="InnerRadius" DisplayName="ArenaInnerRadius" />

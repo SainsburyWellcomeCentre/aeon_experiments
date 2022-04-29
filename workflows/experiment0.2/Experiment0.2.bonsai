@@ -397,6 +397,7 @@
                     <Mask>ArenaMask_2022-02-02.png</Mask>
                     <ThresholdValue>72</ThresholdValue>
                     <TrackingEvents>TrackingTop</TrackingEvents>
+                    <TrackingCount>1</TrackingCount>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
@@ -1064,7 +1065,7 @@ new(Value.Id as Id,
               <Name>TrackingTop</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
-              <Selector>Item1.Centroid</Selector>
+              <Selector>Item1[0].Centroid</Selector>
             </Expression>
             <Expression xsi:type="PublishSubject">
               <Name>Trajectory</Name>
@@ -1101,7 +1102,7 @@ new(Value.Id as Id,
               <Name>TrackingTop</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
-              <Selector>Item1.Centroid</Selector>
+              <Selector>Item1[0].Centroid</Selector>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="dsp:Histogram2D">
@@ -1994,7 +1995,7 @@ Item1.Value as CurrentWeight,
                   </Expression>
                   <Expression xsi:type="scr:ExpressionTransform">
                     <scr:Expression>new(
-Item1.Area == 0 as Missing,
+Item1[0].Area == 0 as Missing,
 Item2 as Timestamp)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="rx:DistinctUntilChangedBy">
@@ -2615,7 +2616,7 @@ Item2.Value.Id as Id)</scr:Expression>
                           <Name>Source1</Name>
                         </Expression>
                         <Expression xsi:type="MemberSelector">
-                          <Selector>Item1.Centroid</Selector>
+                          <Selector>Item1[0].Centroid</Selector>
                         </Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="dsp:Difference">
