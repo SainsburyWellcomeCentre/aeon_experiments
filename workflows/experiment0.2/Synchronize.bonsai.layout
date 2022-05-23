@@ -37,7 +37,6 @@
       <Height>0</Height>
     </Size>
     <WindowState>Normal</WindowState>
-    <VisualizerTypeName />
   </DialogSettings>
   <DialogSettings>
     <Visible>false</Visible>
@@ -50,7 +49,6 @@
       <Height>0</Height>
     </Size>
     <WindowState>Normal</WindowState>
-    <VisualizerTypeName />
   </DialogSettings>
   <DialogSettings>
     <Visible>false</Visible>
@@ -75,5 +73,29 @@
       <Height>0</Height>
     </Size>
     <WindowState>Normal</WindowState>
+  </DialogSettings>
+  <DialogSettings xsi:type="WorkflowEditorSettings">
+    <Visible>false</Visible>
+    <Location>
+      <X>0</X>
+      <Y>0</Y>
+    </Location>
+    <Size>
+      <Width>0</Width>
+      <Height>0</Height>
+    </Size>
+    <WindowState>Normal</WindowState>
+    <EditorDialogSettings>
+      <Visible>false</Visible>
+      <Location>
+        <X>720</X>
+        <Y>548</Y>
+      </Location>
+      <Size>
+        <Width>1177</Width>
+        <Height>480</Height>
+      </Size>
+      <WindowState>Normal</WindowState>
+    </EditorDialogSettings>
   </DialogSettings>
 </VisualizerLayout>
