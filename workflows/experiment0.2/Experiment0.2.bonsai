@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.6.4-preview"
+<WorkflowBuilder Version="2.7.0-rc3"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
-                 xmlns:scr="clr-namespace:Bonsai.Scripting;assembly=Bonsai.Scripting"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:num="clr-namespace:Bonsai.Numerics;assembly=Bonsai.Numerics"
+                 xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
@@ -1208,7 +1208,7 @@ new(Value.Id as Id,
                   <Expression xsi:type="WorkflowInput">
                     <Name>Source1</Name>
                   </Expression>
-                  <Expression xsi:type="SelectMany">
+                  <Expression xsi:type="rx:SelectMany">
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="WorkflowInput">
@@ -1292,7 +1292,7 @@ Item1 as Threshold)</scr:Expression>
                   <Expression xsi:type="WorkflowInput">
                     <Name>Source1</Name>
                   </Expression>
-                  <Expression xsi:type="SelectMany">
+                  <Expression xsi:type="rx:SelectMany">
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="WorkflowInput">
@@ -1531,7 +1531,7 @@ Item2 as Patch2)</scr:Expression>
             <Expression xsi:type="PublishSubject">
               <Name>BaselinedWeight</Name>
             </Expression>
-            <Expression xsi:type="Condition">
+            <Expression xsi:type="rx:Condition">
               <Name>StableWeight</Name>
               <Workflow>
                 <Nodes>
@@ -1559,7 +1559,7 @@ Item2 as Patch2)</scr:Expression>
                 </Edges>
               </Workflow>
             </Expression>
-            <Expression xsi:type="Condition">
+            <Expression xsi:type="rx:Condition">
               <Name>SubjectOnScale</Name>
               <Workflow>
                 <Nodes>
@@ -1630,7 +1630,7 @@ Item2 as Patch2)</scr:Expression>
                   <Expression xsi:type="WorkflowInput">
                     <Name>Source1</Name>
                   </Expression>
-                  <Expression xsi:type="SelectMany">
+                  <Expression xsi:type="rx:SelectMany">
                     <Name>UpdateBaseline</Name>
                     <Workflow>
                       <Nodes>
@@ -1703,7 +1703,7 @@ Item2 as Baseline)</scr:Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>ActivityCenter</Name>
             </Expression>
-            <Expression xsi:type="Condition">
+            <Expression xsi:type="rx:Condition">
               <Name>ActivityCondition</Name>
               <Workflow>
                 <Nodes>
@@ -1841,7 +1841,7 @@ Item1.Value as CurrentWeight,
                   <Expression xsi:type="SubscribeSubject">
                     <Name>PercentWeightLoss</Name>
                   </Expression>
-                  <Expression xsi:type="Condition">
+                  <Expression xsi:type="rx:Condition">
                     <Name>LowWeight</Name>
                     <Workflow>
                       <Nodes>
@@ -1906,7 +1906,7 @@ Item1.Value as CurrentWeight,
                   <Expression xsi:type="ExternalizedMapping">
                     <Property Name="PelletThreshold" />
                   </Expression>
-                  <Expression xsi:type="Condition">
+                  <Expression xsi:type="rx:Condition">
                     <Name>LowFood</Name>
                     <Workflow>
                       <Nodes>
@@ -1937,7 +1937,7 @@ Item1.Value as CurrentWeight,
                   <Expression xsi:type="IncludeWorkflow" Path="Extensions\AlertGate.bonsai">
                     <AlertRefractoryPeriod>PT5M</AlertRefractoryPeriod>
                   </Expression>
-                  <Expression xsi:type="Condition">
+                  <Expression xsi:type="rx:Condition">
                     <Name>LowFood</Name>
                     <Workflow>
                       <Nodes>
@@ -2031,7 +2031,7 @@ Item2 as Timestamp)</scr:Expression>
                       </Edges>
                     </Workflow>
                   </Expression>
-                  <Expression xsi:type="Condition">
+                  <Expression xsi:type="rx:Condition">
                     <Name>SubjectMissing</Name>
                     <Workflow>
                       <Nodes>
@@ -2044,7 +2044,7 @@ Item2 as Timestamp)</scr:Expression>
                         <Expression xsi:type="SubscribeSubject">
                           <Name>BaselinedWeight</Name>
                         </Expression>
-                        <Expression xsi:type="Condition">
+                        <Expression xsi:type="rx:Condition">
                           <Name>StableWeight</Name>
                           <Workflow>
                             <Nodes>
@@ -2166,7 +2166,7 @@ Item2 as Timestamp)</scr:Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="rx:DistinctUntilChanged" />
                         </Expression>
-                        <Expression xsi:type="Condition">
+                        <Expression xsi:type="rx:Condition">
                           <Workflow>
                             <Nodes>
                               <Expression xsi:type="WorkflowInput">
@@ -2194,7 +2194,7 @@ Item2 as Timestamp)</scr:Expression>
                   <Expression xsi:type="ExternalizedMapping">
                     <Property Name="SubjectInactiveTimeThreshold" />
                   </Expression>
-                  <Expression xsi:type="CreateObservable">
+                  <Expression xsi:type="rx:CreateObservable">
                     <Name>MonitorInactivity</Name>
                     <Workflow>
                       <Nodes>
@@ -2288,7 +2288,7 @@ Item2.Seconds as Timestamp)</scr:Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Switch" />
                   </Expression>
-                  <Expression xsi:type="Condition">
+                  <Expression xsi:type="rx:Condition">
                     <Name>SubjectInactive</Name>
                     <Workflow>
                       <Nodes>
@@ -2334,7 +2334,7 @@ Item2.Seconds as Timestamp)</scr:Expression>
                   <Expression xsi:type="SubscribeSubject">
                     <Name>PelletMonitor1</Name>
                   </Expression>
-                  <Expression xsi:type="Condition">
+                  <Expression xsi:type="rx:Condition">
                     <Name>DispenserBroken</Name>
                     <Workflow>
                       <Nodes>
@@ -2348,7 +2348,7 @@ Item2.Seconds as Timestamp)</scr:Expression>
                           <scr:Expression>Value ? 1 : 0</scr:Expression>
                         </Expression>
                         <Expression xsi:type="Combinator">
-                          <Combinator xsi:type="rx:Buffer">
+                          <Combinator xsi:type="rx:BufferCount">
                             <rx:Count>5</rx:Count>
                             <rx:Skip>1</rx:Skip>
                           </Combinator>
@@ -2429,7 +2429,7 @@ Item2.Seconds as Timestamp)</scr:Expression>
                   <Expression xsi:type="SubscribeSubject">
                     <Name>PelletMonitor2</Name>
                   </Expression>
-                  <Expression xsi:type="Condition">
+                  <Expression xsi:type="rx:Condition">
                     <Name>DispenserBroken</Name>
                     <Workflow>
                       <Nodes>
@@ -2443,7 +2443,7 @@ Item2.Seconds as Timestamp)</scr:Expression>
                           <scr:Expression>Value ? 1 : 0</scr:Expression>
                         </Expression>
                         <Expression xsi:type="Combinator">
-                          <Combinator xsi:type="rx:Buffer">
+                          <Combinator xsi:type="rx:BufferCount">
                             <rx:Count>5</rx:Count>
                             <rx:Skip>1</rx:Skip>
                           </Combinator>
@@ -2661,7 +2661,7 @@ Item2.Value.Id as Id)</scr:Expression>
                       </Edges>
                     </Workflow>
                   </Expression>
-                  <Expression xsi:type="Condition">
+                  <Expression xsi:type="rx:Condition">
                     <Name>TrackingUnstable</Name>
                     <Workflow>
                       <Nodes>
@@ -2822,7 +2822,7 @@ Item2.Value.Id as Id)</scr:Expression>
                       <rx:Count>1</rx:Count>
                     </Combinator>
                   </Expression>
-                  <Expression xsi:type="SelectMany">
+                  <Expression xsi:type="rx:SelectMany">
                     <Name>ExperimentSummary</Name>
                     <Workflow>
                       <Nodes>
@@ -3149,7 +3149,7 @@ Mode: {1}</Format>
                       <rx:Count>1</rx:Count>
                     </Combinator>
                   </Expression>
-                  <Expression xsi:type="SelectMany">
+                  <Expression xsi:type="rx:SelectMany">
                     <Name>LocalFileCount</Name>
                     <Workflow>
                       <Nodes>
@@ -3212,7 +3212,7 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                   <Expression xsi:type="ExternalizedMapping">
                     <Property Name="Value" DisplayName="LocalFileThreshold" />
                   </Expression>
-                  <Expression xsi:type="Condition">
+                  <Expression xsi:type="rx:Condition">
                     <Name>GreaterThan</Name>
                     <Workflow>
                       <Nodes>
@@ -3309,7 +3309,7 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                   <Expression xsi:type="SubscribeSubject">
                     <Name>Annotations</Name>
                   </Expression>
-                  <Expression xsi:type="Condition">
+                  <Expression xsi:type="rx:Condition">
                     <Name>Alert</Name>
                     <Workflow>
                       <Nodes>
@@ -3516,7 +3516,7 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
       <Expression xsi:type="BehaviorSubject">
         <Name>SubjectState</Name>
       </Expression>
-      <Expression xsi:type="Condition">
+      <Expression xsi:type="rx:Condition">
         <Name>Start</Name>
         <Workflow>
           <Nodes>
@@ -3543,7 +3543,7 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
       <Expression xsi:type="PublishSubject">
         <Name>SubjectStart</Name>
       </Expression>
-      <Expression xsi:type="Condition">
+      <Expression xsi:type="rx:Condition">
         <Name>End</Name>
         <Workflow>
           <Nodes>
@@ -3771,7 +3771,11 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
       <Expression xsi:type="viz:RollingGraphBuilder">
         <viz:IndexSelector>PelletCount</viz:IndexSelector>
         <viz:ValueSelector>Threshold</viz:ValueSelector>
+        <viz:SymbolType>None</viz:SymbolType>
+        <viz:LineWidth>1</viz:LineWidth>
         <viz:Capacity xsi:nil="true" />
+        <viz:Min xsi:nil="true" />
+        <viz:Max xsi:nil="true" />
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>ThresholdPatch1</Name>
@@ -3793,7 +3797,11 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
       <Expression xsi:type="viz:RollingGraphBuilder">
         <viz:IndexSelector>PelletCount</viz:IndexSelector>
         <viz:ValueSelector>Threshold</viz:ValueSelector>
+        <viz:SymbolType>None</viz:SymbolType>
+        <viz:LineWidth>1</viz:LineWidth>
         <viz:Capacity xsi:nil="true" />
+        <viz:Min xsi:nil="true" />
+        <viz:Max xsi:nil="true" />
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>ThresholdPatch2</Name>
@@ -3878,6 +3886,8 @@ Item3 as Delta)</scr:Expression>
         <viz:BaseAxis>X</viz:BaseAxis>
         <viz:BarType>Cluster</viz:BarType>
         <viz:Capacity xsi:nil="true" />
+        <viz:Min xsi:nil="true" />
+        <viz:Max xsi:nil="true" />
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>TimeSpentOnPatches</Name>
@@ -3902,6 +3912,8 @@ Item3 as Delta)</scr:Expression>
         <viz:BaseAxis>X</viz:BaseAxis>
         <viz:BarType>Cluster</viz:BarType>
         <viz:Capacity xsi:nil="true" />
+        <viz:Min xsi:nil="true" />
+        <viz:Max xsi:nil="true" />
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>TimeSinceLastVisit</Name>
@@ -3926,6 +3938,8 @@ Item3 as Delta)</scr:Expression>
         <viz:BaseAxis>X</viz:BaseAxis>
         <viz:BarType>Cluster</viz:BarType>
         <viz:Capacity xsi:nil="true" />
+        <viz:Min xsi:nil="true" />
+        <viz:Max xsi:nil="true" />
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>TotalDistanceTravelled</Name>
@@ -3991,7 +4005,11 @@ Item3 as Delta)</scr:Expression>
       </Expression>
       <Expression xsi:type="viz:RollingGraphBuilder">
         <viz:ValueSelector>Stable,Raw,Baseline</viz:ValueSelector>
+        <viz:SymbolType>None</viz:SymbolType>
+        <viz:LineWidth>1</viz:LineWidth>
         <viz:Capacity>200</viz:Capacity>
+        <viz:Min xsi:nil="true" />
+        <viz:Max xsi:nil="true" />
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>WeightMonitor</Name>
