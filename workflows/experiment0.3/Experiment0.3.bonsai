@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.7.0-rc3"
+<WorkflowBuilder Version="2.7.0-rc4"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
+                 xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:num="clr-namespace:Bonsai.Numerics;assembly=Bonsai.Numerics"
-                 xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
@@ -23,7 +23,7 @@
               <Workflow>
                 <Nodes>
                   <Expression xsi:type="GroupWorkflow">
-                    <Name>VideoController</Name>
+                    <Name>CameraController</Name>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
@@ -31,8 +31,8 @@
                           <Property Name="GlobalTriggerFrequency" />
                           <Property Name="LocalTriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoController.bonsai">
-                          <PortName>COM3</PortName>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:CameraController.bonsai">
+                          <PortName>COM6</PortName>
                           <GlobalTriggerFrequency>50</GlobalTriggerFrequency>
                           <LocalTriggerFrequency>125</LocalTriggerFrequency>
                         </Expression>
@@ -50,19 +50,14 @@
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
                           <Property Name="SerialNumber" />
-                          <Property Name="Gain" />
-                          <Property Name="Binning" />
                           <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
-                          <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-                          <SerialNumber>21053810</SerialNumber>
-                          <Gain>4</Gain>
-                          <Binning>1</Binning>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PylonVideoSource.bonsai">
+                          <SerialNumber>40188224</SerialNumber>
+                          <ParameterFile>Config\acA1440-220um_CameraTop.pfs</ParameterFile>
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <FrameEvents>CameraTop</FrameEvents>
-                          <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -78,19 +73,14 @@
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
                           <Property Name="SerialNumber" />
-                          <Property Name="Gain" />
-                          <Property Name="Binning" />
                           <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
-                          <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-                          <SerialNumber>21196927</SerialNumber>
-                          <Gain>4</Gain>
-                          <Binning>1</Binning>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PylonVideoSource.bonsai">
+                          <SerialNumber>40182339</SerialNumber>
+                          <ParameterFile>Config\acA1440-220um_CameraTop.pfs</ParameterFile>
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <FrameEvents>CameraWest</FrameEvents>
-                          <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -106,19 +96,14 @@
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
                           <Property Name="SerialNumber" />
-                          <Property Name="Gain" />
-                          <Property Name="Binning" />
                           <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
-                          <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-                          <SerialNumber>21199215</SerialNumber>
-                          <Gain>4</Gain>
-                          <Binning>1</Binning>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PylonVideoSource.bonsai">
+                          <SerialNumber>40182669</SerialNumber>
+                          <ParameterFile>Config\acA1440-220um_CameraTop.pfs</ParameterFile>
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <FrameEvents>CameraEast</FrameEvents>
-                          <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -134,19 +119,14 @@
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
                           <Property Name="SerialNumber" />
-                          <Property Name="Gain" />
-                          <Property Name="Binning" />
                           <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
-                          <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-                          <SerialNumber>21177888</SerialNumber>
-                          <Gain>4</Gain>
-                          <Binning>1</Binning>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PylonVideoSource.bonsai">
+                          <SerialNumber>40188242</SerialNumber>
+                          <ParameterFile>Config\acA1440-220um_CameraTop.pfs</ParameterFile>
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <FrameEvents>CameraNorth</FrameEvents>
-                          <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -162,19 +142,14 @@
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
                           <Property Name="SerialNumber" />
-                          <Property Name="Gain" />
-                          <Property Name="Binning" />
                           <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
-                          <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-                          <SerialNumber>21199217</SerialNumber>
-                          <Gain>4</Gain>
-                          <Binning>1</Binning>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PylonVideoSource.bonsai">
+                          <SerialNumber>40182341</SerialNumber>
+                          <ParameterFile>Config\acA1440-220um_CameraTop.pfs</ParameterFile>
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <FrameEvents>CameraSouth</FrameEvents>
-                          <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -190,19 +165,14 @@
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
                           <Property Name="SerialNumber" />
-                          <Property Name="Gain" />
-                          <Property Name="Binning" />
                           <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
-                          <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-                          <SerialNumber>21196933</SerialNumber>
-                          <Gain>10</Gain>
-                          <Binning>2</Binning>
-                          <TriggerSource>LocalTrigger</TriggerSource>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PylonVideoSource.bonsai">
+                          <SerialNumber>40182619</SerialNumber>
+                          <ParameterFile>Config\acA1440-220um_CameraSide.pfs</ParameterFile>
+                          <TriggerSource>GlobalTrigger</TriggerSource>
                           <FrameEvents>CameraPatch1</FrameEvents>
-                          <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -218,19 +188,14 @@
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
                           <Property Name="SerialNumber" />
-                          <Property Name="Gain" />
-                          <Property Name="Binning" />
                           <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
-                          <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-                          <SerialNumber>21053811</SerialNumber>
-                          <Gain>10</Gain>
-                          <Binning>2</Binning>
-                          <TriggerSource>LocalTrigger</TriggerSource>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PylonVideoSource.bonsai">
+                          <SerialNumber>40188245</SerialNumber>
+                          <ParameterFile>Config\acA1440-220um_CameraSide.pfs</ParameterFile>
+                          <TriggerSource>GlobalTrigger</TriggerSource>
                           <FrameEvents>CameraPatch2</FrameEvents>
-                          <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -302,15 +267,21 @@
                           <Property Name="PatchEvents" />
                           <Property Name="Radius" />
                           <Property Name="SampleRate" />
+                          <Property Name="ResetFeeder" />
+                          <Property Name="DueTime" />
+                          <Property Name="Count" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PatchController.bonsai">
-                          <PortName>COM4</PortName>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:UndergroundFeeder.bonsai">
+                          <PortName>COM3</PortName>
                           <WheelDisplacement>WheelPatch1</WheelDisplacement>
                           <PelletDelivered>PelletDeliveredPatch1</PelletDelivered>
                           <DeliverPellet>DeliverPelletPatch1</DeliverPellet>
                           <PatchEvents>Patch1</PatchEvents>
                           <Radius>4</Radius>
                           <SampleRate>SampleRate500Hz</SampleRate>
+                          <ResetFeeder>ResetFeederPatch1</ResetFeeder>
+                          <DueTime>PT0S</DueTime>
+                          <Count>0</Count>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -332,15 +303,21 @@
                           <Property Name="PatchEvents" />
                           <Property Name="Radius" />
                           <Property Name="SampleRate" />
+                          <Property Name="ResetFeeder" />
+                          <Property Name="DueTime" />
+                          <Property Name="Count" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PatchController.bonsai">
-                          <PortName>COM7</PortName>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:UndergroundFeeder.bonsai">
+                          <PortName>COM4</PortName>
                           <WheelDisplacement>WheelPatch2</WheelDisplacement>
                           <PelletDelivered>PelletDeliveredPatch2</PelletDelivered>
                           <DeliverPellet>DeliverPelletPatch2</DeliverPellet>
                           <PatchEvents>Patch2</PatchEvents>
                           <Radius>4</Radius>
                           <SampleRate>SampleRate500Hz</SampleRate>
+                          <ResetFeeder>ResetFeederPatch2</ResetFeeder>
+                          <DueTime>PT0S</DueTime>
+                          <Count>0</Count>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -361,7 +338,7 @@
                           <Property Name="TareEvents" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:WeightScale.bonsai">
-                          <PortName>COM8</PortName>
+                          <PortName>COM7</PortName>
                           <WeightEvents>WeightNest</WeightEvents>
                           <TareWeight>TareWeightNest</TareWeight>
                           <TareEvents>TareNest</TareEvents>
@@ -394,7 +371,7 @@
                     <Name>CameraTop</Name>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PositionTracking.bonsai">
-                    <Mask>ArenaMask_2022-02-02.png</Mask>
+                    <Mask>ArenaMask_2022-09-23.png</Mask>
                     <ThresholdValue>72</ThresholdValue>
                     <TrackingEvents>TrackingTop</TrackingEvents>
                     <TrackingCount>1</TrackingCount>
@@ -585,7 +562,7 @@
               <ChunkSize>1</ChunkSize>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
-              <WorkflowName>Experiment0.2.bonsai</WorkflowName>
+              <WorkflowName>Experiment0.3.bonsai</WorkflowName>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>VideoEvents</Name>
