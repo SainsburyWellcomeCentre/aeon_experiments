@@ -1662,21 +1662,33 @@
         </Size>
         <WindowState>Normal</WindowState>
       </DialogSettings>
-      <DialogSettings>
+      <DialogSettings xsi:type="WorkflowEditorSettings">
         <Visible>true</Visible>
         <Location>
-          <X>0</X>
-          <Y>24</Y>
+          <X>7</X>
+          <Y>387</Y>
         </Location>
         <Size>
-          <Width>561</Width>
-          <Height>969</Height>
+          <Width>554</Width>
+          <Height>611</Height>
         </Size>
         <WindowState>Normal</WindowState>
         <VisualizerTypeName>Bonsai.Design.Visualizers.TableLayoutPanelVisualizer</VisualizerTypeName>
         <VisualizerSettings>
           <TableLayoutPanelVisualizer />
         </VisualizerSettings>
+        <EditorDialogSettings>
+          <Visible>false</Visible>
+          <Location>
+            <X>3</X>
+            <Y>3</Y>
+          </Location>
+          <Size>
+            <Width>1506</Width>
+            <Height>903</Height>
+          </Size>
+          <WindowState>Normal</WindowState>
+        </EditorDialogSettings>
       </DialogSettings>
       <DialogSettings xsi:type="WorkflowEditorSettings">
         <Visible>true</Visible>
@@ -1749,6 +1761,22 @@
           </Size>
           <WindowState>Normal</WindowState>
         </EditorDialogSettings>
+      </DialogSettings>
+      <DialogSettings>
+        <Visible>true</Visible>
+        <Location>
+          <X>5</X>
+          <Y>34</Y>
+        </Location>
+        <Size>
+          <Width>555</Width>
+          <Height>358</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+        <VisualizerTypeName>Aeon.Acquisition.EnvironmentSubjectStateVisualizer</VisualizerTypeName>
+        <VisualizerSettings>
+          <EnvironmentSubjectStateVisualizer />
+        </VisualizerSettings>
       </DialogSettings>
     </EditorVisualizerLayout>
   </DialogSettings>
