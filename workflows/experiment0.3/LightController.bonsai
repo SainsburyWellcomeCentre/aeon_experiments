@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.7.0-rc4"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:osc="clr-namespace:Bonsai.Osc;assembly=Bonsai.Osc"
+                 xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
+                 xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:num="clr-namespace:Bonsai.Numerics;assembly=Bonsai.Numerics"
+                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                 xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
+                 xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
+                 xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="osc:CreateTcpServer">
+          <osc:Name>LightServer</osc:Name>
+          <osc:Port>24242</osc:Port>
+          <osc:NoDelay>false</osc:NoDelay>
+          <osc:AllowNatTraversal>false</osc:AllowNatTraversal>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="BehaviorSubject" TypeArguments="aeon:RoomLightMessage">
+        <Name>Commands</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="aeon:RoomLightController">
+          <aeon:PortName>COM8</aeon:PortName>
+          <aeon:MessageDelay>PT0.1S</aeon:MessageDelay>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="osc:SendMessage">
+        <osc:Connection>LightServer</osc:Connection>
+        <osc:Address>/light</osc:Address>
+      </Expression>
+      <Expression xsi:type="io:CsvReader">
+        <io:FileName>LightCycle.csv</io:FileName>
+        <io:ScanPattern>%d,%B,%B</io:ScanPattern>
+        <io:SkipRows>1</io:SkipRows>
+      </Expression>
+      <Expression xsi:type="rx:GroupBy">
+        <rx:KeySelector>Item1</rx:KeySelector>
+      </Expression>
+      <Expression xsi:type="rx:SelectMany">
+        <Name>CreateTimeSequence</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Merge" />
+            </Expression>
+            <Expression xsi:type="InputMapping">
+              <PropertyMappings>
+                <Property Name="Channel" Selector="Item2" />
+                <Property Name="Value" Selector="Item3" />
+              </PropertyMappings>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="aeon:CreateRoomLightMessage">
+                <aeon:Channel>28</aeon:Channel>
+                <aeon:Value>0</aeon:Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:ToArray" />
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Key</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Zip" />
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="0" To="5" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="4" To="6" Label="Source2" />
+            <Edge From="5" To="6" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="rx:ToDictionary">
+        <rx:KeySelector>Item1</rx:KeySelector>
+        <rx:ElementSelector>Item2</rx:ElementSelector>
+      </Expression>
+      <Expression xsi:type="AsyncSubject">
+        <Name>LightLookup</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Timer">
+          <rx:DueTime>PT0S</rx:DueTime>
+          <rx:Period>PT10S</rx:Period>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Timestamp" />
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>TenSecondBlocks</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Timestamp.TimeOfDay.TotalSeconds</Selector>
+            </Expression>
+            <Expression xsi:type="Divide">
+              <Operand xsi:type="DoubleProperty">
+                <Value>10</Value>
+              </Operand>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="num:Floor" />
+            </Expression>
+            <Expression xsi:type="Multiply">
+              <Operand xsi:type="DoubleProperty">
+                <Value>10</Value>
+              </Operand>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Take">
+          <rx:Count>1</rx:Count>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Multiply">
+        <Operand xsi:type="WorkflowProperty" TypeArguments="sys:Int64">
+          <Value>10</Value>
+        </Operand>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:CombineLatest" />
+      </Expression>
+      <Expression xsi:type="Add" />
+      <Expression xsi:type="rx:SelectMany">
+        <Name>LookupLightState</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>LightLookup</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:CombineLatest" />
+            </Expression>
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Expression>Item1[Item2 % Item1.Count]</scr:Expression>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Merge" />
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="2" Label="Source2" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>Commands</Name>
+      </Expression>
+      <Expression xsi:type="osc:ReceiveMessage">
+        <osc:Address>/red</osc:Address>
+        <osc:TypeTag>i</osc:TypeTag>
+        <osc:Connection>LightServer</osc:Connection>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>RedLights</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Channels" />
+            </Expression>
+            <Expression xsi:type="rx:SelectMany">
+              <Name>RedLights</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Value" DisplayName="Channels" />
+                  </Expression>
+                  <Expression xsi:type="PropertySource" TypeArguments="dsp:SelectChannels,sys:Int32[]">
+                    <MemberName>Channels</MemberName>
+                    <Value>
+                      <int>28</int>
+                      <int>13</int>
+                      <int>39</int>
+                      <int>4</int>
+                    </Value>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Take">
+                      <rx:Count>1</rx:Count>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Merge" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:CombineLatest" />
+                  </Expression>
+                  <Expression xsi:type="InputMapping">
+                    <PropertyMappings>
+                      <Property Name="Channel" Selector="Item2" />
+                      <Property Name="Value" Selector="Item1" />
+                    </PropertyMappings>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="aeon:CreateRoomLightMessage">
+                      <aeon:Channel>0</aeon:Channel>
+                      <aeon:Value>0</aeon:Value>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="5" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                  <Edge From="3" To="4" Label="Source1" />
+                  <Edge From="4" To="5" Label="Source2" />
+                  <Edge From="5" To="6" Label="Source1" />
+                  <Edge From="6" To="7" Label="Source1" />
+                  <Edge From="7" To="8" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="2" Label="Source1" />
+            <Edge From="1" To="2" Label="Source2" />
+            <Edge From="2" To="3" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>Commands</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:CameraCapture">
+          <cv:Index>0</cv:Index>
+          <cv:CaptureProperties />
+        </Combinator>
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="5" To="6" Label="Source1" />
+      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="9" To="10" Label="Source1" />
+      <Edge From="9" To="13" Label="Source1" />
+      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="11" To="12" Label="Source1" />
+      <Edge From="12" To="14" Label="Source1" />
+      <Edge From="13" To="14" Label="Source2" />
+      <Edge From="14" To="15" Label="Source1" />
+      <Edge From="15" To="16" Label="Source1" />
+      <Edge From="16" To="17" Label="Source1" />
+      <Edge From="18" To="19" Label="Source1" />
+      <Edge From="19" To="20" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
