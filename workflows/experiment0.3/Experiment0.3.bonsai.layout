@@ -20,8 +20,8 @@
         <Y>3</Y>
       </Location>
       <Size>
-        <Width>1506</Width>
-        <Height>903</Height>
+        <Width>1057</Width>
+        <Height>687</Height>
       </Size>
       <WindowState>Normal</WindowState>
     </EditorDialogSettings>
@@ -44,8 +44,8 @@
             <Y>3</Y>
           </Location>
           <Size>
-            <Width>1506</Width>
-            <Height>903</Height>
+            <Width>1057</Width>
+            <Height>687</Height>
           </Size>
           <WindowState>Normal</WindowState>
         </EditorDialogSettings>
@@ -154,8 +154,8 @@
         <Y>3</Y>
       </Location>
       <Size>
-        <Width>1506</Width>
-        <Height>903</Height>
+        <Width>1057</Width>
+        <Height>687</Height>
       </Size>
       <WindowState>Normal</WindowState>
     </EditorDialogSettings>
@@ -1356,8 +1356,8 @@
         <Y>3</Y>
       </Location>
       <Size>
-        <Width>1506</Width>
-        <Height>903</Height>
+        <Width>1057</Width>
+        <Height>687</Height>
       </Size>
       <WindowState>Normal</WindowState>
     </EditorDialogSettings>
@@ -1662,7 +1662,7 @@
         </Size>
         <WindowState>Normal</WindowState>
       </DialogSettings>
-      <DialogSettings xsi:type="WorkflowEditorSettings">
+      <DialogSettings>
         <Visible>true</Visible>
         <Location>
           <X>7</X>
@@ -1677,20 +1677,8 @@
         <VisualizerSettings>
           <TableLayoutPanelVisualizer />
         </VisualizerSettings>
-        <EditorDialogSettings>
-          <Visible>false</Visible>
-          <Location>
-            <X>3</X>
-            <Y>3</Y>
-          </Location>
-          <Size>
-            <Width>1506</Width>
-            <Height>903</Height>
-          </Size>
-          <WindowState>Normal</WindowState>
-        </EditorDialogSettings>
       </DialogSettings>
-      <DialogSettings xsi:type="WorkflowEditorSettings">
+      <DialogSettings>
         <Visible>true</Visible>
         <Location>
           <X>545</X>
@@ -1705,18 +1693,6 @@
         <VisualizerSettings>
           <TableLayoutPanelVisualizer />
         </VisualizerSettings>
-        <EditorDialogSettings>
-          <Visible>false</Visible>
-          <Location>
-            <X>3</X>
-            <Y>3</Y>
-          </Location>
-          <Size>
-            <Width>1506</Width>
-            <Height>903</Height>
-          </Size>
-          <WindowState>Normal</WindowState>
-        </EditorDialogSettings>
       </DialogSettings>
       <DialogSettings>
         <Visible>true</Visible>
@@ -1734,7 +1710,7 @@
           <TableLayoutPanelVisualizer />
         </VisualizerSettings>
       </DialogSettings>
-      <DialogSettings xsi:type="WorkflowEditorSettings">
+      <DialogSettings>
         <Visible>true</Visible>
         <Location>
           <X>1211</X>
@@ -1749,18 +1725,6 @@
         <VisualizerSettings>
           <TableLayoutPanelVisualizer />
         </VisualizerSettings>
-        <EditorDialogSettings>
-          <Visible>false</Visible>
-          <Location>
-            <X>3</X>
-            <Y>3</Y>
-          </Location>
-          <Size>
-            <Width>1506</Width>
-            <Height>890</Height>
-          </Size>
-          <WindowState>Normal</WindowState>
-        </EditorDialogSettings>
       </DialogSettings>
       <DialogSettings>
         <Visible>true</Visible>
