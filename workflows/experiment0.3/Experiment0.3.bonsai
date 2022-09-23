@@ -249,7 +249,7 @@
                           <PelletDelivered>PelletDeliveredPatch1</PelletDelivered>
                           <DeliverPellet>DeliverPelletPatch1</DeliverPellet>
                           <PatchEvents>Patch1</PatchEvents>
-                          <Radius>4</Radius>
+                          <Radius>-4</Radius>
                           <SampleRate>SampleRate500Hz</SampleRate>
                           <ResetFeeder>ResetFeederPatch1</ResetFeeder>
                           <DueTime>PT0S</DueTime>
@@ -285,7 +285,7 @@
                           <PelletDelivered>PelletDeliveredPatch2</PelletDelivered>
                           <DeliverPellet>DeliverPelletPatch2</DeliverPellet>
                           <PatchEvents>Patch2</PatchEvents>
-                          <Radius>4</Radius>
+                          <Radius>-4</Radius>
                           <SampleRate>SampleRate500Hz</SampleRate>
                           <ResetFeeder>ResetFeederPatch2</ResetFeeder>
                           <DueTime>PT0S</DueTime>
