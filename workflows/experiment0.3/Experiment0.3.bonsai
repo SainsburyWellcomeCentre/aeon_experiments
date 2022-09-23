@@ -171,7 +171,7 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PylonVideoSource.bonsai">
                           <SerialNumber>40182619</SerialNumber>
                           <ParameterFile>Config\acA1440-220um_CameraSide.pfs</ParameterFile>
-                          <TriggerSource>GlobalTrigger</TriggerSource>
+                          <TriggerSource>LocalTrigger</TriggerSource>
                           <FrameEvents>CameraPatch1</FrameEvents>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
@@ -194,7 +194,7 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PylonVideoSource.bonsai">
                           <SerialNumber>40188245</SerialNumber>
                           <ParameterFile>Config\acA1440-220um_CameraSide.pfs</ParameterFile>
-                          <TriggerSource>GlobalTrigger</TriggerSource>
+                          <TriggerSource>LocalTrigger</TriggerSource>
                           <FrameEvents>CameraPatch2</FrameEvents>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
@@ -589,7 +589,7 @@
         <Workflow>
           <Nodes>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogController.bonsai">
-              <Path>D:\ProjectAeon\experiment0.2</Path>
+              <Path>D:\ProjectAeon\experiment0.3</Path>
               <ChunkSize>1</ChunkSize>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
