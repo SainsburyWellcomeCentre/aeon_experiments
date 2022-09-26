@@ -433,85 +433,69 @@
                     <NestRegion>
                       <ArrayOfPoint>
                         <Point>
-                          <X>159</X>
-                          <Y>471</Y>
+                          <X>1185</X>
+                          <Y>497</Y>
                         </Point>
                         <Point>
-                          <X>213</X>
-                          <Y>480</Y>
+                          <X>1307</X>
+                          <Y>497</Y>
                         </Point>
                         <Point>
-                          <X>212</X>
-                          <Y>515</Y>
+                          <X>1306</X>
+                          <Y>601</Y>
                         </Point>
                         <Point>
-                          <X>240</X>
-                          <Y>518</Y>
-                        </Point>
-                        <Point>
-                          <X>238</X>
-                          <Y>540</Y>
-                        </Point>
-                        <Point>
-                          <X>212</X>
-                          <Y>538</Y>
-                        </Point>
-                        <Point>
-                          <X>209</X>
-                          <Y>574</Y>
-                        </Point>
-                        <Point>
-                          <X>153</X>
-                          <Y>569</Y>
+                          <X>1187</X>
+                          <Y>602</Y>
                         </Point>
                       </ArrayOfPoint>
                     </NestRegion>
                     <Patch1Region>
                       <ArrayOfPoint>
                         <Point>
-                          <X>550</X>
-                          <Y>819</Y>
+                          <X>869</X>
+                          <Y>210</Y>
                         </Point>
                         <Point>
-                          <X>567</X>
-                          <Y>830</Y>
+                          <X>886</X>
+                          <Y>221</Y>
                         </Point>
                         <Point>
-                          <X>558</X>
-                          <Y>847</Y>
+                          <X>877</X>
+                          <Y>238</Y>
                         </Point>
                         <Point>
-                          <X>541</X>
-                          <Y>832</Y>
+                          <X>860</X>
+                          <Y>223</Y>
                         </Point>
                       </ArrayOfPoint>
                     </Patch1Region>
                     <Patch2Region>
                       <ArrayOfPoint>
                         <Point>
-                          <X>579</X>
-                          <Y>253</Y>
+                          <X>858</X>
+                          <Y>866</Y>
                         </Point>
                         <Point>
-                          <X>596</X>
-                          <Y>243</Y>
+                          <X>875</X>
+                          <Y>856</Y>
                         </Point>
                         <Point>
-                          <X>601</X>
-                          <Y>261</Y>
+                          <X>880</X>
+                          <Y>874</Y>
                         </Point>
                         <Point>
-                          <X>585</X>
-                          <Y>270</Y>
+                          <X>864</X>
+                          <Y>883</Y>
                         </Point>
                       </ArrayOfPoint>
                     </Patch2Region>
                     <ArenaCenter>
-                      <X>738</X>
-                      <Y>563</Y>
+                      <X>683</X>
+                      <Y>544</Y>
                     </ArenaCenter>
-                    <ArenaInnerRadius>480</ArenaInnerRadius>
-                    <ArenaOuterRadius>502</ArenaOuterRadius>
+                    <ArenaInnerRadius>474</ArenaInnerRadius>
+                    <ArenaOuterRadius>494</ArenaOuterRadius>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
