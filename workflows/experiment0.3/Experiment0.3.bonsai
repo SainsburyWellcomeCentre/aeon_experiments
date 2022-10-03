@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.7.0-rc4"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
@@ -215,7 +215,7 @@
                           <Property Name="Name" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:AudioSource.bonsai">
-                          <DeviceName xsi:nil="true" />
+                          <DeviceName>Microphone (UltraMic 192K 16 bi</DeviceName>
                           <SampleRate>192000</SampleRate>
                           <Name>AudioAmbient</Name>
                         </Expression>
@@ -3103,7 +3103,7 @@ Mode: {1}</Format>
                         </Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="io:GetFiles">
-                            <io:Path>D:\ProjectAeon\experiment0.2</io:Path>
+                            <io:Path>D:\ProjectAeon\experiment0.3</io:Path>
                             <io:SearchPattern>*</io:SearchPattern>
                             <io:SearchOption>AllDirectories</io:SearchOption>
                           </Combinator>
