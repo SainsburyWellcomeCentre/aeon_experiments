@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.7.0-rc4"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
@@ -314,6 +314,30 @@
                           <WeightEvents>WeightNest</WeightEvents>
                           <TareWeight>TareWeightNest</TareWeight>
                           <TareEvents>TareNest</TareEvents>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>LightController</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="HostName" />
+                          <Property Name="Port" />
+                          <Property Name="NoDelay" />
+                          <Property Name="LightEvents" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LightController.bonsai">
+                          <HostName>localhost</HostName>
+                          <Port>4302</Port>
+                          <NoDelay>false</NoDelay>
+                          <LightEvents>LightEvents</LightEvents>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -965,6 +989,13 @@ new(Value.Id as Id,
               <LogName>ExperimentalMetadata_SubjectVisits</LogName>
               <Selector>Seconds,Value.Id,Value.Event,Value.Value</Selector>
             </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>LightEvents</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <LogName>LightController</LogName>
+              <Selector xsi:nil="true" />
+            </Expression>
           </Nodes>
           <Edges>
             <Edge From="2" To="3" Label="Source1" />
@@ -1038,6 +1069,7 @@ new(Value.Id as Id,
             <Edge From="88" To="89" Label="Source6" />
             <Edge From="89" To="90" Label="Source1" />
             <Edge From="90" To="91" Label="Source1" />
+            <Edge From="92" To="93" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
