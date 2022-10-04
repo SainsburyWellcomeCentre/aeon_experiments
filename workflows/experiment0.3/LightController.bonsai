@@ -17,7 +17,7 @@
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="osc:CreateTcpServer">
           <osc:Name>LightServer</osc:Name>
-          <osc:Port>24242</osc:Port>
+          <osc:Port>4302</osc:Port>
           <osc:NoDelay>false</osc:NoDelay>
           <osc:AllowNatTraversal>false</osc:AllowNatTraversal>
         </Combinator>
