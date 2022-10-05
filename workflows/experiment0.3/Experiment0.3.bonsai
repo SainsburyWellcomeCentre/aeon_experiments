@@ -395,20 +395,20 @@
                     <Regions>
                       <ArrayOfPoint>
                         <Point>
-                          <X>936</X>
-                          <Y>463</Y>
+                          <X>76</X>
+                          <Y>431</Y>
                         </Point>
                         <Point>
-                          <X>1264</X>
-                          <Y>463</Y>
+                          <X>404</X>
+                          <Y>431</Y>
                         </Point>
                         <Point>
-                          <X>1264</X>
-                          <Y>697</Y>
+                          <X>404</X>
+                          <Y>665</Y>
                         </Point>
                         <Point>
-                          <X>936</X>
-                          <Y>697</Y>
+                          <X>76</X>
+                          <Y>665</Y>
                         </Point>
                       </ArrayOfPoint>
                     </Regions>
