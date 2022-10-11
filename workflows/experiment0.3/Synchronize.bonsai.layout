@@ -29,8 +29,8 @@
   <DialogSettings>
     <Visible>false</Visible>
     <Location>
-      <X>338</X>
-      <Y>338</Y>
+      <X>0</X>
+      <Y>0</Y>
     </Location>
     <Size>
       <Width>0</Width>
@@ -41,8 +41,8 @@
   <DialogSettings>
     <Visible>false</Visible>
     <Location>
-      <X>476</X>
-      <Y>235</Y>
+      <X>0</X>
+      <Y>0</Y>
     </Location>
     <Size>
       <Width>0</Width>

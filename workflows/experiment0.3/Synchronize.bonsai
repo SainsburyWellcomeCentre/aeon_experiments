@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.6.4-preview"
+<WorkflowBuilder Version="2.7.0-rc4"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
@@ -7,36 +7,46 @@
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Timer">
-          <rx:DueTime>PT1S</rx:DueTime>
-          <rx:Period>PT3S</rx:Period>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="rx:Timer">
+            <rx:DueTime>PT1S</rx:DueTime>
+            <rx:Period>PT3S</rx:Period>
+          </Combinator>
+        </Builder>
       </Expression>
-      <Expression xsi:type="harp:DeviceCommand">
-        <harp:Type>SynchronizeTimestamp</harp:Type>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="harp:DeviceCommand">
+          <harp:Type>SynchronizeTimestamp</harp:Type>
+        </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="harp:Device">
-          <harp:DeviceState>Active</harp:DeviceState>
-          <harp:DumpRegisters>true</harp:DumpRegisters>
-          <harp:LedState>On</harp:LedState>
-          <harp:VisualIndicators>On</harp:VisualIndicators>
-          <harp:Heartbeat>Disable</harp:Heartbeat>
-          <harp:IgnoreErrors>false</harp:IgnoreErrors>
-          <harp:PortName>COM6</harp:PortName>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="harp:Device">
+            <harp:DeviceState>Active</harp:DeviceState>
+            <harp:DumpRegisters>true</harp:DumpRegisters>
+            <harp:LedState>On</harp:LedState>
+            <harp:VisualIndicators>On</harp:VisualIndicators>
+            <harp:Heartbeat>Disable</harp:Heartbeat>
+            <harp:IgnoreErrors>false</harp:IgnoreErrors>
+            <harp:PortName>COM6</harp:PortName>
+          </Combinator>
+        </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="harp:FilterMessage">
-          <harp:Address>8</harp:Address>
-          <harp:MessageType>Write</harp:MessageType>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="harp:FilterMessage">
+            <harp:Address>8</harp:Address>
+            <harp:MessageType>Write</harp:MessageType>
+          </Combinator>
+        </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Take">
-          <rx:Count>1</rx:Count>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="rx:Take">
+            <rx:Count>1</rx:Count>
+          </Combinator>
+        </Builder>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Timer">
@@ -44,7 +54,7 @@
           <rx:Period>PT1H</rx:Period>
         </Combinator>
       </Expression>
-      <Expression xsi:type="SelectMany">
+      <Expression xsi:type="rx:SelectMany">
         <Name>Robocopy</Name>
         <Workflow>
           <Nodes>
