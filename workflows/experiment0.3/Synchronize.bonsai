@@ -60,12 +60,12 @@
           <Nodes>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>Z:\aeon\data\raw\%COMPUTERNAME%\experiment0.2</Value>
+                <Value>Z:\aeon\data\raw\%COMPUTERNAME%\experiment0.3</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>D:\ProjectAeon\experiment0.2</Value>
+                <Value>D:\ProjectAeon\experiment0.3</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
