@@ -2,52 +2,10 @@
 <WorkflowBuilder Version="2.7.0-rc4"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
-                 xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="rx:Timer">
-            <rx:DueTime>PT1S</rx:DueTime>
-            <rx:Period>PT3S</rx:Period>
-          </Combinator>
-        </Builder>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="harp:DeviceCommand">
-          <harp:Type>SynchronizeTimestamp</harp:Type>
-        </Builder>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="harp:Device">
-            <harp:DeviceState>Active</harp:DeviceState>
-            <harp:DumpRegisters>true</harp:DumpRegisters>
-            <harp:LedState>On</harp:LedState>
-            <harp:VisualIndicators>On</harp:VisualIndicators>
-            <harp:Heartbeat>Disable</harp:Heartbeat>
-            <harp:IgnoreErrors>false</harp:IgnoreErrors>
-            <harp:PortName>COM6</harp:PortName>
-          </Combinator>
-        </Builder>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="harp:FilterMessage">
-            <harp:Address>8</harp:Address>
-            <harp:MessageType>Write</harp:MessageType>
-          </Combinator>
-        </Builder>
-      </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="rx:Take">
-            <rx:Count>1</rx:Count>
-          </Combinator>
-        </Builder>
-      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Timer">
           <rx:DueTime>PT0S</rx:DueTime>
@@ -101,10 +59,6 @@
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
-      <Edge From="1" To="2" Label="Source1" />
-      <Edge From="2" To="3" Label="Source1" />
-      <Edge From="3" To="4" Label="Source1" />
-      <Edge From="5" To="6" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
