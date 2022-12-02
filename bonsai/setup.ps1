@@ -1,8 +1,9 @@
 if (!(Test-Path "./Bonsai.exe")) {
-    Invoke-WebRequest "https://www.myget.org/F/bonsai-boost/api/v2/package/Bonsai/2.7.0-rc3" -OutFile "temp.zip"
-    Expand-Archive "temp.zip" -DestinationPath "temp" -Force
-    Move-Item -Path "temp/lib/net472/Bonsai.exe" "." -Force
+    Invoke-WebRequest "https://github.com/bonsai-rx/bonsai/releases/download/2.7.2/Bonsai.zip" -OutFile "temp.zip"
+    Move-Item -Path "NuGet.config" "temp.config"
+    Expand-Archive "temp.zip" -DestinationPath "." -Force
+    Move-Item -Path "temp.config" "NuGet.config" -Force
     Remove-Item -Path "temp.zip"
-    Remove-Item -Path "temp" -Recurse
+    Remove-Item -Path "Bonsai32.exe"
 }
 & .\Bonsai.exe --no-editor
