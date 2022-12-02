@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.7.0-rc4"
+<WorkflowBuilder Version="2.7.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
-                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:num="clr-namespace:Bonsai.Numerics;assembly=Bonsai.Numerics"
                  xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
@@ -537,56 +537,56 @@
         <Name>Declarations</Name>
         <Workflow>
           <Nodes>
-            <Expression xsi:type="BehaviorSubject" TypeArguments="aeon:WeightMeasurement">
-              <Name>FilteredWeightNest</Name>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="aeon:WeightMeasurement">
+              <rx:Name>FilteredWeightNest</rx:Name>
             </Expression>
-            <Expression xsi:type="BehaviorSubject" TypeArguments="aeon:WeightMeasurement">
-              <Name>SubjectWeight</Name>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="aeon:WeightMeasurement">
+              <rx:Name>SubjectWeight</rx:Name>
             </Expression>
-            <Expression xsi:type="PublishSubject" TypeArguments="harp:Timestamped(sys:Byte)">
-              <Name>MissedPellets1</Name>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Byte)">
+              <rx:Name>MissedPellets1</rx:Name>
             </Expression>
             <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
               <aeon:Name>PatchState1</aeon:Name>
             </Expression>
-            <Expression xsi:type="PublishSubject" TypeArguments="harp:Timestamped(sys:Byte)">
-              <Name>MissedPellets2</Name>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Byte)">
+              <rx:Name>MissedPellets2</rx:Name>
             </Expression>
             <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
               <aeon:Name>PatchState2</aeon:Name>
             </Expression>
-            <Expression xsi:type="PublishSubject" TypeArguments="harp:Timestamped(sys:Double)">
-              <Name>BaselineTrigger</Name>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Double)">
+              <rx:Name>BaselineTrigger</rx:Name>
             </Expression>
-            <Expression xsi:type="BehaviorSubject" TypeArguments="harp:Timestamped(aeon:LogMessage)">
-              <Name>AlertLogs</Name>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon:LogMessage)">
+              <rx:Name>AlertLogs</rx:Name>
             </Expression>
-            <Expression xsi:type="PublishSubject" TypeArguments="harp:Timestamped(aeon:LogMessage)">
-              <Name>Annotations</Name>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(aeon:LogMessage)">
+              <rx:Name>Annotations</rx:Name>
             </Expression>
-            <Expression xsi:type="BehaviorSubject" TypeArguments="harp:Timestamped(aeon:EnvironmentStateMetadata)">
-              <Name>EnvironmentState</Name>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon:EnvironmentStateMetadata)">
+              <rx:Name>EnvironmentState</rx:Name>
             </Expression>
-            <Expression xsi:type="BehaviorSubject" TypeArguments="harp:Timestamped(aeon:DispenserStateMetadata)">
-              <Name>Patch1Dispenser</Name>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon:DispenserStateMetadata)">
+              <rx:Name>Patch1Dispenser</rx:Name>
             </Expression>
-            <Expression xsi:type="BehaviorSubject" TypeArguments="harp:Timestamped(aeon:DispenserStateMetadata)">
-              <Name>Patch2Dispenser</Name>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon:DispenserStateMetadata)">
+              <rx:Name>Patch2Dispenser</rx:Name>
             </Expression>
-            <Expression xsi:type="BehaviorSubject" TypeArguments="harp:Timestamped(aeon:EnvironmentSubjectStateMetadata)">
-              <Name>SubjectState</Name>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon:EnvironmentSubjectStateMetadata)">
+              <rx:Name>SubjectState</rx:Name>
             </Expression>
-            <Expression xsi:type="PublishSubject" TypeArguments="harp:Timestamped(aeon:EnvironmentSubjectStateMetadata)">
-              <Name>SubjectStart</Name>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(aeon:EnvironmentSubjectStateMetadata)">
+              <rx:Name>SubjectStart</rx:Name>
             </Expression>
-            <Expression xsi:type="PublishSubject" TypeArguments="harp:Timestamped(aeon:EnvironmentSubjectStateMetadata)">
-              <Name>SubjectStop</Name>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(aeon:EnvironmentSubjectStateMetadata)">
+              <rx:Name>SubjectStop</rx:Name>
             </Expression>
-            <Expression xsi:type="PublishSubject" TypeArguments="harp:Timestamped(sys:UInt16)">
-              <Name>ManualPellet1</Name>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:UInt16)">
+              <rx:Name>ManualPellet1</rx:Name>
             </Expression>
-            <Expression xsi:type="PublishSubject" TypeArguments="harp:Timestamped(sys:UInt16)">
-              <Name>ManualPellet2</Name>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:UInt16)">
+              <rx:Name>ManualPellet2</rx:Name>
             </Expression>
           </Nodes>
           <Edges />
@@ -1083,7 +1083,7 @@ new(Value.Id as Id,
             <Expression xsi:type="MemberSelector">
               <Selector>Item1[0].Centroid</Selector>
             </Expression>
-            <Expression xsi:type="PublishSubject">
+            <Expression xsi:type="rx:PublishSubject">
               <Name>Trajectory</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -1097,7 +1097,7 @@ new(Value.Id as Id,
                 <rx:Interval>PT0.03S</rx:Interval>
               </Combinator>
             </Expression>
-            <Expression xsi:type="PublishSubject">
+            <Expression xsi:type="rx:PublishSubject">
               <Name>FrameTrajectory</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -1131,7 +1131,7 @@ new(Value.Id as Id,
                 <rx:Interval>PT0.03S</rx:Interval>
               </Combinator>
             </Expression>
-            <Expression xsi:type="PublishSubject">
+            <Expression xsi:type="rx:PublishSubject">
               <Name>Heatmap</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -1164,7 +1164,7 @@ new(Value.Id as Id,
                 <dsp:Skip xsi:nil="true" />
               </Combinator>
             </Expression>
-            <Expression xsi:type="PublishSubject">
+            <Expression xsi:type="rx:PublishSubject">
               <Name>PatchState</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -1248,7 +1248,7 @@ new(Value.Id as Id,
 int32(Item2) as PelletCount,
 Item1 as Threshold)</scr:Expression>
             </Expression>
-            <Expression xsi:type="PublishSubject">
+            <Expression xsi:type="rx:PublishSubject">
               <Name>CurrentThresholdPatch1</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -1332,33 +1332,33 @@ Item1 as Threshold)</scr:Expression>
 int32(Item2) as PelletCount,
 Item1 as Threshold)</scr:Expression>
             </Expression>
-            <Expression xsi:type="PublishSubject">
+            <Expression xsi:type="rx:PublishSubject">
               <Name>CurrentThresholdPatch2</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\PelletMonitor.bonsai">
               <PelletDelivered>PelletDeliveredPatch1</PelletDelivered>
               <PelletCommand>Patch1</PelletCommand>
             </Expression>
-            <Expression xsi:type="PublishSubject">
+            <Expression xsi:type="rx:PublishSubject">
               <Name>PelletMonitor1</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Value</Selector>
             </Expression>
-            <Expression xsi:type="PublishSubject">
+            <Expression xsi:type="rx:PublishSubject">
               <Name>PelletMonitorValue1</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\PelletMonitor.bonsai">
               <PelletDelivered>PelletDeliveredPatch2</PelletDelivered>
               <PelletCommand>Patch2</PelletCommand>
             </Expression>
-            <Expression xsi:type="BehaviorSubject">
+            <Expression xsi:type="rx:BehaviorSubject">
               <Name>PelletMonitor2</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Value</Selector>
             </Expression>
-            <Expression xsi:type="PublishSubject">
+            <Expression xsi:type="rx:PublishSubject">
               <Name>PelletMonitorValue2</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -1381,7 +1381,7 @@ Item2 as Patch2)</scr:Expression>
                 <rx:Interval>PT0.05S</rx:Interval>
               </Combinator>
             </Expression>
-            <Expression xsi:type="PublishSubject">
+            <Expression xsi:type="rx:PublishSubject">
               <Name>TimeSpentOnPatches</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -1404,7 +1404,7 @@ Item2 as Patch2)</scr:Expression>
                 <rx:Interval>PT0.05S</rx:Interval>
               </Combinator>
             </Expression>
-            <Expression xsi:type="PublishSubject">
+            <Expression xsi:type="rx:PublishSubject">
               <Name>TimeSinceLastVisit</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -1430,7 +1430,7 @@ Item2 as Patch2)</scr:Expression>
                 <rx:Interval>PT0.05S</rx:Interval>
               </Combinator>
             </Expression>
-            <Expression xsi:type="PublishSubject">
+            <Expression xsi:type="rx:PublishSubject">
               <Name>TotalDistanceTravelled</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimeSpentOnWheel.bonsai">
@@ -1440,7 +1440,7 @@ Item2 as Patch2)</scr:Expression>
               <LowPass>1</LowPass>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
-            <Expression xsi:type="BehaviorSubject">
+            <Expression xsi:type="rx:BehaviorSubject">
               <Name>TimeOnPatch1</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -1451,7 +1451,7 @@ Item2 as Patch2)</scr:Expression>
               <Combinator xsi:type="rx:DistinctUntilChanged" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimeSinceLastEvent.bonsai" />
-            <Expression xsi:type="BehaviorSubject">
+            <Expression xsi:type="rx:BehaviorSubject">
               <Name>TimeSinceLastVisit1</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimeSpentOnWheel.bonsai">
@@ -1461,7 +1461,7 @@ Item2 as Patch2)</scr:Expression>
               <LowPass>1</LowPass>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
-            <Expression xsi:type="BehaviorSubject">
+            <Expression xsi:type="rx:BehaviorSubject">
               <Name>TimeOnPatch2</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -1472,7 +1472,7 @@ Item2 as Patch2)</scr:Expression>
               <Combinator xsi:type="rx:DistinctUntilChanged" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimeSinceLastEvent.bonsai" />
-            <Expression xsi:type="BehaviorSubject">
+            <Expression xsi:type="rx:BehaviorSubject">
               <Name>TimeSinceLastVisit2</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -1497,7 +1497,7 @@ Item2 as Patch2)</scr:Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="aeon:WeightBaseline" />
             </Expression>
-            <Expression xsi:type="PublishSubject">
+            <Expression xsi:type="rx:PublishSubject">
               <Name>BaselinedWeight</Name>
             </Expression>
             <Expression xsi:type="rx:Condition">
@@ -1666,7 +1666,7 @@ Item1.Item1 as Stable,
 Item1.Item2 as Raw,
 Item2 as Baseline)</scr:Expression>
             </Expression>
-            <Expression xsi:type="PublishSubject">
+            <Expression xsi:type="rx:PublishSubject">
               <Name>WeightNestMonitor</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -1729,7 +1729,7 @@ Item1.Timestamp as Timestamp,
 Item1.Value as CurrentWeight,
 100 * Item1.Value / Item2 as CurrentPercent)</scr:Expression>
             </Expression>
-            <Expression xsi:type="BehaviorSubject">
+            <Expression xsi:type="rx:BehaviorSubject">
               <Name>PercentWeightLoss</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\PelletMissed.bonsai">
@@ -1792,8 +1792,8 @@ Item1.Value as CurrentWeight,
               <Name>SubjectAlerts</Name>
               <Workflow>
                 <Nodes>
-                  <Expression xsi:type="PublishSubject" TypeArguments="sys:String">
-                    <Name>SubjectAlertMessages</Name>
+                  <Expression xsi:type="rx:PublishSubject" TypeArguments="sys:String">
+                    <rx:Name>SubjectAlertMessages</rx:Name>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentCondition.bonsai">
                     <Value>Experiment</Value>
@@ -3099,8 +3099,8 @@ Mode: {1}</Format>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SendAlert.bonsai">
                     <ConfigFile>Z:\aeon\config\status.config</ConfigFile>
                   </Expression>
-                  <Expression xsi:type="PublishSubject" TypeArguments="sys:String">
-                    <Name>EnvironmentAlertMessages</Name>
+                  <Expression xsi:type="rx:PublishSubject" TypeArguments="sys:String">
+                    <rx:Name>EnvironmentAlertMessages</rx:Name>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SendAlert.bonsai">
                     <ConfigFile>Z:\aeon\config\alerts.config</ConfigFile>

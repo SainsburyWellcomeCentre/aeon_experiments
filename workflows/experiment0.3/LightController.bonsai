@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.7.0-rc4"
+<WorkflowBuilder Version="2.7.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:osc="clr-namespace:Bonsai.Osc;assembly=Bonsai.Osc"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
-                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:num="clr-namespace:Bonsai.Numerics;assembly=Bonsai.Numerics"
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
@@ -22,8 +22,8 @@
           <osc:AllowNatTraversal>false</osc:AllowNatTraversal>
         </Combinator>
       </Expression>
-      <Expression xsi:type="BehaviorSubject" TypeArguments="aeon:RoomLightMessage">
-        <Name>Commands</Name>
+      <Expression xsi:type="rx:BehaviorSubject" TypeArguments="aeon:RoomLightMessage">
+        <rx:Name>Commands</rx:Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="aeon:RoomLightController">
@@ -101,7 +101,7 @@
         </Builder>
       </Expression>
       <Expression xsi:type="Disable">
-        <Builder xsi:type="AsyncSubject">
+        <Builder xsi:type="rx:AsyncSubject">
           <Name>LightLookup</Name>
         </Builder>
       </Expression>
