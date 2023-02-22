@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.6.4-preview"
+<WorkflowBuilder Version="2.7.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
@@ -14,7 +14,7 @@
         </Combinator>
       </Expression>
       <Expression xsi:type="harp:DeviceCommand">
-        <harp:Type>SynchronizeTimestamp</harp:Type>
+        <harp:Command xsi:type="harp:SynchronizeTimestamp" />
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="harp:Device">
@@ -44,7 +44,7 @@
           <rx:Period>PT1H</rx:Period>
         </Combinator>
       </Expression>
-      <Expression xsi:type="SelectMany">
+      <Expression xsi:type="rx:SelectMany">
         <Name>Robocopy</Name>
         <Workflow>
           <Nodes>
