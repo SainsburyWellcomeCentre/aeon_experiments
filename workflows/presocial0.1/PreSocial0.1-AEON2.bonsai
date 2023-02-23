@@ -622,10 +622,8 @@
               <Path>D:\ProjectAeon\presocial0.1</Path>
               <ChunkSize>1</ChunkSize>
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
-                <WorkflowName>PreSocial0.1-AEON2.bonsai</WorkflowName>
-              </Builder>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
+              <WorkflowName>PreSocial0.1-AEON2.bonsai</WorkflowName>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>VideoEvents</Name>
