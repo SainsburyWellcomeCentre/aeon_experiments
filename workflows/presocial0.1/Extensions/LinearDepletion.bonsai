@@ -20,92 +20,57 @@
       <Expression xsi:type="WorkflowInput">
         <Name>Source1</Name>
       </Expression>
-      <Expression xsi:type="ExternalizedMapping">
-        <Property Name="Name" DisplayName="DistanceState" />
-      </Expression>
-      <Expression xsi:type="aeon:TransformTimestamped">
+      <Expression xsi:type="GroupWorkflow">
+        <Name>MaintenanceGain</Name>
         <Workflow>
           <Nodes>
-            <Expression xsi:type="GroupWorkflow">
-              <Name>MaintenanceGain</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>EnvironmentState</Name>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Value.Type</Selector>
-                  </Expression>
-                  <Expression xsi:type="Equal">
-                    <Operand xsi:type="WorkflowProperty" TypeArguments="aeon:EnvironmentStateType">
-                      <Value>Experiment</Value>
-                    </Operand>
-                  </Expression>
-                  <Expression xsi:type="scr:ExpressionTransform">
-                    <scr:Expression>it ? 1.0 : 0.0</scr:Expression>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source1" />
-                  <Edge From="3" To="4" Label="Source1" />
-                </Edges>
-              </Workflow>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>EnvironmentState</Name>
             </Expression>
-            <Expression xsi:type="PropertyMapping">
-              <PropertyMappings>
-                <Property Name="Gain" />
-              </PropertyMappings>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value.Type</Selector>
             </Expression>
-            <Expression xsi:type="WorkflowInput">
-              <Name>Source1</Name>
+            <Expression xsi:type="Equal">
+              <Operand xsi:type="WorkflowProperty" TypeArguments="aeon:EnvironmentStateType">
+                <Value>Experiment</Value>
+              </Operand>
             </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Name" />
-            </Expression>
-            <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:Double">
-              <aeon:Name>DistanceState</aeon:Name>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Take">
-                <rx:Count>1</rx:Count>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="aeon:PrependOnce" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:DistanceTravelled.bonsai">
-              <Gain>1</Gain>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Skip">
-                <rx:Count>1</rx:Count>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>DistanceState</Name>
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Expression>it ? 1.0 : 0.0</scr:Expression>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="7" Label="Source2" />
-            <Edge From="2" To="6" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
             <Edge From="3" To="4" Label="Source1" />
-            <Edge From="3" To="9" Label="Source2" />
-            <Edge From="4" To="5" Label="Source1" />
-            <Edge From="5" To="6" Label="Source2" />
-            <Edge From="6" To="7" Label="Source1" />
-            <Edge From="7" To="8" Label="Source1" />
-            <Edge From="8" To="9" Label="Source1" />
-            <Edge From="9" To="10" Label="Source1" />
           </Edges>
         </Workflow>
-        <aeon:IncludeTimestamp>false</aeon:IncludeTimestamp>
       </Expression>
-      <Expression xsi:type="rx:PublishSubject">
+      <Expression xsi:type="PropertyMapping">
+        <PropertyMappings>
+          <Property Name="Gain" />
+        </PropertyMappings>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Name" />
+      </Expression>
+      <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:Double">
+        <aeon:Name>DistanceState</aeon:Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Take">
+          <rx:Count>1</rx:Count>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="aeon:PrependOnce" />
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:DistanceTravelled.bonsai">
+        <Gain>1</Gain>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
         <Name>DistanceState</Name>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
@@ -147,9 +112,6 @@
             </Expression>
             <Expression xsi:type="WorkflowInput">
               <Name>Source1</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value</Selector>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
               <Property Name="Name" DisplayName="PatchState" />
@@ -357,42 +319,42 @@ Item1.Item3 as Delta)</scr:Expression>
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
             <Edge From="1" To="2" Label="Source1" />
-            <Edge From="2" To="10" Label="Source1" />
-            <Edge From="3" To="4" Label="Source1" />
-            <Edge From="4" To="38" Label="Source1" />
-            <Edge From="5" To="35" Label="Source2" />
+            <Edge From="2" To="9" Label="Source1" />
+            <Edge From="3" To="37" Label="Source1" />
+            <Edge From="4" To="34" Label="Source2" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="4" To="14" Label="Source1" />
+            <Edge From="4" To="18" Label="Source1" />
+            <Edge From="4" To="24" Label="Source1" />
+            <Edge From="4" To="28" Label="Source1" />
+            <Edge From="4" To="46" Label="Source2" />
+            <Edge From="4" To="47" Label="Source2" />
             <Edge From="5" To="6" Label="Source1" />
-            <Edge From="5" To="15" Label="Source1" />
-            <Edge From="5" To="19" Label="Source1" />
-            <Edge From="5" To="25" Label="Source1" />
-            <Edge From="5" To="29" Label="Source1" />
-            <Edge From="5" To="47" Label="Source2" />
-            <Edge From="5" To="48" Label="Source2" />
             <Edge From="6" To="7" Label="Source1" />
-            <Edge From="7" To="8" Label="Source1" />
-            <Edge From="8" To="14" Label="Source2" />
-            <Edge From="9" To="45" Label="Source2" />
-            <Edge From="9" To="10" Label="Source2" />
-            <Edge From="9" To="11" Label="Source1" />
-            <Edge From="9" To="12" Label="Source1" />
-            <Edge From="11" To="31" Label="Source2" />
-            <Edge From="12" To="42" Label="Source2" />
-            <Edge From="13" To="14" Label="Source1" />
-            <Edge From="14" To="16" Label="Source1" />
-            <Edge From="15" To="16" Label="Source2" />
+            <Edge From="7" To="13" Label="Source2" />
+            <Edge From="8" To="44" Label="Source2" />
+            <Edge From="8" To="9" Label="Source2" />
+            <Edge From="8" To="10" Label="Source1" />
+            <Edge From="8" To="11" Label="Source1" />
+            <Edge From="10" To="30" Label="Source2" />
+            <Edge From="11" To="41" Label="Source2" />
+            <Edge From="12" To="13" Label="Source1" />
+            <Edge From="13" To="15" Label="Source1" />
+            <Edge From="14" To="15" Label="Source2" />
+            <Edge From="15" To="16" Label="Source1" />
             <Edge From="16" To="17" Label="Source1" />
-            <Edge From="17" To="18" Label="Source1" />
-            <Edge From="18" To="48" Label="Source1" />
+            <Edge From="17" To="47" Label="Source1" />
+            <Edge From="18" To="19" Label="Source1" />
             <Edge From="19" To="20" Label="Source1" />
             <Edge From="20" To="21" Label="Source1" />
-            <Edge From="21" To="22" Label="Source1" />
-            <Edge From="22" To="24" Label="Source2" />
-            <Edge From="23" To="24" Label="Source1" />
-            <Edge From="24" To="26" Label="Source1" />
-            <Edge From="25" To="26" Label="Source2" />
+            <Edge From="21" To="23" Label="Source2" />
+            <Edge From="22" To="23" Label="Source1" />
+            <Edge From="23" To="25" Label="Source1" />
+            <Edge From="24" To="25" Label="Source2" />
+            <Edge From="25" To="26" Label="Source1" />
             <Edge From="26" To="27" Label="Source1" />
-            <Edge From="27" To="28" Label="Source1" />
-            <Edge From="28" To="47" Label="Source1" />
+            <Edge From="27" To="46" Label="Source1" />
+            <Edge From="28" To="29" Label="Source1" />
             <Edge From="29" To="30" Label="Source1" />
             <Edge From="30" To="31" Label="Source1" />
             <Edge From="31" To="32" Label="Source1" />
@@ -400,8 +362,8 @@ Item1.Item3 as Delta)</scr:Expression>
             <Edge From="33" To="34" Label="Source1" />
             <Edge From="34" To="35" Label="Source1" />
             <Edge From="35" To="36" Label="Source1" />
-            <Edge From="36" To="37" Label="Source1" />
-            <Edge From="37" To="38" Label="Source2" />
+            <Edge From="36" To="37" Label="Source2" />
+            <Edge From="37" To="38" Label="Source1" />
             <Edge From="38" To="39" Label="Source1" />
             <Edge From="39" To="40" Label="Source1" />
             <Edge From="40" To="41" Label="Source1" />
@@ -409,7 +371,6 @@ Item1.Item3 as Delta)</scr:Expression>
             <Edge From="42" To="43" Label="Source1" />
             <Edge From="43" To="44" Label="Source1" />
             <Edge From="44" To="45" Label="Source1" />
-            <Edge From="45" To="46" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -417,15 +378,20 @@ Item1.Item3 as Delta)</scr:Expression>
       <Expression xsi:type="WorkflowOutput" />
     </Nodes>
     <Edges>
-      <Edge From="0" To="6" Label="Source2" />
-      <Edge From="1" To="6" Label="Source3" />
-      <Edge From="2" To="4" Label="Source1" />
-      <Edge From="3" To="4" Label="Source2" />
-      <Edge From="3" To="5" Label="Source2" />
-      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="0" To="11" Label="Source2" />
+      <Edge From="1" To="11" Label="Source3" />
+      <Edge From="2" To="8" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="4" To="9" Label="Source2" />
       <Edge From="5" To="6" Label="Source1" />
+      <Edge From="5" To="10" Label="Source2" />
       <Edge From="6" To="7" Label="Source1" />
-      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="7" To="8" Label="Source2" />
+      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="9" To="10" Label="Source1" />
+      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="11" To="12" Label="Source1" />
+      <Edge From="12" To="13" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
