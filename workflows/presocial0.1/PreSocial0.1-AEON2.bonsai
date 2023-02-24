@@ -180,7 +180,7 @@
                           <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-                          <SerialNumber>21196933</SerialNumber>
+                          <SerialNumber>21053811</SerialNumber>
                           <Gain>10</Gain>
                           <Binning>2</Binning>
                           <TriggerSource>LocalTrigger</TriggerSource>
@@ -208,7 +208,7 @@
                           <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-                          <SerialNumber>21053811</SerialNumber>
+                          <SerialNumber>21196933</SerialNumber>
                           <Gain>10</Gain>
                           <Binning>2</Binning>
                           <TriggerSource>LocalTrigger</TriggerSource>
@@ -290,7 +290,7 @@
                           <Property Name="Count" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:UndergroundFeeder.bonsai">
-                          <PortName>COM7</PortName>
+                          <PortName>COM4</PortName>
                           <WheelDisplacement>WheelPatch1</WheelDisplacement>
                           <PelletDelivered>PelletDeliveredPatch1</PelletDelivered>
                           <DeliverPellet>DeliverPelletPatch1</DeliverPellet>
@@ -326,7 +326,7 @@
                           <Property Name="Count" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:UndergroundFeeder.bonsai">
-                          <PortName>COM4</PortName>
+                          <PortName>COM7</PortName>
                           <WheelDisplacement>WheelPatch2</WheelDisplacement>
                           <PelletDelivered>PelletDeliveredPatch2</PelletDelivered>
                           <DeliverPellet>DeliverPelletPatch2</DeliverPellet>
@@ -389,7 +389,7 @@
                     <Name>CameraTop</Name>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PositionTracking.bonsai">
-                    <Mask>ArenaMask_2022-09-23.png</Mask>
+                    <Mask>Config\ArenaMask-AEON2_2023-02-24.png</Mask>
                     <ThresholdValue>72</ThresholdValue>
                     <TrackingEvents>TrackingTop</TrackingEvents>
                     <TrackingCount>1</TrackingCount>
@@ -479,60 +479,76 @@
                     <NestRegion>
                       <ArrayOfPoint>
                         <Point>
-                          <X>1185</X>
-                          <Y>497</Y>
+                          <X>135</X>
+                          <Y>472</Y>
                         </Point>
                         <Point>
-                          <X>1307</X>
-                          <Y>497</Y>
+                          <X>201</X>
+                          <Y>482</Y>
                         </Point>
                         <Point>
-                          <X>1306</X>
-                          <Y>601</Y>
+                          <X>198</X>
+                          <Y>518</Y>
                         </Point>
                         <Point>
-                          <X>1187</X>
-                          <Y>602</Y>
+                          <X>234</X>
+                          <Y>521</Y>
+                        </Point>
+                        <Point>
+                          <X>232</X>
+                          <Y>543</Y>
+                        </Point>
+                        <Point>
+                          <X>195</X>
+                          <Y>542</Y>
+                        </Point>
+                        <Point>
+                          <X>191</X>
+                          <Y>571</Y>
+                        </Point>
+                        <Point>
+                          <X>127</X>
+                          <Y>569</Y>
                         </Point>
                       </ArrayOfPoint>
                     </NestRegion>
                     <Patch1Region>
                       <ArrayOfPoint>
                         <Point>
-                          <X>869</X>
-                          <Y>210</Y>
+                          <X>567</X>
+                          <Y>248</Y>
                         </Point>
                         <Point>
-                          <X>886</X>
-                          <Y>221</Y>
+                          <X>586</X>
+                          <Y>237</Y>
                         </Point>
                         <Point>
-                          <X>877</X>
-                          <Y>238</Y>
+                          <X>595</X>
+                          <Y>255</Y>
                         </Point>
                         <Point>
-                          <X>860</X>
-                          <Y>223</Y>
+                          <X>576</X>
+                          <Y>266</Y>
                         </Point>
                       </ArrayOfPoint>
                     </Patch1Region>
                     <Patch2Region>
                       <ArrayOfPoint>
                         <Point>
-                          <X>858</X>
-                          <Y>866</Y>
+                          <X>536</X>
+                          <Y>826</Y>
                         </Point>
                         <Point>
-                          <X>875</X>
-                          <Y>856</Y>
+                          <X>553</X>
+                          <Y>838</Y>
                         </Point>
                         <Point>
-                          <X>880</X>
-                          <Y>874</Y>
+                          <X>543</X>
+                          <Y>858</Y>
                         </Point>
                         <Point>
-                          <X>864</X>
-                          <Y>883</Y>
+                          <X>524</X>
+                          <Y>843</Y>
                         </Point>
                       </ArrayOfPoint>
                     </Patch2Region>
