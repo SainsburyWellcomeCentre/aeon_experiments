@@ -17,7 +17,7 @@
         <WheelDisplacement>WheelDisplacement1</WheelDisplacement>
         <PelletDelivered>PelletDelivered1</PelletDelivered>
         <DeliverPellet>DeliverPellet1</DeliverPellet>
-        <PatchEvents>PatchEvents1</PatchEvents>
+        <PatchEvents>Patch1</PatchEvents>
         <Radius>-4</Radius>
         <SampleRate>SampleRate500Hz</SampleRate>
       </Expression>
@@ -26,7 +26,7 @@
         <WheelDisplacement>WheelDisplacement2</WheelDisplacement>
         <PelletDelivered>PelletDelivered2</PelletDelivered>
         <DeliverPellet>DeliverPellet2</DeliverPellet>
-        <PatchEvents>PatchEvents2</PatchEvents>
+        <PatchEvents>Patch2</PatchEvents>
         <Radius>-4</Radius>
         <SampleRate>SampleRate500Hz</SampleRate>
       </Expression>
