@@ -3,7 +3,6 @@
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
-                 xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -57,31 +56,80 @@
           </Edges>
         </Workflow>
       </Expression>
+      <Expression xsi:type="Unit" />
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Timer">
           <rx:DueTime>PT0S</rx:DueTime>
           <rx:Period>PT0S</rx:Period>
         </Combinator>
       </Expression>
-      <Expression xsi:type="harp:DeviceCommand">
-        <harp:Command xsi:type="harp:SynchronizeTimestamp" />
+      <Expression xsi:type="rx:SelectMany">
+        <Name>StartSynchronizer</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:Synchronizer.bonsai">
+              <PortName>COM6</PortName>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoController.bonsai">
+              <PortName>COM3</PortName>
+              <GlobalTriggerFrequency>50</GlobalTriggerFrequency>
+              <LocalTriggerFrequency>125</LocalTriggerFrequency>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PatchController.bonsai">
+              <PortName>COM7</PortName>
+              <WheelDisplacement>WheelDisplacement1</WheelDisplacement>
+              <PelletDelivered>PelletDelivered1</PelletDelivered>
+              <DeliverPellet>DeliverPellet1</DeliverPellet>
+              <PatchEvents>Patch1</PatchEvents>
+              <Radius>4</Radius>
+              <SampleRate>SampleRate500Hz</SampleRate>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PatchController.bonsai">
+              <PortName>COM4</PortName>
+              <WheelDisplacement>WheelDisplacement2</WheelDisplacement>
+              <PelletDelivered>PelletDelivered2</PelletDelivered>
+              <DeliverPellet>DeliverPellet2</DeliverPellet>
+              <PatchEvents>Patch2</PatchEvents>
+              <Radius>4</Radius>
+              <SampleRate>SampleRate500Hz</SampleRate>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\SynchronizerMonitor.bonsai" />
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:WriteLine" />
+            </Expression>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>SynchronizeTimestamp</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Delay">
+                <rx:DueTime>PT5S</rx:DueTime>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="8" To="9" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
+      <Expression xsi:type="Unit" />
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="harp:Device">
-          <harp:DeviceState>Active</harp:DeviceState>
-          <harp:DumpRegisters>true</harp:DumpRegisters>
-          <harp:LedState>On</harp:LedState>
-          <harp:VisualIndicators>On</harp:VisualIndicators>
-          <harp:Heartbeat>Disable</harp:Heartbeat>
-          <harp:IgnoreErrors>false</harp:IgnoreErrors>
-          <harp:PortName>COM6</harp:PortName>
-        </Combinator>
+        <Combinator xsi:type="rx:Concat" />
       </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
-      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="2" To="6" Label="Source2" />
       <Edge From="3" To="4" Label="Source1" />
+      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="5" To="6" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
