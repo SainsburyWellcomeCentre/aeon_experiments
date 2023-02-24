@@ -30,7 +30,7 @@
                           <Property Name="PortName" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:Synchronizer.bonsai">
-                          <PortName>COM6</PortName>
+                          <PortName>COM5</PortName>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -76,7 +76,7 @@
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
                           <SerialNumber>23032909</SerialNumber>
-                          <Gain>4</Gain>
+                          <Gain>0</Gain>
                           <Binning>1</Binning>
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <FrameEvents>CameraTop</FrameEvents>
@@ -104,7 +104,7 @@
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
                           <SerialNumber>23031407</SerialNumber>
-                          <Gain>4</Gain>
+                          <Gain>0</Gain>
                           <Binning>1</Binning>
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <FrameEvents>CameraWest</FrameEvents>
@@ -132,7 +132,7 @@
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
                           <SerialNumber>23032824</SerialNumber>
-                          <Gain>4</Gain>
+                          <Gain>0</Gain>
                           <Binning>1</Binning>
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <FrameEvents>CameraEast</FrameEvents>
@@ -160,7 +160,7 @@
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
                           <SerialNumber>23032825</SerialNumber>
-                          <Gain>4</Gain>
+                          <Gain>0</Gain>
                           <Binning>1</Binning>
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <FrameEvents>CameraNorth</FrameEvents>
@@ -188,10 +188,38 @@
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
                           <SerialNumber>23031408</SerialNumber>
-                          <Gain>4</Gain>
+                          <Gain>0</Gain>
                           <Binning>1</Binning>
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <FrameEvents>CameraSouth</FrameEvents>
+                          <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>CameraNest</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="SerialNumber" />
+                          <Property Name="Gain" />
+                          <Property Name="Binning" />
+                          <Property Name="TriggerSource" />
+                          <Property Name="FrameEvents" />
+                          <Property Name="TriggerFrequency" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                          <SerialNumber>21199221</SerialNumber>
+                          <Gain>0</Gain>
+                          <Binning>1</Binning>
+                          <TriggerSource>GlobalTrigger</TriggerSource>
+                          <FrameEvents>CameraNest</FrameEvents>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
@@ -216,7 +244,7 @@
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
                           <SerialNumber>23032817</SerialNumber>
-                          <Gain>10</Gain>
+                          <Gain>0</Gain>
                           <Binning>2</Binning>
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <FrameEvents>CameraPatch1</FrameEvents>
@@ -244,39 +272,11 @@
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
                           <SerialNumber>23032815</SerialNumber>
-                          <Gain>10</Gain>
+                          <Gain>0</Gain>
                           <Binning>2</Binning>
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <FrameEvents>CameraPatch2</FrameEvents>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
-                        </Expression>
-                        <Expression xsi:type="WorkflowOutput" />
-                      </Nodes>
-                      <Edges>
-                        <Edge From="0" To="1" Label="Source1" />
-                        <Edge From="1" To="2" Label="Source1" />
-                      </Edges>
-                    </Workflow>
-                  </Expression>
-                  <Expression xsi:type="GroupWorkflow">
-                    <Name>CameraNest</Name>
-                    <Workflow>
-                      <Nodes>
-                        <Expression xsi:type="ExternalizedMapping">
-                          <Property Name="SerialNumber" />
-                          <Property Name="Gain" />
-                          <Property Name="Binning" />
-                          <Property Name="TriggerSource" />
-                          <Property Name="FrameEvents" />
-                          <Property Name="TriggerFrequency" />
-                        </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-                          <SerialNumber>21199221</SerialNumber>
-                          <Gain>10</Gain>
-                          <Binning>2</Binning>
-                          <TriggerSource>GlobalTrigger</TriggerSource>
-                          <FrameEvents>CameraNest</FrameEvents>
-                          <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -400,7 +400,7 @@
                     <Name>CameraTop</Name>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PositionTracking.bonsai">
-                    <Mask>Config\ArenaMask-AEON2_2023-02-24.png</Mask>
+                    <Mask>Config\ArenaMask-AEON3_2023-02-24.png</Mask>
                     <ThresholdValue>72</ThresholdValue>
                     <TrackingEvents>TrackingTop</TrackingEvents>
                     <TrackingCount>1</TrackingCount>
@@ -490,82 +490,66 @@
                     <NestRegion>
                       <ArrayOfPoint>
                         <Point>
-                          <X>135</X>
-                          <Y>472</Y>
+                          <X>1248</X>
+                          <Y>483</Y>
                         </Point>
                         <Point>
-                          <X>201</X>
-                          <Y>482</Y>
+                          <X>1164</X>
+                          <Y>492</Y>
                         </Point>
                         <Point>
-                          <X>198</X>
-                          <Y>518</Y>
+                          <X>1169</X>
+                          <Y>586</Y>
                         </Point>
                         <Point>
-                          <X>234</X>
-                          <Y>521</Y>
-                        </Point>
-                        <Point>
-                          <X>232</X>
-                          <Y>543</Y>
-                        </Point>
-                        <Point>
-                          <X>195</X>
-                          <Y>542</Y>
-                        </Point>
-                        <Point>
-                          <X>191</X>
-                          <Y>571</Y>
-                        </Point>
-                        <Point>
-                          <X>127</X>
-                          <Y>569</Y>
+                          <X>1254</X>
+                          <Y>587</Y>
                         </Point>
                       </ArrayOfPoint>
                     </NestRegion>
                     <Patch1Region>
                       <ArrayOfPoint>
                         <Point>
-                          <X>567</X>
-                          <Y>248</Y>
+                          <X>848</X>
+                          <Y>867</Y>
                         </Point>
                         <Point>
-                          <X>586</X>
-                          <Y>237</Y>
+                          <X>867</X>
+                          <Y>856</Y>
                         </Point>
                         <Point>
-                          <X>595</X>
-                          <Y>255</Y>
+                          <X>877</X>
+                          <Y>879</Y>
                         </Point>
                         <Point>
-                          <X>576</X>
-                          <Y>266</Y>
+                          <X>858</X>
+                          <Y>889</Y>
                         </Point>
                       </ArrayOfPoint>
                     </Patch1Region>
                     <Patch2Region>
                       <ArrayOfPoint>
                         <Point>
-                          <X>536</X>
-                          <Y>826</Y>
+                          <X>835</X>
+                          <Y>208</Y>
                         </Point>
                         <Point>
-                          <X>553</X>
-                          <Y>838</Y>
+                          <X>852</X>
+                          <Y>220</Y>
                         </Point>
                         <Point>
-                          <X>543</X>
-                          <Y>858</Y>
+                          <X>842</X>
+                          <Y>240</Y>
                         </Point>
                         <Point>
-                          <X>524</X>
-                          <Y>843</Y>
+                          <X>823</X>
+                          <Y>225</Y>
                         </Point>
                       </ArrayOfPoint>
                     </Patch2Region>
                     <ArenaCenter>
-                      <X>683</X>
-                      <Y>544</Y>
+                      <X>661</X>
+                      <Y>557</Y>
                     </ArenaCenter>
                     <ArenaInnerRadius>474</ArenaInnerRadius>
                     <ArenaOuterRadius>494</ArenaOuterRadius>
@@ -788,6 +772,13 @@
               <FrameRate>50</FrameRate>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
+              <Name>CameraNest</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <LogName>CameraNest</LogName>
+              <FrameRate>50</FrameRate>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
               <Name>CameraPatch1</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
@@ -799,13 +790,6 @@
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
               <LogName>CameraPatch2</LogName>
-              <FrameRate>125</FrameRate>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>CameraNest</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
-              <LogName>CameraNest</LogName>
               <FrameRate>125</FrameRate>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
