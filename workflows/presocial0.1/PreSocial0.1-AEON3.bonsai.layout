@@ -1278,6 +1278,30 @@
       <WindowState>Normal</WindowState>
     </EditorDialogSettings>
   </DialogSettings>
+  <DialogSettings>
+    <Visible>false</Visible>
+    <Location>
+      <X>0</X>
+      <Y>0</Y>
+    </Location>
+    <Size>
+      <Width>0</Width>
+      <Height>0</Height>
+    </Size>
+    <WindowState>Normal</WindowState>
+  </DialogSettings>
+  <DialogSettings>
+    <Visible>false</Visible>
+    <Location>
+      <X>0</X>
+      <Y>0</Y>
+    </Location>
+    <Size>
+      <Width>0</Width>
+      <Height>0</Height>
+    </Size>
+    <WindowState>Normal</WindowState>
+  </DialogSettings>
   <DialogSettings xsi:type="WorkflowEditorSettings">
     <Visible>false</Visible>
     <Location>
@@ -1581,11 +1605,11 @@
       <DialogSettings>
         <Visible>true</Visible>
         <Location>
-          <X>562</X>
+          <X>547</X>
           <Y>0</Y>
         </Location>
         <Size>
-          <Width>736</Width>
+          <Width>757</Width>
           <Height>1047</Height>
         </Size>
         <WindowState>Normal</WindowState>
@@ -1613,9 +1637,9 @@
                     <VisualizerSettings>
                       <MatVisualizer>
                         <XMin>0</XMin>
-                        <XMax>15</XMax>
+                        <XMax>1</XMax>
                         <YMin>0</YMin>
-                        <YMax>500.00000000000011</YMax>
+                        <YMax>1.1</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
                         <SelectedPage>0</SelectedPage>
@@ -1632,9 +1656,9 @@
                     <VisualizerSettings>
                       <MatVisualizer>
                         <XMin>0</XMin>
-                        <XMax>15</XMax>
+                        <XMax>1</XMax>
                         <YMin>0</YMin>
-                        <YMax>60</YMax>
+                        <YMax>1.1</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
                         <SelectedPage>0</SelectedPage>
@@ -1651,8 +1675,8 @@
                     <VisualizerSettings>
                       <RollingGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>380</Min>
-                        <Max>430</Max>
+                        <Min>0</Min>
+                        <Max>1.1</Max>
                         <AutoScale>true</AutoScale>
                       </RollingGraphVisualizer>
                     </VisualizerSettings>
@@ -1662,8 +1686,8 @@
                     <VisualizerSettings>
                       <RollingGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>46</Min>
-                        <Max>51</Max>
+                        <Min>0</Min>
+                        <Max>1.1</Max>
                         <AutoScale>true</AutoScale>
                       </RollingGraphVisualizer>
                     </VisualizerSettings>
@@ -1702,8 +1726,8 @@
                     <VisualizerSettings>
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>-1</Min>
-                        <Max>1</Max>
+                        <Min>0</Min>
+                        <Max>1.1</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -1714,7 +1738,7 @@
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
                         <Min>0</Min>
-                        <Max>50</Max>
+                        <Max>1.1</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -1724,8 +1748,8 @@
                     <VisualizerSettings>
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>-0.0005</Min>
-                        <Max>0.0035</Max>
+                        <Min>0</Min>
+                        <Max>1.1</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -1739,12 +1763,12 @@
       <DialogSettings>
         <Visible>true</Visible>
         <Location>
-          <X>1287</X>
-          <Y>120</Y>
+          <X>1300</X>
+          <Y>68</Y>
         </Location>
         <Size>
-          <Width>633</Width>
-          <Height>314</Height>
+          <Width>588</Width>
+          <Height>303</Height>
         </Size>
         <WindowState>Normal</WindowState>
         <VisualizerTypeName>Bonsai.Design.Visualizers.TableLayoutPanelVisualizer</VisualizerTypeName>
@@ -1778,12 +1802,12 @@
       <DialogSettings>
         <Visible>true</Visible>
         <Location>
-          <X>1289</X>
-          <Y>432</Y>
+          <X>1291</X>
+          <Y>380</Y>
         </Location>
         <Size>
-          <Width>634</Width>
-          <Height>575</Height>
+          <Width>626</Width>
+          <Height>618</Height>
         </Size>
         <WindowState>Normal</WindowState>
         <VisualizerTypeName>Bonsai.Design.Visualizers.TableLayoutPanelVisualizer</VisualizerTypeName>
@@ -1820,11 +1844,11 @@
         <Visible>true</Visible>
         <Location>
           <X>11</X>
-          <Y>529</Y>
+          <Y>365</Y>
         </Location>
         <Size>
-          <Width>562</Width>
-          <Height>327</Height>
+          <Width>545</Width>
+          <Height>357</Height>
         </Size>
         <WindowState>Normal</WindowState>
         <VisualizerTypeName>Aeon.Acquisition.EnvironmentSubjectStateVisualizer</VisualizerTypeName>
