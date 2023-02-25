@@ -16,12 +16,12 @@
     <EditorDialogSettings>
       <Visible>true</Visible>
       <Location>
-        <X>3</X>
-        <Y>3</Y>
+        <X>4</X>
+        <Y>5</Y>
       </Location>
       <Size>
-        <Width>2146</Width>
-        <Height>1263</Height>
+        <Width>1294</Width>
+        <Height>762</Height>
       </Size>
       <WindowState>Normal</WindowState>
     </EditorDialogSettings>
@@ -150,12 +150,12 @@
     <EditorDialogSettings>
       <Visible>true</Visible>
       <Location>
-        <X>3</X>
-        <Y>3</Y>
+        <X>4</X>
+        <Y>5</Y>
       </Location>
       <Size>
-        <Width>2146</Width>
-        <Height>1263</Height>
+        <Width>1294</Width>
+        <Height>762</Height>
       </Size>
       <WindowState>Normal</WindowState>
     </EditorDialogSettings>
@@ -1244,12 +1244,48 @@
     <EditorDialogSettings>
       <Visible>false</Visible>
       <Location>
-        <X>3</X>
-        <Y>3</Y>
+        <X>216</X>
+        <Y>68</Y>
       </Location>
       <Size>
-        <Width>2146</Width>
-        <Height>1263</Height>
+        <Width>1241</Width>
+        <Height>803</Height>
+      </Size>
+      <WindowState>Normal</WindowState>
+    </EditorDialogSettings>
+  </DialogSettings>
+  <DialogSettings>
+    <Visible>false</Visible>
+    <Location>
+      <X>0</X>
+      <Y>0</Y>
+    </Location>
+    <Size>
+      <Width>0</Width>
+      <Height>0</Height>
+    </Size>
+    <WindowState>Normal</WindowState>
+  </DialogSettings>
+  <DialogSettings xsi:type="WorkflowEditorSettings">
+    <Visible>false</Visible>
+    <Location>
+      <X>0</X>
+      <Y>0</Y>
+    </Location>
+    <Size>
+      <Width>0</Width>
+      <Height>0</Height>
+    </Size>
+    <WindowState>Normal</WindowState>
+    <EditorDialogSettings>
+      <Visible>false</Visible>
+      <Location>
+        <X>4</X>
+        <Y>5</Y>
+      </Location>
+      <Size>
+        <Width>1294</Width>
+        <Height>762</Height>
       </Size>
       <WindowState>Normal</WindowState>
     </EditorDialogSettings>
@@ -1268,12 +1304,12 @@
     <EditorDialogSettings>
       <Visible>true</Visible>
       <Location>
-        <X>3</X>
-        <Y>3</Y>
+        <X>4</X>
+        <Y>5</Y>
       </Location>
       <Size>
-        <Width>2146</Width>
-        <Height>1263</Height>
+        <Width>1294</Width>
+        <Height>762</Height>
       </Size>
       <WindowState>Normal</WindowState>
     </EditorDialogSettings>
