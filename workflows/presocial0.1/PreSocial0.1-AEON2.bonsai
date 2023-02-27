@@ -215,7 +215,7 @@
                           <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-                          <SerialNumber>21053811</SerialNumber>
+                          <SerialNumber>21196933</SerialNumber>
                           <Gain>10</Gain>
                           <Binning>2</Binning>
                           <TriggerSource>LocalTrigger</TriggerSource>
@@ -243,7 +243,7 @@
                           <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-                          <SerialNumber>21196933</SerialNumber>
+                          <SerialNumber>21053811</SerialNumber>
                           <Gain>10</Gain>
                           <Binning>2</Binning>
                           <TriggerSource>LocalTrigger</TriggerSource>
@@ -325,7 +325,7 @@
                           <Property Name="Count" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:UndergroundFeeder.bonsai">
-                          <PortName>COM4</PortName>
+                          <PortName>COM7</PortName>
                           <WheelDisplacement>WheelPatch1</WheelDisplacement>
                           <PelletDelivered>PelletDeliveredPatch1</PelletDelivered>
                           <DeliverPellet>DeliverPelletPatch1</DeliverPellet>
@@ -361,7 +361,7 @@
                           <Property Name="Count" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:UndergroundFeeder.bonsai">
-                          <PortName>COM7</PortName>
+                          <PortName>COM4</PortName>
                           <WheelDisplacement>WheelPatch2</WheelDisplacement>
                           <PelletDelivered>PelletDeliveredPatch2</PelletDelivered>
                           <DeliverPellet>DeliverPelletPatch2</DeliverPellet>
