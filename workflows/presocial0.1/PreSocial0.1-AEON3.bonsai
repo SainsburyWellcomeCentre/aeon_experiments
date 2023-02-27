@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.7.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
@@ -421,7 +421,7 @@
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PositionTracking.bonsai">
                     <Mask>Config\ArenaMask-AEON3_2023-02-24.png</Mask>
-                    <ThresholdValue>72</ThresholdValue>
+                    <ThresholdValue>105</ThresholdValue>
                     <TrackingEvents>TrackingTop</TrackingEvents>
                     <TrackingCount>1</TrackingCount>
                   </Expression>
