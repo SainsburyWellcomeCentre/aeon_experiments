@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.7.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
@@ -420,7 +420,7 @@
                     <Name>CameraTop</Name>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PositionTracking.bonsai">
-                    <Mask>Config\ArenaMask-AEON3_2023-02-24.png</Mask>
+                    <Mask>Config\ArenaMask-AEON3_2023-02-28.png</Mask>
                     <ThresholdValue>105</ThresholdValue>
                     <TrackingEvents>TrackingTop</TrackingEvents>
                     <TrackingCount>1</TrackingCount>
@@ -510,60 +510,60 @@
                     <NestRegion>
                       <ArrayOfPoint>
                         <Point>
-                          <X>1248</X>
-                          <Y>483</Y>
+                          <X>1308</X>
+                          <Y>481</Y>
                         </Point>
                         <Point>
-                          <X>1164</X>
-                          <Y>492</Y>
+                          <X>1224</X>
+                          <Y>490</Y>
                         </Point>
                         <Point>
-                          <X>1169</X>
-                          <Y>586</Y>
+                          <X>1229</X>
+                          <Y>584</Y>
                         </Point>
                         <Point>
-                          <X>1254</X>
-                          <Y>587</Y>
+                          <X>1314</X>
+                          <Y>585</Y>
                         </Point>
                       </ArrayOfPoint>
                     </NestRegion>
                     <Patch1Region>
                       <ArrayOfPoint>
                         <Point>
-                          <X>835</X>
-                          <Y>208</Y>
+                          <X>898</X>
+                          <Y>210</Y>
                         </Point>
                         <Point>
-                          <X>852</X>
-                          <Y>220</Y>
+                          <X>915</X>
+                          <Y>222</Y>
                         </Point>
                         <Point>
-                          <X>842</X>
-                          <Y>240</Y>
+                          <X>905</X>
+                          <Y>242</Y>
                         </Point>
                         <Point>
-                          <X>823</X>
-                          <Y>225</Y>
+                          <X>886</X>
+                          <Y>227</Y>
                         </Point>
                       </ArrayOfPoint>
                     </Patch1Region>
                     <Patch2Region>
                       <ArrayOfPoint>
                         <Point>
-                          <X>848</X>
-                          <Y>867</Y>
+                          <X>912</X>
+                          <Y>858</Y>
                         </Point>
                         <Point>
-                          <X>867</X>
-                          <Y>856</Y>
+                          <X>931</X>
+                          <Y>847</Y>
                         </Point>
                         <Point>
-                          <X>877</X>
-                          <Y>879</Y>
+                          <X>941</X>
+                          <Y>870</Y>
                         </Point>
                         <Point>
-                          <X>858</X>
-                          <Y>889</Y>
+                          <X>922</X>
+                          <Y>880</Y>
                         </Point>
                       </ArrayOfPoint>
                     </Patch2Region>

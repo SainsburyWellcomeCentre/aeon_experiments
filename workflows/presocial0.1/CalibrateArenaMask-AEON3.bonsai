@@ -96,20 +96,20 @@
                 <cv:Regions>
                   <cv:ArrayOfPoint>
                     <cv:Point>
-                      <cv:X>1248</cv:X>
-                      <cv:Y>483</cv:Y>
+                      <cv:X>1308</cv:X>
+                      <cv:Y>481</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>1164</cv:X>
-                      <cv:Y>492</cv:Y>
+                      <cv:X>1224</cv:X>
+                      <cv:Y>490</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>1169</cv:X>
-                      <cv:Y>586</cv:Y>
+                      <cv:X>1229</cv:X>
+                      <cv:Y>584</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>1254</cv:X>
-                      <cv:Y>587</cv:Y>
+                      <cv:X>1314</cv:X>
+                      <cv:Y>585</cv:Y>
                     </cv:Point>
                   </cv:ArrayOfPoint>
                 </cv:Regions>
@@ -194,20 +194,20 @@
                 <cv:Regions>
                   <cv:ArrayOfPoint>
                     <cv:Point>
-                      <cv:X>848</cv:X>
-                      <cv:Y>867</cv:Y>
+                      <cv:X>898</cv:X>
+                      <cv:Y>210</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>867</cv:X>
-                      <cv:Y>856</cv:Y>
+                      <cv:X>915</cv:X>
+                      <cv:Y>222</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>877</cv:X>
-                      <cv:Y>879</cv:Y>
+                      <cv:X>905</cv:X>
+                      <cv:Y>242</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>858</cv:X>
-                      <cv:Y>889</cv:Y>
+                      <cv:X>886</cv:X>
+                      <cv:Y>227</cv:Y>
                     </cv:Point>
                   </cv:ArrayOfPoint>
                 </cv:Regions>
@@ -244,20 +244,20 @@
                 <cv:Regions>
                   <cv:ArrayOfPoint>
                     <cv:Point>
-                      <cv:X>835</cv:X>
-                      <cv:Y>208</cv:Y>
+                      <cv:X>912</cv:X>
+                      <cv:Y>858</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>852</cv:X>
-                      <cv:Y>220</cv:Y>
+                      <cv:X>931</cv:X>
+                      <cv:Y>847</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>842</cv:X>
-                      <cv:Y>240</cv:Y>
+                      <cv:X>941</cv:X>
+                      <cv:Y>870</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>823</cv:X>
-                      <cv:Y>225</cv:Y>
+                      <cv:X>922</cv:X>
+                      <cv:Y>880</cv:Y>
                     </cv:Point>
                   </cv:ArrayOfPoint>
                 </cv:Regions>
