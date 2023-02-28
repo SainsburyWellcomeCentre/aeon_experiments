@@ -526,26 +526,6 @@
                     <Patch1Region>
                       <ArrayOfPoint>
                         <Point>
-                          <X>567</X>
-                          <Y>248</Y>
-                        </Point>
-                        <Point>
-                          <X>586</X>
-                          <Y>237</Y>
-                        </Point>
-                        <Point>
-                          <X>595</X>
-                          <Y>255</Y>
-                        </Point>
-                        <Point>
-                          <X>576</X>
-                          <Y>266</Y>
-                        </Point>
-                      </ArrayOfPoint>
-                    </Patch1Region>
-                    <Patch2Region>
-                      <ArrayOfPoint>
-                        <Point>
                           <X>536</X>
                           <Y>826</Y>
                         </Point>
@@ -560,6 +540,26 @@
                         <Point>
                           <X>524</X>
                           <Y>843</Y>
+                        </Point>
+                      </ArrayOfPoint>
+                    </Patch1Region>
+                    <Patch2Region>
+                      <ArrayOfPoint>
+                        <Point>
+                          <X>567</X>
+                          <Y>248</Y>
+                        </Point>
+                        <Point>
+                          <X>586</X>
+                          <Y>237</Y>
+                        </Point>
+                        <Point>
+                          <X>595</X>
+                          <Y>255</Y>
+                        </Point>
+                        <Point>
+                          <X>576</X>
+                          <Y>266</Y>
                         </Point>
                       </ArrayOfPoint>
                     </Patch2Region>
