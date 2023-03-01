@@ -2765,14 +2765,18 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
         <Property Name="HardRate" />
         <Property Name="StartThreshold" />
         <Property Name="StartTimeout" />
+        <Property Name="InitThreshold" />
+        <Property Name="InitRate" />
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\TaskLogic.bonsai">
         <EasyThreshold>75</EasyThreshold>
         <EasyRate>0.01</EasyRate>
         <HardThreshold>75</HardThreshold>
-        <HardRate>0.01</HardRate>
+        <HardRate>0.0025</HardRate>
         <StartThreshold>18</StartThreshold>
         <StartTimeout>PT1H</StartTimeout>
+        <InitThreshold>75</InitThreshold>
+        <InitRate>10000</InitRate>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>ControlPanel</Name>
