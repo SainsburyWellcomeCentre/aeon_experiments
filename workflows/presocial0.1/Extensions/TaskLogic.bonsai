@@ -3,6 +3,7 @@
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
+                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -58,7 +59,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="DoubleProperty">
-                <Value>10000</Value>
+                <Value>0.01</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="rx:BehaviorSubject">
@@ -80,7 +81,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="DoubleProperty">
-                <Value>0.01</Value>
+                <Value>0.0025</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="rx:BehaviorSubject">
@@ -251,6 +252,50 @@ Item2 &gt; Item3 ? Item1.EasyRate : Item1.HardRate as RatePatch2)</scr:Expressio
               <Combinator xsi:type="rx:Concat" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
+            <Expression xsi:type="rx:Sink">
+              <Name>SetPatchState</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Expression>new(
+10000.0 as Threshold,
+ThresholdPatch1 as D0,
+RatePatch1 as Rate)</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Threshold,D0,Rate</Selector>
+                    <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
+                  </Expression>
+                  <Expression xsi:type="MulticastSubject">
+                    <Name>PatchState1</Name>
+                  </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Expression>new(
+10000.0 as Threshold,
+ThresholdPatch1 as D0,
+RatePatch1 as Rate)</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Threshold,D0,Rate</Selector>
+                    <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
+                  </Expression>
+                  <Expression xsi:type="MulticastSubject">
+                    <Name>PatchState2</Name>
+                  </Expression>
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="0" To="4" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                  <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="5" To="6" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
           <Edges>
@@ -304,6 +349,7 @@ Item2 &gt; Item3 ? Item1.EasyRate : Item1.HardRate as RatePatch2)</scr:Expressio
             <Edge From="53" To="54" Label="Source2" />
             <Edge From="54" To="55" Label="Source1" />
             <Edge From="55" To="56" Label="Source1" />
+            <Edge From="56" To="57" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
