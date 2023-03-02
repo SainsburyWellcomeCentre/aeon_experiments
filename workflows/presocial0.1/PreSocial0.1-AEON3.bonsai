@@ -3206,11 +3206,11 @@ Item3 as Delta)</scr:Expression>
                     <viz:ColumnStyles>
                       <viz:ColumnStyle>
                         <viz:SizeType>Percent</viz:SizeType>
-                        <viz:Width>70</viz:Width>
+                        <viz:Width>60</viz:Width>
                       </viz:ColumnStyle>
                       <viz:ColumnStyle>
                         <viz:SizeType>Percent</viz:SizeType>
-                        <viz:Width>30</viz:Width>
+                        <viz:Width>40</viz:Width>
                       </viz:ColumnStyle>
                     </viz:ColumnStyles>
                     <viz:RowStyles />
