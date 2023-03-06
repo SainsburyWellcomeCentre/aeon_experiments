@@ -215,7 +215,7 @@
                           <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-                          <SerialNumber>21199221</SerialNumber>
+                          <SerialNumber>23031407</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
                           <TriggerSource>GlobalTrigger</TriggerSource>
