@@ -275,8 +275,8 @@ RatePatch1 as Rate)</scr:Expression>
                   <Expression xsi:type="scr:ExpressionTransform">
                     <scr:Expression>new(
 Double.NaN as Threshold,
-ThresholdPatch1 as D0,
-RatePatch1 as Rate)</scr:Expression>
+ThresholdPatch2 as D0,
+RatePatch2 as Rate)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="MemberSelector">
                     <Selector>Threshold,D0,Rate</Selector>
