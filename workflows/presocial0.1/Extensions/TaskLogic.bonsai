@@ -251,7 +251,6 @@ Item2 &gt; Item3 ? Item1.EasyRate : Item1.HardRate as RatePatch2)</scr:Expressio
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Concat" />
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
             <Expression xsi:type="rx:Sink">
               <Name>SetPatchState</Name>
               <Workflow>
@@ -349,7 +348,6 @@ RatePatch2 as Rate)</scr:Expression>
             <Edge From="53" To="54" Label="Source2" />
             <Edge From="54" To="55" Label="Source1" />
             <Edge From="55" To="56" Label="Source1" />
-            <Edge From="56" To="57" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
