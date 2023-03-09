@@ -261,7 +261,7 @@ Item2 &gt; Item3 ? Item1.EasyRate : Item1.HardRate as RatePatch2)</scr:Expressio
                   </Expression>
                   <Expression xsi:type="scr:ExpressionTransform">
                     <scr:Expression>new(
-10000.0 as Threshold,
+Double.NaN as Threshold,
 ThresholdPatch1 as D0,
 RatePatch1 as Rate)</scr:Expression>
                   </Expression>
@@ -274,7 +274,7 @@ RatePatch1 as Rate)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="scr:ExpressionTransform">
                     <scr:Expression>new(
-10000.0 as Threshold,
+Double.NaN as Threshold,
 ThresholdPatch1 as D0,
 RatePatch1 as Rate)</scr:Expression>
                   </Expression>
