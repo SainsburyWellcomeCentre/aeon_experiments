@@ -408,7 +408,6 @@ Item1.Rate as Rate)</scr:Expression>
           </Edges>
         </Workflow>
       </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
       <Expression xsi:type="WorkflowOutput" />
     </Nodes>
     <Edges>
@@ -425,7 +424,6 @@ Item1.Rate as Rate)</scr:Expression>
       <Edge From="9" To="10" Label="Source1" />
       <Edge From="10" To="11" Label="Source1" />
       <Edge From="11" To="12" Label="Source1" />
-      <Edge From="12" To="13" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
