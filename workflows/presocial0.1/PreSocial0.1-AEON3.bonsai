@@ -2750,34 +2750,6 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
           </Edges>
         </Workflow>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="num:CreateRandom">
-          <num:Seed xsi:nil="true" />
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="rx:AsyncSubject">
-        <Name>Random</Name>
-      </Expression>
-      <Expression xsi:type="ExternalizedMapping">
-        <Property Name="EasyThreshold" />
-        <Property Name="EasyRate" />
-        <Property Name="HardThreshold" />
-        <Property Name="HardRate" />
-        <Property Name="StartThreshold" />
-        <Property Name="StartTimeout" />
-        <Property Name="InitThreshold" />
-        <Property Name="InitRate" />
-      </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Extensions\TaskLogic.bonsai">
-        <EasyThreshold>75</EasyThreshold>
-        <EasyRate>0.01</EasyRate>
-        <HardThreshold>75</HardThreshold>
-        <HardRate>0.0025</HardRate>
-        <StartThreshold>18</StartThreshold>
-        <StartTimeout>PT1H</StartTimeout>
-        <InitThreshold>75</InitThreshold>
-        <InitRate>10000</InitRate>
-      </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>ControlPanel</Name>
         <Workflow>
@@ -3567,10 +3539,38 @@ Item3 as Delta)</scr:Expression>
           </Edges>
         </Workflow>
       </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="num:CreateRandom">
+          <num:Seed xsi:nil="true" />
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="rx:AsyncSubject">
+        <Name>Random</Name>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="EasyThreshold" />
+        <Property Name="EasyRate" />
+        <Property Name="HardThreshold" />
+        <Property Name="HardRate" />
+        <Property Name="StartThreshold" />
+        <Property Name="StartTimeout" />
+        <Property Name="InitThreshold" />
+        <Property Name="InitRate" />
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\TaskLogic.bonsai">
+        <EasyThreshold>75</EasyThreshold>
+        <EasyRate>0.01</EasyRate>
+        <HardThreshold>75</HardThreshold>
+        <HardRate>0.0025</HardRate>
+        <StartThreshold>18</StartThreshold>
+        <StartTimeout>PT1H</StartTimeout>
+        <InitThreshold>75</InitThreshold>
+        <InitRate>10000</InitRate>
+      </Expression>
     </Nodes>
     <Edges>
-      <Edge From="4" To="5" Label="Source1" />
-      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="5" To="6" Label="Source1" />
+      <Edge From="7" To="8" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
