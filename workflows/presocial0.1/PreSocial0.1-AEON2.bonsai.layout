@@ -722,7 +722,7 @@
           </TableLayoutPanelVisualizer>
         </VisualizerSettings>
       </DialogSettings>
-      <DialogSettings>
+      <DialogSettings xsi:type="WorkflowEditorSettings">
         <Visible>true</Visible>
         <Location>
           <X>117</X>
@@ -737,6 +737,18 @@
         <VisualizerSettings>
           <EnvironmentSubjectStateVisualizer />
         </VisualizerSettings>
+        <EditorDialogSettings>
+          <Visible>false</Visible>
+          <Location>
+            <X>3</X>
+            <Y>3</Y>
+          </Location>
+          <Size>
+            <Width>2146</Width>
+            <Height>1263</Height>
+          </Size>
+          <WindowState>Normal</WindowState>
+        </EditorDialogSettings>
       </DialogSettings>
     </EditorVisualizerLayout>
   </DialogSettings>
