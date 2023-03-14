@@ -20,8 +20,8 @@
         <Y>3</Y>
       </Location>
       <Size>
-        <Width>851</Width>
-        <Height>767</Height>
+        <Width>2146</Width>
+        <Height>1263</Height>
       </Size>
       <WindowState>Normal</WindowState>
     </EditorDialogSettings>
@@ -202,8 +202,8 @@
         <Y>3</Y>
       </Location>
       <Size>
-        <Width>851</Width>
-        <Height>767</Height>
+        <Width>2146</Width>
+        <Height>1263</Height>
       </Size>
       <WindowState>Normal</WindowState>
     </EditorDialogSettings>
@@ -487,11 +487,11 @@
       <DialogSettings>
         <Visible>true</Visible>
         <Location>
-          <X>923</X>
+          <X>932</X>
           <Y>51</Y>
         </Location>
         <Size>
-          <Width>918</Width>
+          <Width>909</Width>
           <Height>1337</Height>
         </Size>
         <WindowState>Normal</WindowState>
@@ -519,8 +519,8 @@
                     <VisualizerSettings>
                       <MatVisualizer>
                         <XMin>0</XMin>
-                        <XMax>15</XMax>
-                        <YMin>-10</YMin>
+                        <XMax>1500</XMax>
+                        <YMin>40</YMin>
                         <YMax>80</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
@@ -528,7 +528,7 @@
                         <ChannelsPerPage>16</ChannelsPerPage>
                         <OverlayChannels>true</OverlayChannels>
                         <ChannelOffset>0</ChannelOffset>
-                        <HistoryLength>1</HistoryLength>
+                        <HistoryLength>100</HistoryLength>
                         <WaveformBufferLength>1</WaveformBufferLength>
                       </MatVisualizer>
                     </VisualizerSettings>
@@ -538,8 +538,8 @@
                     <VisualizerSettings>
                       <MatVisualizer>
                         <XMin>0</XMin>
-                        <XMax>15</XMax>
-                        <YMin>-9.9999999999999982</YMin>
+                        <XMax>1500</XMax>
+                        <YMin>-10</YMin>
                         <YMax>80</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
@@ -547,7 +547,7 @@
                         <ChannelsPerPage>16</ChannelsPerPage>
                         <OverlayChannels>true</OverlayChannels>
                         <ChannelOffset>0</ChannelOffset>
-                        <HistoryLength>1</HistoryLength>
+                        <HistoryLength>100</HistoryLength>
                         <WaveformBufferLength>1</WaveformBufferLength>
                       </MatVisualizer>
                     </VisualizerSettings>
@@ -608,8 +608,8 @@
                     <VisualizerSettings>
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>-1</Min>
-                        <Max>1</Max>
+                        <Min>0</Min>
+                        <Max>2.5</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -620,7 +620,7 @@
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
                         <Min>0</Min>
-                        <Max>300</Max>
+                        <Max>50</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -630,8 +630,8 @@
                     <VisualizerSettings>
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>0</Min>
-                        <Max>0.018</Max>
+                        <Min>-5</Min>
+                        <Max>25</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
