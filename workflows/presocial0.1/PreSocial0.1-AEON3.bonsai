@@ -3525,6 +3525,7 @@ Item3 as Delta)</scr:Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="aeon:EnvironmentSubjectState">
                       <aeon:DatabasePath>Z:\aeon\colony\colony.csv</aeon:DatabasePath>
+                      <aeon:EnvironmentState>Experiment</aeon:EnvironmentState>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="MulticastSubject">
