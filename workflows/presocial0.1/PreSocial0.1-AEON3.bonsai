@@ -334,7 +334,7 @@
                           <SampleRate>SampleRate500Hz</SampleRate>
                           <ResetFeeder>ResetFeederPatch1</ResetFeeder>
                           <DueTime>PT1S</DueTime>
-                          <Count>5</Count>
+                          <Count>2</Count>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -370,7 +370,7 @@
                           <SampleRate>SampleRate500Hz</SampleRate>
                           <ResetFeeder>ResetFeederPatch2</ResetFeeder>
                           <DueTime>PT1S</DueTime>
-                          <Count>5</Count>
+                          <Count>2</Count>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
