@@ -8,8 +8,8 @@
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
-      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoController.bonsai">
-        <PortName>COM3</PortName>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:CameraController.bonsai">
+        <PortName>COM6</PortName>
         <GlobalTriggerFrequency>50</GlobalTriggerFrequency>
         <LocalTriggerFrequency>125</LocalTriggerFrequency>
       </Expression>
@@ -19,12 +19,15 @@
           <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
         </Combinator>
       </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-        <SerialNumber>21053810</SerialNumber>
-        <Gain>4</Gain>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>ActiveMask</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
+        <SerialNumber>23032909</SerialNumber>
+        <Gain>0</Gain>
         <Binning>1</Binning>
         <TriggerSource>GlobalTrigger</TriggerSource>
-        <FrameEvents>FrameTop</FrameEvents>
+        <FrameEvents>FrameEvents</FrameEvents>
         <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
       </Expression>
       <Expression xsi:type="MemberSelector">
@@ -46,7 +49,7 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:Threshold">
-          <cv:ThresholdValue>94</cv:ThresholdValue>
+          <cv:ThresholdValue>162</cv:ThresholdValue>
           <cv:MaxValue>255</cv:MaxValue>
           <cv:ThresholdType>Binary</cv:ThresholdType>
         </Combinator>
@@ -93,36 +96,20 @@
                 <cv:Regions>
                   <cv:ArrayOfPoint>
                     <cv:Point>
-                      <cv:X>159</cv:X>
-                      <cv:Y>471</cv:Y>
+                      <cv:X>1332</cv:X>
+                      <cv:Y>482</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>213</cv:X>
-                      <cv:Y>480</cv:Y>
+                      <cv:X>1242</cv:X>
+                      <cv:Y>481</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>212</cv:X>
-                      <cv:Y>515</cv:Y>
+                      <cv:X>1245</cv:X>
+                      <cv:Y>586</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>240</cv:X>
-                      <cv:Y>518</cv:Y>
-                    </cv:Point>
-                    <cv:Point>
-                      <cv:X>238</cv:X>
-                      <cv:Y>540</cv:Y>
-                    </cv:Point>
-                    <cv:Point>
-                      <cv:X>212</cv:X>
-                      <cv:Y>538</cv:Y>
-                    </cv:Point>
-                    <cv:Point>
-                      <cv:X>209</cv:X>
-                      <cv:Y>574</cv:Y>
-                    </cv:Point>
-                    <cv:Point>
-                      <cv:X>153</cv:X>
-                      <cv:Y>569</cv:Y>
+                      <cv:X>1334</cv:X>
+                      <cv:Y>579</cv:Y>
                     </cv:Point>
                   </cv:ArrayOfPoint>
                 </cv:Regions>
@@ -173,9 +160,6 @@
           <cv:ThresholdType>BinaryInv</cv:ThresholdType>
         </Combinator>
       </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>ActiveMask</Name>
-      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Zip" />
       </Expression>
@@ -210,20 +194,20 @@
                 <cv:Regions>
                   <cv:ArrayOfPoint>
                     <cv:Point>
-                      <cv:X>550</cv:X>
-                      <cv:Y>819</cv:Y>
+                      <cv:X>904</cv:X>
+                      <cv:Y>167</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>567</cv:X>
-                      <cv:Y>830</cv:Y>
+                      <cv:X>925</cv:X>
+                      <cv:Y>181</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>558</cv:X>
-                      <cv:Y>847</cv:Y>
+                      <cv:X>910</cv:X>
+                      <cv:Y>215</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>541</cv:X>
-                      <cv:Y>832</cv:Y>
+                      <cv:X>888</cv:X>
+                      <cv:Y>201</cv:Y>
                     </cv:Point>
                   </cv:ArrayOfPoint>
                 </cv:Regions>
@@ -260,20 +244,20 @@
                 <cv:Regions>
                   <cv:ArrayOfPoint>
                     <cv:Point>
-                      <cv:X>579</cv:X>
-                      <cv:Y>253</cv:Y>
+                      <cv:X>902</cv:X>
+                      <cv:Y>875</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>596</cv:X>
-                      <cv:Y>243</cv:Y>
+                      <cv:X>924</cv:X>
+                      <cv:Y>861</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>601</cv:X>
-                      <cv:Y>261</cv:Y>
+                      <cv:X>939</cv:X>
+                      <cv:Y>894</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>585</cv:X>
-                      <cv:Y>270</cv:Y>
+                      <cv:X>920</cv:X>
+                      <cv:Y>904</cv:Y>
                     </cv:Point>
                   </cv:ArrayOfPoint>
                 </cv:Regions>
@@ -296,16 +280,6 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:LogPolar">
-          <cv:Center>
-            <cv:X>738</cv:X>
-            <cv:Y>563</cv:Y>
-          </cv:Center>
-          <cv:Magnitude>480</cv:Magnitude>
-          <cv:Flags>Linear FillOutliers</cv:Flags>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Timer">
           <rx:DueTime>PT1S</rx:DueTime>
           <rx:Period>PT0S</rx:Period>
@@ -316,33 +290,32 @@
       </Expression>
     </Nodes>
     <Edges>
-      <Edge From="1" To="15" Label="Source2" />
-      <Edge From="1" To="17" Label="Source2" />
-      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="1" To="16" Label="Source2" />
+      <Edge From="1" To="18" Label="Source2" />
+      <Edge From="2" To="21" Label="Source2" />
       <Edge From="3" To="4" Label="Source1" />
-      <Edge From="3" To="11" Label="Source1" />
-      <Edge From="3" To="19" Label="Source1" />
-      <Edge From="3" To="23" Label="Source1" />
-      <Edge From="3" To="24" Label="Source1" />
-      <Edge From="3" To="25" Label="Source1" />
       <Edge From="4" To="5" Label="Source1" />
+      <Edge From="4" To="12" Label="Source1" />
+      <Edge From="4" To="20" Label="Source1" />
+      <Edge From="4" To="23" Label="Source1" />
+      <Edge From="4" To="24" Label="Source1" />
       <Edge From="5" To="6" Label="Source1" />
       <Edge From="6" To="7" Label="Source1" />
-      <Edge From="6" To="8" Label="Source1" />
-      <Edge From="7" To="12" Label="Source1" />
-      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="7" To="9" Label="Source1" />
+      <Edge From="8" To="13" Label="Source1" />
       <Edge From="9" To="10" Label="Source1" />
-      <Edge From="10" To="17" Label="Source1" />
-      <Edge From="11" To="12" Label="Source2" />
-      <Edge From="12" To="13" Label="Source1" />
+      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="11" To="18" Label="Source1" />
+      <Edge From="12" To="13" Label="Source2" />
       <Edge From="13" To="14" Label="Source1" />
       <Edge From="14" To="15" Label="Source1" />
       <Edge From="15" To="16" Label="Source1" />
-      <Edge From="17" To="18" Label="Source1" />
-      <Edge From="19" To="21" Label="Source1" />
-      <Edge From="20" To="21" Label="Source2" />
+      <Edge From="16" To="17" Label="Source1" />
+      <Edge From="18" To="19" Label="Source1" />
+      <Edge From="20" To="21" Label="Source1" />
       <Edge From="21" To="22" Label="Source1" />
-      <Edge From="26" To="27" Label="Source1" />
+      <Edge From="25" To="26" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
