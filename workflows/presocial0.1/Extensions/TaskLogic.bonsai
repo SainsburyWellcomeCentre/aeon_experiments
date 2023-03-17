@@ -149,7 +149,7 @@ Item3 as HardThreshold,
 Item4 as HardRate)</scr:Expression>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>TriggerPelletPatch1</Name>
+              <Name>ThresholdCrossingPatch1</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentCondition.bonsai">
               <Value>Experiment</Value>
@@ -161,7 +161,7 @@ Item4 as HardRate)</scr:Expression>
             </Expression>
             <Expression xsi:type="rx:Accumulate" />
             <Expression xsi:type="SubscribeSubject">
-              <Name>TriggerPelletPatch2</Name>
+              <Name>ThresholdCrossingPatch2</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentCondition.bonsai">
               <Value>Experiment</Value>
@@ -391,6 +391,9 @@ RatePatch2 as Rate)</scr:Expression>
               <Name>DistanceState1</Name>
             </Expression>
             <Expression xsi:type="MulticastSubject">
+              <Name>ThresholdCrossingPatch1</Name>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
               <Name>DeliverPelletPatch1</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -411,6 +414,9 @@ RatePatch2 as Rate)</scr:Expression>
               <Name>DistanceState2</Name>
             </Expression>
             <Expression xsi:type="MulticastSubject">
+              <Name>ThresholdCrossingPatch2</Name>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
               <Name>DeliverPelletPatch2</Name>
             </Expression>
           </Nodes>
@@ -419,10 +425,12 @@ RatePatch2 as Rate)</scr:Expression>
             <Edge From="1" To="3" Label="Source1" />
             <Edge From="2" To="3" Label="Source2" />
             <Edge From="3" To="4" Label="Source1" />
-            <Edge From="5" To="6" Label="Source1" />
-            <Edge From="6" To="8" Label="Source1" />
-            <Edge From="7" To="8" Label="Source2" />
-            <Edge From="8" To="9" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="9" Label="Source1" />
+            <Edge From="8" To="9" Label="Source2" />
+            <Edge From="9" To="10" Label="Source1" />
+            <Edge From="10" To="11" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -434,17 +442,11 @@ RatePatch2 as Rate)</scr:Expression>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
       <Expression xsi:type="WorkflowOutput" />
-      <Expression xsi:type="SubscribeSubject">
-        <Name>DeliverPelletPatch1</Name>
+      <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Int32">
+        <rx:Name>ThresholdCrossingPatch1</rx:Name>
       </Expression>
-      <Expression xsi:type="rx:PublishSubject">
-        <Name>TriggerPelletPatch1</Name>
-      </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>DeliverPelletPatch2</Name>
-      </Expression>
-      <Expression xsi:type="rx:PublishSubject">
-        <Name>TriggerPelletPatch2</Name>
+      <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Int32">
+        <rx:Name>ThresholdCrossingPatch2</rx:Name>
       </Expression>
     </Nodes>
     <Edges>
@@ -458,8 +460,6 @@ RatePatch2 as Rate)</scr:Expression>
       <Edge From="8" To="9" Label="Source1" />
       <Edge From="9" To="10" Label="Source1" />
       <Edge From="10" To="11" Label="Source1" />
-      <Edge From="12" To="13" Label="Source1" />
-      <Edge From="14" To="15" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
