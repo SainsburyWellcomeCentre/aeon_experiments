@@ -1,15 +1,11 @@
 import os
 import sys
-import clr
-ref = clr.AddReference("KalmanCommutator")
 
-ASSEMBLY_PATH = ref.Location
-PACKAGE_ROOT_PATH = os.path.abspath(os.path.join(ASSEMBLY_PATH ,"../../.."))
-print(PACKAGE_ROOT_PATH)
-DEFAULT_CONFIG_PATH = f"{PACKAGE_ROOT_PATH}/Library/metadata/00000009_smoothing.ini"
+EXTENSIONS_PATH = os.path.join(os.getcwd(), "Extensions")
+DEFAULT_CONFIG_PATH = f"{EXTENSIONS_PATH}/Library/metadata/00000009_smoothing.ini"
 
-sys.path.append(os.path.abspath(f"{PACKAGE_ROOT_PATH}/Library"))
-sys.path.append(os.path.abspath(f"{PACKAGE_ROOT_PATH}/Scripts"))
+sys.path.append(os.path.abspath(f"{EXTENSIONS_PATH}/Library"))
+sys.path.append(os.path.abspath(f"{EXTENSIONS_PATH}/Scripts"))
 
 import configparser
 import numpy as np
