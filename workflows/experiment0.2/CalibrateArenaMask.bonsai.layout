@@ -93,9 +93,6 @@
     <VisualizerSettings>
       <ContoursVisualizer />
     </VisualizerSettings>
-    <Mashups>
-      <int>10</int>
-    </Mashups>
   </DialogSettings>
   <DialogSettings>
     <Visible>false</Visible>
@@ -216,9 +213,6 @@
     <VisualizerSettings>
       <IplImageVisualizer />
     </VisualizerSettings>
-    <Mashups>
-      <int>10</int>
-    </Mashups>
   </DialogSettings>
   <DialogSettings>
     <Visible>false</Visible>
