@@ -1,0 +1,34 @@
+﻿using Bonsai;
+using System;
+using System.ComponentModel;
+using System.Linq;
+using System.Reactive.Linq;
+using OpenCV.Net;
+using Python.Runtime;
+
+[Combinator]
+[Description("")]
+[WorkflowElementCategory(ElementCategory.Transform)]
+public class ParsePredict
+{
+	public int TupleIndex { get; set; }
+
+	public int XIndex { get; set; }
+
+	public int YIndex { get; set; }
+
+	public IObservable<Point2f> Process(IObservable<PyObject> source)
+	{
+
+		return source.Select(value =>
+		{
+			using (Py.GIL())
+			{
+				dynamic element = value[TupleIndex];
+				return new Point2f(
+					(float)element[XIndex],
+					(float)element[YIndex]);
+			}
+		});
+	}
+}
