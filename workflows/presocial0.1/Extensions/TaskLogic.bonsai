@@ -391,10 +391,10 @@ RatePatch2 as Rate)</scr:Expression>
               <Name>DistanceState1</Name>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>ThresholdCrossingPatch1</Name>
+              <Name>DeliverPelletPatch1</Name>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>DeliverPelletPatch1</Name>
+              <Name>ThresholdCrossingPatch1</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>WheelPatch2</Name>
@@ -414,10 +414,10 @@ RatePatch2 as Rate)</scr:Expression>
               <Name>DistanceState2</Name>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>ThresholdCrossingPatch2</Name>
+              <Name>DeliverPelletPatch2</Name>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>DeliverPelletPatch2</Name>
+              <Name>ThresholdCrossingPatch2</Name>
             </Expression>
           </Nodes>
           <Edges>
