@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.7.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
@@ -567,8 +567,8 @@
                       <X>708</X>
                       <Y>538</Y>
                     </ArenaCenter>
-                    <ArenaInnerRadius>474</ArenaInnerRadius>
-                    <ArenaOuterRadius>494</ArenaOuterRadius>
+                    <ArenaInnerRadius>484</ArenaInnerRadius>
+                    <ArenaOuterRadius>514</ArenaOuterRadius>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
