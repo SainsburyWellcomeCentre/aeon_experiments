@@ -49,7 +49,7 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:Threshold">
-          <cv:ThresholdValue>92</cv:ThresholdValue>
+          <cv:ThresholdValue>87</cv:ThresholdValue>
           <cv:MaxValue>255</cv:MaxValue>
           <cv:ThresholdType>Binary</cv:ThresholdType>
         </Combinator>
@@ -96,36 +96,36 @@
                 <cv:Regions>
                   <cv:ArrayOfPoint>
                     <cv:Point>
-                      <cv:X>135</cv:X>
-                      <cv:Y>472</cv:Y>
+                      <cv:X>1309</cv:X>
+                      <cv:Y>611</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>201</cv:X>
-                      <cv:Y>482</cv:Y>
+                      <cv:X>1241</cv:X>
+                      <cv:Y>605</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>198</cv:X>
-                      <cv:Y>518</cv:Y>
+                      <cv:X>1242</cv:X>
+                      <cv:Y>563</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>234</cv:X>
-                      <cv:Y>521</cv:Y>
+                      <cv:X>1202</cv:X>
+                      <cv:Y>566</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>232</cv:X>
-                      <cv:Y>543</cv:Y>
+                      <cv:X>1201</cv:X>
+                      <cv:Y>548</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>195</cv:X>
-                      <cv:Y>542</cv:Y>
+                      <cv:X>1247</cv:X>
+                      <cv:Y>550</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>191</cv:X>
-                      <cv:Y>571</cv:Y>
+                      <cv:X>1246</cv:X>
+                      <cv:Y>515</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>127</cv:X>
-                      <cv:Y>569</cv:Y>
+                      <cv:X>1314</cv:X>
+                      <cv:Y>524</cv:Y>
                     </cv:Point>
                   </cv:ArrayOfPoint>
                 </cv:Regions>
@@ -210,20 +210,20 @@
                 <cv:Regions>
                   <cv:ArrayOfPoint>
                     <cv:Point>
-                      <cv:X>567</cv:X>
-                      <cv:Y>248</cv:Y>
+                      <cv:X>874</cv:X>
+                      <cv:Y>247</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>586</cv:X>
-                      <cv:Y>237</cv:Y>
+                      <cv:X>889</cv:X>
+                      <cv:Y>228</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>595</cv:X>
-                      <cv:Y>255</cv:Y>
+                      <cv:X>908</cv:X>
+                      <cv:Y>242</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>576</cv:X>
-                      <cv:Y>266</cv:Y>
+                      <cv:X>895</cv:X>
+                      <cv:Y>261</cv:Y>
                     </cv:Point>
                   </cv:ArrayOfPoint>
                 </cv:Regions>
@@ -260,20 +260,20 @@
                 <cv:Regions>
                   <cv:ArrayOfPoint>
                     <cv:Point>
-                      <cv:X>536</cv:X>
-                      <cv:Y>826</cv:Y>
+                      <cv:X>848</cv:X>
+                      <cv:Y>832</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>553</cv:X>
-                      <cv:Y>838</cv:Y>
+                      <cv:X>869</cv:X>
+                      <cv:Y>820</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>543</cv:X>
-                      <cv:Y>858</cv:Y>
-                    </cv:Point>
-                    <cv:Point>
-                      <cv:X>524</cv:X>
+                      <cv:X>880</cv:X>
                       <cv:Y>843</cv:Y>
+                    </cv:Point>
+                    <cv:Point>
+                      <cv:X>860</cv:X>
+                      <cv:Y>854</cv:Y>
                     </cv:Point>
                   </cv:ArrayOfPoint>
                 </cv:Regions>
