@@ -103,7 +103,7 @@
                           <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-                          <SerialNumber>21196927</SerialNumber>
+                          <SerialNumber>21199217</SerialNumber>
                           <Gain>4</Gain>
                           <Binning>1</Binning>
                           <TriggerSource>GlobalTrigger</TriggerSource>
@@ -131,7 +131,7 @@
                           <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-                          <SerialNumber>21199215</SerialNumber>
+                          <SerialNumber>21177888</SerialNumber>
                           <Gain>4</Gain>
                           <Binning>1</Binning>
                           <TriggerSource>GlobalTrigger</TriggerSource>
@@ -159,7 +159,7 @@
                           <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-                          <SerialNumber>21177888</SerialNumber>
+                          <SerialNumber>21196927</SerialNumber>
                           <Gain>4</Gain>
                           <Binning>1</Binning>
                           <TriggerSource>GlobalTrigger</TriggerSource>
@@ -187,7 +187,7 @@
                           <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
-                          <SerialNumber>21199217</SerialNumber>
+                          <SerialNumber>21199215</SerialNumber>
                           <Gain>4</Gain>
                           <Binning>1</Binning>
                           <TriggerSource>GlobalTrigger</TriggerSource>
