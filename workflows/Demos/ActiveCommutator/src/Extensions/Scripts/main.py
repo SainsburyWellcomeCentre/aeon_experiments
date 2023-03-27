@@ -2,23 +2,23 @@ import os
 import sys
 
 EXTENSIONS_PATH = os.path.join(os.getcwd(), "Extensions")
-DEFAULT_CONFIG_PATH = f"{EXTENSIONS_PATH}/Library/metadata/00000009_smoothing.ini"
+sys.path.append(os.path.abspath(f"{EXTENSIONS_PATH}"))
 
-sys.path.append(os.path.abspath(f"{EXTENSIONS_PATH}/Library"))
-sys.path.append(os.path.abspath(f"{EXTENSIONS_PATH}/Scripts"))
+DEFAULT_CONFIG_PATH = f"{EXTENSIONS_PATH}/Library/metadata/00000009_smoothing.ini"
 
 import configparser
 import numpy as np
-import utils, learning, simulation, inference
+import Library
+import Library.utils as utils
+import Library.inference as inference
 
-
+#from Library import utils, learning, simulation, inference
 class KalmanFilter:
 
     def __init__(self,
                  fps: int = 20,
                  filtering_params_filename: str = DEFAULT_CONFIG_PATH,
                  ) -> None:
-
         # configuration variables
         filtering_params_section = "params"
 
