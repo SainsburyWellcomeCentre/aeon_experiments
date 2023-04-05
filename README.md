@@ -58,6 +58,24 @@ Automatic weighing of animals is performed using the [Ohaus Navigator NVT2201 El
     * A.Print: Cont
     * End: End
 
+### Network Setup 
+
+All AEON computers are currently running on a [VLAN](https://en.wikipedia.org/wiki/VLAN). The current network infrastructure requires manual configuration of IPV4 settings.
+
+| IPV4 Address Range   | 172.24.158.1-199 |
+| :------------------- | :--------------- |
+| IPV4 Subnet Mask     | 255.255.254.0    |
+| IPV4 Default Gateway | 172.24.158.245   | 
+| IPV4 DNS Servers     | 192.168.238.208 <br/> 192.168.239.201| 
+
+Below is the current IP address table:
+
+| Host Name | IP             |
+| :-------- | :------------- |
+| AEON1     | 172.24.158.101 |
+| AEON2     | 172.24.158.102 |
+| AEON3     | 172.24.158.103 |
+
 ### Environment Setup
 
 The `bonsai` folder contains a snapshot of the runtime environment required to run experiments on the foraging arena. The `setup.cmd` batch script is included in this repository to automate the download and configuration of this environment. Simply double-clicking on this script should launch the necessary powershell commands as long as an active connection to the internet is available.
@@ -94,5 +112,6 @@ Extraction of camera intrinsics was performed using OpenCV calibration routines 
 In addition, if using Windows 10 N editions or LTSR, the [media feature pack](https://support.microsoft.com/en-us/topic/media-feature-pack-list-for-windows-n-editions-c1c6fffa-d052-8338-7a79-a4bb980a700a) may need to be installed in advance.
 
 Below are details for the specific environments we have tested:
-  * Windows LTSR : Version 1807 (AEON2 - Download from microsoft support)
-  * Windows 10 N: Version 20H2 (latest AEON1 - Apps & Features > Add a feature)
+  * Windows 10 Enterprise LTSC: Version 21H2 (AEON3 - Installed by IT on 09/02/2023)
+  * Windows LTSR: Version 1807 (AEON2 - Downloaded from microsoft support)
+  * Windows 10 N: Version 20H2 (AEON1 - Apps & Features > Add a feature)
