@@ -39,11 +39,13 @@ def list_metadata(elements, **kwargs):
             nodes = x.xpath('./x:Workflow/x:Nodes', namespaces=ns)[0]
             metadata[name] = list_metadata(nodes)
         elif grouptype != "ExternalizedMapping":
-            elem_metadata = {}
-            elem_metadata = (recursive_dict(x)[1])
+            elem_metadata = recursive_dict(x)[1]
             if elem_metadata is None:
                 continue
             elem_metadata.update(kwargs)
+            if grouptype == "IncludeWorkflow":
+                path = Path(x.get('Path')).stem
+                elem_metadata['Type'] = path.rsplit(':', 1)[-1]
             metadata |= elem_metadata
     return metadata
 
