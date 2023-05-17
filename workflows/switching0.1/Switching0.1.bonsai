@@ -446,7 +446,7 @@
                     <Name>CameraTop</Name>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PositionTracking.bonsai">
-                    <Mask>Config\ArenaMask-AEON3_2023-03-06.png</Mask>
+                    <Mask>Config\ArenaMask.png</Mask>
                     <ThresholdValue>83</ThresholdValue>
                     <TrackingEvents>TrackingTop</TrackingEvents>
                     <TrackingCount>1</TrackingCount>
