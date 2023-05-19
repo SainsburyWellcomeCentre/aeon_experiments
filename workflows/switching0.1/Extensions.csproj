@@ -6,6 +6,10 @@
 
   <ItemGroup>
     <PackageReference Include="Bonsai.Core" Version="2.7.1" />
+    <PackageReference Include="Bonsai.Harp" Version="3.4.0" />
+    <PackageReference Include="Aeon.Acquisition" version="0.3.0-test191757" Version="0.3.0-test191757" />
+    <PackageReference Include="Rx-Interfaces" Version="2.2.5" />
+
   </ItemGroup>
 
 </Project>
