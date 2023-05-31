@@ -83,22 +83,21 @@ The `bonsai` folder contains a snapshot of the runtime environment required to r
 
 In case the configuration of the environment ever gets corrupted, you can revert the `bonsai` folder to its original state by deleting all the executable and package files and folders and re-running the `setup.cmd` script. This process may be automated in the future.
 
-### Alerts Webhook
+### Incoming Webhooks
 
-The system supports sending alerts to incoming webhooks configured on a Slack or Teams channel. This is used during acquisition for live notifications of critical failures, warnings or other conditions of interest which might require manual intervention.
+The system supports sending alerts to [Incoming Webhooks](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/what-are-webhooks-and-connectors#incoming-webhooks) configured on a Slack or Teams channel. This is used during acquisition for live notifications of critical failures, warnings or other conditions of interest which might require manual intervention. Incoming Webhooks on Teams will accept any message formatted as a JSON payload complying with the [connector card schema for O365 Groups](https://learn.microsoft.com/en-us/microsoftteams/platform/task-modules-and-cards/cards/cards-reference#connector-card-for-microsoft-365-groups). Currently the `SendMessageCard` operator will generate the compliant JSON payload using Markdown formatted text.
 
-The following setup procedure details how to configure an incoming webhook (admin access is required):
-1. Create the Teams channel which will receive the alerts.
-2. Right-click channel name > `Connectors`.
-3. Find **Incoming Webhook** and click `Configure`.
-4. Provide a name for the Webhook and click `Create`.
-5. Copy the webhook URL and store it, this is the `Address` you will need to provide to the `SendMessageCard` node.
+Incoming Webhooks can be created directly using the [Teams user interface](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook?tabs=dotnet#create-an-incoming-webhook-1). Each acquisition computer currently has two configured webhooks, one for Alert messages and another for Status messages. Note that only channel admins in Teams are allowed to create and manage Incoming Webhooks.
+
+HTTPS endpoints for each specific machine name are stored in the `config` folder in CEPH, in the `alerts.config` and `status.config` files respectively. CEPH permissions are required to update these files.
 
 ### Data Transfer
 
 Data is continuously transferred to a CEPH partition by calling Robocopy from a scheduled task which runs periodically every hour. This task is started as soon as the computer boots, using the OS task scheduler. A script with the task definitions is versioned in this repository at `workflows\RobocopyAeon.xml`. This script can be installed in a new computer by opening the Task Scheduler app and selecting `Action > Import Task`.
 
-The data transfer script currently assumes data is collected in `D:\ProjectAeon\experiment0.1` and backed up to a network mount at `Z:\experiment0.1`.
+The raw data folder name in CEPH should be the Host Name corresponding to the acquisition machine as specified in the table above. Each acquisition computer should be assigned a unique user name with exclusive write permissions over the CEPH folder to which it is writing. Care should be taken to ensure that all other users only have read permissions over the folder. The current recommended naming convention for users is `aeon_<machine_name>` all lowercase.
+
+The remote CEPH folder can be subsequently mounted on the local machine as a network drive and accessed as part of the file system. For example, the data transfer script for Experiment 0.1 running on AEON2 currently assumes data is collected in `D:\ProjectAeon\experiment0.1` and backed up to a network mount at `Z:\experiment0.1` which corresponds to CEPH partition `/aeon/data/raw/AEON2/experiment0.1/`.
 
 ### Calibration Targets
 
