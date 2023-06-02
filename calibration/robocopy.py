@@ -11,7 +11,7 @@ args = parser.parse_args()
 source = Path(args.source)
 destination = Path(args.destination)
 dataset = Path(os.getcwd()).name
-robocopy_parameters = ["/E", "/MOVE", "/J", "/R:2", "/W:30"]
+robocopy_parameters = ["/E", "/MOVE", "/J", "/R:2", "/W:30", "/NP"]
 process = subprocess.run(
     ["robocopy", source.joinpath(dataset), destination.joinpath(dataset)] + robocopy_parameters,
     shell=True)
