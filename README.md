@@ -93,7 +93,13 @@ HTTPS endpoints for each specific machine name are stored in the `config` folder
 
 ### Data Transfer
 
-Data is continuously transferred to a CEPH partition by calling Robocopy from a scheduled task which runs periodically every hour. This task is started as soon as the computer boots, using the OS task scheduler. A script with the task definitions is versioned in this repository at `workflows\RobocopyAeon.xml`. This script can be installed in a new computer by opening the Task Scheduler app and selecting `Action > Import Task`.
+Data is continuously transferred to a CEPH partition by calling Robocopy from a scheduled task which runs periodically every hour. This task should be started as soon as the computer boots. For each experiment, a script to launch the periodic task is provided with the following naming convention `SystemStartup-<machine_name>.cmd`. This script should be installed in a new computer using the following steps:
+
+  1. Press `Windows logo key + R` and type `shell:startup` in the run dialog box to open the system startup folder.
+  2. Drag the script to the startup folder while holding the `Alt` key to create a new startup link.
+  3. Press `Alt + Enter` in the new shortcut to access the link properties.
+  4. Add `-p Synchronize=true` to the end of the `Target` string to ensure the Harp clock is reset to UTC time on system boot.
+  5. Click the `OK` button to save the modified link properties.
 
 The raw data folder name in CEPH should be the Host Name corresponding to the acquisition machine as specified in the table above. Each acquisition computer should be assigned a unique user name with exclusive write permissions over the CEPH folder to which it is writing. Care should be taken to ensure that all other users only have read permissions over the folder. The current recommended naming convention for users is `aeon_<machine_name>` all lowercase.
 
