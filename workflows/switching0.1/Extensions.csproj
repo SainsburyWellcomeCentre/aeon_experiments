@@ -5,10 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Bonsai.Core" Version="2.7.1" />
-    <PackageReference Include="Bonsai.Harp" Version="3.4.0" />
+    <PackageReference Include="Bonsai.Core" Version="2.8.0-alpha018" />
+    <PackageReference Include="Bonsai.Harp" Version="3.5.0-build050401" />
     <PackageReference Include="Aeon.Acquisition" version="0.3.0-test191757" Version="0.3.0-test191757" />
     <PackageReference Include="Rx-Interfaces" Version="2.2.5" />
+    <PackageReference Include="MathNet.Numerics" Version="4.15.0" />
 
   </ItemGroup>
 
