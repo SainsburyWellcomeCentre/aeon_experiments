@@ -1,1 +1,1 @@
-"..\..\bonsai\Bonsai.exe" SystemStartup-AEON3.bonsai --no-editor %* >> Aeon.log
+"..\..\bonsai\Bonsai.exe" SystemStartup-AEON3.bonsai --no-editor %* *>> Aeon.log
