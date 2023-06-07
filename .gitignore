@@ -1,5 +1,6 @@
-# State recovery files
+# State recovery and log files
 ~*
+*.log
 
 # Bonsai scripting and environment files
 .vs
