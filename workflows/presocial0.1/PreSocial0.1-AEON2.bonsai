@@ -660,17 +660,23 @@
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
               <LogName>ClockSynchronizer</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>VideoEvents</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
               <LogName>VideoController</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>CameraTop</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>CameraTop</LogName>
               <FrameRate>50</FrameRate>
             </Expression>
@@ -761,11 +767,15 @@
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
               <LogName>CameraTop</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>CameraWest</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>CameraWest</LogName>
               <FrameRate>50</FrameRate>
             </Expression>
@@ -773,6 +783,8 @@
               <Name>CameraEast</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>CameraEast</LogName>
               <FrameRate>50</FrameRate>
             </Expression>
@@ -780,6 +792,8 @@
               <Name>CameraNorth</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>CameraNorth</LogName>
               <FrameRate>50</FrameRate>
             </Expression>
@@ -787,6 +801,8 @@
               <Name>CameraSouth</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>CameraSouth</LogName>
               <FrameRate>50</FrameRate>
             </Expression>
@@ -794,6 +810,8 @@
               <Name>CameraPatch1</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>CameraPatch1</LogName>
               <FrameRate>125</FrameRate>
             </Expression>
@@ -801,6 +819,8 @@
               <Name>CameraPatch2</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>CameraPatch2</LogName>
               <FrameRate>125</FrameRate>
             </Expression>
@@ -808,6 +828,8 @@
               <Name>CameraNest</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>CameraNest</LogName>
               <FrameRate>125</FrameRate>
             </Expression>
@@ -841,6 +863,8 @@
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
               <LogName>Patch1</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>Patch1</Name>
@@ -862,6 +886,8 @@ Item3 as Delta)</scr:Expression>
               <Combinator xsi:type="rx:WithLatestFrom" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>Patch1_State</LogName>
               <Selector xsi:nil="true" />
             </Expression>
@@ -895,6 +921,8 @@ Item3 as Delta)</scr:Expression>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
               <LogName>Patch2</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>Patch2</Name>
@@ -916,6 +944,8 @@ Item3 as Delta)</scr:Expression>
               <Combinator xsi:type="rx:WithLatestFrom" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>Patch2_State</LogName>
               <Selector xsi:nil="true" />
             </Expression>
@@ -923,6 +953,8 @@ Item3 as Delta)</scr:Expression>
               <Name>AudioAmbient</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogAudio.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>AudioAmbient</LogName>
               <SampleRate>192000</SampleRate>
             </Expression>
@@ -930,6 +962,8 @@ Item3 as Delta)</scr:Expression>
               <Name>SubjectState</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>ExperimentalMetadata_SubjectState</LogName>
               <Selector>Seconds,Value.Id,Value.Weight,Value.Type</Selector>
             </Expression>
@@ -943,6 +977,8 @@ Item3 as Delta)</scr:Expression>
               <Combinator xsi:type="rx:Merge" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>ExperimentalMetadata_MessageLog</LogName>
               <Selector>Seconds,Value.Priority,Value.Type,Value.Message</Selector>
             </Expression>
@@ -950,6 +986,8 @@ Item3 as Delta)</scr:Expression>
               <Name>EnvironmentState</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>ExperimentalMetadata_EnvironmentState</LogName>
               <Selector>Seconds,Value.Type</Selector>
             </Expression>
@@ -1000,6 +1038,8 @@ new(Value.Id as Id,
               <Selector>Value,Seconds</Selector>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>ExperimentalMetadata_SubjectVisits</LogName>
               <Selector>Seconds,Value.Id,Value.Event,Value.Value</Selector>
             </Expression>
@@ -2599,6 +2639,70 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                   <Expression xsi:type="MulticastSubject">
                     <Name>AlertLogs</Name>
                   </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\StreamTimeout.bonsai">
+                    <StreamEvents>CameraTop</StreamEvents>
+                    <DueTime>PT1S</DueTime>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\StreamTimeout.bonsai">
+                    <StreamEvents>CameraWest</StreamEvents>
+                    <DueTime>PT1S</DueTime>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\StreamTimeout.bonsai">
+                    <StreamEvents>CameraEast</StreamEvents>
+                    <DueTime>PT1S</DueTime>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\StreamTimeout.bonsai">
+                    <StreamEvents>CameraNorth</StreamEvents>
+                    <DueTime>PT1S</DueTime>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\StreamTimeout.bonsai">
+                    <StreamEvents>CameraSouth</StreamEvents>
+                    <DueTime>PT1S</DueTime>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\StreamTimeout.bonsai">
+                    <StreamEvents>CameraPatch1</StreamEvents>
+                    <DueTime>PT1S</DueTime>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\StreamTimeout.bonsai">
+                    <StreamEvents>CameraPatch2</StreamEvents>
+                    <DueTime>PT1S</DueTime>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Merge" />
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>StartCameras</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:SubscribeWhen" />
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>StopCameras</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:TakeUntil" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Repeat" />
+                  </Expression>
+                  <Expression xsi:type="Format">
+                    <Format>## **Stream Timeout**
+**Stream**: {0}</Format>
+                    <Selector>Name,Timestamp</Selector>
+                  </Expression>
+                  <Expression xsi:type="MulticastSubject">
+                    <Name>EnvironmentAlertMessages</Name>
+                  </Expression>
+                  <Expression xsi:type="aeon:FormatLogMessage">
+                    <Format>{0}</Format>
+                    <Selector>Name</Selector>
+                    <aeon:Priority>Alert</aeon:Priority>
+                    <aeon:Type>StreamTimeout</aeon:Type>
+                    <aeon:Timestamp>Timestamp</aeon:Timestamp>
+                  </Expression>
+                  <Expression xsi:type="MulticastSubject">
+                    <Name>AlertLogs</Name>
+                  </Expression>
                 </Nodes>
                 <Edges>
                   <Edge From="0" To="1" Label="Source1" />
@@ -2640,6 +2744,22 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                   <Edge From="40" To="43" Label="Source1" />
                   <Edge From="41" To="42" Label="Source1" />
                   <Edge From="43" To="44" Label="Source1" />
+                  <Edge From="45" To="52" Label="Source1" />
+                  <Edge From="46" To="52" Label="Source2" />
+                  <Edge From="47" To="52" Label="Source3" />
+                  <Edge From="48" To="52" Label="Source4" />
+                  <Edge From="49" To="52" Label="Source5" />
+                  <Edge From="50" To="52" Label="Source6" />
+                  <Edge From="51" To="52" Label="Source7" />
+                  <Edge From="52" To="54" Label="Source1" />
+                  <Edge From="53" To="54" Label="Source2" />
+                  <Edge From="54" To="56" Label="Source1" />
+                  <Edge From="55" To="56" Label="Source2" />
+                  <Edge From="56" To="57" Label="Source1" />
+                  <Edge From="57" To="58" Label="Source1" />
+                  <Edge From="57" To="60" Label="Source1" />
+                  <Edge From="58" To="59" Label="Source1" />
+                  <Edge From="60" To="61" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
