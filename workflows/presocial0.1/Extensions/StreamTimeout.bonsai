@@ -62,6 +62,11 @@
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:CombineLatest" />
       </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Take">
+          <rx:Count>1</rx:Count>
+        </Combinator>
+      </Expression>
       <Expression xsi:type="scr:ExpressionTransform">
         <scr:Expression>new(
 Item3 as Timestamp,
@@ -81,6 +86,7 @@ Item2 as Name)</scr:Expression>
       <Edge From="7" To="8" Label="Source3" />
       <Edge From="8" To="9" Label="Source1" />
       <Edge From="9" To="10" Label="Source1" />
+      <Edge From="10" To="11" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
