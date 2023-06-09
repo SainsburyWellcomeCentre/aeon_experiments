@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.8.0-alpha018"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
+                 xmlns:p1="clr-namespace:Harp.SoundCard;assembly=Harp.SoundCard"
+                 xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
+                 xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:HarpMessage">
+        <rx:Name>Commands</rx:Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:Device">
+          <harp:OperationMode>Active</harp:OperationMode>
+          <harp:OperationLed>On</harp:OperationLed>
+          <harp:DumpRegisters>true</harp:DumpRegisters>
+          <harp:VisualIndicators>On</harp:VisualIndicators>
+          <harp:Heartbeat>Disabled</harp:Heartbeat>
+          <harp:IgnoreErrors>false</harp:IgnoreErrors>
+          <harp:PortName>COM16</harp:PortName>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>Events</Name>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>InitialSettings</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="IntProperty">
+                <Value>200</Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="PropertyMapping">
+              <PropertyMappings>
+                <Property Name="Value" />
+              </PropertyMappings>
+            </Expression>
+            <Expression xsi:type="p1:CreateMessage">
+              <harp:Payload xsi:type="p1:CreateAttenuationLeftPayload">
+                <harp:MessageType>Write</harp:MessageType>
+                <p1:Value>0</p1:Value>
+              </harp:Payload>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>Commands</Name>
+            </Expression>
+            <Expression xsi:type="PropertyMapping">
+              <PropertyMappings>
+                <Property Name="Value" />
+              </PropertyMappings>
+            </Expression>
+            <Expression xsi:type="p1:CreateMessage">
+              <harp:Payload xsi:type="p1:CreateAttenuationRightPayload">
+                <harp:MessageType>Write</harp:MessageType>
+                <p1:Value>0</p1:Value>
+              </harp:Payload>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>Commands</Name>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+            <Expression xsi:type="p1:CreateMessage">
+              <harp:Payload xsi:type="p1:CreateStopPayload">
+                <harp:MessageType>Write</harp:MessageType>
+                <p1:Value>0</p1:Value>
+              </harp:Payload>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Take">
+                <rx:Count>1</rx:Count>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>Commands</Name>
+            </Expression>
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="0" To="4" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="5" Label="Source1" />
+            <Edge From="4" To="5" Label="Source2" />
+            <Edge From="5" To="6" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="8" To="9" Label="Source1" />
+            <Edge From="9" To="10" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="wie:KeyDown">
+            <wie:Filter>LButton ShiftKey ControlKey Space Prior PageUp D0 D1 A P Q NumPad0 NumPad1 F1 F2 Control</wie:Filter>
+            <wie:SuppressRepetitions>true</wie:SuppressRepetitions>
+          </Combinator>
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="rx:SelectMany">
+          <Name>UploadSound</Name>
+          <Workflow>
+            <Nodes>
+              <Expression xsi:type="ExternalizedMapping">
+                <Property Name="Value" DisplayName="WaveformIndex" />
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="IntProperty">
+                  <Value>1</Value>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="ExternalizedMapping">
+                <Property Name="Value" DisplayName="MemoryIndex" />
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="IntProperty">
+                  <Value>3</Value>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="ExternalizedMapping">
+                <Property Name="Value" DisplayName="DataType" />
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="IntProperty">
+                  <Value>0</Value>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="ExternalizedMapping">
+                <Property Name="Value" DisplayName="SamplingRate" />
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="IntProperty">
+                  <Value>192000</Value>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="rx:Zip" />
+              </Expression>
+              <Expression xsi:type="Format">
+                <Format>"sound_{0}.bin" {1} {2} {3}</Format>
+                <Selector>Item1,Item2,Item3,Item4</Selector>
+              </Expression>
+              <Expression xsi:type="InputMapping">
+                <PropertyMappings>
+                  <Property Name="Arguments" Selector="it" />
+                </PropertyMappings>
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="io:StartProcess">
+                  <io:FileName>toSoundCard.exe</io:FileName>
+                  <io:Arguments>"sound_1.bin" 3 0 192000</io:Arguments>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="Combinator">
+                <Combinator xsi:type="rx:Take">
+                  <rx:Count>1</rx:Count>
+                </Combinator>
+              </Expression>
+              <Expression xsi:type="WorkflowOutput" />
+            </Nodes>
+            <Edges>
+              <Edge From="0" To="1" Label="Source1" />
+              <Edge From="1" To="8" Label="Source1" />
+              <Edge From="2" To="3" Label="Source1" />
+              <Edge From="3" To="8" Label="Source2" />
+              <Edge From="4" To="5" Label="Source1" />
+              <Edge From="5" To="8" Label="Source3" />
+              <Edge From="6" To="7" Label="Source1" />
+              <Edge From="7" To="8" Label="Source4" />
+              <Edge From="8" To="9" Label="Source1" />
+              <Edge From="9" To="10" Label="Source1" />
+              <Edge From="10" To="11" Label="Source1" />
+              <Edge From="11" To="12" Label="Source1" />
+              <Edge From="12" To="13" Label="Source1" />
+            </Edges>
+          </Workflow>
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="wie:KeyDown">
+          <wie:Filter>Q</wie:Filter>
+          <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="p1:CreateMessage">
+        <harp:Payload xsi:type="p1:CreateEnableEventsPayload">
+          <harp:MessageType>Write</harp:MessageType>
+          <p1:Value>PlaySoundOrFrequency Stop AdcValues</p1:Value>
+        </harp:Payload>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>Commands</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="wie:KeyDown">
+          <wie:Filter>D1</wie:Filter>
+          <wie:SuppressRepetitions>true</wie:SuppressRepetitions>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="p1:CreateMessage">
+        <harp:Payload xsi:type="p1:CreatePlaySoundOrFrequencyPayload">
+          <harp:MessageType>Write</harp:MessageType>
+          <p1:Value>2</p1:Value>
+        </harp:Payload>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>Commands</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="wie:KeyDown">
+          <wie:Filter>D2</wie:Filter>
+          <wie:SuppressRepetitions>true</wie:SuppressRepetitions>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="p1:CreateMessage">
+        <harp:Payload xsi:type="p1:CreatePlaySoundOrFrequencyPayload">
+          <harp:MessageType>Write</harp:MessageType>
+          <p1:Value>3</p1:Value>
+        </harp:Payload>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>Commands</Name>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>Events</Name>
+      </Expression>
+      <Expression xsi:type="p1:Parse">
+        <harp:Register xsi:type="p1:PlaySoundOrFrequency" />
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="1" Label="Source1" />
+      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="9" To="10" Label="Source1" />
+      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="12" To="13" Label="Source1" />
+      <Edge From="13" To="14" Label="Source1" />
+      <Edge From="15" To="16" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
