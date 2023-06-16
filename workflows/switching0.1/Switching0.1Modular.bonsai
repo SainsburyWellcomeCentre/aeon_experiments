@@ -6684,19 +6684,27 @@ Item3 as Delta)</scr:Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="zmq:ToMessage" />
                         </Expression>
-                        <Expression xsi:type="Combinator">
-                          <Combinator xsi:type="StringProperty">
-                            <Value>ManualRawImage</Value>
-                          </Combinator>
+                        <Expression xsi:type="Disable">
+                          <Builder xsi:type="Combinator">
+                            <Combinator xsi:type="StringProperty">
+                              <Value>ManualRawImage</Value>
+                            </Combinator>
+                          </Builder>
                         </Expression>
-                        <Expression xsi:type="Combinator">
-                          <Combinator xsi:type="zmq:ToMessage" />
+                        <Expression xsi:type="Disable">
+                          <Builder xsi:type="Combinator">
+                            <Combinator xsi:type="zmq:ToMessage" />
+                          </Builder>
                         </Expression>
-                        <Expression xsi:type="Combinator">
-                          <Combinator xsi:type="rx:WithLatestFrom" />
+                        <Expression xsi:type="Disable">
+                          <Builder xsi:type="Combinator">
+                            <Combinator xsi:type="rx:WithLatestFrom" />
+                          </Builder>
                         </Expression>
-                        <Expression xsi:type="MemberSelector">
-                          <Selector>Item2,Item1</Selector>
+                        <Expression xsi:type="Disable">
+                          <Builder xsi:type="MemberSelector">
+                            <Selector>Item2,Item1</Selector>
+                          </Builder>
                         </Expression>
                         <Expression xsi:type="Disable">
                           <Builder xsi:type="SubscribeSubject">
