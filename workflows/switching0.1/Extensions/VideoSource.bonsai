@@ -39,7 +39,7 @@
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="aeon:SpinnakerCapture">
           <spk:Index xsi:nil="true" />
-          <spk:SerialNumber>23101736</spk:SerialNumber>
+          <spk:SerialNumber>23106287</spk:SerialNumber>
           <spk:ColorProcessing>Default</spk:ColorProcessing>
           <aeon:ExposureTime>19500</aeon:ExposureTime>
           <aeon:Gain>0</aeon:Gain>
@@ -51,6 +51,11 @@
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="Value" DisplayName="FrameEvents" Description="The name of the output sequence containing all frame events from the video source." Category="Subject" />
+      </Expression>
+      <Expression xsi:type="PropertyMapping">
+        <PropertyMappings>
+          <Property Name="Frequency" />
+        </PropertyMappings>
       </Expression>
       <Expression xsi:type="rx:Sink">
         <Name>GroupByStream</Name>
@@ -64,7 +69,22 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="StringProperty">
-                <Value>CameraTop</Value>
+                <Value>CameraNestNorthTop</Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:CombineLatest" />
+            </Expression>
+            <Expression xsi:type="rx:GroupBy">
+              <rx:KeySelector>Item2</rx:KeySelector>
+              <rx:ElementSelector>Item1</rx:ElementSelector>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Value" DisplayName="Frequency" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="DoubleProperty">
+                <Value>19500</Value>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -84,8 +104,12 @@
             <Edge From="1" To="2" Label="Source1" />
             <Edge From="2" To="3" Label="Source2" />
             <Edge From="3" To="4" Label="Source1" />
-            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="4" To="7" Label="Source1" />
             <Edge From="5" To="6" Label="Source1" />
+            <Edge From="6" To="7" Label="Source2" />
+            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="8" To="9" Label="Source1" />
+            <Edge From="9" To="10" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -96,13 +120,15 @@
       <Edge From="1" To="7" Label="Source1" />
       <Edge From="2" To="3" Label="Source1" />
       <Edge From="3" To="4" Label="Source1" />
+      <Edge From="3" To="10" Label="Source1" />
       <Edge From="4" To="5" Label="Source1" />
       <Edge From="5" To="7" Label="Source2" />
       <Edge From="6" To="7" Label="Source3" />
       <Edge From="7" To="8" Label="Source1" />
-      <Edge From="8" To="10" Label="Source1" />
-      <Edge From="9" To="10" Label="Source2" />
-      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="8" To="11" Label="Source1" />
+      <Edge From="9" To="11" Label="Source2" />
+      <Edge From="10" To="11" Label="Source3" />
+      <Edge From="11" To="12" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
