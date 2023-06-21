@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# A post-checkout hook script to reset and bootstrap run environments.
+# Called by "git checkout" with no arguments.  The hook should
+# exit with non-zero status after bootstrapping the environments.
+#
+# To enable this hook, copy this file to ".git/hooks".
+
+#! /bin/bash
+git clean -fdx bonsai
+cd bonsai
+./setup.cmd
