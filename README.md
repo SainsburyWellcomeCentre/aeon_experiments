@@ -85,9 +85,9 @@ In case the configuration of the environment ever gets corrupted, you can revert
 
 ### Post-checkout Hook
 
-The `hooks` folder contains a post-checkout script which can be installed in each local experiment repository to ensure that the environment is reset to the correct configuration whenever the repository switches to a different experimental branch. To install the hook, copy the `post-checkout` file into the `.git\hooks` folder.
+The `hooks` folder contains git hook scripts which can be installed in each local experiment repository to ensure that the environment is reset to the correct configuration whenever the repository switches to a different experimental branch. To install the hook, copy the `post-checkout` and `post-merge` files into the `.git\hooks` folder.
 
-After this, the script should run automatically whenever you switch branches in the repository. Note that if you do this inside a UI such as VS Code you might get limited feedback as to the progress of the environment reset, and it might be necessary to wait for a little bit until all packages are reinstalled.
+After this, the scripts should run automatically whenever you switch branches in the repository or pull changes with modifications to the `Bonsai.config` file. Note that if you do this inside a UI such as VS Code you might get limited feedback as to the progress of the environment reset, and it might be necessary to wait for a little bit until all packages are reinstalled.
 
 It is recommended to install the post-checkout hook on all acquisition machines running experiments to maximize reproducibility when switching experiments or running updates.
 
