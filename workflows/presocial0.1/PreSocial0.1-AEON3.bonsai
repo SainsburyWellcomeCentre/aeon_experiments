@@ -7,6 +7,7 @@
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
                  xmlns:num="clr-namespace:Bonsai.Numerics;assembly=Bonsai.Numerics"
+                 xmlns:p1="clr-namespace:;assembly=Extensions"
                  xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
@@ -1057,6 +1058,28 @@ new(Value.Id as Id,
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
             </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Timer">
+                <rx:DueTime>PT0S</rx:DueTime>
+                <rx:Period>PT0.1S</rx:Period>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="p1:AvailableMemory" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>GlobalTrigger</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WithLatestFrom" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="harp:CreateTimestamped" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <LogName>System_AvailableMemory</LogName>
+              <Selector xsi:nil="true" />
+            </Expression>
           </Nodes>
           <Edges>
             <Edge From="2" To="3" Label="Source1" />
@@ -1121,6 +1144,11 @@ new(Value.Id as Id,
             <Edge From="80" To="81" Label="Source1" />
             <Edge From="81" To="82" Label="Source1" />
             <Edge From="83" To="84" Label="Source1" />
+            <Edge From="85" To="86" Label="Source1" />
+            <Edge From="86" To="88" Label="Source1" />
+            <Edge From="87" To="88" Label="Source2" />
+            <Edge From="88" To="89" Label="Source1" />
+            <Edge From="89" To="90" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -3649,7 +3677,7 @@ Item3 as Delta)</scr:Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="aeon:EnvironmentSubjectState">
                       <aeon:DatabasePath>Z:\aeon\colony\colony.csv</aeon:DatabasePath>
-                      <aeon:EnvironmentState>Experiment</aeon:EnvironmentState>
+                      <aeon:EnvironmentState>Maintenance</aeon:EnvironmentState>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="MulticastSubject">
