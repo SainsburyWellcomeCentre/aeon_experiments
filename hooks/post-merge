@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# A post-merge hook script to reset and bootstrap run environments.
+# Called by "git merge" with a single status parameter.  The hook should
+# exit with non-zero status after bootstrapping the environments.
+#
+# To enable this hook, copy this file to ".git/hooks".
+
+#! /bin/bash
+if (git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD | grep -q -wi bonsai/Bonsai.config); then
+    git clean -fdx bonsai
+    cd bonsai
+    ./setup.cmd
+fi
