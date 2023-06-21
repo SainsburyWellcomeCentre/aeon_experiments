@@ -83,6 +83,14 @@ The `bonsai` folder contains a snapshot of the runtime environment required to r
 
 In case the configuration of the environment ever gets corrupted, you can revert the `bonsai` folder to its original state by deleting all the executable and package files and folders and re-running the `setup.cmd` script. This process may be automated in the future.
 
+### Post-checkout Hook
+
+The `hooks` folder contains a post-checkout script which can be installed in each local experiment repository to ensure that the environment is reset to the correct configuration whenever the repository switches to a different experimental branch. To install the hook, copy the `post-checkout` file into the `.git\hooks` folder.
+
+After this, the script should run automatically whenever you switch branches in the repository. Note that if you do this inside a UI such as VS Code you might get limited feedback as to the progress of the environment reset, and it might be necessary to wait for a little bit until all packages are reinstalled.
+
+It is recommended to install the post-checkout hook on all acquisition machines running experiments to maximize reproducibility when switching experiments or running updates.
+
 ### Incoming Webhooks
 
 The system supports sending alerts to [Incoming Webhooks](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/what-are-webhooks-and-connectors#incoming-webhooks) configured on a Slack or Teams channel. This is used during acquisition for live notifications of critical failures, warnings or other conditions of interest which might require manual intervention. Incoming Webhooks on Teams will accept any message formatted as a JSON payload complying with the [connector card schema for O365 Groups](https://learn.microsoft.com/en-us/microsoftteams/platform/task-modules-and-cards/cards/cards-reference#connector-card-for-microsoft-365-groups). Currently the `SendMessageCard` operator will generate the compliant JSON payload using Markdown formatted text.
