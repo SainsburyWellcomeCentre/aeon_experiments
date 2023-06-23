@@ -5,5 +5,8 @@ if (!(Test-Path "./Bonsai.exe")) {
     Move-Item -Path "temp.config" "NuGet.config" -Force
     Remove-Item -Path "temp.zip"
     Remove-Item -Path "Bonsai32.exe"
+    Get-ChildItem -Path "Packages" -Recurse -Filter *git2-*.dll |
+        Where-Object FullName -NotLike "*win-x86*" |
+        Copy-Item -Destination "." -Force
 }
 & .\Bonsai.exe --no-editor
