@@ -8,13 +8,13 @@ import sys
 parser = argparse.ArgumentParser(description="Exports device and experiment metadata for the specified workflow file.")
 parser.add_argument('workflow', type=str, help="The path to the workflow file used for data acquisition.")
 parser.add_argument('--indent', type=int, help="The optional indent level for JSON pretty printing.")
-parser.add_argument('--allow-dirty', action="store_true", help="Optionally allow exporting metadata for modified repositories.")
+parser.add_argument('--strict', action="store_true", help="Optionally enforce exporting metadata only for clean repositories.")
 parser.add_argument('--output', type=str, help="The optional path to the exported JSON file.")
 args = parser.parse_args()
 dname = Path(__file__).parent
 
 repo = Repo(dname.parent)
-if not args.allow_dirty and (repo.is_dirty() or len(repo.untracked_files) > 0):
+if args.strict and (repo.is_dirty() or len(repo.untracked_files) > 0):
     parser.error("all modifications to the acquisition repository must be committed before exporting metadata")
 
 ns = {
