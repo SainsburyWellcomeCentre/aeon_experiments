@@ -27,13 +27,13 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="zmq:Publisher">
-          <zmq:ConnectionString>@tcp://localhost:4303</zmq:ConnectionString>
+          <zmq:ConnectionString>@tcp://*:4303</zmq:ConnectionString>
           <zmq:Topic>LightEvents</zmq:Topic>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="zmq:Subscriber">
-          <zmq:ConnectionString>@tcp://localhost:4304</zmq:ConnectionString>
+          <zmq:ConnectionString>@tcp://*:4304</zmq:ConnectionString>
           <zmq:Topic>LightCommands</zmq:Topic>
         </Combinator>
       </Expression>
