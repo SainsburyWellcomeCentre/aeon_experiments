@@ -15,7 +15,7 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="aeon:RoomLightController">
-          <aeon:PortName>COM8</aeon:PortName>
+          <aeon:PortName>COM10</aeon:PortName>
           <aeon:MessageDelay>PT0.1S</aeon:MessageDelay>
         </Combinator>
       </Expression>
@@ -67,10 +67,11 @@
                   <Expression xsi:type="PropertySource" TypeArguments="dsp:SelectChannels,sys:Int32[]">
                     <MemberName>Channels</MemberName>
                     <Value>
-                      <int>28</int>
-                      <int>13</int>
-                      <int>39</int>
-                      <int>4</int>
+                      <int>17</int>
+                      <int>22</int>
+                      <int>27</int>
+                      <int>41</int>
+                      <int>0</int>
                     </Value>
                   </Expression>
                   <Expression xsi:type="Combinator">
@@ -149,10 +150,11 @@
                   <Expression xsi:type="PropertySource" TypeArguments="dsp:SelectChannels,sys:Int32[]">
                     <MemberName>Channels</MemberName>
                     <Value>
-                      <int>38</int>
-                      <int>19</int>
-                      <int>3</int>
-                      <int>7</int>
+                      <int>6</int>
+                      <int>31</int>
+                      <int>15</int>
+                      <int>36</int>
+                      <int>37</int>
                     </Value>
                   </Expression>
                   <Expression xsi:type="Combinator">
@@ -231,10 +233,11 @@
                   <Expression xsi:type="PropertySource" TypeArguments="dsp:SelectChannels,sys:Int32[]">
                     <MemberName>Channels</MemberName>
                     <Value>
-                      <int>35</int>
-                      <int>25</int>
-                      <int>5</int>
-                      <int>18</int>
+                      <int>46</int>
+                      <int>23</int>
+                      <int>29</int>
+                      <int>24</int>
+                      <int>44</int>
                     </Value>
                   </Expression>
                   <Expression xsi:type="Combinator">
