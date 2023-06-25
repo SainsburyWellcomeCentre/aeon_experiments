@@ -12,5 +12,5 @@ cd bonsai
 ./setup.cmd
 cd ..
 git clean -fdx python
-cd ../python
+cd python
 ./setup.cmd
