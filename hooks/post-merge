@@ -11,4 +11,10 @@ if (git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD | grep -q -wi bon
     git clean -fdx bonsai
     cd bonsai
     ./setup.cmd
+    cd ..
+fi
+if (git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD | grep -q -wi python/requirements.txt); then
+    git clean -fdx python
+    cd python
+    ./setup.cmd
 fi

@@ -59,7 +59,9 @@ metadata = {
 metadata |= list_metadata(metadata_group)
 
 if args.output:
-    with open(args.output, "w") as outfile:
+    outpath = Path(args.output)
+    outpath.parent.mkdir(parents=True, exist_ok=True)
+    with open(outpath, "w") as outfile:
         json.dump(metadata, outfile, indent=args.indent)
 else:
     json.dump(metadata, sys.stdout, indent=args.indent)
