@@ -10,6 +10,7 @@
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
                  xmlns:viz="clr-namespace:Bonsai.Design.Visualizers;assembly=Bonsai.Design.Visualizers"
+                 xmlns:vid="clr-namespace:Bonsai.Video;assembly=Bonsai.Video"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -3878,6 +3879,13 @@ Item3 as Delta)</scr:Expression>
                   <Expression xsi:type="MulticastSubject">
                     <Name>SetWarmWhiteLightLevel</Name>
                   </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="vid:VideoCaptureDevice">
+                      <vid:Index>0</vid:Index>
+                      <vid:CaptureProperties />
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
                 <Edges>
                   <Edge From="0" To="1" Label="Source1" />
@@ -3892,6 +3900,7 @@ Item3 as Delta)</scr:Expression>
                   <Edge From="13" To="14" Label="Source1" />
                   <Edge From="15" To="16" Label="Source1" />
                   <Edge From="16" To="17" Label="Source1" />
+                  <Edge From="18" To="19" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
