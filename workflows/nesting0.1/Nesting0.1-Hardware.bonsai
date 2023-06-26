@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.7.3"
+<WorkflowBuilder Version="2.8.0-alpha018"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:viz="clr-namespace:Bonsai.Design.Visualizers;assembly=Bonsai.Design.Visualizers"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
@@ -61,12 +61,12 @@
               <Property Name="TriggerFrequency" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
+              <TriggerSource>GlobalTrigger</TriggerSource>
+              <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
               <SerialNumber>23101736</SerialNumber>
               <Gain>0</Gain>
               <Binning>1</Binning>
-              <TriggerSource>GlobalTrigger</TriggerSource>
               <FrameEvents>CameraTop</FrameEvents>
-              <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
@@ -89,12 +89,12 @@
               <Property Name="TriggerFrequency" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
+              <TriggerSource>GlobalTrigger</TriggerSource>
+              <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
               <SerialNumber>23106245</SerialNumber>
               <Gain>0</Gain>
               <Binning>1</Binning>
-              <TriggerSource>GlobalTrigger</TriggerSource>
               <FrameEvents>CameraNorth</FrameEvents>
-              <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
@@ -117,12 +117,12 @@
               <Property Name="TriggerFrequency" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
+              <TriggerSource>GlobalTrigger</TriggerSource>
+              <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
               <SerialNumber>23106227</SerialNumber>
               <Gain>0</Gain>
               <Binning>1</Binning>
-              <TriggerSource>GlobalTrigger</TriggerSource>
               <FrameEvents>CameraSouth</FrameEvents>
-              <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
@@ -145,12 +145,12 @@
               <Property Name="TriggerFrequency" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
+              <TriggerSource>GlobalTrigger</TriggerSource>
+              <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
               <SerialNumber>23106287</SerialNumber>
               <Gain>0</Gain>
               <Binning>1</Binning>
-              <TriggerSource>GlobalTrigger</TriggerSource>
               <FrameEvents>CameraNestNorthTop</FrameEvents>
-              <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
@@ -173,12 +173,12 @@
               <Property Name="TriggerFrequency" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
+              <TriggerSource>LocalTrigger</TriggerSource>
+              <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
               <SerialNumber>23032826</SerialNumber>
               <Gain>0</Gain>
               <Binning>2</Binning>
-              <TriggerSource>LocalTrigger</TriggerSource>
               <FrameEvents>CameraNestNorthSide</FrameEvents>
-              <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
@@ -201,12 +201,12 @@
               <Property Name="TriggerFrequency" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
+              <TriggerSource>LocalTrigger</TriggerSource>
+              <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
               <SerialNumber>23032828</SerialNumber>
               <Gain>0</Gain>
               <Binning>2</Binning>
-              <TriggerSource>LocalTrigger</TriggerSource>
               <FrameEvents>CameraNestNorthFront</FrameEvents>
-              <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
@@ -229,12 +229,12 @@
               <Property Name="TriggerFrequency" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
+              <TriggerSource>GlobalTrigger</TriggerSource>
+              <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
               <SerialNumber>23032818</SerialNumber>
               <Gain>0</Gain>
               <Binning>1</Binning>
-              <TriggerSource>GlobalTrigger</TriggerSource>
               <FrameEvents>CameraNestSouthTop</FrameEvents>
-              <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
@@ -257,12 +257,12 @@
               <Property Name="TriggerFrequency" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
+              <TriggerSource>LocalTrigger</TriggerSource>
+              <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
               <SerialNumber>23032811</SerialNumber>
               <Gain>0</Gain>
               <Binning>2</Binning>
-              <TriggerSource>LocalTrigger</TriggerSource>
               <FrameEvents>CameraNestSouthSide</FrameEvents>
-              <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
@@ -285,12 +285,12 @@
               <Property Name="TriggerFrequency" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
+              <TriggerSource>LocalTrigger</TriggerSource>
+              <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
               <SerialNumber>23032823</SerialNumber>
               <Gain>0</Gain>
               <Binning>2</Binning>
-              <TriggerSource>LocalTrigger</TriggerSource>
               <FrameEvents>CameraNestSouthFront</FrameEvents>
-              <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
@@ -313,12 +313,12 @@
               <Property Name="TriggerFrequency" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
+              <TriggerSource>LocalTrigger</TriggerSource>
+              <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
               <SerialNumber>23106236</SerialNumber>
               <Gain>0</Gain>
               <Binning>2</Binning>
-              <TriggerSource>LocalTrigger</TriggerSource>
               <FrameEvents>CameraPatchNorth</FrameEvents>
-              <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
@@ -341,12 +341,12 @@
               <Property Name="TriggerFrequency" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
+              <TriggerSource>LocalTrigger</TriggerSource>
+              <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
               <SerialNumber>23101737</SerialNumber>
               <Gain>0</Gain>
               <Binning>2</Binning>
-              <TriggerSource>LocalTrigger</TriggerSource>
               <FrameEvents>CameraPatchSouth</FrameEvents>
-              <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
@@ -373,16 +373,16 @@
               <Property Name="Count" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:UndergroundFeeder.bonsai">
-              <PortName>COM3</PortName>
-              <WheelDisplacement>WheelPatchNorth</WheelDisplacement>
-              <PelletDelivered>PelletDeliveredPatchNorth</PelletDelivered>
-              <DeliverPellet>DeliverPelletPatchNorth</DeliverPellet>
               <PatchEvents>PatchNorth</PatchEvents>
-              <Radius>-4</Radius>
               <SampleRate>SampleRate500Hz</SampleRate>
-              <ResetFeeder>ResetFeederPatchNorth</ResetFeeder>
+              <DeliverPellet>DeliverPelletPatchNorth</DeliverPellet>
+              <PelletDelivered>PelletDeliveredPatchNorth</PelletDelivered>
               <DueTime>PT1S</DueTime>
               <Count>5</Count>
+              <ResetFeeder>ResetFeederPatchNorth</ResetFeeder>
+              <PortName>COM3</PortName>
+              <Radius>-4</Radius>
+              <WheelDisplacement>WheelPatchNorth</WheelDisplacement>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
@@ -409,16 +409,16 @@
               <Property Name="Count" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:UndergroundFeeder.bonsai">
-              <PortName>COM4</PortName>
-              <WheelDisplacement>WheelPatchSouth</WheelDisplacement>
-              <PelletDelivered>PelletDeliveredPatchSouth</PelletDelivered>
-              <DeliverPellet>DeliverPelletPatchSouth</DeliverPellet>
               <PatchEvents>PatchSouth</PatchEvents>
-              <Radius>-4</Radius>
               <SampleRate>SampleRate500Hz</SampleRate>
-              <ResetFeeder>ResetFeederPatchSouth</ResetFeeder>
+              <DeliverPellet>DeliverPelletPatchSouth</DeliverPellet>
+              <PelletDelivered>PelletDeliveredPatchSouth</PelletDelivered>
               <DueTime>PT1S</DueTime>
               <Count>5</Count>
+              <ResetFeeder>ResetFeederPatchSouth</ResetFeeder>
+              <PortName>COM4</PortName>
+              <Radius>-4</Radius>
+              <WheelDisplacement>WheelPatchSouth</WheelDisplacement>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
@@ -438,8 +438,8 @@
               <Property Name="CommandSocket" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LightController.bonsai">
-              <LightEvents>LightEvents</LightEvents>
               <EventSocket>&gt;tcp://172.24.158.103:4303</EventSocket>
+              <LightEvents>LightEvents</LightEvents>
               <CommandSocket>&gt;tcp://172.24.158.103:4304</CommandSocket>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
@@ -576,9 +576,25 @@
         <Selector>Value</Selector>
       </Expression>
       <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\PelletMonitor.bonsai">
+        <PelletCommand>PatchNorth</PelletCommand>
+        <PelletDelivered>PelletDeliveredPatchNorth</PelletDelivered>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Value</Selector>
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\PelletMonitor.bonsai">
+        <PelletCommand>PatchSouth</PelletCommand>
+        <PelletDelivered>PelletDeliveredPatchSouth</PelletDelivered>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Value</Selector>
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="viz:TableLayoutPanelBuilder">
         <viz:ColumnCount>2</viz:ColumnCount>
-        <viz:RowCount>2</viz:RowCount>
+        <viz:RowCount>3</viz:RowCount>
         <viz:ColumnStyles />
         <viz:RowStyles />
         <viz:CellSpans />
@@ -696,6 +712,24 @@
       <Expression xsi:type="MulticastSubject">
         <Name>SetWarmWhiteLightLevel</Name>
       </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="wie:KeyDown">
+          <wie:Filter>RButton ShiftKey Menu Space Next PageDown D0 D2 B P R NumPad0 NumPad2 F1 F3 Shift</wie:Filter>
+          <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>DeliverPelletPatchNorth</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="wie:KeyDown">
+          <wie:Filter>LButton RButton Cancel ShiftKey ControlKey Menu Pause Space Prior PageUp Next PageDown End D0 D1 D2 D3 A B C P Q R S NumPad0 NumPad1 NumPad2 NumPad3 F1 F2 F3 F4 Shift</wie:Filter>
+          <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>DeliverPelletPatchSouth</Name>
+      </Expression>
     </Nodes>
     <Edges>
       <Edge From="17" To="18" Label="Source1" />
@@ -725,22 +759,24 @@
       <Edge From="43" To="44" Label="Source4" />
       <Edge From="45" To="46" Label="Source1" />
       <Edge From="46" To="47" Label="Source1" />
-      <Edge From="47" To="57" Label="Source1" />
+      <Edge From="47" To="63" Label="Source1" />
       <Edge From="48" To="49" Label="Source1" />
       <Edge From="49" To="50" Label="Source1" />
-      <Edge From="50" To="57" Label="Source2" />
+      <Edge From="50" To="63" Label="Source2" />
       <Edge From="51" To="52" Label="Source1" />
       <Edge From="52" To="53" Label="Source1" />
-      <Edge From="53" To="57" Label="Source3" />
+      <Edge From="53" To="63" Label="Source3" />
       <Edge From="54" To="55" Label="Source1" />
       <Edge From="55" To="56" Label="Source1" />
-      <Edge From="56" To="57" Label="Source4" />
+      <Edge From="56" To="63" Label="Source4" />
+      <Edge From="57" To="58" Label="Source1" />
       <Edge From="58" To="59" Label="Source1" />
+      <Edge From="59" To="63" Label="Source5" />
       <Edge From="60" To="61" Label="Source1" />
-      <Edge From="63" To="64" Label="Source1" />
-      <Edge From="65" To="66" Label="Source1" />
+      <Edge From="61" To="62" Label="Source1" />
+      <Edge From="62" To="63" Label="Source6" />
+      <Edge From="64" To="65" Label="Source1" />
       <Edge From="66" To="67" Label="Source1" />
-      <Edge From="68" To="69" Label="Source1" />
       <Edge From="69" To="70" Label="Source1" />
       <Edge From="71" To="72" Label="Source1" />
       <Edge From="72" To="73" Label="Source1" />
@@ -750,6 +786,12 @@
       <Edge From="78" To="79" Label="Source1" />
       <Edge From="80" To="81" Label="Source1" />
       <Edge From="81" To="82" Label="Source1" />
+      <Edge From="83" To="84" Label="Source1" />
+      <Edge From="84" To="85" Label="Source1" />
+      <Edge From="86" To="87" Label="Source1" />
+      <Edge From="87" To="88" Label="Source1" />
+      <Edge From="89" To="90" Label="Source1" />
+      <Edge From="91" To="92" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
