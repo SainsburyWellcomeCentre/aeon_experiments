@@ -315,7 +315,7 @@
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
               <TriggerSource>LocalTrigger</TriggerSource>
               <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
-              <SerialNumber>23106236</SerialNumber>
+              <SerialNumber>23101737</SerialNumber>
               <Gain>0</Gain>
               <Binning>2</Binning>
               <FrameEvents>CameraPatchNorth</FrameEvents>
@@ -343,7 +343,7 @@
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
               <TriggerSource>LocalTrigger</TriggerSource>
               <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
-              <SerialNumber>23101737</SerialNumber>
+              <SerialNumber>23106236</SerialNumber>
               <Gain>0</Gain>
               <Binning>2</Binning>
               <FrameEvents>CameraPatchSouth</FrameEvents>
@@ -380,7 +380,7 @@
               <DueTime>PT1S</DueTime>
               <Count>5</Count>
               <ResetFeeder>ResetFeederPatchNorth</ResetFeeder>
-              <PortName>COM3</PortName>
+              <PortName>COM4</PortName>
               <Radius>-4</Radius>
               <WheelDisplacement>WheelPatchNorth</WheelDisplacement>
             </Expression>
@@ -416,7 +416,7 @@
               <DueTime>PT1S</DueTime>
               <Count>5</Count>
               <ResetFeeder>ResetFeederPatchSouth</ResetFeeder>
-              <PortName>COM4</PortName>
+              <PortName>COM3</PortName>
               <Radius>-4</Radius>
               <WheelDisplacement>WheelPatchSouth</WheelDisplacement>
             </Expression>
@@ -730,6 +730,24 @@
       <Expression xsi:type="MulticastSubject">
         <Name>DeliverPelletPatchSouth</Name>
       </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="wie:KeyDown">
+          <wie:Filter>LButton RButton Cancel ShiftKey ControlKey Menu Pause Space Prior PageUp Next PageDown End D0 D1 D2 D3 Shift</wie:Filter>
+          <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>ResetFeederPatchNorth</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="wie:KeyDown">
+          <wie:Filter>MButton ShiftKey Capital CapsLock Space Home D0 D4 Shift</wie:Filter>
+          <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>ResetFeederPatchSouth</Name>
+      </Expression>
     </Nodes>
     <Edges>
       <Edge From="17" To="18" Label="Source1" />
@@ -792,6 +810,8 @@
       <Edge From="87" To="88" Label="Source1" />
       <Edge From="89" To="90" Label="Source1" />
       <Edge From="91" To="92" Label="Source1" />
+      <Edge From="93" To="94" Label="Source1" />
+      <Edge From="95" To="96" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
