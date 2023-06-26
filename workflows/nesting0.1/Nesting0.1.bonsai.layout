@@ -1578,8 +1578,8 @@
                     <VisualizerSettings>
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>0</Min>
-                        <Max>35</Max>
+                        <Min>-1</Min>
+                        <Max>1</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -1590,7 +1590,7 @@
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
                         <Min>0</Min>
-                        <Max>100</Max>
+                        <Max>90</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -1600,8 +1600,8 @@
                     <VisualizerSettings>
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>0</Min>
-                        <Max>300</Max>
+                        <Min>-1E-17</Min>
+                        <Max>7E-17</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -1652,8 +1652,17 @@
                     <VisualizerTypeName>Bonsai.Vision.Design.PointOverlay</VisualizerTypeName>
                     <VisualizerSettings>
                       <PointOverlay>
-                        <Tracking>None</Tracking>
-                        <Capacity>1</Capacity>
+                        <Tracking>Rolling</Tracking>
+                        <Capacity>197</Capacity>
+                      </PointOverlay>
+                    </VisualizerSettings>
+                  </MashupSettings>
+                  <MashupSettings>
+                    <VisualizerTypeName>Bonsai.Vision.Design.PointOverlay</VisualizerTypeName>
+                    <VisualizerSettings>
+                      <PointOverlay>
+                        <Tracking>Rolling</Tracking>
+                        <Capacity>197</Capacity>
                       </PointOverlay>
                     </VisualizerSettings>
                   </MashupSettings>
