@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.7.1"
+<WorkflowBuilder Version="2.8.0-alpha018"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
                  xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
@@ -13,20 +13,13 @@
         <GlobalTriggerFrequency>50</GlobalTriggerFrequency>
         <LocalTriggerFrequency>125</LocalTriggerFrequency>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="wie:KeyDown">
-          <wie:Filter>None</wie:Filter>
-          <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>ActiveMask</Name>
-      </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PylonVideoSource.bonsai">
-        <SerialNumber>40188224</SerialNumber>
-        <ParameterFile>Config\acA1440-220um_CameraTop.pfs</ParameterFile>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
         <TriggerSource>GlobalTrigger</TriggerSource>
-        <FrameEvents>CameraTop</FrameEvents>
+        <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
+        <SerialNumber>23101736</SerialNumber>
+        <Gain>0</Gain>
+        <Binning>1</Binning>
+        <FrameEvents>FrameEvents</FrameEvents>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>Value.Image</Selector>
@@ -53,6 +46,36 @@
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:MorphologicalOperator">
+          <cv:Size>
+            <cv:Width>11</cv:Width>
+            <cv:Height>11</cv:Height>
+          </cv:Size>
+          <cv:Anchor>
+            <cv:X>-1</cv:X>
+            <cv:Y>-1</cv:Y>
+          </cv:Anchor>
+          <cv:Shape>Ellipse</cv:Shape>
+          <cv:Iterations>1</cv:Iterations>
+          <cv:Operation>Open</cv:Operation>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:MorphologicalOperator">
+          <cv:Size>
+            <cv:Width>15</cv:Width>
+            <cv:Height>15</cv:Height>
+          </cv:Size>
+          <cv:Anchor>
+            <cv:X>-1</cv:X>
+            <cv:Y>-1</cv:Y>
+          </cv:Anchor>
+          <cv:Shape>Ellipse</cv:Shape>
+          <cv:Iterations>1</cv:Iterations>
+          <cv:Operation>Close</cv:Operation>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:FindContours">
           <cv:Mode>External</cv:Mode>
           <cv:Method>ChainApproxNone</cv:Method>
@@ -70,15 +93,6 @@
           <cv:Thickness>-1</cv:Thickness>
         </Combinator>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:BinaryRegionAnalysis" />
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:LargestBinaryRegion" />
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:Centroid" />
-      </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>NestMask</Name>
         <Workflow>
@@ -94,20 +108,54 @@
                 <cv:Regions>
                   <cv:ArrayOfPoint>
                     <cv:Point>
-                      <cv:X>1185</cv:X>
-                      <cv:Y>497</cv:Y>
+                      <cv:X>1243</cv:X>
+                      <cv:Y>484</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>1307</cv:X>
-                      <cv:Y>497</cv:Y>
+                      <cv:X>1365</cv:X>
+                      <cv:Y>484</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>1306</cv:X>
-                      <cv:Y>601</cv:Y>
+                      <cv:X>1364</cv:X>
+                      <cv:Y>588</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>1187</cv:X>
-                      <cv:Y>602</cv:Y>
+                      <cv:X>1245</cv:X>
+                      <cv:Y>589</cv:Y>
+                    </cv:Point>
+                  </cv:ArrayOfPoint>
+                  <cv:ArrayOfPoint>
+                    <cv:Point>
+                      <cv:X>78</cv:X>
+                      <cv:Y>488</cv:Y>
+                    </cv:Point>
+                    <cv:Point>
+                      <cv:X>193</cv:X>
+                      <cv:Y>486</cv:Y>
+                    </cv:Point>
+                    <cv:Point>
+                      <cv:X>195</cv:X>
+                      <cv:Y>446</cv:Y>
+                    </cv:Point>
+                    <cv:Point>
+                      <cv:X>247</cv:X>
+                      <cv:Y>481</cv:Y>
+                    </cv:Point>
+                    <cv:Point>
+                      <cv:X>248</cv:X>
+                      <cv:Y>595</cv:Y>
+                    </cv:Point>
+                    <cv:Point>
+                      <cv:X>192</cv:X>
+                      <cv:Y>632</cv:Y>
+                    </cv:Point>
+                    <cv:Point>
+                      <cv:X>193</cv:X>
+                      <cv:Y>586</cv:Y>
+                    </cv:Point>
+                    <cv:Point>
+                      <cv:X>80</cv:X>
+                      <cv:Y>593</cv:Y>
                     </cv:Point>
                   </cv:ArrayOfPoint>
                 </cv:Regions>
@@ -133,8 +181,29 @@
         <Combinator xsi:type="rx:Zip" />
       </Expression>
       <Expression xsi:type="BitwiseOr" />
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:MorphologicalOperator">
+          <cv:Size>
+            <cv:Width>21</cv:Width>
+            <cv:Height>21</cv:Height>
+          </cv:Size>
+          <cv:Anchor>
+            <cv:X>-1</cv:X>
+            <cv:Y>-1</cv:Y>
+          </cv:Anchor>
+          <cv:Shape>Ellipse</cv:Shape>
+          <cv:Iterations>1</cv:Iterations>
+          <cv:Operation>Close</cv:Operation>
+        </Combinator>
+      </Expression>
       <Expression xsi:type="rx:PublishSubject">
         <Name>ActiveMask</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="wie:KeyDown">
+          <wie:Filter>None</wie:Filter>
+          <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+        </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Sample" />
@@ -144,6 +213,15 @@
           <cv:FileName>mask.png</cv:FileName>
           <cv:Suffix>None</cv:Suffix>
         </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:BinaryRegionAnalysis" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:LargestBinaryRegion" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:Centroid" />
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Sample" />
@@ -157,6 +235,9 @@
           <cv:MaxValue>255</cv:MaxValue>
           <cv:ThresholdType>BinaryInv</cv:ThresholdType>
         </Combinator>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>ActiveMask</Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Zip" />
@@ -374,43 +455,46 @@
       </Expression>
     </Nodes>
     <Edges>
-      <Edge From="1" To="16" Label="Source2" />
-      <Edge From="1" To="18" Label="Source2" />
-      <Edge From="2" To="21" Label="Source2" />
+      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="2" To="9" Label="Source1" />
+      <Edge From="2" To="22" Label="Source1" />
+      <Edge From="2" To="26" Label="Source1" />
+      <Edge From="2" To="27" Label="Source1" />
+      <Edge From="2" To="28" Label="Source1" />
+      <Edge From="2" To="33" Label="Source1" />
       <Edge From="3" To="4" Label="Source1" />
       <Edge From="4" To="5" Label="Source1" />
-      <Edge From="4" To="12" Label="Source1" />
-      <Edge From="4" To="20" Label="Source1" />
-      <Edge From="4" To="23" Label="Source1" />
-      <Edge From="4" To="24" Label="Source1" />
-      <Edge From="4" To="25" Label="Source1" />
-      <Edge From="4" To="30" Label="Source1" />
       <Edge From="5" To="6" Label="Source1" />
       <Edge From="6" To="7" Label="Source1" />
       <Edge From="7" To="8" Label="Source1" />
-      <Edge From="7" To="9" Label="Source1" />
-      <Edge From="8" To="13" Label="Source1" />
-      <Edge From="9" To="10" Label="Source1" />
+      <Edge From="7" To="17" Label="Source1" />
+      <Edge From="8" To="10" Label="Source1" />
+      <Edge From="9" To="10" Label="Source2" />
       <Edge From="10" To="11" Label="Source1" />
-      <Edge From="11" To="18" Label="Source1" />
-      <Edge From="12" To="13" Label="Source2" />
-      <Edge From="13" To="14" Label="Source1" />
-      <Edge From="14" To="15" Label="Source1" />
+      <Edge From="11" To="12" Label="Source1" />
+      <Edge From="12" To="13" Label="Source1" />
+      <Edge From="13" To="15" Label="Source1" />
+      <Edge From="14" To="15" Label="Source2" />
+      <Edge From="14" To="20" Label="Source2" />
       <Edge From="15" To="16" Label="Source1" />
-      <Edge From="16" To="17" Label="Source1" />
+      <Edge From="17" To="18" Label="Source1" />
       <Edge From="18" To="19" Label="Source1" />
+      <Edge From="19" To="20" Label="Source1" />
       <Edge From="20" To="21" Label="Source1" />
-      <Edge From="21" To="22" Label="Source1" />
-      <Edge From="25" To="26" Label="Source1" />
-      <Edge From="26" To="27" Label="Source1" />
-      <Edge From="27" To="28" Label="Source1" />
+      <Edge From="22" To="24" Label="Source1" />
+      <Edge From="23" To="24" Label="Source2" />
+      <Edge From="24" To="25" Label="Source1" />
       <Edge From="28" To="29" Label="Source1" />
+      <Edge From="29" To="30" Label="Source1" />
       <Edge From="30" To="31" Label="Source1" />
       <Edge From="31" To="32" Label="Source1" />
-      <Edge From="31" To="33" Label="Source1" />
       <Edge From="33" To="34" Label="Source1" />
       <Edge From="34" To="35" Label="Source1" />
+      <Edge From="34" To="36" Label="Source1" />
       <Edge From="36" To="37" Label="Source1" />
+      <Edge From="37" To="38" Label="Source1" />
+      <Edge From="39" To="40" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
