@@ -14,6 +14,9 @@
       <Expression xsi:type="SubscribeSubject">
         <Name>Cameras</Name>
       </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Merge" />
+      </Expression>
       <Expression xsi:type="rx:SelectMany">
         <Name>DroppedFrames</Name>
         <Workflow>
@@ -122,6 +125,7 @@ Item1.Value.ChunkData.FrameID as FrameID)</scr:Expression>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
       <Edge From="1" To="2" Label="Source1" />
+      <Edge From="2" To="3" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
