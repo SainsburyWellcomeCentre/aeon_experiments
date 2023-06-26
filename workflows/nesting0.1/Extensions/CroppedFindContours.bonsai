@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.8.0-alpha018"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
+                 xmlns:p1="clr-namespace:OpenCV.Net;assembly=OpenCV.Net"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="WorkflowInput">
+        <Name>Source1</Name>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="RegionOfInterest" />
+      </Expression>
+      <Expression xsi:type="rx:Defer">
+        <Name>CroppedFindContours</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CropRegion</Name>
+            </Expression>
+            <Expression xsi:type="PropertyMapping">
+              <PropertyMappings>
+                <Property Name="RegionOfInterest" />
+              </PropertyMappings>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="cv:Crop">
+                <cv:RegionOfInterest>
+                  <cv:X>0</cv:X>
+                  <cv:Y>0</cv:Y>
+                  <cv:Width>0</cv:Width>
+                  <cv:Height>0</cv:Height>
+                </cv:RegionOfInterest>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CropRegion</Name>
+            </Expression>
+            <Expression xsi:type="PropertyMapping">
+              <PropertyMappings>
+                <Property Name="Offset" Selector="X,Y" />
+              </PropertyMappings>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="cv:FindContours">
+                <cv:Mode>External</cv:Mode>
+                <cv:Method>ChainApproxNone</cv:Method>
+                <cv:Offset>
+                  <cv:X>0</cv:X>
+                  <cv:Y>0</cv:Y>
+                </cv:Offset>
+                <cv:MinArea>100</cv:MinArea>
+                <cv:MaxArea xsi:nil="true" />
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Value" DisplayName="RegionOfInterest" />
+            </Expression>
+            <Expression xsi:type="PropertySource" TypeArguments="cv:Crop,p1:Rect">
+              <MemberName>RegionOfInterest</MemberName>
+              <Value>
+                <X>0</X>
+                <Y>0</Y>
+                <Width>0</Width>
+                <Height>0</Height>
+              </Value>
+            </Expression>
+            <Expression xsi:type="rx:BehaviorSubject">
+              <Name>CropRegion</Name>
+            </Expression>
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="3" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source2" />
+            <Edge From="3" To="6" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="5" To="6" Label="Source2" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="8" To="9" Label="Source1" />
+            <Edge From="9" To="10" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="WorkflowOutput" />
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="2" Label="Source1" />
+      <Edge From="1" To="2" Label="Source2" />
+      <Edge From="2" To="3" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
