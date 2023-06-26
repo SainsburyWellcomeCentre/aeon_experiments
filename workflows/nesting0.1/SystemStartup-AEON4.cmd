@@ -1,0 +1,1 @@
+powershell -ep Bypass -c "& ..\..\bonsai\Bonsai.exe SystemStartup-AEON4.bonsai --no-editor %* *>&1 | tee -a Aeon.log"
