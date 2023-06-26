@@ -1,62 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.7.1"
+<WorkflowBuilder Version="2.8.0-alpha018"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Timer">
-          <rx:DueTime>PT0S</rx:DueTime>
-          <rx:Period>PT1H</rx:Period>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="rx:SelectMany">
-        <Name>Robocopy</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="StringProperty">
-                <Value>Z:\aeon\data\raw\%COMPUTERNAME%</Value>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="StringProperty">
-                <Value>D:\ProjectAeon</Value>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Zip" />
-            </Expression>
-            <Expression xsi:type="Format">
-              <Format>..\..\calibration\robocopy.py {0} {1}</Format>
-              <Selector>Item1,Item2</Selector>
-            </Expression>
-            <Expression xsi:type="PropertyMapping">
-              <PropertyMappings>
-                <Property Name="Arguments" />
-              </PropertyMappings>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="io:StartProcess">
-                <io:FileName>..\..\python\winpython\python-3.9.5.amd64\python.exe</io:FileName>
-                <io:Arguments>..\..\calibration\robocopy.py D:\ProjectAeon Z:\aeon\data\raw\%COMPUTERNAME%</io:Arguments>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="2" Label="Source2" />
-            <Edge From="1" To="2" Label="Source1" />
-            <Edge From="2" To="3" Label="Source1" />
-            <Edge From="3" To="4" Label="Source1" />
-            <Edge From="4" To="5" Label="Source1" />
-            <Edge From="5" To="6" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
-      <Expression xsi:type="Unit" />
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Timer">
           <rx:DueTime>PT0S</rx:DueTime>
@@ -103,28 +52,28 @@
               <LocalTriggerFrequency>125</LocalTriggerFrequency>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:UndergroundFeeder.bonsai">
-              <PortName>COM3</PortName>
-              <WheelDisplacement>WheelDisplacement1</WheelDisplacement>
-              <PelletDelivered>PelletDelivered1</PelletDelivered>
-              <DeliverPellet>DeliverPellet1</DeliverPellet>
               <PatchEvents>Patch1</PatchEvents>
-              <Radius>-4</Radius>
               <SampleRate>SampleRate500Hz</SampleRate>
-              <ResetFeeder>ResetFeeder1</ResetFeeder>
+              <DeliverPellet>DeliverPellet1</DeliverPellet>
+              <PelletDelivered>PelletDelivered1</PelletDelivered>
               <DueTime>PT1S</DueTime>
               <Count>5</Count>
+              <ResetFeeder>ResetFeeder1</ResetFeeder>
+              <PortName>COM3</PortName>
+              <Radius>-4</Radius>
+              <WheelDisplacement>WheelDisplacement1</WheelDisplacement>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:UndergroundFeeder.bonsai">
-              <PortName>COM4</PortName>
-              <WheelDisplacement>WheelDisplacement2</WheelDisplacement>
-              <PelletDelivered>PelletDelivered2</PelletDelivered>
-              <DeliverPellet>DeliverPellet2</DeliverPellet>
               <PatchEvents>Patch2</PatchEvents>
-              <Radius>-4</Radius>
               <SampleRate>SampleRate500Hz</SampleRate>
-              <ResetFeeder>ResetFeeder2</ResetFeeder>
+              <DeliverPellet>DeliverPellet2</DeliverPellet>
+              <PelletDelivered>PelletDelivered2</PelletDelivered>
               <DueTime>PT1S</DueTime>
               <Count>5</Count>
+              <ResetFeeder>ResetFeeder2</ResetFeeder>
+              <PortName>COM4</PortName>
+              <Radius>-4</Radius>
+              <WheelDisplacement>WheelDisplacement2</WheelDisplacement>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\SynchronizerMonitor.bonsai" />
             <Expression xsi:type="Combinator">
@@ -161,18 +110,69 @@
       </Expression>
       <Expression xsi:type="Unit" />
       <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Timer">
+          <rx:DueTime>PT0S</rx:DueTime>
+          <rx:Period>PT1H</rx:Period>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="rx:SelectMany">
+        <Name>Robocopy</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="StringProperty">
+                <Value>D:\ProjectAeon</Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="StringProperty">
+                <Value>Z:\aeon\data\raw\%COMPUTERNAME%</Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Zip" />
+            </Expression>
+            <Expression xsi:type="Format">
+              <Format>..\..\calibration\robocopy.py {0} {1}</Format>
+              <Selector>Item1,Item2</Selector>
+            </Expression>
+            <Expression xsi:type="PropertyMapping">
+              <PropertyMappings>
+                <Property Name="Arguments" />
+              </PropertyMappings>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:StartProcess">
+                <io:FileName>..\..\python\.venv\Scripts\python.exe</io:FileName>
+                <io:Arguments>..\..\calibration\robocopy.py D:\ProjectAeon Z:\aeon\data\raw\%COMPUTERNAME%</io:Arguments>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="2" Label="Source1" />
+            <Edge From="1" To="2" Label="Source2" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="5" To="6" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="Unit" />
+      <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Concat" />
       </Expression>
     </Nodes>
     <Edges>
-      <Edge From="0" To="1" Label="Source1" />
-      <Edge From="1" To="2" Label="Source1" />
-      <Edge From="2" To="8" Label="Source2" />
-      <Edge From="3" To="5" Label="Source1" />
-      <Edge From="4" To="5" Label="Source2" />
+      <Edge From="0" To="2" Label="Source1" />
+      <Edge From="1" To="2" Label="Source2" />
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="4" To="8" Label="Source1" />
       <Edge From="5" To="6" Label="Source1" />
       <Edge From="6" To="7" Label="Source1" />
-      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="7" To="8" Label="Source2" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
