@@ -14,6 +14,7 @@ Packages
 *.exe
 *.exe.settings
 SessionSummary
+Bonsai.exe.WebView2
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
