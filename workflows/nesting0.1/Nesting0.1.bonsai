@@ -67,16 +67,18 @@
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="TriggerSource" />
+                          <Property Name="TriggerFrequency" />
+                          <Property Name="ExposureTime" />
                           <Property Name="SerialNumber" />
                           <Property Name="Gain" />
                           <Property Name="Binning" />
-                          <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
-                          <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
+                          <ExposureTime>INF</ExposureTime>
                           <SerialNumber>23101736</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
@@ -95,16 +97,18 @@
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="TriggerSource" />
+                          <Property Name="TriggerFrequency" />
+                          <Property Name="ExposureTime" />
                           <Property Name="SerialNumber" />
                           <Property Name="Gain" />
                           <Property Name="Binning" />
-                          <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
-                          <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
+                          <ExposureTime>INF</ExposureTime>
                           <SerialNumber>23106245</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
@@ -123,16 +127,18 @@
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="TriggerSource" />
+                          <Property Name="TriggerFrequency" />
+                          <Property Name="ExposureTime" />
                           <Property Name="SerialNumber" />
                           <Property Name="Gain" />
                           <Property Name="Binning" />
-                          <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
-                          <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
+                          <ExposureTime>INF</ExposureTime>
                           <SerialNumber>23106227</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
@@ -151,16 +157,18 @@
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="TriggerSource" />
+                          <Property Name="TriggerFrequency" />
+                          <Property Name="ExposureTime" />
                           <Property Name="SerialNumber" />
                           <Property Name="Gain" />
                           <Property Name="Binning" />
-                          <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
-                          <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
+                          <ExposureTime>8000</ExposureTime>
                           <SerialNumber>23106287</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
@@ -179,16 +187,18 @@
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="TriggerSource" />
+                          <Property Name="TriggerFrequency" />
+                          <Property Name="ExposureTime" />
                           <Property Name="SerialNumber" />
                           <Property Name="Gain" />
                           <Property Name="Binning" />
-                          <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
-                          <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
+                          <ExposureTime>INF</ExposureTime>
                           <SerialNumber>23032826</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
@@ -207,16 +217,18 @@
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="TriggerSource" />
+                          <Property Name="TriggerFrequency" />
+                          <Property Name="ExposureTime" />
                           <Property Name="SerialNumber" />
                           <Property Name="Gain" />
                           <Property Name="Binning" />
-                          <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
-                          <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
+                          <ExposureTime>INF</ExposureTime>
                           <SerialNumber>23032828</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
@@ -235,16 +247,18 @@
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="TriggerSource" />
+                          <Property Name="TriggerFrequency" />
+                          <Property Name="ExposureTime" />
                           <Property Name="SerialNumber" />
                           <Property Name="Gain" />
                           <Property Name="Binning" />
-                          <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
-                          <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
+                          <ExposureTime>8000</ExposureTime>
                           <SerialNumber>23032818</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
@@ -263,16 +277,18 @@
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="TriggerSource" />
+                          <Property Name="TriggerFrequency" />
+                          <Property Name="ExposureTime" />
                           <Property Name="SerialNumber" />
                           <Property Name="Gain" />
                           <Property Name="Binning" />
-                          <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
-                          <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
+                          <ExposureTime>INF</ExposureTime>
                           <SerialNumber>23032811</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
@@ -291,16 +307,18 @@
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="TriggerSource" />
+                          <Property Name="TriggerFrequency" />
+                          <Property Name="ExposureTime" />
                           <Property Name="SerialNumber" />
                           <Property Name="Gain" />
                           <Property Name="Binning" />
-                          <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
-                          <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
+                          <ExposureTime>INF</ExposureTime>
                           <SerialNumber>23032823</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
@@ -319,16 +337,18 @@
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="TriggerSource" />
+                          <Property Name="TriggerFrequency" />
+                          <Property Name="ExposureTime" />
                           <Property Name="SerialNumber" />
                           <Property Name="Gain" />
                           <Property Name="Binning" />
-                          <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
-                          <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
+                          <ExposureTime>INF</ExposureTime>
                           <SerialNumber>23101737</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
@@ -347,16 +367,18 @@
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="TriggerSource" />
+                          <Property Name="TriggerFrequency" />
+                          <Property Name="ExposureTime" />
                           <Property Name="SerialNumber" />
                           <Property Name="Gain" />
                           <Property Name="Binning" />
-                          <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
-                          <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
+                          <ExposureTime>INF</ExposureTime>
                           <SerialNumber>23106236</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
