@@ -653,8 +653,10 @@
         <Name>Logging</Name>
         <Workflow>
           <Nodes>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogController.bonsai">
-              <Path>D:\ProjectAeon\presocial0.1</Path>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RepositoryLogController.bonsai">
+              <RepositoryPath>..\..\</RepositoryPath>
+              <DataPath>D:\ProjectAeon</DataPath>
+              <FallbackPath>D:\Tests</FallbackPath>
               <ChunkSize>1</ChunkSize>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
@@ -665,17 +667,23 @@
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
               <LogName>ClockSynchronizer</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>VideoEvents</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
               <LogName>VideoController</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>CameraTop</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>CameraTop</LogName>
               <FrameRate>50</FrameRate>
             </Expression>
@@ -768,11 +776,15 @@
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
               <LogName>CameraTop</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>CameraWest</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>CameraWest</LogName>
               <FrameRate>50</FrameRate>
             </Expression>
@@ -780,6 +792,8 @@
               <Name>CameraEast</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>CameraEast</LogName>
               <FrameRate>50</FrameRate>
             </Expression>
@@ -787,6 +801,8 @@
               <Name>CameraNorth</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>CameraNorth</LogName>
               <FrameRate>50</FrameRate>
             </Expression>
@@ -794,6 +810,8 @@
               <Name>CameraSouth</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>CameraSouth</LogName>
               <FrameRate>50</FrameRate>
             </Expression>
@@ -801,6 +819,8 @@
               <Name>CameraNest</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>CameraNest</LogName>
               <FrameRate>50</FrameRate>
             </Expression>
@@ -808,6 +828,8 @@
               <Name>CameraPatch1</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>CameraPatch1</LogName>
               <FrameRate>125</FrameRate>
             </Expression>
@@ -815,6 +837,8 @@
               <Name>CameraPatch2</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>CameraPatch2</LogName>
               <FrameRate>125</FrameRate>
             </Expression>
@@ -852,6 +876,8 @@
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
               <LogName>Patch1</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>PatchState1</Name>
@@ -875,6 +901,8 @@ Item3 as Delta)</scr:Expression>
               <Combinator xsi:type="rx:WithLatestFrom" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>Patch1_State</LogName>
               <Selector xsi:nil="true" />
             </Expression>
@@ -912,6 +940,8 @@ Item3 as Delta)</scr:Expression>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
               <LogName>Patch2</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>PatchState2</Name>
@@ -935,6 +965,8 @@ Item3 as Delta)</scr:Expression>
               <Combinator xsi:type="rx:WithLatestFrom" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>Patch2_State</LogName>
               <Selector xsi:nil="true" />
             </Expression>
@@ -942,6 +974,8 @@ Item3 as Delta)</scr:Expression>
               <Name>AudioAmbient</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogAudio.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>AudioAmbient</LogName>
               <SampleRate>192000</SampleRate>
             </Expression>
@@ -949,6 +983,8 @@ Item3 as Delta)</scr:Expression>
               <Name>SubjectState</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>ExperimentalMetadata_SubjectState</LogName>
               <Selector>Seconds,Value.Id,Value.Weight,Value.Type</Selector>
             </Expression>
@@ -962,6 +998,8 @@ Item3 as Delta)</scr:Expression>
               <Combinator xsi:type="rx:Merge" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>ExperimentalMetadata_MessageLog</LogName>
               <Selector>Seconds,Value.Priority,Value.Type,Value.Message</Selector>
             </Expression>
@@ -969,6 +1007,8 @@ Item3 as Delta)</scr:Expression>
               <Name>EnvironmentState</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>ExperimentalMetadata_EnvironmentState</LogName>
               <Selector>Seconds,Value.Type</Selector>
             </Expression>
@@ -1019,6 +1059,8 @@ new(Value.Id as Id,
               <Selector>Value,Seconds</Selector>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>ExperimentalMetadata_SubjectVisits</LogName>
               <Selector>Seconds,Value.Id,Value.Event,Value.Value</Selector>
             </Expression>
@@ -1027,6 +1069,8 @@ new(Value.Id as Id,
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
               <LogName>Rfid</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Timer">
@@ -1047,6 +1091,8 @@ new(Value.Id as Id,
               <Combinator xsi:type="harp:CreateTimestamped" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
               <LogName>System_AvailableMemory</LogName>
               <Selector xsi:nil="true" />
             </Expression>
