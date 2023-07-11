@@ -522,9 +522,15 @@
                   <Expression xsi:type="SubscribeSubject">
                     <Name>CameraTop</Name>
                   </Expression>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="ThresholdValue" />
+                    <Property Name="Mask" />
+                    <Property Name="TrackingCount" />
+                    <Property Name="TrackingEvents" />
+                  </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PositionTracking.bonsai">
                     <ThresholdValue>80</ThresholdValue>
-                    <Mask />
+                    <Mask>ArenaMask_2023-06-26.png</Mask>
                     <TrackingCount>1</TrackingCount>
                     <TrackingEvents>TrackingTop</TrackingEvents>
                   </Expression>
@@ -532,8 +538,9 @@
                 </Nodes>
                 <Edges>
                   <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source1" />
+                  <Edge From="1" To="3" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source2" />
+                  <Edge From="3" To="4" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
