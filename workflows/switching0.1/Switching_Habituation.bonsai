@@ -784,7 +784,7 @@
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
-              <LogName>CameraPatchNorth</LogName>
+              <LogName>CameraPatch1</LogName>
               <FrameRate>125</FrameRate>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -793,7 +793,7 @@
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
-              <LogName>CameraPatchSouth</LogName>
+              <LogName>CameraPatch2</LogName>
               <FrameRate>125</FrameRate>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -829,7 +829,7 @@
               <Combinator xsi:type="rx:Merge" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>PatchNorth</LogName>
+              <LogName>Patch1</LogName>
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
             </Expression>
@@ -857,7 +857,7 @@ Item3 as Delta)</scr:Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
-              <LogName>PatchNorth_State</LogName>
+              <LogName>Patch1_State</LogName>
               <Selector xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -893,7 +893,7 @@ Item3 as Delta)</scr:Expression>
               <Combinator xsi:type="rx:Merge" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>PatchSouth</LogName>
+              <LogName>Patch2</LogName>
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
             </Expression>
@@ -921,7 +921,7 @@ Item3 as Delta)</scr:Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
-              <LogName>PatchSouth_State</LogName>
+              <LogName>Patch2_State</LogName>
               <Selector xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
