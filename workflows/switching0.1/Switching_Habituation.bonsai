@@ -332,7 +332,7 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
-                    <Name>CameraPatchNorth</Name>
+                    <Name>CameraPatch1</Name>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
@@ -351,7 +351,7 @@
                           <SerialNumber>23032811</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
-                          <FrameEvents>CameraPatchNorth</FrameEvents>
+                          <FrameEvents>CameraPatch1</FrameEvents>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -362,7 +362,7 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
-                    <Name>CameraPatchSouth</Name>
+                    <Name>CameraPatch2</Name>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
@@ -381,7 +381,7 @@
                           <SerialNumber>23101737</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
-                          <FrameEvents>CameraPatchSouth</FrameEvents>
+                          <FrameEvents>CameraPatch2</FrameEvents>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -392,7 +392,7 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
-                    <Name>PatchNorth</Name>
+                    <Name>Patch1</Name>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
@@ -408,16 +408,16 @@
                           <Property Name="Count" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:UndergroundFeeder.bonsai">
-                          <PatchEvents>PatchNorth</PatchEvents>
+                          <PatchEvents>Patch1</PatchEvents>
                           <SampleRate>SampleRate500Hz</SampleRate>
-                          <DeliverPellet>DeliverPelletPatchNorth</DeliverPellet>
-                          <PelletDelivered>PelletDeliveredPatchNorth</PelletDelivered>
+                          <DeliverPellet>DeliverPelletPatch1</DeliverPellet>
+                          <PelletDelivered>PelletDeliveredPatch1</PelletDelivered>
                           <DueTime>PT1S</DueTime>
                           <Count>5</Count>
-                          <ResetFeeder>ResetFeederPatchNorth</ResetFeeder>
+                          <ResetFeeder>ResetFeederPatch1</ResetFeeder>
                           <PortName>COM4</PortName>
                           <Radius>-4</Radius>
-                          <WheelDisplacement>WheelPatchNorth</WheelDisplacement>
+                          <WheelDisplacement>WheelPatch1</WheelDisplacement>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -428,7 +428,7 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
-                    <Name>PatchSouth</Name>
+                    <Name>Patch2</Name>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
@@ -444,16 +444,16 @@
                           <Property Name="Count" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:UndergroundFeeder.bonsai">
-                          <PatchEvents>PatchSouth</PatchEvents>
+                          <PatchEvents>Patch2</PatchEvents>
                           <SampleRate>SampleRate500Hz</SampleRate>
-                          <DeliverPellet>DeliverPelletPatchSouth</DeliverPellet>
-                          <PelletDelivered>PelletDeliveredPatchSouth</PelletDelivered>
+                          <DeliverPellet>DeliverPelletPatch2</DeliverPellet>
+                          <PelletDelivered>PelletDeliveredPatch2</PelletDelivered>
                           <DueTime>PT1S</DueTime>
                           <Count>5</Count>
-                          <ResetFeeder>ResetFeederPatchSouth</ResetFeeder>
+                          <ResetFeeder>ResetFeederPatch2</ResetFeeder>
                           <PortName>COM3</PortName>
                           <Radius>-4</Radius>
-                          <WheelDisplacement>WheelPatchSouth</WheelDisplacement>
+                          <WheelDisplacement>WheelPatch2</WheelDisplacement>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -617,16 +617,16 @@
               <rx:Name>SubjectWeight</rx:Name>
             </Expression>
             <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Byte)">
-              <rx:Name>MissedPelletsNorth</rx:Name>
+              <rx:Name>MissedPelletsPatch1</rx:Name>
             </Expression>
             <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
-              <aeon:Name>PatchStateNorth</aeon:Name>
+              <aeon:Name>PatchStatePatch1</aeon:Name>
             </Expression>
             <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Byte)">
-              <rx:Name>MissedPelletsSouth</rx:Name>
+              <rx:Name>MissedPelletsPatch2</rx:Name>
             </Expression>
             <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
-              <aeon:Name>PatchStateSouth</aeon:Name>
+              <aeon:Name>PatchStatePatch2</aeon:Name>
             </Expression>
             <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Double)">
               <rx:Name>BaselineTrigger</rx:Name>
@@ -641,10 +641,10 @@
               <rx:Name>EnvironmentState</rx:Name>
             </Expression>
             <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon:DispenserStateMetadata)">
-              <rx:Name>PatchNorthDispenser</rx:Name>
+              <rx:Name>Patch1Dispenser</rx:Name>
             </Expression>
             <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon:DispenserStateMetadata)">
-              <rx:Name>PatchSouthDispenser</rx:Name>
+              <rx:Name>Patch2Dispenser</rx:Name>
             </Expression>
             <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon:EnvironmentSubjectStateMetadata)">
               <rx:Name>SubjectState</rx:Name>
@@ -656,10 +656,10 @@
               <rx:Name>SubjectStop</rx:Name>
             </Expression>
             <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:UInt16)">
-              <rx:Name>ManualPelletNorth</rx:Name>
+              <rx:Name>ManualPelletPatch1</rx:Name>
             </Expression>
             <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:UInt16)">
-              <rx:Name>ManualPelletSouth</rx:Name>
+              <rx:Name>ManualPelletPatch2</rx:Name>
             </Expression>
           </Nodes>
           <Edges />
@@ -779,7 +779,7 @@
               <FrameRate>125</FrameRate>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>CameraPatchNorth</Name>
+              <Name>CameraPatch1</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
               <Heartbeats />
@@ -788,7 +788,7 @@
               <FrameRate>125</FrameRate>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>CameraPatchSouth</Name>
+              <Name>CameraPatch2</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
               <Heartbeats />
@@ -797,16 +797,16 @@
               <FrameRate>125</FrameRate>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PatchNorth</Name>
+              <Name>Patch1</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PatchNorthDispenser</Name>
+              <Name>Patch1Dispenser</Name>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="aeon:FormatDispenserState" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>ManualPelletNorth</Name>
+              <Name>ManualPelletPatch1</Name>
             </Expression>
             <Expression xsi:type="harp:Format">
               <harp:MessageType>Write</harp:MessageType>
@@ -816,7 +816,7 @@
               </harp:Register>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>MissedPelletsNorth</Name>
+              <Name>MissedPelletsPatch1</Name>
             </Expression>
             <Expression xsi:type="harp:Format">
               <harp:MessageType>Event</harp:MessageType>
@@ -834,7 +834,7 @@
               <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PatchStateNorth</Name>
+              <Name>PatchStatePatch1</Name>
             </Expression>
             <Expression xsi:type="scr:ExpressionTransform">
               <scr:Expression>new(
@@ -843,7 +843,7 @@ Item2 as D1,
 Item3 as Delta)</scr:Expression>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PatchNorth</Name>
+              <Name>Patch1</Name>
             </Expression>
             <Expression xsi:type="harp:Parse">
               <harp:Register xsi:type="harp:ParseMessagePayload">
@@ -861,16 +861,16 @@ Item3 as Delta)</scr:Expression>
               <Selector xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PatchSouth</Name>
+              <Name>Patch2</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PatchSouthDispenser</Name>
+              <Name>Patch2Dispenser</Name>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="aeon:FormatDispenserState" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>ManualPelletSouth</Name>
+              <Name>ManualPelletPatch2</Name>
             </Expression>
             <Expression xsi:type="harp:Format">
               <harp:MessageType>Write</harp:MessageType>
@@ -880,7 +880,7 @@ Item3 as Delta)</scr:Expression>
               </harp:Register>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>MissedPelletsSouth</Name>
+              <Name>MissedPelletsPatch2</Name>
             </Expression>
             <Expression xsi:type="harp:Format">
               <harp:MessageType>Event</harp:MessageType>
@@ -898,7 +898,7 @@ Item3 as Delta)</scr:Expression>
               <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PatchStateSouth</Name>
+              <Name>PatchStatePatch2</Name>
             </Expression>
             <Expression xsi:type="scr:ExpressionTransform">
               <scr:Expression>new(
@@ -907,7 +907,7 @@ Item2 as D1,
 Item3 as Delta)</scr:Expression>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PatchSouth</Name>
+              <Name>Patch2</Name>
             </Expression>
             <Expression xsi:type="harp:Parse">
               <harp:Register xsi:type="harp:ParseMessagePayload">
@@ -1139,25 +1139,25 @@ new(Value.Id as Id,
               <Name>Heatmap</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>DistanceStateNorth</Name>
+              <Name>DistanceStatePatch1</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Value</Selector>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>DistanceStateSouth</Name>
+              <Name>DistanceStatePatch2</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Value</Selector>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PatchStateNorth</Name>
+              <Name>PatchStatePatch1</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Item1</Selector>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PatchStateSouth</Name>
+              <Name>PatchStatePatch2</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Item1</Selector>
@@ -1178,7 +1178,7 @@ new(Value.Id as Id,
               <Name>PatchState</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PatchStateNorth</Name>
+              <Name>PatchStatePatch1</Name>
             </Expression>
             <Expression xsi:type="GroupWorkflow">
               <Name>ToArray</Name>
@@ -1247,7 +1247,7 @@ new(Value.Id as Id,
               </Workflow>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>DeliveryCountNorth</Name>
+              <Name>DeliveryCountPatch1</Name>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:WithLatestFrom" />
@@ -1259,10 +1259,10 @@ int32(Item2) as PelletCount,
 Item1 as Threshold)</scr:Expression>
             </Expression>
             <Expression xsi:type="rx:PublishSubject">
-              <Name>CurrentThresholdPatchNorth</Name>
+              <Name>CurrentThresholdPatch1</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PatchStateSouth</Name>
+              <Name>PatchStatePatch2</Name>
             </Expression>
             <Expression xsi:type="GroupWorkflow">
               <Name>ToArray</Name>
@@ -1331,7 +1331,7 @@ Item1 as Threshold)</scr:Expression>
               </Workflow>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>DeliveryCountSouth</Name>
+              <Name>DeliveryCountPatch2</Name>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:WithLatestFrom" />
@@ -1343,41 +1343,41 @@ int32(Item2) as PelletCount,
 Item1 as Threshold)</scr:Expression>
             </Expression>
             <Expression xsi:type="rx:PublishSubject">
-              <Name>CurrentThresholdPatchSouth</Name>
+              <Name>CurrentThresholdPatch2</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\PelletMonitor.bonsai">
-              <PelletCommand>PatchNorth</PelletCommand>
-              <PelletDelivered>PelletDeliveredPatchNorth</PelletDelivered>
+              <PelletCommand>Patch1</PelletCommand>
+              <PelletDelivered>PelletDeliveredPatch1</PelletDelivered>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
             <Expression xsi:type="rx:PublishSubject">
-              <Name>PelletMonitorNorth</Name>
+              <Name>PelletMonitorPatch1</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Value</Selector>
             </Expression>
             <Expression xsi:type="rx:PublishSubject">
-              <Name>PelletMonitorValueNorth</Name>
+              <Name>PelletMonitorValuePatch1</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\PelletMonitor.bonsai">
-              <PelletCommand>PatchSouth</PelletCommand>
-              <PelletDelivered>PelletDeliveredPatchSouth</PelletDelivered>
+              <PelletCommand>Patch2</PelletCommand>
+              <PelletDelivered>PelletDeliveredPatch2</PelletDelivered>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
             <Expression xsi:type="rx:BehaviorSubject">
-              <Name>PelletMonitorSouth</Name>
+              <Name>PelletMonitorPatch2</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Value</Selector>
             </Expression>
             <Expression xsi:type="rx:PublishSubject">
-              <Name>PelletMonitorValueSouth</Name>
+              <Name>PelletMonitorValuePach2</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>TimeOnPatchNorth</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>TimeOnPatchSouth</Name>
+              <Name>TimeOnPatchPathch2</Name>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:CombineLatest" />
@@ -1397,10 +1397,10 @@ Item2 as PatchSouth)</scr:Expression>
               <Name>TimeSpentOnPatches</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>TimeSinceLastVisitNorth</Name>
+              <Name>TimeSinceLastVisitPatch1</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>TimeSinceLastVisitSouth</Name>
+              <Name>TimeSinceLastVisitPatch2</Name>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:CombineLatest" />
@@ -1420,14 +1420,14 @@ Item2 as PatchSouth)</scr:Expression>
               <Name>TimeSinceLastVisit</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>WheelPatchNorth</Name>
+              <Name>WheelPatch1</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Value</Selector>
             </Expression>
             <Expression xsi:type="rx:Accumulate" />
             <Expression xsi:type="SubscribeSubject">
-              <Name>WheelPatchSouth</Name>
+              <Name>WheelPatch2</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Value</Selector>
@@ -1452,8 +1452,8 @@ Item2 as PatchSouth)</scr:Expression>
               <Name>TotalDistanceTravelled</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimeSpentOnWheel.bonsai">
-              <Patch>PatchNorth</Patch>
-              <WheelPatch>WheelPatchNorth</WheelPatch>
+              <Patch>Patch1</Patch>
+              <WheelPatch>WheelPatch1</WheelPatch>
               <Threshold>0.0003</Threshold>
               <LowPass>1</LowPass>
             </Expression>
@@ -1470,20 +1470,20 @@ Item2 as PatchSouth)</scr:Expression>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimeSinceLastEvent.bonsai" />
             <Expression xsi:type="rx:BehaviorSubject">
-              <Name>TimeSinceLastVisitNorth</Name>
+              <Name>TimeSinceLastVisitPatch1</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimeSpentOnWheel.bonsai">
-              <Patch>PatchSouth</Patch>
-              <WheelPatch>WheelPatchSouth</WheelPatch>
+              <Patch>Patch2</Patch>
+              <WheelPatch>WheelPatch2</WheelPatch>
               <Threshold>0.0003</Threshold>
               <LowPass>1</LowPass>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
             <Expression xsi:type="rx:BehaviorSubject">
-              <Name>TimeOnPatchSouth</Name>
+              <Name>TimeOnPatchPathch2</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>TimeOnPatchSouth</Name>
+              <Name>TimeOnPatchPathch2</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
             <Expression xsi:type="Combinator">
@@ -1491,7 +1491,7 @@ Item2 as PatchSouth)</scr:Expression>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimeSinceLastEvent.bonsai" />
             <Expression xsi:type="rx:BehaviorSubject">
-              <Name>TimeSinceLastVisitSouth</Name>
+              <Name>TimeSinceLastVisitPatch2</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>ActivityCenter</Name>
@@ -1557,27 +1557,27 @@ Item1.Value as CurrentWeight,
               <Name>PercentWeightLoss</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\PelletMissed.bonsai">
-              <PelletDelivered>PelletDeliveredPatchNorth</PelletDelivered>
+              <PelletDelivered>PelletDeliveredPatch1</PelletDelivered>
               <TimeToMiss>PT2S</TimeToMiss>
               <DistanceToMiss>20</DistanceToMiss>
               <TimeInChute>PT0S</TimeInChute>
-              <WheelDisplacement>WheelPatchNorth</WheelDisplacement>
+              <WheelDisplacement>WheelPatch1</WheelDisplacement>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>MissedPelletsNorth</Name>
+              <Name>MissedPelletsPatch1</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\PelletMissed.bonsai">
-              <PelletDelivered>PelletDeliveredPatchSouth</PelletDelivered>
+              <PelletDelivered>PelletDeliveredPatch2</PelletDelivered>
               <TimeToMiss>PT2S</TimeToMiss>
               <DistanceToMiss>20</DistanceToMiss>
               <TimeInChute>PT0S</TimeInChute>
-              <WheelDisplacement>WheelPatchSouth</WheelDisplacement>
+              <WheelDisplacement>WheelPatch2</WheelDisplacement>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>MissedPelletsSouth</Name>
+              <Name>MissedPelletsPatch2</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PelletDeliveredPatchNorth</Name>
+              <Name>PelletDeliveredPatch1</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentCondition.bonsai">
               <Value>Experiment</Value>
@@ -1586,7 +1586,7 @@ Item1.Value as CurrentWeight,
               <Name>TotalPelletsDeliveredNorth</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PelletDeliveredPatchSouth</Name>
+              <Name>PelletDeliveredPatch2</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentCondition.bonsai">
               <Value>Experiment</Value>
@@ -1595,7 +1595,7 @@ Item1.Value as CurrentWeight,
               <Name>TotalPelletsDeliveredSouth</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>MissedPelletsNorth</Name>
+              <Name>MissedPelletsPatch1</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentCondition.bonsai">
               <Value>Experiment</Value>
@@ -1604,7 +1604,7 @@ Item1.Value as CurrentWeight,
               <Name>TotalMissedPelletsNorth</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>MissedPelletsSouth</Name>
+              <Name>MissedPelletsPatch2</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentCondition.bonsai">
               <Value>Experiment</Value>
@@ -1691,7 +1691,7 @@ Item1.Value as CurrentWeight,
                     <Name>AlertLogs</Name>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>PatchNorthDispenser</Name>
+                    <Name>Patch1Dispenser</Name>
                   </Expression>
                   <Expression xsi:type="ExternalizedMapping">
                     <Property Name="PelletThreshold" />
@@ -1728,7 +1728,7 @@ Item1.Value as CurrentWeight,
                     <AlertRefractoryPeriod>PT5M</AlertRefractoryPeriod>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>PatchSouthDispenser</Name>
+                    <Name>Patch2Dispenser</Name>
                   </Expression>
                   <Expression xsi:type="rx:Condition">
                     <Name>LowFood</Name>
@@ -1784,7 +1784,7 @@ Item1.Value as CurrentWeight,
                     <Name>AlertLogs</Name>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>PelletMonitorNorth</Name>
+                    <Name>PelletMonitorPatch1</Name>
                   </Expression>
                   <Expression xsi:type="ExternalizedMapping">
                     <Property Name="Count" DisplayName="DeliveryFailureThreshold" />
@@ -1882,7 +1882,7 @@ Item1.Value as CurrentWeight,
                     <Name>AlertLogs</Name>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>PelletMonitorSouth</Name>
+                    <Name>PelletMonitorPatch2</Name>
                   </Expression>
                   <Expression xsi:type="rx:Condition">
                     <Name>DispenserBroken</Name>
@@ -1977,7 +1977,7 @@ Item1.Value as CurrentWeight,
                     <Name>AlertLogs</Name>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>MissedPelletsNorth</Name>
+                    <Name>MissedPelletsPatch1</Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:ElementIndex" />
@@ -2019,7 +2019,7 @@ Item2.Value.Id as Id)</scr:Expression>
                     <Name>AlertLogs</Name>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>MissedPelletsSouth</Name>
+                    <Name>MissedPelletsPatch2</Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:ElementIndex" />
@@ -2260,7 +2260,7 @@ Item2.Value.Id as Id)</scr:Expression>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="SubscribeSubject">
-                          <Name>PatchStateNorth</Name>
+                          <Name>PatchStatePatch1</Name>
                         </Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="rx:Take">
@@ -2274,7 +2274,7 @@ Item2 as D0,
 Item3 as Delta)</scr:Expression>
                         </Expression>
                         <Expression xsi:type="SubscribeSubject">
-                          <Name>PatchStateSouth</Name>
+                          <Name>PatchStatePatch2</Name>
                         </Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="rx:Take">
@@ -2288,7 +2288,7 @@ Item2 as D0,
 Item3 as Delta)</scr:Expression>
                         </Expression>
                         <Expression xsi:type="SubscribeSubject">
-                          <Name>PatchNorthDispenser</Name>
+                          <Name>Patch1Dispenser</Name>
                         </Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="rx:Take">
@@ -2299,7 +2299,7 @@ Item3 as Delta)</scr:Expression>
                           <Selector>Value.Value</Selector>
                         </Expression>
                         <Expression xsi:type="SubscribeSubject">
-                          <Name>PatchSouthDispenser</Name>
+                          <Name>Patch2Dispenser</Name>
                         </Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="rx:Take">
@@ -2320,7 +2320,7 @@ Item3 as PatchDispenser1,
 Item4 as PatchDispenser2)</scr:Expression>
                         </Expression>
                         <Expression xsi:type="SubscribeSubject">
-                          <Name>TimeOnPatchSouth</Name>
+                          <Name>TimeOnPatchPathch2</Name>
                         </Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="rx:Take">
@@ -2336,7 +2336,7 @@ Item4 as PatchDispenser2)</scr:Expression>
                           </Combinator>
                         </Expression>
                         <Expression xsi:type="SubscribeSubject">
-                          <Name>TimeSinceLastVisitSouth</Name>
+                          <Name>TimeSinceLastVisitPatch2</Name>
                         </Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="rx:Take">
@@ -2344,7 +2344,7 @@ Item4 as PatchDispenser2)</scr:Expression>
                           </Combinator>
                         </Expression>
                         <Expression xsi:type="SubscribeSubject">
-                          <Name>TimeSinceLastVisitNorth</Name>
+                          <Name>TimeSinceLastVisitPatch1</Name>
                         </Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="rx:Take">
@@ -2705,10 +2705,10 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                           <FrameEvents>CameraSouth</FrameEvents>
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Extensions\DroppedFrames.bonsai">
-                          <FrameEvents>CameraPatchNorth</FrameEvents>
+                          <FrameEvents>CameraPatch1</FrameEvents>
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Extensions\DroppedFrames.bonsai">
-                          <FrameEvents>CameraPatchSouth</FrameEvents>
+                          <FrameEvents>CameraPatch2</FrameEvents>
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Extensions\DroppedFrames.bonsai">
                           <FrameEvents>CameraNestSouthFront</FrameEvents>
@@ -2954,38 +2954,38 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
         <Workflow>
           <Nodes>
             <Expression xsi:type="SubscribeSubject">
-              <Name>WheelPatchNorth</Name>
+              <Name>WheelPatch1</Name>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
               <Property Name="DistanceThreshold" DisplayName="ThresholdPatchNorth" />
               <Property Name="Delta" DisplayName="DeltaPatchNorth" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\LinearDepletion.bonsai">
-              <DistanceState>DistanceStateNorth</DistanceState>
+              <DistanceState>DistanceStatePatch1</DistanceState>
               <DistanceThreshold>50</DistanceThreshold>
               <Delta>0</Delta>
-              <DeliveryCount>DeliveryCountNorth</DeliveryCount>
-              <PatchState>PatchStateNorth</PatchState>
+              <DeliveryCount>DeliveryCountPatch1</DeliveryCount>
+              <PatchState>PatchStatePatch1</PatchState>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>DeliverPelletPatchNorth</Name>
+              <Name>DeliverPelletPatch1</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>WheelPatchSouth</Name>
+              <Name>WheelPatch2</Name>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
               <Property Name="DistanceThreshold" DisplayName="ThresholdPatchSouth" />
               <Property Name="Delta" DisplayName="DeltaPatchSouth" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\LinearDepletion.bonsai">
-              <DistanceState>DistanceStateSouth</DistanceState>
+              <DistanceState>DistanceStatePatch2</DistanceState>
               <DistanceThreshold>50</DistanceThreshold>
               <Delta>0</Delta>
-              <DeliveryCount>DeliveryCountSouth</DeliveryCount>
-              <PatchState>PatchStateSouth</PatchState>
+              <DeliveryCount>DeliveryCountPatch2</DeliveryCount>
+              <PatchState>PatchStatePatch2</PatchState>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>DeliverPelletPatchSouth</Name>
+              <Name>DeliverPelletPatch2</Name>
             </Expression>
           </Nodes>
           <Edges>
@@ -3084,18 +3084,18 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
               </Combinator>
             </Expression>
             <Expression xsi:type="GroupWorkflow">
-              <Name>ManualPelletNorth</Name>
+              <Name>ManualPelletPatch1</Name>
               <Workflow>
                 <Nodes>
                   <Expression xsi:type="WorkflowInput">
                     <Name>Source1</Name>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TriggerPellet.bonsai">
-                    <PatchEvents>PatchNorth</PatchEvents>
-                    <DeliverPellet>DeliverPelletPatchNorth</DeliverPellet>
+                    <PatchEvents>Patch1</PatchEvents>
+                    <DeliverPellet>DeliverPelletPatch1</DeliverPellet>
                   </Expression>
                   <Expression xsi:type="MulticastSubject">
-                    <Name>ManualPelletNorth</Name>
+                    <Name>ManualPelletPatch1</Name>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
@@ -3113,18 +3113,18 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
               </Combinator>
             </Expression>
             <Expression xsi:type="GroupWorkflow">
-              <Name>ManualPelletSouth</Name>
+              <Name>ManualPelletPatch2</Name>
               <Workflow>
                 <Nodes>
                   <Expression xsi:type="WorkflowInput">
                     <Name>Source1</Name>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TriggerPellet.bonsai">
-                    <PatchEvents>PatchSouth</PatchEvents>
-                    <DeliverPellet>DeliverPelletPatchSouth</DeliverPellet>
+                    <PatchEvents>Patch2</PatchEvents>
+                    <DeliverPellet>DeliverPelletPatch2</DeliverPellet>
                   </Expression>
                   <Expression xsi:type="MulticastSubject">
-                    <Name>ManualPelletSouth</Name>
+                    <Name>ManualPelletPatch2</Name>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
@@ -3136,7 +3136,7 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
               </Workflow>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PatchStateNorth</Name>
+              <Name>PatchStatePatch1</Name>
             </Expression>
             <Expression xsi:type="scr:ExpressionTransform">
               <scr:Expression>new(
@@ -3163,7 +3163,7 @@ Item3 as Delta)</scr:Expression>
               </Workflow>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PatchStateSouth</Name>
+              <Name>PatchStatePatch2</Name>
             </Expression>
             <Expression xsi:type="scr:ExpressionTransform">
               <scr:Expression>new(
@@ -3212,7 +3212,7 @@ Item3 as Delta)</scr:Expression>
               <Workflow>
                 <Nodes>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>CameraPatchNorth</Name>
+                    <Name>CameraPatch1</Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:SampleInterval">
@@ -3224,7 +3224,7 @@ Item3 as Delta)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="VisualizerMapping" />
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>CameraPatchSouth</Name>
+                    <Name>CameraPatch2</Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:SampleInterval">
@@ -3241,7 +3241,7 @@ Item3 as Delta)</scr:Expression>
                   <Expression xsi:type="VisualizerMapping" />
                   <Expression xsi:type="VisualizerMapping" />
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>CurrentThresholdPatchNorth</Name>
+                    <Name>CurrentThresholdPatch1</Name>
                   </Expression>
                   <Expression xsi:type="viz:RollingGraphBuilder">
                     <viz:IndexSelector>PelletCount</viz:IndexSelector>
@@ -3268,7 +3268,7 @@ Item3 as Delta)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="VisualizerMapping" />
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>CurrentThresholdPatchSouth</Name>
+                    <Name>CurrentThresholdPatch2</Name>
                   </Expression>
                   <Expression xsi:type="viz:RollingGraphBuilder">
                     <viz:IndexSelector>PelletCount</viz:IndexSelector>
@@ -3295,11 +3295,11 @@ Item3 as Delta)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="VisualizerMapping" />
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>PelletMonitorValueNorth</Name>
+                    <Name>PelletMonitorValuePatch1</Name>
                   </Expression>
                   <Expression xsi:type="VisualizerMapping" />
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>PelletMonitorValueSouth</Name>
+                    <Name>PelletMonitorValuePach2</Name>
                   </Expression>
                   <Expression xsi:type="VisualizerMapping" />
                   <Expression xsi:type="viz:TableLayoutPanelBuilder">
@@ -3540,7 +3540,7 @@ Item3 as Delta)</scr:Expression>
                     </Builder>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>PelletDeliveredPatchNorth</Name>
+                    <Name>PelletDeliveredPatch1</Name>
                   </Expression>
                   <Expression xsi:type="rx:Condition">
                     <Name>RisingEdge</Name>
@@ -3566,7 +3566,7 @@ Item3 as Delta)</scr:Expression>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>PatchNorth</Name>
+                    <Name>Patch1</Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="aeon:DispenserState">
@@ -3574,11 +3574,11 @@ Item3 as Delta)</scr:Expression>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="MulticastSubject">
-                    <Name>PatchNorthDispenser</Name>
+                    <Name>Patch1Dispenser</Name>
                   </Expression>
                   <Expression xsi:type="VisualizerMapping" />
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>PelletDeliveredPatchSouth</Name>
+                    <Name>PelletDeliveredPatch2</Name>
                   </Expression>
                   <Expression xsi:type="rx:Condition">
                     <Name>RisingEdge</Name>
@@ -3604,7 +3604,7 @@ Item3 as Delta)</scr:Expression>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>PatchSouth</Name>
+                    <Name>Patch2</Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="aeon:DispenserState">
@@ -3612,7 +3612,7 @@ Item3 as Delta)</scr:Expression>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="MulticastSubject">
-                    <Name>PatchSouthDispenser</Name>
+                    <Name>Patch2Dispenser</Name>
                   </Expression>
                   <Expression xsi:type="VisualizerMapping" />
                   <Expression xsi:type="SubscribeSubject">
@@ -3652,7 +3652,7 @@ Item3 as Delta)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>PatchNorthDispenser</Name>
+                    <Name>Patch1Dispenser</Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Skip">
@@ -3684,10 +3684,10 @@ Item3 as Delta)</scr:Expression>
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="MulticastSubject">
-                    <Name>ResetFeederPatchNorth</Name>
+                    <Name>ResetFeederPatch1</Name>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>PatchSouthDispenser</Name>
+                    <Name>Patch2Dispenser</Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Skip">
@@ -3719,7 +3719,7 @@ Item3 as Delta)</scr:Expression>
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="MulticastSubject">
-                    <Name>ResetFeederPatchSouth</Name>
+                    <Name>ResetFeederPatch2</Name>
                   </Expression>
                 </Nodes>
                 <Edges>
