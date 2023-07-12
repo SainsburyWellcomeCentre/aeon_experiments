@@ -288,7 +288,7 @@
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
-                          <SerialNumber>23032811</SerialNumber>
+                          <SerialNumber>23106236</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
                           <FrameEvents>CameraNestSouthSide</FrameEvents>
@@ -348,7 +348,7 @@
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
-                          <SerialNumber>23101737</SerialNumber>
+                          <SerialNumber>23032811</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
                           <FrameEvents>CameraPatchNorth</FrameEvents>
@@ -378,7 +378,7 @@
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
-                          <SerialNumber>23106236</SerialNumber>
+                          <SerialNumber>23101737</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
                           <FrameEvents>CameraPatchSouth</FrameEvents>
@@ -2599,7 +2599,7 @@ Mode: {1}</Format>
                         </Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="io:GetFiles">
-                            <io:Path>D:\ProjectAeon\experiment0.3</io:Path>
+                            <io:Path>D:\Tests\Switching</io:Path>
                             <io:SearchPattern>*</io:SearchPattern>
                             <io:SearchOption>AllDirectories</io:SearchOption>
                           </Combinator>
