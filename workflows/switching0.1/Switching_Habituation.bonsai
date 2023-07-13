@@ -2944,10 +2944,10 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
         </Workflow>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
-        <Property Name="ThresholdPatchNorth" />
-        <Property Name="DeltaPatchNorth" />
-        <Property Name="ThresholdPatchSouth" />
-        <Property Name="DeltaPatchSouth" />
+        <Property Name="ThresholdPatch1" />
+        <Property Name="DeltaPatch1" />
+        <Property Name="ThresholdPatch2" />
+        <Property Name="DeltaPatch2" />
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>TaskLogic</Name>
@@ -2957,8 +2957,8 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
               <Name>WheelPatch1</Name>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
-              <Property Name="DistanceThreshold" DisplayName="ThresholdPatchNorth" />
-              <Property Name="Delta" DisplayName="DeltaPatchNorth" />
+              <Property Name="DistanceThreshold" DisplayName="ThresholdPatch1" />
+              <Property Name="Delta" DisplayName="DeltaPatch1" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\LinearDepletion.bonsai">
               <DistanceState>DistanceStatePatch1</DistanceState>
@@ -2974,8 +2974,8 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
               <Name>WheelPatch2</Name>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
-              <Property Name="DistanceThreshold" DisplayName="ThresholdPatchSouth" />
-              <Property Name="Delta" DisplayName="DeltaPatchSouth" />
+              <Property Name="DistanceThreshold" DisplayName="ThresholdPatch2" />
+              <Property Name="Delta" DisplayName="DeltaPatch2" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\LinearDepletion.bonsai">
               <DistanceState>DistanceStatePatch2</DistanceState>
