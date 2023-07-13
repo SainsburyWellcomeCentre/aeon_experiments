@@ -689,7 +689,7 @@
               <ChunkSize>1</ChunkSize>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
-              <WorkflowName>Switching_Habituation.bonsai</WorkflowName>
+              <WorkflowName>Switching_Habituation_Probabilistic.bonsai</WorkflowName>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>VideoEvents</Name>
