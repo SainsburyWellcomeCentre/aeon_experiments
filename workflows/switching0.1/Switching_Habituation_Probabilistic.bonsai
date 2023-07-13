@@ -3351,7 +3351,7 @@ RatePatch2 as Rate)</scr:Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Extensions\RandomDepletion.bonsai">
                     <Name>DistanceStatePatch1</Name>
                     <DistanceThreshold>75</DistanceThreshold>
-                    <Rate>0.01</Rate>
+                    <Rate>10000</Rate>
                     <DeliveryCount>DeliveryCountPatch1</DeliveryCount>
                     <PatchState>PatchStatePatch1</PatchState>
                   </Expression>
@@ -3371,7 +3371,7 @@ RatePatch2 as Rate)</scr:Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Extensions\RandomDepletion.bonsai">
                     <Name>DistanceStatePatch2</Name>
                     <DistanceThreshold>75</DistanceThreshold>
-                    <Rate>0.01</Rate>
+                    <Rate>10000</Rate>
                     <DeliveryCount>DeliveryCountPatch2</DeliveryCount>
                     <PatchState>PatchStatePatch2</PatchState>
                   </Expression>
@@ -3681,7 +3681,7 @@ Item3 as Delta)</scr:Expression>
                     <viz:Max xsi:nil="true" />
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
-                    <Name>ThresholdPatchNorth</Name>
+                    <Name>ThresholdPatch1</Name>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="WorkflowInput">
@@ -3708,7 +3708,7 @@ Item3 as Delta)</scr:Expression>
                     <viz:Max xsi:nil="true" />
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
-                    <Name>ThresholdPatchSouth</Name>
+                    <Name>ThresholdPatch2</Name>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="WorkflowInput">
@@ -3998,7 +3998,7 @@ Item3 as Delta)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="aeon:DispenserState">
-                      <aeon:Name>PatchNorth</aeon:Name>
+                      <aeon:Name>Patch1</aeon:Name>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="MulticastSubject">
@@ -4036,7 +4036,7 @@ Item3 as Delta)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="aeon:DispenserState">
-                      <aeon:Name>PatchSouth</aeon:Name>
+                      <aeon:Name>Patch2</aeon:Name>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="MulticastSubject">
