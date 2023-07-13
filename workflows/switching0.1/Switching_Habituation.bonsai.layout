@@ -20,8 +20,8 @@
         <Y>3</Y>
       </Location>
       <Size>
-        <Width>1365</Width>
-        <Height>890</Height>
+        <Width>1506</Width>
+        <Height>903</Height>
       </Size>
       <WindowState>Normal</WindowState>
     </EditorDialogSettings>
@@ -128,8 +128,8 @@
         <Y>3</Y>
       </Location>
       <Size>
-        <Width>1365</Width>
-        <Height>890</Height>
+        <Width>1506</Width>
+        <Height>903</Height>
       </Size>
       <WindowState>Normal</WindowState>
     </EditorDialogSettings>
@@ -152,7 +152,7 @@
         <Y>3</Y>
       </Location>
       <Size>
-        <Width>1365</Width>
+        <Width>1506</Width>
         <Height>903</Height>
       </Size>
       <WindowState>Normal</WindowState>
@@ -485,11 +485,11 @@
       <DialogSettings xsi:type="WorkflowEditorSettings">
         <Visible>true</Visible>
         <Location>
-          <X>589</X>
+          <X>547</X>
           <Y>29</Y>
         </Location>
         <Size>
-          <Width>696</Width>
+          <Width>738</Width>
           <Height>976</Height>
         </Size>
         <WindowState>Normal</WindowState>
@@ -518,8 +518,8 @@
                       <MatVisualizer>
                         <XMin>0</XMin>
                         <XMax>1500</XMax>
-                        <YMin>-9.9999999999999982</YMin>
-                        <YMax>60</YMax>
+                        <YMin>-2000</YMin>
+                        <YMax>12000</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
                         <SelectedPage>0</SelectedPage>
@@ -541,8 +541,8 @@
                       <MatVisualizer>
                         <XMin>0</XMin>
                         <XMax>1500</XMax>
-                        <YMin>-10</YMin>
-                        <YMax>60</YMax>
+                        <YMin>-2000</YMin>
+                        <YMax>12000</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
                         <SelectedPage>0</SelectedPage>
@@ -563,8 +563,8 @@
                     <VisualizerSettings>
                       <RollingGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>47</Min>
-                        <Max>53</Max>
+                        <Min>9500</Min>
+                        <Max>10600</Max>
                         <AutoScale>true</AutoScale>
                       </RollingGraphVisualizer>
                     </VisualizerSettings>
@@ -574,8 +574,8 @@
                     <VisualizerSettings>
                       <RollingGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>47</Min>
-                        <Max>53</Max>
+                        <Min>9500</Min>
+                        <Max>10600</Max>
                         <AutoScale>true</AutoScale>
                       </RollingGraphVisualizer>
                     </VisualizerSettings>
@@ -626,7 +626,7 @@
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
                         <Min>0</Min>
-                        <Max>1.1</Max>
+                        <Max>3.5</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -637,7 +637,7 @@
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
                         <Min>0</Min>
-                        <Max>0.0090000000000000028</Max>
+                        <Max>0.009</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -654,8 +654,8 @@
             <Y>3</Y>
           </Location>
           <Size>
-            <Width>1365</Width>
-            <Height>890</Height>
+            <Width>1506</Width>
+            <Height>903</Height>
           </Size>
           <WindowState>Normal</WindowState>
         </EditorDialogSettings>
@@ -764,7 +764,7 @@
             <Y>3</Y>
           </Location>
           <Size>
-            <Width>1365</Width>
+            <Width>1506</Width>
             <Height>903</Height>
           </Size>
           <WindowState>Normal</WindowState>
@@ -792,7 +792,7 @@
             <Y>3</Y>
           </Location>
           <Size>
-            <Width>1365</Width>
+            <Width>1506</Width>
             <Height>903</Height>
           </Size>
           <WindowState>Normal</WindowState>
