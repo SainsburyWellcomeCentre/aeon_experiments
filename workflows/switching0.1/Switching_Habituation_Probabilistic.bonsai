@@ -2612,7 +2612,7 @@ Mode: {1}</Format>
                         </Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="io:GetFiles">
-                            <io:Path>D:\Tests\Switching</io:Path>
+                            <io:Path>D:\ProjectAeon\Switching</io:Path>
                             <io:SearchPattern>*</io:SearchPattern>
                             <io:SearchOption>AllDirectories</io:SearchOption>
                           </Combinator>
@@ -2997,7 +2997,7 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="DoubleProperty">
-                      <Value>75</Value>
+                      <Value>50</Value>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="rx:BehaviorSubject">
@@ -3019,7 +3019,7 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="DoubleProperty">
-                      <Value>75</Value>
+                      <Value>25</Value>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="rx:BehaviorSubject">
@@ -3030,7 +3030,7 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="DoubleProperty">
-                      <Value>0.01</Value>
+                      <Value>0.00613</Value>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="rx:BehaviorSubject">
@@ -3041,7 +3041,7 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="DoubleProperty">
-                      <Value>75</Value>
+                      <Value>25</Value>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="rx:BehaviorSubject">
@@ -3052,7 +3052,7 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="DoubleProperty">
-                      <Value>0.0025</Value>
+                      <Value>0.04</Value>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="rx:BehaviorSubject">
@@ -3134,7 +3134,7 @@ Item4 as HardRate)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="GreaterThanOrEqual">
                     <Operand xsi:type="IntProperty">
-                      <Value>18</Value>
+                      <Value>11</Value>
                     </Operand>
                   </Expression>
                   <Expression xsi:type="rx:Condition">
@@ -3350,7 +3350,7 @@ RatePatch2 as Rate)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Extensions\RandomDepletion.bonsai">
                     <Name>DistanceStatePatch1</Name>
-                    <DistanceThreshold>75</DistanceThreshold>
+                    <DistanceThreshold>50</DistanceThreshold>
                     <Rate>10000</Rate>
                     <DeliveryCount>DeliveryCountPatch1</DeliveryCount>
                     <PatchState>PatchStatePatch1</PatchState>
@@ -3370,7 +3370,7 @@ RatePatch2 as Rate)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Extensions\RandomDepletion.bonsai">
                     <Name>DistanceStatePatch2</Name>
-                    <DistanceThreshold>75</DistanceThreshold>
+                    <DistanceThreshold>50</DistanceThreshold>
                     <Rate>10000</Rate>
                     <DeliveryCount>DeliveryCountPatch2</DeliveryCount>
                     <PatchState>PatchStatePatch2</PatchState>

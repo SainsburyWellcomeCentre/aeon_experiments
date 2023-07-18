@@ -169,10 +169,6 @@
       <Height>65</Height>
     </Size>
     <WindowState>Normal</WindowState>
-    <VisualizerTypeName>Bonsai.Design.ObjectTextVisualizer</VisualizerTypeName>
-    <VisualizerSettings>
-      <ObjectTextVisualizer />
-    </VisualizerSettings>
     <EditorDialogSettings>
       <Visible>true</Visible>
       <Location>
@@ -489,12 +485,12 @@
       <DialogSettings xsi:type="WorkflowEditorSettings">
         <Visible>true</Visible>
         <Location>
-          <X>753</X>
-          <Y>24</Y>
+          <X>385</X>
+          <Y>42</Y>
         </Location>
         <Size>
-          <Width>672</Width>
-          <Height>972</Height>
+          <Width>862</Width>
+          <Height>966</Height>
         </Size>
         <WindowState>Normal</WindowState>
         <VisualizerTypeName>Bonsai.Design.Visualizers.TableLayoutPanelVisualizer</VisualizerTypeName>
@@ -523,7 +519,7 @@
                         <XMin>0</XMin>
                         <XMax>15</XMax>
                         <YMin>-10</YMin>
-                        <YMax>80</YMax>
+                        <YMax>60</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
                         <SelectedPage>0</SelectedPage>
@@ -542,7 +538,7 @@
                         <XMin>0</XMin>
                         <XMax>15</XMax>
                         <YMin>-10</YMin>
-                        <YMax>80</YMax>
+                        <YMax>60</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
                         <SelectedPage>0</SelectedPage>
@@ -559,9 +555,9 @@
                     <VisualizerSettings>
                       <RollingGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>0</Min>
-                        <Max>1.1</Max>
-                        <AutoScale>true</AutoScale>
+                        <Min>-27.684454122517025</Min>
+                        <Max>527.68445412251685</Max>
+                        <AutoScale>false</AutoScale>
                       </RollingGraphVisualizer>
                     </VisualizerSettings>
                   </MashupSettings>
@@ -570,9 +566,9 @@
                     <VisualizerSettings>
                       <RollingGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>0</Min>
-                        <Max>1.1</Max>
-                        <AutoScale>true</AutoScale>
+                        <Min>-617.24880000000053</Min>
+                        <Max>2217.2488000000003</Max>
+                        <AutoScale>false</AutoScale>
                       </RollingGraphVisualizer>
                     </VisualizerSettings>
                   </MashupSettings>
@@ -610,8 +606,8 @@
                     <VisualizerSettings>
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>-1</Min>
-                        <Max>1</Max>
+                        <Min>0</Min>
+                        <Max>0.79999999999999993</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -622,7 +618,7 @@
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
                         <Min>0</Min>
-                        <Max>70</Max>
+                        <Max>249.99999999999994</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -632,8 +628,8 @@
                     <VisualizerSettings>
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>-0.0002</Min>
-                        <Max>0.0018000000000000002</Max>
+                        <Min>0</Min>
+                        <Max>0.4</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
