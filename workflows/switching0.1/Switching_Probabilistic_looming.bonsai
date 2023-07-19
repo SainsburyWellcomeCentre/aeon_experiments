@@ -3562,6 +3562,12 @@ RatePatch2 as Rate)</scr:Expression>
                           <Name>LoomPlayerRandom</Name>
                         </Expression>
                         <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:WithLatestFrom" />
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Item2</Selector>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
                           <Combinator xsi:type="p2:Sample" />
                         </Expression>
                         <Expression xsi:type="InputMapping">
