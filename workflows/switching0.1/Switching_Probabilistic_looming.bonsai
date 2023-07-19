@@ -3535,7 +3535,18 @@ RatePatch2 as Rate)</scr:Expression>
                     <WhelDisplacement>WheelPatch2</WhelDisplacement>
                     <LessThanRandom>0.5</LessThanRandom>
                   </Expression>
-                  <Expression xsi:type="MulticastSubject">
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Merge" />
+                  </Expression>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Interval" DisplayName="LoomRefactoryPeriod" Category="LoomTrigger" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:GateInterval">
+                      <rx:Interval>PT10S</rx:Interval>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="rx:BehaviorSubject">
                     <Name>LoomTrigger</Name>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
