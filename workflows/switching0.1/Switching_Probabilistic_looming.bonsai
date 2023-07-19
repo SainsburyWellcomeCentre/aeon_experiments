@@ -4433,6 +4433,25 @@ Item3 as Delta)</scr:Expression>
                 </Edges>
               </Workflow>
             </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>LoomState</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>SoundBoardEvents</Name>
+                  </Expression>
+                  <Expression xsi:type="p1:Parse">
+                    <harp:MessageType>Event</harp:MessageType>
+                    <harp:Register xsi:type="p1:PlaySoundOrFrequency" />
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
           </Nodes>
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
