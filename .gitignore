@@ -12,7 +12,7 @@ Packages
 *.avi
 *.dll
 *.exe
-*.exe.settings
+*.exe.*
 SessionSummary
 
 # Byte-compiled / optimized / DLL files
