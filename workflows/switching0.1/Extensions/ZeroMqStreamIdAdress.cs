@@ -14,16 +14,16 @@ public class ZeroMqStreamIdAdress
 {
     public IObservable<ZeroMqAddress> Process(IObservable<Tuple<NetMQFrame, NetMQFrame>> source)
     {
-        return source.Select(value => new ZeroMqAddress{ Adress = value.Item1.ConvertToString(), StreamId = value.Item2.ConvertToString()});
+        return source.Select(value => new ZeroMqAddress{ Address = value.Item1.ConvertToString(), StreamId = value.Item2.ConvertToString()});
     }
     public IObservable<ZeroMqAddress> Process(IObservable<Tuple<string, string>> source)
     {
-        return source.Select(value => new ZeroMqAddress{ Adress = value.Item1, StreamId = value.Item2});
+        return source.Select(value => new ZeroMqAddress{ Address = value.Item1, StreamId = value.Item2});
     }
 }
 public struct ZeroMqAddress
 {
     //IPAddress
-    public string Adress;
+    public string Address;
     public string StreamId;
 }
