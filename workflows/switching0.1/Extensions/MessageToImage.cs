@@ -18,12 +18,12 @@ public class MessageToImage
     }
     private IplImage Process(NetMQMessage value)
     {
-        
-        var imageData = value[4].Buffer;
-        var width = BitConverter.ToInt32(value[0].Buffer,0);
-        var height = BitConverter.ToInt32(value[1].Buffer,0);
-        var depth = BitConverter.ToInt32(value[2].Buffer,0);
-        var channels = BitConverter.ToInt32(value[3].Buffer,0);
+        var startindex = value.Count()-5;
+        var imageData = value[startindex+4].Buffer;
+        var width = BitConverter.ToInt32(value[startindex].Buffer,0);
+        var height = BitConverter.ToInt32(value[startindex+1].Buffer,0);
+        var depth = BitConverter.ToInt32(value[startindex+2].Buffer,0);
+        var channels = BitConverter.ToInt32(value[startindex+3].Buffer,0);
         var image =Mat.FromArray( imageData, height, width, (Depth)depth, channels).GetImage();
 
         return image;
