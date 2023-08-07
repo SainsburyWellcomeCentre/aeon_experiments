@@ -381,19 +381,609 @@
                       </Edges>
                     </Workflow>
                   </Expression>
-                            </Nodes>
-                <Edges />
-                          </Workflow>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>HeadStageLinearDrive</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:Timer">
+                            <rx:DueTime>PT5S</rx:DueTime>
+                            <rx:Period>PT0S</rx:Period>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="Name" DisplayName="HeadStageLinearDriveCommands" />
                         </Expression>
                         <Expression xsi:type="GroupWorkflow">
-              <Name>TrackingTop</Name>
+                          <Name>Init</Name>
+                          <Workflow>
+                            <Nodes>
+                              <Expression xsi:type="WorkflowInput">
+                                <Name>Source1</Name>
+                              </Expression>
+                              <Expression xsi:type="p1:CreateMessage">
+                                <harp:Payload xsi:type="p1:CreateEnableMotorDriverPayload">
+                                  <harp:MessageType>Write</harp:MessageType>
+                                  <p1:Value>Disabled</p1:Value>
+                                </harp:Payload>
+                              </Expression>
+                              <Expression xsi:type="ExternalizedMapping">
+                                <Property Name="Name" />
+                              </Expression>
+                              <Expression xsi:type="MulticastSubject">
+                                <Name>HeadStageLinearDriveCommands</Name>
+                              </Expression>
+                              <Expression xsi:type="ExternalizedMapping">
+                                <Property Name="Value" DisplayName="MaxAndContinuosCurrent" />
+                              </Expression>
+                              <Expression xsi:type="p1:CreateMessage">
+                                <harp:Payload xsi:type="p1:CreateLimitContinuousCurrentPayload">
+                                  <harp:MessageType>Write</harp:MessageType>
+                                  <p1:Value>1600</p1:Value>
+                                </harp:Payload>
+                              </Expression>
+                              <Expression xsi:type="MulticastSubject">
+                                <Name>HeadStageLinearDriveCommands</Name>
+                              </Expression>
+                              <Expression xsi:type="p1:CreateMessage">
+                                <harp:Payload xsi:type="p1:CreateLimitPeakCurrentPayload">
+                                  <harp:MessageType>Write</harp:MessageType>
+                                  <p1:Value>1600</p1:Value>
+                                </harp:Payload>
+                              </Expression>
+                              <Expression xsi:type="MulticastSubject">
+                                <Name>HeadStageLinearDriveCommands</Name>
+                              </Expression>
+                              <Expression xsi:type="p1:CreateMessage">
+                                <harp:Payload xsi:type="p1:CreateLimitSpeedPayload">
+                                  <harp:MessageType>Write</harp:MessageType>
+                                  <p1:Value>20000</p1:Value>
+                                </harp:Payload>
+                              </Expression>
+                              <Expression xsi:type="MulticastSubject">
+                                <Name>HeadStageLinearDriveCommands</Name>
+                              </Expression>
+                              <Expression xsi:type="WorkflowOutput" />
+                            </Nodes>
+                            <Edges>
+                              <Edge From="0" To="1" Label="Source1" />
+                              <Edge From="1" To="3" Label="Source1" />
+                              <Edge From="2" To="3" Label="Source2" />
+                              <Edge From="2" To="6" Label="Source2" />
+                              <Edge From="2" To="8" Label="Source2" />
+                              <Edge From="3" To="5" Label="Source1" />
+                              <Edge From="4" To="5" Label="Source2" />
+                              <Edge From="4" To="7" Label="Source2" />
+                              <Edge From="5" To="6" Label="Source1" />
+                              <Edge From="6" To="7" Label="Source1" />
+                              <Edge From="7" To="8" Label="Source1" />
+                              <Edge From="8" To="9" Label="Source1" />
+                              <Edge From="9" To="10" Label="Source1" />
+                              <Edge From="10" To="11" Label="Source1" />
+                            </Edges>
+                          </Workflow>
+                        </Expression>
+                        <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:HarpMessage">
+                          <rx:Name>HeadStageLinearDriveCommands</rx:Name>
+                        </Expression>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="PortName" />
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="harp:Device">
+                            <harp:OperationMode>Active</harp:OperationMode>
+                            <harp:OperationLed>On</harp:OperationLed>
+                            <harp:DumpRegisters>true</harp:DumpRegisters>
+                            <harp:VisualIndicators>On</harp:VisualIndicators>
+                            <harp:Heartbeat>Enabled</harp:Heartbeat>
+                            <harp:IgnoreErrors>true</harp:IgnoreErrors>
+                            <harp:PortName>COM12</harp:PortName>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="Name" DisplayName="HeadStageLinearDriveEvents" />
+                        </Expression>
+                        <Expression xsi:type="MulticastSubject">
+                          <Name>HeadStageLinearDriveEvents</Name>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                        <Expression xsi:type="p1:Parse">
+                          <harp:MessageType>Event</harp:MessageType>
+                          <harp:Register xsi:type="p1:TimestampedPosition" />
+                        </Expression>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="Name" DisplayName="HeadStageLinearDrivePosition" />
+                        </Expression>
+                        <Expression xsi:type="rx:PublishSubject">
+                          <Name>HeadStageLinearDrivePosition</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Value</Selector>
+                        </Expression>
+                        <Expression xsi:type="p1:Parse">
+                          <harp:MessageType>Event</harp:MessageType>
+                          <harp:Register xsi:type="p1:Speed" />
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="wie:KeyDown">
+                            <wie:Filter>LButton RButton Cancel A B C Control</wie:Filter>
+                            <wie:SuppressRepetitions>true</wie:SuppressRepetitions>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="GroupWorkflow">
+                          <Name>ToString</Name>
                           <Workflow>
                             <Nodes>
                               <Expression xsi:type="ExternalizedMapping">
-                    <Property Name="Mask" />
-                    <Property Name="ThresholdValue" />
-                    <Property Name="TrackingEvents" />
+                                <Property Name="Value" DisplayName="Name" />
                               </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="StringProperty">
+                                  <Value>HeadStageLinearDrivePosition</Value>
+                                </Combinator>
+                              </Expression>
+                              <Expression xsi:type="WorkflowOutput" />
+                            </Nodes>
+                            <Edges>
+                              <Edge From="0" To="1" Label="Source1" />
+                              <Edge From="1" To="2" Label="Source1" />
+                            </Edges>
+                          </Workflow>
+                        </Expression>
+                        <Expression xsi:type="PropertyMapping">
+                          <PropertyMappings>
+                            <Property Name="HeadStageLinearDrivePosition" />
+                          </PropertyMappings>
+                        </Expression>
+                        <Expression xsi:type="rx:Defer">
+                          <Name>Calibrate</Name>
+                          <Workflow>
+                            <Nodes>
+                              <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:HarpMessage">
+                                <rx:Name>Commands</rx:Name>
+                              </Expression>
+                              <Expression xsi:type="ExternalizedMapping">
+                                <Property Name="Name" />
+                              </Expression>
+                              <Expression xsi:type="MulticastSubject">
+                                <Name>HeadStageLinearDriveCommands</Name>
+                              </Expression>
+                              <Expression xsi:type="WorkflowInput">
+                                <Name>Source1</Name>
+                              </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="rx:Take">
+                                  <rx:Count>1</rx:Count>
+                                </Combinator>
+                              </Expression>
+                              <Expression xsi:type="rx:SelectMany">
+                                <Name>MoveToEdge</Name>
+                                <Workflow>
+                                  <Nodes>
+                                    <Expression xsi:type="p1:CreateMessage">
+                                      <harp:Payload xsi:type="p1:CreateEnableLimitPositionPayload">
+                                        <harp:MessageType>Write</harp:MessageType>
+                                        <p1:Value>Disabled</p1:Value>
+                                      </harp:Payload>
+                                    </Expression>
+                                    <Expression xsi:type="MulticastSubject">
+                                      <Name>Commands</Name>
+                                    </Expression>
+                                    <Expression xsi:type="p1:CreateMessage">
+                                      <harp:Payload xsi:type="p1:CreateEnableMotorDriverPayload">
+                                        <harp:MessageType>Write</harp:MessageType>
+                                        <p1:Value>Enabled</p1:Value>
+                                      </harp:Payload>
+                                    </Expression>
+                                    <Expression xsi:type="MulticastSubject">
+                                      <Name>Commands</Name>
+                                    </Expression>
+                                    <Expression xsi:type="p1:CreateMessage">
+                                      <harp:Payload xsi:type="p1:CreateSetSpeedPayload">
+                                        <harp:MessageType>Write</harp:MessageType>
+                                        <p1:Value>-100</p1:Value>
+                                      </harp:Payload>
+                                    </Expression>
+                                    <Expression xsi:type="MulticastSubject">
+                                      <Name>Commands</Name>
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="rx:Take">
+                                        <rx:Count>1</rx:Count>
+                                      </Combinator>
+                                    </Expression>
+                                    <Expression xsi:type="WorkflowOutput" />
+                                  </Nodes>
+                                  <Edges>
+                                    <Edge From="0" To="1" Label="Source1" />
+                                    <Edge From="1" To="2" Label="Source1" />
+                                    <Edge From="2" To="3" Label="Source1" />
+                                    <Edge From="3" To="4" Label="Source1" />
+                                    <Edge From="4" To="5" Label="Source1" />
+                                    <Edge From="5" To="6" Label="Source1" />
+                                    <Edge From="6" To="7" Label="Source1" />
+                                  </Edges>
+                                </Workflow>
+                              </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="rx:Delay">
+                                  <rx:DueTime>PT1S</rx:DueTime>
+                                </Combinator>
+                              </Expression>
+                              <Expression xsi:type="ExternalizedMapping">
+                                <Property Name="HeadStageLinearDrivePosition" />
+                              </Expression>
+                              <Expression xsi:type="rx:SelectMany">
+                                <Name>CheckStop</Name>
+                                <Workflow>
+                                  <Nodes>
+                                    <Expression xsi:type="ExternalizedMapping">
+                                      <Property Name="Name" DisplayName="HeadStageLinearDrivePosition" />
+                                    </Expression>
+                                    <Expression xsi:type="SubscribeSubject">
+                                      <Name>HeadStageLinearDrivePosition</Name>
+                                    </Expression>
+                                    <Expression xsi:type="MemberSelector">
+                                      <Selector>Value</Selector>
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="rx:BufferCount">
+                                        <rx:Count>10</rx:Count>
+                                        <rx:Skip>1</rx:Skip>
+                                      </Combinator>
+                                    </Expression>
+                                    <Expression xsi:type="ExternalizedMapping">
+                                      <Property Name="Value" DisplayName="DerivativeThreshold" />
+                                    </Expression>
+                                    <Expression xsi:type="rx:SelectMany">
+                                      <Name>IsStopped</Name>
+                                      <Workflow>
+                                        <Nodes>
+                                          <Expression xsi:type="WorkflowInput">
+                                            <Name>Source1</Name>
+                                          </Expression>
+                                          <Expression xsi:type="Combinator">
+                                            <Combinator xsi:type="rx:Merge" />
+                                          </Expression>
+                                          <Expression xsi:type="Combinator">
+                                            <Combinator xsi:type="dsp:Difference">
+                                              <dsp:Order>1</dsp:Order>
+                                            </Combinator>
+                                          </Expression>
+                                          <Expression xsi:type="Combinator">
+                                            <Combinator xsi:type="dsp:Abs" />
+                                          </Expression>
+                                          <Expression xsi:type="Combinator">
+                                            <Combinator xsi:type="rx:Sum" />
+                                          </Expression>
+                                          <Expression xsi:type="ExternalizedMapping">
+                                            <Property Name="Value" />
+                                          </Expression>
+                                          <Expression xsi:type="LessThan">
+                                            <Operand xsi:type="DoubleProperty">
+                                              <Value>4</Value>
+                                            </Operand>
+                                          </Expression>
+                                          <Expression xsi:type="WorkflowOutput" />
+                                        </Nodes>
+                                        <Edges>
+                                          <Edge From="0" To="1" Label="Source1" />
+                                          <Edge From="1" To="2" Label="Source1" />
+                                          <Edge From="2" To="3" Label="Source1" />
+                                          <Edge From="3" To="4" Label="Source1" />
+                                          <Edge From="4" To="6" Label="Source1" />
+                                          <Edge From="5" To="6" Label="Source2" />
+                                          <Edge From="6" To="7" Label="Source1" />
+                                        </Edges>
+                                      </Workflow>
+                                    </Expression>
+                                    <Expression xsi:type="rx:Condition">
+                                      <Workflow>
+                                        <Nodes>
+                                          <Expression xsi:type="WorkflowInput">
+                                            <Name>Source1</Name>
+                                          </Expression>
+                                          <Expression xsi:type="WorkflowOutput" />
+                                        </Nodes>
+                                        <Edges>
+                                          <Edge From="0" To="1" Label="Source1" />
+                                        </Edges>
+                                      </Workflow>
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="rx:Take">
+                                        <rx:Count>1</rx:Count>
+                                      </Combinator>
+                                    </Expression>
+                                    <Expression xsi:type="WorkflowOutput" />
+                                  </Nodes>
+                                  <Edges>
+                                    <Edge From="0" To="1" Label="Source1" />
+                                    <Edge From="1" To="2" Label="Source1" />
+                                    <Edge From="2" To="3" Label="Source1" />
+                                    <Edge From="3" To="5" Label="Source1" />
+                                    <Edge From="4" To="5" Label="Source2" />
+                                    <Edge From="5" To="6" Label="Source1" />
+                                    <Edge From="6" To="7" Label="Source1" />
+                                    <Edge From="7" To="8" Label="Source1" />
+                                  </Edges>
+                                </Workflow>
+                              </Expression>
+                              <Expression xsi:type="rx:SelectMany">
+                                <Name>SetHome</Name>
+                                <Workflow>
+                                  <Nodes>
+                                    <Expression xsi:type="WorkflowInput">
+                                      <Name>Source1</Name>
+                                    </Expression>
+                                    <Expression xsi:type="p1:CreateMessage">
+                                      <harp:Payload xsi:type="p1:CreateSetSpeedPayload">
+                                        <harp:MessageType>Write</harp:MessageType>
+                                        <p1:Value>0</p1:Value>
+                                      </harp:Payload>
+                                    </Expression>
+                                    <Expression xsi:type="MulticastSubject">
+                                      <Name>Commands</Name>
+                                    </Expression>
+                                    <Expression xsi:type="p1:CreateMessage">
+                                      <harp:Payload xsi:type="p1:CreateEnableMotorDriverPayload">
+                                        <harp:MessageType>Write</harp:MessageType>
+                                        <p1:Value>Disabled</p1:Value>
+                                      </harp:Payload>
+                                    </Expression>
+                                    <Expression xsi:type="MulticastSubject">
+                                      <Name>Commands</Name>
+                                    </Expression>
+                                    <Expression xsi:type="p1:CreateMessage">
+                                      <harp:Payload xsi:type="p1:CreateHomePositionPayload">
+                                        <harp:MessageType>Write</harp:MessageType>
+                                        <p1:Value>-3000</p1:Value>
+                                      </harp:Payload>
+                                    </Expression>
+                                    <Expression xsi:type="MulticastSubject">
+                                      <Name>Commands</Name>
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="rx:Take">
+                                        <rx:Count>1</rx:Count>
+                                      </Combinator>
+                                    </Expression>
+                                    <Expression xsi:type="WorkflowOutput" />
+                                  </Nodes>
+                                  <Edges>
+                                    <Edge From="0" To="1" Label="Source1" />
+                                    <Edge From="1" To="2" Label="Source1" />
+                                    <Edge From="2" To="3" Label="Source1" />
+                                    <Edge From="3" To="4" Label="Source1" />
+                                    <Edge From="4" To="5" Label="Source1" />
+                                    <Edge From="5" To="6" Label="Source1" />
+                                    <Edge From="6" To="7" Label="Source1" />
+                                    <Edge From="7" To="8" Label="Source1" />
+                                  </Edges>
+                                </Workflow>
+                              </Expression>
+                              <Expression xsi:type="rx:SelectMany">
+                                <Name>GoTo0</Name>
+                                <Workflow>
+                                  <Nodes>
+                                    <Expression xsi:type="p1:CreateMessage">
+                                      <harp:Payload xsi:type="p1:CreateEnableMotorDriverPayload">
+                                        <harp:MessageType>Write</harp:MessageType>
+                                        <p1:Value>Enabled</p1:Value>
+                                      </harp:Payload>
+                                    </Expression>
+                                    <Expression xsi:type="MulticastSubject">
+                                      <Name>Commands</Name>
+                                    </Expression>
+                                    <Expression xsi:type="p1:CreateMessage">
+                                      <harp:Payload xsi:type="p1:CreateSetPositionPayload">
+                                        <harp:MessageType>Write</harp:MessageType>
+                                        <p1:Value>0</p1:Value>
+                                      </harp:Payload>
+                                    </Expression>
+                                    <Expression xsi:type="MulticastSubject">
+                                      <Name>Commands</Name>
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="rx:Delay">
+                                        <rx:DueTime>PT1S</rx:DueTime>
+                                      </Combinator>
+                                    </Expression>
+                                    <Expression xsi:type="p1:CreateMessage">
+                                      <harp:Payload xsi:type="p1:CreateEnableLimitPositionPayload">
+                                        <harp:MessageType>Write</harp:MessageType>
+                                        <p1:Value>Enabled</p1:Value>
+                                      </harp:Payload>
+                                    </Expression>
+                                    <Expression xsi:type="MulticastSubject">
+                                      <Name>Commands</Name>
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="rx:Take">
+                                        <rx:Count>1</rx:Count>
+                                      </Combinator>
+                                    </Expression>
+                                    <Expression xsi:type="WorkflowOutput" />
+                                  </Nodes>
+                                  <Edges>
+                                    <Edge From="0" To="1" Label="Source1" />
+                                    <Edge From="1" To="2" Label="Source1" />
+                                    <Edge From="2" To="3" Label="Source1" />
+                                    <Edge From="3" To="4" Label="Source1" />
+                                    <Edge From="4" To="5" Label="Source1" />
+                                    <Edge From="5" To="6" Label="Source1" />
+                                    <Edge From="6" To="7" Label="Source1" />
+                                    <Edge From="7" To="8" Label="Source1" />
+                                  </Edges>
+                                </Workflow>
+                              </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="rx:Delay">
+                                  <rx:DueTime>PT0S</rx:DueTime>
+                                </Combinator>
+                              </Expression>
+                              <Expression xsi:type="rx:SelectMany">
+                                <Name>RemoveCurrentLimits</Name>
+                                <Workflow>
+                                  <Nodes>
+                                    <Expression xsi:type="WorkflowInput">
+                                      <Name>Source1</Name>
+                                    </Expression>
+                                    <Expression xsi:type="ExternalizedMapping">
+                                      <Property Name="Value" DisplayName="ContinuousMax" />
+                                    </Expression>
+                                    <Expression xsi:type="p1:CreateMessage">
+                                      <harp:Payload xsi:type="p1:CreateLimitContinuousCurrentPayload">
+                                        <harp:MessageType>Write</harp:MessageType>
+                                        <p1:Value>3000</p1:Value>
+                                      </harp:Payload>
+                                    </Expression>
+                                    <Expression xsi:type="MulticastSubject">
+                                      <Name>Commands</Name>
+                                    </Expression>
+                                    <Expression xsi:type="ExternalizedMapping">
+                                      <Property Name="Value" DisplayName="PeakMax" />
+                                    </Expression>
+                                    <Expression xsi:type="p1:CreateMessage">
+                                      <harp:Payload xsi:type="p1:CreateLimitPeakCurrentPayload">
+                                        <harp:MessageType>Write</harp:MessageType>
+                                        <p1:Value>3000</p1:Value>
+                                      </harp:Payload>
+                                    </Expression>
+                                    <Expression xsi:type="MulticastSubject">
+                                      <Name>Commands</Name>
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="rx:Take">
+                                        <rx:Count>1</rx:Count>
+                                      </Combinator>
+                                    </Expression>
+                                    <Expression xsi:type="WorkflowOutput" />
+                                  </Nodes>
+                                  <Edges>
+                                    <Edge From="0" To="2" Label="Source1" />
+                                    <Edge From="1" To="2" Label="Source2" />
+                                    <Edge From="2" To="3" Label="Source1" />
+                                    <Edge From="3" To="5" Label="Source1" />
+                                    <Edge From="4" To="5" Label="Source2" />
+                                    <Edge From="5" To="6" Label="Source1" />
+                                    <Edge From="6" To="7" Label="Source1" />
+                                    <Edge From="7" To="8" Label="Source1" />
+                                  </Edges>
+                                </Workflow>
+                              </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="rx:Repeat" />
+                              </Expression>
+                              <Expression xsi:type="WorkflowOutput" />
+                            </Nodes>
+                            <Edges>
+                              <Edge From="0" To="2" Label="Source1" />
+                              <Edge From="1" To="2" Label="Source2" />
+                              <Edge From="3" To="4" Label="Source1" />
+                              <Edge From="4" To="5" Label="Source1" />
+                              <Edge From="5" To="6" Label="Source1" />
+                              <Edge From="6" To="8" Label="Source1" />
+                              <Edge From="7" To="8" Label="Source2" />
+                              <Edge From="8" To="9" Label="Source1" />
+                              <Edge From="9" To="10" Label="Source1" />
+                              <Edge From="10" To="11" Label="Source1" />
+                              <Edge From="11" To="12" Label="Source1" />
+                              <Edge From="12" To="13" Label="Source1" />
+                              <Edge From="13" To="14" Label="Source1" />
+                            </Edges>
+                          </Workflow>
+                        </Expression>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="Name" DisplayName="HeadStageLinearDriveGoToPosition" />
+                        </Expression>
+                        <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Double">
+                          <rx:Name>HeadStageLinearDriveSetPosition</rx:Name>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="dsp:Rescale">
+                            <dsp:Min>1</dsp:Min>
+                            <dsp:Max>0</dsp:Max>
+                            <dsp:RangeMin>0</dsp:RangeMin>
+                            <dsp:RangeMax>160000</dsp:RangeMax>
+                            <dsp:RescaleType>Linear</dsp:RescaleType>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="p1:Format">
+                          <harp:MessageType>Write</harp:MessageType>
+                          <harp:Register xsi:type="p1:SetPosition" />
+                        </Expression>
+                        <Expression xsi:type="MulticastSubject">
+                          <Name>HeadStageLinearDriveCommands</Name>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="wie:KeyDown">
+                            <wie:Filter>Back Space Down Control</wie:Filter>
+                            <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="p1:CreateMessage">
+                          <harp:Payload xsi:type="p1:CreateEnableMotorDriverPayload">
+                            <harp:MessageType>Write</harp:MessageType>
+                            <p1:Value>Disabled</p1:Value>
+                          </harp:Payload>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="wie:KeyDown">
+                            <wie:Filter>RButton MButton XButton2 Space Next PageDown Home Up Control</wie:Filter>
+                            <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="p1:CreateMessage">
+                          <harp:Payload xsi:type="p1:CreateEnableMotorDriverPayload">
+                            <harp:MessageType>Write</harp:MessageType>
+                            <p1:Value>Enabled</p1:Value>
+                          </harp:Payload>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:Merge" />
+                        </Expression>
+                        <Expression xsi:type="MulticastSubject">
+                          <Name>HeadStageLinearDriveCommands</Name>
+                        </Expression>
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="2" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source2" />
+                        <Edge From="1" To="3" Label="Source1" />
+                        <Edge From="1" To="17" Label="Source2" />
+                        <Edge From="1" To="22" Label="Source2" />
+                        <Edge From="1" To="28" Label="Source2" />
+                        <Edge From="3" To="5" Label="Source1" />
+                        <Edge From="4" To="5" Label="Source2" />
+                        <Edge From="5" To="7" Label="Source1" />
+                        <Edge From="6" To="7" Label="Source2" />
+                        <Edge From="7" To="8" Label="Source1" />
+                        <Edge From="7" To="9" Label="Source1" />
+                        <Edge From="7" To="13" Label="Source1" />
+                        <Edge From="9" To="11" Label="Source1" />
+                        <Edge From="10" To="11" Label="Source2" />
+                        <Edge From="10" To="15" Label="Source1" />
+                        <Edge From="11" To="12" Label="Source1" />
+                        <Edge From="14" To="17" Label="Source1" />
+                        <Edge From="15" To="16" Label="Source1" />
+                        <Edge From="16" To="17" Label="Source3" />
+                        <Edge From="18" To="19" Label="Source1" />
+                        <Edge From="19" To="20" Label="Source1" />
+                        <Edge From="20" To="21" Label="Source1" />
+                        <Edge From="21" To="22" Label="Source1" />
+                        <Edge From="23" To="24" Label="Source1" />
+                        <Edge From="24" To="27" Label="Source1" />
+                        <Edge From="25" To="26" Label="Source1" />
+                        <Edge From="26" To="27" Label="Source2" />
+                        <Edge From="27" To="28" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                </Nodes>
+                <Edges />
+              </Workflow>
+            </Expression>
             <Expression xsi:type="GroupWorkflow">
               <Name>TrackingTop</Name>
               <Workflow>
@@ -650,6 +1240,9 @@
             <Expression xsi:type="rx:PublishSubject" TypeArguments="sys:String">
               <rx:Name>SubjectAlertMessages</rx:Name>
             </Expression>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:HarpMessage">
+              <rx:Name>HeadStageLinearDriveEvents</rx:Name>
+            </Expression>
           </Nodes>
           <Edges />
         </Workflow>
@@ -822,6 +1415,12 @@
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
               <LogName>CameraNest</LogName>
               <FrameRate>125</FrameRate>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>HeadStageLinearDriveEvents</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>HeadStageLinearDrive</LogName>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>Patch1</Name>
