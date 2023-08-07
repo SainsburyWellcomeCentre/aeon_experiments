@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.0"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
@@ -3565,6 +3565,81 @@ Item3 as Delta)</scr:Expression>
             </Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Value</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="FloatProperty">
+                <Value>0</Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>HeadStageLinearDriveSetPosition</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>TrackingTop</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Item1[0].Centroid.X</Selector>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Item1.ImageSize.Width</Selector>
+            </Expression>
+            <Expression xsi:type="PropertyMapping">
+              <PropertyMappings>
+                <Property Name="Max" />
+              </PropertyMappings>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="dsp:Rescale">
+                <dsp:Min>0</dsp:Min>
+                <dsp:Max>1440</dsp:Max>
+                <dsp:RangeMin>-130</dsp:RangeMin>
+                <dsp:RangeMax>130</dsp:RangeMax>
+                <dsp:RescaleType>Linear</dsp:RescaleType>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Item1[0].Centroid.Y</Selector>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Item1.ImageSize.Height</Selector>
+            </Expression>
+            <Expression xsi:type="PropertyMapping">
+              <PropertyMappings>
+                <Property Name="Max" />
+              </PropertyMappings>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="dsp:Rescale">
+                <dsp:Min>0</dsp:Min>
+                <dsp:Max>1080</dsp:Max>
+                <dsp:RangeMin>-105</dsp:RangeMin>
+                <dsp:RangeMax>105</dsp:RangeMax>
+                <dsp:RescaleType>Linear</dsp:RescaleType>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Zip" />
+            </Expression>
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Expression>Math.Sqrt((Item1*Item1)+(Item2*Item2))</scr:Expression>
+            </Expression>
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Expression>Math.Sqrt((it*it)+(129.5*129.5))-129.5</scr:Expression>
+            </Expression>
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Expression>Math.Sqrt(((58.523-it)*(58.523-it))-(17*17))</scr:Expression>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="dsp:Rescale">
+                <dsp:Min>0</dsp:Min>
+                <dsp:Max>56</dsp:Max>
+                <dsp:RangeMin>1</dsp:RangeMin>
+                <dsp:RangeMax>0</dsp:RangeMax>
+                <dsp:RescaleType>Linear</dsp:RescaleType>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>HeadStageLinearDriveSetPosition</Name>
             </Expression>
             <Expression xsi:type="GroupWorkflow">
               <Name>PatchActivity</Name>
