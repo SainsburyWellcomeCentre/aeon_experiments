@@ -81,7 +81,7 @@
         <Combinator xsi:type="p1:ZeroMqStreamIdAdress" />
       </Expression>
       <Expression xsi:type="MemberSelector">
-        <Selector>Adress</Selector>
+        <Selector>Address</Selector>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>StreamId</Selector>
@@ -139,7 +139,7 @@
               <Name>Adress</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
-              <Selector>Adress</Selector>
+              <Selector>Address</Selector>
             </Expression>
             <Expression xsi:type="PropertyMapping">
               <PropertyMappings>
@@ -157,7 +157,7 @@
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="zmq:Subscriber">
                 <zmq:ConnectionString>tcp://172.24.158.104:5012</zmq:ConnectionString>
-                <zmq:Topic>CameraNestNorthTop</zmq:Topic>
+                <zmq:Topic>CameraEast</zmq:Topic>
               </Combinator>
             </Expression>
             <Expression xsi:type="MemberSelector">
@@ -171,6 +171,12 @@
               <Combinator xsi:type="cv:DecodeImage">
                 <cv:Mode>Unchanged</cv:Mode>
               </Combinator>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Adress</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WithLatestFrom" />
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
             <Expression xsi:type="Disable">
@@ -192,11 +198,13 @@
             <Edge From="6" To="7" Label="Source1" />
             <Edge From="7" To="8" Label="Source2" />
             <Edge From="8" To="9" Label="Source1" />
-            <Edge From="8" To="13" Label="Source1" />
+            <Edge From="8" To="15" Label="Source1" />
             <Edge From="9" To="10" Label="Source1" />
             <Edge From="10" To="11" Label="Source1" />
-            <Edge From="11" To="12" Label="Source1" />
+            <Edge From="11" To="13" Label="Source1" />
+            <Edge From="12" To="13" Label="Source2" />
             <Edge From="13" To="14" Label="Source1" />
+            <Edge From="15" To="16" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
