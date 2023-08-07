@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.0-alpha018"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
@@ -262,32 +262,46 @@
       <Expression xsi:type="MemberSelector">
         <Selector>Interval</Selector>
       </Expression>
-      <Expression xsi:type="Combinator">
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
         <Combinator xsi:type="zmq:Subscriber">
-          <zmq:ConnectionString>tcp://172.24.158.104:5001</zmq:ConnectionString>
+            <zmq:ConnectionString>m</zmq:ConnectionString>
           <zmq:Topic />
         </Combinator>
+        </Builder>
       </Expression>
-      <Expression xsi:type="MemberSelector">
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="MemberSelector">
         <Selector>Last.Buffer</Selector>
+        </Builder>
       </Expression>
-      <Expression xsi:type="osc:Parse">
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="osc:Parse">
         <osc:Address>/EncodeImage</osc:Address>
         <osc:TypeTag>b</osc:TypeTag>
+        </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
         <Combinator xsi:type="cv:DecodeImage">
           <cv:Mode>Unchanged</cv:Mode>
         </Combinator>
+        </Builder>
       </Expression>
-      <Expression xsi:type="MemberSelector">
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="MemberSelector">
         <Selector>FrameCount</Selector>
+        </Builder>
       </Expression>
-      <Expression xsi:type="MemberSelector">
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="MemberSelector">
         <Selector>First</Selector>
+        </Builder>
       </Expression>
-      <Expression xsi:type="Combinator">
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
         <Combinator xsi:type="zmq:ConvertToString" />
+        </Builder>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>Cameras</Name>
