@@ -10,6 +10,8 @@
                  xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
                  xmlns:viz="clr-namespace:Bonsai.Design.Visualizers;assembly=Bonsai.Design.Visualizers"
                  xmlns:p1="clr-namespace:Bonsai.Harp.Expander;assembly=Bonsai.Harp.Expander"
+                 xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
+                 xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -26,7 +28,7 @@
         <aeon:Name>PatchState</aeon:Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:UndergroundFeeder.bonsai">
-        <PortName>COM3</PortName>
+        <PortName>COM11</PortName>
         <WheelDisplacement>WheelDisplacement</WheelDisplacement>
         <PelletDelivered>PelletDelivered</PelletDelivered>
         <DeliverPellet>DeliverPellet</DeliverPellet>
@@ -711,6 +713,143 @@ False as Value)</scr:Expression>
       <Expression xsi:type="p1:AuxInputs">
         <p1:Type>Input1</p1:Type>
         <p1:IncludeTimestamp>true</p1:IncludeTimestamp>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>DetectPellets</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CameraPatch</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Image</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="cv:Crop">
+                <cv:RegionOfInterest>
+                  <cv:X>354</cv:X>
+                  <cv:Y>285</cv:Y>
+                  <cv:Width>293</cv:Width>
+                  <cv:Height>735</cv:Height>
+                </cv:RegionOfInterest>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="cv:Threshold">
+                <cv:ThresholdValue>145</cv:ThresholdValue>
+                <cv:MaxValue>255</cv:MaxValue>
+                <cv:ThresholdType>Binary</cv:ThresholdType>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="cv:FindContours">
+                <cv:Mode>External</cv:Mode>
+                <cv:Method>ChainApproxNone</cv:Method>
+                <cv:Offset>
+                  <cv:X>0</cv:X>
+                  <cv:Y>0</cv:Y>
+                </cv:Offset>
+                <cv:MinArea>300</cv:MinArea>
+                <cv:MaxArea xsi:nil="true" />
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="cv:BinaryRegionAnalysis" />
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Count</Selector>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Bonsai.Harp:WithLatestTimestamp.bonsai">
+              <Name>PatchEvents</Name>
+            </Expression>
+            <Expression xsi:type="harp:Format">
+              <harp:MessageType>Event</harp:MessageType>
+              <harp:Address>201</harp:Address>
+              <harp:PayloadType>TimestampedU32</harp:PayloadType>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="dsp:Sum" />
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Val0</Selector>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Bonsai.Harp:WithLatestTimestamp.bonsai">
+              <Name>PatchEvents</Name>
+            </Expression>
+            <Expression xsi:type="harp:Format">
+              <harp:MessageType>Event</harp:MessageType>
+              <harp:Address>202</harp:Address>
+              <harp:PayloadType>TimestampedS64</harp:PayloadType>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Merge" />
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>TimestampedLogging</Name>
+            </Expression>
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="3" To="9" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="5" To="6" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="8" To="13" Label="Source1" />
+            <Edge From="9" To="10" Label="Source1" />
+            <Edge From="10" To="11" Label="Source1" />
+            <Edge From="11" To="12" Label="Source1" />
+            <Edge From="12" To="13" Label="Source2" />
+            <Edge From="13" To="14" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>Logging</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Value" DisplayName="Path" />
+            </Expression>
+            <Expression xsi:type="PropertySource" TypeArguments="io:GetDirectories,sys:String">
+              <MemberName>Path</MemberName>
+              <Value>C:\Users\neurogears\source\repos\swc\aeon_experiments\local_data\patch_test</Value>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Timestamp" />
+            </Expression>
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Expression>it.Value +  "/Collection" + it.TimeStamp.ToString("yyyy_MM_dd_HH_mm_ss")</scr:Expression>
+            </Expression>
+            <Expression xsi:type="Add">
+              <Operand xsi:type="StringProperty">
+                <Value>/</Value>
+              </Operand>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Take">
+                <rx:Count>1</rx:Count>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="rx:AsyncSubject">
+              <Name>LoggingPath</Name>
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:HarpMessage">
+              <rx:Name>TimestampedLogging</rx:Name>
+            </Expression>
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="5" To="6" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
     </Nodes>
     <Edges>
