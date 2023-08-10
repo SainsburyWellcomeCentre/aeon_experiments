@@ -1,0 +1,5 @@
+Registers || Data (timestamped)
+201       || N pellets detected in frame
+202       || Pixel intensity in crop area
+203       || Wheel velocity
+204       || Camera frame index
