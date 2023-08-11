@@ -3,3 +3,4 @@ Registers || Data (timestamped)
 202       || Pixel intensity in crop area
 203       || Wheel velocity
 204       || Camera frame index
+205       || Pellet monitor
