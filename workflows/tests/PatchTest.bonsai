@@ -18,6 +18,7 @@
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="spk:SpinnakerCapture">
           <spk:Index xsi:nil="true" />
+          <spk:SerialNumber>23106249</spk:SerialNumber>
           <spk:ColorProcessing>Default</spk:ColorProcessing>
         </Combinator>
       </Expression>
@@ -28,7 +29,7 @@
         <aeon:Name>PatchState</aeon:Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:UndergroundFeeder.bonsai">
-        <PortName>COM11</PortName>
+        <PortName>COM5</PortName>
         <WheelDisplacement>WheelDisplacement</WheelDisplacement>
         <PelletDelivered>PelletDelivered</PelletDelivered>
         <DeliverPellet>DeliverPellet</DeliverPellet>
@@ -727,16 +728,16 @@ False as Value)</scr:Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="cv:Crop">
                 <cv:RegionOfInterest>
-                  <cv:X>354</cv:X>
-                  <cv:Y>490</cv:Y>
-                  <cv:Width>279</cv:Width>
-                  <cv:Height>527</cv:Height>
+                  <cv:X>67</cv:X>
+                  <cv:Y>108</cv:Y>
+                  <cv:Width>91</cv:Width>
+                  <cv:Height>147</cv:Height>
                 </cv:RegionOfInterest>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="cv:Threshold">
-                <cv:ThresholdValue>145</cv:ThresholdValue>
+                <cv:ThresholdValue>147</cv:ThresholdValue>
                 <cv:MaxValue>255</cv:MaxValue>
                 <cv:ThresholdType>Binary</cv:ThresholdType>
               </Combinator>
@@ -816,18 +817,20 @@ False as Value)</scr:Expression>
             </Expression>
             <Expression xsi:type="PropertySource" TypeArguments="io:GetDirectories,sys:String">
               <MemberName>Path</MemberName>
-              <Value>C:\Users\neurogears\Desktop\local_data\patch_test</Value>
+              <Value>C:\Users\FabLab\Desktop\patch-data</Value>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Timestamp" />
             </Expression>
             <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>it.Value +  "/Collection" + it.TimeStamp.ToString("yyyy_MM_dd_HH_mm_ss")</scr:Expression>
+              <scr:Expression>it.Value +  "\Collection" + it.TimeStamp.ToString("yyyy_MM_dd_HH_mm_ss")</scr:Expression>
             </Expression>
-            <Expression xsi:type="Add">
-              <Operand xsi:type="StringProperty">
-                <Value>/</Value>
-              </Operand>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="Add">
+                <Operand xsi:type="StringProperty">
+                  <Value>\</Value>
+                </Operand>
+              </Builder>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Take">
@@ -869,6 +872,12 @@ False as Value)</scr:Expression>
                         <Edge From="2" To="3" Label="Source1" />
                       </Edges>
                     </Workflow>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>PatchEvents</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Merge" />
                   </Expression>
                   <Expression xsi:type="rx:GroupBy">
                     <rx:KeySelector>Address</rx:KeySelector>
@@ -939,7 +948,7 @@ False as Value)</scr:Expression>
                         </Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="dsp:MatrixWriter">
-                            <dsp:Path>C:\Users\neurogears\Desktop\local_data\patch_test/Collection2023_08_10_18_37_25/\Streams_202</dsp:Path>
+                            <dsp:Path>C:\Users\FabLab\Desktop\patch-data\Collection2023_08_11_11_55_43\Streams_204</dsp:Path>
                             <dsp:Suffix>None</dsp:Suffix>
                             <dsp:Overwrite>false</dsp:Overwrite>
                             <dsp:Layout>ColumnMajor</dsp:Layout>
@@ -971,9 +980,11 @@ False as Value)</scr:Expression>
                 </Nodes>
                 <Edges>
                   <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source1" />
+                  <Edge From="1" To="3" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source2" />
                   <Edge From="3" To="4" Label="Source1" />
+                  <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="5" To="6" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
@@ -1026,7 +1037,7 @@ False as Value)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="cv:VideoWriter">
-                      <cv:FileName>C:\Users\neurogears\Desktop\local_data\patch_test/Collection2023_08_10_18_37_25/\PatchVideo.avi</cv:FileName>
+                      <cv:FileName>C:\Users\FabLab\Desktop\patch-data\Collection2023_08_11_11_57_00\PatchVideo.avi</cv:FileName>
                       <cv:Suffix>None</cv:Suffix>
                       <cv:Buffered>true</cv:Buffered>
                       <cv:Overwrite>false</cv:Overwrite>
@@ -1104,6 +1115,7 @@ False as Value)</scr:Expression>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="dsp:MatrixWriter">
+                <dsp:Path>C:\Users\FabLab\Desktop\patch-data\Collection2023_08_11_11_57_00\PatchMonitor.bin</dsp:Path>
                 <dsp:Suffix>None</dsp:Suffix>
                 <dsp:Overwrite>false</dsp:Overwrite>
                 <dsp:Layout>ColumnMajor</dsp:Layout>
