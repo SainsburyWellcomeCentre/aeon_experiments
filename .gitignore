@@ -24,3 +24,4 @@ __pycache__/
 # Environments
 .venv
 winpython
+benchmarks/.idea/
