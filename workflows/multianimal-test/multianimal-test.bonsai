@@ -390,7 +390,7 @@
                           <Property Name="RfidEvents" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Extensions\Rfid Reader.bonsai">
-                          <PortName>COM8</PortName>
+                          <PortName>COM18</PortName>
                           <RfidEvents>RfidEvents</RfidEvents>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
