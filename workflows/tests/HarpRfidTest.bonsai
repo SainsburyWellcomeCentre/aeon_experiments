@@ -1,69 +1,184 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.8.1"
+<WorkflowBuilder Version="2.8.0"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:p1="clr-namespace:Harp.RfidReader;assembly=Harp.RfidReader"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
+                 xmlns:p2="clr-namespace:;assembly=Extensions"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="p1:Device">
+            <OperationMode xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">Active</OperationMode>
+            <OperationLed xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">On</OperationLed>
+            <DumpRegisters xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">true</DumpRegisters>
+            <VisualIndicators xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">On</VisualIndicators>
+            <Heartbeat xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">Disabled</Heartbeat>
+            <IgnoreErrors xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">false</IgnoreErrors>
+            <PortName xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">COM14</PortName>
+          </Combinator>
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="p1:Parse">
+          <Register xsi:type="p1:TimestampedInboundDetectionId" xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp" />
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="GroupWorkflow">
+          <Name>NestNE</Name>
+          <Workflow>
+            <Nodes>
+              <Expression xsi:type="WorkflowInput">
+                <Name>Source1</Name>
+              </Expression>
+              <Expression xsi:type="WorkflowOutput" />
+            </Nodes>
+            <Edges>
+              <Edge From="0" To="1" Label="Source1" />
+            </Edges>
+          </Workflow>
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="p1:Device">
+            <OperationMode xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">Active</OperationMode>
+            <OperationLed xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">On</OperationLed>
+            <DumpRegisters xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">true</DumpRegisters>
+            <VisualIndicators xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">On</VisualIndicators>
+            <Heartbeat xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">Disabled</Heartbeat>
+            <IgnoreErrors xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">false</IgnoreErrors>
+            <PortName xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">COM17</PortName>
+          </Combinator>
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="p1:Parse">
+          <Register xsi:type="p1:TimestampedInboundDetectionId" xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp" />
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="GroupWorkflow">
+          <Name>Corridor</Name>
+          <Workflow>
+            <Nodes>
+              <Expression xsi:type="WorkflowInput">
+                <Name>Source1</Name>
+              </Expression>
+              <Expression xsi:type="WorkflowOutput" />
+            </Nodes>
+            <Edges>
+              <Edge From="0" To="1" Label="Source1" />
+            </Edges>
+          </Workflow>
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="p1:Device">
+            <OperationMode xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">Active</OperationMode>
+            <OperationLed xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">On</OperationLed>
+            <DumpRegisters xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">true</DumpRegisters>
+            <VisualIndicators xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">On</VisualIndicators>
+            <Heartbeat xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">Disabled</Heartbeat>
+            <IgnoreErrors xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">false</IgnoreErrors>
+            <PortName xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">COM18</PortName>
+          </Combinator>
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="p1:Parse">
+          <Register xsi:type="p1:TimestampedInboundDetectionId" xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp" />
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="GroupWorkflow">
+          <Name>Water</Name>
+          <Workflow>
+            <Nodes>
+              <Expression xsi:type="WorkflowInput">
+                <Name>Source1</Name>
+              </Expression>
+              <Expression xsi:type="WorkflowOutput" />
+            </Nodes>
+            <Edges>
+              <Edge From="0" To="1" Label="Source1" />
+            </Edges>
+          </Workflow>
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="p1:Device">
+            <OperationMode xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">Active</OperationMode>
+            <OperationLed xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">On</OperationLed>
+            <DumpRegisters xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">true</DumpRegisters>
+            <VisualIndicators xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">On</VisualIndicators>
+            <Heartbeat xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">Disabled</Heartbeat>
+            <IgnoreErrors xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">false</IgnoreErrors>
+            <PortName xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">COM15</PortName>
+          </Combinator>
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="p1:Parse">
+          <Register xsi:type="p1:TimestampedInboundDetectionId" xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp" />
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="GroupWorkflow">
+          <Name>NestNW</Name>
+          <Workflow>
+            <Nodes>
+              <Expression xsi:type="WorkflowInput">
+                <Name>Source1</Name>
+              </Expression>
+              <Expression xsi:type="WorkflowOutput" />
+            </Nodes>
+            <Edges>
+              <Edge From="0" To="1" Label="Source1" />
+            </Edges>
+          </Workflow>
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="p1:Device">
+            <OperationMode xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">Active</OperationMode>
+            <OperationLed xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">On</OperationLed>
+            <DumpRegisters xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">true</DumpRegisters>
+            <VisualIndicators xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">On</VisualIndicators>
+            <Heartbeat xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">Disabled</Heartbeat>
+            <IgnoreErrors xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">false</IgnoreErrors>
+            <PortName xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp">COM13</PortName>
+          </Combinator>
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="p1:Parse">
+          <Register xsi:type="p1:TimestampedInboundDetectionId" xmlns="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp" />
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="GroupWorkflow">
+          <Name>Patch2</Name>
+          <Workflow>
+            <Nodes>
+              <Expression xsi:type="WorkflowInput">
+                <Name>Source1</Name>
+              </Expression>
+              <Expression xsi:type="WorkflowOutput" />
+            </Nodes>
+            <Edges>
+              <Edge From="0" To="1" Label="Source1" />
+            </Edges>
+          </Workflow>
+        </Builder>
+      </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="p1:Device">
-          <harp:OperationMode>Active</harp:OperationMode>
-          <harp:OperationLed>On</harp:OperationLed>
-          <harp:DumpRegisters>true</harp:DumpRegisters>
-          <harp:VisualIndicators>On</harp:VisualIndicators>
-          <harp:Heartbeat>Disabled</harp:Heartbeat>
-          <harp:IgnoreErrors>false</harp:IgnoreErrors>
-          <harp:PortName>COM14</harp:PortName>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="p1:Parse">
-        <harp:Register xsi:type="p1:TimestampedInboundDetectionId" />
-      </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>NestNE</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="WorkflowInput">
-              <Name>Source1</Name>
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="p1:Device">
-          <harp:OperationMode>Active</harp:OperationMode>
-          <harp:OperationLed>On</harp:OperationLed>
-          <harp:DumpRegisters>true</harp:DumpRegisters>
-          <harp:VisualIndicators>On</harp:VisualIndicators>
-          <harp:Heartbeat>Disabled</harp:Heartbeat>
-          <harp:IgnoreErrors>false</harp:IgnoreErrors>
-          <harp:PortName>COM17</harp:PortName>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="p1:Parse">
-        <harp:Register xsi:type="p1:TimestampedInboundDetectionId" />
-      </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>Corridor</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="WorkflowInput">
-              <Name>Source1</Name>
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="p1:Device">
+        <Combinator xsi:type="harp:Device">
           <harp:OperationMode>Active</harp:OperationMode>
           <harp:OperationLed>On</harp:OperationLed>
           <harp:DumpRegisters>true</harp:DumpRegisters>
@@ -73,78 +188,37 @@
           <harp:PortName>COM18</harp:PortName>
         </Combinator>
       </Expression>
-      <Expression xsi:type="p1:Parse">
-        <harp:Register xsi:type="p1:TimestampedInboundDetectionId" />
+      <Expression xsi:type="harp:FilterRegister">
+        <harp:FilterType>Include</harp:FilterType>
+        <harp:Register xsi:type="harp:FilterRegisterAddress">
+          <harp:Address>32</harp:Address>
+        </harp:Register>
       </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>Water</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="WorkflowInput">
-              <Name>Source1</Name>
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-          </Edges>
-        </Workflow>
+      <Expression xsi:type="MemberSelector">
+        <Selector>MessageBytes.Length</Selector>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="p1:Device">
-          <harp:OperationMode>Active</harp:OperationMode>
-          <harp:OperationLed>On</harp:OperationLed>
-          <harp:DumpRegisters>true</harp:DumpRegisters>
-          <harp:VisualIndicators>On</harp:VisualIndicators>
-          <harp:Heartbeat>Disabled</harp:Heartbeat>
-          <harp:IgnoreErrors>false</harp:IgnoreErrors>
-          <harp:PortName>COM15</harp:PortName>
-        </Combinator>
+      <Expression xsi:type="harp:Parse">
+        <harp:Register xsi:type="harp:ParseMessagePayload">
+          <harp:Address>32</harp:Address>
+          <harp:PayloadType>TimestampedU64</harp:PayloadType>
+          <harp:IsArray>false</harp:IsArray>
+        </harp:Register>
       </Expression>
-      <Expression xsi:type="p1:Parse">
-        <harp:Register xsi:type="p1:TimestampedInboundDetectionId" />
-      </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>NestNW</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="WorkflowInput">
-              <Name>Source1</Name>
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-          </Edges>
-        </Workflow>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Value</Selector>
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="p1:Device">
-          <harp:OperationMode>Active</harp:OperationMode>
-          <harp:OperationLed>On</harp:OperationLed>
-          <harp:DumpRegisters>true</harp:DumpRegisters>
-          <harp:VisualIndicators>On</harp:VisualIndicators>
-          <harp:Heartbeat>Disabled</harp:Heartbeat>
-          <harp:IgnoreErrors>false</harp:IgnoreErrors>
-          <harp:PortName>COM13</harp:PortName>
-        </Combinator>
+        <Combinator xsi:type="p2:UInt64ToString" />
       </Expression>
-      <Expression xsi:type="p1:Parse">
-        <harp:Register xsi:type="p1:TimestampedInboundDetectionId" />
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="MemberSelector">
+          <Selector>MessageBytes</Selector>
+        </Builder>
       </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>Patch2</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="WorkflowInput">
-              <Name>Source1</Name>
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-          </Edges>
-        </Workflow>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="p2:ByteArrayToString" />
+        </Builder>
       </Expression>
     </Nodes>
     <Edges>
@@ -158,6 +232,13 @@
       <Edge From="10" To="11" Label="Source1" />
       <Edge From="12" To="13" Label="Source1" />
       <Edge From="13" To="14" Label="Source1" />
+      <Edge From="15" To="16" Label="Source1" />
+      <Edge From="16" To="17" Label="Source1" />
+      <Edge From="16" To="18" Label="Source1" />
+      <Edge From="16" To="21" Label="Source1" />
+      <Edge From="18" To="19" Label="Source1" />
+      <Edge From="19" To="20" Label="Source1" />
+      <Edge From="21" To="22" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
