@@ -420,6 +420,42 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
+                    <Name>Patch3</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="PortName" />
+                          <Property Name="WheelDisplacement" />
+                          <Property Name="PelletDelivered" />
+                          <Property Name="DeliverPellet" />
+                          <Property Name="PatchEvents" />
+                          <Property Name="Radius" />
+                          <Property Name="SampleRate" />
+                          <Property Name="ResetFeeder" />
+                          <Property Name="DueTime" />
+                          <Property Name="Count" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:UndergroundFeeder.bonsai">
+                          <PatchEvents>Patch3</PatchEvents>
+                          <SampleRate>SampleRate500Hz</SampleRate>
+                          <DeliverPellet>DeliverPelletPatch3</DeliverPellet>
+                          <PelletDelivered>PelletDeliveredPatch3</PelletDelivered>
+                          <DueTime>PT1S</DueTime>
+                          <Count>2</Count>
+                          <ResetFeeder>ResetFeederPatch3</ResetFeeder>
+                          <PortName>COM16</PortName>
+                          <Radius>-4</Radius>
+                          <WheelDisplacement>WheelPatch3</WheelDisplacement>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
                     <Name>RfidNestNE</Name>
                     <Workflow>
                       <Nodes>
