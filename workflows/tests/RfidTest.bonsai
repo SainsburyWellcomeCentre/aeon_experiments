@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.7.1"
+<WorkflowBuilder Version="2.8.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
@@ -14,18 +14,20 @@
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="harp:CreateMessage">
           <harp:MessageType>Write</harp:MessageType>
-          <harp:Address>35</harp:Address>
-          <harp:PayloadType>U8</harp:PayloadType>
-          <harp:Payload>0</harp:Payload>
+          <harp:Payload xsi:type="harp:CreateMessagePayload">
+            <harp:Address>35</harp:Address>
+            <harp:PayloadType>U8</harp:PayloadType>
+            <harp:Value>0</harp:Value>
+          </harp:Payload>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="harp:Device">
-          <harp:DeviceState>Active</harp:DeviceState>
+          <harp:OperationMode>Active</harp:OperationMode>
+          <harp:OperationLed>On</harp:OperationLed>
           <harp:DumpRegisters>true</harp:DumpRegisters>
-          <harp:LedState>On</harp:LedState>
           <harp:VisualIndicators>On</harp:VisualIndicators>
-          <harp:Heartbeat>Enable</harp:Heartbeat>
+          <harp:Heartbeat>Enabled</harp:Heartbeat>
           <harp:IgnoreErrors>false</harp:IgnoreErrors>
           <harp:PortName>COM5</harp:PortName>
         </Combinator>
@@ -41,24 +43,26 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="harp:Device">
-          <harp:DeviceState>Active</harp:DeviceState>
+          <harp:OperationMode>Active</harp:OperationMode>
+          <harp:OperationLed>On</harp:OperationLed>
           <harp:DumpRegisters>true</harp:DumpRegisters>
-          <harp:LedState>On</harp:LedState>
           <harp:VisualIndicators>On</harp:VisualIndicators>
-          <harp:Heartbeat>Disable</harp:Heartbeat>
+          <harp:Heartbeat>Disabled</harp:Heartbeat>
           <harp:IgnoreErrors>false</harp:IgnoreErrors>
           <harp:PortName>COM13</harp:PortName>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="harp:FilterMessage">
-          <harp:Address>32</harp:Address>
           <harp:MessageType>Event</harp:MessageType>
+          <harp:Address>32</harp:Address>
         </Combinator>
       </Expression>
       <Expression xsi:type="harp:Parse">
-        <harp:Type>TimestampedU64</harp:Type>
-        <harp:IsArray>false</harp:IsArray>
+        <harp:Register xsi:type="harp:ParseMessagePayload">
+          <harp:PayloadType>TimestampedU64</harp:PayloadType>
+          <harp:IsArray>false</harp:IsArray>
+        </harp:Register>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>TagId</Name>
