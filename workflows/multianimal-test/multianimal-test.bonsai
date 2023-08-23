@@ -391,7 +391,67 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
-                    <Name>Rfid</Name>
+                    <Name>RfidNestNE</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="PortName" />
+                          <Property Name="RfidEvents" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\Rfid Reader.bonsai">
+                          <PortName>COM14</PortName>
+                          <RfidEvents>RfidEventsNestNE</RfidEvents>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>RfidNestNW</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="PortName" />
+                          <Property Name="RfidEvents" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\Rfid Reader.bonsai">
+                          <PortName>COM15</PortName>
+                          <RfidEvents>RfidEventsNestNW</RfidEvents>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>RfidCorridor</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="PortName" />
+                          <Property Name="RfidEvents" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\Rfid Reader.bonsai">
+                          <PortName>COM17</PortName>
+                          <RfidEvents>RfidEventsCorridor</RfidEvents>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>RfidWater</Name>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
@@ -400,7 +460,67 @@
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Extensions\Rfid Reader.bonsai">
                           <PortName>COM18</PortName>
-                          <RfidEvents>RfidEvents</RfidEvents>
+                          <RfidEvents>RfidEventsWater</RfidEvents>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>RfidPatch1</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="PortName" />
+                          <Property Name="RfidEvents" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\Rfid Reader.bonsai">
+                          <PortName>COM12</PortName>
+                          <RfidEvents>RfidEventsPatch1</RfidEvents>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>RfidPatch2</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="PortName" />
+                          <Property Name="RfidEvents" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\Rfid Reader.bonsai">
+                          <PortName>COM13</PortName>
+                          <RfidEvents>RfidEventsPatch2</RfidEvents>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>RfidPatch3</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="PortName" />
+                          <Property Name="RfidEvents" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\Rfid Reader.bonsai">
+                          <PortName>COM9</PortName>
+                          <RfidEvents>RfidEventsPatch3</RfidEvents>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -1074,10 +1194,58 @@ new(Value.Id as Id,
               <Selector>Seconds,Value.Id,Value.Event,Value.Value</Selector>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>RfidEvents</Name>
+              <Name>RfidEventsNestNE</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>Rfid</LogName>
+              <LogName>RfidEventsNestNE</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>RfidEventsNestNW</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>RfidEventsNestNW</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>RfidEventsCorridor</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>RfidEventsCorridor</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>RfidEventsWater</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>RfidEventsWater</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>RfidEventsPatch1</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>RfidEventsPatch1</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>RfidEventsPatch2</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>RfidEventsPatch2</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>RfidEventsPatch3</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>RfidEventsPatch3</LogName>
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
             </Expression>
@@ -1173,11 +1341,17 @@ new(Value.Id as Id,
             <Edge From="81" To="82" Label="Source1" />
             <Edge From="83" To="84" Label="Source1" />
             <Edge From="85" To="86" Label="Source1" />
-            <Edge From="86" To="89" Label="Source1" />
             <Edge From="87" To="88" Label="Source1" />
-            <Edge From="88" To="89" Label="Source2" />
             <Edge From="89" To="90" Label="Source1" />
-            <Edge From="90" To="91" Label="Source1" />
+            <Edge From="91" To="92" Label="Source1" />
+            <Edge From="93" To="94" Label="Source1" />
+            <Edge From="95" To="96" Label="Source1" />
+            <Edge From="97" To="98" Label="Source1" />
+            <Edge From="98" To="101" Label="Source1" />
+            <Edge From="99" To="100" Label="Source1" />
+            <Edge From="100" To="101" Label="Source2" />
+            <Edge From="101" To="102" Label="Source1" />
+            <Edge From="102" To="103" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
