@@ -803,6 +803,12 @@
             <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
               <aeon:Name>PatchState2</aeon:Name>
             </Expression>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Byte)">
+              <rx:Name>MissedPellets3</rx:Name>
+            </Expression>
+            <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
+              <aeon:Name>PatchState3</aeon:Name>
+            </Expression>
             <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Double)">
               <rx:Name>BaselineTrigger</rx:Name>
             </Expression>
@@ -821,6 +827,9 @@
             <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon:DispenserStateMetadata)">
               <rx:Name>Patch2Dispenser</rx:Name>
             </Expression>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon:DispenserStateMetadata)">
+              <rx:Name>Patch3Dispenser</rx:Name>
+            </Expression>
             <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon:EnvironmentSubjectStateMetadata)">
               <rx:Name>SubjectState</rx:Name>
             </Expression>
@@ -835,6 +844,9 @@
             </Expression>
             <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p1:DigitalOutputs)">
               <rx:Name>ManualPellet2</rx:Name>
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p1:DigitalOutputs)">
+              <rx:Name>ManualPellet3</rx:Name>
             </Expression>
             <Expression xsi:type="rx:PublishSubject" TypeArguments="sys:String">
               <rx:Name>SubjectAlertMessages</rx:Name>
@@ -1174,6 +1186,70 @@ Item3 as Delta)</scr:Expression>
               <Selector xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
+              <Name>Patch3</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Patch3Dispenser</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="aeon:FormatDispenserState" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>ManualPellet3</Name>
+            </Expression>
+            <Expression xsi:type="harp:Format">
+              <harp:MessageType>Write</harp:MessageType>
+              <harp:Register xsi:type="harp:FormatMessagePayload">
+                <harp:Address>201</harp:Address>
+                <harp:PayloadType>TimestampedU8</harp:PayloadType>
+              </harp:Register>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>MissedPellets3</Name>
+            </Expression>
+            <Expression xsi:type="harp:Format">
+              <harp:MessageType>Event</harp:MessageType>
+              <harp:Register xsi:type="harp:FormatMessagePayload">
+                <harp:Address>202</harp:Address>
+                <harp:PayloadType>TimestampedU8</harp:PayloadType>
+              </harp:Register>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Merge" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>Patch3</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>PatchState3</Name>
+            </Expression>
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Expression>new(
+Item1 as Threshold,
+Item2 as D1,
+Item3 as Delta)</scr:Expression>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Patch3</Name>
+            </Expression>
+            <Expression xsi:type="harp:Parse">
+              <harp:Register xsi:type="harp:ParseMessagePayload">
+                <harp:PayloadType>Timestamp</harp:PayloadType>
+                <harp:IsArray>false</harp:IsArray>
+              </harp:Register>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WithLatestFrom" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
+              <LogName>Patch3_State</LogName>
+              <Selector xsi:nil="true" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
               <Name>AudioAmbient</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogAudio.bonsai">
@@ -1394,39 +1470,52 @@ new(Value.Id as Id,
             <Edge From="56" To="57" Label="Source1" />
             <Edge From="57" To="58" Label="Source2" />
             <Edge From="58" To="59" Label="Source1" />
-            <Edge From="60" To="61" Label="Source1" />
-            <Edge From="62" To="63" Label="Source1" />
-            <Edge From="64" To="66" Label="Source1" />
-            <Edge From="65" To="66" Label="Source2" />
-            <Edge From="66" To="67" Label="Source1" />
-            <Edge From="68" To="69" Label="Source1" />
-            <Edge From="70" To="71" Label="Source1" />
-            <Edge From="71" To="82" Label="Source1" />
-            <Edge From="72" To="73" Label="Source1" />
-            <Edge From="73" To="82" Label="Source2" />
-            <Edge From="74" To="75" Label="Source1" />
-            <Edge From="75" To="82" Label="Source3" />
-            <Edge From="76" To="77" Label="Source1" />
-            <Edge From="77" To="82" Label="Source4" />
-            <Edge From="78" To="79" Label="Source1" />
-            <Edge From="79" To="82" Label="Source5" />
-            <Edge From="80" To="81" Label="Source1" />
-            <Edge From="81" To="82" Label="Source6" />
-            <Edge From="82" To="83" Label="Source1" />
+            <Edge From="60" To="67" Label="Source1" />
+            <Edge From="61" To="62" Label="Source1" />
+            <Edge From="62" To="67" Label="Source2" />
+            <Edge From="63" To="64" Label="Source1" />
+            <Edge From="64" To="67" Label="Source3" />
+            <Edge From="65" To="66" Label="Source1" />
+            <Edge From="66" To="67" Label="Source4" />
+            <Edge From="67" To="68" Label="Source1" />
+            <Edge From="69" To="70" Label="Source1" />
+            <Edge From="70" To="73" Label="Source1" />
+            <Edge From="71" To="72" Label="Source1" />
+            <Edge From="72" To="73" Label="Source2" />
+            <Edge From="73" To="74" Label="Source1" />
+            <Edge From="75" To="76" Label="Source1" />
+            <Edge From="77" To="78" Label="Source1" />
+            <Edge From="79" To="81" Label="Source1" />
+            <Edge From="80" To="81" Label="Source2" />
+            <Edge From="81" To="82" Label="Source1" />
             <Edge From="83" To="84" Label="Source1" />
             <Edge From="85" To="86" Label="Source1" />
+            <Edge From="86" To="97" Label="Source1" />
             <Edge From="87" To="88" Label="Source1" />
+            <Edge From="88" To="97" Label="Source2" />
             <Edge From="89" To="90" Label="Source1" />
+            <Edge From="90" To="97" Label="Source3" />
             <Edge From="91" To="92" Label="Source1" />
+            <Edge From="92" To="97" Label="Source4" />
             <Edge From="93" To="94" Label="Source1" />
+            <Edge From="94" To="97" Label="Source5" />
             <Edge From="95" To="96" Label="Source1" />
+            <Edge From="96" To="97" Label="Source6" />
             <Edge From="97" To="98" Label="Source1" />
-            <Edge From="99" To="100" Label="Source1" />
-            <Edge From="100" To="103" Label="Source1" />
-            <Edge From="101" To="102" Label="Source1" />
-            <Edge From="102" To="103" Label="Source2" />
-            <Edge From="103" To="104" Label="Source1" />
+            <Edge From="98" To="99" Label="Source1" />
+            <Edge From="100" To="101" Label="Source1" />
+            <Edge From="102" To="103" Label="Source1" />
             <Edge From="104" To="105" Label="Source1" />
+            <Edge From="106" To="107" Label="Source1" />
+            <Edge From="108" To="109" Label="Source1" />
+            <Edge From="110" To="111" Label="Source1" />
+            <Edge From="112" To="113" Label="Source1" />
+            <Edge From="114" To="115" Label="Source1" />
+            <Edge From="115" To="118" Label="Source1" />
+            <Edge From="116" To="117" Label="Source1" />
+            <Edge From="117" To="118" Label="Source2" />
+            <Edge From="118" To="119" Label="Source1" />
+            <Edge From="119" To="120" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
