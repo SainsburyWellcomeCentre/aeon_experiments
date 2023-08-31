@@ -151,3 +151,9 @@ The drivers can be obtained from the [Brainboxes website support page](https://w
 After installation, the network should be scanned for devices using Boost.LAN Manager File > "Find Devices". The ES-257 should be automatically detected and displayed in the list. The virtual COM ports then need to be installed by selecting the device and the option "Install Virtual COM Port". After successful configuration, the ports should be listed in Windows device manager.
 
 ![Virtual COM Ports](https://user-images.githubusercontent.com/5315880/191293434-4723812d-f16f-41b1-a40c-f982686277a4.png)
+
+### Experiment Workflows
+
+All experiment-specific workflows required to run the experiment are stored in the `workflows` folder. We strongly recommend that each experiment-specific branch includes a `README.md` file describing what the protocol is about and how to configure or run it. The `.gitignore` file may be modified to exclude files according to the needs of each experiment.
+
+It is recommended to keep every project within its own subfolder, and name the subfolder with the same name as the branch name. Multiple sub-folders are allowed if strict project separation is required, e.g. workflows running on different machines with different environments or incompatible extensions.
