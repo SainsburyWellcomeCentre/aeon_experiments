@@ -1,0 +1,3 @@
+# Patch feeder test
+
+This test was used to determine the rates of false-positive/negative in pellet delivery from a feeder. The PatchTest workflow uses an overhead camera to record from a feeder during continous pellet delivery. A motor is used to turn the feeder wheel at approximately 25cm/s to continuously trigger pellet deliveries. Additionally the workflow uses binary region analysis to count the number of pellets on the wheel after each deliery. patch_test_anaysis.ipynb contains analysis for determining failed pellet deliveries and deliveries where multiple pellets were mistakenly delivered.
