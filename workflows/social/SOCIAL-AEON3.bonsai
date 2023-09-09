@@ -460,12 +460,16 @@
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="HardwareNotificationsState" />
                           <Property Name="PortName" />
                           <Property Name="RfidEvents" />
+                          <Property Name="InboundRfidDetected" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\Rfid Reader.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RfidReader.bonsai">
+                          <HardwareNotificationsState>None</HardwareNotificationsState>
                           <PortName>COM14</PortName>
                           <RfidEvents>RfidEventsNestNE</RfidEvents>
+                          <InboundRfidDetected>InboundRfidDetectedNestNE</InboundRfidDetected>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -480,12 +484,16 @@
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="HardwareNotificationsState" />
                           <Property Name="PortName" />
                           <Property Name="RfidEvents" />
+                          <Property Name="InboundRfidDetected" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\Rfid Reader.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RfidReader.bonsai">
+                          <HardwareNotificationsState>None</HardwareNotificationsState>
                           <PortName>COM15</PortName>
                           <RfidEvents>RfidEventsNestNW</RfidEvents>
+                          <InboundRfidDetected>InboundRfidDetectedNestNW</InboundRfidDetected>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -500,12 +508,16 @@
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="HardwareNotificationsState" />
                           <Property Name="PortName" />
                           <Property Name="RfidEvents" />
+                          <Property Name="InboundRfidDetected" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\Rfid Reader.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RfidReader.bonsai">
+                          <HardwareNotificationsState>None</HardwareNotificationsState>
                           <PortName>COM17</PortName>
                           <RfidEvents>RfidEventsCorridor</RfidEvents>
+                          <InboundRfidDetected>InboundRfidDetectedCorridor</InboundRfidDetected>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -520,12 +532,16 @@
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="HardwareNotificationsState" />
                           <Property Name="PortName" />
                           <Property Name="RfidEvents" />
+                          <Property Name="InboundRfidDetected" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\Rfid Reader.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RfidReader.bonsai">
+                          <HardwareNotificationsState>None</HardwareNotificationsState>
                           <PortName>COM18</PortName>
                           <RfidEvents>RfidEventsWater</RfidEvents>
+                          <InboundRfidDetected>InboundRfidDetectedWater</InboundRfidDetected>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -540,12 +556,16 @@
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="HardwareNotificationsState" />
                           <Property Name="PortName" />
                           <Property Name="RfidEvents" />
+                          <Property Name="InboundRfidDetected" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\Rfid Reader.bonsai">
-                          <PortName>COM12</PortName>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RfidReader.bonsai">
+                          <HardwareNotificationsState>None</HardwareNotificationsState>
+                          <PortName>COM18</PortName>
                           <RfidEvents>RfidEventsPatch1</RfidEvents>
+                          <InboundRfidDetected>InboundRfidDetectedPatch1</InboundRfidDetected>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -560,12 +580,16 @@
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="HardwareNotificationsState" />
                           <Property Name="PortName" />
                           <Property Name="RfidEvents" />
+                          <Property Name="InboundRfidDetected" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\Rfid Reader.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RfidReader.bonsai">
+                          <HardwareNotificationsState>None</HardwareNotificationsState>
                           <PortName>COM13</PortName>
                           <RfidEvents>RfidEventsPatch2</RfidEvents>
+                          <InboundRfidDetected>InboundRfidDetectedPatch2</InboundRfidDetected>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -580,12 +604,16 @@
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="HardwareNotificationsState" />
                           <Property Name="PortName" />
                           <Property Name="RfidEvents" />
+                          <Property Name="InboundRfidDetected" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\Rfid Reader.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RfidReader.bonsai">
+                          <HardwareNotificationsState>None</HardwareNotificationsState>
                           <PortName>COM9</PortName>
                           <RfidEvents>RfidEventsPatch3</RfidEvents>
+                          <InboundRfidDetected>InboundRfidDetectedPatch3</InboundRfidDetected>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
