@@ -563,7 +563,7 @@
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RfidReader.bonsai">
                           <HardwareNotificationsState>None</HardwareNotificationsState>
-                          <PortName>COM18</PortName>
+                          <PortName>COM12</PortName>
                           <RfidEvents>RfidEventsPatch1</RfidEvents>
                           <InboundRfidDetected>InboundRfidDetectedPatch1</InboundRfidDetected>
                         </Expression>
@@ -894,7 +894,7 @@
               <ChunkSize>1</ChunkSize>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
-              <WorkflowName>multianimal-test.bonsai</WorkflowName>
+              <WorkflowName>Social-AEON3.bonsai</WorkflowName>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>SynchronizerEvents</Name>
