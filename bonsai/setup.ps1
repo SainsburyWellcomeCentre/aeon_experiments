@@ -17,6 +17,3 @@ if (!(Test-Path "./Bonsai.exe")) {
     Remove-Item -Path "Bonsai32.exe"
 }
 & .\Bonsai.exe --no-editor
-Get-ChildItem -Path "Packages" -Recurse -Filter *git2-*.dll |
-    Where-Object FullName -NotLike "*win-x86*" |
-    Copy-Item -Destination "." -Force
