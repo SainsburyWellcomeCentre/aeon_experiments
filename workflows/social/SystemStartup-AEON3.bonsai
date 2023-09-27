@@ -51,7 +51,7 @@
               <GlobalTriggerFrequency>50</GlobalTriggerFrequency>
               <LocalTriggerFrequency>125</LocalTriggerFrequency>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:UndergroundFeeder.bonsai">
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:UndergroundFeeder.bonsai">
               <PatchEvents>Patch1</PatchEvents>
               <SampleRate>SampleRate500Hz</SampleRate>
               <DeliverPellet>DeliverPellet1</DeliverPellet>
@@ -63,7 +63,7 @@
               <Radius>-4</Radius>
               <WheelDisplacement>WheelDisplacement1</WheelDisplacement>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:UndergroundFeeder.bonsai">
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:UndergroundFeeder.bonsai">
               <PatchEvents>Patch2</PatchEvents>
               <SampleRate>SampleRate500Hz</SampleRate>
               <DeliverPellet>DeliverPellet2</DeliverPellet>
