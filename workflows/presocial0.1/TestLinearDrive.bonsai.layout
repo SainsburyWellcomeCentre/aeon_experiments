@@ -571,8 +571,8 @@
                 <VisualizerSettings>
                   <TimeSeriesVisualizer>
                     <Capacity>640</Capacity>
-                    <Min>160015</Min>
-                    <Max>160016.1</Max>
+                    <Min>-2958</Min>
+                    <Max>-2956.8</Max>
                     <AutoScale>true</AutoScale>
                   </TimeSeriesVisualizer>
                 </VisualizerSettings>
@@ -748,7 +748,7 @@
                         <Y>338</Y>
                       </Location>
                       <Size>
-                        <Width>316</Width>
+                        <Width>1109</Width>
                         <Height>239</Height>
                       </Size>
                       <WindowState>Normal</WindowState>
@@ -792,8 +792,8 @@
                     <EditorDialogSettings>
                       <Visible>true</Visible>
                       <Location>
-                        <X>262</X>
-                        <Y>998</Y>
+                        <X>986</X>
+                        <Y>1042</Y>
                       </Location>
                       <Size>
                         <Width>660</Width>
@@ -4332,7 +4332,7 @@
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
                         <Min>0</Min>
-                        <Max>180</Max>
+                        <Max>1.1</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -4411,8 +4411,8 @@
             <Y>3</Y>
           </Location>
           <Size>
-            <Width>864</Width>
-            <Height>1254</Height>
+            <Width>2146</Width>
+            <Height>1263</Height>
           </Size>
           <WindowState>Normal</WindowState>
         </EditorDialogSettings>
@@ -4578,8 +4578,8 @@
             <Y>3</Y>
           </Location>
           <Size>
-            <Width>864</Width>
-            <Height>1254</Height>
+            <Width>2146</Width>
+            <Height>1263</Height>
           </Size>
           <WindowState>Normal</WindowState>
         </EditorDialogSettings>
@@ -5036,8 +5036,8 @@
     <VisualizerSettings>
       <TimeSeriesVisualizer>
         <Capacity>640</Capacity>
-        <Min>-0.05</Min>
-        <Max>0.20000000000000004</Max>
+        <Min>-0.02</Min>
+        <Max>0.17999999999999997</Max>
         <AutoScale>true</AutoScale>
       </TimeSeriesVisualizer>
     </VisualizerSettings>
