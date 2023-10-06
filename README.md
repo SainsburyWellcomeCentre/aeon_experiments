@@ -157,3 +157,11 @@ After installation, the network should be scanned for devices using Boost.LAN Ma
 All experiment-specific workflows required to run the experiment are stored in the `workflows` folder. We strongly recommend that each experiment-specific branch includes a `README.md` file describing what the protocol is about and how to configure or run it. The `.gitignore` file may be modified to exclude files according to the needs of each experiment.
 
 It is recommended to keep every project within its own subfolder, and name the subfolder with the same name as the branch name. Multiple sub-folders are allowed if strict project separation is required, e.g. workflows running on different machines with different environments or incompatible extensions.
+
+## Citation Policy
+
+If you use this software, please cite it as below:
+
+Sainsbury Wellcome Centre Foraging Behaviour Working Group. (2023). Aeon: An open-source platform to study the neural basis of ethological behaviours over naturalistic timescales,  https://doi.org/10.5281/zenodo.8413142
+
+[![DOI](https://zenodo.org/badge/485512362.svg)](https://zenodo.org/badge/latestdoi/485512362)
