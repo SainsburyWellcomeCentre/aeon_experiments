@@ -133,7 +133,7 @@ Item4 as HardRate)</scr:Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>ThresholdCrossingPatch1</Name>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentCondition.bonsai">
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:EnvironmentCondition.bonsai">
               <Value>Experiment</Value>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -145,7 +145,7 @@ Item4 as HardRate)</scr:Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>ThresholdCrossingPatch2</Name>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentCondition.bonsai">
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:EnvironmentCondition.bonsai">
               <Value>Experiment</Value>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -351,7 +351,7 @@ RatePatch2 as Rate)</scr:Expression>
           </Edges>
         </Workflow>
       </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RepeatEverySubject.bonsai" />
       <Expression xsi:type="rx:PublishSubject">
         <Name>ParameterChange</Name>
       </Expression>
@@ -380,7 +380,7 @@ RatePatch2 as Rate)</scr:Expression>
               <Property Name="DistanceThreshold" DisplayName="ThresholdPatch1" />
               <Property Name="Rate" DisplayName="RatePatch1" />
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\RandomDepletion.bonsai">
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
               <Name>DistanceState1</Name>
               <DistanceThreshold>75</DistanceThreshold>
               <Rate>0.01</Rate>
@@ -403,7 +403,7 @@ RatePatch2 as Rate)</scr:Expression>
               <Property Name="DistanceThreshold" DisplayName="ThresholdPatch2" />
               <Property Name="Rate" DisplayName="RatePatch2" />
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\RandomDepletion.bonsai">
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
               <Name>DistanceState2</Name>
               <DistanceThreshold>75</DistanceThreshold>
               <Rate>0.01</Rate>
@@ -426,7 +426,7 @@ RatePatch2 as Rate)</scr:Expression>
               <Property Name="DistanceThreshold" DisplayName="ThresholdPatch3" />
               <Property Name="Rate" DisplayName="RatePatch3" />
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\RandomDepletion.bonsai">
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
               <Name>DistanceState3</Name>
               <DistanceThreshold>75</DistanceThreshold>
               <Rate>0.01</Rate>
@@ -468,7 +468,7 @@ RatePatch2 as Rate)</scr:Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Repeat" />
       </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEverySubject.bonsai" />
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RepeatEverySubject.bonsai" />
       <Expression xsi:type="WorkflowOutput" />
       <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Int32">
         <rx:Name>ThresholdCrossingPatch1</rx:Name>
