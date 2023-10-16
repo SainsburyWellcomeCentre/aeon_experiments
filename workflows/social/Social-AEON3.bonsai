@@ -457,7 +457,7 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
-                    <Name>RfidNestNE</Name>
+                    <Name>RfidNest1</Name>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
@@ -469,8 +469,8 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
                           <HardwareNotificationsState>None</HardwareNotificationsState>
                           <PortName>COM14</PortName>
-                          <RfidEvents>RfidEventsNestNE</RfidEvents>
-                          <InboundRfidDetected>InboundRfidDetectedNestNE</InboundRfidDetected>
+                          <RfidEvents>RfidEventsNest1</RfidEvents>
+                          <InboundRfidDetected>InboundRfidDetectedNest1</InboundRfidDetected>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -481,7 +481,7 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
-                    <Name>RfidNestNW</Name>
+                    <Name>RfidNest2</Name>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
@@ -493,8 +493,8 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
                           <HardwareNotificationsState>None</HardwareNotificationsState>
                           <PortName>COM15</PortName>
-                          <RfidEvents>RfidEventsNestNW</RfidEvents>
-                          <InboundRfidDetected>InboundRfidDetectedNestNW</InboundRfidDetected>
+                          <RfidEvents>RfidEventsNest2</RfidEvents>
+                          <InboundRfidDetected>InboundRfidDetectedNest2</InboundRfidDetected>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -505,7 +505,7 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
-                    <Name>RfidCorridor</Name>
+                    <Name>RfidGate</Name>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
@@ -517,32 +517,8 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
                           <HardwareNotificationsState>None</HardwareNotificationsState>
                           <PortName>COM17</PortName>
-                          <RfidEvents>RfidEventsCorridor</RfidEvents>
-                          <InboundRfidDetected>InboundRfidDetectedCorridor</InboundRfidDetected>
-                        </Expression>
-                        <Expression xsi:type="WorkflowOutput" />
-                      </Nodes>
-                      <Edges>
-                        <Edge From="0" To="1" Label="Source1" />
-                        <Edge From="1" To="2" Label="Source1" />
-                      </Edges>
-                    </Workflow>
-                  </Expression>
-                  <Expression xsi:type="GroupWorkflow">
-                    <Name>RfidWater</Name>
-                    <Workflow>
-                      <Nodes>
-                        <Expression xsi:type="ExternalizedMapping">
-                          <Property Name="HardwareNotificationsState" />
-                          <Property Name="PortName" />
-                          <Property Name="RfidEvents" />
-                          <Property Name="InboundRfidDetected" />
-                        </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
-                          <HardwareNotificationsState>None</HardwareNotificationsState>
-                          <PortName>COM18</PortName>
-                          <RfidEvents>RfidEventsWater</RfidEvents>
-                          <InboundRfidDetected>InboundRfidDetectedWater</InboundRfidDetected>
+                          <RfidEvents>RfidEventsGate</RfidEvents>
+                          <InboundRfidDetected>InboundRfidDetectedGate</InboundRfidDetected>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -1373,34 +1349,26 @@ new(Value.Id as Id,
               <Selector>Seconds,Value.Id,Value.Event,Value.Value</Selector>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>RfidEventsNestNE</Name>
+              <Name>RfidEventsNest1</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>RfidEventsNestNE</LogName>
+              <LogName>RfidEventsNest1</LogName>
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>RfidEventsNestNW</Name>
+              <Name>RfidEventsNest2</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>RfidEventsNestNW</LogName>
+              <LogName>RfidEventsNest2</LogName>
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>RfidEventsCorridor</Name>
+              <Name>RfidEventsGate</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>RfidEventsCorridor</LogName>
-              <Heartbeats />
-              <ClosingDuration xsi:nil="true" />
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>RfidEventsWater</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>RfidEventsWater</LogName>
+              <LogName>RfidEventsGate</LogName>
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
             </Expression>
@@ -1539,12 +1507,11 @@ new(Value.Id as Id,
             <Edge From="108" To="109" Label="Source1" />
             <Edge From="110" To="111" Label="Source1" />
             <Edge From="112" To="113" Label="Source1" />
+            <Edge From="113" To="116" Label="Source1" />
             <Edge From="114" To="115" Label="Source1" />
-            <Edge From="115" To="118" Label="Source1" />
+            <Edge From="115" To="116" Label="Source2" />
             <Edge From="116" To="117" Label="Source1" />
-            <Edge From="117" To="118" Label="Source2" />
-            <Edge From="118" To="119" Label="Source1" />
-            <Edge From="119" To="120" Label="Source1" />
+            <Edge From="117" To="118" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
