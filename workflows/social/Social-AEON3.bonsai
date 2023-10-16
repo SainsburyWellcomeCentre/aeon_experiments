@@ -3187,16 +3187,16 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                     <Name>HeartbeatSources</Name>
                     <Workflow>
                       <Nodes>
-                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\HeartbeatMonitor.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:HeartbeatMonitor.bonsai">
                           <Name>Patch1</Name>
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\HeartbeatMonitor.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:HeartbeatMonitor.bonsai">
                           <Name>Patch2</Name>
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\HeartbeatMonitor.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:HeartbeatMonitor.bonsai">
                           <Name>Patch3</Name>
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\HeartbeatMonitor.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:HeartbeatMonitor.bonsai">
                           <Name>VideoEvents</Name>
                         </Expression>
                         <Expression xsi:type="Combinator">
@@ -3213,9 +3213,9 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                       </Edges>
                     </Workflow>
                   </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\SynchronizerMonitor.bonsai" />
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SynchronizerMonitor.bonsai" />
                   <Expression xsi:type="scr:ExpressionCondition">
-                    <scr:Expression>DeviceCount != ExpectedDeviceCount || MaxDifference &gt; 0 || Math.Abs((MeanTimestamp - DateTime.UtcNow).TotalMinutes) &gt; 30
+                    <scr:Expression>DeviceCount != ExpectedDeviceCount || MaxDifference &gt; 0 || Math.Abs((MeanUtcTimestamp - DateTime.UtcNow).TotalMinutes) &gt; 30
 </scr:Expression>
                   </Expression>
                   <Expression xsi:type="Format">
@@ -3228,10 +3228,10 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="aeon:FormatLogMessage">
                     <Format>{0}	{1}	{2}	{3}	{4}</Format>
-                    <Selector>MeanRawTimestamp,MeanTimestamp,ExpectedDeviceCount,DeviceCount,MaxDifference</Selector>
+                    <Selector>MeanTimestamp,MeanUtcTimestamp,ExpectedDeviceCount,DeviceCount,MaxDifference</Selector>
                     <aeon:Priority>Alert</aeon:Priority>
                     <aeon:Type>HarpSynch</aeon:Type>
-                    <aeon:Timestamp>MeanRawTimestamp</aeon:Timestamp>
+                    <aeon:Timestamp>MeanTimestamp</aeon:Timestamp>
                   </Expression>
                   <Expression xsi:type="MulticastSubject">
                     <Name>AlertLogs</Name>
