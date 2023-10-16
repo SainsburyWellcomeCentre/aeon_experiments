@@ -4131,7 +4131,7 @@ Item3 as Delta)</scr:Expression>
                   <Expression xsi:type="viz:TableLayoutPanelBuilder">
                     <viz:Name>ExperimentMetadata</viz:Name>
                     <viz:ColumnCount>3</viz:ColumnCount>
-                    <viz:RowCount>4</viz:RowCount>
+                    <viz:RowCount>3</viz:RowCount>
                     <viz:ColumnStyles />
                     <viz:RowStyles />
                     <viz:CellSpans>
