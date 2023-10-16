@@ -3085,29 +3085,47 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                   <Expression xsi:type="MulticastSubject">
                     <Name>AlertLogs</Name>
                   </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\DroppedFrames.bonsai">
-                    <FrameEvents>CameraTop</FrameEvents>
-                  </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\DroppedFrames.bonsai">
-                    <FrameEvents>CameraWest</FrameEvents>
-                  </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\DroppedFrames.bonsai">
-                    <FrameEvents>CameraEast</FrameEvents>
-                  </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\DroppedFrames.bonsai">
-                    <FrameEvents>CameraNorth</FrameEvents>
-                  </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\DroppedFrames.bonsai">
-                    <FrameEvents>CameraSouth</FrameEvents>
-                  </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\DroppedFrames.bonsai">
-                    <FrameEvents>CameraPatch1</FrameEvents>
-                  </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\DroppedFrames.bonsai">
-                    <FrameEvents>CameraPatch2</FrameEvents>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:Merge" />
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>DroppedFramesMonitor</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\DroppedFrames.bonsai">
+                          <FrameEvents>CameraTop</FrameEvents>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\DroppedFrames.bonsai">
+                          <FrameEvents>CameraWest</FrameEvents>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\DroppedFrames.bonsai">
+                          <FrameEvents>CameraEast</FrameEvents>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\DroppedFrames.bonsai">
+                          <FrameEvents>CameraNorth</FrameEvents>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\DroppedFrames.bonsai">
+                          <FrameEvents>CameraSouth</FrameEvents>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\DroppedFrames.bonsai">
+                          <FrameEvents>CameraPatch1</FrameEvents>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\DroppedFrames.bonsai">
+                          <FrameEvents>CameraPatch2</FrameEvents>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:Merge" />
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="7" Label="Source1" />
+                        <Edge From="1" To="7" Label="Source2" />
+                        <Edge From="2" To="7" Label="Source3" />
+                        <Edge From="3" To="7" Label="Source4" />
+                        <Edge From="4" To="7" Label="Source5" />
+                        <Edge From="5" To="7" Label="Source6" />
+                        <Edge From="6" To="7" Label="Source7" />
+                        <Edge From="7" To="8" Label="Source1" />
+                      </Edges>
+                    </Workflow>
                   </Expression>
                   <Expression xsi:type="Format">
                     <Format>## **Frame Dropped**
@@ -3165,6 +3183,36 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                   <Expression xsi:type="MulticastSubject">
                     <Name>EnvironmentAlertMessages</Name>
                   </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>HeartbeatSources</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\HeartbeatMonitor.bonsai">
+                          <Name>Patch1</Name>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\HeartbeatMonitor.bonsai">
+                          <Name>Patch2</Name>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\HeartbeatMonitor.bonsai">
+                          <Name>Patch3</Name>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\HeartbeatMonitor.bonsai">
+                          <Name>VideoEvents</Name>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:Merge" />
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="4" Label="Source1" />
+                        <Edge From="1" To="4" Label="Source2" />
+                        <Edge From="2" To="4" Label="Source3" />
+                        <Edge From="3" To="4" Label="Source4" />
+                        <Edge From="4" To="5" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Extensions\SynchronizerMonitor.bonsai" />
                   <Expression xsi:type="scr:ExpressionCondition">
                     <scr:Expression>DeviceCount != ExpectedDeviceCount || MaxDifference &gt; 0 || Math.Abs((MeanTimestamp - DateTime.UtcNow).TotalMinutes) &gt; 30
@@ -3220,27 +3268,21 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                   <Edge From="18" To="21" Label="Source1" />
                   <Edge From="19" To="20" Label="Source1" />
                   <Edge From="21" To="22" Label="Source1" />
-                  <Edge From="23" To="30" Label="Source1" />
-                  <Edge From="24" To="30" Label="Source2" />
-                  <Edge From="25" To="30" Label="Source3" />
-                  <Edge From="26" To="30" Label="Source4" />
-                  <Edge From="27" To="30" Label="Source5" />
-                  <Edge From="28" To="30" Label="Source6" />
-                  <Edge From="29" To="30" Label="Source7" />
+                  <Edge From="23" To="24" Label="Source1" />
+                  <Edge From="23" To="26" Label="Source1" />
+                  <Edge From="24" To="25" Label="Source1" />
+                  <Edge From="26" To="27" Label="Source1" />
+                  <Edge From="28" To="29" Label="Source1" />
+                  <Edge From="29" To="30" Label="Source1" />
                   <Edge From="30" To="31" Label="Source1" />
-                  <Edge From="30" To="33" Label="Source1" />
-                  <Edge From="31" To="32" Label="Source1" />
+                  <Edge From="32" To="33" Label="Source1" />
                   <Edge From="33" To="34" Label="Source1" />
+                  <Edge From="33" To="39" Label="Source1" />
+                  <Edge From="34" To="35" Label="Source1" />
+                  <Edge From="34" To="37" Label="Source1" />
                   <Edge From="35" To="36" Label="Source1" />
-                  <Edge From="36" To="37" Label="Source1" />
                   <Edge From="37" To="38" Label="Source1" />
                   <Edge From="39" To="40" Label="Source1" />
-                  <Edge From="39" To="45" Label="Source1" />
-                  <Edge From="40" To="41" Label="Source1" />
-                  <Edge From="40" To="43" Label="Source1" />
-                  <Edge From="41" To="42" Label="Source1" />
-                  <Edge From="43" To="44" Label="Source1" />
-                  <Edge From="45" To="46" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>

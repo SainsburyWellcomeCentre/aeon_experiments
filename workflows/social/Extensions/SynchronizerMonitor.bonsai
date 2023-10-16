@@ -3,169 +3,17 @@
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
-                 xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
                  xmlns:num="clr-namespace:Bonsai.Numerics;assembly=Bonsai.Numerics"
+                 xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Description>Provides continuous statistics and reports current time and device synchronization state.</Description>
   <Workflow>
     <Nodes>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>HeartbeatSources</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="rx:CreateObservable">
-              <Name>Patch1</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>Patch1</Name>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="harp:FilterMessage">
-                      <harp:MessageType>Event</harp:MessageType>
-                      <harp:Address>8</harp:Address>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="harp:Parse">
-                    <harp:Register xsi:type="harp:ParseMessagePayload">
-                      <harp:PayloadType>Timestamp</harp:PayloadType>
-                      <harp:IsArray>false</harp:IsArray>
-                    </harp:Register>
-                  </Expression>
-                  <Expression xsi:type="scr:ExpressionTransform">
-                    <scr:Expression>new(
-"Patch1" as Name,
-it as Timestamp)</scr:Expression>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source1" />
-                  <Edge From="3" To="4" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="rx:CreateObservable">
-              <Name>Patch2</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>Patch2</Name>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="harp:FilterMessage">
-                      <harp:MessageType>Event</harp:MessageType>
-                      <harp:Address>8</harp:Address>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="harp:Parse">
-                    <harp:Register xsi:type="harp:ParseMessagePayload">
-                      <harp:PayloadType>Timestamp</harp:PayloadType>
-                      <harp:IsArray>false</harp:IsArray>
-                    </harp:Register>
-                  </Expression>
-                  <Expression xsi:type="scr:ExpressionTransform">
-                    <scr:Expression>new(
-"Patch2" as Name,
-it as Timestamp)</scr:Expression>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source1" />
-                  <Edge From="3" To="4" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="rx:CreateObservable">
-              <Name>VideoEvents</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>VideoEvents</Name>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="harp:FilterMessage">
-                      <harp:MessageType>Event</harp:MessageType>
-                      <harp:Address>8</harp:Address>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="harp:Parse">
-                    <harp:Register xsi:type="harp:ParseMessagePayload">
-                      <harp:PayloadType>Timestamp</harp:PayloadType>
-                      <harp:IsArray>false</harp:IsArray>
-                    </harp:Register>
-                  </Expression>
-                  <Expression xsi:type="scr:ExpressionTransform">
-                    <scr:Expression>new(
-"VideoController" as Name,
-it as Timestamp)</scr:Expression>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source1" />
-                  <Edge From="3" To="4" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="rx:CreateObservable">
-              <Name>SynchronizerEvents</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>SynchronizerEvents</Name>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="harp:FilterMessage">
-                      <harp:MessageType>Event</harp:MessageType>
-                      <harp:Address>8</harp:Address>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="harp:Parse">
-                    <harp:Register xsi:type="harp:ParseMessagePayload">
-                      <harp:PayloadType>Timestamp</harp:PayloadType>
-                      <harp:IsArray>false</harp:IsArray>
-                    </harp:Register>
-                  </Expression>
-                  <Expression xsi:type="scr:ExpressionTransform">
-                    <scr:Expression>new(
-"Synchronizer" as Name,
-it as Timestamp)</scr:Expression>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source1" />
-                  <Edge From="3" To="4" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Merge" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:ToArray" />
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="4" Label="Source1" />
-            <Edge From="1" To="4" Label="Source2" />
-            <Edge From="2" To="4" Label="Source3" />
-            <Edge From="3" To="4" Label="Source4" />
-            <Edge From="4" To="5" Label="Source1" />
-            <Edge From="5" To="6" Label="Source1" />
-          </Edges>
-        </Workflow>
+      <Expression xsi:type="WorkflowInput">
+        <Name>Source1</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:ToArray" />
       </Expression>
       <Expression xsi:type="rx:AsyncSubject">
         <Name>HeartbeatSources</Name>
@@ -205,14 +53,14 @@ it as Timestamp)</scr:Expression>
               <Combinator xsi:type="rx:Merge" />
             </Expression>
             <Expression xsi:type="MemberSelector">
-              <Selector>Timestamp</Selector>
+              <Selector>Seconds</Selector>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:ToList" />
             </Expression>
             <Expression xsi:type="Format">
               <Format>{0}@{1}</Format>
-              <Selector>Name,Timestamp</Selector>
+              <Selector>Value,Seconds</Selector>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:ToList" />
@@ -276,21 +124,22 @@ string.Join("\t", Item1.Names) as Elements)</scr:Expression>
       <Edge From="1" To="2" Label="Source1" />
       <Edge From="2" To="3" Label="Source1" />
       <Edge From="3" To="4" Label="Source1" />
-      <Edge From="4" To="7" Label="Source1" />
-      <Edge From="5" To="6" Label="Source1" />
-      <Edge From="6" To="7" Label="Source2" />
-      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="5" To="8" Label="Source1" />
+      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="7" To="8" Label="Source2" />
       <Edge From="8" To="9" Label="Source1" />
-      <Edge From="8" To="11" Label="Source1" />
       <Edge From="9" To="10" Label="Source1" />
-      <Edge From="10" To="12" Label="Source1" />
-      <Edge From="11" To="12" Label="Source2" />
-      <Edge From="12" To="13" Label="Source1" />
-      <Edge From="13" To="16" Label="Source1" />
-      <Edge From="14" To="15" Label="Source1" />
-      <Edge From="15" To="16" Label="Source2" />
-      <Edge From="16" To="17" Label="Source1" />
+      <Edge From="9" To="12" Label="Source1" />
+      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="11" To="13" Label="Source1" />
+      <Edge From="12" To="13" Label="Source2" />
+      <Edge From="13" To="14" Label="Source1" />
+      <Edge From="14" To="17" Label="Source1" />
+      <Edge From="15" To="16" Label="Source1" />
+      <Edge From="16" To="17" Label="Source2" />
       <Edge From="17" To="18" Label="Source1" />
+      <Edge From="18" To="19" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
