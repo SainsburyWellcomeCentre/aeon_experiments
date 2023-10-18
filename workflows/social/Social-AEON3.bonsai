@@ -457,6 +457,30 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
+                    <Name>Nest</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="PortName" />
+                          <Property Name="WeightEvents" />
+                          <Property Name="TareWeight" />
+                          <Property Name="TareEvents" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:WeightScale.bonsai">
+                          <PortName>COM7</PortName>
+                          <WeightEvents>WeightNest</WeightEvents>
+                          <TareWeight>TareWeightNest</TareWeight>
+                          <TareEvents>TareNest</TareEvents>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
                     <Name>RfidNest1</Name>
                     <Workflow>
                       <Nodes>
@@ -1438,6 +1462,37 @@ new(Value.Id as Id,
               <LogName>System_AvailableMemory</LogName>
               <Selector xsi:nil="true" />
             </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>WeightNest</Name>
+            </Expression>
+            <Expression xsi:type="InputMapping">
+              <PropertyMappings />
+              <Selector>Seconds,Value.Weight,Value.Confidence</Selector>
+              <TypeMapping xsi:type="TypeMapping" TypeArguments="aeon-env:WeightMeasurement" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="aeon-env:FormatWeight">
+                <aeon-env:Address>200</aeon-env:Address>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>TareNest</Name>
+            </Expression>
+            <Expression xsi:type="harp:Format">
+              <harp:MessageType>Write</harp:MessageType>
+              <harp:Register xsi:type="harp:FormatMessagePayload">
+                <harp:Address>201</harp:Address>
+                <harp:PayloadType>TimestampedU8</harp:PayloadType>
+              </harp:Register>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Merge" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>Nest</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
+            </Expression>
           </Nodes>
           <Edges>
             <Edge From="2" To="3" Label="Source1" />
@@ -1530,6 +1585,12 @@ new(Value.Id as Id,
             <Edge From="118" To="119" Label="Source2" />
             <Edge From="119" To="120" Label="Source1" />
             <Edge From="120" To="121" Label="Source1" />
+            <Edge From="122" To="123" Label="Source1" />
+            <Edge From="123" To="124" Label="Source1" />
+            <Edge From="124" To="127" Label="Source1" />
+            <Edge From="125" To="126" Label="Source1" />
+            <Edge From="126" To="127" Label="Source2" />
+            <Edge From="127" To="128" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
