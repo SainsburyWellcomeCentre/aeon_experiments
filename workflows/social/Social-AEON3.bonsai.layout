@@ -26,7 +26,7 @@
       <WindowState>Normal</WindowState>
     </EditorDialogSettings>
   </DialogSettings>
-  <DialogSettings>
+  <DialogSettings xsi:type="WorkflowEditorSettings">
     <Visible>false</Visible>
     <Location>
       <X>0</X>
@@ -37,6 +37,18 @@
       <Height>0</Height>
     </Size>
     <WindowState>Normal</WindowState>
+    <EditorDialogSettings>
+      <Visible>false</Visible>
+      <Location>
+        <X>3</X>
+        <Y>3</Y>
+      </Location>
+      <Size>
+        <Width>1506</Width>
+        <Height>903</Height>
+      </Size>
+      <WindowState>Normal</WindowState>
+    </EditorDialogSettings>
   </DialogSettings>
   <DialogSettings xsi:type="WorkflowEditorSettings">
     <Visible>false</Visible>
@@ -62,6 +74,42 @@
       <WindowState>Normal</WindowState>
     </EditorDialogSettings>
     <EditorVisualizerLayout>
+      <DialogSettings>
+        <Visible>false</Visible>
+        <Location>
+          <X>0</X>
+          <Y>0</Y>
+        </Location>
+        <Size>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+      </DialogSettings>
+      <DialogSettings>
+        <Visible>false</Visible>
+        <Location>
+          <X>0</X>
+          <Y>0</Y>
+        </Location>
+        <Size>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+      </DialogSettings>
+      <DialogSettings>
+        <Visible>false</Visible>
+        <Location>
+          <X>0</X>
+          <Y>0</Y>
+        </Location>
+        <Size>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+      </DialogSettings>
       <DialogSettings>
         <Visible>false</Visible>
         <Location>
@@ -3486,62 +3534,14 @@
         </Size>
         <WindowState>Normal</WindowState>
       </DialogSettings>
-      <DialogSettings>
-        <Visible>false</Visible>
-        <Location>
-          <X>0</X>
-          <Y>0</Y>
-        </Location>
-        <Size>
-          <Width>0</Width>
-          <Height>0</Height>
-        </Size>
-        <WindowState>Normal</WindowState>
-      </DialogSettings>
-      <DialogSettings>
-        <Visible>false</Visible>
-        <Location>
-          <X>0</X>
-          <Y>0</Y>
-        </Location>
-        <Size>
-          <Width>0</Width>
-          <Height>0</Height>
-        </Size>
-        <WindowState>Normal</WindowState>
-      </DialogSettings>
-      <DialogSettings>
-        <Visible>false</Visible>
-        <Location>
-          <X>0</X>
-          <Y>0</Y>
-        </Location>
-        <Size>
-          <Width>0</Width>
-          <Height>0</Height>
-        </Size>
-        <WindowState>Normal</WindowState>
-      </DialogSettings>
-      <DialogSettings>
-        <Visible>false</Visible>
-        <Location>
-          <X>0</X>
-          <Y>0</Y>
-        </Location>
-        <Size>
-          <Width>0</Width>
-          <Height>0</Height>
-        </Size>
-        <WindowState>Normal</WindowState>
-      </DialogSettings>
-      <DialogSettings>
+      <DialogSettings xsi:type="WorkflowEditorSettings">
         <Visible>true</Visible>
         <Location>
           <X>8</X>
           <Y>41</Y>
         </Location>
         <Size>
-          <Width>981</Width>
+          <Width>951</Width>
           <Height>975</Height>
         </Size>
         <WindowState>Normal</WindowState>
@@ -3615,7 +3615,7 @@
                         <XMin>0</XMin>
                         <XMax>15</XMax>
                         <YMin>0</YMin>
-                        <YMax>139.99999999999997</YMax>
+                        <YMax>250</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
                         <SelectedPage>0</SelectedPage>
@@ -3654,8 +3654,8 @@
                     <VisualizerSettings>
                       <RollingGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>112</Min>
-                        <Max>126</Max>
+                        <Min>185</Min>
+                        <Max>210</Max>
                         <AutoScale>true</AutoScale>
                       </RollingGraphVisualizer>
                     </VisualizerSettings>
@@ -3714,7 +3714,7 @@
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
                         <Min>0</Min>
-                        <Max>9</Max>
+                        <Max>12</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -3724,8 +3724,8 @@
                     <VisualizerSettings>
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>-0.005</Min>
-                        <Max>0</Max>
+                        <Min>0</Min>
+                        <Max>0.0018</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -3735,11 +3735,23 @@
             </MashupSettings>
           </TableLayoutPanelVisualizer>
         </VisualizerSettings>
+        <EditorDialogSettings>
+          <Visible>false</Visible>
+          <Location>
+            <X>3</X>
+            <Y>3</Y>
+          </Location>
+          <Size>
+            <Width>1506</Width>
+            <Height>903</Height>
+          </Size>
+          <WindowState>Normal</WindowState>
+        </EditorDialogSettings>
       </DialogSettings>
       <DialogSettings>
         <Visible>true</Visible>
         <Location>
-          <X>982</X>
+          <X>953</X>
           <Y>16</Y>
         </Location>
         <Size>
@@ -3775,14 +3787,14 @@
           </TableLayoutPanelVisualizer>
         </VisualizerSettings>
       </DialogSettings>
-      <DialogSettings>
+      <DialogSettings xsi:type="WorkflowEditorSettings">
         <Visible>true</Visible>
         <Location>
-          <X>978</X>
+          <X>952</X>
           <Y>313</Y>
         </Location>
         <Size>
-          <Width>936</Width>
+          <Width>962</Width>
           <Height>391</Height>
         </Size>
         <WindowState>Normal</WindowState>
@@ -3790,21 +3802,21 @@
         <VisualizerSettings>
           <TableLayoutPanelVisualizer>
             <MashupSettings>
-              <VisualizerTypeName>Aeon.Foraging.DispenserStateVisualizer</VisualizerTypeName>
+              <VisualizerTypeName>Aeon.Foraging.DispenserEventVisualizer</VisualizerTypeName>
               <VisualizerSettings>
-                <DispenserStateVisualizer />
+                <DispenserEventVisualizer />
               </VisualizerSettings>
             </MashupSettings>
             <MashupSettings>
-              <VisualizerTypeName>Aeon.Foraging.DispenserStateVisualizer</VisualizerTypeName>
+              <VisualizerTypeName>Aeon.Foraging.DispenserEventVisualizer</VisualizerTypeName>
               <VisualizerSettings>
-                <DispenserStateVisualizer />
+                <DispenserEventVisualizer />
               </VisualizerSettings>
             </MashupSettings>
             <MashupSettings>
-              <VisualizerTypeName>Aeon.Foraging.DispenserStateVisualizer</VisualizerTypeName>
+              <VisualizerTypeName>Aeon.Foraging.DispenserEventVisualizer</VisualizerTypeName>
               <VisualizerSettings>
-                <DispenserStateVisualizer />
+                <DispenserEventVisualizer />
               </VisualizerSettings>
             </MashupSettings>
             <MashupSettings>
@@ -3821,12 +3833,24 @@
             </MashupSettings>
           </TableLayoutPanelVisualizer>
         </VisualizerSettings>
+        <EditorDialogSettings>
+          <Visible>false</Visible>
+          <Location>
+            <X>3</X>
+            <Y>3</Y>
+          </Location>
+          <Size>
+            <Width>1506</Width>
+            <Height>903</Height>
+          </Size>
+          <WindowState>Normal</WindowState>
+        </EditorDialogSettings>
       </DialogSettings>
       <DialogSettings>
         <Visible>true</Visible>
         <Location>
-          <X>1010</X>
-          <Y>727</Y>
+          <X>957</X>
+          <Y>720</Y>
         </Location>
         <Size>
           <Width>656</Width>
