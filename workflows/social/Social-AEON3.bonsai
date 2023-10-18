@@ -4375,12 +4375,14 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="scr:ExpressionTransform">
                     <scr:Expression>new(
-RawWeight.Value as RawWeight,
-FilteredWeight.Value as FilteredWeight,
-BaselinedWeight.Value as BaselinedWeight)</scr:Expression>
+RawWeight.Value as Raw,
+FilteredWeight.Confidence == 1
+  ? FilteredWeight.Value
+  : single.NaN as Stable,
+FilteredWeight.Value - BaselinedWeight.Value as Baseline)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="viz:RollingGraphBuilder">
-                    <viz:ValueSelector>RawWeight,FilteredWeight,BaselinedWeight</viz:ValueSelector>
+                    <viz:ValueSelector>Raw,Stable,Baseline</viz:ValueSelector>
                     <viz:SymbolType>None</viz:SymbolType>
                     <viz:LineWidth>1</viz:LineWidth>
                     <viz:Capacity>640</viz:Capacity>
