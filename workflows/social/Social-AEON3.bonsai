@@ -3586,66 +3586,6 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
             <Expression xsi:type="MulticastSubject">
               <Name>StopCameras</Name>
             </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>PatchState1</Name>
-            </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>new(
-Item2 as D1,
-Item3 as Delta)</scr:Expression>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="aeon-env:LabelControl">
-                <aeon-env:FontSize>14</aeon-env:FontSize>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="GroupWorkflow">
-              <Name>Patch1</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>PatchState2</Name>
-            </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>new(
-Item2 as D1,
-Item3 as Delta)</scr:Expression>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="aeon-env:LabelControl">
-                <aeon-env:FontSize>14</aeon-env:FontSize>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="GroupWorkflow">
-              <Name>Patch2</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>AudioAmbient</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value</Selector>
-            </Expression>
             <Expression xsi:type="GroupWorkflow">
               <Name>PatchActivity</Name>
               <Workflow>
@@ -4480,13 +4420,6 @@ BaselinedWeight.Value as BaselinedWeight)</scr:Expression>
             <Edge From="3" To="4" Label="Source1" />
             <Edge From="5" To="6" Label="Source1" />
             <Edge From="7" To="8" Label="Source1" />
-            <Edge From="9" To="10" Label="Source1" />
-            <Edge From="10" To="11" Label="Source1" />
-            <Edge From="11" To="12" Label="Source1" />
-            <Edge From="13" To="14" Label="Source1" />
-            <Edge From="14" To="15" Label="Source1" />
-            <Edge From="15" To="16" Label="Source1" />
-            <Edge From="17" To="18" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
