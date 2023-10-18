@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
@@ -462,14 +462,16 @@
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
                           <Property Name="PortName" />
-                          <Property Name="WeightEvents" />
-                          <Property Name="TareWeight" />
+                          <Property Name="FilterWindow" />
+                          <Property Name="WeightData" />
                           <Property Name="TareEvents" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:WeightScale.bonsai">
                           <PortName>COM7</PortName>
-                          <WeightEvents>WeightNest</WeightEvents>
-                          <TareWeight>TareWeightNest</TareWeight>
+                          <BaselineWeightTrigger>BaselineWeight</BaselineWeightTrigger>
+                          <FilterWindow>40</FilterWindow>
+                          <WeightData>WeightNest</WeightData>
+                          <TareCommands>TareWeight</TareCommands>
                           <TareEvents>TareNest</TareEvents>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
@@ -814,9 +816,6 @@
         <Name>Declarations</Name>
         <Workflow>
           <Nodes>
-            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="aeon-env:WeightMeasurement">
-              <rx:Name>FilteredWeightNest</rx:Name>
-            </Expression>
             <Expression xsi:type="rx:BehaviorSubject" TypeArguments="aeon-env:WeightMeasurement">
               <rx:Name>SubjectWeight</rx:Name>
             </Expression>
@@ -1465,10 +1464,8 @@ new(Value.Id as Id,
             <Expression xsi:type="SubscribeSubject">
               <Name>WeightNest</Name>
             </Expression>
-            <Expression xsi:type="InputMapping">
-              <PropertyMappings />
-              <Selector>Seconds,Value.Weight,Value.Confidence</Selector>
-              <TypeMapping xsi:type="TypeMapping" TypeArguments="aeon-env:WeightMeasurement" />
+            <Expression xsi:type="MemberSelector">
+              <Selector>RawWeight</Selector>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="aeon-env:FormatWeight">
@@ -1482,6 +1479,27 @@ new(Value.Id as Id,
               <harp:MessageType>Write</harp:MessageType>
               <harp:Register xsi:type="harp:FormatMessagePayload">
                 <harp:Address>201</harp:Address>
+                <harp:PayloadType>TimestampedU8</harp:PayloadType>
+              </harp:Register>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>WeightNest</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>FilteredWeight</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="aeon-env:FormatWeight">
+                <aeon-env:Address>202</aeon-env:Address>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>BaselineTrigger</Name>
+            </Expression>
+            <Expression xsi:type="harp:Format">
+              <harp:MessageType>Write</harp:MessageType>
+              <harp:Register xsi:type="harp:FormatMessagePayload">
+                <harp:Address>203</harp:Address>
                 <harp:PayloadType>TimestampedU8</harp:PayloadType>
               </harp:Register>
             </Expression>
@@ -1587,10 +1605,15 @@ new(Value.Id as Id,
             <Edge From="120" To="121" Label="Source1" />
             <Edge From="122" To="123" Label="Source1" />
             <Edge From="123" To="124" Label="Source1" />
-            <Edge From="124" To="127" Label="Source1" />
+            <Edge From="124" To="132" Label="Source1" />
             <Edge From="125" To="126" Label="Source1" />
-            <Edge From="126" To="127" Label="Source2" />
+            <Edge From="126" To="132" Label="Source2" />
             <Edge From="127" To="128" Label="Source1" />
+            <Edge From="128" To="129" Label="Source1" />
+            <Edge From="129" To="132" Label="Source3" />
+            <Edge From="130" To="131" Label="Source1" />
+            <Edge From="131" To="132" Label="Source4" />
+            <Edge From="132" To="133" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -4406,6 +4429,32 @@ Item3 as Delta)</scr:Expression>
                   <Expression xsi:type="MulticastSubject">
                     <Name>SubjectState</Name>
                   </Expression>
+                  <Expression xsi:type="VisualizerMapping" />
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>WeightNest</Name>
+                  </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Expression>new(
+RawWeight.Value as RawWeight,
+FilteredWeight.Value as FilteredWeight,
+BaselinedWeight.Value as BaselinedWeight)</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="viz:RollingGraphBuilder">
+                    <viz:ValueSelector>RawWeight,FilteredWeight,BaselinedWeight</viz:ValueSelector>
+                    <viz:SymbolType>None</viz:SymbolType>
+                    <viz:LineWidth>1</viz:LineWidth>
+                    <viz:Capacity>640</viz:Capacity>
+                    <viz:Min xsi:nil="true" />
+                    <viz:Max xsi:nil="true" />
+                  </Expression>
+                  <Expression xsi:type="VisualizerMapping" />
+                  <Expression xsi:type="viz:TableLayoutPanelBuilder">
+                    <viz:ColumnCount>2</viz:ColumnCount>
+                    <viz:RowCount>1</viz:RowCount>
+                    <viz:ColumnStyles />
+                    <viz:RowStyles />
+                    <viz:CellSpans />
+                  </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
                 <Edges>
@@ -4414,6 +4463,12 @@ Item3 as Delta)</scr:Expression>
                   <Edge From="2" To="3" Label="Source2" />
                   <Edge From="3" To="4" Label="Source1" />
                   <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="5" To="10" Label="Source1" />
+                  <Edge From="6" To="7" Label="Source1" />
+                  <Edge From="7" To="8" Label="Source1" />
+                  <Edge From="8" To="9" Label="Source1" />
+                  <Edge From="9" To="10" Label="Source2" />
+                  <Edge From="10" To="11" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
