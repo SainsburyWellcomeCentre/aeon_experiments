@@ -255,7 +255,7 @@
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
-                          <SerialNumber>23032817</SerialNumber>
+                          <SerialNumber>23032815</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
                           <FrameEvents>CameraPatch1</FrameEvents>
@@ -284,7 +284,7 @@
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
-                          <SerialNumber>23032815</SerialNumber>
+                          <SerialNumber>23032817</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
                           <FrameEvents>CameraPatch2</FrameEvents>
@@ -447,6 +447,32 @@
                           <PortName>COM16</PortName>
                           <Radius>-4</Radius>
                           <WheelDisplacement>WheelPatch3</WheelDisplacement>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>Nest</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="PortName" />
+                          <Property Name="FilterWindow" />
+                          <Property Name="WeightData" />
+                          <Property Name="TareEvents" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:WeightScale.bonsai">
+                          <PortName>COM7</PortName>
+                          <BaselineWeightTrigger>BaselineWeight</BaselineWeightTrigger>
+                          <FilterWindow>40</FilterWindow>
+                          <WeightData>WeightNest</WeightData>
+                          <TareCommands>TareWeight</TareCommands>
+                          <TareEvents>TareNest</TareEvents>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -790,9 +816,6 @@
         <Name>Declarations</Name>
         <Workflow>
           <Nodes>
-            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="aeon-env:WeightMeasurement">
-              <rx:Name>FilteredWeightNest</rx:Name>
-            </Expression>
             <Expression xsi:type="rx:BehaviorSubject" TypeArguments="aeon-env:WeightMeasurement">
               <rx:Name>SubjectWeight</rx:Name>
             </Expression>
@@ -1438,6 +1461,56 @@ new(Value.Id as Id,
               <LogName>System_AvailableMemory</LogName>
               <Selector xsi:nil="true" />
             </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>WeightNest</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>RawWeight</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="aeon-env:FormatWeight">
+                <aeon-env:Address>200</aeon-env:Address>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>TareNest</Name>
+            </Expression>
+            <Expression xsi:type="harp:Format">
+              <harp:MessageType>Write</harp:MessageType>
+              <harp:Register xsi:type="harp:FormatMessagePayload">
+                <harp:Address>201</harp:Address>
+                <harp:PayloadType>TimestampedU8</harp:PayloadType>
+              </harp:Register>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>WeightNest</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>FilteredWeight</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="aeon-env:FormatWeight">
+                <aeon-env:Address>202</aeon-env:Address>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>BaselineTrigger</Name>
+            </Expression>
+            <Expression xsi:type="harp:Format">
+              <harp:MessageType>Write</harp:MessageType>
+              <harp:Register xsi:type="harp:FormatMessagePayload">
+                <harp:Address>203</harp:Address>
+                <harp:PayloadType>TimestampedU8</harp:PayloadType>
+              </harp:Register>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Merge" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>Nest</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
+            </Expression>
           </Nodes>
           <Edges>
             <Edge From="2" To="3" Label="Source1" />
@@ -1530,6 +1603,17 @@ new(Value.Id as Id,
             <Edge From="118" To="119" Label="Source2" />
             <Edge From="119" To="120" Label="Source1" />
             <Edge From="120" To="121" Label="Source1" />
+            <Edge From="122" To="123" Label="Source1" />
+            <Edge From="123" To="124" Label="Source1" />
+            <Edge From="124" To="132" Label="Source1" />
+            <Edge From="125" To="126" Label="Source1" />
+            <Edge From="126" To="132" Label="Source2" />
+            <Edge From="127" To="128" Label="Source1" />
+            <Edge From="128" To="129" Label="Source1" />
+            <Edge From="129" To="132" Label="Source3" />
+            <Edge From="130" To="131" Label="Source1" />
+            <Edge From="131" To="132" Label="Source4" />
+            <Edge From="132" To="133" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -3502,66 +3586,6 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
             <Expression xsi:type="MulticastSubject">
               <Name>StopCameras</Name>
             </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>PatchState1</Name>
-            </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>new(
-Item2 as D1,
-Item3 as Delta)</scr:Expression>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="aeon-env:LabelControl">
-                <aeon-env:FontSize>14</aeon-env:FontSize>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="GroupWorkflow">
-              <Name>Patch1</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>PatchState2</Name>
-            </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>new(
-Item2 as D1,
-Item3 as Delta)</scr:Expression>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="aeon-env:LabelControl">
-                <aeon-env:FontSize>14</aeon-env:FontSize>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="GroupWorkflow">
-              <Name>Patch2</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>AudioAmbient</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value</Selector>
-            </Expression>
             <Expression xsi:type="GroupWorkflow">
               <Name>PatchActivity</Name>
               <Workflow>
@@ -4345,6 +4369,34 @@ Item3 as Delta)</scr:Expression>
                   <Expression xsi:type="MulticastSubject">
                     <Name>SubjectState</Name>
                   </Expression>
+                  <Expression xsi:type="VisualizerMapping" />
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>WeightNest</Name>
+                  </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Expression>new(
+RawWeight.Value as Raw,
+FilteredWeight.Confidence == 1
+  ? FilteredWeight.Value
+  : single.NaN as Stable,
+FilteredWeight.Value - BaselinedWeight.Value as Baseline)</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="viz:RollingGraphBuilder">
+                    <viz:ValueSelector>Raw,Stable,Baseline</viz:ValueSelector>
+                    <viz:SymbolType>None</viz:SymbolType>
+                    <viz:LineWidth>1</viz:LineWidth>
+                    <viz:Capacity>640</viz:Capacity>
+                    <viz:Min xsi:nil="true" />
+                    <viz:Max xsi:nil="true" />
+                  </Expression>
+                  <Expression xsi:type="VisualizerMapping" />
+                  <Expression xsi:type="viz:TableLayoutPanelBuilder">
+                    <viz:ColumnCount>2</viz:ColumnCount>
+                    <viz:RowCount>1</viz:RowCount>
+                    <viz:ColumnStyles />
+                    <viz:RowStyles />
+                    <viz:CellSpans />
+                  </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
                 <Edges>
@@ -4353,6 +4405,12 @@ Item3 as Delta)</scr:Expression>
                   <Edge From="2" To="3" Label="Source2" />
                   <Edge From="3" To="4" Label="Source1" />
                   <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="5" To="10" Label="Source1" />
+                  <Edge From="6" To="7" Label="Source1" />
+                  <Edge From="7" To="8" Label="Source1" />
+                  <Edge From="8" To="9" Label="Source1" />
+                  <Edge From="9" To="10" Label="Source2" />
+                  <Edge From="10" To="11" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
@@ -4364,13 +4422,6 @@ Item3 as Delta)</scr:Expression>
             <Edge From="3" To="4" Label="Source1" />
             <Edge From="5" To="6" Label="Source1" />
             <Edge From="7" To="8" Label="Source1" />
-            <Edge From="9" To="10" Label="Source1" />
-            <Edge From="10" To="11" Label="Source1" />
-            <Edge From="11" To="12" Label="Source1" />
-            <Edge From="13" To="14" Label="Source1" />
-            <Edge From="14" To="15" Label="Source1" />
-            <Edge From="15" To="16" Label="Source1" />
-            <Edge From="17" To="18" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
