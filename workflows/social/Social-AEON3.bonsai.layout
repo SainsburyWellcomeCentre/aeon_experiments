@@ -3687,7 +3687,7 @@
                         <XMin>0</XMin>
                         <XMax>15</XMax>
                         <YMin>0</YMin>
-                        <YMax>90</YMax>
+                        <YMax>100</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
                         <SelectedPage>0</SelectedPage>
@@ -3726,8 +3726,8 @@
                     <VisualizerSettings>
                       <RollingGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>73</Min>
-                        <Max>82</Max>
+                        <Min>81</Min>
+                        <Max>91</Max>
                         <AutoScale>true</AutoScale>
                       </RollingGraphVisualizer>
                     </VisualizerSettings>
@@ -3786,7 +3786,7 @@
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
                         <Min>0</Min>
-                        <Max>10</Max>
+                        <Max>59.999999999999993</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -3796,8 +3796,8 @@
                     <VisualizerSettings>
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>-0.001</Min>
-                        <Max>0.005</Max>
+                        <Min>-0.0035</Min>
+                        <Max>0.0005</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -3820,14 +3820,14 @@
           <WindowState>Normal</WindowState>
         </EditorDialogSettings>
       </DialogSettings>
-      <DialogSettings>
+      <DialogSettings xsi:type="WorkflowEditorSettings">
         <Visible>true</Visible>
         <Location>
           <X>953</X>
           <Y>16</Y>
         </Location>
         <Size>
-          <Width>609</Width>
+          <Width>812</Width>
           <Height>300</Height>
         </Size>
         <WindowState>Normal</WindowState>
@@ -3856,8 +3856,28 @@
                 </IplImageVisualizer>
               </VisualizerSettings>
             </MashupSettings>
+            <MashupSettings>
+              <VisualizerTypeName>Bonsai.Sleap.Design.PoseIdentityCollectionVisualizer</VisualizerTypeName>
+              <VisualizerSettings>
+                <PoseIdentityCollectionVisualizer>
+                  <DrawIdentity>false</DrawIdentity>
+                </PoseIdentityCollectionVisualizer>
+              </VisualizerSettings>
+            </MashupSettings>
           </TableLayoutPanelVisualizer>
         </VisualizerSettings>
+        <EditorDialogSettings>
+          <Visible>false</Visible>
+          <Location>
+            <X>3</X>
+            <Y>3</Y>
+          </Location>
+          <Size>
+            <Width>1506</Width>
+            <Height>903</Height>
+          </Size>
+          <WindowState>Normal</WindowState>
+        </EditorDialogSettings>
       </DialogSettings>
       <DialogSettings xsi:type="WorkflowEditorSettings">
         <Visible>true</Visible>
@@ -3943,8 +3963,8 @@
               <VisualizerSettings>
                 <RollingGraphVisualizer>
                   <Capacity>640</Capacity>
-                  <Min>0</Min>
-                  <Max>1.1</Max>
+                  <Min>21.28</Min>
+                  <Max>21.419999999999998</Max>
                   <AutoScale>true</AutoScale>
                 </RollingGraphVisualizer>
               </VisualizerSettings>

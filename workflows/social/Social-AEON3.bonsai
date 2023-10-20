@@ -4044,9 +4044,19 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                     <Name>FrameTrajectory</Name>
                   </Expression>
                   <Expression xsi:type="VisualizerMapping" />
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>PoseTrackingTop</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Merge" />
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Value</Selector>
+                  </Expression>
+                  <Expression xsi:type="VisualizerMapping" />
                   <Expression xsi:type="viz:TableLayoutPanelBuilder">
                     <viz:Name>SubjectActivity</viz:Name>
-                    <viz:ColumnCount>2</viz:ColumnCount>
+                    <viz:ColumnCount>3</viz:ColumnCount>
                     <viz:RowCount>1</viz:RowCount>
                     <viz:ColumnStyles />
                     <viz:RowStyles />
@@ -4056,12 +4066,16 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                 </Nodes>
                 <Edges>
                   <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="6" Label="Source1" />
+                  <Edge From="1" To="10" Label="Source1" />
                   <Edge From="2" To="3" Label="Source1" />
                   <Edge From="3" To="4" Label="Source1" />
                   <Edge From="4" To="5" Label="Source1" />
-                  <Edge From="5" To="6" Label="Source2" />
+                  <Edge From="5" To="10" Label="Source2" />
                   <Edge From="6" To="7" Label="Source1" />
+                  <Edge From="7" To="8" Label="Source1" />
+                  <Edge From="8" To="9" Label="Source1" />
+                  <Edge From="9" To="10" Label="Source3" />
+                  <Edge From="10" To="11" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
