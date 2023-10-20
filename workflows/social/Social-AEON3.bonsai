@@ -2369,6 +2369,14 @@ Item1.Value as CurrentWeight,
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\PersistentCounter.bonsai">
               <Name>TotalMissedPellets2</Name>
             </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\ActiveSubjectPoses.bonsai" />
+            <Expression xsi:type="rx:GroupBy">
+              <rx:KeySelector>Identity</rx:KeySelector>
+            </Expression>
+            <Expression xsi:type="rx:ReplaySubject">
+              <Name>SubjectPoses</Name>
+              <rx:BufferSize xsi:nil="true" />
+            </Expression>
             <Expression xsi:type="GroupWorkflow">
               <Name>SubjectAlerts</Name>
               <Workflow>
@@ -3586,6 +3594,8 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
             <Edge From="136" To="137" Label="Source1" />
             <Edge From="137" To="138" Label="Source1" />
             <Edge From="139" To="140" Label="Source1" />
+            <Edge From="140" To="141" Label="Source1" />
+            <Edge From="142" To="143" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
