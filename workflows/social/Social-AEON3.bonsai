@@ -1736,7 +1736,7 @@ new(Value.Id as Id,
               <Name>TrackingTop</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
-              <Selector>Item1[0].Centroid</Selector>
+              <Selector>Value[0].Centroid</Selector>
             </Expression>
             <Expression xsi:type="rx:PublishSubject">
               <Name>Trajectory</Name>
@@ -1759,7 +1759,7 @@ new(Value.Id as Id,
               <Name>TrackingTop</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
-              <Selector>Item1[0].Centroid</Selector>
+              <Selector>Value[0].Centroid</Selector>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="dsp:Histogram2D">
@@ -2707,7 +2707,7 @@ Item2.Value.Id as Id)</scr:Expression>
                           <Name>Source1</Name>
                         </Expression>
                         <Expression xsi:type="MemberSelector">
-                          <Selector>Item1[0].Centroid</Selector>
+                          <Selector>Value[0].Centroid</Selector>
                         </Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="dsp:Difference">
@@ -2728,13 +2728,16 @@ Item2.Value.Id as Id)</scr:Expression>
                           </Operand>
                         </Expression>
                         <Expression xsi:type="MemberSelector">
-                          <Selector>Item2</Selector>
+                          <Selector>Seconds</Selector>
                         </Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="rx:Zip" />
                         </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="harp:CreateTimestamped" />
+                        </Expression>
                         <Expression xsi:type="rx:DistinctUntilChangedBy">
-                          <rx:KeySelector>Item1</rx:KeySelector>
+                          <rx:KeySelector>Value</rx:KeySelector>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -2749,6 +2752,7 @@ Item2.Value.Id as Id)</scr:Expression>
                         <Edge From="6" To="7" Label="Source2" />
                         <Edge From="7" To="8" Label="Source1" />
                         <Edge From="8" To="9" Label="Source1" />
+                        <Edge From="9" To="10" Label="Source1" />
                       </Edges>
                     </Workflow>
                   </Expression>
@@ -2760,7 +2764,7 @@ Item2.Value.Id as Id)</scr:Expression>
                           <Name>Source1</Name>
                         </Expression>
                         <Expression xsi:type="MemberSelector">
-                          <Selector>Item1</Selector>
+                          <Selector>Value</Selector>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -2781,7 +2785,7 @@ Item2.Value.Id as Id)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="scr:ExpressionTransform">
                     <scr:Expression>new(
-Item1.Item2 as Timestamp,
+Item1.Seconds as Timestamp,
 Item2.Value.Id as Id)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="Format">
