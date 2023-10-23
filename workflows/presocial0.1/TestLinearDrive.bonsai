@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.0"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
@@ -50,10 +50,244 @@
                           <Property Name="GlobalTriggerFrequency" />
                           <Property Name="LocalTriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoController.bonsai">
-                          <PortName>COM3</PortName>
-                          <GlobalTriggerFrequency>50</GlobalTriggerFrequency>
-                          <LocalTriggerFrequency>125</LocalTriggerFrequency>
+                        <Expression xsi:type="GroupWorkflow">
+                          <Name>VideoController</Name>
+                          <Description>Supplies synchronized camera triggering for both global and local views.</Description>
+                          <Workflow>
+                            <Nodes>
+                              <Expression xsi:type="SubscribeSubject">
+                                <Name>LocalTriggerFrequency</Name>
+                              </Expression>
+                              <Expression xsi:type="PropertyMapping">
+                                <PropertyMappings>
+                                  <Property Name="Frequency" />
+                                </PropertyMappings>
+                              </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="p1:ConfigurePwm">
+                                  <p1:Mask>PwmOutput7</p1:Mask>
+                                  <p1:Frequency>125</p1:Frequency>
+                                  <p1:DutyCycle>50</p1:DutyCycle>
+                                  <p1:Count>0</p1:Count>
+                                </Combinator>
+                              </Expression>
+                              <Expression xsi:type="SubscribeSubject">
+                                <Name>GlobalTriggerFrequency</Name>
+                              </Expression>
+                              <Expression xsi:type="PropertyMapping">
+                                <PropertyMappings>
+                                  <Property Name="Frequency" />
+                                </PropertyMappings>
+                              </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="p1:ConfigurePwm">
+                                  <p1:Mask>PwmOutput9</p1:Mask>
+                                  <p1:Frequency>50</p1:Frequency>
+                                  <p1:DutyCycle>50</p1:DutyCycle>
+                                  <p1:Count>0</p1:Count>
+                                </Combinator>
+                              </Expression>
+                              <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Object">
+                                <rx:Name>StartCameras</rx:Name>
+                              </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="p1:PwmOutput">
+                                  <p1:Command>Start</p1:Command>
+                                  <p1:Mask>Pwm1 Pwm2</p1:Mask>
+                                </Combinator>
+                              </Expression>
+                              <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Object">
+                                <rx:Name>StopCameras</rx:Name>
+                              </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="p1:PwmOutput">
+                                  <p1:Command>Stop</p1:Command>
+                                  <p1:Mask>Pwm1 Pwm2</p1:Mask>
+                                </Combinator>
+                              </Expression>
+                              <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:HarpMessage">
+                                <rx:Name>SyncPulseCommand</rx:Name>
+                              </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="rx:Merge" />
+                              </Expression>
+                              <Expression xsi:type="ExternalizedMapping">
+                                <Property Name="PortName" />
+                              </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="harp:Device">
+                                  <harp:OperationMode>Active</harp:OperationMode>
+                                  <harp:OperationLed>On</harp:OperationLed>
+                                  <harp:DumpRegisters>true</harp:DumpRegisters>
+                                  <harp:VisualIndicators>On</harp:VisualIndicators>
+                                  <harp:Heartbeat>Enabled</harp:Heartbeat>
+                                  <harp:IgnoreErrors>false</harp:IgnoreErrors>
+                                  <harp:PortName>COM3</harp:PortName>
+                                </Combinator>
+                              </Expression>
+                              <Expression xsi:type="rx:PublishSubject">
+                                <Name>VideoEvents</Name>
+                              </Expression>
+                              <Expression xsi:type="WorkflowOutput" />
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="harp:FilterMessage">
+                                  <harp:MessageType>Event</harp:MessageType>
+                                  <harp:Register xsi:type="harp:FilterMessageAddress">
+                                    <harp:Address>68</harp:Address>
+                                  </harp:Register>
+                                </Combinator>
+                              </Expression>
+                              <Expression xsi:type="rx:Condition">
+                                <Name>Pwm1</Name>
+                                <Workflow>
+                                  <Nodes>
+                                    <Expression xsi:type="WorkflowInput">
+                                      <Name>Source1</Name>
+                                    </Expression>
+                                    <Expression xsi:type="MemberSelector">
+                                      <Selector>MessageBytes</Selector>
+                                    </Expression>
+                                    <Expression xsi:type="Index">
+                                      <Operand xsi:type="IntProperty">
+                                        <Value>11</Value>
+                                      </Operand>
+                                    </Expression>
+                                    <Expression xsi:type="BitwiseAnd">
+                                      <Operand xsi:type="WorkflowProperty" TypeArguments="sys:Byte">
+                                        <Value>2</Value>
+                                      </Operand>
+                                    </Expression>
+                                    <Expression xsi:type="NotEqual">
+                                      <Operand xsi:type="WorkflowProperty" TypeArguments="sys:Byte">
+                                        <Value>0</Value>
+                                      </Operand>
+                                    </Expression>
+                                    <Expression xsi:type="WorkflowOutput" />
+                                  </Nodes>
+                                  <Edges>
+                                    <Edge From="0" To="1" Label="Source1" />
+                                    <Edge From="1" To="2" Label="Source1" />
+                                    <Edge From="2" To="3" Label="Source1" />
+                                    <Edge From="3" To="4" Label="Source1" />
+                                    <Edge From="4" To="5" Label="Source1" />
+                                  </Edges>
+                                </Workflow>
+                              </Expression>
+                              <Expression xsi:type="rx:PublishSubject">
+                                <Name>LocalTrigger</Name>
+                              </Expression>
+                              <Expression xsi:type="rx:Condition">
+                                <Name>Pwm2</Name>
+                                <Workflow>
+                                  <Nodes>
+                                    <Expression xsi:type="WorkflowInput">
+                                      <Name>Source1</Name>
+                                    </Expression>
+                                    <Expression xsi:type="MemberSelector">
+                                      <Selector>MessageBytes</Selector>
+                                    </Expression>
+                                    <Expression xsi:type="Index">
+                                      <Operand xsi:type="IntProperty">
+                                        <Value>11</Value>
+                                      </Operand>
+                                    </Expression>
+                                    <Expression xsi:type="BitwiseAnd">
+                                      <Operand xsi:type="WorkflowProperty" TypeArguments="sys:Byte">
+                                        <Value>4</Value>
+                                      </Operand>
+                                    </Expression>
+                                    <Expression xsi:type="NotEqual">
+                                      <Operand xsi:type="WorkflowProperty" TypeArguments="sys:Byte">
+                                        <Value>0</Value>
+                                      </Operand>
+                                    </Expression>
+                                    <Expression xsi:type="WorkflowOutput" />
+                                  </Nodes>
+                                  <Edges>
+                                    <Edge From="0" To="1" Label="Source1" />
+                                    <Edge From="1" To="2" Label="Source1" />
+                                    <Edge From="2" To="3" Label="Source1" />
+                                    <Edge From="3" To="4" Label="Source1" />
+                                    <Edge From="4" To="5" Label="Source1" />
+                                  </Edges>
+                                </Workflow>
+                              </Expression>
+                              <Expression xsi:type="rx:PublishSubject">
+                                <Name>GlobalTrigger</Name>
+                              </Expression>
+                              <Expression xsi:type="SubscribeSubject">
+                                <Name>VideoEvents</Name>
+                              </Expression>
+                              <Expression xsi:type="harp:Parse">
+                                <harp:Register xsi:type="harp:ParseMessagePayload">
+                                  <harp:Address>37</harp:Address>
+                                  <harp:PayloadType>Timestamp</harp:PayloadType>
+                                  <harp:IsArray>false</harp:IsArray>
+                                </harp:Register>
+                              </Expression>
+                              <Expression xsi:type="ExternalizedMapping">
+                                <Property Name="Value" DisplayName="GlobalTriggerFrequency" Description="The frequency at which to trigger global cameras." />
+                              </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="DoubleProperty">
+                                  <Value>50</Value>
+                                </Combinator>
+                              </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="rx:Take">
+                                  <rx:Count>1</rx:Count>
+                                </Combinator>
+                              </Expression>
+                              <Expression xsi:type="rx:BehaviorSubject">
+                                <Name>GlobalTriggerFrequency</Name>
+                              </Expression>
+                              <Expression xsi:type="ExternalizedMapping">
+                                <Property Name="Value" DisplayName="LocalTriggerFrequency" Description="The frequency at which to trigger the fast local cameras." />
+                              </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="DoubleProperty">
+                                  <Value>125</Value>
+                                </Combinator>
+                              </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="rx:Take">
+                                  <rx:Count>1</rx:Count>
+                                </Combinator>
+                              </Expression>
+                              <Expression xsi:type="rx:BehaviorSubject">
+                                <Name>LocalTriggerFrequency</Name>
+                              </Expression>
+                            </Nodes>
+                            <Edges>
+                              <Edge From="0" To="1" Label="Source1" />
+                              <Edge From="1" To="2" Label="Source1" />
+                              <Edge From="2" To="11" Label="Source1" />
+                              <Edge From="3" To="4" Label="Source1" />
+                              <Edge From="4" To="5" Label="Source1" />
+                              <Edge From="5" To="11" Label="Source2" />
+                              <Edge From="6" To="7" Label="Source1" />
+                              <Edge From="7" To="11" Label="Source3" />
+                              <Edge From="8" To="9" Label="Source1" />
+                              <Edge From="9" To="11" Label="Source4" />
+                              <Edge From="10" To="11" Label="Source5" />
+                              <Edge From="11" To="13" Label="Source1" />
+                              <Edge From="12" To="13" Label="Source2" />
+                              <Edge From="13" To="14" Label="Source1" />
+                              <Edge From="14" To="15" Label="Source1" />
+                              <Edge From="14" To="16" Label="Source1" />
+                              <Edge From="16" To="17" Label="Source1" />
+                              <Edge From="16" To="19" Label="Source1" />
+                              <Edge From="17" To="18" Label="Source1" />
+                              <Edge From="19" To="20" Label="Source1" />
+                              <Edge From="21" To="22" Label="Source1" />
+                              <Edge From="23" To="24" Label="Source1" />
+                              <Edge From="24" To="25" Label="Source1" />
+                              <Edge From="25" To="26" Label="Source1" />
+                              <Edge From="27" To="28" Label="Source1" />
+                              <Edge From="28" To="29" Label="Source1" />
+                              <Edge From="29" To="30" Label="Source1" />
+                            </Edges>
+                          </Workflow>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
