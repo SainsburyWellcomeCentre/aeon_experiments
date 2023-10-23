@@ -637,10 +637,10 @@
                               <Expression xsi:type="WorkflowInput">
                                 <Name>Source1</Name>
                               </Expression>
-                              <Expression xsi:type="p1:CreateMessage">
-                                <harp:Payload xsi:type="p1:CreateEnableMotorDriverPayload">
+                              <Expression xsi:type="p2:CreateMessage">
+                                <harp:Payload xsi:type="p2:CreateEnableMotorDriverPayload">
                                   <harp:MessageType>Write</harp:MessageType>
-                                  <p1:Value>Disabled</p1:Value>
+                                  <p2:Value>Disabled</p2:Value>
                                 </harp:Payload>
                               </Expression>
                               <Expression xsi:type="ExternalizedMapping">
@@ -652,28 +652,28 @@
                               <Expression xsi:type="ExternalizedMapping">
                                 <Property Name="Value" DisplayName="MaxAndContinuosCurrent" />
                               </Expression>
-                              <Expression xsi:type="p1:CreateMessage">
-                                <harp:Payload xsi:type="p1:CreateLimitContinuousCurrentPayload">
+                              <Expression xsi:type="p2:CreateMessage">
+                                <harp:Payload xsi:type="p2:CreateLimitContinuousCurrentPayload">
                                   <harp:MessageType>Write</harp:MessageType>
-                                  <p1:Value>2000</p1:Value>
+                                  <p2:Value>2500</p2:Value>
                                 </harp:Payload>
                               </Expression>
                               <Expression xsi:type="MulticastSubject">
                                 <Name>HeadStageLinearDriveCommands</Name>
                               </Expression>
-                              <Expression xsi:type="p1:CreateMessage">
-                                <harp:Payload xsi:type="p1:CreateLimitPeakCurrentPayload">
+                              <Expression xsi:type="p2:CreateMessage">
+                                <harp:Payload xsi:type="p2:CreateLimitPeakCurrentPayload">
                                   <harp:MessageType>Write</harp:MessageType>
-                                  <p1:Value>2000</p1:Value>
+                                  <p2:Value>2500</p2:Value>
                                 </harp:Payload>
                               </Expression>
                               <Expression xsi:type="MulticastSubject">
                                 <Name>HeadStageLinearDriveCommands</Name>
                               </Expression>
-                              <Expression xsi:type="p1:CreateMessage">
-                                <harp:Payload xsi:type="p1:CreateLimitSpeedPayload">
+                              <Expression xsi:type="p2:CreateMessage">
+                                <harp:Payload xsi:type="p2:CreateLimitSpeedPayload">
                                   <harp:MessageType>Write</harp:MessageType>
-                                  <p1:Value>20000</p1:Value>
+                                  <p2:Value>20000</p2:Value>
                                 </harp:Payload>
                               </Expression>
                               <Expression xsi:type="MulticastSubject">
@@ -723,9 +723,9 @@
                           <Name>HeadStageLinearDriveEvents</Name>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
-                        <Expression xsi:type="p1:Parse">
+                        <Expression xsi:type="p2:Parse">
                           <harp:MessageType>Event</harp:MessageType>
-                          <harp:Register xsi:type="p1:TimestampedPosition" />
+                          <harp:Register xsi:type="p2:TimestampedPosition" />
                         </Expression>
                         <Expression xsi:type="ExternalizedMapping">
                           <Property Name="Name" DisplayName="HeadStageLinearDrivePosition" />
@@ -736,9 +736,9 @@
                         <Expression xsi:type="MemberSelector">
                           <Selector>Value</Selector>
                         </Expression>
-                        <Expression xsi:type="p1:Parse">
+                        <Expression xsi:type="p2:Parse">
                           <harp:MessageType>Event</harp:MessageType>
-                          <harp:Register xsi:type="p1:Speed" />
+                          <harp:Register xsi:type="p2:Speed" />
                         </Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="wie:KeyDown">
@@ -796,28 +796,28 @@
                                 <Name>MoveToEdge</Name>
                                 <Workflow>
                                   <Nodes>
-                                    <Expression xsi:type="p1:CreateMessage">
-                                      <harp:Payload xsi:type="p1:CreateEnableLimitPositionPayload">
+                                    <Expression xsi:type="p2:CreateMessage">
+                                      <harp:Payload xsi:type="p2:CreateEnableLimitPositionPayload">
                                         <harp:MessageType>Write</harp:MessageType>
-                                        <p1:Value>Disabled</p1:Value>
+                                        <p2:Value>Disabled</p2:Value>
                                       </harp:Payload>
                                     </Expression>
                                     <Expression xsi:type="MulticastSubject">
                                       <Name>Commands</Name>
                                     </Expression>
-                                    <Expression xsi:type="p1:CreateMessage">
-                                      <harp:Payload xsi:type="p1:CreateEnableMotorDriverPayload">
+                                    <Expression xsi:type="p2:CreateMessage">
+                                      <harp:Payload xsi:type="p2:CreateEnableMotorDriverPayload">
                                         <harp:MessageType>Write</harp:MessageType>
-                                        <p1:Value>Enabled</p1:Value>
+                                        <p2:Value>Enabled</p2:Value>
                                       </harp:Payload>
                                     </Expression>
                                     <Expression xsi:type="MulticastSubject">
                                       <Name>Commands</Name>
                                     </Expression>
-                                    <Expression xsi:type="p1:CreateMessage">
-                                      <harp:Payload xsi:type="p1:CreateSetSpeedPayload">
+                                    <Expression xsi:type="p2:CreateMessage">
+                                      <harp:Payload xsi:type="p2:CreateSetSpeedPayload">
                                         <harp:MessageType>Write</harp:MessageType>
-                                        <p1:Value>-100</p1:Value>
+                                        <p2:Value>-100</p2:Value>
                                       </harp:Payload>
                                     </Expression>
                                     <Expression xsi:type="MulticastSubject">
@@ -952,28 +952,28 @@
                                     <Expression xsi:type="WorkflowInput">
                                       <Name>Source1</Name>
                                     </Expression>
-                                    <Expression xsi:type="p1:CreateMessage">
-                                      <harp:Payload xsi:type="p1:CreateSetSpeedPayload">
+                                    <Expression xsi:type="p2:CreateMessage">
+                                      <harp:Payload xsi:type="p2:CreateSetSpeedPayload">
                                         <harp:MessageType>Write</harp:MessageType>
-                                        <p1:Value>0</p1:Value>
+                                        <p2:Value>0</p2:Value>
                                       </harp:Payload>
                                     </Expression>
                                     <Expression xsi:type="MulticastSubject">
                                       <Name>Commands</Name>
                                     </Expression>
-                                    <Expression xsi:type="p1:CreateMessage">
-                                      <harp:Payload xsi:type="p1:CreateEnableMotorDriverPayload">
+                                    <Expression xsi:type="p2:CreateMessage">
+                                      <harp:Payload xsi:type="p2:CreateEnableMotorDriverPayload">
                                         <harp:MessageType>Write</harp:MessageType>
-                                        <p1:Value>Disabled</p1:Value>
+                                        <p2:Value>Disabled</p2:Value>
                                       </harp:Payload>
                                     </Expression>
                                     <Expression xsi:type="MulticastSubject">
                                       <Name>Commands</Name>
                                     </Expression>
-                                    <Expression xsi:type="p1:CreateMessage">
-                                      <harp:Payload xsi:type="p1:CreateHomePositionPayload">
+                                    <Expression xsi:type="p2:CreateMessage">
+                                      <harp:Payload xsi:type="p2:CreateHomePositionPayload">
                                         <harp:MessageType>Write</harp:MessageType>
-                                        <p1:Value>-3000</p1:Value>
+                                        <p2:Value>-3000</p2:Value>
                                       </harp:Payload>
                                     </Expression>
                                     <Expression xsi:type="MulticastSubject">
@@ -1002,19 +1002,19 @@
                                 <Name>GoTo0</Name>
                                 <Workflow>
                                   <Nodes>
-                                    <Expression xsi:type="p1:CreateMessage">
-                                      <harp:Payload xsi:type="p1:CreateEnableMotorDriverPayload">
+                                    <Expression xsi:type="p2:CreateMessage">
+                                      <harp:Payload xsi:type="p2:CreateEnableMotorDriverPayload">
                                         <harp:MessageType>Write</harp:MessageType>
-                                        <p1:Value>Enabled</p1:Value>
+                                        <p2:Value>Enabled</p2:Value>
                                       </harp:Payload>
                                     </Expression>
                                     <Expression xsi:type="MulticastSubject">
                                       <Name>Commands</Name>
                                     </Expression>
-                                    <Expression xsi:type="p1:CreateMessage">
-                                      <harp:Payload xsi:type="p1:CreateSetPositionPayload">
+                                    <Expression xsi:type="p2:CreateMessage">
+                                      <harp:Payload xsi:type="p2:CreateSetPositionPayload">
                                         <harp:MessageType>Write</harp:MessageType>
-                                        <p1:Value>0</p1:Value>
+                                        <p2:Value>0</p2:Value>
                                       </harp:Payload>
                                     </Expression>
                                     <Expression xsi:type="MulticastSubject">
@@ -1025,10 +1025,10 @@
                                         <rx:DueTime>PT1S</rx:DueTime>
                                       </Combinator>
                                     </Expression>
-                                    <Expression xsi:type="p1:CreateMessage">
-                                      <harp:Payload xsi:type="p1:CreateEnableLimitPositionPayload">
+                                    <Expression xsi:type="p2:CreateMessage">
+                                      <harp:Payload xsi:type="p2:CreateEnableLimitPositionPayload">
                                         <harp:MessageType>Write</harp:MessageType>
-                                        <p1:Value>Enabled</p1:Value>
+                                        <p2:Value>Enabled</p2:Value>
                                       </harp:Payload>
                                     </Expression>
                                     <Expression xsi:type="MulticastSubject">
@@ -1068,10 +1068,10 @@
                                     <Expression xsi:type="ExternalizedMapping">
                                       <Property Name="Value" DisplayName="ContinuousMax" />
                                     </Expression>
-                                    <Expression xsi:type="p1:CreateMessage">
-                                      <harp:Payload xsi:type="p1:CreateLimitContinuousCurrentPayload">
+                                    <Expression xsi:type="p2:CreateMessage">
+                                      <harp:Payload xsi:type="p2:CreateLimitContinuousCurrentPayload">
                                         <harp:MessageType>Write</harp:MessageType>
-                                        <p1:Value>3000</p1:Value>
+                                        <p2:Value>3000</p2:Value>
                                       </harp:Payload>
                                     </Expression>
                                     <Expression xsi:type="MulticastSubject">
@@ -1080,10 +1080,10 @@
                                     <Expression xsi:type="ExternalizedMapping">
                                       <Property Name="Value" DisplayName="PeakMax" />
                                     </Expression>
-                                    <Expression xsi:type="p1:CreateMessage">
-                                      <harp:Payload xsi:type="p1:CreateLimitPeakCurrentPayload">
+                                    <Expression xsi:type="p2:CreateMessage">
+                                      <harp:Payload xsi:type="p2:CreateLimitPeakCurrentPayload">
                                         <harp:MessageType>Write</harp:MessageType>
-                                        <p1:Value>3000</p1:Value>
+                                        <p2:Value>3000</p2:Value>
                                       </harp:Payload>
                                     </Expression>
                                     <Expression xsi:type="MulticastSubject">
@@ -1145,9 +1145,9 @@
                             <dsp:RescaleType>Linear</dsp:RescaleType>
                           </Combinator>
                         </Expression>
-                        <Expression xsi:type="p1:Format">
+                        <Expression xsi:type="p2:Format">
                           <harp:MessageType>Write</harp:MessageType>
-                          <harp:Register xsi:type="p1:SetPosition" />
+                          <harp:Register xsi:type="p2:SetPosition" />
                         </Expression>
                         <Expression xsi:type="MulticastSubject">
                           <Name>HeadStageLinearDriveCommands</Name>
@@ -1158,10 +1158,10 @@
                             <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
                           </Combinator>
                         </Expression>
-                        <Expression xsi:type="p1:CreateMessage">
-                          <harp:Payload xsi:type="p1:CreateEnableMotorDriverPayload">
+                        <Expression xsi:type="p2:CreateMessage">
+                          <harp:Payload xsi:type="p2:CreateEnableMotorDriverPayload">
                             <harp:MessageType>Write</harp:MessageType>
-                            <p1:Value>Disabled</p1:Value>
+                            <p2:Value>Disabled</p2:Value>
                           </harp:Payload>
                         </Expression>
                         <Expression xsi:type="Combinator">
@@ -1170,10 +1170,10 @@
                             <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
                           </Combinator>
                         </Expression>
-                        <Expression xsi:type="p1:CreateMessage">
-                          <harp:Payload xsi:type="p1:CreateEnableMotorDriverPayload">
+                        <Expression xsi:type="p2:CreateMessage">
+                          <harp:Payload xsi:type="p2:CreateEnableMotorDriverPayload">
                             <harp:MessageType>Write</harp:MessageType>
-                            <p1:Value>Enabled</p1:Value>
+                            <p2:Value>Enabled</p2:Value>
                           </harp:Payload>
                         </Expression>
                         <Expression xsi:type="Combinator">
