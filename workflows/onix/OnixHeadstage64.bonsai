@@ -1,0 +1,1148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.8.1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:p1="clr-namespace:Bonsai.ONIX;assembly=Bonsai.ONIX"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                 xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
+                 xmlns:ipy="clr-namespace:Bonsai.Scripting.IronPython;assembly=Bonsai.Scripting.IronPython"
+                 xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
+                 xmlns:port="clr-namespace:Bonsai.IO.Ports;assembly=Bonsai.System"
+                 xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
+                 xmlns:p2="clr-namespace:;assembly=Extensions"
+                 xmlns:p3="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
+                 xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
+                 xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>Metadata</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>Devices</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>Onix</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="p1:ONIContext">
+                            <p1:ContextConfiguration>
+                              <p1:Slot>
+                                <p1:Driver>riffa</p1:Driver>
+                                <p1:Index>0</p1:Index>
+                              </p1:Slot>
+                              <p1:ReadSize>2048</p1:ReadSize>
+                              <p1:WriteSize>2048</p1:WriteSize>
+                            </p1:ContextConfiguration>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="p1:RHD2164Device">
+                            <p1:DeviceAddress>
+                              <p1:HardwareSlot>
+                                <p1:Driver>riffa</p1:Driver>
+                                <p1:Index>0</p1:Index>
+                              </p1:HardwareSlot>
+                              <p1:Address>512</p1:Address>
+                            </p1:DeviceAddress>
+                            <p1:EnableStream>true</p1:EnableStream>
+                            <p1:BlockSize>30000</p1:BlockSize>
+                            <p1:EphysDataFormat>Unsigned</p1:EphysDataFormat>
+                            <p1:AuxDataFormat>Unsigned</p1:AuxDataFormat>
+                            <p1:DSPCutoff>DSP146mHz</p1:DSPCutoff>
+                            <p1:AnalogLowCutoff>Low500Hz</p1:AnalogLowCutoff>
+                            <p1:AnalogHighCutoff>High10000Hz</p1:AnalogHighCutoff>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="MulticastSubject">
+                          <Name>RawVoltage</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>EphysData</Selector>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Clock</Selector>
+                        </Expression>
+                        <Expression xsi:type="Disable">
+                          <Builder xsi:type="Combinator">
+                            <Combinator xsi:type="rx:Timer">
+                              <rx:DueTime>PT0S</rx:DueTime>
+                              <rx:Period>PT0.1S</rx:Period>
+                            </Combinator>
+                          </Builder>
+                        </Expression>
+                        <Expression xsi:type="Disable">
+                          <Builder xsi:type="Mod">
+                            <Operand xsi:type="WorkflowProperty" TypeArguments="sys:Int64">
+                              <Value>255</Value>
+                            </Operand>
+                          </Builder>
+                        </Expression>
+                        <Expression xsi:type="Disable">
+                          <Builder xsi:type="PropertyMapping">
+                            <PropertyMappings>
+                              <Property Name="Value" />
+                            </PropertyMappings>
+                          </Builder>
+                        </Expression>
+                        <Expression xsi:type="Disable">
+                          <Builder xsi:type="Combinator">
+                            <Combinator xsi:type="IntProperty">
+                              <Value>77</Value>
+                            </Combinator>
+                          </Builder>
+                        </Expression>
+                        <Expression xsi:type="Disable">
+                          <Builder xsi:type="Combinator">
+                            <Combinator xsi:type="p1:DigitalIODevice">
+                              <p1:DeviceAddress>
+                                <p1:HardwareSlot>
+                                  <p1:Driver>riffa</p1:Driver>
+                                  <p1:Index>0</p1:Index>
+                                </p1:HardwareSlot>
+                                <p1:Address>7</p1:Address>
+                              </p1:DeviceAddress>
+                              <p1:LEDBrightness>20</p1:LEDBrightness>
+                              <p1:EnableStream>false</p1:EnableStream>
+                            </Combinator>
+                          </Builder>
+                        </Expression>
+                        <Expression xsi:type="Disable">
+                          <Builder xsi:type="MemberSelector">
+                            <Selector>Port</Selector>
+                          </Builder>
+                        </Expression>
+                        <Expression xsi:type="Disable">
+                          <Builder xsi:type="MemberSelector">
+                            <Selector>Buttons</Selector>
+                          </Builder>
+                        </Expression>
+                        <Expression xsi:type="Disable">
+                          <Builder xsi:type="MemberSelector">
+                            <Selector>Clock</Selector>
+                          </Builder>
+                        </Expression>
+                        <Expression xsi:type="Disable">
+                          <Builder xsi:type="MemberSelector">
+                            <Selector>HubSyncCounter</Selector>
+                          </Builder>
+                        </Expression>
+                        <Expression xsi:type="GroupWorkflow">
+                          <Name>BNO055 9-Axis IMU</Name>
+                          <Description>BNO055  9-Axis IMU</Description>
+                          <Workflow>
+                            <Nodes>
+                              <Expression xsi:type="ExternalizedMapping">
+                                <Property Name="EnableStream" />
+                              </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="p1:BNO055Device">
+                                  <p1:DeviceAddress>
+                                    <p1:HardwareSlot>
+                                      <p1:Driver>riffa</p1:Driver>
+                                      <p1:Index>0</p1:Index>
+                                    </p1:HardwareSlot>
+                                    <p1:Address>513</p1:Address>
+                                  </p1:DeviceAddress>
+                                  <p1:EnableStream>true</p1:EnableStream>
+                                </Combinator>
+                              </Expression>
+                              <Expression xsi:type="MulticastSubject">
+                                <Name>BNO055</Name>
+                              </Expression>
+                              <Expression xsi:type="GroupWorkflow">
+                                <Name>Commutator</Name>
+                                <Description>Drives ONIX Commutator from BNO055 Quaterion data. Pressing down/up keys will manually turn the commutator, overrding the BNO055 heading input.
+</Description>
+                                <Workflow>
+                                  <Nodes>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="wie:KeyDown">
+                                        <wie:Filter>Q</wie:Filter>
+                                        <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+                                      </Combinator>
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="StringProperty">
+                                        <Value>"{turn : 0.1}"</Value>
+                                      </Combinator>
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="wie:KeyDown">
+                                        <wie:Filter>A</wie:Filter>
+                                        <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+                                      </Combinator>
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="StringProperty">
+                                        <Value>"{turn : -0.1}"</Value>
+                                      </Combinator>
+                                    </Expression>
+                                    <Expression xsi:type="WorkflowInput">
+                                      <Name>Source1</Name>
+                                    </Expression>
+                                    <Expression xsi:type="MemberSelector">
+                                      <Selector>Quaternion</Selector>
+                                    </Expression>
+                                    <Expression xsi:type="ipy:PythonTransform">
+                                      <ipy:Script>import clr
+clr.AddReference("OpenCV.Net")
+from OpenCV.Net import *
+from math import atan2
+@returns(float)
+def process(value):
+
+  q0 = value[0].Val0;
+  q1 = value[1].Val0;
+  q2 = value[2].Val0;
+  q3 = value[3].Val0;
+
+  return atan2((2 * (q0 * q3 + q1 * q2)), (1 - 2 * (q2**2 + q3**2)))</ipy:Script>
+                                    </Expression>
+                                    <Expression xsi:type="Disable">
+                                      <Builder xsi:type="io:CsvWriter">
+                                        <io:FileName>heading_.csv</io:FileName>
+                                        <io:Append>false</io:Append>
+                                        <io:Overwrite>false</io:Overwrite>
+                                        <io:Suffix>Timestamp</io:Suffix>
+                                        <io:IncludeHeader>false</io:IncludeHeader>
+                                      </Builder>
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="rx:Timer">
+                                        <rx:DueTime>PT0S</rx:DueTime>
+                                        <rx:Period>PT0.1S</rx:Period>
+                                      </Combinator>
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="rx:Sample" />
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="rx:Skip">
+                                        <rx:Count>1</rx:Count>
+                                      </Combinator>
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="rx:Zip" />
+                                    </Expression>
+                                    <Expression xsi:type="ipy:PythonTransform">
+                                      <ipy:Script>from math import pi
+
+@returns(str)
+def process(value):
+  
+  
+  last = value.Item2
+
+  curr = value.Item1
+  a1 = curr + 2 * pi
+  a2 = curr - 2 * pi
+  pos = [curr, a1, a2]
+
+  delta = [abs(x - last) for x in pos]
+
+  p = pos[delta.index(min(delta))]
+
+  turn = (p - last) / (2 * pi)
+
+  return "{turn : %s}" % turn</ipy:Script>
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="rx:Merge" />
+                                    </Expression>
+                                    <Expression xsi:type="ExternalizedMapping">
+                                      <Property Name="PortName" />
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="port:SerialWriteLine">
+                                        <port:PortName>COM3</port:PortName>
+                                        <port:NewLine>\r\n</port:NewLine>
+                                      </Combinator>
+                                    </Expression>
+                                    <Expression xsi:type="WorkflowOutput" />
+                                    <Expression xsi:type="Parse">
+                                      <Pattern>{turn : %d}</Pattern>
+                                    </Expression>
+                                    <Expression xsi:type="MemberSelector">
+                                      <Selector>Clock</Selector>
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="rx:Zip" />
+                                    </Expression>
+                                    <Expression xsi:type="MulticastSubject">
+                                      <Name>CommutatorTurns</Name>
+                                    </Expression>
+                                  </Nodes>
+                                  <Edges>
+                                    <Edge From="0" To="1" Label="Source1" />
+                                    <Edge From="1" To="13" Label="Source1" />
+                                    <Edge From="2" To="3" Label="Source1" />
+                                    <Edge From="3" To="13" Label="Source2" />
+                                    <Edge From="4" To="5" Label="Source1" />
+                                    <Edge From="4" To="18" Label="Source1" />
+                                    <Edge From="5" To="6" Label="Source1" />
+                                    <Edge From="6" To="7" Label="Source1" />
+                                    <Edge From="7" To="9" Label="Source1" />
+                                    <Edge From="8" To="9" Label="Source2" />
+                                    <Edge From="9" To="10" Label="Source1" />
+                                    <Edge From="9" To="11" Label="Source1" />
+                                    <Edge From="10" To="11" Label="Source2" />
+                                    <Edge From="11" To="12" Label="Source1" />
+                                    <Edge From="12" To="13" Label="Source3" />
+                                    <Edge From="12" To="17" Label="Source1" />
+                                    <Edge From="13" To="15" Label="Source1" />
+                                    <Edge From="14" To="15" Label="Source2" />
+                                    <Edge From="15" To="16" Label="Source1" />
+                                    <Edge From="17" To="19" Label="Source1" />
+                                    <Edge From="18" To="19" Label="Source2" />
+                                    <Edge From="19" To="20" Label="Source1" />
+                                  </Edges>
+                                </Workflow>
+                              </Expression>
+                              <Expression xsi:type="MemberSelector">
+                                <Selector>Temperature</Selector>
+                              </Expression>
+                              <Expression xsi:type="MemberSelector">
+                                <Selector>LinearAcceleration</Selector>
+                              </Expression>
+                              <Expression xsi:type="Disable">
+                                <Builder xsi:type="Combinator">
+                                  <Combinator xsi:type="dsp:MatrixWriter">
+                                    <dsp:Path>bno055-linear-accel_.raw</dsp:Path>
+                                    <dsp:Suffix>Timestamp</dsp:Suffix>
+                                    <dsp:Overwrite>false</dsp:Overwrite>
+                                    <dsp:Layout>RowMajor</dsp:Layout>
+                                  </Combinator>
+                                </Builder>
+                              </Expression>
+                              <Expression xsi:type="MemberSelector">
+                                <Selector>GravityVector</Selector>
+                              </Expression>
+                              <Expression xsi:type="Disable">
+                                <Builder xsi:type="Combinator">
+                                  <Combinator xsi:type="dsp:MatrixWriter">
+                                    <dsp:Path>bno055-gravity-vector_.raw</dsp:Path>
+                                    <dsp:Suffix>Timestamp</dsp:Suffix>
+                                    <dsp:Overwrite>false</dsp:Overwrite>
+                                    <dsp:Layout>RowMajor</dsp:Layout>
+                                  </Combinator>
+                                </Builder>
+                              </Expression>
+                              <Expression xsi:type="MemberSelector">
+                                <Selector>Euler</Selector>
+                              </Expression>
+                              <Expression xsi:type="Disable">
+                                <Builder xsi:type="Combinator">
+                                  <Combinator xsi:type="dsp:MatrixWriter">
+                                    <dsp:Path>bno055-euler_.raw</dsp:Path>
+                                    <dsp:Suffix>Timestamp</dsp:Suffix>
+                                    <dsp:Overwrite>false</dsp:Overwrite>
+                                    <dsp:Layout>RowMajor</dsp:Layout>
+                                  </Combinator>
+                                </Builder>
+                              </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="rx:Timestamp" />
+                              </Expression>
+                              <Expression xsi:type="Disable">
+                                <Builder xsi:type="io:CsvWriter">
+                                  <io:FileName>bno055-other_.csv</io:FileName>
+                                  <io:Append>false</io:Append>
+                                  <io:Overwrite>false</io:Overwrite>
+                                  <io:Suffix>Timestamp</io:Suffix>
+                                  <io:IncludeHeader>false</io:IncludeHeader>
+                                  <io:Selector>Timestamp,Value.Clock,Value.Temperature,Value.Calibration</io:Selector>
+                                </Builder>
+                              </Expression>
+                            </Nodes>
+                            <Edges>
+                              <Edge From="0" To="1" Label="Source1" />
+                              <Edge From="1" To="2" Label="Source1" />
+                              <Edge From="2" To="3" Label="Source1" />
+                              <Edge From="2" To="4" Label="Source1" />
+                              <Edge From="2" To="5" Label="Source1" />
+                              <Edge From="2" To="7" Label="Source1" />
+                              <Edge From="2" To="9" Label="Source1" />
+                              <Edge From="2" To="11" Label="Source1" />
+                              <Edge From="5" To="6" Label="Source1" />
+                              <Edge From="7" To="8" Label="Source1" />
+                              <Edge From="9" To="10" Label="Source1" />
+                              <Edge From="11" To="12" Label="Source1" />
+                            </Edges>
+                          </Workflow>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="p1:HARPSyncInputDevice">
+                            <p1:DeviceAddress>
+                              <p1:HardwareSlot>
+                                <p1:Driver>riffa</p1:Driver>
+                                <p1:Index>0</p1:Index>
+                              </p1:HardwareSlot>
+                              <p1:Address>12</p1:Address>
+                            </p1:DeviceAddress>
+                            <p1:EnableStream>true</p1:EnableStream>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="MulticastSubject">
+                          <Name>HarpSync</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>HARPTime</Selector>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>HubSyncCounter</Selector>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Clock</Selector>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="p1:AnalogIODevice">
+                            <p1:DeviceAddress>
+                              <p1:HardwareSlot>
+                                <p1:Driver>riffa</p1:Driver>
+                                <p1:Index>0</p1:Index>
+                              </p1:HardwareSlot>
+                              <p1:Address>6</p1:Address>
+                            </p1:DeviceAddress>
+                            <p1:BlockSize>100000</p1:BlockSize>
+                            <p1:DataType>S16</p1:DataType>
+                            <p1:EnableStream>true</p1:EnableStream>
+                            <p1:InputRange00>TenVolts</p1:InputRange00>
+                            <p1:InputRange01>TenVolts</p1:InputRange01>
+                            <p1:InputRange02>TenVolts</p1:InputRange02>
+                            <p1:InputRange03>TenVolts</p1:InputRange03>
+                            <p1:InputRange04>TenVolts</p1:InputRange04>
+                            <p1:InputRange05>TenVolts</p1:InputRange05>
+                            <p1:InputRange06>TenVolts</p1:InputRange06>
+                            <p1:InputRange07>TenVolts</p1:InputRange07>
+                            <p1:InputRange08>TenVolts</p1:InputRange08>
+                            <p1:InputRange09>TenVolts</p1:InputRange09>
+                            <p1:InputRange10>TenVolts</p1:InputRange10>
+                            <p1:InputRange11>TenVolts</p1:InputRange11>
+                            <p1:Direction00>Input</p1:Direction00>
+                            <p1:Direction01>Input</p1:Direction01>
+                            <p1:Direction02>Input</p1:Direction02>
+                            <p1:Direction03>Input</p1:Direction03>
+                            <p1:Direction04>Input</p1:Direction04>
+                            <p1:Direction05>Input</p1:Direction05>
+                            <p1:Direction06>Input</p1:Direction06>
+                            <p1:Direction07>Input</p1:Direction07>
+                            <p1:Direction08>Input</p1:Direction08>
+                            <p1:Direction09>Input</p1:Direction09>
+                            <p1:Direction10>Input</p1:Direction10>
+                            <p1:Direction11>Input</p1:Direction11>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="MulticastSubject">
+                          <Name>AnalogInput</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Clock</Selector>
+                        </Expression>
+                        <Expression xsi:type="Disable">
+                          <Builder xsi:type="Combinator">
+                            <Combinator xsi:type="p2:CastToU64" />
+                          </Builder>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Data</Selector>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="dsp:Difference">
+                            <dsp:Order>1</dsp:Order>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="dsp:FrequencyFilter">
+                            <dsp:SampleRate>100000</dsp:SampleRate>
+                            <dsp:Cutoff1>1000</dsp:Cutoff1>
+                            <dsp:Cutoff2>0</dsp:Cutoff2>
+                            <dsp:KernelLength>1000</dsp:KernelLength>
+                            <dsp:FilterType>LowPass</dsp:FilterType>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="dsp:Abs" />
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="dsp:Extrema" />
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>MaxLocation.X</Selector>
+                        </Expression>
+                        <Expression xsi:type="PropertyMapping">
+                          <PropertyMappings>
+                            <Property Name="Value" />
+                          </PropertyMappings>
+                        </Expression>
+                        <Expression xsi:type="Disable">
+                          <Builder xsi:type="Index">
+                            <Operand xsi:type="IntProperty">
+                              <Value>14951</Value>
+                            </Operand>
+                          </Builder>
+                        </Expression>
+                        <Expression xsi:type="Disable">
+                          <Builder xsi:type="Combinator">
+                            <Combinator xsi:type="rx:WithLatestFrom" />
+                          </Builder>
+                        </Expression>
+                        <Expression xsi:type="Disable">
+                          <Builder xsi:type="Subtract" />
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>HubSyncCounter</Selector>
+                        </Expression>
+                        <Expression xsi:type="Disable">
+                          <Builder xsi:type="Combinator">
+                            <Combinator xsi:type="p2:CastToU64" />
+                          </Builder>
+                        </Expression>
+                        <Expression xsi:type="Disable">
+                          <Builder xsi:type="Index">
+                            <Operand xsi:type="IntProperty">
+                              <Value>0</Value>
+                            </Operand>
+                          </Builder>
+                        </Expression>
+                      </Nodes>
+                      <Edges>
+                        <Edge From="1" To="2" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                        <Edge From="2" To="4" Label="Source1" />
+                        <Edge From="5" To="6" Label="Source1" />
+                        <Edge From="6" To="7" Label="Source1" />
+                        <Edge From="6" To="8" Label="Source1" />
+                        <Edge From="7" To="8" Label="Source2" />
+                        <Edge From="8" To="9" Label="Source1" />
+                        <Edge From="9" To="10" Label="Source1" />
+                        <Edge From="9" To="11" Label="Source1" />
+                        <Edge From="9" To="12" Label="Source1" />
+                        <Edge From="9" To="13" Label="Source1" />
+                        <Edge From="15" To="16" Label="Source1" />
+                        <Edge From="16" To="17" Label="Source1" />
+                        <Edge From="16" To="18" Label="Source1" />
+                        <Edge From="16" To="19" Label="Source1" />
+                        <Edge From="20" To="21" Label="Source1" />
+                        <Edge From="21" To="22" Label="Source1" />
+                        <Edge From="21" To="24" Label="Source1" />
+                        <Edge From="21" To="34" Label="Source1" />
+                        <Edge From="22" To="23" Label="Source1" />
+                        <Edge From="23" To="31" Label="Source1" />
+                        <Edge From="24" To="25" Label="Source1" />
+                        <Edge From="25" To="26" Label="Source1" />
+                        <Edge From="26" To="27" Label="Source1" />
+                        <Edge From="27" To="28" Label="Source1" />
+                        <Edge From="28" To="29" Label="Source1" />
+                        <Edge From="29" To="30" Label="Source1" />
+                        <Edge From="30" To="31" Label="Source2" />
+                        <Edge From="31" To="32" Label="Source1" />
+                        <Edge From="32" To="33" Label="Source1" />
+                        <Edge From="34" To="35" Label="Source1" />
+                        <Edge From="35" To="36" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                </Nodes>
+                <Edges />
+              </Workflow>
+            </Expression>
+          </Nodes>
+          <Edges />
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>Declarations</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p3:WeightMeasurement">
+              <rx:Name>FilteredWeightNest</rx:Name>
+            </Expression>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p3:WeightMeasurement">
+              <rx:Name>SubjectWeight</rx:Name>
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Byte)">
+              <rx:Name>MissedPellets1</rx:Name>
+            </Expression>
+            <Expression xsi:type="p3:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
+              <p3:Name>PatchState1</p3:Name>
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Byte)">
+              <rx:Name>MissedPellets2</rx:Name>
+            </Expression>
+            <Expression xsi:type="p3:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
+              <p3:Name>PatchState2</p3:Name>
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Double)">
+              <rx:Name>BaselineTrigger</rx:Name>
+            </Expression>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(p3:LogMessage)">
+              <rx:Name>AlertLogs</rx:Name>
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p3:LogMessage)">
+              <rx:Name>Annotations</rx:Name>
+            </Expression>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(p3:EnvironmentStateMetadata)">
+              <rx:Name>EnvironmentState</rx:Name>
+            </Expression>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(p3:DispenserStateMetadata)">
+              <rx:Name>Patch1Dispenser</rx:Name>
+            </Expression>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(p3:DispenserStateMetadata)">
+              <rx:Name>Patch2Dispenser</rx:Name>
+            </Expression>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(p3:EnvironmentSubjectStateMetadata)">
+              <rx:Name>SubjectState</rx:Name>
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p3:EnvironmentSubjectStateMetadata)">
+              <rx:Name>SubjectStart</rx:Name>
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p3:EnvironmentSubjectStateMetadata)">
+              <rx:Name>SubjectStop</rx:Name>
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:UInt16)">
+              <rx:Name>ManualPellet1</rx:Name>
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:UInt16)">
+              <rx:Name>ManualPellet2</rx:Name>
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="sys:String">
+              <rx:Name>SubjectAlertMessages</rx:Name>
+            </Expression>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:HarpMessage">
+              <rx:Name>HeadStageLinearDriveEvents</rx:Name>
+            </Expression>
+          </Nodes>
+          <Edges />
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>Logging</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RepositoryLogController.bonsai">
+              <RepositoryPath>..\..\</RepositoryPath>
+              <DataPath>C:\ProjectAeon\Data</DataPath>
+              <FallbackPath>C:\ProjectAeon\Tests</FallbackPath>
+              <ChunkSize>1</ChunkSize>
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
+                <WorkflowName>PreSocial0.1-AEON2.bonsai</WorkflowName>
+              </Builder>
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="SubscribeSubject">
+                <Name>HeadStageLinearDriveEvents</Name>
+              </Builder>
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+                <LogName>HeadStageLinearDrive</LogName>
+                <Heartbeats />
+                <ClosingDuration xsi:nil="true" />
+              </Builder>
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="SubscribeSubject">
+                <Name>PatchState1</Name>
+              </Builder>
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="scr:ExpressionTransform">
+                <scr:Expression>new(
+Item1 as Threshold,
+Item2 as D1,
+Item3 as Delta)</scr:Expression>
+              </Builder>
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="SubscribeSubject">
+                <Name>Patch1</Name>
+              </Builder>
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="harp:Parse">
+                <harp:Register xsi:type="harp:ParseMessagePayload">
+                  <harp:PayloadType>Timestamp</harp:PayloadType>
+                  <harp:IsArray>false</harp:IsArray>
+                </harp:Register>
+              </Builder>
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="Combinator">
+                <Combinator xsi:type="rx:WithLatestFrom" />
+              </Builder>
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+                <Heartbeats />
+                <ClosingDuration xsi:nil="true" />
+                <LogName>Patch1_State</LogName>
+                <Selector xsi:nil="true" />
+              </Builder>
+            </Expression>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p1:HARPSyncInputDataFrame">
+              <rx:Name>HarpSync</rx:Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>HARPTime</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="p2:ConvertToHarpTimestamp" />
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject">
+              <Name>HarpClock</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Zip" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="harp:CreateTimestamped" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
+              <LogName>Onix_HarpSync</LogName>
+              <Selector />
+            </Expression>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Tuple(sys:Double,sys:UInt64)">
+              <rx:Name>CommutatorTurns</rx:Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WindowCount">
+                <rx:Count>360000</rx:Count>
+                <rx:Skip xsi:nil="true" />
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="rx:CreateObservable">
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Item1</Selector>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="p2:ConvertToBytes" />
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+              <LogName>Onix_Commutator_Turns</LogName>
+            </Expression>
+            <Expression xsi:type="rx:CreateObservable">
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Item2</Selector>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="p2:ConvertToBytes" />
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+              <LogName>Onix_Commutator_Clock</LogName>
+            </Expression>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p1:BNO055DataFrame">
+              <rx:Name>BNO055</rx:Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WindowCount">
+                <rx:Count>360000</rx:Count>
+                <rx:Skip xsi:nil="true" />
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="rx:CreateObservable">
+              <Name>Quaternion</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Quaternion</Selector>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+              <LogName>Onix_Bno055_Quaternion</LogName>
+            </Expression>
+            <Expression xsi:type="rx:CreateObservable">
+              <Name>LinearAcceleration</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>LinearAcceleration</Selector>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+              <LogName>Onix_Bno055_LinearAcceleration</LogName>
+            </Expression>
+            <Expression xsi:type="rx:CreateObservable">
+              <Name>GravityVector</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>GravityVector</Selector>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+              <LogName>Onix_Bno055_GravityVector</LogName>
+            </Expression>
+            <Expression xsi:type="rx:CreateObservable">
+              <Name>Euler</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Euler</Selector>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+              <LogName>Onix_Bno055_Euler</LogName>
+            </Expression>
+            <Expression xsi:type="rx:CreateObservable">
+              <Name>Clock</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Clock</Selector>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="p2:ConvertToBytes" />
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+              <LogName>Onix_Bno055_Clock</LogName>
+            </Expression>
+            <Expression xsi:type="rx:CreateObservable">
+              <Name>HubSyncCounter</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>HubSyncCounter</Selector>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="p2:ConvertToBytes" />
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+              <LogName>Onix_Bno055_HubSyncCounter</LogName>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>RawVoltage</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>NumberOfSamples</Selector>
+            </Expression>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p1:RHD2164DataFrame">
+              <rx:Name>RawVoltage</rx:Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WindowCount">
+                <rx:Count>3600</rx:Count>
+                <rx:Skip xsi:nil="true" />
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="rx:CreateObservable">
+              <Name>EphysData</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>EphysData</Selector>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+              <LogName>Onix_Rhd2164_EphysData</LogName>
+            </Expression>
+            <Expression xsi:type="rx:CreateObservable">
+              <Name>AuxiliaryData</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>AuxiliaryData</Selector>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+              <LogName>Onix_Rhd2164_AuxiliaryData</LogName>
+            </Expression>
+            <Expression xsi:type="rx:CreateObservable">
+              <Name>Clock</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Clock</Selector>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+              <LogName>Onix_Rhd2164_Clock</LogName>
+            </Expression>
+            <Expression xsi:type="rx:CreateObservable">
+              <Name>HubSyncCounter</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>HubSyncCounter</Selector>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+              <LogName>Onix_Rhd2164_HubSyncCounter</LogName>
+            </Expression>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p1:AnalogInputDataFrame">
+              <rx:Name>AnalogInput</rx:Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WindowCount">
+                <rx:Count>3600</rx:Count>
+                <rx:Skip xsi:nil="true" />
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="rx:CreateObservable">
+              <Name>Data</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Data</Selector>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+              <LogName>Onix_AnalogInput_Data</LogName>
+            </Expression>
+            <Expression xsi:type="rx:CreateObservable">
+              <Name>Clock</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Clock</Selector>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="p2:CastToU64" />
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+              <LogName>Onix_AnalogInput_Clock</LogName>
+            </Expression>
+            <Expression xsi:type="rx:CreateObservable">
+              <Name>HubSyncCounter</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>HubSyncCounter</Selector>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="p2:CastToU64" />
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+              <LogName>Onix_AnalogInput_HubSyncCounter</LogName>
+            </Expression>
+          </Nodes>
+          <Edges>
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="5" To="8" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="8" Label="Source2" />
+            <Edge From="8" To="9" Label="Source1" />
+            <Edge From="10" To="11" Label="Source1" />
+            <Edge From="10" To="14" Label="Source1" />
+            <Edge From="11" To="12" Label="Source1" />
+            <Edge From="12" To="13" Label="Source1" />
+            <Edge From="13" To="14" Label="Source2" />
+            <Edge From="14" To="15" Label="Source1" />
+            <Edge From="15" To="16" Label="Source1" />
+            <Edge From="17" To="18" Label="Source1" />
+            <Edge From="18" To="19" Label="Source1" />
+            <Edge From="18" To="21" Label="Source1" />
+            <Edge From="19" To="20" Label="Source1" />
+            <Edge From="21" To="22" Label="Source1" />
+            <Edge From="23" To="24" Label="Source1" />
+            <Edge From="24" To="25" Label="Source1" />
+            <Edge From="24" To="27" Label="Source1" />
+            <Edge From="24" To="29" Label="Source1" />
+            <Edge From="24" To="31" Label="Source1" />
+            <Edge From="24" To="33" Label="Source1" />
+            <Edge From="24" To="35" Label="Source1" />
+            <Edge From="25" To="26" Label="Source1" />
+            <Edge From="27" To="28" Label="Source1" />
+            <Edge From="29" To="30" Label="Source1" />
+            <Edge From="31" To="32" Label="Source1" />
+            <Edge From="33" To="34" Label="Source1" />
+            <Edge From="35" To="36" Label="Source1" />
+            <Edge From="37" To="38" Label="Source1" />
+            <Edge From="39" To="40" Label="Source1" />
+            <Edge From="40" To="41" Label="Source1" />
+            <Edge From="40" To="43" Label="Source1" />
+            <Edge From="40" To="45" Label="Source1" />
+            <Edge From="40" To="47" Label="Source1" />
+            <Edge From="41" To="42" Label="Source1" />
+            <Edge From="43" To="44" Label="Source1" />
+            <Edge From="45" To="46" Label="Source1" />
+            <Edge From="47" To="48" Label="Source1" />
+            <Edge From="49" To="50" Label="Source1" />
+            <Edge From="50" To="51" Label="Source1" />
+            <Edge From="50" To="53" Label="Source1" />
+            <Edge From="50" To="55" Label="Source1" />
+            <Edge From="51" To="52" Label="Source1" />
+            <Edge From="53" To="54" Label="Source1" />
+            <Edge From="55" To="56" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+    </Nodes>
+    <Edges />
+  </Workflow>
+</WorkflowBuilder>
