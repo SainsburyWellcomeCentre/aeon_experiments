@@ -2284,6 +2284,163 @@ Item3 as Patch3)</scr:Expression>
               <Name>SubjectPoses</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
+              <Name>SubjectPoses</Name>
+            </Expression>
+            <Expression xsi:type="rx:SelectMany">
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Seconds</Selector>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Value</Selector>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Merge" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:CombineLatest" />
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Item2,Item1</Selector>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="harp:CreateTimestamped" />
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="0" To="2" Label="Source1" />
+                  <Edge From="1" To="4" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                  <Edge From="3" To="4" Label="Source2" />
+                  <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="5" To="6" Label="Source1" />
+                  <Edge From="6" To="7" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="rx:Condition">
+              <Name>InArena</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="harp:ConvertTimestamped">
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Centroid.Position</Selector>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Value" DisplayName="Center" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="aeon:DistanceFromPoint">
+                      <aeon:Value>
+                        <aeon:X>711</aeon:X>
+                        <aeon:Y>539</aeon:Y>
+                      </aeon:Value>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Value</Selector>
+                  </Expression>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Value" DisplayName="Radius" />
+                  </Expression>
+                  <Expression xsi:type="LessThan">
+                    <Operand xsi:type="DoubleProperty">
+                      <Value>474</Value>
+                    </Operand>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="3" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source2" />
+                  <Edge From="3" To="4" Label="Source1" />
+                  <Edge From="4" To="6" Label="Source1" />
+                  <Edge From="5" To="6" Label="Source2" />
+                  <Edge From="6" To="7" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="harp:ConvertTimestamped">
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Expression>new(
+Centroid as Centroid,
+Identity as Identity,
+IdentityIndex as IdentityIndex,
+Confidence as Confidence)</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>PoseTrackingTop</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Merge" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WindowTrigger">
+                <rx:Count xsi:nil="true" />
+                <rx:TimeSpan>PT5S</rx:TimeSpan>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="rx:SelectMany">
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="rx:DistinctBy">
+                    <rx:KeySelector>Value.Identity</rx:KeySelector>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:ToList" />
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="rx:BehaviorSubject">
+              <Name>SubjectsInArena</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
               <Name>WeightNest</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
@@ -2347,6 +2504,82 @@ Item3 as Patch3)</scr:Expression>
             </Expression>
             <Expression xsi:type="MulticastSubject">
               <Name>SubjectWeight</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>SubjectWeight</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>SubjectsInArena</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WithLatestFrom" />
+            </Expression>
+            <Expression xsi:type="rx:Condition">
+              <Name>SingleSubjectInArena</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Item2.Count</Selector>
+                  </Expression>
+                  <Expression xsi:type="Equal">
+                    <Operand xsi:type="IntProperty">
+                      <Value>1</Value>
+                    </Operand>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="rx:SelectMany">
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>SubjectPoses</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Value</Selector>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Merge" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:CombineLatest" />
+                  </Expression>
+                  <Expression xsi:type="scr:ExpressionCondition">
+                    <scr:Expression>Item1.Item2[0].Value.Identity != Item2.Identity</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Expression>new(
+Item1.Item1 as Weight,
+Item2.Identity as Identity,
+Item2.IdentityIndex as IdentityIndex)</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="4" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                  <Edge From="3" To="4" Label="Source2" />
+                  <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="5" To="6" Label="Source1" />
+                  <Edge From="6" To="7" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject">
+              <Name>LabeledWeight</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>ActivityCenter</Name>
@@ -3672,27 +3905,40 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
             <Edge From="114" To="115" Label="Source1" />
             <Edge From="115" To="116" Label="Source1" />
             <Edge From="116" To="117" Label="Source1" />
-            <Edge From="117" To="118" Label="Source1" />
-            <Edge From="119" To="120" Label="Source1" />
-            <Edge From="120" To="122" Label="Source1" />
-            <Edge From="121" To="122" Label="Source2" />
-            <Edge From="122" To="123" Label="Source1" />
-            <Edge From="124" To="127" Label="Source1" />
+            <Edge From="117" To="120" Label="Source1" />
+            <Edge From="118" To="119" Label="Source1" />
+            <Edge From="119" To="120" Label="Source2" />
+            <Edge From="120" To="121" Label="Source1" />
+            <Edge From="121" To="122" Label="Source1" />
+            <Edge From="123" To="124" Label="Source1" />
+            <Edge From="124" To="125" Label="Source1" />
             <Edge From="125" To="126" Label="Source1" />
-            <Edge From="126" To="127" Label="Source2" />
-            <Edge From="127" To="128" Label="Source1" />
-            <Edge From="128" To="129" Label="Source1" />
+            <Edge From="126" To="127" Label="Source1" />
+            <Edge From="128" To="130" Label="Source1" />
+            <Edge From="129" To="130" Label="Source2" />
             <Edge From="130" To="131" Label="Source1" />
+            <Edge From="131" To="132" Label="Source1" />
             <Edge From="132" To="133" Label="Source1" />
             <Edge From="134" To="135" Label="Source1" />
-            <Edge From="135" To="136" Label="Source1" />
+            <Edge From="135" To="137" Label="Source1" />
+            <Edge From="136" To="137" Label="Source2" />
             <Edge From="137" To="138" Label="Source1" />
-            <Edge From="138" To="139" Label="Source1" />
+            <Edge From="139" To="142" Label="Source1" />
             <Edge From="140" To="141" Label="Source1" />
-            <Edge From="141" To="142" Label="Source1" />
+            <Edge From="141" To="142" Label="Source2" />
+            <Edge From="142" To="143" Label="Source1" />
             <Edge From="143" To="144" Label="Source1" />
-            <Edge From="144" To="145" Label="Source1" />
-            <Edge From="146" To="147" Label="Source1" />
+            <Edge From="145" To="146" Label="Source1" />
+            <Edge From="147" To="148" Label="Source1" />
+            <Edge From="149" To="150" Label="Source1" />
+            <Edge From="150" To="151" Label="Source1" />
+            <Edge From="152" To="153" Label="Source1" />
+            <Edge From="153" To="154" Label="Source1" />
+            <Edge From="155" To="156" Label="Source1" />
+            <Edge From="156" To="157" Label="Source1" />
+            <Edge From="158" To="159" Label="Source1" />
+            <Edge From="159" To="160" Label="Source1" />
+            <Edge From="161" To="162" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -4294,16 +4540,19 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                   <Expression xsi:type="viz:TableLayoutPanelBuilder">
                     <viz:Name>ExperimentMetadata</viz:Name>
                     <viz:ColumnCount>3</viz:ColumnCount>
-                    <viz:RowCount>3</viz:RowCount>
+                    <viz:RowCount>2</viz:RowCount>
                     <viz:ColumnStyles />
-                    <viz:RowStyles />
-                    <viz:CellSpans>
-                      <viz:CellSpan ColumnSpan="1" RowSpan="2" />
-                      <viz:CellSpan ColumnSpan="1" RowSpan="2" />
-                      <viz:CellSpan ColumnSpan="1" RowSpan="2" />
-                      <viz:CellSpan ColumnSpan="1" RowSpan="1" />
-                      <viz:CellSpan ColumnSpan="1" RowSpan="1" />
-                    </viz:CellSpans>
+                    <viz:RowStyles>
+                      <viz:RowStyle>
+                        <viz:SizeType>Percent</viz:SizeType>
+                        <viz:Height>60</viz:Height>
+                      </viz:RowStyle>
+                      <viz:RowStyle>
+                        <viz:SizeType>Percent</viz:SizeType>
+                        <viz:Height>40</viz:Height>
+                      </viz:RowStyle>
+                    </viz:RowStyles>
+                    <viz:CellSpans />
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                   <Expression xsi:type="SubscribeSubject">
@@ -4574,6 +4823,48 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="VisualizerMapping" />
                   <Expression xsi:type="SubscribeSubject">
+                    <Name>LabeledWeight</Name>
+                  </Expression>
+                  <Expression xsi:type="rx:GroupBy">
+                    <rx:KeySelector>IdentityIndex</rx:KeySelector>
+                  </Expression>
+                  <Expression xsi:type="rx:Condition">
+                    <Name>Subject0</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Key</Selector>
+                        </Expression>
+                        <Expression xsi:type="Equal">
+                          <Operand xsi:type="IntProperty">
+                            <Value>0</Value>
+                          </Operand>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Merge" />
+                  </Expression>
+                  <Expression xsi:type="viz:RollingGraphBuilder">
+                    <viz:ValueSelector>Weight.Value</viz:ValueSelector>
+                    <viz:SymbolType>None</viz:SymbolType>
+                    <viz:LineWidth>1</viz:LineWidth>
+                    <viz:Capacity>640</viz:Capacity>
+                    <viz:Min>-5</viz:Min>
+                    <viz:Max>40</viz:Max>
+                  </Expression>
+                  <Expression xsi:type="VisualizerMapping" />
+                  <Expression xsi:type="SubscribeSubject">
                     <Name>WeightNest</Name>
                   </Expression>
                   <Expression xsi:type="scr:ExpressionTransform">
@@ -4593,12 +4884,53 @@ FilteredWeight.Value - BaselinedWeight.Value as Baseline)</scr:Expression>
                     <viz:Max xsi:nil="true" />
                   </Expression>
                   <Expression xsi:type="VisualizerMapping" />
+                  <Expression xsi:type="rx:Condition">
+                    <Name>Subject1</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Key</Selector>
+                        </Expression>
+                        <Expression xsi:type="Equal">
+                          <Operand xsi:type="IntProperty">
+                            <Value>1</Value>
+                          </Operand>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Merge" />
+                  </Expression>
+                  <Expression xsi:type="viz:RollingGraphBuilder">
+                    <viz:ValueSelector>Weight.Value</viz:ValueSelector>
+                    <viz:SymbolType>None</viz:SymbolType>
+                    <viz:LineWidth>1</viz:LineWidth>
+                    <viz:Capacity>640</viz:Capacity>
+                    <viz:Min>-5</viz:Min>
+                    <viz:Max>40</viz:Max>
+                  </Expression>
+                  <Expression xsi:type="VisualizerMapping" />
                   <Expression xsi:type="viz:TableLayoutPanelBuilder">
                     <viz:ColumnCount>2</viz:ColumnCount>
-                    <viz:RowCount>1</viz:RowCount>
+                    <viz:RowCount>2</viz:RowCount>
                     <viz:ColumnStyles />
                     <viz:RowStyles />
-                    <viz:CellSpans />
+                    <viz:CellSpans>
+                      <viz:CellSpan ColumnSpan="1" RowSpan="1" />
+                      <viz:CellSpan ColumnSpan="1" RowSpan="1" />
+                      <viz:CellSpan ColumnSpan="1" RowSpan="1" />
+                      <viz:CellSpan ColumnSpan="1" RowSpan="1" />
+                    </viz:CellSpans>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
@@ -4608,12 +4940,23 @@ FilteredWeight.Value - BaselinedWeight.Value as Baseline)</scr:Expression>
                   <Edge From="2" To="3" Label="Source2" />
                   <Edge From="3" To="4" Label="Source1" />
                   <Edge From="4" To="5" Label="Source1" />
-                  <Edge From="5" To="10" Label="Source1" />
+                  <Edge From="5" To="20" Label="Source1" />
                   <Edge From="6" To="7" Label="Source1" />
                   <Edge From="7" To="8" Label="Source1" />
+                  <Edge From="7" To="16" Label="Source1" />
                   <Edge From="8" To="9" Label="Source1" />
-                  <Edge From="9" To="10" Label="Source2" />
+                  <Edge From="9" To="10" Label="Source1" />
                   <Edge From="10" To="11" Label="Source1" />
+                  <Edge From="11" To="20" Label="Source2" />
+                  <Edge From="12" To="13" Label="Source1" />
+                  <Edge From="13" To="14" Label="Source1" />
+                  <Edge From="14" To="15" Label="Source1" />
+                  <Edge From="15" To="20" Label="Source3" />
+                  <Edge From="16" To="17" Label="Source1" />
+                  <Edge From="17" To="18" Label="Source1" />
+                  <Edge From="18" To="19" Label="Source1" />
+                  <Edge From="19" To="20" Label="Source4" />
+                  <Edge From="20" To="21" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>

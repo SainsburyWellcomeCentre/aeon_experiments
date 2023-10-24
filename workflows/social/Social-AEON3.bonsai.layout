@@ -3376,6 +3376,198 @@
         </Size>
         <WindowState>Normal</WindowState>
       </DialogSettings>
+      <DialogSettings xsi:type="WorkflowEditorSettings">
+        <Visible>false</Visible>
+        <Location>
+          <X>0</X>
+          <Y>0</Y>
+        </Location>
+        <Size>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+        <EditorDialogSettings>
+          <Visible>false</Visible>
+          <Location>
+            <X>52</X>
+            <Y>52</Y>
+          </Location>
+          <Size>
+            <Width>820</Width>
+            <Height>451</Height>
+          </Size>
+          <WindowState>Normal</WindowState>
+        </EditorDialogSettings>
+      </DialogSettings>
+      <DialogSettings>
+        <Visible>false</Visible>
+        <Location>
+          <X>0</X>
+          <Y>0</Y>
+        </Location>
+        <Size>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+      </DialogSettings>
+      <DialogSettings>
+        <Visible>false</Visible>
+        <Location>
+          <X>0</X>
+          <Y>0</Y>
+        </Location>
+        <Size>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+      </DialogSettings>
+      <DialogSettings>
+        <Visible>false</Visible>
+        <Location>
+          <X>0</X>
+          <Y>0</Y>
+        </Location>
+        <Size>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+      </DialogSettings>
+      <DialogSettings>
+        <Visible>false</Visible>
+        <Location>
+          <X>0</X>
+          <Y>0</Y>
+        </Location>
+        <Size>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+      </DialogSettings>
+      <DialogSettings>
+        <Visible>false</Visible>
+        <Location>
+          <X>0</X>
+          <Y>0</Y>
+        </Location>
+        <Size>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+      </DialogSettings>
+      <DialogSettings>
+        <Visible>false</Visible>
+        <Location>
+          <X>0</X>
+          <Y>0</Y>
+        </Location>
+        <Size>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+      </DialogSettings>
+      <DialogSettings>
+        <Visible>false</Visible>
+        <Location>
+          <X>0</X>
+          <Y>0</Y>
+        </Location>
+        <Size>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+      </DialogSettings>
+      <DialogSettings>
+        <Visible>false</Visible>
+        <Location>
+          <X>0</X>
+          <Y>0</Y>
+        </Location>
+        <Size>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+      </DialogSettings>
+      <DialogSettings>
+        <Visible>false</Visible>
+        <Location>
+          <X>0</X>
+          <Y>0</Y>
+        </Location>
+        <Size>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+      </DialogSettings>
+      <DialogSettings>
+        <Visible>false</Visible>
+        <Location>
+          <X>0</X>
+          <Y>0</Y>
+        </Location>
+        <Size>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+      </DialogSettings>
+      <DialogSettings>
+        <Visible>false</Visible>
+        <Location>
+          <X>0</X>
+          <Y>0</Y>
+        </Location>
+        <Size>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+      </DialogSettings>
+      <DialogSettings>
+        <Visible>false</Visible>
+        <Location>
+          <X>0</X>
+          <Y>0</Y>
+        </Location>
+        <Size>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+      </DialogSettings>
+      <DialogSettings>
+        <Visible>false</Visible>
+        <Location>
+          <X>0</X>
+          <Y>0</Y>
+        </Location>
+        <Size>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+      </DialogSettings>
+      <DialogSettings>
+        <Visible>false</Visible>
+        <Location>
+          <X>0</X>
+          <Y>0</Y>
+        </Location>
+        <Size>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+      </DialogSettings>
       <DialogSettings>
         <Visible>false</Visible>
         <Location>
@@ -3741,12 +3933,12 @@
       <DialogSettings xsi:type="WorkflowEditorSettings">
         <Visible>true</Visible>
         <Location>
-          <X>4</X>
-          <Y>17</Y>
+          <X>3</X>
+          <Y>0</Y>
         </Location>
         <Size>
           <Width>960</Width>
-          <Height>1002</Height>
+          <Height>1047</Height>
         </Size>
         <WindowState>Normal</WindowState>
         <VisualizerTypeName>Bonsai.Design.Visualizers.TableLayoutPanelVisualizer</VisualizerTypeName>
@@ -3819,7 +4011,7 @@
                         <XMin>0</XMin>
                         <XMax>15</XMax>
                         <YMin>0</YMin>
-                        <YMax>110</YMax>
+                        <YMax>100</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
                         <SelectedPage>0</SelectedPage>
@@ -3858,8 +4050,8 @@
                     <VisualizerSettings>
                       <RollingGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>92</Min>
-                        <Max>102</Max>
+                        <Min>85</Min>
+                        <Max>95</Max>
                         <AutoScale>true</AutoScale>
                       </RollingGraphVisualizer>
                     </VisualizerSettings>
@@ -3918,7 +4110,7 @@
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
                         <Min>0</Min>
-                        <Max>2.5</Max>
+                        <Max>25</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -3928,8 +4120,8 @@
                     <VisualizerSettings>
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>0</Min>
-                        <Max>0.005</Max>
+                        <Min>-0.007</Min>
+                        <Max>0.002</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -3956,11 +4148,11 @@
         <Visible>true</Visible>
         <Location>
           <X>953</X>
-          <Y>16</Y>
+          <Y>10</Y>
         </Location>
         <Size>
-          <Width>812</Width>
-          <Height>300</Height>
+          <Width>637</Width>
+          <Height>207</Height>
         </Size>
         <WindowState>Normal</WindowState>
         <VisualizerTypeName>Bonsai.Design.Visualizers.TableLayoutPanelVisualizer</VisualizerTypeName>
@@ -4015,11 +4207,11 @@
         <Visible>true</Visible>
         <Location>
           <X>952</X>
-          <Y>313</Y>
+          <Y>214</Y>
         </Location>
         <Size>
           <Width>962</Width>
-          <Height>391</Height>
+          <Height>333</Height>
         </Size>
         <WindowState>Normal</WindowState>
         <VisualizerTypeName>Bonsai.Design.Visualizers.TableLayoutPanelVisualizer</VisualizerTypeName>
@@ -4074,11 +4266,11 @@
         <Visible>true</Visible>
         <Location>
           <X>952</X>
-          <Y>705</Y>
+          <Y>546</Y>
         </Location>
         <Size>
           <Width>962</Width>
-          <Height>314</Height>
+          <Height>497</Height>
         </Size>
         <WindowState>Normal</WindowState>
         <VisualizerTypeName>Bonsai.Design.Visualizers.TableLayoutPanelVisualizer</VisualizerTypeName>
@@ -4095,9 +4287,31 @@
               <VisualizerSettings>
                 <RollingGraphVisualizer>
                   <Capacity>640</Capacity>
-                  <Min>0</Min>
-                  <Max>1.1</Max>
-                  <AutoScale>true</AutoScale>
+                  <Min>-5</Min>
+                  <Max>40</Max>
+                  <AutoScale>false</AutoScale>
+                </RollingGraphVisualizer>
+              </VisualizerSettings>
+            </MashupSettings>
+            <MashupSettings>
+              <VisualizerTypeName>Bonsai.Design.Visualizers.RollingGraphVisualizer</VisualizerTypeName>
+              <VisualizerSettings>
+                <RollingGraphVisualizer>
+                  <Capacity>640</Capacity>
+                  <Min>-5</Min>
+                  <Max>40</Max>
+                  <AutoScale>false</AutoScale>
+                </RollingGraphVisualizer>
+              </VisualizerSettings>
+            </MashupSettings>
+            <MashupSettings>
+              <VisualizerTypeName>Bonsai.Design.Visualizers.RollingGraphVisualizer</VisualizerTypeName>
+              <VisualizerSettings>
+                <RollingGraphVisualizer>
+                  <Capacity>640</Capacity>
+                  <Min>-5</Min>
+                  <Max>40</Max>
+                  <AutoScale>false</AutoScale>
                 </RollingGraphVisualizer>
               </VisualizerSettings>
             </MashupSettings>
