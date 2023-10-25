@@ -2571,8 +2571,14 @@ Item3 as Patch3)</scr:Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>StableSubjectsInArena</Name>
             </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>SubjectPoses</Name>
+            </Expression>
             <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:WithLatestFrom" />
+              <Combinator xsi:type="rx:CombineLatest" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Sample" />
             </Expression>
             <Expression xsi:type="rx:Condition">
               <Name>SingleSubjectInArena</Name>
@@ -2604,11 +2610,8 @@ Item3 as Patch3)</scr:Expression>
                   <Expression xsi:type="WorkflowInput">
                     <Name>Source1</Name>
                   </Expression>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>SubjectPoses</Name>
-                  </Expression>
                   <Expression xsi:type="MemberSelector">
-                    <Selector>Value</Selector>
+                    <Selector>Item3.Value</Selector>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Merge" />
@@ -2628,13 +2631,13 @@ Item2.IdentityIndex as IdentityIndex)</scr:Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
                 <Edges>
-                  <Edge From="0" To="4" Label="Source1" />
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="0" To="3" Label="Source1" />
                   <Edge From="1" To="2" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source1" />
-                  <Edge From="3" To="4" Label="Source2" />
+                  <Edge From="2" To="3" Label="Source2" />
+                  <Edge From="3" To="4" Label="Source1" />
                   <Edge From="4" To="5" Label="Source1" />
                   <Edge From="5" To="6" Label="Source1" />
-                  <Edge From="6" To="7" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
@@ -3980,36 +3983,39 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
             <Edge From="124" To="125" Label="Source1" />
             <Edge From="125" To="126" Label="Source1" />
             <Edge From="126" To="127" Label="Source1" />
-            <Edge From="128" To="130" Label="Source1" />
-            <Edge From="129" To="130" Label="Source2" />
-            <Edge From="130" To="131" Label="Source1" />
+            <Edge From="128" To="131" Label="Source1" />
+            <Edge From="128" To="132" Label="Source2" />
+            <Edge From="129" To="131" Label="Source2" />
+            <Edge From="130" To="131" Label="Source3" />
             <Edge From="131" To="132" Label="Source1" />
             <Edge From="132" To="133" Label="Source1" />
+            <Edge From="133" To="134" Label="Source1" />
             <Edge From="134" To="135" Label="Source1" />
-            <Edge From="135" To="136" Label="Source1" />
-            <Edge From="136" To="138" Label="Source1" />
-            <Edge From="137" To="138" Label="Source2" />
-            <Edge From="138" To="139" Label="Source1" />
-            <Edge From="139" To="141" Label="Source1" />
-            <Edge From="140" To="141" Label="Source2" />
-            <Edge From="141" To="142" Label="Source1" />
-            <Edge From="142" To="143" Label="Source1" />
-            <Edge From="144" To="147" Label="Source1" />
-            <Edge From="145" To="146" Label="Source1" />
-            <Edge From="146" To="147" Label="Source2" />
+            <Edge From="136" To="137" Label="Source1" />
+            <Edge From="137" To="138" Label="Source1" />
+            <Edge From="138" To="140" Label="Source1" />
+            <Edge From="139" To="140" Label="Source2" />
+            <Edge From="140" To="141" Label="Source1" />
+            <Edge From="141" To="143" Label="Source1" />
+            <Edge From="142" To="143" Label="Source2" />
+            <Edge From="143" To="144" Label="Source1" />
+            <Edge From="144" To="145" Label="Source1" />
+            <Edge From="146" To="149" Label="Source1" />
             <Edge From="147" To="148" Label="Source1" />
-            <Edge From="148" To="149" Label="Source1" />
+            <Edge From="148" To="149" Label="Source2" />
+            <Edge From="149" To="150" Label="Source1" />
             <Edge From="150" To="151" Label="Source1" />
             <Edge From="152" To="153" Label="Source1" />
             <Edge From="154" To="155" Label="Source1" />
-            <Edge From="155" To="156" Label="Source1" />
+            <Edge From="156" To="157" Label="Source1" />
             <Edge From="157" To="158" Label="Source1" />
-            <Edge From="158" To="159" Label="Source1" />
+            <Edge From="159" To="160" Label="Source1" />
             <Edge From="160" To="161" Label="Source1" />
-            <Edge From="161" To="162" Label="Source1" />
+            <Edge From="162" To="163" Label="Source1" />
             <Edge From="163" To="164" Label="Source1" />
-            <Edge From="164" To="165" Label="Source1" />
+            <Edge From="165" To="166" Label="Source1" />
             <Edge From="166" To="167" Label="Source1" />
+            <Edge From="168" To="169" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
