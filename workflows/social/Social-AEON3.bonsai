@@ -4861,6 +4861,9 @@ More than 1 hour has passed and the pellet threshold value to start the probabil
                       <rx:Count>1</rx:Count>
                     </Combinator>
                   </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Repeat" />
+                  </Expression>
                   <Expression xsi:type="scr:ExpressionTransform">
                     <scr:Expression>new(
   it[0].Item1 as ThresholdPatch1,
@@ -4957,7 +4960,7 @@ RatePatch3 as Rate)</scr:Expression>
                   <Edge From="25" To="26" Label="Source2" />
                   <Edge From="26" To="27" Label="Source1" />
                   <Edge From="27" To="28" Label="Source1" />
-                  <Edge From="28" To="65" Label="Source1" />
+                  <Edge From="28" To="66" Label="Source1" />
                   <Edge From="29" To="31" Label="Source1" />
                   <Edge From="30" To="31" Label="Source2" />
                   <Edge From="31" To="38" Label="Source1" />
@@ -4993,9 +4996,10 @@ RatePatch3 as Rate)</scr:Expression>
                   <Edge From="61" To="62" Label="Source2" />
                   <Edge From="62" To="63" Label="Source1" />
                   <Edge From="63" To="64" Label="Source1" />
-                  <Edge From="64" To="65" Label="Source2" />
-                  <Edge From="65" To="66" Label="Source1" />
+                  <Edge From="64" To="65" Label="Source1" />
+                  <Edge From="65" To="66" Label="Source2" />
                   <Edge From="66" To="67" Label="Source1" />
+                  <Edge From="67" To="68" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
