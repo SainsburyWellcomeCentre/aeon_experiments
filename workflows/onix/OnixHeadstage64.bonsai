@@ -467,61 +467,8 @@ def process(value):
               <FallbackPath>C:\ProjectAeon\Tests</FallbackPath>
               <ChunkSize>1</ChunkSize>
             </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
-                <WorkflowName>PreSocial0.1-AEON2.bonsai</WorkflowName>
-              </Builder>
-            </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="SubscribeSubject">
-                <Name>HeadStageLinearDriveEvents</Name>
-              </Builder>
-            </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-                <LogName>HeadStageLinearDrive</LogName>
-                <Heartbeats />
-                <ClosingDuration xsi:nil="true" />
-              </Builder>
-            </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="SubscribeSubject">
-                <Name>PatchState1</Name>
-              </Builder>
-            </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="scr:ExpressionTransform">
-                <scr:Expression>new(
-Item1 as Threshold,
-Item2 as D1,
-Item3 as Delta)</scr:Expression>
-              </Builder>
-            </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="SubscribeSubject">
-                <Name>Patch1</Name>
-              </Builder>
-            </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="harp:Parse">
-                <harp:Register xsi:type="harp:ParseMessagePayload">
-                  <harp:PayloadType>Timestamp</harp:PayloadType>
-                  <harp:IsArray>false</harp:IsArray>
-                </harp:Register>
-              </Builder>
-            </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="Combinator">
-                <Combinator xsi:type="rx:WithLatestFrom" />
-              </Builder>
-            </Expression>
-            <Expression xsi:type="Disable">
-              <Builder xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
-                <Heartbeats />
-                <ClosingDuration xsi:nil="true" />
-                <LogName>Patch1_State</LogName>
-                <Selector xsi:nil="true" />
-              </Builder>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
+              <WorkflowName>OnixHeadstage64.bonsai</WorkflowName>
             </Expression>
             <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p1:HARPSyncInputDataFrame">
               <rx:Name>HarpSync</rx:Name>
