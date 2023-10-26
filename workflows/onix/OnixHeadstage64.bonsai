@@ -806,11 +806,19 @@ def process(value):
                   <Expression xsi:type="MemberSelector">
                     <Selector>Data</Selector>
                   </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="dsp:SelectChannels">
+                      <dsp:Channels>
+                        <dsp:int>0</dsp:int>
+                      </dsp:Channels>
+                    </Combinator>
+                  </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
                 <Edges>
                   <Edge From="0" To="1" Label="Source1" />
                   <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
