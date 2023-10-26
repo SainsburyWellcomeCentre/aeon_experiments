@@ -244,54 +244,14 @@ def process(value):
                               <Expression xsi:type="MemberSelector">
                                 <Selector>LinearAcceleration</Selector>
                               </Expression>
-                              <Expression xsi:type="Disable">
-                                <Builder xsi:type="Combinator">
-                                  <Combinator xsi:type="dsp:MatrixWriter">
-                                    <dsp:Path>bno055-linear-accel_.raw</dsp:Path>
-                                    <dsp:Suffix>Timestamp</dsp:Suffix>
-                                    <dsp:Overwrite>false</dsp:Overwrite>
-                                    <dsp:Layout>RowMajor</dsp:Layout>
-                                  </Combinator>
-                                </Builder>
-                              </Expression>
                               <Expression xsi:type="MemberSelector">
                                 <Selector>GravityVector</Selector>
-                              </Expression>
-                              <Expression xsi:type="Disable">
-                                <Builder xsi:type="Combinator">
-                                  <Combinator xsi:type="dsp:MatrixWriter">
-                                    <dsp:Path>bno055-gravity-vector_.raw</dsp:Path>
-                                    <dsp:Suffix>Timestamp</dsp:Suffix>
-                                    <dsp:Overwrite>false</dsp:Overwrite>
-                                    <dsp:Layout>RowMajor</dsp:Layout>
-                                  </Combinator>
-                                </Builder>
                               </Expression>
                               <Expression xsi:type="MemberSelector">
                                 <Selector>Euler</Selector>
                               </Expression>
-                              <Expression xsi:type="Disable">
-                                <Builder xsi:type="Combinator">
-                                  <Combinator xsi:type="dsp:MatrixWriter">
-                                    <dsp:Path>bno055-euler_.raw</dsp:Path>
-                                    <dsp:Suffix>Timestamp</dsp:Suffix>
-                                    <dsp:Overwrite>false</dsp:Overwrite>
-                                    <dsp:Layout>RowMajor</dsp:Layout>
-                                  </Combinator>
-                                </Builder>
-                              </Expression>
                               <Expression xsi:type="Combinator">
                                 <Combinator xsi:type="rx:Timestamp" />
-                              </Expression>
-                              <Expression xsi:type="Disable">
-                                <Builder xsi:type="io:CsvWriter">
-                                  <io:FileName>bno055-other_.csv</io:FileName>
-                                  <io:Append>false</io:Append>
-                                  <io:Overwrite>false</io:Overwrite>
-                                  <io:Suffix>Timestamp</io:Suffix>
-                                  <io:IncludeHeader>false</io:IncludeHeader>
-                                  <io:Selector>Timestamp,Value.Clock,Value.Temperature,Value.Calibration</io:Selector>
-                                </Builder>
                               </Expression>
                             </Nodes>
                             <Edges>
@@ -300,13 +260,9 @@ def process(value):
                               <Edge From="2" To="3" Label="Source1" />
                               <Edge From="2" To="4" Label="Source1" />
                               <Edge From="2" To="5" Label="Source1" />
+                              <Edge From="2" To="6" Label="Source1" />
                               <Edge From="2" To="7" Label="Source1" />
-                              <Edge From="2" To="9" Label="Source1" />
-                              <Edge From="2" To="11" Label="Source1" />
-                              <Edge From="5" To="6" Label="Source1" />
-                              <Edge From="7" To="8" Label="Source1" />
-                              <Edge From="9" To="10" Label="Source1" />
-                              <Edge From="11" To="12" Label="Source1" />
+                              <Edge From="2" To="8" Label="Source1" />
                             </Edges>
                           </Workflow>
                         </Expression>
