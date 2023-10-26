@@ -477,7 +477,7 @@ def process(value):
               <Selector>HARPTime</Selector>
             </Expression>
             <Expression xsi:type="Combinator">
-              <Combinator xsi:type="p2:ConvertToHarpTimestamp" />
+              <Combinator xsi:type="p3:ConvertToHarpTimestamp" />
             </Expression>
             <Expression xsi:type="rx:PublishSubject">
               <Name>HarpClock</Name>
@@ -513,7 +513,7 @@ def process(value):
                     <Selector>Item1</Selector>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p2:ConvertToBytes" />
+                    <Combinator xsi:type="p3:ConvertToBytes" />
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
@@ -537,7 +537,7 @@ def process(value):
                     <Selector>Item2</Selector>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p2:ConvertToBytes" />
+                    <Combinator xsi:type="p3:ConvertToBytes" />
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
@@ -655,7 +655,7 @@ def process(value):
                     <Selector>Clock</Selector>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p2:ConvertToBytes" />
+                    <Combinator xsi:type="p3:ConvertToBytes" />
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
@@ -680,7 +680,7 @@ def process(value):
                     <Selector>HubSyncCounter</Selector>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p2:ConvertToBytes" />
+                    <Combinator xsi:type="p3:ConvertToBytes" />
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
@@ -834,7 +834,7 @@ def process(value):
                     <Selector>Clock</Selector>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p2:CastToU64" />
+                    <Combinator xsi:type="p3:CastToU64" />
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
@@ -859,7 +859,7 @@ def process(value):
                     <Selector>HubSyncCounter</Selector>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p2:CastToU64" />
+                    <Combinator xsi:type="p3:CastToU64" />
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
