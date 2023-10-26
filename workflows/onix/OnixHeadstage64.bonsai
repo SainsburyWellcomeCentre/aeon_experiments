@@ -694,12 +694,6 @@ def process(value):
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
               <LogName>Onix_Bno055_HubSyncCounter</LogName>
             </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>RawVoltage</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>NumberOfSamples</Selector>
-            </Expression>
             <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p1:RHD2164DataFrame">
               <rx:Name>RawVoltage</rx:Name>
             </Expression>
