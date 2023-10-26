@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:p1="clr-namespace:Bonsai.ONIX;assembly=Bonsai.ONIX"
@@ -562,102 +562,33 @@ def process(value):
                 <rx:Skip xsi:nil="true" />
               </Combinator>
             </Expression>
-            <Expression xsi:type="rx:CreateObservable">
-              <Name>Quaternion</Name>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>LogQuaternion</Name>
               <Workflow>
                 <Nodes>
                   <Expression xsi:type="WorkflowInput">
                     <Name>Source1</Name>
                   </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Quaternion</Selector>
+                  <Expression xsi:type="rx:CreateObservable">
+                    <Name>Quaternion</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Quaternion</Selector>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
                   </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
-              <LogName>Onix_Bno055_Quaternion</LogName>
-            </Expression>
-            <Expression xsi:type="rx:CreateObservable">
-              <Name>LinearAcceleration</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>LinearAcceleration</Selector>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
-              <LogName>Onix_Bno055_LinearAcceleration</LogName>
-            </Expression>
-            <Expression xsi:type="rx:CreateObservable">
-              <Name>GravityVector</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>GravityVector</Selector>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
-              <LogName>Onix_Bno055_GravityVector</LogName>
-            </Expression>
-            <Expression xsi:type="rx:CreateObservable">
-              <Name>Euler</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Euler</Selector>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
-              <LogName>Onix_Bno055_Euler</LogName>
-            </Expression>
-            <Expression xsi:type="rx:CreateObservable">
-              <Name>Clock</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Clock</Selector>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:ConvertToBytes" />
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+                    <LogName>Onix_Bno055_Quaternion</LogName>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
@@ -668,21 +599,33 @@ def process(value):
                 </Edges>
               </Workflow>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
-              <LogName>Onix_Bno055_Clock</LogName>
-            </Expression>
-            <Expression xsi:type="rx:CreateObservable">
-              <Name>HubSyncCounter</Name>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>LogLinearAcelaration</Name>
               <Workflow>
                 <Nodes>
                   <Expression xsi:type="WorkflowInput">
                     <Name>Source1</Name>
                   </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>HubSyncCounter</Selector>
+                  <Expression xsi:type="rx:CreateObservable">
+                    <Name>LinearAcceleration</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>LinearAcceleration</Selector>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
                   </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:ConvertToBytes" />
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+                    <LogName>Onix_Bno055_LinearAcceleration</LogName>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
@@ -693,8 +636,161 @@ def process(value):
                 </Edges>
               </Workflow>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
-              <LogName>Onix_Bno055_HubSyncCounter</LogName>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>LogGravityVector</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="rx:CreateObservable">
+                    <Name>GravityVector</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>GravityVector</Selector>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+                    <LogName>Onix_Bno055_GravityVector</LogName>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>LogEuler</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="rx:CreateObservable">
+                    <Name>Euler</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Euler</Selector>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+                    <LogName>Onix_Bno055_Euler</LogName>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>LogBNO055Clock</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="rx:CreateObservable">
+                    <Name>Clock</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Clock</Selector>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="p3:ConvertToBytes" />
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+                    <LogName>Onix_Bno055_Clock</LogName>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>LogBNO055HubSyncCounter</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="rx:CreateObservable">
+                    <Name>HubSyncCounter</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>HubSyncCounter</Selector>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="p3:ConvertToBytes" />
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+                    <LogName>Onix_Bno055_HubSyncCounter</LogName>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                </Edges>
+              </Workflow>
             </Expression>
             <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p1:RHD2164DataFrame">
               <rx:Name>RawVoltage</rx:Name>
@@ -893,33 +989,27 @@ def process(value):
             <Edge From="13" To="14" Label="Source1" />
             <Edge From="15" To="16" Label="Source1" />
             <Edge From="16" To="17" Label="Source1" />
+            <Edge From="16" To="18" Label="Source1" />
             <Edge From="16" To="19" Label="Source1" />
+            <Edge From="16" To="20" Label="Source1" />
             <Edge From="16" To="21" Label="Source1" />
-            <Edge From="16" To="23" Label="Source1" />
-            <Edge From="16" To="25" Label="Source1" />
-            <Edge From="16" To="27" Label="Source1" />
-            <Edge From="17" To="18" Label="Source1" />
-            <Edge From="19" To="20" Label="Source1" />
-            <Edge From="21" To="22" Label="Source1" />
+            <Edge From="16" To="22" Label="Source1" />
             <Edge From="23" To="24" Label="Source1" />
+            <Edge From="24" To="25" Label="Source1" />
+            <Edge From="24" To="27" Label="Source1" />
+            <Edge From="24" To="29" Label="Source1" />
+            <Edge From="24" To="31" Label="Source1" />
             <Edge From="25" To="26" Label="Source1" />
             <Edge From="27" To="28" Label="Source1" />
             <Edge From="29" To="30" Label="Source1" />
-            <Edge From="30" To="31" Label="Source1" />
-            <Edge From="30" To="33" Label="Source1" />
-            <Edge From="30" To="35" Label="Source1" />
-            <Edge From="30" To="37" Label="Source1" />
             <Edge From="31" To="32" Label="Source1" />
             <Edge From="33" To="34" Label="Source1" />
+            <Edge From="34" To="35" Label="Source1" />
+            <Edge From="34" To="37" Label="Source1" />
+            <Edge From="34" To="39" Label="Source1" />
             <Edge From="35" To="36" Label="Source1" />
             <Edge From="37" To="38" Label="Source1" />
             <Edge From="39" To="40" Label="Source1" />
-            <Edge From="40" To="41" Label="Source1" />
-            <Edge From="40" To="43" Label="Source1" />
-            <Edge From="40" To="45" Label="Source1" />
-            <Edge From="41" To="42" Label="Source1" />
-            <Edge From="43" To="44" Label="Source1" />
-            <Edge From="45" To="46" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
