@@ -396,49 +396,49 @@ def process(value):
         <Name>Declarations</Name>
         <Workflow>
           <Nodes>
-            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p3:WeightMeasurement">
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p2:WeightMeasurement">
               <rx:Name>FilteredWeightNest</rx:Name>
             </Expression>
-            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p3:WeightMeasurement">
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p2:WeightMeasurement">
               <rx:Name>SubjectWeight</rx:Name>
             </Expression>
             <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Byte)">
               <rx:Name>MissedPellets1</rx:Name>
             </Expression>
-            <Expression xsi:type="p3:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
-              <p3:Name>PatchState1</p3:Name>
+            <Expression xsi:type="p2:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
+              <p2:Name>PatchState1</p2:Name>
             </Expression>
             <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Byte)">
               <rx:Name>MissedPellets2</rx:Name>
             </Expression>
-            <Expression xsi:type="p3:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
-              <p3:Name>PatchState2</p3:Name>
+            <Expression xsi:type="p2:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
+              <p2:Name>PatchState2</p2:Name>
             </Expression>
             <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Double)">
               <rx:Name>BaselineTrigger</rx:Name>
             </Expression>
-            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(p3:LogMessage)">
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(p2:LogMessage)">
               <rx:Name>AlertLogs</rx:Name>
             </Expression>
-            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p3:LogMessage)">
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p2:LogMessage)">
               <rx:Name>Annotations</rx:Name>
             </Expression>
-            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(p3:EnvironmentStateMetadata)">
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(p2:EnvironmentStateMetadata)">
               <rx:Name>EnvironmentState</rx:Name>
             </Expression>
-            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(p3:DispenserStateMetadata)">
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(p2:DispenserStateMetadata)">
               <rx:Name>Patch1Dispenser</rx:Name>
             </Expression>
-            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(p3:DispenserStateMetadata)">
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(p2:DispenserStateMetadata)">
               <rx:Name>Patch2Dispenser</rx:Name>
             </Expression>
-            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(p3:EnvironmentSubjectStateMetadata)">
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(p2:EnvironmentSubjectStateMetadata)">
               <rx:Name>SubjectState</rx:Name>
             </Expression>
-            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p3:EnvironmentSubjectStateMetadata)">
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p2:EnvironmentSubjectStateMetadata)">
               <rx:Name>SubjectStart</rx:Name>
             </Expression>
-            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p3:EnvironmentSubjectStateMetadata)">
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p2:EnvironmentSubjectStateMetadata)">
               <rx:Name>SubjectStop</rx:Name>
             </Expression>
             <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:UInt16)">
