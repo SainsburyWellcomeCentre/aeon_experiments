@@ -78,7 +78,7 @@
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
@@ -107,7 +107,7 @@
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
@@ -136,7 +136,7 @@
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
@@ -165,7 +165,7 @@
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
@@ -194,7 +194,7 @@
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
@@ -223,7 +223,7 @@
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
@@ -252,7 +252,7 @@
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
@@ -281,7 +281,7 @@
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
@@ -310,7 +310,7 @@
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
