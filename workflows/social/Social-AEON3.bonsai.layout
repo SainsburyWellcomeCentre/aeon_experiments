@@ -20,7 +20,7 @@
         <Y>3</Y>
       </Location>
       <Size>
-        <Width>1506</Width>
+        <Width>1189</Width>
         <Height>903</Height>
       </Size>
       <WindowState>Normal</WindowState>
@@ -2254,7 +2254,7 @@
         <Y>3</Y>
       </Location>
       <Size>
-        <Width>1506</Width>
+        <Width>1189</Width>
         <Height>903</Height>
       </Size>
       <WindowState>Normal</WindowState>
@@ -3964,6 +3964,30 @@
         </Size>
         <WindowState>Normal</WindowState>
       </DialogSettings>
+      <DialogSettings>
+        <Visible>false</Visible>
+        <Location>
+          <X>0</X>
+          <Y>0</Y>
+        </Location>
+        <Size>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+      </DialogSettings>
+      <DialogSettings>
+        <Visible>false</Visible>
+        <Location>
+          <X>0</X>
+          <Y>0</Y>
+        </Location>
+        <Size>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+      </DialogSettings>
     </EditorVisualizerLayout>
   </DialogSettings>
   <DialogSettings xsi:type="WorkflowEditorSettings">
@@ -3984,7 +4008,7 @@
         <Y>3</Y>
       </Location>
       <Size>
-        <Width>1506</Width>
+        <Width>1189</Width>
         <Height>903</Height>
       </Size>
       <WindowState>Normal</WindowState>
@@ -4278,7 +4302,7 @@
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
                         <Min>0</Min>
-                        <Max>35</Max>
+                        <Max>25</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -4288,7 +4312,7 @@
                     <VisualizerSettings>
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>-0.002</Min>
+                        <Min>-0.004</Min>
                         <Max>0.002</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
@@ -4312,14 +4336,14 @@
           <WindowState>Normal</WindowState>
         </EditorDialogSettings>
       </DialogSettings>
-      <DialogSettings>
+      <DialogSettings xsi:type="WorkflowEditorSettings">
         <Visible>true</Visible>
         <Location>
           <X>953</X>
           <Y>10</Y>
         </Location>
         <Size>
-          <Width>637</Width>
+          <Width>960</Width>
           <Height>207</Height>
         </Size>
         <WindowState>Normal</WindowState>
@@ -4356,8 +4380,26 @@
                 </PoseIdentityCollectionVisualizer>
               </VisualizerSettings>
             </MashupSettings>
+            <MashupSettings>
+              <VisualizerTypeName>Bonsai.Vision.Design.IplImageVisualizer</VisualizerTypeName>
+              <VisualizerSettings>
+                <IplImageVisualizer />
+              </VisualizerSettings>
+            </MashupSettings>
           </TableLayoutPanelVisualizer>
         </VisualizerSettings>
+        <EditorDialogSettings>
+          <Visible>false</Visible>
+          <Location>
+            <X>3</X>
+            <Y>3</Y>
+          </Location>
+          <Size>
+            <Width>1189</Width>
+            <Height>903</Height>
+          </Size>
+          <WindowState>Normal</WindowState>
+        </EditorDialogSettings>
       </DialogSettings>
       <DialogSettings xsi:type="WorkflowEditorSettings">
         <Visible>true</Visible>
@@ -4418,7 +4460,7 @@
             <Y>3</Y>
           </Location>
           <Size>
-            <Width>1506</Width>
+            <Width>1189</Width>
             <Height>903</Height>
           </Size>
           <WindowState>Normal</WindowState>
@@ -4460,8 +4502,8 @@
               <VisualizerSettings>
                 <RollingGraphVisualizer>
                   <Capacity>640</Capacity>
-                  <Min>0</Min>
-                  <Max>1.1</Max>
+                  <Min>-0.2</Min>
+                  <Max>0.90000000000000013</Max>
                   <AutoScale>true</AutoScale>
                 </RollingGraphVisualizer>
               </VisualizerSettings>
