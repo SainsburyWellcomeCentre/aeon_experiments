@@ -674,7 +674,7 @@
                           <Property Name="ConfigFileName" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Extensions\LightCycle.bonsai">
-                          <ConfigFileName>Z:\aeon\config\lightcycle.config</ConfigFileName>
+                          <ConfigFileName>lightcycle.config</ConfigFileName>
                         </Expression>
                         <Expression xsi:type="MulticastSubject">
                           <Name>LightCommands</Name>
