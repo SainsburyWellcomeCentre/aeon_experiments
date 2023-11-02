@@ -674,7 +674,7 @@
                         <Expression xsi:type="ExternalizedMapping">
                           <Property Name="ConfigFileName" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\LightCycle.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:LightCycle.bonsai">
                           <ConfigFileName>lightcycle.config</ConfigFileName>
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:EnvironmentCondition.bonsai">
