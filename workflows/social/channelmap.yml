@@ -6,10 +6,10 @@ rooms:
       interpolationMethod: Linear
       calibrationFile: aeon4_coldwhite_calibration.csv
     warmWhite:
-      channels: [24, 44]
+      channels: [24, 44, 46, 23, 29, 6, 31, 15]
       interpolationMethod: Zero
     red:
-      channels: [41, 0]
+      channels: [41, 0, 17, 22, 27]
       interpolationMethod: Zero
   AEON3:
     coldWhite:
@@ -17,9 +17,9 @@ rooms:
       interpolationMethod: Linear
       calibrationFile: aeon3_coldwhite_calibration.csv
     warmWhite:
-      channels: [5, 18]
+      channels: [5, 18, 35, 25, 38, 19]
       interpolationMethod: Zero
     red:
-      channels: [13, 4]
+      channels: [13, 4, 28, 39]
       interpolationMethod: Zero
   
