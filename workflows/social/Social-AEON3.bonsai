@@ -5454,6 +5454,76 @@ FilteredWeight.Value - BaselinedWeight.Value as Baseline)</scr:Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:ToArray" />
                   </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Expression>new(
+  it[0].Item1 as ThresholdPatch1,
+  it[0].Item2 as RatePatch1,
+  it[1].Item1 as ThresholdPatch2,
+  it[1].Item2 as RatePatch2,
+  it[2].Item1 as ThresholdPatch3,
+  it[2].Item2 as RatePatch3
+)</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="rx:Sink">
+                    <Name>SetPatchState</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="scr:ExpressionTransform">
+                          <scr:Expression>new(
+Double.NaN as Threshold,
+ThresholdPatch1 as D0,
+RatePatch1 as Rate)</scr:Expression>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Threshold,D0,Rate</Selector>
+                          <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
+                        </Expression>
+                        <Expression xsi:type="MulticastSubject">
+                          <Name>PatchState1</Name>
+                        </Expression>
+                        <Expression xsi:type="scr:ExpressionTransform">
+                          <scr:Expression>new(
+Double.NaN as Threshold,
+ThresholdPatch2 as D0,
+RatePatch2 as Rate)</scr:Expression>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Threshold,D0,Rate</Selector>
+                          <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
+                        </Expression>
+                        <Expression xsi:type="MulticastSubject">
+                          <Name>PatchState2</Name>
+                        </Expression>
+                        <Expression xsi:type="scr:ExpressionTransform">
+                          <scr:Expression>new(
+Double.NaN as Threshold,
+ThresholdPatch3 as D0,
+RatePatch3 as Rate)</scr:Expression>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Threshold,D0,Rate</Selector>
+                          <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
+                        </Expression>
+                        <Expression xsi:type="MulticastSubject">
+                          <Name>PatchState3</Name>
+                        </Expression>
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="0" To="4" Label="Source1" />
+                        <Edge From="0" To="7" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                        <Edge From="4" To="5" Label="Source1" />
+                        <Edge From="5" To="6" Label="Source1" />
+                        <Edge From="7" To="8" Label="Source1" />
+                        <Edge From="8" To="9" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
                   <Expression xsi:type="SubscribeSubject">
                     <Name>ThresholdCrossingPatch1</Name>
                   </Expression>
@@ -5528,80 +5598,10 @@ FilteredWeight.Value - BaselinedWeight.Value as Baseline)</scr:Expression>
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:TakeUntil" />
+                    <Combinator xsi:type="rx:Sample" />
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Repeat" />
-                  </Expression>
-                  <Expression xsi:type="scr:ExpressionTransform">
-                    <scr:Expression>new(
-  it[0].Item1 as ThresholdPatch1,
-  it[0].Item2 as RatePatch1,
-  it[1].Item1 as ThresholdPatch2,
-  it[1].Item2 as RatePatch2,
-  it[2].Item1 as ThresholdPatch3,
-  it[2].Item2 as RatePatch3
-)</scr:Expression>
-                  </Expression>
-                  <Expression xsi:type="rx:Sink">
-                    <Name>SetPatchState</Name>
-                    <Workflow>
-                      <Nodes>
-                        <Expression xsi:type="WorkflowInput">
-                          <Name>Source1</Name>
-                        </Expression>
-                        <Expression xsi:type="scr:ExpressionTransform">
-                          <scr:Expression>new(
-Double.NaN as Threshold,
-ThresholdPatch1 as D0,
-RatePatch1 as Rate)</scr:Expression>
-                        </Expression>
-                        <Expression xsi:type="MemberSelector">
-                          <Selector>Threshold,D0,Rate</Selector>
-                          <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
-                        </Expression>
-                        <Expression xsi:type="MulticastSubject">
-                          <Name>PatchState1</Name>
-                        </Expression>
-                        <Expression xsi:type="scr:ExpressionTransform">
-                          <scr:Expression>new(
-Double.NaN as Threshold,
-ThresholdPatch2 as D0,
-RatePatch2 as Rate)</scr:Expression>
-                        </Expression>
-                        <Expression xsi:type="MemberSelector">
-                          <Selector>Threshold,D0,Rate</Selector>
-                          <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
-                        </Expression>
-                        <Expression xsi:type="MulticastSubject">
-                          <Name>PatchState2</Name>
-                        </Expression>
-                        <Expression xsi:type="scr:ExpressionTransform">
-                          <scr:Expression>new(
-Double.NaN as Threshold,
-ThresholdPatch3 as D0,
-RatePatch3 as Rate)</scr:Expression>
-                        </Expression>
-                        <Expression xsi:type="MemberSelector">
-                          <Selector>Threshold,D0,Rate</Selector>
-                          <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
-                        </Expression>
-                        <Expression xsi:type="MulticastSubject">
-                          <Name>PatchState3</Name>
-                        </Expression>
-                      </Nodes>
-                      <Edges>
-                        <Edge From="0" To="1" Label="Source1" />
-                        <Edge From="0" To="4" Label="Source1" />
-                        <Edge From="0" To="7" Label="Source1" />
-                        <Edge From="1" To="2" Label="Source1" />
-                        <Edge From="2" To="3" Label="Source1" />
-                        <Edge From="4" To="5" Label="Source1" />
-                        <Edge From="5" To="6" Label="Source1" />
-                        <Edge From="7" To="8" Label="Source1" />
-                        <Edge From="8" To="9" Label="Source1" />
-                      </Edges>
-                    </Workflow>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
@@ -5632,30 +5632,30 @@ RatePatch3 as Rate)</scr:Expression>
                   <Edge From="29" To="30" Label="Source2" />
                   <Edge From="30" To="31" Label="Source1" />
                   <Edge From="31" To="32" Label="Source1" />
-                  <Edge From="32" To="54" Label="Source1" />
+                  <Edge From="32" To="33" Label="Source1" />
                   <Edge From="33" To="34" Label="Source1" />
-                  <Edge From="34" To="35" Label="Source1" />
+                  <Edge From="34" To="56" Label="Source1" />
                   <Edge From="35" To="36" Label="Source1" />
-                  <Edge From="36" To="45" Label="Source1" />
+                  <Edge From="36" To="37" Label="Source1" />
                   <Edge From="37" To="38" Label="Source1" />
-                  <Edge From="38" To="39" Label="Source1" />
+                  <Edge From="38" To="47" Label="Source1" />
                   <Edge From="39" To="40" Label="Source1" />
-                  <Edge From="40" To="45" Label="Source2" />
+                  <Edge From="40" To="41" Label="Source1" />
                   <Edge From="41" To="42" Label="Source1" />
-                  <Edge From="42" To="43" Label="Source1" />
+                  <Edge From="42" To="47" Label="Source2" />
                   <Edge From="43" To="44" Label="Source1" />
-                  <Edge From="44" To="45" Label="Source3" />
+                  <Edge From="44" To="45" Label="Source1" />
                   <Edge From="45" To="46" Label="Source1" />
-                  <Edge From="46" To="51" Label="Source1" />
-                  <Edge From="47" To="49" Label="Source1" />
-                  <Edge From="48" To="49" Label="Source2" />
-                  <Edge From="49" To="50" Label="Source1" />
+                  <Edge From="46" To="47" Label="Source3" />
+                  <Edge From="47" To="48" Label="Source1" />
+                  <Edge From="48" To="53" Label="Source1" />
+                  <Edge From="49" To="51" Label="Source1" />
                   <Edge From="50" To="51" Label="Source2" />
                   <Edge From="51" To="52" Label="Source1" />
-                  <Edge From="52" To="53" Label="Source1" />
-                  <Edge From="53" To="54" Label="Source2" />
+                  <Edge From="52" To="53" Label="Source2" />
+                  <Edge From="53" To="54" Label="Source1" />
                   <Edge From="54" To="55" Label="Source1" />
-                  <Edge From="55" To="56" Label="Source1" />
+                  <Edge From="55" To="56" Label="Source2" />
                   <Edge From="56" To="57" Label="Source1" />
                   <Edge From="57" To="58" Label="Source1" />
                 </Edges>
@@ -5674,6 +5674,8 @@ RatePatch3 as Rate)</scr:Expression>
                 <Property Name="RatePatch1" Selector="RatePatch1" />
                 <Property Name="ThresholdPatch2" Selector="ThresholdPatch2" />
                 <Property Name="RatePatch2" Selector="RatePatch2" />
+                <Property Name="ThresholdPatch3" Selector="ThresholdPatch3" />
+                <Property Name="RatePatch3" Selector="RatePatch3" />
               </PropertyMappings>
             </Expression>
             <Expression xsi:type="GroupWorkflow">
