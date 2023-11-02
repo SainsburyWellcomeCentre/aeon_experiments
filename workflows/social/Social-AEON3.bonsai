@@ -714,7 +714,7 @@
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PositionTracking.bonsai">
                     <ThresholdValue>83</ThresholdValue>
-                    <Mask>Config\ArenaMask-AEON3_2023-03-06.png</Mask>
+                    <Mask>Config\ArenaMask-AEON3_2023-10-22.png</Mask>
                     <TrackingCount>1</TrackingCount>
                     <TrackingEvents>TrackingTop</TrackingEvents>
                   </Expression>
@@ -854,60 +854,60 @@
                     <Patch1Region>
                       <ArrayOfPoint>
                         <Point>
-                          <X>904</X>
-                          <Y>167</Y>
+                          <X>908</X>
+                          <Y>528</Y>
                         </Point>
                         <Point>
-                          <X>925</X>
-                          <Y>181</Y>
+                          <X>931</X>
+                          <Y>526</Y>
                         </Point>
                         <Point>
-                          <X>910</X>
-                          <Y>215</Y>
+                          <X>930</X>
+                          <Y>547</Y>
                         </Point>
                         <Point>
-                          <X>888</X>
-                          <Y>201</Y>
+                          <X>908</X>
+                          <Y>547</Y>
                         </Point>
                       </ArrayOfPoint>
                     </Patch1Region>
                     <Patch2Region>
                       <ArrayOfPoint>
                         <Point>
-                          <X>802</X>
-                          <Y>875</Y>
+                          <X>611</X>
+                          <Y>707</Y>
                         </Point>
                         <Point>
-                          <X>924</X>
-                          <Y>861</Y>
+                          <X>629</X>
+                          <Y>716</Y>
                         </Point>
                         <Point>
-                          <X>939</X>
-                          <Y>894</Y>
+                          <X>618</X>
+                          <Y>739</Y>
                         </Point>
                         <Point>
-                          <X>920</X>
-                          <Y>904</Y>
+                          <X>600</X>
+                          <Y>729</Y>
                         </Point>
                       </ArrayOfPoint>
                     </Patch2Region>
                     <Patch3Region>
                       <ArrayOfPoint>
                         <Point>
-                          <X>802</X>
-                          <Y>875</Y>
+                          <X>591</X>
+                          <Y>361</Y>
                         </Point>
                         <Point>
-                          <X>924</X>
-                          <Y>861</Y>
+                          <X>609</X>
+                          <Y>350</Y>
                         </Point>
                         <Point>
-                          <X>939</X>
-                          <Y>894</Y>
+                          <X>620</X>
+                          <Y>370</Y>
                         </Point>
                         <Point>
-                          <X>920</X>
-                          <Y>904</Y>
+                          <X>602</X>
+                          <Y>382</Y>
                         </Point>
                       </ArrayOfPoint>
                     </Patch3Region>
