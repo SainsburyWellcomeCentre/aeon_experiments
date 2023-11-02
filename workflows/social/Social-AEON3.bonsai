@@ -14,6 +14,7 @@
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
                  xmlns:viz="clr-namespace:Bonsai.Design.Visualizers;assembly=Bonsai.Design.Visualizers"
+                 xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -77,7 +78,7 @@
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
@@ -106,7 +107,7 @@
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
@@ -135,7 +136,7 @@
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
@@ -164,7 +165,7 @@
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
@@ -193,7 +194,7 @@
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
@@ -222,7 +223,7 @@
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
@@ -251,7 +252,7 @@
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
@@ -280,7 +281,7 @@
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
@@ -309,7 +310,7 @@
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
@@ -647,6 +648,47 @@
                       <Edges>
                         <Edge From="0" To="1" Label="Source1" />
                         <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>LightCycle</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="EventSocket" />
+                          <Property Name="RoomName" />
+                          <Property Name="LightEvents" />
+                          <Property Name="LightCommands" />
+                          <Property Name="CommandSocket" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:LightClient.bonsai">
+                          <EventSocket>&gt;tcp://localhost:4303</EventSocket>
+                          <RoomName>AEON3</RoomName>
+                          <LightEvents>LightEvents</LightEvents>
+                          <LightCommands>LightCommands</LightCommands>
+                          <CommandSocket>&gt;tcp://localhost:4304</CommandSocket>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="ConfigFileName" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\LightCycle.bonsai">
+                          <ConfigFileName>lightcycle.config</ConfigFileName>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:EnvironmentCondition.bonsai">
+                          <Value>Experiment</Value>
+                        </Expression>
+                        <Expression xsi:type="MulticastSubject">
+                          <Name>LightCommands</Name>
+                        </Expression>
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                        <Edge From="3" To="4" Label="Source1" />
+                        <Edge From="4" To="5" Label="Source1" />
+                        <Edge From="5" To="6" Label="Source1" />
                       </Edges>
                     </Workflow>
                   </Expression>
@@ -3131,7 +3173,7 @@ Mode: {1}</Format>
                         </Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="io:GetFiles">
-                            <io:Path>D:\Tests\social-dev-a214bbd</io:Path>
+                            <io:Path>D:\Tests\social-dev-1089af0</io:Path>
                             <io:SearchPattern>*</io:SearchPattern>
                             <io:SearchOption>AllDirectories</io:SearchOption>
                           </Combinator>
@@ -4124,6 +4166,15 @@ new(Value.Id as Id,
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
             </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>LightEvents</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
+              <LogName>Environment_LightEvents</LogName>
+              <Selector xsi:nil="true" />
+            </Expression>
           </Nodes>
           <Edges>
             <Edge From="2" To="3" Label="Source1" />
@@ -4231,6 +4282,7 @@ new(Value.Id as Id,
             <Edge From="136" To="137" Label="Source1" />
             <Edge From="137" To="138" Label="Source4" />
             <Edge From="138" To="139" Label="Source1" />
+            <Edge From="140" To="141" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -4699,9 +4751,16 @@ new(Value.Id as Id,
                     <Selector>Value</Selector>
                   </Expression>
                   <Expression xsi:type="VisualizerMapping" />
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="cv:CameraCapture">
+                      <cv:Index>0</cv:Index>
+                      <cv:CaptureProperties />
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="VisualizerMapping" />
                   <Expression xsi:type="viz:TableLayoutPanelBuilder">
                     <viz:Name>SubjectActivity</viz:Name>
-                    <viz:ColumnCount>3</viz:ColumnCount>
+                    <viz:ColumnCount>4</viz:ColumnCount>
                     <viz:RowCount>1</viz:RowCount>
                     <viz:ColumnStyles />
                     <viz:RowStyles />
@@ -4711,16 +4770,18 @@ new(Value.Id as Id,
                 </Nodes>
                 <Edges>
                   <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="10" Label="Source1" />
+                  <Edge From="1" To="12" Label="Source1" />
                   <Edge From="2" To="3" Label="Source1" />
                   <Edge From="3" To="4" Label="Source1" />
                   <Edge From="4" To="5" Label="Source1" />
-                  <Edge From="5" To="10" Label="Source2" />
+                  <Edge From="5" To="12" Label="Source2" />
                   <Edge From="6" To="7" Label="Source1" />
                   <Edge From="7" To="8" Label="Source1" />
                   <Edge From="8" To="9" Label="Source1" />
-                  <Edge From="9" To="10" Label="Source3" />
+                  <Edge From="9" To="12" Label="Source3" />
                   <Edge From="10" To="11" Label="Source1" />
+                  <Edge From="11" To="12" Label="Source4" />
+                  <Edge From="12" To="13" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
@@ -4827,6 +4888,49 @@ new(Value.Id as Id,
                   </Expression>
                   <Expression xsi:type="MulticastSubject">
                     <Name>EnvironmentState</Name>
+                  </Expression>
+                  <Expression xsi:type="VisualizerMapping" />
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>PatchState1</Name>
+                  </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Expression>new(
+Item1 as Threshold,
+Item2 as D0,
+Item3 as Rate)</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>PatchState2</Name>
+                  </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Expression>new(
+Item1 as Threshold,
+Item2 as D0,
+Item3 as Rate)</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>PatchState3</Name>
+                  </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Expression>new(
+Item1 as Threshold,
+Item2 as D0,
+Item3 as Rate)</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:CombineLatest" />
+                  </Expression>
+                  <Expression xsi:type="Format">
+                    <Format>Patch State
+P1 (rate: {2}, d0: {1}, thr: {0:.##})
+P2 (rate: {5}, d0: {4}, thr: {3:.##})
+P3 (rate: {8}, d0: {7}, thr: {6:.##})</Format>
+                    <Selector>Item1.Threshold,Item1.D0,Item1.Rate,Item2.Threshold,Item2.D0,Item2.Rate,Item3.Threshold,Item3.D0,Item3.Rate</Selector>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="aeon-env:LabelControl">
+                      <aeon-env:FontSize>14</aeon-env:FontSize>
+                    </Combinator>
                   </Expression>
                   <Expression xsi:type="VisualizerMapping" />
                   <Expression xsi:type="viz:TableLayoutPanelBuilder">
@@ -5050,42 +5154,52 @@ new(Value.Id as Id,
                   <Edge From="0" To="1" Label="Source1" />
                   <Edge From="1" To="2" Label="Source1" />
                   <Edge From="2" To="3" Label="Source1" />
-                  <Edge From="3" To="20" Label="Source1" />
+                  <Edge From="3" To="30" Label="Source1" />
                   <Edge From="4" To="5" Label="Source1" />
                   <Edge From="5" To="6" Label="Source1" />
                   <Edge From="6" To="7" Label="Source1" />
-                  <Edge From="7" To="20" Label="Source2" />
+                  <Edge From="7" To="30" Label="Source2" />
                   <Edge From="8" To="9" Label="Source1" />
                   <Edge From="9" To="10" Label="Source1" />
                   <Edge From="10" To="11" Label="Source1" />
-                  <Edge From="11" To="20" Label="Source3" />
+                  <Edge From="11" To="30" Label="Source3" />
                   <Edge From="12" To="13" Label="Source1" />
                   <Edge From="13" To="14" Label="Source1" />
                   <Edge From="14" To="15" Label="Source1" />
-                  <Edge From="15" To="20" Label="Source4" />
+                  <Edge From="15" To="30" Label="Source4" />
                   <Edge From="16" To="17" Label="Source1" />
                   <Edge From="17" To="18" Label="Source1" />
                   <Edge From="18" To="19" Label="Source1" />
-                  <Edge From="19" To="20" Label="Source5" />
+                  <Edge From="19" To="30" Label="Source5" />
                   <Edge From="20" To="21" Label="Source1" />
+                  <Edge From="21" To="26" Label="Source1" />
                   <Edge From="22" To="23" Label="Source1" />
-                  <Edge From="23" To="24" Label="Source1" />
-                  <Edge From="23" To="26" Label="Source1" />
+                  <Edge From="23" To="26" Label="Source2" />
                   <Edge From="24" To="25" Label="Source1" />
+                  <Edge From="25" To="26" Label="Source3" />
                   <Edge From="26" To="27" Label="Source1" />
                   <Edge From="27" To="28" Label="Source1" />
-                  <Edge From="29" To="30" Label="Source1" />
+                  <Edge From="28" To="29" Label="Source1" />
+                  <Edge From="29" To="30" Label="Source6" />
                   <Edge From="30" To="31" Label="Source1" />
-                  <Edge From="30" To="33" Label="Source1" />
-                  <Edge From="31" To="32" Label="Source1" />
+                  <Edge From="32" To="33" Label="Source1" />
                   <Edge From="33" To="34" Label="Source1" />
+                  <Edge From="33" To="36" Label="Source1" />
                   <Edge From="34" To="35" Label="Source1" />
                   <Edge From="36" To="37" Label="Source1" />
                   <Edge From="37" To="38" Label="Source1" />
-                  <Edge From="37" To="40" Label="Source1" />
-                  <Edge From="38" To="39" Label="Source1" />
+                  <Edge From="39" To="40" Label="Source1" />
                   <Edge From="40" To="41" Label="Source1" />
+                  <Edge From="40" To="43" Label="Source1" />
                   <Edge From="41" To="42" Label="Source1" />
+                  <Edge From="43" To="44" Label="Source1" />
+                  <Edge From="44" To="45" Label="Source1" />
+                  <Edge From="46" To="47" Label="Source1" />
+                  <Edge From="47" To="48" Label="Source1" />
+                  <Edge From="47" To="50" Label="Source1" />
+                  <Edge From="48" To="49" Label="Source1" />
+                  <Edge From="50" To="51" Label="Source1" />
+                  <Edge From="51" To="52" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
@@ -5199,6 +5313,8 @@ FilteredWeight.Value - BaselinedWeight.Value as Baseline)</scr:Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="EasyThreshold" />
         <Property Name="EasyRate" />
+        <Property Name="MediumThreshold" />
+        <Property Name="MediumRate" />
         <Property Name="HardThreshold" />
         <Property Name="HardRate" />
         <Property Name="StartThreshold" />
@@ -5371,6 +5487,9 @@ Item2 as RatePatch3)</scr:Expression>
                     <Combinator xsi:type="rx:Take">
                       <rx:Count>3</rx:Count>
                     </Combinator>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>Random</Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="num:Permutation" />
@@ -5584,7 +5703,7 @@ RatePatch3 as Rate)</scr:Expression>
                   <Edge From="25" To="26" Label="Source2" />
                   <Edge From="26" To="27" Label="Source1" />
                   <Edge From="27" To="28" Label="Source1" />
-                  <Edge From="28" To="66" Label="Source1" />
+                  <Edge From="28" To="67" Label="Source1" />
                   <Edge From="29" To="31" Label="Source1" />
                   <Edge From="30" To="31" Label="Source2" />
                   <Edge From="31" To="38" Label="Source1" />
@@ -5595,35 +5714,36 @@ RatePatch3 as Rate)</scr:Expression>
                   <Edge From="36" To="37" Label="Source2" />
                   <Edge From="37" To="38" Label="Source3" />
                   <Edge From="38" To="39" Label="Source1" />
-                  <Edge From="39" To="40" Label="Source1" />
-                  <Edge From="40" To="41" Label="Source1" />
+                  <Edge From="39" To="41" Label="Source1" />
+                  <Edge From="40" To="41" Label="Source2" />
                   <Edge From="41" To="42" Label="Source1" />
-                  <Edge From="42" To="62" Label="Source1" />
-                  <Edge From="43" To="44" Label="Source1" />
+                  <Edge From="42" To="43" Label="Source1" />
+                  <Edge From="43" To="63" Label="Source1" />
                   <Edge From="44" To="45" Label="Source1" />
                   <Edge From="45" To="46" Label="Source1" />
-                  <Edge From="46" To="55" Label="Source1" />
-                  <Edge From="47" To="48" Label="Source1" />
+                  <Edge From="46" To="47" Label="Source1" />
+                  <Edge From="47" To="56" Label="Source1" />
                   <Edge From="48" To="49" Label="Source1" />
                   <Edge From="49" To="50" Label="Source1" />
-                  <Edge From="50" To="55" Label="Source2" />
-                  <Edge From="51" To="52" Label="Source1" />
+                  <Edge From="50" To="51" Label="Source1" />
+                  <Edge From="51" To="56" Label="Source2" />
                   <Edge From="52" To="53" Label="Source1" />
                   <Edge From="53" To="54" Label="Source1" />
-                  <Edge From="54" To="55" Label="Source3" />
-                  <Edge From="55" To="56" Label="Source1" />
-                  <Edge From="56" To="58" Label="Source1" />
-                  <Edge From="57" To="58" Label="Source2" />
-                  <Edge From="58" To="59" Label="Source1" />
-                  <Edge From="59" To="61" Label="Source1" />
-                  <Edge From="60" To="61" Label="Source2" />
+                  <Edge From="54" To="55" Label="Source1" />
+                  <Edge From="55" To="56" Label="Source3" />
+                  <Edge From="56" To="57" Label="Source1" />
+                  <Edge From="57" To="59" Label="Source1" />
+                  <Edge From="58" To="59" Label="Source2" />
+                  <Edge From="59" To="60" Label="Source1" />
+                  <Edge From="60" To="62" Label="Source1" />
                   <Edge From="61" To="62" Label="Source2" />
-                  <Edge From="62" To="63" Label="Source1" />
+                  <Edge From="62" To="63" Label="Source2" />
                   <Edge From="63" To="64" Label="Source1" />
                   <Edge From="64" To="65" Label="Source1" />
-                  <Edge From="65" To="66" Label="Source2" />
-                  <Edge From="66" To="67" Label="Source1" />
+                  <Edge From="65" To="66" Label="Source1" />
+                  <Edge From="66" To="67" Label="Source2" />
                   <Edge From="67" To="68" Label="Source1" />
+                  <Edge From="68" To="69" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
@@ -5705,7 +5825,7 @@ RatePatch3 as Rate)</scr:Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
                     <Name>DistanceState3</Name>
                     <DistanceThreshold>75</DistanceThreshold>
-                    <Rate>0.01</Rate>
+                    <Rate>10000</Rate>
                     <DeliveryCount>DeliveryCount3</DeliveryCount>
                     <PatchState>PatchState3</PatchState>
                   </Expression>
