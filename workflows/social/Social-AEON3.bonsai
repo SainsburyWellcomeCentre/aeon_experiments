@@ -676,6 +676,9 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Extensions\LightCycle.bonsai">
                           <ConfigFileName>lightcycle.config</ConfigFileName>
                         </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:EnvironmentCondition.bonsai">
+                          <Value>Experiment</Value>
+                        </Expression>
                         <Expression xsi:type="MulticastSubject">
                           <Name>LightCommands</Name>
                         </Expression>
@@ -685,6 +688,7 @@
                         <Edge From="1" To="2" Label="Source1" />
                         <Edge From="3" To="4" Label="Source1" />
                         <Edge From="4" To="5" Label="Source1" />
+                        <Edge From="5" To="6" Label="Source1" />
                       </Edges>
                     </Workflow>
                   </Expression>
