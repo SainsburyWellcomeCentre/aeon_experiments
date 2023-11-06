@@ -955,7 +955,7 @@
             <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
               <aeon:Name>PatchState3</aeon:Name>
             </Expression>
-            <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Int32,sys:Double,sys:Double)">
+            <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Int32,sys:Int32,sys:Double)">
               <aeon:Name>BlockState</aeon:Name>
             </Expression>
             <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Double)">
@@ -4955,7 +4955,7 @@ Item3 as BlockTimeout)</scr:Expression>
                     <Combinator xsi:type="rx:CombineLatest" />
                   </Expression>
                   <Expression xsi:type="Format">
-                    <Format>Block (count: {9}, thr: {10}, timeout: {11})
+                    <Format>Block (count: {9}, thr: {10}, timeout: {11:.##})
 P1 (rate: {2}, d0: {1}, thr: {0:.##})
 P2 (rate: {5}, d0: {4}, thr: {3:.##})
 P3 (rate: {8}, d0: {7}, thr: {6:.##})</Format>
@@ -5430,7 +5430,7 @@ FilteredWeight.Value - BaselinedWeight.Value as Baseline)</scr:Expression>
                   <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Int32">
                     <rx:Name>BlockPelletCount</rx:Name>
                   </Expression>
-                  <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Double">
+                  <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Int32">
                     <rx:Name>BlockPelletThreshold</rx:Name>
                   </Expression>
                   <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Double">
@@ -5444,7 +5444,7 @@ FilteredWeight.Value - BaselinedWeight.Value as Baseline)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="MemberSelector">
                     <Selector>Item1,Item2,Item3</Selector>
-                    <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Int32,sys:Double,sys:Double)" />
+                    <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Int32,sys:Int32,sys:Double)" />
                   </Expression>
                   <Expression xsi:type="MulticastSubject">
                     <Name>BlockState</Name>
@@ -5705,7 +5705,7 @@ RatePatch3 as Rate)</scr:Expression>
                           <Property Name="Upper" DisplayName="MaxPelletsPerBlock" Category="BlockParameters" />
                         </Expression>
                         <Expression xsi:type="Combinator">
-                          <Combinator xsi:type="p2:CreateContinuousUniform">
+                          <Combinator xsi:type="p2:CreateDiscreteUniform">
                             <p2:Lower>17</p2:Lower>
                             <p2:Upper>25</p2:Upper>
                           </Combinator>
