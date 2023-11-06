@@ -5571,16 +5571,53 @@ RatePatch3 as Rate)</scr:Expression>
                     <Combinator xsi:type="rx:CombineLatest" />
                   </Expression>
                   <Expression xsi:type="GreaterThanOrEqual" />
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="BlockTimeout" />
+                  </Expression>
                   <Expression xsi:type="rx:Condition">
+                    <Name>MaxPelletsOrTimeout</Name>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="WorkflowInput">
                           <Name>Source1</Name>
                         </Expression>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="Period" DisplayName="BlockTimeout" Description="If greater than zero, specifies the maximum block time." Category="BlockParameters" />
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:Timer">
+                            <rx:DueTime>PT0S</rx:DueTime>
+                            <rx:Period>PT0S</rx:Period>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:Skip">
+                            <rx:Count>1</rx:Count>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:Take">
+                            <rx:Count>1</rx:Count>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="BooleanProperty">
+                            <Value>true</Value>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:Merge" />
+                        </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
                       <Edges>
-                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="0" To="6" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                        <Edge From="3" To="4" Label="Source1" />
+                        <Edge From="4" To="5" Label="Source1" />
+                        <Edge From="5" To="6" Label="Source2" />
+                        <Edge From="6" To="7" Label="Source1" />
                       </Edges>
                     </Workflow>
                   </Expression>
@@ -5621,7 +5658,7 @@ RatePatch3 as Rate)</scr:Expression>
                   <Edge From="31" To="32" Label="Source1" />
                   <Edge From="32" To="33" Label="Source1" />
                   <Edge From="33" To="34" Label="Source1" />
-                  <Edge From="34" To="56" Label="Source1" />
+                  <Edge From="34" To="57" Label="Source1" />
                   <Edge From="35" To="36" Label="Source1" />
                   <Edge From="36" To="37" Label="Source1" />
                   <Edge From="37" To="38" Label="Source1" />
@@ -5641,10 +5678,11 @@ RatePatch3 as Rate)</scr:Expression>
                   <Edge From="51" To="52" Label="Source1" />
                   <Edge From="52" To="53" Label="Source2" />
                   <Edge From="53" To="54" Label="Source1" />
-                  <Edge From="54" To="55" Label="Source1" />
+                  <Edge From="54" To="56" Label="Source1" />
                   <Edge From="55" To="56" Label="Source2" />
-                  <Edge From="56" To="57" Label="Source1" />
+                  <Edge From="56" To="57" Label="Source2" />
                   <Edge From="57" To="58" Label="Source1" />
+                  <Edge From="58" To="59" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
