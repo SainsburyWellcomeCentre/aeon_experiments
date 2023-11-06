@@ -4955,10 +4955,10 @@ Item3 as BlockTimeout)</scr:Expression>
                     <Combinator xsi:type="rx:CombineLatest" />
                   </Expression>
                   <Expression xsi:type="Format">
-                    <Format>Block (count: {9}, thr: {10}, timeout: {11:.##})
-P1 (rate: {2}, d0: {1}, thr: {0:.##})
-P2 (rate: {5}, d0: {4}, thr: {3:.##})
-P3 (rate: {8}, d0: {7}, thr: {6:.##})</Format>
+                    <Format>Block (count: {9}, thr: {10}, timeout: {11:0.##})
+P1 (rate: {2}, d0: {1}, thr: {0:0.##})
+P2 (rate: {5}, d0: {4}, thr: {3:0.##})
+P3 (rate: {8}, d0: {7}, thr: {6:0.##})</Format>
                     <Selector>Item1.Threshold,Item1.D0,Item1.Rate,Item2.Threshold,Item2.D0,Item2.Rate,Item3.Threshold,Item3.D0,Item3.Rate,Item4.BlockPelletCount,Item4.BlockThreshold,Item4.BlockTimeout</Selector>
                   </Expression>
                   <Expression xsi:type="Combinator">
@@ -5342,6 +5342,8 @@ FilteredWeight.Value - BaselinedWeight.Value as Baseline)</scr:Expression>
         <Property Name="HardRate" />
         <Property Name="MinPelletsPerBlock" />
         <Property Name="MaxPelletsPerBlock" />
+        <Property Name="BlockTimeoutMin" />
+        <Property Name="BlockTimeoutMax" />
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>TaskLogic</Name>
@@ -5356,6 +5358,8 @@ FilteredWeight.Value - BaselinedWeight.Value as Baseline)</scr:Expression>
               <Property Name="MediumRate" />
               <Property Name="MinPelletsPerBlock" />
               <Property Name="MaxPelletsPerBlock" />
+              <Property Name="BlockTimeoutMin" />
+              <Property Name="BlockTimeoutMax" />
             </Expression>
             <Expression xsi:type="rx:Defer">
               <Name>ParameterController</Name>
