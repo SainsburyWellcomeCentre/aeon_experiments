@@ -3969,7 +3969,7 @@ Item3 as BlockTimeout)</scr:Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
-              <LogName>ExperimentalMetadata_SubjectState</LogName>
+              <LogName>Environment_SubjectState</LogName>
               <Selector>Seconds,Value.Id,Value.Weight,Value.Type</Selector>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -3984,7 +3984,7 @@ Item3 as BlockTimeout)</scr:Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
-              <LogName>ExperimentalMetadata_MessageLog</LogName>
+              <LogName>Environment_MessageLog</LogName>
               <Selector>Seconds,Value.Priority,Value.Type,Value.Message</Selector>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -3993,7 +3993,7 @@ Item3 as BlockTimeout)</scr:Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
-              <LogName>ExperimentalMetadata_EnvironmentState</LogName>
+              <LogName>Environment_EnvironmentState</LogName>
               <Selector>Seconds,Value.Type</Selector>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -4002,7 +4002,7 @@ Item3 as BlockTimeout)</scr:Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
-              <LogName>ExperimentalMetadata_SubjectWeight</LogName>
+              <LogName>Environment_SubjectWeight</LogName>
               <Selector>Seconds,Value.Weight.Value,Value.Weight.Confidence,Value.Identity,Value.IdentityIndex</Selector>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
@@ -4060,7 +4060,7 @@ new(Value.Id as Id,
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
-              <LogName>ExperimentalMetadata_SubjectVisits</LogName>
+              <LogName>Environment_SubjectVisits</LogName>
               <Selector>Seconds,Value.Id,Value.Event,Value.Value</Selector>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
