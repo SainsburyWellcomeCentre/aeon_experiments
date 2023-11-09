@@ -1768,14 +1768,6 @@ new(Value.Id as Id,
         </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\ControlPanel.bonsai" />
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="num:CreateRandom">
-          <num:Seed xsi:nil="true" />
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="rx:AsyncSubject">
-        <Name>Random</Name>
-      </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="EasyThreshold" />
         <Property Name="EasyRate" />
@@ -1803,7 +1795,6 @@ new(Value.Id as Id,
     </Nodes>
     <Edges>
       <Edge From="6" To="7" Label="Source1" />
-      <Edge From="8" To="9" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
