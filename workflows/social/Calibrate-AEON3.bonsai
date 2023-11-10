@@ -6,6 +6,7 @@
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns:viz="clr-namespace:Bonsai.Design.Visualizers;assembly=Bonsai.Design.Visualizers"
+                 xmlns:p1="clr-namespace:;assembly=Extensions"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -64,11 +65,12 @@
                     <Property Name="TriggerSource" />
                     <Property Name="FrameEvents" />
                     <Property Name="TriggerFrequency" />
+                    <Property Name="ExposureTime" />
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                     <TriggerSource>GlobalTrigger</TriggerSource>
                     <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
-                    <ExposureTime>INF</ExposureTime>
+                    <ExposureTime>7500</ExposureTime>
                     <SerialNumber>23032909</SerialNumber>
                     <Gain>0</Gain>
                     <Binning>1</Binning>
@@ -532,6 +534,20 @@
         <viz:RowStyles />
         <viz:CellSpans />
       </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>RawImage</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:CreateCircle">
+          <p1:Circle>
+            <p1:Center>
+              <p1:X>712</p1:X>
+              <p1:Y>547</p1:Y>
+            </p1:Center>
+            <p1:Radius>985.318237</p1:Radius>
+          </p1:Circle>
+        </Combinator>
+      </Expression>
     </Nodes>
     <Edges>
       <Edge From="1" To="2" Label="Source1" />
@@ -575,6 +591,7 @@
       <Edge From="39" To="40" Label="Source1" />
       <Edge From="40" To="41" Label="Source1" />
       <Edge From="41" To="42" Label="Source4" />
+      <Edge From="43" To="44" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
