@@ -6,7 +6,6 @@
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
                  xmlns:viz="clr-namespace:Bonsai.Design.Visualizers;assembly=Bonsai.Design.Visualizers"
-                 xmlns:p1="clr-namespace:;assembly=Extensions"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -537,16 +536,13 @@
       <Expression xsi:type="SubscribeSubject">
         <Name>RawImage</Name>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="p1:CreateCircle">
-          <p1:Circle>
-            <p1:Center>
-              <p1:X>712</p1:X>
-              <p1:Y>547</p1:Y>
-            </p1:Center>
-            <p1:Radius>985.318237</p1:Radius>
-          </p1:Circle>
-        </Combinator>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\CalibrateCircles.bonsai">
+        <ArenaCenter>
+          <X>708</X>
+          <Y>543</Y>
+        </ArenaCenter>
+        <ArenaInnerRadius>505</ArenaInnerRadius>
+        <ArenaOuterRadius>531</ArenaOuterRadius>
       </Expression>
     </Nodes>
     <Edges>
