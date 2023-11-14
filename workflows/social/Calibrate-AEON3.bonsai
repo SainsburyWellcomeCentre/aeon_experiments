@@ -64,11 +64,12 @@
                     <Property Name="TriggerSource" />
                     <Property Name="FrameEvents" />
                     <Property Name="TriggerFrequency" />
+                    <Property Name="ExposureTime" />
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                     <TriggerSource>GlobalTrigger</TriggerSource>
                     <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
-                    <ExposureTime>INF</ExposureTime>
+                    <ExposureTime>7500</ExposureTime>
                     <SerialNumber>23032909</SerialNumber>
                     <Gain>0</Gain>
                     <Binning>1</Binning>
@@ -198,7 +199,7 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:Threshold">
-          <cv:ThresholdValue>162</cv:ThresholdValue>
+          <cv:ThresholdValue>175</cv:ThresholdValue>
           <cv:MaxValue>255</cv:MaxValue>
           <cv:ThresholdType>Binary</cv:ThresholdType>
         </Combinator>
@@ -221,6 +222,14 @@
           <cv:Thickness>-1</cv:Thickness>
         </Combinator>
       </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>NestRegion</Name>
+      </Expression>
+      <Expression xsi:type="PropertyMapping">
+        <PropertyMappings>
+          <Property Name="Regions" />
+        </PropertyMappings>
+      </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>NestMask</Name>
         <Workflow>
@@ -236,20 +245,20 @@
                 <cv:Regions>
                   <cv:ArrayOfPoint>
                     <cv:Point>
-                      <cv:X>1332</cv:X>
-                      <cv:Y>482</cv:Y>
+                      <cv:X>1321</cv:X>
+                      <cv:Y>486</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>1242</cv:X>
-                      <cv:Y>481</cv:Y>
+                      <cv:X>1231</cv:X>
+                      <cv:Y>485</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>1245</cv:X>
-                      <cv:Y>586</cv:Y>
+                      <cv:X>1231</cv:X>
+                      <cv:Y>591</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>1334</cv:X>
-                      <cv:Y>579</cv:Y>
+                      <cv:X>1323</cv:X>
+                      <cv:Y>583</cv:Y>
                     </cv:Point>
                   </cv:ArrayOfPoint>
                 </cv:Regions>
@@ -337,156 +346,6 @@
           </Edges>
         </Workflow>
       </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>Patch1Wheel</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="WorkflowInput">
-              <Name>Source1</Name>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Regions" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="cv:MaskPolygon">
-                <cv:Regions>
-                  <cv:ArrayOfPoint>
-                    <cv:Point>
-                      <cv:X>908</cv:X>
-                      <cv:Y>528</cv:Y>
-                    </cv:Point>
-                    <cv:Point>
-                      <cv:X>931</cv:X>
-                      <cv:Y>526</cv:Y>
-                    </cv:Point>
-                    <cv:Point>
-                      <cv:X>930</cv:X>
-                      <cv:Y>547</cv:Y>
-                    </cv:Point>
-                    <cv:Point>
-                      <cv:X>908</cv:X>
-                      <cv:Y>547</cv:Y>
-                    </cv:Point>
-                  </cv:ArrayOfPoint>
-                </cv:Regions>
-                <cv:MaskType>Binary</cv:MaskType>
-                <cv:FillValue>
-                  <cv:Val0>0</cv:Val0>
-                  <cv:Val1>0</cv:Val1>
-                  <cv:Val2>0</cv:Val2>
-                  <cv:Val3>0</cv:Val3>
-                </cv:FillValue>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="2" Label="Source1" />
-            <Edge From="1" To="2" Label="Source2" />
-            <Edge From="2" To="3" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>Patch2Wheel</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="WorkflowInput">
-              <Name>Source1</Name>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Regions" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="cv:MaskPolygon">
-                <cv:Regions>
-                  <cv:ArrayOfPoint>
-                    <cv:Point>
-                      <cv:X>611</cv:X>
-                      <cv:Y>707</cv:Y>
-                    </cv:Point>
-                    <cv:Point>
-                      <cv:X>629</cv:X>
-                      <cv:Y>716</cv:Y>
-                    </cv:Point>
-                    <cv:Point>
-                      <cv:X>618</cv:X>
-                      <cv:Y>739</cv:Y>
-                    </cv:Point>
-                    <cv:Point>
-                      <cv:X>600</cv:X>
-                      <cv:Y>729</cv:Y>
-                    </cv:Point>
-                  </cv:ArrayOfPoint>
-                </cv:Regions>
-                <cv:MaskType>Binary</cv:MaskType>
-                <cv:FillValue>
-                  <cv:Val0>0</cv:Val0>
-                  <cv:Val1>0</cv:Val1>
-                  <cv:Val2>0</cv:Val2>
-                  <cv:Val3>0</cv:Val3>
-                </cv:FillValue>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="2" Label="Source1" />
-            <Edge From="1" To="2" Label="Source2" />
-            <Edge From="2" To="3" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>Patch3Wheel</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="WorkflowInput">
-              <Name>Source1</Name>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Regions" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="cv:MaskPolygon">
-                <cv:Regions>
-                  <cv:ArrayOfPoint>
-                    <cv:Point>
-                      <cv:X>591</cv:X>
-                      <cv:Y>361</cv:Y>
-                    </cv:Point>
-                    <cv:Point>
-                      <cv:X>609</cv:X>
-                      <cv:Y>350</cv:Y>
-                    </cv:Point>
-                    <cv:Point>
-                      <cv:X>620</cv:X>
-                      <cv:Y>370</cv:Y>
-                    </cv:Point>
-                    <cv:Point>
-                      <cv:X>602</cv:X>
-                      <cv:Y>382</cv:Y>
-                    </cv:Point>
-                  </cv:ArrayOfPoint>
-                </cv:Regions>
-                <cv:MaskType>Binary</cv:MaskType>
-                <cv:FillValue>
-                  <cv:Val0>0</cv:Val0>
-                  <cv:Val1>0</cv:Val1>
-                  <cv:Val2>0</cv:Val2>
-                  <cv:Val3>0</cv:Val3>
-                </cv:FillValue>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="2" Label="Source1" />
-            <Edge From="1" To="2" Label="Source2" />
-            <Edge From="2" To="3" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Timer">
           <rx:DueTime>PT1S</rx:DueTime>
@@ -496,8 +355,157 @@
       <Expression xsi:type="MulticastSubject">
         <Name>StartCameras</Name>
       </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>MaskAndPatchCameras</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>ActiveMask</Name>
+            </Expression>
+            <Expression xsi:type="VisualizerMapping" />
+            <Expression xsi:type="SubscribeSubject">
+              <Name>RawImage</Name>
+            </Expression>
+            <Expression xsi:type="VisualizerMapping" />
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CameraPatch1</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value.Image</Selector>
+            </Expression>
+            <Expression xsi:type="VisualizerMapping" />
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CameraPatch2</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value.Image</Selector>
+            </Expression>
+            <Expression xsi:type="VisualizerMapping" />
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CameraPatch3</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value.Image</Selector>
+            </Expression>
+            <Expression xsi:type="VisualizerMapping" />
+            <Expression xsi:type="viz:TableLayoutPanelBuilder">
+              <viz:ColumnCount>2</viz:ColumnCount>
+              <viz:RowCount>2</viz:RowCount>
+              <viz:ColumnStyles />
+              <viz:RowStyles />
+              <viz:CellSpans />
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="13" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="5" To="6" Label="Source1" />
+            <Edge From="6" To="13" Label="Source2" />
+            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="8" To="9" Label="Source1" />
+            <Edge From="9" To="13" Label="Source3" />
+            <Edge From="10" To="11" Label="Source1" />
+            <Edge From="11" To="12" Label="Source1" />
+            <Edge From="12" To="13" Label="Source4" />
+            <Edge From="13" To="14" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="SubscribeSubject">
-        <Name>ActiveMask</Name>
+        <Name>RawImage</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\CalibrateArenaRegions.bonsai">
+        <NestRegion>
+          <ArrayOfPoint>
+            <Point>
+              <X>1321</X>
+              <Y>486</Y>
+            </Point>
+            <Point>
+              <X>1231</X>
+              <Y>485</Y>
+            </Point>
+            <Point>
+              <X>1231</X>
+              <Y>591</Y>
+            </Point>
+            <Point>
+              <X>1323</X>
+              <Y>583</Y>
+            </Point>
+          </ArrayOfPoint>
+        </NestRegion>
+        <Patch1Region>
+          <ArrayOfPoint>
+            <Point>
+              <X>899</X>
+              <Y>535</Y>
+            </Point>
+            <Point>
+              <X>922</X>
+              <Y>533</Y>
+            </Point>
+            <Point>
+              <X>921</X>
+              <Y>554</Y>
+            </Point>
+            <Point>
+              <X>899</X>
+              <Y>554</Y>
+            </Point>
+          </ArrayOfPoint>
+        </Patch1Region>
+        <Patch2Region>
+          <ArrayOfPoint>
+            <Point>
+              <X>610</X>
+              <Y>709</Y>
+            </Point>
+            <Point>
+              <X>628</X>
+              <Y>718</Y>
+            </Point>
+            <Point>
+              <X>617</X>
+              <Y>739</Y>
+            </Point>
+            <Point>
+              <X>600</X>
+              <Y>730</Y>
+            </Point>
+          </ArrayOfPoint>
+        </Patch2Region>
+        <Patch3Region>
+          <ArrayOfPoint>
+            <Point>
+              <X>590</X>
+              <Y>371</Y>
+            </Point>
+            <Point>
+              <X>608</X>
+              <Y>360</Y>
+            </Point>
+            <Point>
+              <X>619</X>
+              <Y>380</Y>
+            </Point>
+            <Point>
+              <X>601</X>
+              <Y>392</Y>
+            </Point>
+          </ArrayOfPoint>
+        </Patch3Region>
+        <ArenaCenter>
+          <X>708</X>
+          <Y>543</Y>
+        </ArenaCenter>
+        <ArenaInnerRadius>505</ArenaInnerRadius>
+        <ArenaOuterRadius>531</ArenaOuterRadius>
       </Expression>
       <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="SubscribeSubject">
@@ -505,27 +513,11 @@
       </Expression>
       <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="SubscribeSubject">
-        <Name>CameraPatch1</Name>
-      </Expression>
-      <Expression xsi:type="MemberSelector">
-        <Selector>Value.Image</Selector>
-      </Expression>
-      <Expression xsi:type="VisualizerMapping" />
-      <Expression xsi:type="SubscribeSubject">
-        <Name>CameraPatch2</Name>
-      </Expression>
-      <Expression xsi:type="MemberSelector">
-        <Selector>Value.Image</Selector>
-      </Expression>
-      <Expression xsi:type="VisualizerMapping" />
-      <Expression xsi:type="SubscribeSubject">
-        <Name>CameraPatch3</Name>
-      </Expression>
-      <Expression xsi:type="MemberSelector">
-        <Selector>Value.Image</Selector>
+        <Name>ActiveMask</Name>
       </Expression>
       <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="viz:TableLayoutPanelBuilder">
+        <viz:Name>CalibrationOverview</viz:Name>
         <viz:ColumnCount>2</viz:ColumnCount>
         <viz:RowCount>2</viz:RowCount>
         <viz:ColumnStyles />
@@ -537,44 +529,39 @@
       <Edge From="1" To="2" Label="Source1" />
       <Edge From="2" To="3" Label="Source1" />
       <Edge From="3" To="4" Label="Source1" />
-      <Edge From="3" To="8" Label="Source1" />
-      <Edge From="3" To="20" Label="Source1" />
-      <Edge From="3" To="24" Label="Source1" />
-      <Edge From="3" To="25" Label="Source1" />
-      <Edge From="3" To="26" Label="Source1" />
+      <Edge From="3" To="10" Label="Source1" />
+      <Edge From="3" To="22" Label="Source1" />
       <Edge From="4" To="5" Label="Source1" />
       <Edge From="5" To="6" Label="Source1" />
       <Edge From="6" To="7" Label="Source1" />
-      <Edge From="6" To="15" Label="Source1" />
-      <Edge From="7" To="9" Label="Source1" />
-      <Edge From="8" To="9" Label="Source2" />
-      <Edge From="9" To="10" Label="Source1" />
-      <Edge From="10" To="11" Label="Source1" />
-      <Edge From="11" To="13" Label="Source1" />
-      <Edge From="12" To="13" Label="Source2" />
-      <Edge From="12" To="18" Label="Source2" />
-      <Edge From="13" To="14" Label="Source1" />
+      <Edge From="6" To="17" Label="Source1" />
+      <Edge From="7" To="11" Label="Source1" />
+      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="9" To="10" Label="Source2" />
+      <Edge From="10" To="11" Label="Source2" />
+      <Edge From="11" To="12" Label="Source1" />
+      <Edge From="12" To="13" Label="Source1" />
+      <Edge From="13" To="15" Label="Source1" />
+      <Edge From="14" To="15" Label="Source2" />
+      <Edge From="14" To="20" Label="Source2" />
       <Edge From="15" To="16" Label="Source1" />
-      <Edge From="16" To="17" Label="Source1" />
       <Edge From="17" To="18" Label="Source1" />
       <Edge From="18" To="19" Label="Source1" />
-      <Edge From="20" To="22" Label="Source1" />
-      <Edge From="21" To="22" Label="Source2" />
-      <Edge From="22" To="23" Label="Source1" />
-      <Edge From="27" To="28" Label="Source1" />
-      <Edge From="29" To="30" Label="Source1" />
+      <Edge From="19" To="20" Label="Source1" />
+      <Edge From="20" To="21" Label="Source1" />
+      <Edge From="22" To="24" Label="Source1" />
+      <Edge From="23" To="24" Label="Source2" />
+      <Edge From="24" To="25" Label="Source1" />
+      <Edge From="26" To="27" Label="Source1" />
+      <Edge From="28" To="29" Label="Source1" />
+      <Edge From="29" To="37" Label="Source1" />
       <Edge From="30" To="31" Label="Source1" />
       <Edge From="31" To="32" Label="Source1" />
-      <Edge From="32" To="42" Label="Source1" />
+      <Edge From="32" To="37" Label="Source2" />
       <Edge From="33" To="34" Label="Source1" />
-      <Edge From="34" To="35" Label="Source1" />
-      <Edge From="35" To="42" Label="Source2" />
-      <Edge From="36" To="37" Label="Source1" />
-      <Edge From="37" To="38" Label="Source1" />
-      <Edge From="38" To="42" Label="Source3" />
-      <Edge From="39" To="40" Label="Source1" />
-      <Edge From="40" To="41" Label="Source1" />
-      <Edge From="41" To="42" Label="Source4" />
+      <Edge From="34" To="37" Label="Source3" />
+      <Edge From="35" To="36" Label="Source1" />
+      <Edge From="36" To="37" Label="Source4" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

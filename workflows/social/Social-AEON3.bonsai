@@ -75,7 +75,7 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
-                          <ExposureTime>INF</ExposureTime>
+                          <ExposureTime>7500</ExposureTime>
                           <SerialNumber>23032909</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
@@ -105,7 +105,7 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
-                          <ExposureTime>INF</ExposureTime>
+                          <ExposureTime>7500</ExposureTime>
                           <SerialNumber>23032816</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
@@ -135,7 +135,7 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
-                          <ExposureTime>INF</ExposureTime>
+                          <ExposureTime>7500</ExposureTime>
                           <SerialNumber>23032824</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
@@ -165,7 +165,7 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
-                          <ExposureTime>INF</ExposureTime>
+                          <ExposureTime>7500</ExposureTime>
                           <SerialNumber>23032825</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
@@ -195,7 +195,7 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
-                          <ExposureTime>INF</ExposureTime>
+                          <ExposureTime>7500</ExposureTime>
                           <SerialNumber>23031408</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
@@ -225,7 +225,7 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
-                          <ExposureTime>INF</ExposureTime>
+                          <ExposureTime>7500</ExposureTime>
                           <SerialNumber>23031407</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
@@ -715,7 +715,7 @@
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PositionTracking.bonsai">
                     <ThresholdValue>83</ThresholdValue>
-                    <Mask>Config\ArenaMask-AEON3_2023-10-22.png</Mask>
+                    <Mask>Config\ArenaMask-AEON3_2023-11-10.png</Mask>
                     <TrackingCount>1</TrackingCount>
                     <TrackingEvents>TrackingTop</TrackingEvents>
                   </Expression>
@@ -835,89 +835,89 @@
                     <NestRegion>
                       <ArrayOfPoint>
                         <Point>
-                          <X>1332</X>
-                          <Y>482</Y>
+                          <X>1321</X>
+                          <Y>486</Y>
                         </Point>
                         <Point>
-                          <X>1242</X>
-                          <Y>481</Y>
+                          <X>1231</X>
+                          <Y>485</Y>
                         </Point>
                         <Point>
-                          <X>1245</X>
-                          <Y>586</Y>
+                          <X>1231</X>
+                          <Y>591</Y>
                         </Point>
                         <Point>
-                          <X>1334</X>
-                          <Y>579</Y>
+                          <X>1323</X>
+                          <Y>583</Y>
                         </Point>
                       </ArrayOfPoint>
                     </NestRegion>
                     <Patch1Region>
                       <ArrayOfPoint>
                         <Point>
-                          <X>908</X>
-                          <Y>528</Y>
+                          <X>899</X>
+                          <Y>535</Y>
                         </Point>
                         <Point>
-                          <X>931</X>
-                          <Y>526</Y>
+                          <X>922</X>
+                          <Y>533</Y>
                         </Point>
                         <Point>
-                          <X>930</X>
-                          <Y>547</Y>
+                          <X>921</X>
+                          <Y>554</Y>
                         </Point>
                         <Point>
-                          <X>908</X>
-                          <Y>547</Y>
+                          <X>899</X>
+                          <Y>554</Y>
                         </Point>
                       </ArrayOfPoint>
                     </Patch1Region>
                     <Patch2Region>
                       <ArrayOfPoint>
                         <Point>
-                          <X>611</X>
-                          <Y>707</Y>
+                          <X>610</X>
+                          <Y>709</Y>
                         </Point>
                         <Point>
-                          <X>629</X>
-                          <Y>716</Y>
+                          <X>628</X>
+                          <Y>718</Y>
                         </Point>
                         <Point>
-                          <X>618</X>
+                          <X>617</X>
                           <Y>739</Y>
                         </Point>
                         <Point>
                           <X>600</X>
-                          <Y>729</Y>
+                          <Y>730</Y>
                         </Point>
                       </ArrayOfPoint>
                     </Patch2Region>
                     <Patch3Region>
                       <ArrayOfPoint>
                         <Point>
-                          <X>591</X>
-                          <Y>361</Y>
+                          <X>590</X>
+                          <Y>371</Y>
                         </Point>
                         <Point>
-                          <X>609</X>
-                          <Y>350</Y>
+                          <X>608</X>
+                          <Y>360</Y>
                         </Point>
                         <Point>
-                          <X>620</X>
-                          <Y>370</Y>
+                          <X>619</X>
+                          <Y>380</Y>
                         </Point>
                         <Point>
-                          <X>602</X>
-                          <Y>382</Y>
+                          <X>601</X>
+                          <Y>392</Y>
                         </Point>
                       </ArrayOfPoint>
                     </Patch3Region>
                     <ArenaCenter>
-                      <X>661</X>
-                      <Y>557</Y>
+                      <X>708</X>
+                      <Y>543</Y>
                     </ArenaCenter>
-                    <ArenaInnerRadius>474</ArenaInnerRadius>
-                    <ArenaOuterRadius>494</ArenaOuterRadius>
+                    <ArenaInnerRadius>505</ArenaInnerRadius>
+                    <ArenaOuterRadius>531</ArenaOuterRadius>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
