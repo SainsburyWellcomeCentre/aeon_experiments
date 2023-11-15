@@ -1,0 +1,1 @@
+powershell -ep Bypass -c "& ..\..\bonsai\Bonsai.exe Social-AEON3.bonsai --no-editor %* *>&1 | tee -a Social-AEON3.log"
