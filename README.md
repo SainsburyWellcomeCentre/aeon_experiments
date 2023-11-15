@@ -20,8 +20,7 @@ These should only need to be installed once on a fresh new system, and are not r
  * [Spinnaker SDK 1.29.0.5](https://www.flir.co.uk/support/products/spinnaker-sdk/#Downloads) (device drivers for FLIR cameras)
    * On FLIR website: `Download > archive > 1.29.0.5 > SpinnakerSDK_FULL_1.29.0.5_x64.exe`
  * [CUDA 11.3](https://developer.nvidia.com/cuda-11.3.0-download-archive) (for SLEAP multi-animal tracking)
-   * Select Custom install and check `CUDA > Runtime` ONLY (uncheck everything else)
-   * Check that the CUDA `bin` folder has been added to the PATH environment variable
+   * Select Custom install and check `CUDA > Development` and `CUDA > Runtime` ONLY (uncheck everything else)
 
 ### Hardware Setup
 
