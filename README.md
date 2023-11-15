@@ -19,7 +19,8 @@ These should only need to be installed once on a fresh new system, and are not r
  * [FTDI CDM Driver 2.12.28](https://www.ftdichip.com/Drivers/CDM/CDM21228_Setup.zip) (serial port drivers for HARP devices)
  * [Spinnaker SDK 1.29.0.5](https://www.flir.co.uk/support/products/spinnaker-sdk/#Downloads) (device drivers for FLIR cameras)
    * On FLIR website: `Download > archive > 1.29.0.5 > SpinnakerSDK_FULL_1.29.0.5_x64.exe`
- * [pylon 7.1.0 Camera Software Suite](https://www.baslerweb.com/en/downloads/software-downloads/software-pylon-7-1-0-windows) (device drivers for Basler cameras)
+ * [CUDA 11.3](https://developer.nvidia.com/cuda-11.3.0-download-archive) (for SLEAP multi-animal tracking)
+   * Select Custom install and check `CUDA > Development` and `CUDA > Runtime` ONLY (uncheck everything else)
 
 ### Hardware Setup
 
