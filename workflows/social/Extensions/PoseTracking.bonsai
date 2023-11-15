@@ -21,6 +21,7 @@
         <Property Name="CentroidMinConfidence" />
         <Property Name="IdentityMinConfidence" />
         <Property Name="PartMinConfidence" />
+        <Property Name="Step" DisplayName="FrameStep" />
       </Expression>
       <Expression xsi:type="rx:CreateObservable">
         <Name>RunModel</Name>
