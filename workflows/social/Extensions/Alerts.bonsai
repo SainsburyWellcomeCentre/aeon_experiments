@@ -1205,6 +1205,9 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
               <scr:Expression>DeviceCount != ExpectedDeviceCount || MaxDifference &gt; 0 || Math.Abs((MeanUtcTimestamp - DateTime.UtcNow).TotalMinutes) &gt; 30
 </scr:Expression>
             </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\AlertGate.bonsai">
+              <AlertRefractoryPeriod>PT1M</AlertRefractoryPeriod>
+            </Expression>
             <Expression xsi:type="Format">
               <Format>## **Harp Synch**
 **Synchronizer Stats**: {0}</Format>
@@ -1264,12 +1267,13 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
             <Edge From="30" To="31" Label="Source1" />
             <Edge From="32" To="33" Label="Source1" />
             <Edge From="33" To="34" Label="Source1" />
-            <Edge From="33" To="39" Label="Source1" />
+            <Edge From="33" To="40" Label="Source1" />
             <Edge From="34" To="35" Label="Source1" />
-            <Edge From="34" To="37" Label="Source1" />
             <Edge From="35" To="36" Label="Source1" />
-            <Edge From="37" To="38" Label="Source1" />
-            <Edge From="39" To="40" Label="Source1" />
+            <Edge From="35" To="38" Label="Source1" />
+            <Edge From="36" To="37" Label="Source1" />
+            <Edge From="38" To="39" Label="Source1" />
+            <Edge From="40" To="41" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
