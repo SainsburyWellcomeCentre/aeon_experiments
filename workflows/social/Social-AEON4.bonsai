@@ -573,6 +573,7 @@
                     <Property Name="IdentityMinConfidence" />
                     <Property Name="PartMinConfidence" />
                     <Property Name="PoseTrackingEvents" />
+                    <Property Name="FrameStep" />
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Extensions\PoseTracking.bonsai">
                     <ModelPath>test-node1\2310190\topdown_id</ModelPath>
@@ -581,6 +582,7 @@
                     <CentroidMinConfidence xsi:nil="true" />
                     <IdentityMinConfidence xsi:nil="true" />
                     <PartMinConfidence xsi:nil="true" />
+                    <FrameStep>3</FrameStep>
                     <PoseTrackingEvents>PoseTrackingTop</PoseTrackingEvents>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
