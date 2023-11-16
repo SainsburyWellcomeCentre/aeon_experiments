@@ -497,11 +497,11 @@
                           <Property Name="CommandSocket" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:LightClient.bonsai">
-                          <EventSocket>&gt;tcp://localhost:4303</EventSocket>
+                          <EventSocket>&gt;tcp://172.24.158.103:4303</EventSocket>
                           <RoomName>AEON3</RoomName>
                           <LightEvents>LightEvents</LightEvents>
                           <LightCommands>LightCommands</LightCommands>
-                          <CommandSocket>&gt;tcp://localhost:4304</CommandSocket>
+                          <CommandSocket>&gt;tcp://172.24.158.103:4304</CommandSocket>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                         <Expression xsi:type="ExternalizedMapping">
