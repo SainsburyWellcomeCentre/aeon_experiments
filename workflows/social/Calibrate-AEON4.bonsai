@@ -1,0 +1,570 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.8.1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
+                 xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
+                 xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
+                 xmlns:viz="clr-namespace:Bonsai.Design.Visualizers;assembly=Bonsai.Design.Visualizers"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>Devices</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>ClockSynchronizer</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="PortName" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ClockSynchronizer.bonsai">
+                    <PortName>COM5</PortName>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>VideoController</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="PortName" />
+                    <Property Name="GlobalTriggerFrequency" />
+                    <Property Name="LocalTriggerFrequency" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:CameraController.bonsai">
+                    <PortName>COM6</PortName>
+                    <GlobalTriggerFrequency>50</GlobalTriggerFrequency>
+                    <LocalTriggerFrequency>125</LocalTriggerFrequency>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>CameraTop</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="SerialNumber" />
+                    <Property Name="Gain" />
+                    <Property Name="Binning" />
+                    <Property Name="ExposureTime" />
+                    <Property Name="TriggerSource" />
+                    <Property Name="FrameEvents" />
+                    <Property Name="TriggerFrequency" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
+                    <TriggerSource>GlobalTrigger</TriggerSource>
+                    <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
+                    <ExposureTime>5000</ExposureTime>
+                    <SerialNumber>23101736</SerialNumber>
+                    <Gain>0</Gain>
+                    <Binning>1</Binning>
+                    <FrameEvents>CameraTop</FrameEvents>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>CameraPatch1</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="SerialNumber" />
+                    <Property Name="Gain" />
+                    <Property Name="Binning" />
+                    <Property Name="ExposureTime" />
+                    <Property Name="TriggerSource" />
+                    <Property Name="FrameEvents" />
+                    <Property Name="TriggerFrequency" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
+                    <TriggerSource>LocalTrigger</TriggerSource>
+                    <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
+                    <ExposureTime>3000</ExposureTime>
+                    <SerialNumber>23101737</SerialNumber>
+                    <Gain>0</Gain>
+                    <Binning>2</Binning>
+                    <FrameEvents>CameraPatch1</FrameEvents>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>CameraPatch2</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="SerialNumber" />
+                    <Property Name="Gain" />
+                    <Property Name="Binning" />
+                    <Property Name="ExposureTime" />
+                    <Property Name="TriggerSource" />
+                    <Property Name="FrameEvents" />
+                    <Property Name="TriggerFrequency" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
+                    <TriggerSource>LocalTrigger</TriggerSource>
+                    <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
+                    <ExposureTime>3000</ExposureTime>
+                    <SerialNumber>23032823</SerialNumber>
+                    <Gain>0</Gain>
+                    <Binning>2</Binning>
+                    <FrameEvents>CameraPatch2</FrameEvents>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>CameraPatch3</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="SerialNumber" />
+                    <Property Name="Gain" />
+                    <Property Name="Binning" />
+                    <Property Name="ExposureTime" />
+                    <Property Name="TriggerSource" />
+                    <Property Name="FrameEvents" />
+                    <Property Name="TriggerFrequency" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
+                    <TriggerSource>LocalTrigger</TriggerSource>
+                    <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
+                    <ExposureTime>3000</ExposureTime>
+                    <SerialNumber>23032811</SerialNumber>
+                    <Gain>0</Gain>
+                    <Binning>2</Binning>
+                    <FrameEvents>CameraPatch3</FrameEvents>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+          </Nodes>
+          <Edges />
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>CameraTop</Name>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Value.Image</Selector>
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>RawImage</Name>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>TopView</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:Threshold">
+          <cv:ThresholdValue>179</cv:ThresholdValue>
+          <cv:MaxValue>255</cv:MaxValue>
+          <cv:ThresholdType>Binary</cv:ThresholdType>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:FindContours">
+          <cv:Mode>External</cv:Mode>
+          <cv:Method>ChainApproxNone</cv:Method>
+          <cv:Offset>
+            <cv:X>0</cv:X>
+            <cv:Y>0</cv:Y>
+          </cv:Offset>
+          <cv:MinArea>400000</cv:MinArea>
+          <cv:MaxArea xsi:nil="true" />
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:DrawContours">
+          <cv:MaxLevel>1</cv:MaxLevel>
+          <cv:Thickness>-1</cv:Thickness>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>NestRegion</Name>
+      </Expression>
+      <Expression xsi:type="PropertyMapping">
+        <PropertyMappings>
+          <Property Name="Regions" />
+        </PropertyMappings>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>NestMask</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Regions" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="cv:MaskPolygon">
+                <cv:Regions>
+                  <cv:ArrayOfPoint>
+                    <cv:Point>
+                      <cv:X>1267</cv:X>
+                      <cv:Y>504</cv:Y>
+                    </cv:Point>
+                    <cv:Point>
+                      <cv:X>1177</cv:X>
+                      <cv:Y>503</cv:Y>
+                    </cv:Point>
+                    <cv:Point>
+                      <cv:X>1177</cv:X>
+                      <cv:Y>609</cv:Y>
+                    </cv:Point>
+                    <cv:Point>
+                      <cv:X>1269</cv:X>
+                      <cv:Y>601</cv:Y>
+                    </cv:Point>
+                  </cv:ArrayOfPoint>
+                </cv:Regions>
+                <cv:MaskType>Binary</cv:MaskType>
+                <cv:FillValue>
+                  <cv:Val0>0</cv:Val0>
+                  <cv:Val1>0</cv:Val1>
+                  <cv:Val2>0</cv:Val2>
+                  <cv:Val3>0</cv:Val3>
+                </cv:FillValue>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="2" Label="Source1" />
+            <Edge From="1" To="2" Label="Source2" />
+            <Edge From="2" To="3" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Zip" />
+      </Expression>
+      <Expression xsi:type="BitwiseOr" />
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>ActiveMask</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="wie:KeyDown">
+          <wie:Filter>F4</wie:Filter>
+          <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Sample" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:SaveImage">
+          <cv:FileName>mask.png</cv:FileName>
+          <cv:Suffix>None</cv:Suffix>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:BinaryRegionAnalysis" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:LargestBinaryRegion" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:Centroid" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Sample" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="io:WriteLine" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:Threshold">
+          <cv:ThresholdValue>72</cv:ThresholdValue>
+          <cv:MaxValue>255</cv:MaxValue>
+          <cv:ThresholdType>BinaryInv</cv:ThresholdType>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>ActiveMask</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Zip" />
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>SegmentationResult</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="BitwiseAnd" />
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Timer">
+          <rx:DueTime>PT1S</rx:DueTime>
+          <rx:Period>PT0S</rx:Period>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>StartCameras</Name>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>MaskAndPatchCameras</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>ActiveMask</Name>
+            </Expression>
+            <Expression xsi:type="VisualizerMapping" />
+            <Expression xsi:type="SubscribeSubject">
+              <Name>RawImage</Name>
+            </Expression>
+            <Expression xsi:type="VisualizerMapping" />
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CameraPatch1</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value.Image</Selector>
+            </Expression>
+            <Expression xsi:type="VisualizerMapping" />
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CameraPatch2</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value.Image</Selector>
+            </Expression>
+            <Expression xsi:type="VisualizerMapping" />
+            <Expression xsi:type="SubscribeSubject">
+              <Name>CameraPatch3</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value.Image</Selector>
+            </Expression>
+            <Expression xsi:type="VisualizerMapping" />
+            <Expression xsi:type="viz:TableLayoutPanelBuilder">
+              <viz:ColumnCount>2</viz:ColumnCount>
+              <viz:RowCount>2</viz:RowCount>
+              <viz:ColumnStyles />
+              <viz:RowStyles />
+              <viz:CellSpans />
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="13" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="5" To="6" Label="Source1" />
+            <Edge From="6" To="13" Label="Source2" />
+            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="8" To="9" Label="Source1" />
+            <Edge From="9" To="13" Label="Source3" />
+            <Edge From="10" To="11" Label="Source1" />
+            <Edge From="11" To="12" Label="Source1" />
+            <Edge From="12" To="13" Label="Source4" />
+            <Edge From="13" To="14" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="SubscribeSubject">
+        <Name>RawImage</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\CalibrateArenaRegions.bonsai">
+        <NestRegion>
+          <ArrayOfPoint>
+            <Point>
+              <X>1267</X>
+              <Y>504</Y>
+            </Point>
+            <Point>
+              <X>1177</X>
+              <Y>503</Y>
+            </Point>
+            <Point>
+              <X>1177</X>
+              <Y>609</Y>
+            </Point>
+            <Point>
+              <X>1269</X>
+              <Y>601</Y>
+            </Point>
+          </ArrayOfPoint>
+        </NestRegion>
+        <Patch1Region>
+          <ArrayOfPoint>
+            <Point>
+              <X>863</X>
+              <Y>544</Y>
+            </Point>
+            <Point>
+              <X>886</X>
+              <Y>542</Y>
+            </Point>
+            <Point>
+              <X>885</X>
+              <Y>563</Y>
+            </Point>
+            <Point>
+              <X>863</X>
+              <Y>563</Y>
+            </Point>
+          </ArrayOfPoint>
+        </Patch1Region>
+        <Patch2Region>
+          <ArrayOfPoint>
+            <Point>
+              <X>580</X>
+              <Y>706</Y>
+            </Point>
+            <Point>
+              <X>598</X>
+              <Y>715</Y>
+            </Point>
+            <Point>
+              <X>587</X>
+              <Y>736</Y>
+            </Point>
+            <Point>
+              <X>570</X>
+              <Y>727</Y>
+            </Point>
+          </ArrayOfPoint>
+        </Patch2Region>
+        <Patch3Region>
+          <ArrayOfPoint>
+            <Point>
+              <X>569</X>
+              <Y>380</Y>
+            </Point>
+            <Point>
+              <X>587</X>
+              <Y>369</Y>
+            </Point>
+            <Point>
+              <X>598</X>
+              <Y>389</Y>
+            </Point>
+            <Point>
+              <X>580</X>
+              <Y>401</Y>
+            </Point>
+          </ArrayOfPoint>
+        </Patch3Region>
+        <ArenaCenter>
+          <X>680</X>
+          <Y>552</Y>
+        </ArenaCenter>
+        <ArenaInnerRadius>487</ArenaInnerRadius>
+        <ArenaOuterRadius>515</ArenaOuterRadius>
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="SubscribeSubject">
+        <Name>RawImage</Name>
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="SubscribeSubject">
+        <Name>ActiveMask</Name>
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="viz:TableLayoutPanelBuilder">
+        <viz:Name>CalibrationOverview</viz:Name>
+        <viz:ColumnCount>2</viz:ColumnCount>
+        <viz:RowCount>2</viz:RowCount>
+        <viz:ColumnStyles />
+        <viz:RowStyles />
+        <viz:CellSpans />
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="3" To="10" Label="Source1" />
+      <Edge From="3" To="22" Label="Source1" />
+      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="5" To="6" Label="Source1" />
+      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="6" To="17" Label="Source1" />
+      <Edge From="7" To="11" Label="Source1" />
+      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="9" To="10" Label="Source2" />
+      <Edge From="10" To="11" Label="Source2" />
+      <Edge From="11" To="12" Label="Source1" />
+      <Edge From="12" To="13" Label="Source1" />
+      <Edge From="13" To="15" Label="Source1" />
+      <Edge From="14" To="15" Label="Source2" />
+      <Edge From="14" To="20" Label="Source2" />
+      <Edge From="15" To="16" Label="Source1" />
+      <Edge From="17" To="18" Label="Source1" />
+      <Edge From="18" To="19" Label="Source1" />
+      <Edge From="19" To="20" Label="Source1" />
+      <Edge From="20" To="21" Label="Source1" />
+      <Edge From="22" To="24" Label="Source1" />
+      <Edge From="23" To="24" Label="Source2" />
+      <Edge From="24" To="25" Label="Source1" />
+      <Edge From="26" To="27" Label="Source1" />
+      <Edge From="28" To="29" Label="Source1" />
+      <Edge From="29" To="37" Label="Source1" />
+      <Edge From="30" To="31" Label="Source1" />
+      <Edge From="31" To="32" Label="Source1" />
+      <Edge From="32" To="37" Label="Source2" />
+      <Edge From="33" To="34" Label="Source1" />
+      <Edge From="34" To="37" Label="Source3" />
+      <Edge From="35" To="36" Label="Source1" />
+      <Edge From="36" To="37" Label="Source4" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
