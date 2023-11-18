@@ -13,11 +13,11 @@ rooms:
       interpolationMethod: Zero
   AEON3:
     coldWhite:
-      channels: [5, 7]
+      channels: [3, 7]
       interpolationMethod: Linear
       calibrationFile: aeon3_coldwhite_calibration.csv
     warmWhite:
-      channels: [3, 18, 35, 25, 38, 19]
+      channels: [5, 18, 35, 25, 38, 19]
       interpolationMethod: Zero
     red:
       channels: [13, 4, 28, 39]
