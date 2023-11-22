@@ -1171,6 +1171,16 @@ Item1.Value as CurrentWeight,
       <Expression xsi:type="MulticastSubject">
         <Name>MissedPellets2</Name>
       </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:PelletMissed.bonsai">
+        <PelletDelivered>PelletDeliveredPatch3</PelletDelivered>
+        <TimeToMiss>PT2S</TimeToMiss>
+        <DistanceToMiss>20</DistanceToMiss>
+        <TimeInChute>PT0S</TimeInChute>
+        <WheelDisplacement>WheelPatch3</WheelDisplacement>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>MissedPellets3</Name>
+      </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>PelletDeliveredPatch1</Name>
       </Expression>
@@ -1190,6 +1200,15 @@ Item1.Value as CurrentWeight,
         <Name>TotalPelletsDelivered2</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
+        <Name>PelletDeliveredPatch3</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:EnvironmentCondition.bonsai">
+        <Value>Experiment</Value>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\PersistentCounter.bonsai">
+        <Name>TotalPelletsDelivered3</Name>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
         <Name>MissedPellets1</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:EnvironmentCondition.bonsai">
@@ -1206,6 +1225,15 @@ Item1.Value as CurrentWeight,
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\PersistentCounter.bonsai">
         <Name>TotalMissedPellets2</Name>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>MissedPellets3</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:EnvironmentCondition.bonsai">
+        <Value>Experiment</Value>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\PersistentCounter.bonsai">
+        <Name>TotalMissedPellets3</Name>
       </Expression>
     </Nodes>
     <Edges>
@@ -1349,13 +1377,18 @@ Item1.Value as CurrentWeight,
       <Edge From="161" To="162" Label="Source1" />
       <Edge From="163" To="164" Label="Source1" />
       <Edge From="165" To="166" Label="Source1" />
-      <Edge From="166" To="167" Label="Source1" />
+      <Edge From="167" To="168" Label="Source1" />
       <Edge From="168" To="169" Label="Source1" />
-      <Edge From="169" To="170" Label="Source1" />
+      <Edge From="170" To="171" Label="Source1" />
       <Edge From="171" To="172" Label="Source1" />
-      <Edge From="172" To="173" Label="Source1" />
+      <Edge From="173" To="174" Label="Source1" />
       <Edge From="174" To="175" Label="Source1" />
-      <Edge From="175" To="176" Label="Source1" />
+      <Edge From="176" To="177" Label="Source1" />
+      <Edge From="177" To="178" Label="Source1" />
+      <Edge From="179" To="180" Label="Source1" />
+      <Edge From="180" To="181" Label="Source1" />
+      <Edge From="182" To="183" Label="Source1" />
+      <Edge From="183" To="184" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
