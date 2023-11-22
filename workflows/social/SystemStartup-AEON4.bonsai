@@ -235,15 +235,6 @@
             <Expression xsi:type="MulticastSubject">
               <Name>SynchronizeTimestamp</Name>
             </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>ResetFeederPatch1</Name>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>ResetFeederPatch2</Name>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>ResetFeederPatch3</Name>
-            </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Delay">
                 <rx:DueTime>PT5S</rx:DueTime>
@@ -257,9 +248,6 @@
             <Edge From="8" To="9" Label="Source1" />
             <Edge From="9" To="10" Label="Source1" />
             <Edge From="10" To="11" Label="Source1" />
-            <Edge From="11" To="12" Label="Source1" />
-            <Edge From="12" To="13" Label="Source1" />
-            <Edge From="13" To="14" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
