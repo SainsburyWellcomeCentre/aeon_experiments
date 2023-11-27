@@ -6,7 +6,6 @@
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
                  xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
                  xmlns:viz="clr-namespace:Bonsai.Design.Visualizers;assembly=Bonsai.Design.Visualizers"
-                 xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
                  xmlns:aeon-frg="clr-namespace:Aeon.Foraging;assembly=Aeon.Foraging"
@@ -474,11 +473,8 @@
               <Selector>Value</Selector>
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="cv:CameraCapture">
-                <cv:Index>0</cv:Index>
-                <cv:CaptureProperties />
-              </Combinator>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>LightMonitor</Name>
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="viz:TableLayoutPanelBuilder">

@@ -8,6 +8,7 @@
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns:aeon-frg="clr-namespace:Aeon.Foraging;assembly=Aeon.Foraging"
                  xmlns:aeon-env="clr-namespace:Aeon.Environment;assembly=Aeon.Environment"
+                 xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -1793,9 +1794,19 @@ new(Value.Id as Id,
         <BlockDueTimeMin>0</BlockDueTimeMin>
         <BlockDueTimeMax>0</BlockDueTimeMax>
       </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:CameraCapture">
+          <cv:Index>0</cv:Index>
+          <cv:CaptureProperties />
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>LightMonitor</Name>
+      </Expression>
     </Nodes>
     <Edges>
       <Edge From="6" To="7" Label="Source1" />
+      <Edge From="8" To="9" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
