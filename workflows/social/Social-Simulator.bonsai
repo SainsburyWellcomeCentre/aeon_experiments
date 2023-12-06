@@ -1,0 +1,646 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.8.1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
+                 xmlns:beh="clr-namespace:Harp.Behavior;assembly=Harp.Behavior"
+                 xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
+                 xmlns:aeon-env="clr-namespace:Aeon.Environment;assembly=Aeon.Environment"
+                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                 xmlns:p1="clr-namespace:System.Reactive.Linq;assembly=System.Reactive.Interfaces"
+                 xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
+                 xmlns:sleap="clr-namespace:Bonsai.Sleap;assembly=Bonsai.Sleap"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>Metadata</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>Devices</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>ClockSynchronizer</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="GroupWorkflow">
+                          <Name>BehaviorSynchronizer</Name>
+                          <Description>Provides support for uninterruptible synchronization of all arena Harp devices and setting the UTC time reference.</Description>
+                          <Workflow>
+                            <Nodes>
+                              <Expression xsi:type="SubscribeSubject">
+                                <Name>VideoEvents</Name>
+                              </Expression>
+                              <Expression xsi:type="rx:PublishSubject">
+                                <Name>SynchronizerEvents</Name>
+                              </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="harp:FilterMessageType">
+                                  <harp:FilterType>Include</harp:FilterType>
+                                  <harp:MessageType>Event</harp:MessageType>
+                                </Combinator>
+                              </Expression>
+                              <Expression xsi:type="harp:FilterRegister">
+                                <harp:FilterType>Include</harp:FilterType>
+                                <harp:Register xsi:type="harp:TimestampSeconds" />
+                              </Expression>
+                              <Expression xsi:type="rx:PublishSubject">
+                                <Name>Heartbeats</Name>
+                              </Expression>
+                              <Expression xsi:type="WorkflowOutput" />
+                              <Expression xsi:type="SubscribeSubject">
+                                <Name>SynchronizerEvents</Name>
+                              </Expression>
+                              <Expression xsi:type="beh:Parse">
+                                <harp:Register xsi:type="beh:TimestampedAnalogData" />
+                              </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="rx:Slice">
+                                  <rx:Start>0</rx:Start>
+                                  <rx:Step>2</rx:Step>
+                                  <rx:Stop xsi:nil="true" />
+                                </Combinator>
+                              </Expression>
+                              <Expression xsi:type="rx:PublishSubject">
+                                <Name>PatchTrigger</Name>
+                              </Expression>
+                            </Nodes>
+                            <Edges>
+                              <Edge From="0" To="1" Label="Source1" />
+                              <Edge From="1" To="2" Label="Source1" />
+                              <Edge From="2" To="3" Label="Source1" />
+                              <Edge From="3" To="4" Label="Source1" />
+                              <Edge From="4" To="5" Label="Source1" />
+                              <Edge From="6" To="7" Label="Source1" />
+                              <Edge From="7" To="8" Label="Source1" />
+                              <Edge From="8" To="9" Label="Source1" />
+                            </Edges>
+                          </Workflow>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>VideoController</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="PortName" />
+                          <Property Name="GlobalTriggerFrequency" />
+                          <Property Name="LocalTriggerFrequency" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoController.bonsai">
+                          <DeviceType>Behavior</DeviceType>
+                          <PortName>COM4</PortName>
+                          <GlobalTriggerFrequency>50</GlobalTriggerFrequency>
+                          <LocalTriggerFrequency>125</LocalTriggerFrequency>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>CameraTop</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="TriggerSource" />
+                          <Property Name="FrameEvents" />
+                          <Property Name="TriggerFrequency" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:FileVideoSource.bonsai">
+                          <TriggerSource>GlobalTrigger</TriggerSource>
+                          <FileName>Config\ArenaMask-AEON3_2023-11-10.png</FileName>
+                          <FrameEvents>CameraTop</FrameEvents>
+                          <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>CameraPatch1</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="TriggerSource" />
+                          <Property Name="FrameEvents" />
+                          <Property Name="TriggerFrequency" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:FileVideoSource.bonsai">
+                          <TriggerSource>LocalTrigger</TriggerSource>
+                          <FileName>Config\ArenaMask-AEON3_2023-11-10.png</FileName>
+                          <FrameEvents>CameraPatch1</FrameEvents>
+                          <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>CameraPatch2</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="TriggerSource" />
+                          <Property Name="FrameEvents" />
+                          <Property Name="TriggerFrequency" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:FileVideoSource.bonsai">
+                          <TriggerSource>LocalTrigger</TriggerSource>
+                          <FileName>Config\ArenaMask-AEON3_2023-11-10.png</FileName>
+                          <FrameEvents>CameraPatch2</FrameEvents>
+                          <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>CameraPatch3</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="TriggerSource" />
+                          <Property Name="FrameEvents" />
+                          <Property Name="TriggerFrequency" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:FileVideoSource.bonsai">
+                          <TriggerSource>LocalTrigger</TriggerSource>
+                          <FileName>Config\ArenaMask-AEON3_2023-11-10.png</FileName>
+                          <FrameEvents>CameraPatch3</FrameEvents>
+                          <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>Patch1</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="WheelDisplacement" />
+                          <Property Name="PelletDelivered" />
+                          <Property Name="DeliverPellet" />
+                          <Property Name="PatchEvents" />
+                          <Property Name="ResetFeeder" />
+                          <Property Name="TriggerSource" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:VirtualFeeder.bonsai">
+                          <PatchEvents>Patch1</PatchEvents>
+                          <ActivationKey>D1</ActivationKey>
+                          <TickScale>-0.05</TickScale>
+                          <TriggerSource>PatchTrigger</TriggerSource>
+                          <WheelDisplacement>WheelPatch1</WheelDisplacement>
+                          <DeliverPellet>DeliverPelletPatch1</DeliverPellet>
+                          <PelletDelivered>PelletDeliveredPatch1</PelletDelivered>
+                          <ResetFeeder>ResetFeederPatch1</ResetFeeder>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>Patch2</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="WheelDisplacement" />
+                          <Property Name="PelletDelivered" />
+                          <Property Name="DeliverPellet" />
+                          <Property Name="PatchEvents" />
+                          <Property Name="ResetFeeder" />
+                          <Property Name="TriggerSource" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:VirtualFeeder.bonsai">
+                          <PatchEvents>Patch2</PatchEvents>
+                          <ActivationKey>D2</ActivationKey>
+                          <TickScale>-0.05</TickScale>
+                          <TriggerSource>PatchTrigger</TriggerSource>
+                          <WheelDisplacement>WheelPatch2</WheelDisplacement>
+                          <DeliverPellet>DeliverPelletPatch2</DeliverPellet>
+                          <PelletDelivered>PelletDeliveredPatch2</PelletDelivered>
+                          <ResetFeeder>ResetFeederPatch2</ResetFeeder>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>Patch3</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="WheelDisplacement" />
+                          <Property Name="PelletDelivered" />
+                          <Property Name="DeliverPellet" />
+                          <Property Name="PatchEvents" />
+                          <Property Name="ResetFeeder" />
+                          <Property Name="TriggerSource" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:VirtualFeeder.bonsai">
+                          <PatchEvents>Patch3</PatchEvents>
+                          <ActivationKey>D3</ActivationKey>
+                          <TickScale>-0.05</TickScale>
+                          <TriggerSource>PatchTrigger</TriggerSource>
+                          <WheelDisplacement>WheelPatch3</WheelDisplacement>
+                          <DeliverPellet>DeliverPelletPatch3</DeliverPellet>
+                          <PelletDelivered>PelletDeliveredPatch3</PelletDelivered>
+                          <ResetFeeder>ResetFeederPatch3</ResetFeeder>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>Nest</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="WeightData" />
+                          <Property Name="TareEvents" />
+                        </Expression>
+                        <Expression xsi:type="GroupWorkflow">
+                          <Name>WeightScale</Name>
+                          <Description>Contains acquisition functionality for automated arena weighing scales.</Description>
+                          <Workflow>
+                            <Nodes>
+                              <Expression xsi:type="SubscribeSubject">
+                                <Name>GlobalTrigger</Name>
+                              </Expression>
+                              <Expression xsi:type="MemberSelector">
+                                <Selector>Seconds</Selector>
+                              </Expression>
+                              <Expression xsi:type="scr:ExpressionTransform">
+                                <scr:Expression>new(
+it as Timestamp,
+0.0 as Weight,
+0.0 as Confidence)</scr:Expression>
+                              </Expression>
+                              <Expression xsi:type="InputMapping">
+                                <PropertyMappings />
+                                <Selector>Timestamp,Weight,Confidence</Selector>
+                                <TypeMapping xsi:type="TypeMapping" TypeArguments="aeon-env:WeightMeasurement" />
+                              </Expression>
+                              <Expression xsi:type="ExternalizedMapping">
+                                <Property Name="Name" DisplayName="BaselineWeightTrigger" Description="The name of the notification sequence used to reset the baseline for weight measurements." />
+                              </Expression>
+                              <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Object">
+                                <rx:Name>BaselineWeight</rx:Name>
+                              </Expression>
+                              <Expression xsi:type="ExternalizedMapping">
+                                <Property Name="FilterWindow" />
+                              </Expression>
+                              <Expression xsi:type="rx:Defer">
+                                <Name>ProcessWeight</Name>
+                                <Workflow>
+                                  <Nodes>
+                                    <Expression xsi:type="WorkflowInput">
+                                      <Name>Source1</Name>
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="aeon-env:WeightRaw" />
+                                    </Expression>
+                                    <Expression xsi:type="rx:PublishSubject">
+                                      <Name>RawWeight</Name>
+                                    </Expression>
+                                    <Expression xsi:type="ExternalizedMapping">
+                                      <Property Name="Count" DisplayName="FilterWindow" />
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="aeon-env:WeightFilter">
+                                        <aeon-env:Count>40</aeon-env:Count>
+                                      </Combinator>
+                                    </Expression>
+                                    <Expression xsi:type="rx:PublishSubject">
+                                      <Name>FilteredWeight</Name>
+                                    </Expression>
+                                    <Expression xsi:type="WorkflowInput">
+                                      <Name>Source2</Name>
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="aeon-env:WeightBaseline" />
+                                    </Expression>
+                                    <Expression xsi:type="rx:PublishSubject">
+                                      <Name>BaselinedWeight</Name>
+                                    </Expression>
+                                    <Expression xsi:type="SubscribeSubject">
+                                      <Name>RawWeight</Name>
+                                    </Expression>
+                                    <Expression xsi:type="GroupWorkflow">
+                                      <Name>SampleOffset</Name>
+                                      <Workflow>
+                                        <Nodes>
+                                          <Expression xsi:type="ExternalizedMapping">
+                                            <Property Name="Value" DisplayName="Count" />
+                                          </Expression>
+                                          <Expression xsi:type="PropertySource" TypeArguments="rx:Skip,sys:Int32">
+                                            <MemberName>Count</MemberName>
+                                            <Value>40</Value>
+                                          </Expression>
+                                          <Expression xsi:type="Subtract">
+                                            <Operand xsi:type="IntProperty">
+                                              <Value>1</Value>
+                                            </Operand>
+                                          </Expression>
+                                          <Expression xsi:type="WorkflowOutput" />
+                                        </Nodes>
+                                        <Edges>
+                                          <Edge From="0" To="1" Label="Source1" />
+                                          <Edge From="1" To="2" Label="Source1" />
+                                          <Edge From="2" To="3" Label="Source1" />
+                                        </Edges>
+                                      </Workflow>
+                                    </Expression>
+                                    <Expression xsi:type="PropertyMapping">
+                                      <PropertyMappings>
+                                        <Property Name="Count" />
+                                      </PropertyMappings>
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="rx:Skip">
+                                        <rx:Count>39</rx:Count>
+                                      </Combinator>
+                                    </Expression>
+                                    <Expression xsi:type="SubscribeSubject">
+                                      <Name>FilteredWeight</Name>
+                                    </Expression>
+                                    <Expression xsi:type="SubscribeSubject">
+                                      <Name>BaselinedWeight</Name>
+                                    </Expression>
+                                    <Expression xsi:type="Combinator">
+                                      <Combinator xsi:type="rx:Zip" />
+                                    </Expression>
+                                    <Expression xsi:type="scr:ExpressionTransform">
+                                      <scr:Expression>new(
+Item1 as RawWeight,
+Item2 as FilteredWeight,
+Item3 as BaselinedWeight)</scr:Expression>
+                                    </Expression>
+                                    <Expression xsi:type="WorkflowOutput" />
+                                  </Nodes>
+                                  <Edges>
+                                    <Edge From="0" To="1" Label="Source1" />
+                                    <Edge From="1" To="2" Label="Source1" />
+                                    <Edge From="2" To="4" Label="Source1" />
+                                    <Edge From="3" To="4" Label="Source2" />
+                                    <Edge From="3" To="10" Label="Source1" />
+                                    <Edge From="4" To="5" Label="Source1" />
+                                    <Edge From="5" To="7" Label="Source1" />
+                                    <Edge From="6" To="7" Label="Source2" />
+                                    <Edge From="7" To="8" Label="Source1" />
+                                    <Edge From="9" To="12" Label="Source1" />
+                                    <Edge From="10" To="11" Label="Source1" />
+                                    <Edge From="11" To="12" Label="Source2" />
+                                    <Edge From="12" To="15" Label="Source1" />
+                                    <Edge From="13" To="15" Label="Source2" />
+                                    <Edge From="14" To="15" Label="Source3" />
+                                    <Edge From="15" To="16" Label="Source1" />
+                                    <Edge From="16" To="17" Label="Source1" />
+                                  </Edges>
+                                </Workflow>
+                              </Expression>
+                              <Expression xsi:type="ExternalizedMapping">
+                                <Property Name="Name" DisplayName="WeightData" Description="The name of the output sequence containing all weight measurements." />
+                              </Expression>
+                              <Expression xsi:type="rx:PublishSubject">
+                                <Name>WeightNest</Name>
+                              </Expression>
+                              <Expression xsi:type="WorkflowOutput" />
+                              <Expression xsi:type="ExternalizedMapping">
+                                <Property Name="Name" DisplayName="TareCommands" Description="The name of the input sequence with tare commands to be sent to the weight scale." />
+                              </Expression>
+                              <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Object">
+                                <rx:Name>TareWeight</rx:Name>
+                              </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="ByteProperty">
+                                  <Value>1</Value>
+                                </Combinator>
+                              </Expression>
+                              <Expression xsi:type="SubscribeSubject">
+                                <Name>GlobalTrigger</Name>
+                              </Expression>
+                              <Expression xsi:type="MemberSelector">
+                                <Selector>Seconds</Selector>
+                              </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="rx:WithLatestFrom" />
+                              </Expression>
+                              <Expression xsi:type="Combinator">
+                                <Combinator xsi:type="harp:CreateTimestamped" />
+                              </Expression>
+                              <Expression xsi:type="ExternalizedMapping">
+                                <Property Name="Name" DisplayName="TareEvents" Description="The name of the output sequence containing all timestamped tare events." />
+                              </Expression>
+                              <Expression xsi:type="rx:PublishSubject">
+                                <Name>TareNest</Name>
+                              </Expression>
+                            </Nodes>
+                            <Edges>
+                              <Edge From="0" To="1" Label="Source1" />
+                              <Edge From="1" To="2" Label="Source1" />
+                              <Edge From="2" To="3" Label="Source1" />
+                              <Edge From="3" To="7" Label="Source1" />
+                              <Edge From="4" To="5" Label="Source1" />
+                              <Edge From="5" To="7" Label="Source2" />
+                              <Edge From="6" To="7" Label="Source3" />
+                              <Edge From="7" To="9" Label="Source1" />
+                              <Edge From="8" To="9" Label="Source2" />
+                              <Edge From="9" To="10" Label="Source1" />
+                              <Edge From="11" To="12" Label="Source1" />
+                              <Edge From="12" To="13" Label="Source1" />
+                              <Edge From="13" To="16" Label="Source1" />
+                              <Edge From="14" To="15" Label="Source1" />
+                              <Edge From="15" To="16" Label="Source2" />
+                              <Edge From="16" To="17" Label="Source1" />
+                              <Edge From="17" To="19" Label="Source1" />
+                              <Edge From="18" To="19" Label="Source2" />
+                            </Edges>
+                          </Workflow>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                </Nodes>
+                <Edges />
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>TrackingTop</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Name" DisplayName="FrameEvents" />
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>CameraTop</Name>
+                  </Expression>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Mask" />
+                    <Property Name="ThresholdValue" />
+                    <Property Name="TrackingEvents" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PositionTracking.bonsai">
+                    <ThresholdValue>83</ThresholdValue>
+                    <Mask>Config\ArenaMask-AEON3_2023-10-22.png</Mask>
+                    <TrackingCount>1</TrackingCount>
+                    <TrackingEvents>TrackingTop</TrackingEvents>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="3" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source2" />
+                  <Edge From="3" To="4" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>PoseTrackingTop</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>PoseTracking</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="rx:BehaviorSubject" TypeArguments="p1:IGroupedObservable(aeon:PoseTrackingMetadata,harp:Timestamped(sleap:PoseIdentityCollection))">
+                          <rx:Name>PoseTrackingTop</rx:Name>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>ActivityCenter</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>CameraTop</Name>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ActivityTracking.bonsai">
+                    <Regions>
+                      <ArrayOfPoint>
+                        <Point>
+                          <X>76</X>
+                          <Y>431</Y>
+                        </Point>
+                        <Point>
+                          <X>404</X>
+                          <Y>431</Y>
+                        </Point>
+                        <Point>
+                          <X>404</X>
+                          <Y>665</Y>
+                        </Point>
+                        <Point>
+                          <X>76</X>
+                          <Y>665</Y>
+                        </Point>
+                      </ArrayOfPoint>
+                    </Regions>
+                    <ThresholdValue>10</ThresholdValue>
+                    <TrackingEvents>ActivityCenter</TrackingEvents>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+          </Nodes>
+          <Edges />
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Declarations.bonsai" />
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Visualization.bonsai">
+        <BaselineRefractoryPeriod>PT0S</BaselineRefractoryPeriod>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\ControlPanel.bonsai" />
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="EasyThreshold" />
+        <Property Name="EasyRate" />
+        <Property Name="MediumThreshold" />
+        <Property Name="MediumRate" />
+        <Property Name="HardThreshold" />
+        <Property Name="HardRate" />
+        <Property Name="MinPelletsPerBlock" />
+        <Property Name="MaxPelletsPerBlock" />
+        <Property Name="BlockDueTimeMin" />
+        <Property Name="BlockDueTimeMax" />
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\TaskLogic.bonsai">
+        <EasyThreshold>75</EasyThreshold>
+        <EasyRate>0.01</EasyRate>
+        <MediumThreshold>75</MediumThreshold>
+        <MediumRate>0.0033</MediumRate>
+        <HardThreshold>75</HardThreshold>
+        <HardRate>0.002</HardRate>
+        <MinPelletsPerBlock>17</MinPelletsPerBlock>
+        <MaxPelletsPerBlock>25</MaxPelletsPerBlock>
+        <BlockDueTimeMin>0</BlockDueTimeMin>
+        <BlockDueTimeMax>0</BlockDueTimeMax>
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="4" To="5" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
