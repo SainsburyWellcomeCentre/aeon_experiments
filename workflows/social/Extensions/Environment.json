@@ -1,0 +1,107 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "https://github.com/SainsburyWellcomeCentre/aeon_experiments/tree/social",
+    "description": "Represents patch configuration parameters used in foraging experiments.",
+    "title": "Environment",
+    "type": "object",
+    "properties": {
+        "timestamp": {
+            "type": "number",
+            "description": "Specifies the timestamp, in seconds, at which the environment was updated."
+        },
+        "distributions": {
+            "type": "object",
+            "description": "Specifies a pre-defined set of named probability distributions.",
+            "additionalProperties": { "$ref": "#/definitions/exponentialDistribution" }
+        },
+        "blocks": {
+            "type": "array",
+            "description": "Specifies the sequence of blocks in a foraging experiment.",
+            "items": { "$ref": "#/definitions/blockState" }
+        }
+    },
+    "definitions": {
+        "exponentialDistribution": {
+            "type": "object",
+            "description": "Specifies the parameters of an exponential distribution.",
+            "properties": {
+                "rate": {
+                    "type": "number",
+                    "description": "Specifies the rate parameter of the distribution."
+                },
+                "offset": {
+                    "type": "number",
+                    "description": "Specifies the minimum value sampled from the exponential distribution."
+                }
+            },
+            "required": [ "rate", "offset" ]
+        },
+        "uniformDistribution": {
+            "type": "object",
+            "description": "Specifies the parameters of a uniform distribution.",
+            "properties": {
+                "mean": {
+                    "type": "number",
+                    "description": "Specifies the mean value sampled from the uniform distribution."
+                },
+                "offset": {
+                    "type": "number",
+                    "description": "Specifies the minimum value sampled from the uniform distribution."
+                }
+            },
+            "required": [ "mean", "offset" ]
+        },
+        "patchState": {
+            "type": "object",
+            "description": "Specifies the configuration parameters for a single patch.",
+            "properties": {
+                "distribution": {
+                    "oneOf": [
+                        { "$ref": "#/definitions/exponentialDistribution" },
+                        { "$ref": "#/definitions/uniformDistribution" }
+                    ]
+                },
+                "distributionRef": {
+                    "type": "string",
+                    "description": "Specifies the name of a predefined distribution."
+                }
+            },
+            "oneOf": [
+                { "required": [ "distribution" ] },
+                { "required": [ "distributionRef" ] }
+            ]
+        },
+        "blockState": {
+            "type": "object",
+            "description": "Specifies the configuration parameters for a single block.",
+            "properties": {
+                "weight": {
+                    "type": "number",
+                    "description": "Specifies the probability mass for the block. Normalization is not required."
+                },
+                "minDueTime": {
+                    "type": "number",
+                    "description": "Specifies the minimum block duration, in minutes."
+                },
+                "maxDueTime": {
+                    "type": "number",
+                    "description": "Specifies the maximum block duration, in minutes."
+                },
+                "minPelletCount": {
+                    "type": "integer",
+                    "description": "Specifies the minimum number of pellets before block transition."
+                },
+                "maxPelletCount": {
+                    "type": "integer",
+                    "description": "Specifies the maximum number of pellets before block transition."
+                },
+                "patches": {
+                    "type": "object",
+                    "description": "Specifies the configuration of each foraging patch in the block.",
+                    "additionalProperties": { "$ref": "#/definitions/patchState" }
+                }
+            },
+            "required": [ "weight", "patches" ]
+        }
+    }
+}
