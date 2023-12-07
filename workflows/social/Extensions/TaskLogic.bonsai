@@ -7,7 +7,7 @@
                  xmlns:p1="clr-namespace:Social;assembly=Extensions"
                  xmlns:p2="clr-namespace:;assembly=Extensions"
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
-                 xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
+                 xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns:p3="clr-namespace:Bonsai.Numerics.Distributions;assembly=Bonsai.Numerics"
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns="https://bonsai-rx.org/2018/workflow">
@@ -63,7 +63,7 @@ Item3 as BlockDueTime)</scr:Expression>
               <Name>BlockParameters</Name>
             </Expression>
             <Expression xsi:type="scr:ExpressionCondition">
-              <scr:Expression>BlockMaxPellets &lt;= 0 &amp;&amp; BlockDueTime == DateTime(0)</scr:Expression>
+              <scr:Expression>BlockMaxPellets &lt;= 0 &amp;&amp; BlockDueTime == 0</scr:Expression>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="IntProperty">
@@ -157,11 +157,6 @@ Item3 as BlockDueTime)</scr:Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>BlockDueTime</Selector>
             </Expression>
-            <Expression xsi:type="PropertyMapping">
-              <PropertyMappings>
-                <Property Name="BlockDueTime" />
-              </PropertyMappings>
-            </Expression>
             <Expression xsi:type="GroupWorkflow">
               <Name>BlockTimeout</Name>
               <Workflow>
@@ -169,19 +164,17 @@ Item3 as BlockDueTime)</scr:Expression>
                   <Expression xsi:type="SubscribeSubject">
                     <Name>Heartbeats</Name>
                   </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="aeon:GetDateTime" />
+                  <Expression xsi:type="harp:Parse">
+                    <harp:Register xsi:type="harp:ParseMessagePayload">
+                      <harp:PayloadType>Timestamp</harp:PayloadType>
+                      <harp:IsArray>false</harp:IsArray>
+                    </harp:Register>
                   </Expression>
-                  <Expression xsi:type="ExternalizedMapping">
-                    <Property Name="Value" DisplayName="BlockDueTime" Description="If greater than zero, specifies the time of the next block switch." Category="BlockParameters" />
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="DateTimeProperty">
-                      <Value>0001-01-01T00:00:00</Value>
-                    </Combinator>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
                   </Expression>
                   <Expression xsi:type="scr:ExpressionTransform">
-                    <scr:Expression>it == DateTime(0) ? DateTime.MaxValue : it</scr:Expression>
+                    <scr:Expression>it == 0 ? double.PositiveInfinity : it</scr:Expression>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:WithLatestFrom" />
@@ -214,15 +207,14 @@ Item3 as BlockDueTime)</scr:Expression>
                 </Nodes>
                 <Edges>
                   <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="5" Label="Source1" />
+                  <Edge From="1" To="4" Label="Source1" />
                   <Edge From="2" To="3" Label="Source1" />
-                  <Edge From="3" To="4" Label="Source1" />
-                  <Edge From="4" To="5" Label="Source2" />
+                  <Edge From="3" To="4" Label="Source2" />
+                  <Edge From="4" To="5" Label="Source1" />
                   <Edge From="5" To="6" Label="Source1" />
                   <Edge From="6" To="7" Label="Source1" />
                   <Edge From="7" To="8" Label="Source1" />
                   <Edge From="8" To="9" Label="Source1" />
-                  <Edge From="9" To="10" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
@@ -242,7 +234,7 @@ Item3 as BlockDueTime)</scr:Expression>
             <Edge From="2" To="3" Label="Source1" />
             <Edge From="4" To="5" Label="Source1" />
             <Edge From="5" To="6" Label="Source1" />
-            <Edge From="6" To="29" Label="Source1" />
+            <Edge From="6" To="28" Label="Source1" />
             <Edge From="7" To="8" Label="Source1" />
             <Edge From="8" To="9" Label="Source1" />
             <Edge From="9" To="18" Label="Source1" />
@@ -260,13 +252,12 @@ Item3 as BlockDueTime)</scr:Expression>
             <Edge From="21" To="22" Label="Source1" />
             <Edge From="22" To="23" Label="Source1" />
             <Edge From="23" To="24" Label="Source2" />
-            <Edge From="24" To="29" Label="Source2" />
+            <Edge From="24" To="28" Label="Source2" />
             <Edge From="25" To="26" Label="Source1" />
             <Edge From="26" To="27" Label="Source1" />
-            <Edge From="27" To="28" Label="Source1" />
-            <Edge From="28" To="29" Label="Source3" />
+            <Edge From="27" To="28" Label="Source3" />
+            <Edge From="28" To="29" Label="Source1" />
             <Edge From="29" To="30" Label="Source1" />
-            <Edge From="30" To="31" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -309,7 +300,6 @@ Item3 as BlockDueTime)</scr:Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="p3:CreateCategorical">
                       <p3:ProbabilityMass>
-                        <p3:double>1</p3:double>
                         <p3:double>1</p3:double>
                         <p3:double>1</p3:double>
                         <p3:double>1</p3:double>
@@ -417,8 +407,11 @@ Item3 as BlockDueTime)</scr:Expression>
                   <Expression xsi:type="SubscribeSubject">
                     <Name>Heartbeats</Name>
                   </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="aeon:GetDateTime" />
+                  <Expression xsi:type="harp:Parse">
+                    <harp:Register xsi:type="harp:ParseMessagePayload">
+                      <harp:PayloadType>Timestamp</harp:PayloadType>
+                      <harp:IsArray>false</harp:IsArray>
+                    </harp:Register>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Take">
@@ -429,7 +422,7 @@ Item3 as BlockDueTime)</scr:Expression>
                     <Combinator xsi:type="rx:Zip" />
                   </Expression>
                   <Expression xsi:type="scr:ExpressionTransform">
-                    <scr:Expression>Item1 == 0 ? DateTime(0) : Item2 + TimeSpan.FromMinutes(Item1)</scr:Expression>
+                    <scr:Expression>Item1 == 0 ? 0 : Item2 + Item1 * 60</scr:Expression>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Zip" />
@@ -553,7 +546,7 @@ RatePatch3 as Rate)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="MemberSelector">
                     <Selector>BlockPelletCount,BlockMaxPellets,BlockDueTime</Selector>
-                    <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Int32,sys:Int32,sys:DateTime)" />
+                    <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Int32,sys:Int32,sys:Double)" />
                   </Expression>
                   <Expression xsi:type="MulticastSubject">
                     <Name>BlockState</Name>
@@ -637,7 +630,7 @@ RatePatch3 as Rate)</scr:Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
               <Name>DistanceState2</Name>
               <DistanceThreshold>75</DistanceThreshold>
-              <Rate>0.0033</Rate>
+              <Rate>0.01</Rate>
               <DeliveryCount>DeliveryCount2</DeliveryCount>
               <PatchState>PatchState2</PatchState>
             </Expression>
@@ -660,7 +653,7 @@ RatePatch3 as Rate)</scr:Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
               <Name>DistanceState3</Name>
               <DistanceThreshold>75</DistanceThreshold>
-              <Rate>0.002</Rate>
+              <Rate>0.01</Rate>
               <DeliveryCount>DeliveryCount3</DeliveryCount>
               <PatchState>PatchState3</PatchState>
             </Expression>
@@ -721,7 +714,7 @@ RatePatch3 as Rate)</scr:Expression>
             </Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Item1,Item2.Item2,Item2.Item3</Selector>
-              <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Int32,sys:Int32,sys:DateTime)" />
+              <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Int32,sys:Int32,sys:Double)" />
             </Expression>
             <Expression xsi:type="MulticastSubject">
               <Name>BlockState</Name>
