@@ -5,10 +5,6 @@
     "title": "Environment",
     "type": "object",
     "properties": {
-        "timestamp": {
-            "type": "number",
-            "description": "Specifies the timestamp, in seconds, at which the environment was updated."
-        },
         "distributions": {
             "type": "object",
             "description": "Specifies a pre-defined set of named probability distributions.",
