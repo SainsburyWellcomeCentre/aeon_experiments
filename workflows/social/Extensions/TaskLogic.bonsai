@@ -7,9 +7,9 @@
                  xmlns:p1="clr-namespace:Social;assembly=Extensions"
                  xmlns:p2="clr-namespace:;assembly=Extensions"
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
-                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                 xmlns:p3="clr-namespace:Bonsai.Numerics.Distributions;assembly=Bonsai.Numerics"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
+                 xmlns:p3="clr-namespace:Bonsai.Numerics.Distributions;assembly=Bonsai.Numerics"
+                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -25,7 +25,9 @@
         <Property Name="Path" DisplayName="EnvironmentConfigPath" Description="The relative or absolute path of the file describing environment configuration parameters." />
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="io:ReadAllText" />
+        <Combinator xsi:type="io:ReadAllText">
+          <io:Path>TaskExample.yml</io:Path>
+        </Combinator>
       </Expression>
       <Expression xsi:type="p1:DeserializeFromYaml">
         <p1:Type xsi:type="TypeMapping" TypeArguments="p1:Environment" />
@@ -37,569 +39,6 @@
         <Name>EnvironmentConfiguration</Name>
       </Expression>
       <Expression xsi:type="rx:Defer">
-        <Name>BlockParameters</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>PatchState1</Name>
-            </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>new(
-Item1 as Threshold,
-Item2 as D0,
-Item3 as Rate)</scr:Expression>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>PatchState2</Name>
-            </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>new(
-Item1 as Threshold,
-Item2 as D0,
-Item3 as Rate)</scr:Expression>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>PatchState3</Name>
-            </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>new(
-Item1 as Threshold,
-Item2 as D0,
-Item3 as Rate)</scr:Expression>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Zip" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Take">
-                <rx:Count>1</rx:Count>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="rx:Sink">
-              <Name>SetPatchState</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Item1</Selector>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Threshold,D0,Rate</Selector>
-                    <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
-                  </Expression>
-                  <Expression xsi:type="MulticastSubject">
-                    <Name>PatchState1</Name>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Item2</Selector>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Threshold,D0,Rate</Selector>
-                    <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
-                  </Expression>
-                  <Expression xsi:type="MulticastSubject">
-                    <Name>PatchState2</Name>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Item3</Selector>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Threshold,D0,Rate</Selector>
-                    <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
-                  </Expression>
-                  <Expression xsi:type="MulticastSubject">
-                    <Name>PatchState3</Name>
-                  </Expression>
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="0" To="4" Label="Source1" />
-                  <Edge From="0" To="7" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source1" />
-                  <Edge From="4" To="5" Label="Source1" />
-                  <Edge From="5" To="6" Label="Source1" />
-                  <Edge From="7" To="8" Label="Source1" />
-                  <Edge From="8" To="9" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>new(
-  Item1.D0 as ThresholdPatch1,
-  Item1.Rate as RatePatch1,
-  Item2.D0 as ThresholdPatch2,
-  Item2.Rate as RatePatch2,
-  Item3.D0 as ThresholdPatch3,
-  Item3.Rate as RatePatch3)</scr:Expression>
-            </Expression>
-            <Expression xsi:type="rx:Defer">
-              <Name>SampleBlockType</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>Random</Name>
-                  </Expression>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>EnvironmentConfiguration</Name>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Blocks</Selector>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:Merge" />
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Weight</Selector>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:ToArray" />
-                  </Expression>
-                  <Expression xsi:type="PropertyMapping">
-                    <PropertyMappings>
-                      <Property Name="ProbabilityMass" />
-                    </PropertyMappings>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:CreateCategorical" />
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:Sample" />
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="7" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source1" />
-                  <Edge From="3" To="4" Label="Source1" />
-                  <Edge From="4" To="5" Label="Source1" />
-                  <Edge From="5" To="6" Label="Source1" />
-                  <Edge From="6" To="7" Label="Source2" />
-                  <Edge From="7" To="8" Label="Source1" />
-                  <Edge From="8" To="9" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="rx:SelectMany">
-              <Name>ConfigureBlockState</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>EnvironmentConfiguration</Name>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Blocks</Selector>
-                  </Expression>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:Zip" />
-                  </Expression>
-                  <Expression xsi:type="Index" />
-                  <Expression xsi:type="rx:AsyncSubject">
-                    <Name>BlockState</Name>
-                  </Expression>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>BlockState</Name>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Patches</Selector>
-                  </Expression>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>Random</Name>
-                  </Expression>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>BlockState</Name>
-                  </Expression>
-                  <Expression xsi:type="PropertyMapping">
-                    <PropertyMappings>
-                      <Property Name="Lower" Selector="MinPelletCount" />
-                      <Property Name="Upper" Selector="MaxPelletCount" />
-                    </PropertyMappings>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:CreateDiscreteUniform">
-                      <p3:Lower>17</p3:Lower>
-                      <p3:Upper>25</p3:Upper>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:Sample" />
-                  </Expression>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>Random</Name>
-                  </Expression>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>BlockState</Name>
-                  </Expression>
-                  <Expression xsi:type="PropertyMapping">
-                    <PropertyMappings>
-                      <Property Name="Lower" Selector="MinDueTime" />
-                      <Property Name="Upper" Selector="MaxDueTime" />
-                    </PropertyMappings>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:CreateContinuousUniform">
-                      <p3:Lower>0</p3:Lower>
-                      <p3:Upper>0</p3:Upper>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:Sample" />
-                  </Expression>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>Heartbeats</Name>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="aeon:GetDateTime" />
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:Take">
-                      <rx:Count>1</rx:Count>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:Zip" />
-                  </Expression>
-                  <Expression xsi:type="scr:ExpressionTransform">
-                    <scr:Expression>Item1 == 0 ? DateTime(0) : Item2 + TimeSpan.FromMinutes(Item1)</scr:Expression>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:Zip" />
-                  </Expression>
-                  <Expression xsi:type="scr:ExpressionTransform">
-                    <scr:Expression>new(
-  Item1["Patch1"].Distribution.Offset as ThresholdPatch1,
-  Item1["Patch1"].Distribution.Rate as RatePatch1,
-  Item1["Patch2"].Distribution.Offset as ThresholdPatch2,
-  Item1["Patch2"].Distribution.Rate as RatePatch2,
-  Item1["Patch3"].Distribution.Offset as ThresholdPatch3,
-  Item1["Patch3"].Distribution.Rate as RatePatch3,
-  0 as BlockPelletCount,
-  Item2 as BlockMaxPellets,
-  Item3 as BlockDueTime
-)</scr:Expression>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="3" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source2" />
-                  <Edge From="3" To="4" Label="Source1" />
-                  <Edge From="4" To="5" Label="Source1" />
-                  <Edge From="6" To="7" Label="Source1" />
-                  <Edge From="7" To="23" Label="Source1" />
-                  <Edge From="8" To="11" Label="Source1" />
-                  <Edge From="9" To="10" Label="Source1" />
-                  <Edge From="10" To="11" Label="Source2" />
-                  <Edge From="11" To="12" Label="Source1" />
-                  <Edge From="12" To="23" Label="Source2" />
-                  <Edge From="13" To="16" Label="Source1" />
-                  <Edge From="14" To="15" Label="Source1" />
-                  <Edge From="15" To="16" Label="Source2" />
-                  <Edge From="16" To="17" Label="Source1" />
-                  <Edge From="17" To="21" Label="Source1" />
-                  <Edge From="18" To="19" Label="Source1" />
-                  <Edge From="19" To="20" Label="Source1" />
-                  <Edge From="20" To="21" Label="Source2" />
-                  <Edge From="21" To="22" Label="Source1" />
-                  <Edge From="22" To="23" Label="Source3" />
-                  <Edge From="23" To="24" Label="Source1" />
-                  <Edge From="24" To="25" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="GroupWorkflow">
-              <Name>BlockChangeOrNewEpoch</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>BlockChange</Name>
-                  </Expression>
-                  <Expression xsi:type="Unit" />
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>BlockState</Name>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:Take">
-                      <rx:Count>1</rx:Count>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="scr:ExpressionCondition">
-                    <scr:Expression>Item2 &lt;= 0 &amp;&amp; Item3 == DateTime(0)</scr:Expression>
-                  </Expression>
-                  <Expression xsi:type="Unit" />
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:Merge" />
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="6" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source1" />
-                  <Edge From="3" To="4" Label="Source1" />
-                  <Edge From="4" To="5" Label="Source1" />
-                  <Edge From="5" To="6" Label="Source2" />
-                  <Edge From="6" To="7" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:SubscribeWhen" />
-            </Expression>
-            <Expression xsi:type="rx:Sink">
-              <Name>SetPatchState</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="scr:ExpressionTransform">
-                    <scr:Expression>new(
-Double.NaN as Threshold,
-ThresholdPatch1 as D0,
-RatePatch1 as Rate)</scr:Expression>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Threshold,D0,Rate</Selector>
-                    <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
-                  </Expression>
-                  <Expression xsi:type="MulticastSubject">
-                    <Name>PatchState1</Name>
-                  </Expression>
-                  <Expression xsi:type="scr:ExpressionTransform">
-                    <scr:Expression>new(
-Double.NaN as Threshold,
-ThresholdPatch2 as D0,
-RatePatch2 as Rate)</scr:Expression>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Threshold,D0,Rate</Selector>
-                    <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
-                  </Expression>
-                  <Expression xsi:type="MulticastSubject">
-                    <Name>PatchState2</Name>
-                  </Expression>
-                  <Expression xsi:type="scr:ExpressionTransform">
-                    <scr:Expression>new(
-Double.NaN as Threshold,
-ThresholdPatch3 as D0,
-RatePatch3 as Rate)</scr:Expression>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Threshold,D0,Rate</Selector>
-                    <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
-                  </Expression>
-                  <Expression xsi:type="MulticastSubject">
-                    <Name>PatchState3</Name>
-                  </Expression>
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="0" To="4" Label="Source1" />
-                  <Edge From="0" To="7" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source1" />
-                  <Edge From="4" To="5" Label="Source1" />
-                  <Edge From="5" To="6" Label="Source1" />
-                  <Edge From="7" To="8" Label="Source1" />
-                  <Edge From="8" To="9" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="rx:Sink">
-              <Name>SetBlockState</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>BlockPelletCount,BlockMaxPellets,BlockDueTime</Selector>
-                    <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Int32,sys:Int32,sys:DateTime)" />
-                  </Expression>
-                  <Expression xsi:type="MulticastSubject">
-                    <Name>BlockState</Name>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Repeat" />
-            </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>new(
-  ThresholdPatch1 as ThresholdPatch1,
-  RatePatch1 as RatePatch1,
-  ThresholdPatch2 as ThresholdPatch2,
-  RatePatch2 as RatePatch2,
-  ThresholdPatch3 as ThresholdPatch3,
-  RatePatch3 as RatePatch3)</scr:Expression>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Concat" />
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="6" Label="Source1" />
-            <Edge From="2" To="3" Label="Source1" />
-            <Edge From="3" To="6" Label="Source2" />
-            <Edge From="4" To="5" Label="Source1" />
-            <Edge From="5" To="6" Label="Source3" />
-            <Edge From="6" To="7" Label="Source1" />
-            <Edge From="7" To="8" Label="Source1" />
-            <Edge From="8" To="9" Label="Source1" />
-            <Edge From="9" To="18" Label="Source1" />
-            <Edge From="10" To="11" Label="Source1" />
-            <Edge From="11" To="13" Label="Source1" />
-            <Edge From="12" To="13" Label="Source2" />
-            <Edge From="13" To="14" Label="Source1" />
-            <Edge From="14" To="15" Label="Source1" />
-            <Edge From="15" To="16" Label="Source1" />
-            <Edge From="16" To="17" Label="Source1" />
-            <Edge From="17" To="18" Label="Source2" />
-            <Edge From="18" To="19" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RepeatEverySubject.bonsai" />
-      <Expression xsi:type="rx:PublishSubject">
-        <Name>ParameterChange</Name>
-      </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>ParameterChange</Name>
-      </Expression>
-      <Expression xsi:type="PropertyMapping">
-        <PropertyMappings>
-          <Property Name="ThresholdPatch1" Selector="ThresholdPatch1" />
-          <Property Name="RatePatch1" Selector="RatePatch1" />
-          <Property Name="ThresholdPatch2" Selector="ThresholdPatch2" />
-          <Property Name="RatePatch2" Selector="RatePatch2" />
-          <Property Name="ThresholdPatch3" Selector="ThresholdPatch3" />
-          <Property Name="RatePatch3" Selector="RatePatch3" />
-        </PropertyMappings>
-      </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>PatchLogic</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>WheelPatch1</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value</Selector>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="DistanceThreshold" DisplayName="ThresholdPatch1" />
-              <Property Name="Rate" DisplayName="RatePatch1" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
-              <Name>DistanceState1</Name>
-              <DistanceThreshold>75</DistanceThreshold>
-              <Rate>0.01</Rate>
-              <DeliveryCount>DeliveryCount1</DeliveryCount>
-              <PatchState>PatchState1</PatchState>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>DeliverPelletPatch1</Name>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>ThresholdCrossingPatch1</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>WheelPatch2</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value</Selector>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="DistanceThreshold" DisplayName="ThresholdPatch2" />
-              <Property Name="Rate" DisplayName="RatePatch2" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
-              <Name>DistanceState2</Name>
-              <DistanceThreshold>75</DistanceThreshold>
-              <Rate>0.01</Rate>
-              <DeliveryCount>DeliveryCount2</DeliveryCount>
-              <PatchState>PatchState2</PatchState>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>DeliverPelletPatch2</Name>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>ThresholdCrossingPatch2</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>WheelPatch3</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value</Selector>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="DistanceThreshold" DisplayName="ThresholdPatch3" />
-              <Property Name="Rate" DisplayName="RatePatch3" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
-              <Name>DistanceState3</Name>
-              <DistanceThreshold>75</DistanceThreshold>
-              <Rate>0.01</Rate>
-              <DeliveryCount>DeliveryCount3</DeliveryCount>
-              <PatchState>PatchState3</PatchState>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>DeliverPelletPatch3</Name>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>ThresholdCrossingPatch3</Name>
-            </Expression>
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="3" Label="Source1" />
-            <Edge From="2" To="3" Label="Source2" />
-            <Edge From="3" To="4" Label="Source1" />
-            <Edge From="4" To="5" Label="Source1" />
-            <Edge From="6" To="7" Label="Source1" />
-            <Edge From="7" To="9" Label="Source1" />
-            <Edge From="8" To="9" Label="Source2" />
-            <Edge From="9" To="10" Label="Source1" />
-            <Edge From="10" To="11" Label="Source1" />
-            <Edge From="12" To="13" Label="Source1" />
-            <Edge From="13" To="15" Label="Source1" />
-            <Edge From="14" To="15" Label="Source2" />
-            <Edge From="15" To="16" Label="Source1" />
-            <Edge From="16" To="17" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>ParameterChange</Name>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:TakeUntil" />
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Repeat" />
-      </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RepeatEverySubject.bonsai" />
-      <Expression xsi:type="SubscribeSubject">
-        <Name>ParameterChange</Name>
-      </Expression>
-      <Expression xsi:type="rx:CreateObservable">
         <Name>BlockLogic</Name>
         <Workflow>
           <Nodes>
@@ -700,7 +139,7 @@ Item3 as BlockDueTime)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="GreaterThanOrEqual">
                     <Operand xsi:type="IntProperty">
-                      <Value>25</Value>
+                      <Value>12</Value>
                     </Operand>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
@@ -831,15 +270,433 @@ Item3 as BlockDueTime)</scr:Expression>
           </Edges>
         </Workflow>
       </Expression>
+      <Expression xsi:type="rx:SelectMany">
+        <Name>BlockParameters</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="rx:Defer">
+              <Name>SampleBlockType</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>Random</Name>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>EnvironmentConfiguration</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Take">
+                      <rx:Count>1</rx:Count>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Blocks</Selector>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Merge" />
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Weight</Selector>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:ToArray" />
+                  </Expression>
+                  <Expression xsi:type="PropertyMapping">
+                    <PropertyMappings>
+                      <Property Name="ProbabilityMass" />
+                    </PropertyMappings>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="p3:CreateCategorical">
+                      <p3:ProbabilityMass>
+                        <p3:double>1</p3:double>
+                        <p3:double>1</p3:double>
+                        <p3:double>1</p3:double>
+                        <p3:double>1</p3:double>
+                      </p3:ProbabilityMass>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="p3:Sample" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Take">
+                      <rx:Count>1</rx:Count>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="8" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                  <Edge From="3" To="4" Label="Source1" />
+                  <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="5" To="6" Label="Source1" />
+                  <Edge From="6" To="7" Label="Source1" />
+                  <Edge From="7" To="8" Label="Source2" />
+                  <Edge From="8" To="9" Label="Source1" />
+                  <Edge From="9" To="10" Label="Source1" />
+                  <Edge From="10" To="11" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="rx:SelectMany">
+              <Name>ConfigureBlockState</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>EnvironmentConfiguration</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Blocks</Selector>
+                  </Expression>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Zip" />
+                  </Expression>
+                  <Expression xsi:type="Index" />
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Take">
+                      <rx:Count>1</rx:Count>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="rx:AsyncSubject">
+                    <Name>BlockState</Name>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>BlockState</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Patches</Selector>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>Random</Name>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>BlockState</Name>
+                  </Expression>
+                  <Expression xsi:type="PropertyMapping">
+                    <PropertyMappings>
+                      <Property Name="Lower" Selector="MinPelletCount" />
+                      <Property Name="Upper" Selector="MaxPelletCount" />
+                    </PropertyMappings>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="p3:CreateDiscreteUniform">
+                      <p3:Lower>5</p3:Lower>
+                      <p3:Upper>15</p3:Upper>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="p3:Sample" />
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>Random</Name>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>BlockState</Name>
+                  </Expression>
+                  <Expression xsi:type="PropertyMapping">
+                    <PropertyMappings>
+                      <Property Name="Lower" Selector="MinDueTime" />
+                      <Property Name="Upper" Selector="MaxDueTime" />
+                    </PropertyMappings>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="p3:CreateContinuousUniform">
+                      <p3:Lower>0</p3:Lower>
+                      <p3:Upper>0</p3:Upper>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="p3:Sample" />
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>Heartbeats</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="aeon:GetDateTime" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Take">
+                      <rx:Count>1</rx:Count>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Zip" />
+                  </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Expression>Item1 == 0 ? DateTime(0) : Item2 + TimeSpan.FromMinutes(Item1)</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Zip" />
+                  </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Expression>new(
+  Item1["patch1"].Distribution.Offset as ThresholdPatch1,
+  Item1["patch1"].Distribution.Rate as RatePatch1,
+  Item1["patch2"].Distribution.Offset as ThresholdPatch2,
+  Item1["patch2"].Distribution.Rate as RatePatch2,
+  Item1["patch3"].Distribution.Offset as ThresholdPatch3,
+  Item1["patch3"].Distribution.Rate as RatePatch3,
+  0 as BlockPelletCount,
+  Item2 as BlockMaxPellets,
+  Item3 as BlockDueTime
+)</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Take">
+                      <rx:Count>1</rx:Count>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="3" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source2" />
+                  <Edge From="3" To="4" Label="Source1" />
+                  <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="5" To="6" Label="Source1" />
+                  <Edge From="7" To="8" Label="Source1" />
+                  <Edge From="8" To="24" Label="Source1" />
+                  <Edge From="9" To="12" Label="Source1" />
+                  <Edge From="10" To="11" Label="Source1" />
+                  <Edge From="11" To="12" Label="Source2" />
+                  <Edge From="12" To="13" Label="Source1" />
+                  <Edge From="13" To="24" Label="Source2" />
+                  <Edge From="14" To="17" Label="Source1" />
+                  <Edge From="15" To="16" Label="Source1" />
+                  <Edge From="16" To="17" Label="Source2" />
+                  <Edge From="17" To="18" Label="Source1" />
+                  <Edge From="18" To="22" Label="Source1" />
+                  <Edge From="19" To="20" Label="Source1" />
+                  <Edge From="20" To="21" Label="Source1" />
+                  <Edge From="21" To="22" Label="Source2" />
+                  <Edge From="22" To="23" Label="Source1" />
+                  <Edge From="23" To="24" Label="Source3" />
+                  <Edge From="24" To="25" Label="Source1" />
+                  <Edge From="25" To="26" Label="Source1" />
+                  <Edge From="26" To="27" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="rx:Sink">
+              <Name>SetPatchState</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Expression>new(
+Double.NaN as Threshold,
+ThresholdPatch1 as D0,
+RatePatch1 as Rate)</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Threshold,D0,Rate</Selector>
+                    <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
+                  </Expression>
+                  <Expression xsi:type="MulticastSubject">
+                    <Name>PatchState1</Name>
+                  </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Expression>new(
+Double.NaN as Threshold,
+ThresholdPatch2 as D0,
+RatePatch2 as Rate)</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Threshold,D0,Rate</Selector>
+                    <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
+                  </Expression>
+                  <Expression xsi:type="MulticastSubject">
+                    <Name>PatchState2</Name>
+                  </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Expression>new(
+Double.NaN as Threshold,
+ThresholdPatch3 as D0,
+RatePatch3 as Rate)</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Threshold,D0,Rate</Selector>
+                    <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
+                  </Expression>
+                  <Expression xsi:type="MulticastSubject">
+                    <Name>PatchState3</Name>
+                  </Expression>
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="0" To="4" Label="Source1" />
+                  <Edge From="0" To="7" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                  <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="5" To="6" Label="Source1" />
+                  <Edge From="7" To="8" Label="Source1" />
+                  <Edge From="8" To="9" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="rx:Sink">
+              <Name>SetBlockState</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>BlockPelletCount,BlockMaxPellets,BlockDueTime</Selector>
+                    <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Int32,sys:Int32,sys:DateTime)" />
+                  </Expression>
+                  <Expression xsi:type="MulticastSubject">
+                    <Name>BlockState</Name>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Expression>new(
+  ThresholdPatch1 as ThresholdPatch1,
+  RatePatch1 as RatePatch1,
+  ThresholdPatch2 as ThresholdPatch2,
+  RatePatch2 as RatePatch2,
+  ThresholdPatch3 as ThresholdPatch3,
+  RatePatch3 as RatePatch3)</scr:Expression>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="PropertyMapping">
+        <PropertyMappings>
+          <Property Name="ThresholdPatch1" Selector="ThresholdPatch1" />
+          <Property Name="RatePatch1" Selector="RatePatch1" />
+          <Property Name="ThresholdPatch2" Selector="ThresholdPatch2" />
+          <Property Name="RatePatch2" Selector="RatePatch2" />
+          <Property Name="ThresholdPatch3" Selector="ThresholdPatch3" />
+          <Property Name="RatePatch3" Selector="RatePatch3" />
+        </PropertyMappings>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>PatchLogic</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>WheelPatch1</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value</Selector>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="DistanceThreshold" DisplayName="ThresholdPatch1" />
+              <Property Name="Rate" DisplayName="RatePatch1" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
+              <Name>DistanceState1</Name>
+              <DistanceThreshold>75</DistanceThreshold>
+              <Rate>0.01</Rate>
+              <DeliveryCount>DeliveryCount1</DeliveryCount>
+              <PatchState>PatchState1</PatchState>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>DeliverPelletPatch1</Name>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>ThresholdCrossingPatch1</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>WheelPatch2</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value</Selector>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="DistanceThreshold" DisplayName="ThresholdPatch2" />
+              <Property Name="Rate" DisplayName="RatePatch2" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
+              <Name>DistanceState2</Name>
+              <DistanceThreshold>75</DistanceThreshold>
+              <Rate>0.0033</Rate>
+              <DeliveryCount>DeliveryCount2</DeliveryCount>
+              <PatchState>PatchState2</PatchState>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>DeliverPelletPatch2</Name>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>ThresholdCrossingPatch2</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>WheelPatch3</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value</Selector>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="DistanceThreshold" DisplayName="ThresholdPatch3" />
+              <Property Name="Rate" DisplayName="RatePatch3" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
+              <Name>DistanceState3</Name>
+              <DistanceThreshold>75</DistanceThreshold>
+              <Rate>0.002</Rate>
+              <DeliveryCount>DeliveryCount3</DeliveryCount>
+              <PatchState>PatchState3</PatchState>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>DeliverPelletPatch3</Name>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>ThresholdCrossingPatch3</Name>
+            </Expression>
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="3" Label="Source1" />
+            <Edge From="2" To="3" Label="Source2" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="9" Label="Source1" />
+            <Edge From="8" To="9" Label="Source2" />
+            <Edge From="9" To="10" Label="Source1" />
+            <Edge From="10" To="11" Label="Source1" />
+            <Edge From="12" To="13" Label="Source1" />
+            <Edge From="13" To="15" Label="Source1" />
+            <Edge From="14" To="15" Label="Source2" />
+            <Edge From="15" To="16" Label="Source1" />
+            <Edge From="16" To="17" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Switch" />
+        <Combinator xsi:type="rx:TakeUntil" />
       </Expression>
-      <Expression xsi:type="MulticastSubject">
-        <Name>BlockChange</Name>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Repeat" />
       </Expression>
-      <Expression xsi:type="rx:PublishSubject" TypeArguments="sys:Int32">
-        <rx:Name>BlockChange</rx:Name>
-      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RepeatEverySubject.bonsai" />
       <Expression xsi:type="rx:PublishSubject" TypeArguments="sys:Int32">
         <rx:Name>ThresholdCrossingPatch1</rx:Name>
       </Expression>
@@ -889,15 +746,11 @@ Item3 as BlockDueTime)</scr:Expression>
       <Edge From="5" To="6" Label="Source1" />
       <Edge From="7" To="8" Label="Source1" />
       <Edge From="8" To="9" Label="Source1" />
+      <Edge From="8" To="11" Label="Source2" />
+      <Edge From="9" To="10" Label="Source1" />
       <Edge From="10" To="11" Label="Source1" />
       <Edge From="11" To="12" Label="Source1" />
-      <Edge From="12" To="14" Label="Source1" />
-      <Edge From="13" To="14" Label="Source2" />
-      <Edge From="14" To="15" Label="Source1" />
-      <Edge From="15" To="16" Label="Source1" />
-      <Edge From="17" To="18" Label="Source1" />
-      <Edge From="18" To="19" Label="Source1" />
-      <Edge From="19" To="20" Label="Source1" />
+      <Edge From="12" To="13" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

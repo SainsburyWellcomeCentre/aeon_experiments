@@ -1,0 +1,33 @@
+# yaml-language-server: $schema=./Extensions/Environment.json
+distributions:
+  easy:
+    rate: 0.01
+    offset: 75
+  medium:
+    rate: 0.0033
+    offset: 75
+  hard:
+    rate: 0.002
+    offset: 75
+blocks:
+  - weight: 1
+    minPelletCount: 5
+    maxPelletCount: 15
+    patches:
+      patch1: { distributionRef: easy }
+      patch2: { distributionRef: easy }
+      patch3: { distributionRef: easy }
+  - weight: 1
+    minPelletCount: 5
+    maxPelletCount: 15
+    patches:
+      patch1: { distributionRef: easy }
+      patch2: { distributionRef: medium }
+      patch3: { distributionRef: hard }
+  - weight: 1
+    minPelletCount: 5
+    maxPelletCount: 15
+    patches:
+      patch1: { distributionRef: hard }
+      patch2: { distributionRef: hard }
+      patch3: { distributionRef: hard }
