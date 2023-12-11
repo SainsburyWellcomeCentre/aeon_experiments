@@ -615,28 +615,10 @@ Item3 as BaselinedWeight)</scr:Expression>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\ControlPanel.bonsai" />
       <Expression xsi:type="ExternalizedMapping">
-        <Property Name="EasyThreshold" />
-        <Property Name="EasyRate" />
-        <Property Name="MediumThreshold" />
-        <Property Name="MediumRate" />
-        <Property Name="HardThreshold" />
-        <Property Name="HardRate" />
-        <Property Name="MinPelletsPerBlock" />
-        <Property Name="MaxPelletsPerBlock" />
-        <Property Name="BlockDueTimeMin" />
-        <Property Name="BlockDueTimeMax" />
+        <Property Name="EnvironmentConfigPath" />
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\TaskLogic.bonsai">
-        <EasyThreshold>75</EasyThreshold>
-        <EasyRate>0.01</EasyRate>
-        <MediumThreshold>75</MediumThreshold>
-        <MediumRate>0.0033</MediumRate>
-        <HardThreshold>75</HardThreshold>
-        <HardRate>0.002</HardRate>
-        <MinPelletsPerBlock>17</MinPelletsPerBlock>
-        <MaxPelletsPerBlock>25</MaxPelletsPerBlock>
-        <BlockDueTimeMin>0</BlockDueTimeMin>
-        <BlockDueTimeMax>0</BlockDueTimeMax>
+        <EnvironmentConfigPath>TaskExample.yml</EnvironmentConfigPath>
       </Expression>
     </Nodes>
     <Edges>

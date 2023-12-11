@@ -33,7 +33,7 @@
       <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
         <aeon:Name>PatchState3</aeon:Name>
       </Expression>
-      <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Int32,sys:Int32,sys:DateTime)">
+      <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Int32,sys:Int32,sys:Double)">
         <aeon:Name>BlockState</aeon:Name>
       </Expression>
       <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Double)">
