@@ -1521,6 +1521,54 @@ new(Value.Id as Id,
               <LogName>Environment_SubjectVisits</LogName>
               <Selector>Seconds,Value.Id,Value.Event,Value.Value</Selector>
             </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>RfidEventsNest1</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>RfidEventsNest1</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>RfidEventsNest2</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>RfidEventsNest2</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>RfidEventsGate</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>RfidEventsGate</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>RfidEventsPatch1</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>RfidEventsPatch1</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>RfidEventsPatch2</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>RfidEventsPatch2</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>RfidEventsPatch3</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>RfidEventsPatch3</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
+            </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Timer">
                 <rx:DueTime>PT0S</rx:DueTime>
@@ -1695,23 +1743,29 @@ new(Value.Id as Id,
             <Edge From="110" To="111" Label="Source1" />
             <Edge From="111" To="112" Label="Source1" />
             <Edge From="113" To="114" Label="Source1" />
-            <Edge From="114" To="117" Label="Source1" />
             <Edge From="115" To="116" Label="Source1" />
-            <Edge From="116" To="117" Label="Source2" />
             <Edge From="117" To="118" Label="Source1" />
-            <Edge From="118" To="119" Label="Source1" />
-            <Edge From="120" To="121" Label="Source1" />
+            <Edge From="119" To="120" Label="Source1" />
             <Edge From="121" To="122" Label="Source1" />
-            <Edge From="122" To="130" Label="Source1" />
             <Edge From="123" To="124" Label="Source1" />
-            <Edge From="124" To="130" Label="Source2" />
             <Edge From="125" To="126" Label="Source1" />
-            <Edge From="126" To="127" Label="Source1" />
-            <Edge From="127" To="130" Label="Source3" />
-            <Edge From="128" To="129" Label="Source1" />
-            <Edge From="129" To="130" Label="Source4" />
+            <Edge From="126" To="129" Label="Source1" />
+            <Edge From="127" To="128" Label="Source1" />
+            <Edge From="128" To="129" Label="Source2" />
+            <Edge From="129" To="130" Label="Source1" />
             <Edge From="130" To="131" Label="Source1" />
             <Edge From="132" To="133" Label="Source1" />
+            <Edge From="133" To="134" Label="Source1" />
+            <Edge From="134" To="142" Label="Source1" />
+            <Edge From="135" To="136" Label="Source1" />
+            <Edge From="136" To="142" Label="Source2" />
+            <Edge From="137" To="138" Label="Source1" />
+            <Edge From="138" To="139" Label="Source1" />
+            <Edge From="139" To="142" Label="Source3" />
+            <Edge From="140" To="141" Label="Source1" />
+            <Edge From="141" To="142" Label="Source4" />
+            <Edge From="142" To="143" Label="Source1" />
+            <Edge From="144" To="145" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
