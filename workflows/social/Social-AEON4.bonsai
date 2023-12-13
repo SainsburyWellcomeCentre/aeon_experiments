@@ -744,7 +744,7 @@
                     <Property Name="FrameStep" />
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Extensions\PoseTracking.bonsai">
-                    <ModelPath>test-node1\0000003\2023-11-16T00-00-00\topdown_multianimal_id</ModelPath>
+                    <ModelPath />
                     <PathPrefix>ModelPathPrefix</PathPrefix>
                     <FrameEvents>CameraTop</FrameEvents>
                     <CentroidMinConfidence xsi:nil="true" />
