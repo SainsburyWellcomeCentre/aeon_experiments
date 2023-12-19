@@ -617,8 +617,8 @@ Item3 as BaselinedWeight)</scr:Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="EnvironmentConfigPath" />
       </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Extensions\TaskLogic.bonsai">
-        <EnvironmentConfigPath>TaskExample.yml</EnvironmentConfigPath>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentLogic.bonsai">
+        <EnvironmentConfigPath>EnvironmentExample.yml</EnvironmentConfigPath>
       </Expression>
     </Nodes>
     <Edges>
