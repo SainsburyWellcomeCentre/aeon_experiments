@@ -6,9 +6,10 @@
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
+                 xmlns:p1="clr-namespace:Social;assembly=Extensions"
                  xmlns:aeon-frg="clr-namespace:Aeon.Foraging;assembly=Aeon.Foraging"
-                 xmlns:p1="clr-namespace:Harp.OutputExpander;assembly=Harp.OutputExpander"
-                 xmlns:p2="clr-namespace:OpenCV.Net;assembly=OpenCV.Net"
+                 xmlns:p2="clr-namespace:Harp.OutputExpander;assembly=Harp.OutputExpander"
+                 xmlns:p3="clr-namespace:OpenCV.Net;assembly=OpenCV.Net"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -48,6 +49,12 @@
       <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon-env:EnvironmentStateMetadata)">
         <rx:Name>EnvironmentState</rx:Name>
       </Expression>
+      <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="p1:Environment">
+        <aeon:Name>EnvironmentConfiguration</aeon:Name>
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:String)">
+        <rx:Name>ReloadEnvironment</rx:Name>
+      </Expression>
       <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="aeon-frg:DispenserState">
         <aeon:Name>Patch1Dispenser</aeon:Name>
       </Expression>
@@ -66,13 +73,13 @@
       <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(aeon-env:EnvironmentSubjectStateMetadata)">
         <rx:Name>SubjectStop</rx:Name>
       </Expression>
-      <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p1:DigitalOutputs)">
+      <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p2:DigitalOutputs)">
         <rx:Name>ManualPellet1</rx:Name>
       </Expression>
-      <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p1:DigitalOutputs)">
+      <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p2:DigitalOutputs)">
         <rx:Name>ManualPellet2</rx:Name>
       </Expression>
-      <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p1:DigitalOutputs)">
+      <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p2:DigitalOutputs)">
         <rx:Name>ManualPellet3</rx:Name>
       </Expression>
       <Expression xsi:type="rx:PublishSubject" TypeArguments="sys:String">
@@ -82,7 +89,7 @@
         <Path>Z:\aeon\data\processed</Path>
         <PathName>ModelPathPrefix</PathName>
       </Expression>
-      <Expression xsi:type="rx:PublishSubject" TypeArguments="p2:IplImage">
+      <Expression xsi:type="rx:PublishSubject" TypeArguments="p3:IplImage">
         <rx:Name>LightMonitor</rx:Name>
       </Expression>
     </Nodes>

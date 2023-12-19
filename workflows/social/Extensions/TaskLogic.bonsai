@@ -21,21 +21,43 @@
       <Expression xsi:type="rx:AsyncSubject">
         <Name>Random</Name>
       </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>ReloadEnvironment</Name>
+      </Expression>
       <Expression xsi:type="ExternalizedMapping">
-        <Property Name="Path" DisplayName="EnvironmentConfigPath" Description="The relative or absolute path of the file describing environment configuration parameters." />
+        <Property Name="EnvironmentConfigPath" />
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="io:ReadAllText">
-          <io:Path>TaskExample.yml</io:Path>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="p1:DeserializeFromYaml">
-        <p1:Type xsi:type="TypeMapping" TypeArguments="p1:Environment" />
+      <Expression xsi:type="rx:SelectMany">
+        <Name>ReadEnvironment</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Path" DisplayName="EnvironmentConfigPath" Description="The relative or absolute path of the file describing environment configuration parameters." />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:ReadAllText">
+                <io:Path>TaskExample.yml</io:Path>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="p1:DeserializeFromYaml">
+              <p1:Type xsi:type="TypeMapping" TypeArguments="p1:Environment" />
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="p2:ValidateEnvironment" />
       </Expression>
-      <Expression xsi:type="rx:BehaviorSubject">
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Retry" />
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
         <Name>EnvironmentConfiguration</Name>
       </Expression>
       <Expression xsi:type="rx:Defer">
@@ -139,7 +161,7 @@ Item3 as BlockDueTime)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="GreaterThanOrEqual">
                     <Operand xsi:type="IntProperty">
-                      <Value>12</Value>
+                      <Value>9</Value>
                     </Operand>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
@@ -733,17 +755,18 @@ RatePatch3 as Rate)</scr:Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
-      <Edge From="2" To="3" Label="Source1" />
-      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="2" To="4" Label="Source1" />
+      <Edge From="3" To="4" Label="Source2" />
       <Edge From="4" To="5" Label="Source1" />
       <Edge From="5" To="6" Label="Source1" />
-      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="6" To="7" Label="Source1" />
       <Edge From="8" To="9" Label="Source1" />
-      <Edge From="8" To="11" Label="Source2" />
       <Edge From="9" To="10" Label="Source1" />
+      <Edge From="9" To="12" Label="Source2" />
       <Edge From="10" To="11" Label="Source1" />
       <Edge From="11" To="12" Label="Source1" />
       <Edge From="12" To="13" Label="Source1" />
+      <Edge From="13" To="14" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
