@@ -37,7 +37,7 @@
       <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Int32,sys:Int32,sys:Double)">
         <aeon:Name>BlockState</aeon:Name>
       </Expression>
-      <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Double)">
+      <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Int32)">
         <rx:Name>BaselineTrigger</rx:Name>
       </Expression>
       <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon:LogMessage)">
