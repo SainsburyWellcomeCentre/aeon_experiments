@@ -487,7 +487,7 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
-                    <Name>RfidNest1</Name>
+                    <Name>NestRfid1</Name>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
@@ -515,7 +515,7 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
-                    <Name>RfidNest2</Name>
+                    <Name>NestRfid2</Name>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
@@ -543,7 +543,7 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
-                    <Name>RfidGate</Name>
+                    <Name>GateRfid</Name>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
@@ -571,7 +571,7 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
-                    <Name>RfidPatch1</Name>
+                    <Name>Patch1Rfid</Name>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
@@ -599,7 +599,7 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
-                    <Name>RfidPatch2</Name>
+                    <Name>Patch2Rfid</Name>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
@@ -627,7 +627,7 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
-                    <Name>RfidPatch3</Name>
+                    <Name>Patch3Rfid</Name>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
@@ -1525,7 +1525,7 @@ new(Value.Id as Id,
               <Name>NestRfid1Events</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>NestRfid1Events</LogName>
+              <LogName>NestRfid1</LogName>
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
             </Expression>
@@ -1533,7 +1533,7 @@ new(Value.Id as Id,
               <Name>NestRfid2Events</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>NestRfid2Events</LogName>
+              <LogName>NestRfid2</LogName>
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
             </Expression>
@@ -1541,7 +1541,7 @@ new(Value.Id as Id,
               <Name>GateRfidEvents</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>GateRfidEvents</LogName>
+              <LogName>GateRfid</LogName>
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
             </Expression>
@@ -1549,7 +1549,7 @@ new(Value.Id as Id,
               <Name>Patch1RfidEvents</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>Patch1RfidEvents</LogName>
+              <LogName>Patch1Rfid</LogName>
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
             </Expression>
@@ -1557,7 +1557,7 @@ new(Value.Id as Id,
               <Name>Patch2RfidEvents</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>Patch2RfidEvents</LogName>
+              <LogName>Patch2Rfid</LogName>
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
             </Expression>
@@ -1565,7 +1565,7 @@ new(Value.Id as Id,
               <Name>Patch3RfidEvents</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>Patch3RfidEvents</LogName>
+              <LogName>Patch3Rfid</LogName>
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
             </Expression>
