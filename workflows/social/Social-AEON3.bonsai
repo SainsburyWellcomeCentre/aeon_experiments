@@ -1774,7 +1774,7 @@ new(Value.Id as Id,
         <Property Name="EnvironmentConfigPath" />
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentLogic.bonsai">
-        <EnvironmentConfigPath xsi:nil="true" />
+        <EnvironmentConfigPath>EnvironmentRandom.yml</EnvironmentConfigPath>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:CameraCapture">

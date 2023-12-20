@@ -618,7 +618,7 @@ Item3 as BaselinedWeight)</scr:Expression>
         <Property Name="EnvironmentConfigPath" />
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentLogic.bonsai">
-        <EnvironmentConfigPath>EnvironmentExample.yml</EnvironmentConfigPath>
+        <EnvironmentConfigPath>EnvironmentRandom.yml</EnvironmentConfigPath>
       </Expression>
     </Nodes>
     <Edges>
