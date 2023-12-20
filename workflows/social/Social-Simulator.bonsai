@@ -300,11 +300,11 @@
                           <Property Name="TareEvents" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Extensions\VirtualWeightScale.bonsai">
-                          <BaselineWeightTrigger>BaselineWeight</BaselineWeightTrigger>
+                          <BaselineWeightTrigger>NestBaselineWeight</BaselineWeightTrigger>
                           <FilterWindow>40</FilterWindow>
-                          <WeightData>WeightNest</WeightData>
-                          <TareCommands>TareWeight</TareCommands>
-                          <TareEvents>TareNest</TareEvents>
+                          <WeightData>NestWeightData</WeightData>
+                          <TareCommands>NestTareCommands</TareCommands>
+                          <TareEvents>NestTareEvents</TareEvents>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>

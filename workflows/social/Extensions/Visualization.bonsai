@@ -755,7 +755,7 @@ Item3 as Patch3)</scr:Expression>
         <Name>StableSubjectsInArena</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>WeightNest</Name>
+        <Name>NestWeightData</Name>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>FilteredWeight</Selector>

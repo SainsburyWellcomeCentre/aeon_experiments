@@ -666,7 +666,7 @@ new(Value.Id as Id,
         <Selector xsi:nil="true" />
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>WeightNest</Name>
+        <Name>NestWeightData</Name>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>RawWeight</Selector>
@@ -677,7 +677,7 @@ new(Value.Id as Id,
         </Combinator>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>TareNest</Name>
+        <Name>NestTareEvents</Name>
       </Expression>
       <Expression xsi:type="harp:Format">
         <harp:MessageType>Write</harp:MessageType>
@@ -687,7 +687,7 @@ new(Value.Id as Id,
         </harp:Register>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>WeightNest</Name>
+        <Name>NestWeightData</Name>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>FilteredWeight</Selector>

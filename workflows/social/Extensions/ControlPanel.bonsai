@@ -1012,7 +1012,7 @@ P3 (rate: {8}, d0: {7}, thr: {6:0.##})</Format>
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="SubscribeSubject">
-              <Name>WeightNest</Name>
+              <Name>NestWeightData</Name>
             </Expression>
             <Expression xsi:type="scr:ExpressionTransform">
               <scr:Expression>new(
