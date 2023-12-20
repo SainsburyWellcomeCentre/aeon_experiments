@@ -17,22 +17,22 @@
         <rx:Name>SubjectWeight</rx:Name>
       </Expression>
       <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Byte)">
-        <rx:Name>MissedPellets1</rx:Name>
+        <rx:Name>Patch1MissedPellets</rx:Name>
       </Expression>
       <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
-        <aeon:Name>PatchState1</aeon:Name>
+        <aeon:Name>Patch1State</aeon:Name>
       </Expression>
       <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Byte)">
-        <rx:Name>MissedPellets2</rx:Name>
+        <rx:Name>Patch2MissedPellets</rx:Name>
       </Expression>
       <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
-        <aeon:Name>PatchState2</aeon:Name>
+        <aeon:Name>Patch2State</aeon:Name>
       </Expression>
       <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Byte)">
-        <rx:Name>MissedPellets3</rx:Name>
+        <rx:Name>Patch3MissedPellets</rx:Name>
       </Expression>
       <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
-        <aeon:Name>PatchState3</aeon:Name>
+        <aeon:Name>Patch3State</aeon:Name>
       </Expression>
       <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Int32,sys:Int32,sys:Double)">
         <aeon:Name>BlockState</aeon:Name>
@@ -74,13 +74,13 @@
         <rx:Name>SubjectStop</rx:Name>
       </Expression>
       <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p2:DigitalOutputs)">
-        <rx:Name>ManualPellet1</rx:Name>
+        <rx:Name>Patch1ManualPellet</rx:Name>
       </Expression>
       <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p2:DigitalOutputs)">
-        <rx:Name>ManualPellet2</rx:Name>
+        <rx:Name>Patch2ManualPellet</rx:Name>
       </Expression>
       <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p2:DigitalOutputs)">
-        <rx:Name>ManualPellet3</rx:Name>
+        <rx:Name>Patch3ManualPellet</rx:Name>
       </Expression>
       <Expression xsi:type="rx:PublishSubject" TypeArguments="sys:String">
         <rx:Name>SubjectAlertMessages</rx:Name>

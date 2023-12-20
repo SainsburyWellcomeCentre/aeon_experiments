@@ -25,7 +25,7 @@
               <ConfigFile>Z:\aeon\config\alerts.config</ConfigFile>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PelletMonitor1</Name>
+              <Name>Patch1PelletMonitor</Name>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
               <Property Name="Count" DisplayName="DeliveryFailureThreshold" />
@@ -123,7 +123,7 @@
               <Name>AlertLogs</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PelletMonitor2</Name>
+              <Name>Patch2PelletMonitor</Name>
             </Expression>
             <Expression xsi:type="rx:Condition">
               <Name>DispenserBroken</Name>
@@ -218,7 +218,7 @@
               <Name>AlertLogs</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PelletMonitor3</Name>
+              <Name>Patch3PelletMonitor</Name>
             </Expression>
             <Expression xsi:type="rx:Condition">
               <Name>DispenserBroken</Name>
@@ -321,7 +321,7 @@
 Count as Count)</scr:Expression>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Bonsai.Harp:WithLatestTimestamp.bonsai">
-              <Name>Patch1</Name>
+              <Name>Patch1Events</Name>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
               <Property Name="PelletThreshold" />
@@ -366,7 +366,7 @@ Count as Count)</scr:Expression>
 Count as Count)</scr:Expression>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Bonsai.Harp:WithLatestTimestamp.bonsai">
-              <Name>Patch2</Name>
+              <Name>Patch2Events</Name>
             </Expression>
             <Expression xsi:type="rx:Condition">
               <Name>LowFood</Name>
@@ -408,7 +408,7 @@ Count as Count)</scr:Expression>
 Count as Count)</scr:Expression>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Bonsai.Harp:WithLatestTimestamp.bonsai">
-              <Name>Patch3</Name>
+              <Name>Patch3Events</Name>
             </Expression>
             <Expression xsi:type="rx:Condition">
               <Name>LowFood</Name>
@@ -464,7 +464,7 @@ Count as Count)</scr:Expression>
               <Name>AlertLogs</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>MissedPellets1</Name>
+              <Name>Patch1MissedPellets</Name>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:ElementIndex" />
@@ -506,7 +506,7 @@ Item2.Value.Id as Id)</scr:Expression>
               <Name>AlertLogs</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>MissedPellets2</Name>
+              <Name>Patch2MissedPellets</Name>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:ElementIndex" />
@@ -548,7 +548,7 @@ Item2.Value.Id as Id)</scr:Expression>
               <Name>AlertLogs</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>MissedPellets3</Name>
+              <Name>Patch3MissedPellets</Name>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:ElementIndex" />
@@ -810,7 +810,7 @@ Item2.Value.Id as Id)</scr:Expression>
               <Workflow>
                 <Nodes>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>PatchState1</Name>
+                    <Name>Patch1State</Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Take">
@@ -824,7 +824,7 @@ Item2 as D0,
 Item3 as Delta)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>PatchState2</Name>
+                    <Name>Patch2State</Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Take">
@@ -838,7 +838,7 @@ Item2 as D0,
 Item3 as Delta)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>PatchState3</Name>
+                    <Name>Patch3State</Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Take">
@@ -889,15 +889,15 @@ Item3 as Delta)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="scr:ExpressionTransform">
                     <scr:Expression>new(
-Item1 as PatchState1,
-Item2 as PatchState2,
-Item3 as PatchState3,
+Item1 as Patch1State,
+Item2 as Patch2State,
+Item3 as Patch3State,
 Item4 as PatchDispenser1,
 Item5 as PatchDispenser2,
 Item6 as PatchDispenser3)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>TimeOnPatch1</Name>
+                    <Name>Patch1TimeSpent</Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Take">
@@ -905,7 +905,7 @@ Item6 as PatchDispenser3)</scr:Expression>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>TimeOnPatch2</Name>
+                    <Name>Patch2TimeSpent</Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Take">
@@ -913,7 +913,7 @@ Item6 as PatchDispenser3)</scr:Expression>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>TimeOnPatch3</Name>
+                    <Name>Patch3TimeSpent</Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Take">
@@ -921,7 +921,7 @@ Item6 as PatchDispenser3)</scr:Expression>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>TimeSinceLastVisit1</Name>
+                    <Name>Patch1TimeSinceLastVisit</Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Take">
@@ -929,7 +929,7 @@ Item6 as PatchDispenser3)</scr:Expression>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>TimeSinceLastVisit2</Name>
+                    <Name>Patch2TimeSinceLastVisit</Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Take">
@@ -937,7 +937,7 @@ Item6 as PatchDispenser3)</scr:Expression>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>TimeSinceLastVisit3</Name>
+                    <Name>Patch3TimeSinceLastVisit</Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Take">
@@ -949,12 +949,12 @@ Item6 as PatchDispenser3)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="scr:ExpressionTransform">
                     <scr:Expression>new(
-Item1 as TimeOnPatch1,
-Item2 as TimeOnPatch2,
-Item3 as TimeOnPatch3,
-Item4 as TimeSinceLastVisit1,
-Item5 as TimeSinceLastVisit2,
-Item6 as TimeSinceLastVisit3)</scr:Expression>
+Item1 as Patch1TimeSpent,
+Item2 as Patch2TimeSpent,
+Item3 as Patch3TimeSpent,
+Item4 as Patch1TimeSinceLastVisit,
+Item5 as Patch2TimeSinceLastVisit,
+Item6 as Patch3TimeSinceLastVisit)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
                     <Name>SubjectState</Name>
@@ -1006,34 +1006,34 @@ Item6 as TimeSinceLastVisit3)</scr:Expression>
                     <Selector>Key</Selector>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>TotalPelletsDelivered1</Name>
+                    <Name>Patch1TotalPelletsDelivered</Name>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>TotalPelletsDelivered2</Name>
+                    <Name>Patch2TotalPelletsDelivered</Name>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>TotalPelletsDelivered3</Name>
+                    <Name>Patch3TotalPelletsDelivered</Name>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>TotalMissedPellets1</Name>
+                    <Name>Patch1TotalMissedPellets</Name>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>TotalMissedPellets2</Name>
+                    <Name>Patch2TotalMissedPellets</Name>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
-                    <Name>TotalMissedPellets3</Name>
+                    <Name>Patch3TotalMissedPellets</Name>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Zip" />
                   </Expression>
                   <Expression xsi:type="scr:ExpressionTransform">
                     <scr:Expression>new(
-Item1 as TotalPelletsDelivered1,
-Item2 as TotalPelletsDelivered2,
-Item3 as TotalPelletsDelivered3,
-Item4 as TotalMissedPellets1,
-Item5 as TotalMissedPellets2,
-Item6 as TotalMissedPellets3)</scr:Expression>
+Item1 as Patch1TotalPelletsDelivered,
+Item2 as Patch2TotalPelletsDelivered,
+Item3 as Patch3TotalPelletsDelivered,
+Item4 as Patch1TotalMissedPellets,
+Item5 as Patch2TotalMissedPellets,
+Item6 as Patch3TotalMissedPellets)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Zip" />
@@ -1064,7 +1064,7 @@ Item6 as TotalMissedPellets3)</scr:Expression>
 **Total Pellets Delivered**: {6}  
 **Total Missed Pellets**: {7}  
 </Format>
-                    <Selector>Item1.PatchDispenser1,Item1.PatchState1.Threshold,Item1.PatchState1.D0,Item1.PatchState1.Delta,Item2.TimeOnPatch1,Item2.TimeSinceLastVisit1,Item6.TotalPelletsDelivered1,Item6.TotalMissedPellets1</Selector>
+                    <Selector>Item1.PatchDispenser1,Item1.Patch1State.Threshold,Item1.Patch1State.D0,Item1.Patch1State.Delta,Item2.Patch1TimeSpent,Item2.Patch1TimeSinceLastVisit,Item6.Patch1TotalPelletsDelivered,Item6.Patch1TotalMissedPellets</Selector>
                   </Expression>
                   <Expression xsi:type="Format">
                     <Format># Patch2
@@ -1077,7 +1077,7 @@ Item6 as TotalMissedPellets3)</scr:Expression>
 **Total Pellets Delivered**: {6}  
 **Total Missed Pellets**: {7}  
 </Format>
-                    <Selector>Item1.PatchDispenser2,Item1.PatchState2.Threshold,Item1.PatchState2.D0,Item1.PatchState2.Delta,Item2.TimeOnPatch2,Item2.TimeSinceLastVisit2,Item6.TotalPelletsDelivered2,Item6.TotalMissedPellets2</Selector>
+                    <Selector>Item1.PatchDispenser2,Item1.Patch2State.Threshold,Item1.Patch2State.D0,Item1.Patch2State.Delta,Item2.Patch2TimeSpent,Item2.Patch2TimeSinceLastVisit,Item6.Patch2TotalPelletsDelivered,Item6.Patch2TotalMissedPellets</Selector>
                   </Expression>
                   <Expression xsi:type="Format">
                     <Format># Patch3
@@ -1090,7 +1090,7 @@ Item6 as TotalMissedPellets3)</scr:Expression>
 **Total Pellets Delivered**: {6}  
 **Total Missed Pellets**: {7}  
 </Format>
-                    <Selector>Item1.PatchDispenser3,Item1.PatchState3.Threshold,Item1.PatchState3.D0,Item1.PatchState3.Delta,Item2.TimeOnPatch3,Item2.TimeSinceLastVisit3,Item6.TotalPelletsDelivered3,Item6.TotalMissedPellets3</Selector>
+                    <Selector>Item1.PatchDispenser3,Item1.Patch3State.Threshold,Item1.Patch3State.D0,Item1.Patch3State.Delta,Item2.Patch3TimeSpent,Item2.Patch3TimeSinceLastVisit,Item6.Patch3TotalPelletsDelivered,Item6.Patch3TotalMissedPellets</Selector>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Zip" />
@@ -1424,13 +1424,13 @@ Item2.GetTimestamp() as Timestamp)</scr:Expression>
               <Workflow>
                 <Nodes>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:HeartbeatMonitor.bonsai">
-                    <Name>Patch1</Name>
+                    <Name>Patch1Events</Name>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:HeartbeatMonitor.bonsai">
-                    <Name>Patch2</Name>
+                    <Name>Patch2Events</Name>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:HeartbeatMonitor.bonsai">
-                    <Name>Patch3</Name>
+                    <Name>Patch3Events</Name>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:HeartbeatMonitor.bonsai">
                     <Name>VideoEvents</Name>

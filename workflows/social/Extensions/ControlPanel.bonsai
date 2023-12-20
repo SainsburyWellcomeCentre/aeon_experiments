@@ -164,7 +164,7 @@
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="SubscribeSubject">
-              <Name>CurrentThresholdPatch1</Name>
+              <Name>Patch1CurrentThreshold</Name>
             </Expression>
             <Expression xsi:type="viz:RollingGraphBuilder">
               <viz:IndexSelector>PelletCount</viz:IndexSelector>
@@ -191,7 +191,7 @@
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="SubscribeSubject">
-              <Name>CurrentThresholdPatch2</Name>
+              <Name>Patch2CurrentThreshold</Name>
             </Expression>
             <Expression xsi:type="viz:RollingGraphBuilder">
               <viz:IndexSelector>PelletCount</viz:IndexSelector>
@@ -218,7 +218,7 @@
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="SubscribeSubject">
-              <Name>CurrentThresholdPatch3</Name>
+              <Name>Patch3CurrentThreshold</Name>
             </Expression>
             <Expression xsi:type="viz:RollingGraphBuilder">
               <viz:IndexSelector>PelletCount</viz:IndexSelector>
@@ -245,15 +245,15 @@
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="SubscribeSubject">
-              <Name>PelletMonitorValue1</Name>
+              <Name>Patch1PelletMonitorValue</Name>
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="SubscribeSubject">
-              <Name>PelletMonitorValue2</Name>
+              <Name>Patch2PelletMonitorValue</Name>
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="SubscribeSubject">
-              <Name>PelletMonitorValue3</Name>
+              <Name>Patch3PelletMonitorValue</Name>
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="viz:TableLayoutPanelBuilder">
@@ -539,7 +539,7 @@
         <Workflow>
           <Nodes>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PelletDeliveredPatch1</Name>
+              <Name>Patch1PelletDelivered</Name>
             </Expression>
             <Expression xsi:type="rx:Condition">
               <Name>RisingEdge</Name>
@@ -566,7 +566,7 @@
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="SubscribeSubject">
-              <Name>PelletDeliveredPatch2</Name>
+              <Name>Patch2PelletDelivered</Name>
             </Expression>
             <Expression xsi:type="rx:Condition">
               <Name>RisingEdge</Name>
@@ -593,7 +593,7 @@
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="SubscribeSubject">
-              <Name>PelletDeliveredPatch3</Name>
+              <Name>Patch3PelletDelivered</Name>
             </Expression>
             <Expression xsi:type="rx:Condition">
               <Name>RisingEdge</Name>
@@ -640,7 +640,7 @@
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="SubscribeSubject">
-              <Name>PatchState1</Name>
+              <Name>Patch1State</Name>
             </Expression>
             <Expression xsi:type="scr:ExpressionTransform">
               <scr:Expression>new(
@@ -649,7 +649,7 @@ Item2 as D0,
 Item3 as Rate)</scr:Expression>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PatchState2</Name>
+              <Name>Patch2State</Name>
             </Expression>
             <Expression xsi:type="scr:ExpressionTransform">
               <scr:Expression>new(
@@ -658,7 +658,7 @@ Item2 as D0,
 Item3 as Rate)</scr:Expression>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PatchState3</Name>
+              <Name>Patch3State</Name>
             </Expression>
             <Expression xsi:type="scr:ExpressionTransform">
               <scr:Expression>new(
@@ -760,7 +760,7 @@ P3 (rate: {8}, d0: {7}, thr: {6:0.##})</Format>
               </Workflow>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>ResetFeederPatch1</Name>
+              <Name>Patch1ResetFeeder</Name>
             </Expression>
             <Expression xsi:type="rx:Condition">
               <Name>Discount</Name>
@@ -787,11 +787,11 @@ P3 (rate: {8}, d0: {7}, thr: {6:0.##})</Format>
               </Workflow>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:TriggerPellet.bonsai">
-              <PatchEvents>Patch1</PatchEvents>
-              <DeliverPellet>DeliverPelletPatch1</DeliverPellet>
+              <PatchEvents>Patch1Events</PatchEvents>
+              <DeliverPellet>Patch1DeliverPellet</DeliverPellet>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>ManualPellet1</Name>
+              <Name>Patch1ManualPellet</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>Patch2Controller</Name>
@@ -826,7 +826,7 @@ P3 (rate: {8}, d0: {7}, thr: {6:0.##})</Format>
               </Workflow>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>ResetFeederPatch2</Name>
+              <Name>Patch2ResetFeeder</Name>
             </Expression>
             <Expression xsi:type="rx:Condition">
               <Name>Discount</Name>
@@ -853,11 +853,11 @@ P3 (rate: {8}, d0: {7}, thr: {6:0.##})</Format>
               </Workflow>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:TriggerPellet.bonsai">
-              <PatchEvents>Patch2</PatchEvents>
-              <DeliverPellet>DeliverPelletPatch2</DeliverPellet>
+              <PatchEvents>Patch2Events</PatchEvents>
+              <DeliverPellet>Patch2DeliverPellet</DeliverPellet>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>ManualPellet2</Name>
+              <Name>Patch2ManualPellet</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>Patch3Controller</Name>
@@ -892,7 +892,7 @@ P3 (rate: {8}, d0: {7}, thr: {6:0.##})</Format>
               </Workflow>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>ResetFeederPatch3</Name>
+              <Name>Patch3ResetFeeder</Name>
             </Expression>
             <Expression xsi:type="rx:Condition">
               <Name>Discount</Name>
@@ -919,11 +919,11 @@ P3 (rate: {8}, d0: {7}, thr: {6:0.##})</Format>
               </Workflow>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:TriggerPellet.bonsai">
-              <PatchEvents>Patch3</PatchEvents>
-              <DeliverPellet>DeliverPelletPatch3</DeliverPellet>
+              <PatchEvents>Patch3Events</PatchEvents>
+              <DeliverPellet>Patch3DeliverPellet</DeliverPellet>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>ManualPellet3</Name>
+              <Name>Patch3ManualPellet</Name>
             </Expression>
           </Nodes>
           <Edges>

@@ -68,28 +68,28 @@
         <Name>Heatmap</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>DistanceState1</Name>
+        <Name>Patch1DistanceState</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>DistanceState2</Name>
+        <Name>Patch2DistanceState</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>DistanceState3</Name>
+        <Name>Patch3DistanceState</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>PatchState1</Name>
+        <Name>Patch1State</Name>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>Item1</Selector>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>PatchState2</Name>
+        <Name>Patch2State</Name>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>Item1</Selector>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>PatchState3</Name>
+        <Name>Patch3State</Name>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>Item1</Selector>
@@ -110,7 +110,7 @@
         <Name>PatchState</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>PatchState1</Name>
+        <Name>Patch1State</Name>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>ToArray</Name>
@@ -179,7 +179,7 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>DeliveryCount1</Name>
+        <Name>Patch1DeliveryCount</Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:WithLatestFrom" />
@@ -191,10 +191,10 @@ int32(Item2) as PelletCount,
 Item1 as Threshold)</scr:Expression>
       </Expression>
       <Expression xsi:type="rx:PublishSubject">
-        <Name>CurrentThresholdPatch1</Name>
+        <Name>Patch1CurrentThreshold</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>PatchState2</Name>
+        <Name>Patch2State</Name>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>ToArray</Name>
@@ -263,7 +263,7 @@ Item1 as Threshold)</scr:Expression>
         </Workflow>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>DeliveryCount2</Name>
+        <Name>Patch2DeliveryCount</Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:WithLatestFrom" />
@@ -275,10 +275,10 @@ int32(Item2) as PelletCount,
 Item1 as Threshold)</scr:Expression>
       </Expression>
       <Expression xsi:type="rx:PublishSubject">
-        <Name>CurrentThresholdPatch2</Name>
+        <Name>Patch2CurrentThreshold</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>PatchState3</Name>
+        <Name>Patch3State</Name>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>ToArray</Name>
@@ -347,7 +347,7 @@ Item1 as Threshold)</scr:Expression>
         </Workflow>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>DeliveryCount3</Name>
+        <Name>Patch3DeliveryCount</Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:WithLatestFrom" />
@@ -359,55 +359,55 @@ int32(Item2) as PelletCount,
 Item1 as Threshold)</scr:Expression>
       </Expression>
       <Expression xsi:type="rx:PublishSubject">
-        <Name>CurrentThresholdPatch3</Name>
+        <Name>Patch3CurrentThreshold</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:PelletMonitor.bonsai">
-        <PelletCommand>Patch1</PelletCommand>
-        <PelletDelivered>PelletDeliveredPatch1</PelletDelivered>
+        <PelletCommand>Patch1Events</PelletCommand>
+        <PelletDelivered>Patch1PelletDelivered</PelletDelivered>
       </Expression>
       <Expression xsi:type="rx:PublishSubject">
-        <Name>PelletMonitor1</Name>
+        <Name>Patch1PelletMonitor</Name>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>Value</Selector>
       </Expression>
       <Expression xsi:type="rx:PublishSubject">
-        <Name>PelletMonitorValue1</Name>
+        <Name>Patch1PelletMonitorValue</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:PelletMonitor.bonsai">
-        <PelletCommand>Patch2</PelletCommand>
-        <PelletDelivered>PelletDeliveredPatch2</PelletDelivered>
+        <PelletCommand>Patch2Events</PelletCommand>
+        <PelletDelivered>Patch2PelletDelivered</PelletDelivered>
       </Expression>
       <Expression xsi:type="rx:BehaviorSubject">
-        <Name>PelletMonitor2</Name>
+        <Name>Patch2PelletMonitor</Name>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>Value</Selector>
       </Expression>
       <Expression xsi:type="rx:PublishSubject">
-        <Name>PelletMonitorValue2</Name>
+        <Name>Patch2PelletMonitorValue</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:PelletMonitor.bonsai">
-        <PelletCommand>Patch3</PelletCommand>
-        <PelletDelivered>PelletDeliveredPatch3</PelletDelivered>
+        <PelletCommand>Patch3Events</PelletCommand>
+        <PelletDelivered>Patch3PelletDelivered</PelletDelivered>
       </Expression>
       <Expression xsi:type="rx:BehaviorSubject">
-        <Name>PelletMonitor3</Name>
+        <Name>Patch3PelletMonitor</Name>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>Value</Selector>
       </Expression>
       <Expression xsi:type="rx:PublishSubject">
-        <Name>PelletMonitorValue3</Name>
+        <Name>Patch3PelletMonitorValue</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>TimeOnPatch1</Name>
+        <Name>Patch1TimeSpent</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>TimeOnPatch2</Name>
+        <Name>Patch2TimeSpent</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>TimeOnPatch3</Name>
+        <Name>Patch3TimeSpent</Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:CombineLatest" />
@@ -428,13 +428,13 @@ Item3 as Patch3)</scr:Expression>
         <Name>TimeSpentOnPatches</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>TimeSinceLastVisit1</Name>
+        <Name>Patch1TimeSinceLastVisit</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>TimeSinceLastVisit2</Name>
+        <Name>Patch2TimeSinceLastVisit</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>TimeSinceLastVisit3</Name>
+        <Name>Patch3TimeSinceLastVisit</Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:CombineLatest" />
@@ -455,21 +455,21 @@ Item3 as Patch3)</scr:Expression>
         <Name>TimeSinceLastVisit</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>WheelPatch1</Name>
+        <Name>Patch1WheelDisplacement</Name>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>Value</Selector>
       </Expression>
       <Expression xsi:type="rx:Accumulate" />
       <Expression xsi:type="SubscribeSubject">
-        <Name>WheelPatch2</Name>
+        <Name>Patch2WheelDisplacement</Name>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>Value</Selector>
       </Expression>
       <Expression xsi:type="rx:Accumulate" />
       <Expression xsi:type="SubscribeSubject">
-        <Name>WheelPatch3</Name>
+        <Name>Patch3WheelDisplacement</Name>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>Value</Selector>
@@ -495,17 +495,17 @@ Item3 as Patch3)</scr:Expression>
         <Name>TotalDistanceTravelled</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:TimeSpentOnWheel.bonsai">
-        <Patch>Patch1</Patch>
-        <WheelPatch>WheelPatch1</WheelPatch>
+        <Patch>Patch1Events</Patch>
+        <WheelPatch>Patch1WheelDisplacement</WheelPatch>
         <Threshold>0.0003</Threshold>
         <LowPass>1</LowPass>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RepeatEverySubject.bonsai" />
       <Expression xsi:type="rx:BehaviorSubject">
-        <Name>TimeOnPatch1</Name>
+        <Name>Patch1TimeSpent</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>TimeOnPatch1</Name>
+        <Name>Patch1TimeSpent</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RepeatEverySubject.bonsai" />
       <Expression xsi:type="Combinator">
@@ -513,20 +513,20 @@ Item3 as Patch3)</scr:Expression>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimeSinceLastEvent.bonsai" />
       <Expression xsi:type="rx:BehaviorSubject">
-        <Name>TimeSinceLastVisit1</Name>
+        <Name>Patch1TimeSinceLastVisit</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:TimeSpentOnWheel.bonsai">
-        <Patch>Patch2</Patch>
-        <WheelPatch>WheelPatch2</WheelPatch>
+        <Patch>Patch2Events</Patch>
+        <WheelPatch>Patch2WheelDisplacement</WheelPatch>
         <Threshold>0.0003</Threshold>
         <LowPass>1</LowPass>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RepeatEverySubject.bonsai" />
       <Expression xsi:type="rx:BehaviorSubject">
-        <Name>TimeOnPatch2</Name>
+        <Name>Patch2TimeSpent</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>TimeOnPatch2</Name>
+        <Name>Patch2TimeSpent</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RepeatEverySubject.bonsai" />
       <Expression xsi:type="Combinator">
@@ -534,20 +534,20 @@ Item3 as Patch3)</scr:Expression>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimeSinceLastEvent.bonsai" />
       <Expression xsi:type="rx:BehaviorSubject">
-        <Name>TimeSinceLastVisit2</Name>
+        <Name>Patch2TimeSinceLastVisit</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:TimeSpentOnWheel.bonsai">
-        <Patch>Patch3</Patch>
-        <WheelPatch>WheelPatch3</WheelPatch>
+        <Patch>Patch3Events</Patch>
+        <WheelPatch>Patch3WheelDisplacement</WheelPatch>
         <Threshold>0.0003</Threshold>
         <LowPass>1</LowPass>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RepeatEverySubject.bonsai" />
       <Expression xsi:type="rx:BehaviorSubject">
-        <Name>TimeOnPatch3</Name>
+        <Name>Patch3TimeSpent</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>TimeOnPatch3</Name>
+        <Name>Patch3TimeSpent</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RepeatEverySubject.bonsai" />
       <Expression xsi:type="Combinator">
@@ -555,7 +555,7 @@ Item3 as Patch3)</scr:Expression>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimeSinceLastEvent.bonsai" />
       <Expression xsi:type="rx:BehaviorSubject">
-        <Name>TimeSinceLastVisit3</Name>
+        <Name>Patch3TimeSinceLastVisit</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\ActiveSubjectPoses.bonsai" />
       <Expression xsi:type="rx:BehaviorSubject">
@@ -1152,88 +1152,88 @@ Item1.Value as CurrentWeight,
         <Name>PercentWeightLoss</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:PelletMissed.bonsai">
-        <PelletDelivered>PelletDeliveredPatch1</PelletDelivered>
+        <PelletDelivered>Patch1PelletDelivered</PelletDelivered>
         <TimeToMiss>PT2S</TimeToMiss>
         <DistanceToMiss>20</DistanceToMiss>
         <TimeInChute>PT0S</TimeInChute>
-        <WheelDisplacement>WheelPatch1</WheelDisplacement>
+        <WheelDisplacement>Patch1WheelDisplacement</WheelDisplacement>
       </Expression>
       <Expression xsi:type="MulticastSubject">
-        <Name>MissedPellets1</Name>
+        <Name>Patch1MissedPellets</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:PelletMissed.bonsai">
-        <PelletDelivered>PelletDeliveredPatch2</PelletDelivered>
+        <PelletDelivered>Patch2PelletDelivered</PelletDelivered>
         <TimeToMiss>PT2S</TimeToMiss>
         <DistanceToMiss>20</DistanceToMiss>
         <TimeInChute>PT0S</TimeInChute>
-        <WheelDisplacement>WheelPatch2</WheelDisplacement>
+        <WheelDisplacement>Patch2WheelDisplacement</WheelDisplacement>
       </Expression>
       <Expression xsi:type="MulticastSubject">
-        <Name>MissedPellets2</Name>
+        <Name>Patch2MissedPellets</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:PelletMissed.bonsai">
-        <PelletDelivered>PelletDeliveredPatch3</PelletDelivered>
+        <PelletDelivered>Patch3PelletDelivered</PelletDelivered>
         <TimeToMiss>PT2S</TimeToMiss>
         <DistanceToMiss>20</DistanceToMiss>
         <TimeInChute>PT0S</TimeInChute>
-        <WheelDisplacement>WheelPatch3</WheelDisplacement>
+        <WheelDisplacement>Patch3WheelDisplacement</WheelDisplacement>
       </Expression>
       <Expression xsi:type="MulticastSubject">
-        <Name>MissedPellets3</Name>
+        <Name>Patch3MissedPellets</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>PelletDeliveredPatch1</Name>
+        <Name>Patch1PelletDelivered</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:EnvironmentCondition.bonsai">
         <Value>Experiment</Value>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\PersistentCounter.bonsai">
-        <Name>TotalPelletsDelivered1</Name>
+        <Name>Patch1TotalPelletsDelivered</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>PelletDeliveredPatch2</Name>
+        <Name>Patch2PelletDelivered</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:EnvironmentCondition.bonsai">
         <Value>Experiment</Value>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\PersistentCounter.bonsai">
-        <Name>TotalPelletsDelivered2</Name>
+        <Name>Patch2TotalPelletsDelivered</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>PelletDeliveredPatch3</Name>
+        <Name>Patch3PelletDelivered</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:EnvironmentCondition.bonsai">
         <Value>Experiment</Value>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\PersistentCounter.bonsai">
-        <Name>TotalPelletsDelivered3</Name>
+        <Name>Patch3TotalPelletsDelivered</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>MissedPellets1</Name>
+        <Name>Patch1MissedPellets</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:EnvironmentCondition.bonsai">
         <Value>Experiment</Value>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\PersistentCounter.bonsai">
-        <Name>TotalMissedPellets1</Name>
+        <Name>Patch1TotalMissedPellets</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>MissedPellets2</Name>
+        <Name>Patch2MissedPellets</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:EnvironmentCondition.bonsai">
         <Value>Experiment</Value>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\PersistentCounter.bonsai">
-        <Name>TotalMissedPellets2</Name>
+        <Name>Patch2TotalMissedPellets</Name>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>MissedPellets3</Name>
+        <Name>Patch3MissedPellets</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:EnvironmentCondition.bonsai">
         <Value>Experiment</Value>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\PersistentCounter.bonsai">
-        <Name>TotalMissedPellets3</Name>
+        <Name>Patch3TotalMissedPellets</Name>
       </Expression>
     </Nodes>
     <Edges>

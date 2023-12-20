@@ -368,16 +368,16 @@
                           <Property Name="Count" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:UndergroundFeeder.bonsai">
-                          <PatchEvents>Patch1</PatchEvents>
+                          <PatchEvents>Patch1Events</PatchEvents>
                           <SampleRate>SampleRate500Hz</SampleRate>
-                          <DeliverPellet>DeliverPelletPatch1</DeliverPellet>
-                          <PelletDelivered>PelletDeliveredPatch1</PelletDelivered>
+                          <DeliverPellet>Patch1DeliverPellet</DeliverPellet>
+                          <PelletDelivered>Patch1PelletDelivered</PelletDelivered>
                           <DueTime>PT1S</DueTime>
                           <Count>2</Count>
-                          <ResetFeeder>ResetFeederPatch1</ResetFeeder>
+                          <ResetFeeder>Patch1ResetFeeder</ResetFeeder>
                           <PortName>COM3</PortName>
                           <Radius>-4</Radius>
-                          <WheelDisplacement>WheelPatch1</WheelDisplacement>
+                          <WheelDisplacement>Patch1WheelDisplacement</WheelDisplacement>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -404,16 +404,16 @@
                           <Property Name="Count" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:UndergroundFeeder.bonsai">
-                          <PatchEvents>Patch2</PatchEvents>
+                          <PatchEvents>Patch2Events</PatchEvents>
                           <SampleRate>SampleRate500Hz</SampleRate>
-                          <DeliverPellet>DeliverPelletPatch2</DeliverPellet>
-                          <PelletDelivered>PelletDeliveredPatch2</PelletDelivered>
+                          <DeliverPellet>Patch2DeliverPellet</DeliverPellet>
+                          <PelletDelivered>Patch2PelletDelivered</PelletDelivered>
                           <DueTime>PT1S</DueTime>
                           <Count>2</Count>
-                          <ResetFeeder>ResetFeederPatch2</ResetFeeder>
+                          <ResetFeeder>Patch2ResetFeeder</ResetFeeder>
                           <PortName>COM4</PortName>
                           <Radius>-4</Radius>
-                          <WheelDisplacement>WheelPatch2</WheelDisplacement>
+                          <WheelDisplacement>Patch2WheelDisplacement</WheelDisplacement>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -440,16 +440,16 @@
                           <Property Name="Count" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:UndergroundFeeder.bonsai">
-                          <PatchEvents>Patch3</PatchEvents>
+                          <PatchEvents>Patch3Events</PatchEvents>
                           <SampleRate>SampleRate500Hz</SampleRate>
-                          <DeliverPellet>DeliverPelletPatch3</DeliverPellet>
-                          <PelletDelivered>PelletDeliveredPatch3</PelletDelivered>
+                          <DeliverPellet>Patch3DeliverPellet</DeliverPellet>
+                          <PelletDelivered>Patch3PelletDelivered</PelletDelivered>
                           <DueTime>PT1S</DueTime>
                           <Count>2</Count>
-                          <ResetFeeder>ResetFeederPatch3</ResetFeeder>
+                          <ResetFeeder>Patch3ResetFeeder</ResetFeeder>
                           <PortName>COM16</PortName>
                           <Radius>-4</Radius>
-                          <WheelDisplacement>WheelPatch3</WheelDisplacement>
+                          <WheelDisplacement>Patch3WheelDisplacement</WheelDisplacement>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -498,12 +498,12 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
                           <HardwareNotificationsState>None</HardwareNotificationsState>
                           <PortName>COM14</PortName>
-                          <RfidEvents>RfidEventsNest1</RfidEvents>
+                          <RfidEvents>NestRfid1Events</RfidEvents>
                           <Location>
                             <X>0</X>
                             <Y>0</Y>
                           </Location>
-                          <InboundRfidDetected>InboundRfidDetectedNest1</InboundRfidDetected>
+                          <InboundRfidDetected>NestRfid1InboundDetected</InboundRfidDetected>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -526,12 +526,12 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
                           <HardwareNotificationsState>None</HardwareNotificationsState>
                           <PortName>COM15</PortName>
-                          <RfidEvents>RfidEventsNest2</RfidEvents>
+                          <RfidEvents>NestRfid2Events</RfidEvents>
                           <Location>
                             <X>0</X>
                             <Y>0</Y>
                           </Location>
-                          <InboundRfidDetected>InboundRfidDetectedNest2</InboundRfidDetected>
+                          <InboundRfidDetected>NestRfid2InboundDetected</InboundRfidDetected>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -554,12 +554,12 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
                           <HardwareNotificationsState>None</HardwareNotificationsState>
                           <PortName>COM17</PortName>
-                          <RfidEvents>RfidEventsGate</RfidEvents>
+                          <RfidEvents>GateRfidEvents</RfidEvents>
                           <Location>
                             <X>0</X>
                             <Y>0</Y>
                           </Location>
-                          <InboundRfidDetected>InboundRfidDetectedGate</InboundRfidDetected>
+                          <InboundRfidDetected>GateRfidInboundDetected</InboundRfidDetected>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -582,12 +582,12 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
                           <HardwareNotificationsState>None</HardwareNotificationsState>
                           <PortName>COM12</PortName>
-                          <RfidEvents>RfidEventsPatch1</RfidEvents>
+                          <RfidEvents>Patch1RfidEvents</RfidEvents>
                           <Location>
                             <X>0</X>
                             <Y>0</Y>
                           </Location>
-                          <InboundRfidDetected>InboundRfidDetectedPatch1</InboundRfidDetected>
+                          <InboundRfidDetected>Patch1RfidInboundDetected</InboundRfidDetected>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -610,12 +610,12 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
                           <HardwareNotificationsState>None</HardwareNotificationsState>
                           <PortName>COM13</PortName>
-                          <RfidEvents>RfidEventsPatch2</RfidEvents>
+                          <RfidEvents>Patch2RfidEvents</RfidEvents>
                           <Location>
                             <X>0</X>
                             <Y>0</Y>
                           </Location>
-                          <InboundRfidDetected>InboundRfidDetectedPatch2</InboundRfidDetected>
+                          <InboundRfidDetected>Patch2RfidInboundDetected</InboundRfidDetected>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -638,12 +638,12 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
                           <HardwareNotificationsState>None</HardwareNotificationsState>
                           <PortName>COM9</PortName>
-                          <RfidEvents>RfidEventsPatch3</RfidEvents>
+                          <RfidEvents>Patch3RfidEvents</RfidEvents>
                           <Location>
                             <X>0</X>
                             <Y>0</Y>
                           </Location>
-                          <InboundRfidDetected>InboundRfidDetectedPatch3</InboundRfidDetected>
+                          <InboundRfidDetected>Patch3RfidInboundDetected</InboundRfidDetected>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -1188,13 +1188,13 @@
               <FrameRate>125</FrameRate>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>Patch1</Name>
+              <Name>Patch1Events</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>Patch1Dispenser</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Bonsai.Harp:WithLatestTimestamp.bonsai">
-              <Name>Patch1</Name>
+              <Name>Patch1Events</Name>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="aeon-frg:FormatDispenserState">
@@ -1202,7 +1202,7 @@
               </Combinator>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>ManualPellet1</Name>
+              <Name>Patch1ManualPellet</Name>
             </Expression>
             <Expression xsi:type="harp:Format">
               <harp:MessageType>Write</harp:MessageType>
@@ -1212,7 +1212,7 @@
               </harp:Register>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>MissedPellets1</Name>
+              <Name>Patch1MissedPellets</Name>
             </Expression>
             <Expression xsi:type="harp:Format">
               <harp:MessageType>Event</harp:MessageType>
@@ -1230,7 +1230,7 @@
               <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PatchState1</Name>
+              <Name>Patch1State</Name>
             </Expression>
             <Expression xsi:type="scr:ExpressionTransform">
               <scr:Expression>new(
@@ -1239,7 +1239,7 @@ Item2 as D1,
 Item3 as Delta)</scr:Expression>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>Patch1</Name>
+              <Name>Patch1Events</Name>
             </Expression>
             <Expression xsi:type="harp:Parse">
               <harp:Register xsi:type="harp:ParseMessagePayload">
@@ -1257,13 +1257,13 @@ Item3 as Delta)</scr:Expression>
               <Selector xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>Patch2</Name>
+              <Name>Patch2Events</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>Patch2Dispenser</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Bonsai.Harp:WithLatestTimestamp.bonsai">
-              <Name>Patch2</Name>
+              <Name>Patch2Events</Name>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="aeon-frg:FormatDispenserState">
@@ -1271,7 +1271,7 @@ Item3 as Delta)</scr:Expression>
               </Combinator>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>ManualPellet2</Name>
+              <Name>Patch2ManualPellet</Name>
             </Expression>
             <Expression xsi:type="harp:Format">
               <harp:MessageType>Write</harp:MessageType>
@@ -1281,7 +1281,7 @@ Item3 as Delta)</scr:Expression>
               </harp:Register>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>MissedPellets2</Name>
+              <Name>Patch2MissedPellets</Name>
             </Expression>
             <Expression xsi:type="harp:Format">
               <harp:MessageType>Event</harp:MessageType>
@@ -1299,7 +1299,7 @@ Item3 as Delta)</scr:Expression>
               <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PatchState2</Name>
+              <Name>Patch2State</Name>
             </Expression>
             <Expression xsi:type="scr:ExpressionTransform">
               <scr:Expression>new(
@@ -1308,7 +1308,7 @@ Item2 as D1,
 Item3 as Delta)</scr:Expression>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>Patch2</Name>
+              <Name>Patch2Events</Name>
             </Expression>
             <Expression xsi:type="harp:Parse">
               <harp:Register xsi:type="harp:ParseMessagePayload">
@@ -1326,13 +1326,13 @@ Item3 as Delta)</scr:Expression>
               <Selector xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>Patch3</Name>
+              <Name>Patch3Events</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>Patch3Dispenser</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Bonsai.Harp:WithLatestTimestamp.bonsai">
-              <Name>Patch3</Name>
+              <Name>Patch3Events</Name>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="aeon-frg:FormatDispenserState">
@@ -1340,7 +1340,7 @@ Item3 as Delta)</scr:Expression>
               </Combinator>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>ManualPellet3</Name>
+              <Name>Patch3ManualPellet</Name>
             </Expression>
             <Expression xsi:type="harp:Format">
               <harp:MessageType>Write</harp:MessageType>
@@ -1350,7 +1350,7 @@ Item3 as Delta)</scr:Expression>
               </harp:Register>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>MissedPellets3</Name>
+              <Name>Patch3MissedPellets</Name>
             </Expression>
             <Expression xsi:type="harp:Format">
               <harp:MessageType>Event</harp:MessageType>
@@ -1368,7 +1368,7 @@ Item3 as Delta)</scr:Expression>
               <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>PatchState3</Name>
+              <Name>Patch3State</Name>
             </Expression>
             <Expression xsi:type="scr:ExpressionTransform">
               <scr:Expression>new(
@@ -1377,7 +1377,7 @@ Item2 as D1,
 Item3 as Delta)</scr:Expression>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>Patch3</Name>
+              <Name>Patch3Events</Name>
             </Expression>
             <Expression xsi:type="harp:Parse">
               <harp:Register xsi:type="harp:ParseMessagePayload">
@@ -1404,7 +1404,7 @@ Item2 as BlockThreshold,
 Item3 as BlockDueTime)</scr:Expression>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Bonsai.Harp:WithLatestTimestamp.bonsai">
-              <Name>Patch1</Name>
+              <Name>Patch1Events</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
               <Heartbeats />
@@ -1522,50 +1522,50 @@ new(Value.Id as Id,
               <Selector>Seconds,Value.Id,Value.Event,Value.Value</Selector>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>RfidEventsNest1</Name>
+              <Name>NestRfid1Events</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>RfidEventsNest1</LogName>
+              <LogName>NestRfid1Events</LogName>
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>RfidEventsNest2</Name>
+              <Name>NestRfid2Events</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>RfidEventsNest2</LogName>
+              <LogName>NestRfid2Events</LogName>
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>RfidEventsGate</Name>
+              <Name>GateRfidEvents</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>RfidEventsGate</LogName>
+              <LogName>GateRfidEvents</LogName>
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>RfidEventsPatch1</Name>
+              <Name>Patch1RfidEvents</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>RfidEventsPatch1</LogName>
+              <LogName>Patch1RfidEvents</LogName>
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>RfidEventsPatch2</Name>
+              <Name>Patch2RfidEvents</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>RfidEventsPatch2</LogName>
+              <LogName>Patch2RfidEvents</LogName>
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>RfidEventsPatch3</Name>
+              <Name>Patch3RfidEvents</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>RfidEventsPatch3</LogName>
+              <LogName>Patch3RfidEvents</LogName>
               <Heartbeats />
               <ClosingDuration xsi:nil="true" />
             </Expression>

@@ -214,14 +214,14 @@
                           <Property Name="TriggerSource" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:VirtualFeeder.bonsai">
-                          <PatchEvents>Patch1</PatchEvents>
+                          <PatchEvents>Patch1Events</PatchEvents>
                           <ActivationKey>D1</ActivationKey>
                           <TickScale>-0.05</TickScale>
                           <TriggerSource>PatchTrigger</TriggerSource>
-                          <WheelDisplacement>WheelPatch1</WheelDisplacement>
-                          <DeliverPellet>DeliverPelletPatch1</DeliverPellet>
-                          <PelletDelivered>PelletDeliveredPatch1</PelletDelivered>
-                          <ResetFeeder>ResetFeederPatch1</ResetFeeder>
+                          <WheelDisplacement>Patch1WheelDisplacement</WheelDisplacement>
+                          <DeliverPellet>Patch1DeliverPellet</DeliverPellet>
+                          <PelletDelivered>Patch1PelletDelivered</PelletDelivered>
+                          <ResetFeeder>Patch1ResetFeeder</ResetFeeder>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -244,14 +244,14 @@
                           <Property Name="TriggerSource" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:VirtualFeeder.bonsai">
-                          <PatchEvents>Patch2</PatchEvents>
+                          <PatchEvents>Patch2Events</PatchEvents>
                           <ActivationKey>D2</ActivationKey>
                           <TickScale>-0.05</TickScale>
                           <TriggerSource>PatchTrigger</TriggerSource>
-                          <WheelDisplacement>WheelPatch2</WheelDisplacement>
-                          <DeliverPellet>DeliverPelletPatch2</DeliverPellet>
-                          <PelletDelivered>PelletDeliveredPatch2</PelletDelivered>
-                          <ResetFeeder>ResetFeederPatch2</ResetFeeder>
+                          <WheelDisplacement>Patch2WheelDisplacement</WheelDisplacement>
+                          <DeliverPellet>Patch2DeliverPellet</DeliverPellet>
+                          <PelletDelivered>Patch2PelletDelivered</PelletDelivered>
+                          <ResetFeeder>Patch2ResetFeeder</ResetFeeder>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -274,14 +274,14 @@
                           <Property Name="TriggerSource" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:VirtualFeeder.bonsai">
-                          <PatchEvents>Patch3</PatchEvents>
+                          <PatchEvents>Patch3Events</PatchEvents>
                           <ActivationKey>D3</ActivationKey>
                           <TickScale>-0.05</TickScale>
                           <TriggerSource>PatchTrigger</TriggerSource>
-                          <WheelDisplacement>WheelPatch3</WheelDisplacement>
-                          <DeliverPellet>DeliverPelletPatch3</DeliverPellet>
-                          <PelletDelivered>PelletDeliveredPatch3</PelletDelivered>
-                          <ResetFeeder>ResetFeederPatch3</ResetFeeder>
+                          <WheelDisplacement>Patch3WheelDisplacement</WheelDisplacement>
+                          <DeliverPellet>Patch3DeliverPellet</DeliverPellet>
+                          <PelletDelivered>Patch3PelletDelivered</PelletDelivered>
+                          <ResetFeeder>Patch3ResetFeeder</ResetFeeder>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
