@@ -14,6 +14,8 @@ blocks:
     weight: 1
     minPelletCount: 5
     maxPelletCount: 15
+    minDueTime: 60
+    maxDueTime: 180
     patches:
       patch1: { distributionRef: easy }
       patch2: { distributionRef: easy }
@@ -23,31 +25,6 @@ blocks:
       patch1: { distributionRef: easy }
       patch2: { distributionRef: medium }
       patch3: { distributionRef: hard }
-  - <<: *baseParameters
-    patches:
-      patch1: { distributionRef: easy }
-      patch2: { distributionRef: hard }
-      patch3: { distributionRef: medium }
-  - <<: *baseParameters
-    patches:
-      patch1: { distributionRef: medium }
-      patch2: { distributionRef: easy }
-      patch3: { distributionRef: hard }
-  - <<: *baseParameters
-    patches:
-      patch1: { distributionRef: medium }
-      patch2: { distributionRef: hard }
-      patch3: { distributionRef: easy }
-  - <<: *baseParameters
-    patches:
-      patch1: { distributionRef: hard }
-      patch2: { distributionRef: easy }
-      patch3: { distributionRef: medium }
-  - <<: *baseParameters
-    patches:
-      patch1: { distributionRef: hard }
-      patch2: { distributionRef: medium }
-      patch3: { distributionRef: easy }
   - <<: *baseParameters
     patches:
       patch1: { distributionRef: hard }

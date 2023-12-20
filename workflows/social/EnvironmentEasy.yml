@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=./Extensions/Environment.json
+distributions:
+  easy:
+    rate: 0.01
+    offset: 75
+blocks:
+  - weight: 1
+    patches:
+      patch1: { distributionRef: easy }
+      patch2: { distributionRef: easy }
+      patch3: { distributionRef: easy }
