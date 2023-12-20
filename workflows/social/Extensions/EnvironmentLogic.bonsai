@@ -84,7 +84,7 @@ Item3 as BlockDueTime)</scr:Expression>
               <Name>BlockParameters</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>ThresholdCrossingPatch1</Name>
+              <Name>Patch1ThresholdCrossing</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:EnvironmentCondition.bonsai">
               <Value>Experiment</Value>
@@ -95,7 +95,7 @@ Item3 as BlockDueTime)</scr:Expression>
               </Combinator>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>ThresholdCrossingPatch2</Name>
+              <Name>Patch2ThresholdCrossing</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:EnvironmentCondition.bonsai">
               <Value>Experiment</Value>
@@ -106,7 +106,7 @@ Item3 as BlockDueTime)</scr:Expression>
               </Combinator>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>ThresholdCrossingPatch3</Name>
+              <Name>Patch3ThresholdCrossing</Name>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:EnvironmentCondition.bonsai">
               <Value>Experiment</Value>
@@ -553,7 +553,7 @@ RatePatch1 as Rate)</scr:Expression>
                     <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
                   </Expression>
                   <Expression xsi:type="MulticastSubject">
-                    <Name>PatchState1</Name>
+                    <Name>Patch1State</Name>
                   </Expression>
                   <Expression xsi:type="scr:ExpressionTransform">
                     <scr:Expression>new(
@@ -566,7 +566,7 @@ RatePatch2 as Rate)</scr:Expression>
                     <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
                   </Expression>
                   <Expression xsi:type="MulticastSubject">
-                    <Name>PatchState2</Name>
+                    <Name>Patch2State</Name>
                   </Expression>
                   <Expression xsi:type="scr:ExpressionTransform">
                     <scr:Expression>new(
@@ -579,7 +579,7 @@ RatePatch3 as Rate)</scr:Expression>
                     <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
                   </Expression>
                   <Expression xsi:type="MulticastSubject">
-                    <Name>PatchState3</Name>
+                    <Name>Patch3State</Name>
                   </Expression>
                 </Nodes>
                 <Edges>
@@ -654,7 +654,7 @@ RatePatch3 as Rate)</scr:Expression>
         <Workflow>
           <Nodes>
             <Expression xsi:type="SubscribeSubject">
-              <Name>WheelPatch1</Name>
+              <Name>Patch1WheelDisplacement</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Value</Selector>
@@ -664,20 +664,20 @@ RatePatch3 as Rate)</scr:Expression>
               <Property Name="Rate" DisplayName="RatePatch1" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
-              <Name>DistanceState1</Name>
+              <Name>Patch1DistanceState</Name>
               <DistanceThreshold>75</DistanceThreshold>
               <Rate>0.01</Rate>
-              <DeliveryCount>DeliveryCount1</DeliveryCount>
-              <PatchState>PatchState1</PatchState>
+              <DeliveryCount>Patch1DeliveryCount</DeliveryCount>
+              <PatchState>Patch1State</PatchState>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>DeliverPelletPatch1</Name>
+              <Name>Patch1DeliverPellet</Name>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>ThresholdCrossingPatch1</Name>
+              <Name>Patch1ThresholdCrossing</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>WheelPatch2</Name>
+              <Name>Patch2WheelDisplacement</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Value</Selector>
@@ -687,20 +687,20 @@ RatePatch3 as Rate)</scr:Expression>
               <Property Name="Rate" DisplayName="RatePatch2" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
-              <Name>DistanceState2</Name>
+              <Name>Patch2DistanceState</Name>
               <DistanceThreshold>75</DistanceThreshold>
               <Rate>0.01</Rate>
-              <DeliveryCount>DeliveryCount2</DeliveryCount>
-              <PatchState>PatchState2</PatchState>
+              <DeliveryCount>Patch2DeliveryCount</DeliveryCount>
+              <PatchState>Patch2State</PatchState>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>DeliverPelletPatch2</Name>
+              <Name>Patch2DeliverPellet</Name>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>ThresholdCrossingPatch2</Name>
+              <Name>Patch2ThresholdCrossing</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>WheelPatch3</Name>
+              <Name>Patch3WheelDisplacement</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Value</Selector>
@@ -710,17 +710,17 @@ RatePatch3 as Rate)</scr:Expression>
               <Property Name="Rate" DisplayName="RatePatch3" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
-              <Name>DistanceState3</Name>
+              <Name>Patch3DistanceState</Name>
               <DistanceThreshold>75</DistanceThreshold>
               <Rate>0.01</Rate>
-              <DeliveryCount>DeliveryCount3</DeliveryCount>
-              <PatchState>PatchState3</PatchState>
+              <DeliveryCount>Patch3DeliveryCount</DeliveryCount>
+              <PatchState>Patch3State</PatchState>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>DeliverPelletPatch3</Name>
+              <Name>Patch3DeliverPellet</Name>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>ThresholdCrossingPatch3</Name>
+              <Name>Patch3ThresholdCrossing</Name>
             </Expression>
           </Nodes>
           <Edges>
@@ -750,13 +750,13 @@ RatePatch3 as Rate)</scr:Expression>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RepeatEverySubject.bonsai" />
       <Expression xsi:type="rx:PublishSubject" TypeArguments="sys:Int32">
-        <rx:Name>ThresholdCrossingPatch1</rx:Name>
+        <rx:Name>Patch1ThresholdCrossing</rx:Name>
       </Expression>
       <Expression xsi:type="rx:PublishSubject" TypeArguments="sys:Int32">
-        <rx:Name>ThresholdCrossingPatch2</rx:Name>
+        <rx:Name>Patch2ThresholdCrossing</rx:Name>
       </Expression>
       <Expression xsi:type="rx:PublishSubject" TypeArguments="sys:Int32">
-        <rx:Name>ThresholdCrossingPatch3</rx:Name>
+        <rx:Name>Patch3ThresholdCrossing</rx:Name>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>UpdatePelletCount</Name>

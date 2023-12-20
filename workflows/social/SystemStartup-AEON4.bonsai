@@ -102,14 +102,14 @@
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:UndergroundFeeder.bonsai">
                     <PatchEvents>Patch1</PatchEvents>
                     <SampleRate>SampleRate500Hz</SampleRate>
-                    <DeliverPellet>DeliverPelletPatch1</DeliverPellet>
-                    <PelletDelivered>PelletDeliveredPatch1</PelletDelivered>
+                    <DeliverPellet>Patch1DeliverPellet</DeliverPellet>
+                    <PelletDelivered>Patch1PelletDelivered</PelletDelivered>
                     <DueTime>PT1S</DueTime>
                     <Count>2</Count>
-                    <ResetFeeder>ResetFeederPatch1</ResetFeeder>
+                    <ResetFeeder>Patch1ResetFeeder</ResetFeeder>
                     <PortName>COM3</PortName>
                     <Radius>-4</Radius>
-                    <WheelDisplacement>WheelPatch1</WheelDisplacement>
+                    <WheelDisplacement>Patch1WheelDisplacement</WheelDisplacement>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
@@ -138,14 +138,14 @@
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:UndergroundFeeder.bonsai">
                     <PatchEvents>Patch2</PatchEvents>
                     <SampleRate>SampleRate500Hz</SampleRate>
-                    <DeliverPellet>DeliverPelletPatch2</DeliverPellet>
-                    <PelletDelivered>PelletDeliveredPatch2</PelletDelivered>
+                    <DeliverPellet>Patch2DeliverPellet</DeliverPellet>
+                    <PelletDelivered>Patch2PelletDelivered</PelletDelivered>
                     <DueTime>PT1S</DueTime>
                     <Count>2</Count>
-                    <ResetFeeder>ResetFeederPatch2</ResetFeeder>
+                    <ResetFeeder>Patch2ResetFeeder</ResetFeeder>
                     <PortName>COM4</PortName>
                     <Radius>-4</Radius>
-                    <WheelDisplacement>WheelPatch2</WheelDisplacement>
+                    <WheelDisplacement>Patch2WheelDisplacement</WheelDisplacement>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
@@ -174,14 +174,14 @@
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:UndergroundFeeder.bonsai">
                     <PatchEvents>Patch3</PatchEvents>
                     <SampleRate>SampleRate500Hz</SampleRate>
-                    <DeliverPellet>DeliverPelletPatch3</DeliverPellet>
-                    <PelletDelivered>PelletDeliveredPatch3</PelletDelivered>
+                    <DeliverPellet>Patch3DeliverPellet</DeliverPellet>
+                    <PelletDelivered>Patch3PelletDelivered</PelletDelivered>
                     <DueTime>PT1S</DueTime>
                     <Count>2</Count>
-                    <ResetFeeder>ResetFeederPatch3</ResetFeeder>
+                    <ResetFeeder>Patch3ResetFeeder</ResetFeeder>
                     <PortName>COM16</PortName>
                     <Radius>-4</Radius>
-                    <WheelDisplacement>WheelPatch3</WheelDisplacement>
+                    <WheelDisplacement>Patch3WheelDisplacement</WheelDisplacement>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>

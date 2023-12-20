@@ -260,8 +260,8 @@
                       <MatVisualizer>
                         <XMin>0</XMin>
                         <XMax>1500</XMax>
-                        <YMin>100</YMin>
-                        <YMax>240</YMax>
+                        <YMin>-1</YMin>
+                        <YMax>1</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
                         <SelectedPage>0</SelectedPage>
@@ -279,8 +279,8 @@
                       <MatVisualizer>
                         <XMin>0</XMin>
                         <XMax>1500</XMax>
-                        <YMin>150</YMin>
-                        <YMax>449.99999999999994</YMax>
+                        <YMin>-1</YMin>
+                        <YMax>1</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
                         <SelectedPage>0</SelectedPage>
@@ -298,8 +298,8 @@
                       <MatVisualizer>
                         <XMin>0</XMin>
                         <XMax>1500</XMax>
-                        <YMin>520</YMin>
-                        <YMax>640</YMax>
+                        <YMin>-1</YMin>
+                        <YMax>1</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
                         <SelectedPage>0</SelectedPage>
@@ -316,8 +316,8 @@
                     <VisualizerSettings>
                       <RollingGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>200</Min>
-                        <Max>1200</Max>
+                        <Min>-1</Min>
+                        <Max>1</Max>
                         <AutoScale>true</AutoScale>
                       </RollingGraphVisualizer>
                     </VisualizerSettings>
@@ -327,8 +327,8 @@
                     <VisualizerSettings>
                       <RollingGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>0</Min>
-                        <Max>500</Max>
+                        <Min>-1</Min>
+                        <Max>1</Max>
                         <AutoScale>true</AutoScale>
                       </RollingGraphVisualizer>
                     </VisualizerSettings>
@@ -338,8 +338,8 @@
                     <VisualizerSettings>
                       <RollingGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>100</Min>
-                        <Max>700</Max>
+                        <Min>-1</Min>
+                        <Max>1</Max>
                         <AutoScale>true</AutoScale>
                       </RollingGraphVisualizer>
                     </VisualizerSettings>
@@ -376,9 +376,22 @@
               <VisualizerSettings>
                 <TableLayoutPanelVisualizer>
                   <MashupSettings>
-                    <VisualizerTypeName>Aeon.Environment.ExternalizedPropertiesVisualizer</VisualizerTypeName>
+                    <VisualizerTypeName>Bonsai.Design.Visualizers.TableLayoutPanelVisualizer</VisualizerTypeName>
                     <VisualizerSettings>
-                      <ExternalizedPropertiesVisualizer />
+                      <TableLayoutPanelVisualizer>
+                        <MashupSettings>
+                          <VisualizerTypeName>Aeon.Environment.ExternalizedPropertiesVisualizer</VisualizerTypeName>
+                          <VisualizerSettings>
+                            <ExternalizedPropertiesVisualizer />
+                          </VisualizerSettings>
+                        </MashupSettings>
+                        <MashupSettings>
+                          <VisualizerTypeName>Aeon.Environment.ButtonSourceVisualizer</VisualizerTypeName>
+                          <VisualizerSettings>
+                            <ButtonSourceVisualizer />
+                          </VisualizerSettings>
+                        </MashupSettings>
+                      </TableLayoutPanelVisualizer>
                     </VisualizerSettings>
                   </MashupSettings>
                   <MashupSettings>
@@ -408,8 +421,8 @@
                     <VisualizerSettings>
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>0</Min>
-                        <Max>1400</Max>
+                        <Min>-1</Min>
+                        <Max>1</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>

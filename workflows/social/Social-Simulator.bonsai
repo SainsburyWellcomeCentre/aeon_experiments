@@ -4,9 +4,6 @@
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns:beh="clr-namespace:Harp.Behavior;assembly=Harp.Behavior"
-                 xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
-                 xmlns:aeon-env="clr-namespace:Aeon.Environment;assembly=Aeon.Environment"
-                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns:p1="clr-namespace:System.Reactive.Linq;assembly=System.Reactive.Interfaces"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
                  xmlns:sleap="clr-namespace:Bonsai.Sleap;assembly=Bonsai.Sleap"
@@ -214,14 +211,14 @@
                           <Property Name="TriggerSource" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:VirtualFeeder.bonsai">
-                          <PatchEvents>Patch1</PatchEvents>
+                          <PatchEvents>Patch1Events</PatchEvents>
                           <ActivationKey>D1</ActivationKey>
                           <TickScale>-0.05</TickScale>
                           <TriggerSource>PatchTrigger</TriggerSource>
-                          <WheelDisplacement>WheelPatch1</WheelDisplacement>
-                          <DeliverPellet>DeliverPelletPatch1</DeliverPellet>
-                          <PelletDelivered>PelletDeliveredPatch1</PelletDelivered>
-                          <ResetFeeder>ResetFeederPatch1</ResetFeeder>
+                          <WheelDisplacement>Patch1WheelDisplacement</WheelDisplacement>
+                          <DeliverPellet>Patch1DeliverPellet</DeliverPellet>
+                          <PelletDelivered>Patch1PelletDelivered</PelletDelivered>
+                          <ResetFeeder>Patch1ResetFeeder</ResetFeeder>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -244,14 +241,14 @@
                           <Property Name="TriggerSource" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:VirtualFeeder.bonsai">
-                          <PatchEvents>Patch2</PatchEvents>
+                          <PatchEvents>Patch2Events</PatchEvents>
                           <ActivationKey>D2</ActivationKey>
                           <TickScale>-0.05</TickScale>
                           <TriggerSource>PatchTrigger</TriggerSource>
-                          <WheelDisplacement>WheelPatch2</WheelDisplacement>
-                          <DeliverPellet>DeliverPelletPatch2</DeliverPellet>
-                          <PelletDelivered>PelletDeliveredPatch2</PelletDelivered>
-                          <ResetFeeder>ResetFeederPatch2</ResetFeeder>
+                          <WheelDisplacement>Patch2WheelDisplacement</WheelDisplacement>
+                          <DeliverPellet>Patch2DeliverPellet</DeliverPellet>
+                          <PelletDelivered>Patch2PelletDelivered</PelletDelivered>
+                          <ResetFeeder>Patch2ResetFeeder</ResetFeeder>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -274,14 +271,14 @@
                           <Property Name="TriggerSource" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:VirtualFeeder.bonsai">
-                          <PatchEvents>Patch3</PatchEvents>
+                          <PatchEvents>Patch3Events</PatchEvents>
                           <ActivationKey>D3</ActivationKey>
                           <TickScale>-0.05</TickScale>
                           <TriggerSource>PatchTrigger</TriggerSource>
-                          <WheelDisplacement>WheelPatch3</WheelDisplacement>
-                          <DeliverPellet>DeliverPelletPatch3</DeliverPellet>
-                          <PelletDelivered>PelletDeliveredPatch3</PelletDelivered>
-                          <ResetFeeder>ResetFeederPatch3</ResetFeeder>
+                          <WheelDisplacement>Patch3WheelDisplacement</WheelDisplacement>
+                          <DeliverPellet>Patch3DeliverPellet</DeliverPellet>
+                          <PelletDelivered>Patch3PelletDelivered</PelletDelivered>
+                          <ResetFeeder>Patch3ResetFeeder</ResetFeeder>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -296,207 +293,18 @@
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="BaselineWeightTrigger" />
+                          <Property Name="FilterWindow" />
                           <Property Name="WeightData" />
+                          <Property Name="TareCommands" />
                           <Property Name="TareEvents" />
                         </Expression>
-                        <Expression xsi:type="GroupWorkflow">
-                          <Name>WeightScale</Name>
-                          <Description>Contains acquisition functionality for automated arena weighing scales.</Description>
-                          <Workflow>
-                            <Nodes>
-                              <Expression xsi:type="SubscribeSubject">
-                                <Name>GlobalTrigger</Name>
-                              </Expression>
-                              <Expression xsi:type="MemberSelector">
-                                <Selector>Seconds</Selector>
-                              </Expression>
-                              <Expression xsi:type="scr:ExpressionTransform">
-                                <scr:Expression>new(
-it as Timestamp,
-0.0 as Weight,
-0.0 as Confidence)</scr:Expression>
-                              </Expression>
-                              <Expression xsi:type="InputMapping">
-                                <PropertyMappings />
-                                <Selector>Timestamp,Weight,Confidence</Selector>
-                                <TypeMapping xsi:type="TypeMapping" TypeArguments="aeon-env:WeightMeasurement" />
-                              </Expression>
-                              <Expression xsi:type="ExternalizedMapping">
-                                <Property Name="Name" DisplayName="BaselineWeightTrigger" Description="The name of the notification sequence used to reset the baseline for weight measurements." />
-                              </Expression>
-                              <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Object">
-                                <rx:Name>BaselineWeight</rx:Name>
-                              </Expression>
-                              <Expression xsi:type="ExternalizedMapping">
-                                <Property Name="FilterWindow" />
-                              </Expression>
-                              <Expression xsi:type="rx:Defer">
-                                <Name>ProcessWeight</Name>
-                                <Workflow>
-                                  <Nodes>
-                                    <Expression xsi:type="WorkflowInput">
-                                      <Name>Source1</Name>
-                                    </Expression>
-                                    <Expression xsi:type="Combinator">
-                                      <Combinator xsi:type="aeon-env:WeightRaw" />
-                                    </Expression>
-                                    <Expression xsi:type="rx:PublishSubject">
-                                      <Name>RawWeight</Name>
-                                    </Expression>
-                                    <Expression xsi:type="ExternalizedMapping">
-                                      <Property Name="Count" DisplayName="FilterWindow" />
-                                    </Expression>
-                                    <Expression xsi:type="Combinator">
-                                      <Combinator xsi:type="aeon-env:WeightFilter">
-                                        <aeon-env:Count>40</aeon-env:Count>
-                                      </Combinator>
-                                    </Expression>
-                                    <Expression xsi:type="rx:PublishSubject">
-                                      <Name>FilteredWeight</Name>
-                                    </Expression>
-                                    <Expression xsi:type="WorkflowInput">
-                                      <Name>Source2</Name>
-                                    </Expression>
-                                    <Expression xsi:type="Combinator">
-                                      <Combinator xsi:type="aeon-env:WeightBaseline" />
-                                    </Expression>
-                                    <Expression xsi:type="rx:PublishSubject">
-                                      <Name>BaselinedWeight</Name>
-                                    </Expression>
-                                    <Expression xsi:type="SubscribeSubject">
-                                      <Name>RawWeight</Name>
-                                    </Expression>
-                                    <Expression xsi:type="GroupWorkflow">
-                                      <Name>SampleOffset</Name>
-                                      <Workflow>
-                                        <Nodes>
-                                          <Expression xsi:type="ExternalizedMapping">
-                                            <Property Name="Value" DisplayName="Count" />
-                                          </Expression>
-                                          <Expression xsi:type="PropertySource" TypeArguments="rx:Skip,sys:Int32">
-                                            <MemberName>Count</MemberName>
-                                            <Value>40</Value>
-                                          </Expression>
-                                          <Expression xsi:type="Subtract">
-                                            <Operand xsi:type="IntProperty">
-                                              <Value>1</Value>
-                                            </Operand>
-                                          </Expression>
-                                          <Expression xsi:type="WorkflowOutput" />
-                                        </Nodes>
-                                        <Edges>
-                                          <Edge From="0" To="1" Label="Source1" />
-                                          <Edge From="1" To="2" Label="Source1" />
-                                          <Edge From="2" To="3" Label="Source1" />
-                                        </Edges>
-                                      </Workflow>
-                                    </Expression>
-                                    <Expression xsi:type="PropertyMapping">
-                                      <PropertyMappings>
-                                        <Property Name="Count" />
-                                      </PropertyMappings>
-                                    </Expression>
-                                    <Expression xsi:type="Combinator">
-                                      <Combinator xsi:type="rx:Skip">
-                                        <rx:Count>39</rx:Count>
-                                      </Combinator>
-                                    </Expression>
-                                    <Expression xsi:type="SubscribeSubject">
-                                      <Name>FilteredWeight</Name>
-                                    </Expression>
-                                    <Expression xsi:type="SubscribeSubject">
-                                      <Name>BaselinedWeight</Name>
-                                    </Expression>
-                                    <Expression xsi:type="Combinator">
-                                      <Combinator xsi:type="rx:Zip" />
-                                    </Expression>
-                                    <Expression xsi:type="scr:ExpressionTransform">
-                                      <scr:Expression>new(
-Item1 as RawWeight,
-Item2 as FilteredWeight,
-Item3 as BaselinedWeight)</scr:Expression>
-                                    </Expression>
-                                    <Expression xsi:type="WorkflowOutput" />
-                                  </Nodes>
-                                  <Edges>
-                                    <Edge From="0" To="1" Label="Source1" />
-                                    <Edge From="1" To="2" Label="Source1" />
-                                    <Edge From="2" To="4" Label="Source1" />
-                                    <Edge From="3" To="4" Label="Source2" />
-                                    <Edge From="3" To="10" Label="Source1" />
-                                    <Edge From="4" To="5" Label="Source1" />
-                                    <Edge From="5" To="7" Label="Source1" />
-                                    <Edge From="6" To="7" Label="Source2" />
-                                    <Edge From="7" To="8" Label="Source1" />
-                                    <Edge From="9" To="12" Label="Source1" />
-                                    <Edge From="10" To="11" Label="Source1" />
-                                    <Edge From="11" To="12" Label="Source2" />
-                                    <Edge From="12" To="15" Label="Source1" />
-                                    <Edge From="13" To="15" Label="Source2" />
-                                    <Edge From="14" To="15" Label="Source3" />
-                                    <Edge From="15" To="16" Label="Source1" />
-                                    <Edge From="16" To="17" Label="Source1" />
-                                  </Edges>
-                                </Workflow>
-                              </Expression>
-                              <Expression xsi:type="ExternalizedMapping">
-                                <Property Name="Name" DisplayName="WeightData" Description="The name of the output sequence containing all weight measurements." />
-                              </Expression>
-                              <Expression xsi:type="rx:PublishSubject">
-                                <Name>WeightNest</Name>
-                              </Expression>
-                              <Expression xsi:type="WorkflowOutput" />
-                              <Expression xsi:type="ExternalizedMapping">
-                                <Property Name="Name" DisplayName="TareCommands" Description="The name of the input sequence with tare commands to be sent to the weight scale." />
-                              </Expression>
-                              <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Object">
-                                <rx:Name>TareWeight</rx:Name>
-                              </Expression>
-                              <Expression xsi:type="Combinator">
-                                <Combinator xsi:type="ByteProperty">
-                                  <Value>1</Value>
-                                </Combinator>
-                              </Expression>
-                              <Expression xsi:type="SubscribeSubject">
-                                <Name>GlobalTrigger</Name>
-                              </Expression>
-                              <Expression xsi:type="MemberSelector">
-                                <Selector>Seconds</Selector>
-                              </Expression>
-                              <Expression xsi:type="Combinator">
-                                <Combinator xsi:type="rx:WithLatestFrom" />
-                              </Expression>
-                              <Expression xsi:type="Combinator">
-                                <Combinator xsi:type="harp:CreateTimestamped" />
-                              </Expression>
-                              <Expression xsi:type="ExternalizedMapping">
-                                <Property Name="Name" DisplayName="TareEvents" Description="The name of the output sequence containing all timestamped tare events." />
-                              </Expression>
-                              <Expression xsi:type="rx:PublishSubject">
-                                <Name>TareNest</Name>
-                              </Expression>
-                            </Nodes>
-                            <Edges>
-                              <Edge From="0" To="1" Label="Source1" />
-                              <Edge From="1" To="2" Label="Source1" />
-                              <Edge From="2" To="3" Label="Source1" />
-                              <Edge From="3" To="7" Label="Source1" />
-                              <Edge From="4" To="5" Label="Source1" />
-                              <Edge From="5" To="7" Label="Source2" />
-                              <Edge From="6" To="7" Label="Source3" />
-                              <Edge From="7" To="9" Label="Source1" />
-                              <Edge From="8" To="9" Label="Source2" />
-                              <Edge From="9" To="10" Label="Source1" />
-                              <Edge From="11" To="12" Label="Source1" />
-                              <Edge From="12" To="13" Label="Source1" />
-                              <Edge From="13" To="16" Label="Source1" />
-                              <Edge From="14" To="15" Label="Source1" />
-                              <Edge From="15" To="16" Label="Source2" />
-                              <Edge From="16" To="17" Label="Source1" />
-                              <Edge From="17" To="19" Label="Source1" />
-                              <Edge From="18" To="19" Label="Source2" />
-                            </Edges>
-                          </Workflow>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\VirtualWeightScale.bonsai">
+                          <BaselineWeightTrigger>NestBaselineWeight</BaselineWeightTrigger>
+                          <FilterWindow>40</FilterWindow>
+                          <WeightData>NestWeightData</WeightData>
+                          <TareCommands>NestTareCommands</TareCommands>
+                          <TareEvents>NestTareEvents</TareEvents>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
