@@ -21,21 +21,45 @@
       <Expression xsi:type="rx:AsyncSubject">
         <Name>Random</Name>
       </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>ReloadEnvironment</Name>
+      </Expression>
       <Expression xsi:type="ExternalizedMapping">
-        <Property Name="Path" DisplayName="EnvironmentConfigPath" Description="The relative or absolute path of the file describing environment configuration parameters." />
+        <Property Name="EnvironmentConfigPath" />
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="io:ReadAllText">
-          <io:Path>TaskExample.yml</io:Path>
-        </Combinator>
+      <Expression xsi:type="rx:SelectMany">
+        <Name>ReadEnvironment</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Path" DisplayName="EnvironmentConfigPath" Description="The relative or absolute path of the file describing environment configuration parameters." />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:ReadAllText">
+                <io:Path>EnvironmentRandom.yml</io:Path>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="p1:DeserializeFromYaml">
+              <p1:Type xsi:type="TypeMapping" TypeArguments="p1:Environment" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="p2:ValidateEnvironment" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Catch" />
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
-      <Expression xsi:type="p1:DeserializeFromYaml">
-        <p1:Type xsi:type="TypeMapping" TypeArguments="p1:Environment" />
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="p2:ValidateEnvironment" />
-      </Expression>
-      <Expression xsi:type="rx:BehaviorSubject">
+      <Expression xsi:type="MulticastSubject">
         <Name>EnvironmentConfiguration</Name>
       </Expression>
       <Expression xsi:type="rx:Defer">
@@ -58,17 +82,6 @@ Item3 as BlockDueTime)</scr:Expression>
             </Expression>
             <Expression xsi:type="rx:AsyncSubject">
               <Name>BlockParameters</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>BlockParameters</Name>
-            </Expression>
-            <Expression xsi:type="scr:ExpressionCondition">
-              <scr:Expression>BlockMaxPellets &lt;= 0 &amp;&amp; BlockDueTime == 0</scr:Expression>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="IntProperty">
-                <Value>0</Value>
-              </Combinator>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>ThresholdCrossingPatch1</Name>
@@ -119,8 +132,8 @@ Item3 as BlockDueTime)</scr:Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>BlockParameters</Name>
             </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>BlockMaxPellets</Selector>
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Expression>BlockMaxPellets == 0 ? int32.MaxValue : BlockMaxPellets</scr:Expression>
             </Expression>
             <Expression xsi:type="PropertyMapping">
               <PropertyMappings>
@@ -139,7 +152,7 @@ Item3 as BlockDueTime)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="GreaterThanOrEqual">
                     <Operand xsi:type="IntProperty">
-                      <Value>12</Value>
+                      <Value>9</Value>
                     </Operand>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
@@ -218,6 +231,14 @@ Item3 as BlockDueTime)</scr:Expression>
                 </Edges>
               </Workflow>
             </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>ReloadEnvironment</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="IntProperty">
+                <Value>0</Value>
+              </Combinator>
+            </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Merge" />
             </Expression>
@@ -234,30 +255,29 @@ Item3 as BlockDueTime)</scr:Expression>
             <Edge From="2" To="3" Label="Source1" />
             <Edge From="4" To="5" Label="Source1" />
             <Edge From="5" To="6" Label="Source1" />
-            <Edge From="6" To="28" Label="Source1" />
+            <Edge From="6" To="15" Label="Source1" />
             <Edge From="7" To="8" Label="Source1" />
             <Edge From="8" To="9" Label="Source1" />
-            <Edge From="9" To="18" Label="Source1" />
+            <Edge From="9" To="15" Label="Source2" />
             <Edge From="10" To="11" Label="Source1" />
             <Edge From="11" To="12" Label="Source1" />
-            <Edge From="12" To="18" Label="Source2" />
+            <Edge From="12" To="15" Label="Source3" />
             <Edge From="13" To="14" Label="Source1" />
-            <Edge From="14" To="15" Label="Source1" />
-            <Edge From="15" To="18" Label="Source3" />
+            <Edge From="14" To="15" Label="Source4" />
+            <Edge From="15" To="16" Label="Source1" />
             <Edge From="16" To="17" Label="Source1" />
-            <Edge From="17" To="18" Label="Source4" />
+            <Edge From="17" To="21" Label="Source1" />
             <Edge From="18" To="19" Label="Source1" />
             <Edge From="19" To="20" Label="Source1" />
-            <Edge From="20" To="24" Label="Source1" />
-            <Edge From="21" To="22" Label="Source1" />
+            <Edge From="20" To="21" Label="Source2" />
+            <Edge From="21" To="27" Label="Source1" />
             <Edge From="22" To="23" Label="Source1" />
-            <Edge From="23" To="24" Label="Source2" />
-            <Edge From="24" To="28" Label="Source2" />
+            <Edge From="23" To="24" Label="Source1" />
+            <Edge From="24" To="27" Label="Source2" />
             <Edge From="25" To="26" Label="Source1" />
-            <Edge From="26" To="27" Label="Source1" />
-            <Edge From="27" To="28" Label="Source3" />
+            <Edge From="26" To="27" Label="Source3" />
+            <Edge From="27" To="28" Label="Source1" />
             <Edge From="28" To="29" Label="Source1" />
-            <Edge From="29" To="30" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -266,19 +286,58 @@ Item3 as BlockDueTime)</scr:Expression>
         <Workflow>
           <Nodes>
             <Expression xsi:type="rx:Defer">
+              <Name>ActiveEnvironment</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>EnvironmentConfiguration</Name>
+                  </Expression>
+                  <Expression xsi:type="rx:Condition">
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Blocks.Count</Selector>
+                        </Expression>
+                        <Expression xsi:type="GreaterThan">
+                          <Operand xsi:type="IntProperty">
+                            <Value>0</Value>
+                          </Operand>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Take">
+                      <rx:Count>1</rx:Count>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="rx:SelectMany">
               <Name>SampleBlockType</Name>
               <Workflow>
                 <Nodes>
                   <Expression xsi:type="SubscribeSubject">
                     <Name>Random</Name>
                   </Expression>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>EnvironmentConfiguration</Name>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:Take">
-                      <rx:Count>1</rx:Count>
-                    </Combinator>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
                   </Expression>
                   <Expression xsi:type="MemberSelector">
                     <Selector>Blocks</Selector>
@@ -317,17 +376,16 @@ Item3 as BlockDueTime)</scr:Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
                 <Edges>
-                  <Edge From="0" To="8" Label="Source1" />
+                  <Edge From="0" To="7" Label="Source1" />
                   <Edge From="1" To="2" Label="Source1" />
                   <Edge From="2" To="3" Label="Source1" />
                   <Edge From="3" To="4" Label="Source1" />
                   <Edge From="4" To="5" Label="Source1" />
                   <Edge From="5" To="6" Label="Source1" />
-                  <Edge From="6" To="7" Label="Source1" />
-                  <Edge From="7" To="8" Label="Source2" />
+                  <Edge From="6" To="7" Label="Source2" />
+                  <Edge From="7" To="8" Label="Source1" />
                   <Edge From="8" To="9" Label="Source1" />
                   <Edge From="9" To="10" Label="Source1" />
-                  <Edge From="10" To="11" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
@@ -577,6 +635,7 @@ RatePatch3 as Rate)</scr:Expression>
             <Edge From="2" To="3" Label="Source1" />
             <Edge From="3" To="4" Label="Source1" />
             <Edge From="4" To="5" Label="Source1" />
+            <Edge From="5" To="6" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -733,17 +792,16 @@ RatePatch3 as Rate)</scr:Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
-      <Edge From="2" To="3" Label="Source1" />
-      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="2" To="4" Label="Source1" />
+      <Edge From="3" To="4" Label="Source2" />
       <Edge From="4" To="5" Label="Source1" />
-      <Edge From="5" To="6" Label="Source1" />
+      <Edge From="6" To="7" Label="Source1" />
       <Edge From="7" To="8" Label="Source1" />
+      <Edge From="7" To="10" Label="Source2" />
       <Edge From="8" To="9" Label="Source1" />
-      <Edge From="8" To="11" Label="Source2" />
       <Edge From="9" To="10" Label="Source1" />
       <Edge From="10" To="11" Label="Source1" />
       <Edge From="11" To="12" Label="Source1" />
-      <Edge From="12" To="13" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

@@ -10,23 +10,22 @@ distributions:
     rate: 0.002
     offset: 75
 blocks:
-  - weight: 1
+  - &baseParameters
+    weight: 1
     minPelletCount: 5
     maxPelletCount: 15
+    minDueTime: 60
+    maxDueTime: 180
     patches:
       patch1: { distributionRef: easy }
       patch2: { distributionRef: easy }
       patch3: { distributionRef: easy }
-  - weight: 1
-    minPelletCount: 5
-    maxPelletCount: 15
+  - <<: *baseParameters
     patches:
       patch1: { distributionRef: easy }
       patch2: { distributionRef: medium }
       patch3: { distributionRef: hard }
-  - weight: 1
-    minPelletCount: 5
-    maxPelletCount: 15
+  - <<: *baseParameters
     patches:
       patch1: { distributionRef: hard }
       patch2: { distributionRef: hard }

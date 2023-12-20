@@ -1773,8 +1773,8 @@ new(Value.Id as Id,
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="EnvironmentConfigPath" />
       </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Extensions\TaskLogic.bonsai">
-        <EnvironmentConfigPath>TaskExample.yml</EnvironmentConfigPath>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentLogic.bonsai">
+        <EnvironmentConfigPath>EnvironmentRandom.yml</EnvironmentConfigPath>
       </Expression>
     </Nodes>
     <Edges>
