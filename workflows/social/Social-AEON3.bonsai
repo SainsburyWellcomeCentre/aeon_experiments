@@ -756,6 +756,7 @@
                     <Property Name="CentroidMinConfidence" />
                     <Property Name="IdentityMinConfidence" />
                     <Property Name="PartMinConfidence" />
+                    <Property Name="FrameStep" />
                     <Property Name="PoseTrackingEvents" />
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Extensions\PoseTracking.bonsai">
