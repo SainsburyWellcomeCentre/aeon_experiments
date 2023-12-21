@@ -929,9 +929,7 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\Declarations.bonsai" />
-      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Visualization.bonsai">
-        <BaselineRefractoryPeriod>PT0S</BaselineRefractoryPeriod>
-      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Visualization.bonsai" />
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\Alerts.bonsai" />
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\Logging.bonsai" />
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\ControlPanel.bonsai" />
