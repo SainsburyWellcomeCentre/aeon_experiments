@@ -85,10 +85,6 @@
       <Expression xsi:type="rx:PublishSubject" TypeArguments="sys:String">
         <rx:Name>SubjectAlertMessages</rx:Name>
       </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PathController.bonsai">
-        <Path>Z:\aeon\data\processed</Path>
-        <PathName>ModelPathPrefix</PathName>
-      </Expression>
       <Expression xsi:type="rx:PublishSubject" TypeArguments="p3:IplImage">
         <rx:Name>LightMonitor</rx:Name>
       </Expression>

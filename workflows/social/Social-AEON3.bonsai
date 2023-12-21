@@ -726,6 +726,26 @@
               </Workflow>
             </Expression>
             <Expression xsi:type="GroupWorkflow">
+              <Name>ModelPathController</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Path" />
+                    <Property Name="PathName" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PathController.bonsai">
+                    <Path>Z:\aeon\data\processed</Path>
+                    <PathName>ModelPathPrefix</PathName>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
               <Name>PoseTrackingTop</Name>
               <Workflow>
                 <Nodes>
