@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns="https://bonsai-rx.org/2018/workflow">
@@ -279,7 +279,7 @@
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>3000</ExposureTime>
-                          <SerialNumber>23032823</SerialNumber>
+                          <SerialNumber>23032811</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
                           <FrameEvents>CameraPatch2</FrameEvents>
@@ -309,7 +309,7 @@
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>3000</ExposureTime>
-                          <SerialNumber>23032811</SerialNumber>
+                          <SerialNumber>23032823</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
                           <FrameEvents>CameraPatch3</FrameEvents>
