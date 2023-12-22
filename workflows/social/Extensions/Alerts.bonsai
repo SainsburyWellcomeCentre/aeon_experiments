@@ -4,8 +4,8 @@
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
+                 xmlns:p1="clr-namespace:;assembly=Extensions"
                  xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
-                 xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns:aeon-env="clr-namespace:Aeon.Environment;assembly=Aeon.Environment"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
@@ -591,115 +591,199 @@ Item2.Value.Id as Id)</scr:Expression>
               <Name>AlertLogs</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>TrackingTop</Name>
+              <Name>SubjectStart</Name>
             </Expression>
-            <Expression xsi:type="GroupWorkflow">
-              <Name>SpeedThreshold</Name>
+            <Expression xsi:type="rx:SelectMany">
+              <Name>SubjectTrackingAlerts</Name>
               <Workflow>
                 <Nodes>
                   <Expression xsi:type="WorkflowInput">
                     <Name>Source1</Name>
                   </Expression>
+                  <Expression xsi:type="rx:AsyncSubject">
+                    <Name>ActiveSubject</Name>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>SubjectPoses</Name>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>ActiveSubject</Name>
+                  </Expression>
                   <Expression xsi:type="MemberSelector">
-                    <Selector>Value[0].Centroid</Selector>
+                    <Selector>Value.Id</Selector>
+                  </Expression>
+                  <Expression xsi:type="PropertyMapping">
+                    <PropertyMappings>
+                      <Property Name="Identity" />
+                    </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="dsp:Difference">
-                      <dsp:Order>1</dsp:Order>
-                    </Combinator>
+                    <Combinator xsi:type="p1:GetActiveSubject" />
                   </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="dsp:Norm">
-                      <dsp:NormType>L2</dsp:NormType>
-                    </Combinator>
+                  <Expression xsi:type="rx:PublishSubject">
+                    <Name>ActiveSubjectPose</Name>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>ActiveSubjectPose</Name>
                   </Expression>
                   <Expression xsi:type="ExternalizedMapping">
-                    <Property Name="Value" DisplayName="MaxSpeed" />
-                  </Expression>
-                  <Expression xsi:type="GreaterThan">
-                    <Operand xsi:type="DoubleProperty">
-                      <Value>500</Value>
-                    </Operand>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Seconds</Selector>
+                    <Property Name="DueTime" DisplayName="MissingTimeout" />
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:Zip" />
+                    <Combinator xsi:type="rx:Throttle">
+                      <rx:DueTime>PT30M</rx:DueTime>
+                    </Combinator>
                   </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="harp:CreateTimestamped" />
-                  </Expression>
-                  <Expression xsi:type="rx:DistinctUntilChangedBy">
-                    <rx:KeySelector>Value</rx:KeySelector>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="0" To="6" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source1" />
-                  <Edge From="3" To="5" Label="Source1" />
-                  <Edge From="4" To="5" Label="Source2" />
-                  <Edge From="5" To="7" Label="Source1" />
-                  <Edge From="6" To="7" Label="Source2" />
-                  <Edge From="7" To="8" Label="Source1" />
-                  <Edge From="8" To="9" Label="Source1" />
-                  <Edge From="9" To="10" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="rx:Condition">
-              <Name>TrackingUnstable</Name>
-              <Workflow>
-                <Nodes>
-                  <Expression xsi:type="WorkflowInput">
-                    <Name>Source1</Name>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Value</Selector>
-                  </Expression>
-                  <Expression xsi:type="WorkflowOutput" />
-                </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                </Edges>
-              </Workflow>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Extensions\AlertGate.bonsai">
-              <AlertRefractoryPeriod>PT5M</AlertRefractoryPeriod>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>SubjectState</Name>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:WithLatestFrom" />
-            </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>new(
-Item1.Seconds as Timestamp,
-Item2.Value.Id as Id)</scr:Expression>
-            </Expression>
-            <Expression xsi:type="Format">
-              <Format>## **Tracking Failure**
+                  <Expression xsi:type="Format">
+                    <Format>## **Subject Missing**
 **Subject**: {0}  
 </Format>
-              <Selector>Id</Selector>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>SubjectAlertMessages</Name>
-            </Expression>
-            <Expression xsi:type="aeon:FormatLogMessage">
-              <Format>{0}</Format>
-              <Selector>Id</Selector>
-              <aeon:Priority>Alert</aeon:Priority>
-              <aeon:Type>TrackingFailure</aeon:Type>
-              <aeon:Timestamp>Timestamp</aeon:Timestamp>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>AlertLogs</Name>
+                    <Selector>Value.Identity</Selector>
+                  </Expression>
+                  <Expression xsi:type="MulticastSubject">
+                    <Name>SubjectAlertMessages</Name>
+                  </Expression>
+                  <Expression xsi:type="aeon:FormatLogMessage">
+                    <Format>{0}</Format>
+                    <Selector>Value.Identity</Selector>
+                    <aeon:Priority>Alert</aeon:Priority>
+                    <aeon:Type>TrackingFailure</aeon:Type>
+                    <aeon:Timestamp>Seconds</aeon:Timestamp>
+                  </Expression>
+                  <Expression xsi:type="MulticastSubject">
+                    <Name>AlertLogs</Name>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>ActiveSubjectPose</Name>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>SpeedThreshold</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Value.Centroid.Position</Selector>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="dsp:Difference">
+                            <dsp:Order>1</dsp:Order>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="dsp:Norm">
+                            <dsp:NormType>L2</dsp:NormType>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="Value" DisplayName="MaxSpeed" />
+                        </Expression>
+                        <Expression xsi:type="GreaterThan">
+                          <Operand xsi:type="DoubleProperty">
+                            <Value>500</Value>
+                          </Operand>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Value.Identity</Selector>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Seconds</Selector>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:Zip" />
+                        </Expression>
+                        <Expression xsi:type="scr:ExpressionTransform">
+                          <scr:Expression>new(
+Item3 as Timestamp,
+Item2 as Identity,
+Item1 as Value)</scr:Expression>
+                        </Expression>
+                        <Expression xsi:type="rx:DistinctUntilChangedBy">
+                          <rx:KeySelector>Value</rx:KeySelector>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="0" To="6" Label="Source1" />
+                        <Edge From="0" To="7" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                        <Edge From="3" To="5" Label="Source1" />
+                        <Edge From="4" To="5" Label="Source2" />
+                        <Edge From="5" To="8" Label="Source1" />
+                        <Edge From="6" To="8" Label="Source2" />
+                        <Edge From="7" To="8" Label="Source3" />
+                        <Edge From="8" To="9" Label="Source1" />
+                        <Edge From="9" To="10" Label="Source1" />
+                        <Edge From="10" To="11" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="rx:Condition">
+                    <Name>TrackingUnstable</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Value</Selector>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\AlertGate.bonsai">
+                    <AlertRefractoryPeriod>PT5M</AlertRefractoryPeriod>
+                  </Expression>
+                  <Expression xsi:type="Format">
+                    <Format>## **Tracking Unstable**
+**Subject**: {0}  
+</Format>
+                    <Selector>Identity</Selector>
+                  </Expression>
+                  <Expression xsi:type="MulticastSubject">
+                    <Name>SubjectAlertMessages</Name>
+                  </Expression>
+                  <Expression xsi:type="aeon:FormatLogMessage">
+                    <Format>{0}</Format>
+                    <Selector>Identity</Selector>
+                    <aeon:Priority>Alert</aeon:Priority>
+                    <aeon:Type>TrackingUnstable</aeon:Type>
+                    <aeon:Timestamp>Timestamp</aeon:Timestamp>
+                  </Expression>
+                  <Expression xsi:type="MulticastSubject">
+                    <Name>AlertLogs</Name>
+                  </Expression>
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="2" To="6" Label="Source1" />
+                  <Edge From="3" To="4" Label="Source1" />
+                  <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="5" To="6" Label="Source2" />
+                  <Edge From="6" To="7" Label="Source2" />
+                  <Edge From="8" To="10" Label="Source1" />
+                  <Edge From="9" To="10" Label="Source2" />
+                  <Edge From="10" To="11" Label="Source1" />
+                  <Edge From="10" To="13" Label="Source1" />
+                  <Edge From="11" To="12" Label="Source1" />
+                  <Edge From="13" To="14" Label="Source1" />
+                  <Edge From="15" To="16" Label="Source1" />
+                  <Edge From="16" To="17" Label="Source1" />
+                  <Edge From="17" To="18" Label="Source1" />
+                  <Edge From="18" To="19" Label="Source1" />
+                  <Edge From="18" To="21" Label="Source1" />
+                  <Edge From="19" To="20" Label="Source1" />
+                  <Edge From="21" To="22" Label="Source1" />
+                </Edges>
+              </Workflow>
             </Expression>
           </Nodes>
           <Edges>
@@ -776,15 +860,6 @@ Item2.Value.Id as Id)</scr:Expression>
             <Edge From="72" To="73" Label="Source1" />
             <Edge From="74" To="75" Label="Source1" />
             <Edge From="76" To="77" Label="Source1" />
-            <Edge From="77" To="78" Label="Source1" />
-            <Edge From="78" To="79" Label="Source1" />
-            <Edge From="79" To="81" Label="Source1" />
-            <Edge From="80" To="81" Label="Source2" />
-            <Edge From="81" To="82" Label="Source1" />
-            <Edge From="82" To="83" Label="Source1" />
-            <Edge From="82" To="85" Label="Source1" />
-            <Edge From="83" To="84" Label="Source1" />
-            <Edge From="85" To="86" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
