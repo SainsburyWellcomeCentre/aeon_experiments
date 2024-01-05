@@ -13,7 +13,7 @@
         "blocks": {
             "type": "array",
             "description": "Specifies the sequence of blocks in a foraging experiment.",
-            "items": { "$ref": "#/definitions/blockState" }
+            "items": { "$ref": "#/definitions/block" }
         }
     },
     "definitions": {
@@ -47,7 +47,7 @@
             },
             "required": [ "mean", "offset" ]
         },
-        "patchState": {
+        "patch": {
             "type": "object",
             "description": "Specifies the configuration parameters for a single patch.",
             "properties": {
@@ -67,7 +67,7 @@
                 { "required": [ "distributionRef" ] }
             ]
         },
-        "blockState": {
+        "block": {
             "type": "object",
             "description": "Specifies the configuration parameters for a single block.",
             "properties": {
@@ -94,7 +94,7 @@
                 "patches": {
                     "type": "object",
                     "description": "Specifies the configuration of each foraging patch in the block.",
-                    "additionalProperties": { "$ref": "#/definitions/patchState" }
+                    "additionalProperties": { "$ref": "#/definitions/patch" }
                 }
             },
             "required": [ "weight", "patches" ]
