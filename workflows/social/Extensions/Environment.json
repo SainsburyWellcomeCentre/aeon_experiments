@@ -51,12 +51,7 @@
             "type": "object",
             "description": "Specifies the configuration parameters for a single patch.",
             "properties": {
-                "distribution": {
-                    "oneOf": [
-                        { "$ref": "#/definitions/exponentialDistribution" },
-                        { "$ref": "#/definitions/uniformDistribution" }
-                    ]
-                },
+                "distribution": { "$ref": "#/definitions/exponentialDistribution" },
                 "distributionRef": {
                     "type": "string",
                     "description": "Specifies the name of a predefined distribution."
@@ -98,6 +93,24 @@
                 }
             },
             "required": [ "weight", "patches" ]
+        },
+        "blockState": {
+            "type": "object",
+            "description": "Stores the current state of a foraging block.",
+            "properties": {
+                "pelletCount": {
+                    "type": "integer",
+                    "description": "Specifies the number of pellets delivered in the foraging block."
+                },
+                "maxPellets": {
+                    "type": "integer",
+                    "description": "Specifies the optional maximum number of pellets in the foraging block."
+                },
+                "dueTime": {
+                    "type": "number",
+                    "description": "Specifies the optional block duration, in minutes."
+                }
+            }
         }
     }
 }

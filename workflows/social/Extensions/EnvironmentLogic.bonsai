@@ -74,12 +74,6 @@
                 <rx:Count>1</rx:Count>
               </Combinator>
             </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>new(
-Item1 as BlockPelletCount,
-Item2 as BlockMaxPellets,
-Item3 as BlockDueTime)</scr:Expression>
-            </Expression>
             <Expression xsi:type="rx:AsyncSubject">
               <Name>BlockParameters</Name>
             </Expression>
@@ -120,7 +114,7 @@ Item3 as BlockDueTime)</scr:Expression>
               <Name>BlockParameters</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
-              <Selector>BlockPelletCount</Selector>
+              <Selector>PelletCount</Selector>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Merge" />
@@ -133,7 +127,7 @@ Item3 as BlockDueTime)</scr:Expression>
               <Name>BlockParameters</Name>
             </Expression>
             <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>BlockMaxPellets == 0 ? int32.MaxValue : BlockMaxPellets</scr:Expression>
+              <scr:Expression>MaxPellets == 0 ? int32.MaxValue : MaxPellets</scr:Expression>
             </Expression>
             <Expression xsi:type="PropertyMapping">
               <PropertyMappings>
@@ -168,7 +162,7 @@ Item3 as BlockDueTime)</scr:Expression>
               <Name>BlockParameters</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
-              <Selector>BlockDueTime</Selector>
+              <Selector>DueTime</Selector>
             </Expression>
             <Expression xsi:type="GroupWorkflow">
               <Name>BlockTimeout</Name>
@@ -252,32 +246,31 @@ Item3 as BlockDueTime)</scr:Expression>
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
             <Edge From="1" To="2" Label="Source1" />
-            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="4" Label="Source1" />
             <Edge From="4" To="5" Label="Source1" />
-            <Edge From="5" To="6" Label="Source1" />
-            <Edge From="6" To="15" Label="Source1" />
+            <Edge From="5" To="14" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
             <Edge From="7" To="8" Label="Source1" />
-            <Edge From="8" To="9" Label="Source1" />
-            <Edge From="9" To="15" Label="Source2" />
+            <Edge From="8" To="14" Label="Source2" />
+            <Edge From="9" To="10" Label="Source1" />
             <Edge From="10" To="11" Label="Source1" />
-            <Edge From="11" To="12" Label="Source1" />
-            <Edge From="12" To="15" Label="Source3" />
-            <Edge From="13" To="14" Label="Source1" />
-            <Edge From="14" To="15" Label="Source4" />
+            <Edge From="11" To="14" Label="Source3" />
+            <Edge From="12" To="13" Label="Source1" />
+            <Edge From="13" To="14" Label="Source4" />
+            <Edge From="14" To="15" Label="Source1" />
             <Edge From="15" To="16" Label="Source1" />
-            <Edge From="16" To="17" Label="Source1" />
-            <Edge From="17" To="21" Label="Source1" />
+            <Edge From="16" To="20" Label="Source1" />
+            <Edge From="17" To="18" Label="Source1" />
             <Edge From="18" To="19" Label="Source1" />
-            <Edge From="19" To="20" Label="Source1" />
-            <Edge From="20" To="21" Label="Source2" />
-            <Edge From="21" To="27" Label="Source1" />
+            <Edge From="19" To="20" Label="Source2" />
+            <Edge From="20" To="26" Label="Source1" />
+            <Edge From="21" To="22" Label="Source1" />
             <Edge From="22" To="23" Label="Source1" />
-            <Edge From="23" To="24" Label="Source1" />
-            <Edge From="24" To="27" Label="Source2" />
-            <Edge From="25" To="26" Label="Source1" />
-            <Edge From="26" To="27" Label="Source3" />
+            <Edge From="23" To="26" Label="Source2" />
+            <Edge From="24" To="25" Label="Source1" />
+            <Edge From="25" To="26" Label="Source3" />
+            <Edge From="26" To="27" Label="Source1" />
             <Edge From="27" To="28" Label="Source1" />
-            <Edge From="28" To="29" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -602,9 +595,34 @@ RatePatch3 as Rate)</scr:Expression>
                   <Expression xsi:type="WorkflowInput">
                     <Name>Source1</Name>
                   </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>BlockPelletCount,BlockMaxPellets,BlockDueTime</Selector>
-                    <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Int32,sys:Int32,sys:Double)" />
+                  <Expression xsi:type="rx:SelectMany">
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="PropertyMapping">
+                          <PropertyMappings>
+                            <Property Name="PelletCount" Selector="BlockPelletCount" />
+                            <Property Name="MaxPellets" Selector="BlockMaxPellets" />
+                            <Property Name="DueTime" Selector="BlockDueTime" />
+                          </PropertyMappings>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="p1:BlockState">
+                            <p1:PelletCount>0</p1:PelletCount>
+                            <p1:MaxPellets>0</p1:MaxPellets>
+                            <p1:DueTime>0</p1:DueTime>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                      </Edges>
+                    </Workflow>
                   </Expression>
                   <Expression xsi:type="MulticastSubject">
                     <Name>BlockState</Name>
@@ -771,9 +789,34 @@ RatePatch3 as Rate)</scr:Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:WithLatestFrom" />
             </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Item1,Item2.Item2,Item2.Item3</Selector>
-              <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Int32,sys:Int32,sys:Double)" />
+            <Expression xsi:type="rx:SelectMany">
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="PropertyMapping">
+                    <PropertyMappings>
+                      <Property Name="PelletCount" Selector="Item1" />
+                      <Property Name="MaxPellets" Selector="Item2.MaxPellets" />
+                      <Property Name="DueTime" Selector="Item2.DueTime" />
+                    </PropertyMappings>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="p1:BlockState">
+                      <p1:PelletCount>0</p1:PelletCount>
+                      <p1:MaxPellets>0</p1:MaxPellets>
+                      <p1:DueTime>0</p1:DueTime>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                </Edges>
+              </Workflow>
             </Expression>
             <Expression xsi:type="MulticastSubject">
               <Name>BlockState</Name>

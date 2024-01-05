@@ -336,6 +336,88 @@ namespace Social
 
 
     /// <summary>
+    /// Stores the current state of a foraging block.
+    /// </summary>
+    [System.ComponentModel.DescriptionAttribute("Stores the current state of a foraging block.")]
+    [Bonsai.CombinatorAttribute()]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    public partial class BlockState
+    {
+    
+        private int _pelletCount;
+    
+        private int _maxPellets;
+    
+        private double _dueTime;
+    
+        /// <summary>
+        /// Specifies the number of pellets delivered in the foraging block.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("pelletCount")]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="pelletCount")]
+        [System.ComponentModel.DescriptionAttribute("Specifies the number of pellets delivered in the foraging block.")]
+        public int PelletCount
+        {
+            get
+            {
+                return _pelletCount;
+            }
+            set
+            {
+                _pelletCount = value;
+            }
+        }
+    
+        /// <summary>
+        /// Specifies the optional maximum number of pellets in the foraging block.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("maxPellets")]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="maxPellets")]
+        [System.ComponentModel.DescriptionAttribute("Specifies the optional maximum number of pellets in the foraging block.")]
+        public int MaxPellets
+        {
+            get
+            {
+                return _maxPellets;
+            }
+            set
+            {
+                _maxPellets = value;
+            }
+        }
+    
+        /// <summary>
+        /// Specifies the optional block duration, in minutes.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dueTime")]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="dueTime")]
+        [System.ComponentModel.DescriptionAttribute("Specifies the optional block duration, in minutes.")]
+        public double DueTime
+        {
+            get
+            {
+                return _dueTime;
+            }
+            set
+            {
+                _dueTime = value;
+            }
+        }
+    
+        public System.IObservable<BlockState> Process()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(
+                new BlockState
+                {
+                    PelletCount = _pelletCount,
+                    MaxPellets = _maxPellets,
+                    DueTime = _dueTime
+                }));
+        }
+    }
+
+
+    /// <summary>
     /// Represents patch configuration parameters used in foraging experiments.
     /// </summary>
     [System.ComponentModel.DescriptionAttribute("Represents patch configuration parameters used in foraging experiments.")]
@@ -432,6 +514,11 @@ namespace Social
             return Process<Block>(source);
         }
 
+        public System.IObservable<string> Process(System.IObservable<BlockState> source)
+        {
+            return Process<BlockState>(source);
+        }
+
         public System.IObservable<string> Process(System.IObservable<Environment> source)
         {
             return Process<Environment>(source);
@@ -448,6 +535,7 @@ namespace Social
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UniformDistribution>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Patch>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Block>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<BlockState>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Environment>))]
     [System.ComponentModel.DescriptionAttribute("Deserializes a sequence of JSON strings into data model objects.")]
     public partial class DeserializeFromJson : Bonsai.Expressions.SingleArgumentExpressionBuilder
@@ -516,6 +604,11 @@ namespace Social
             return Process<Block>(source);
         }
 
+        public System.IObservable<string> Process(System.IObservable<BlockState> source)
+        {
+            return Process<BlockState>(source);
+        }
+
         public System.IObservable<string> Process(System.IObservable<Environment> source)
         {
             return Process<Environment>(source);
@@ -532,6 +625,7 @@ namespace Social
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UniformDistribution>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Patch>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Block>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<BlockState>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Environment>))]
     [System.ComponentModel.DescriptionAttribute("Deserializes a sequence of YAML strings into data model objects.")]
     public partial class DeserializeFromYaml : Bonsai.Expressions.SingleArgumentExpressionBuilder
