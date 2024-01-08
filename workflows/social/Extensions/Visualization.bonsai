@@ -478,6 +478,7 @@ Item3 as Patch3)</scr:Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:CombineLatest" />
       </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEveryBlock.bonsai" />
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RepeatEverySubject.bonsai" />
       <Expression xsi:type="scr:ExpressionTransform">
         <scr:Expression>new(
@@ -500,6 +501,7 @@ Item3 as Patch3)</scr:Expression>
         <Threshold>0.0003</Threshold>
         <LowPass>1</LowPass>
       </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEveryBlock.bonsai" />
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RepeatEverySubject.bonsai" />
       <Expression xsi:type="rx:BehaviorSubject">
         <Name>Patch1TimeSpent</Name>
@@ -507,6 +509,7 @@ Item3 as Patch3)</scr:Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>Patch1TimeSpent</Name>
       </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEveryBlock.bonsai" />
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RepeatEverySubject.bonsai" />
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:DistinctUntilChanged" />
@@ -521,6 +524,7 @@ Item3 as Patch3)</scr:Expression>
         <Threshold>0.0003</Threshold>
         <LowPass>1</LowPass>
       </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEveryBlock.bonsai" />
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RepeatEverySubject.bonsai" />
       <Expression xsi:type="rx:BehaviorSubject">
         <Name>Patch2TimeSpent</Name>
@@ -528,6 +532,7 @@ Item3 as Patch3)</scr:Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>Patch2TimeSpent</Name>
       </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEveryBlock.bonsai" />
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RepeatEverySubject.bonsai" />
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:DistinctUntilChanged" />
@@ -542,6 +547,7 @@ Item3 as Patch3)</scr:Expression>
         <Threshold>0.0003</Threshold>
         <LowPass>1</LowPass>
       </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEveryBlock.bonsai" />
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RepeatEverySubject.bonsai" />
       <Expression xsi:type="rx:BehaviorSubject">
         <Name>Patch3TimeSpent</Name>
@@ -549,6 +555,7 @@ Item3 as Patch3)</scr:Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>Patch3TimeSpent</Name>
       </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\RepeatEveryBlock.bonsai" />
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RepeatEverySubject.bonsai" />
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:DistinctUntilChanged" />
@@ -1334,85 +1341,92 @@ Item1.Value as CurrentWeight,
       <Edge From="84" To="85" Label="Source1" />
       <Edge From="85" To="86" Label="Source1" />
       <Edge From="86" To="87" Label="Source1" />
-      <Edge From="88" To="89" Label="Source1" />
+      <Edge From="87" To="88" Label="Source1" />
       <Edge From="89" To="90" Label="Source1" />
+      <Edge From="90" To="91" Label="Source1" />
       <Edge From="91" To="92" Label="Source1" />
-      <Edge From="92" To="93" Label="Source1" />
       <Edge From="93" To="94" Label="Source1" />
       <Edge From="94" To="95" Label="Source1" />
+      <Edge From="95" To="96" Label="Source1" />
       <Edge From="96" To="97" Label="Source1" />
       <Edge From="97" To="98" Label="Source1" />
       <Edge From="99" To="100" Label="Source1" />
       <Edge From="100" To="101" Label="Source1" />
       <Edge From="101" To="102" Label="Source1" />
-      <Edge From="102" To="103" Label="Source1" />
+      <Edge From="103" To="104" Label="Source1" />
       <Edge From="104" To="105" Label="Source1" />
       <Edge From="105" To="106" Label="Source1" />
+      <Edge From="106" To="107" Label="Source1" />
       <Edge From="107" To="108" Label="Source1" />
-      <Edge From="108" To="109" Label="Source1" />
       <Edge From="109" To="110" Label="Source1" />
       <Edge From="110" To="111" Label="Source1" />
-      <Edge From="112" To="113" Label="Source1" />
+      <Edge From="111" To="112" Label="Source1" />
+      <Edge From="113" To="114" Label="Source1" />
       <Edge From="114" To="115" Label="Source1" />
       <Edge From="115" To="116" Label="Source1" />
       <Edge From="116" To="117" Label="Source1" />
-      <Edge From="117" To="120" Label="Source1" />
-      <Edge From="118" To="119" Label="Source1" />
-      <Edge From="119" To="120" Label="Source2" />
-      <Edge From="120" To="121" Label="Source1" />
+      <Edge From="117" To="118" Label="Source1" />
+      <Edge From="119" To="120" Label="Source1" />
       <Edge From="121" To="122" Label="Source1" />
+      <Edge From="122" To="123" Label="Source1" />
       <Edge From="123" To="124" Label="Source1" />
-      <Edge From="124" To="125" Label="Source1" />
+      <Edge From="124" To="127" Label="Source1" />
       <Edge From="125" To="126" Label="Source1" />
-      <Edge From="126" To="127" Label="Source1" />
-      <Edge From="128" To="131" Label="Source1" />
-      <Edge From="128" To="132" Label="Source2" />
-      <Edge From="129" To="131" Label="Source2" />
-      <Edge From="130" To="131" Label="Source3" />
+      <Edge From="126" To="127" Label="Source2" />
+      <Edge From="127" To="128" Label="Source1" />
+      <Edge From="128" To="129" Label="Source1" />
+      <Edge From="130" To="131" Label="Source1" />
       <Edge From="131" To="132" Label="Source1" />
       <Edge From="132" To="133" Label="Source1" />
       <Edge From="133" To="134" Label="Source1" />
-      <Edge From="134" To="135" Label="Source1" />
-      <Edge From="136" To="138" Label="Source1" />
-      <Edge From="137" To="138" Label="Source2" />
-      <Edge From="138" To="142" Label="Source1" />
+      <Edge From="135" To="138" Label="Source1" />
+      <Edge From="135" To="139" Label="Source2" />
+      <Edge From="136" To="138" Label="Source2" />
+      <Edge From="137" To="138" Label="Source3" />
+      <Edge From="138" To="139" Label="Source1" />
       <Edge From="139" To="140" Label="Source1" />
       <Edge From="140" To="141" Label="Source1" />
-      <Edge From="141" To="142" Label="Source2" />
-      <Edge From="142" To="143" Label="Source1" />
-      <Edge From="143" To="144" Label="Source1" />
-      <Edge From="145" To="146" Label="Source1" />
-      <Edge From="146" To="149" Label="Source1" />
+      <Edge From="141" To="142" Label="Source1" />
+      <Edge From="143" To="145" Label="Source1" />
+      <Edge From="144" To="145" Label="Source2" />
+      <Edge From="145" To="149" Label="Source1" />
+      <Edge From="146" To="147" Label="Source1" />
       <Edge From="147" To="148" Label="Source1" />
       <Edge From="148" To="149" Label="Source2" />
       <Edge From="149" To="150" Label="Source1" />
       <Edge From="150" To="151" Label="Source1" />
-      <Edge From="151" To="154" Label="Source1" />
       <Edge From="152" To="153" Label="Source1" />
-      <Edge From="153" To="154" Label="Source2" />
+      <Edge From="153" To="156" Label="Source1" />
       <Edge From="154" To="155" Label="Source1" />
-      <Edge From="155" To="156" Label="Source1" />
+      <Edge From="155" To="156" Label="Source2" />
       <Edge From="156" To="157" Label="Source1" />
+      <Edge From="157" To="158" Label="Source1" />
       <Edge From="158" To="161" Label="Source1" />
       <Edge From="159" To="160" Label="Source1" />
       <Edge From="160" To="161" Label="Source2" />
       <Edge From="161" To="162" Label="Source1" />
       <Edge From="162" To="163" Label="Source1" />
-      <Edge From="164" To="165" Label="Source1" />
+      <Edge From="163" To="164" Label="Source1" />
+      <Edge From="165" To="168" Label="Source1" />
       <Edge From="166" To="167" Label="Source1" />
+      <Edge From="167" To="168" Label="Source2" />
       <Edge From="168" To="169" Label="Source1" />
-      <Edge From="170" To="171" Label="Source1" />
+      <Edge From="169" To="170" Label="Source1" />
       <Edge From="171" To="172" Label="Source1" />
       <Edge From="173" To="174" Label="Source1" />
-      <Edge From="174" To="175" Label="Source1" />
-      <Edge From="176" To="177" Label="Source1" />
+      <Edge From="175" To="176" Label="Source1" />
       <Edge From="177" To="178" Label="Source1" />
-      <Edge From="179" To="180" Label="Source1" />
+      <Edge From="178" To="179" Label="Source1" />
       <Edge From="180" To="181" Label="Source1" />
-      <Edge From="182" To="183" Label="Source1" />
+      <Edge From="181" To="182" Label="Source1" />
       <Edge From="183" To="184" Label="Source1" />
-      <Edge From="185" To="186" Label="Source1" />
+      <Edge From="184" To="185" Label="Source1" />
       <Edge From="186" To="187" Label="Source1" />
+      <Edge From="187" To="188" Label="Source1" />
+      <Edge From="189" To="190" Label="Source1" />
+      <Edge From="190" To="191" Label="Source1" />
+      <Edge From="192" To="193" Label="Source1" />
+      <Edge From="193" To="194" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

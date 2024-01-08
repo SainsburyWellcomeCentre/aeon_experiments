@@ -137,7 +137,7 @@ namespace Social
     [System.ComponentModel.DescriptionAttribute("Specifies the configuration parameters for a single patch.")]
     [Bonsai.CombinatorAttribute()]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
-    public partial class PatchState
+    public partial class Patch
     {
     
         private ExponentialDistribution _distribution;
@@ -177,10 +177,10 @@ namespace Social
             }
         }
     
-        public System.IObservable<PatchState> Process()
+        public System.IObservable<Patch> Process()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(
-                new PatchState
+                new Patch
                 {
                     Distribution = _distribution,
                     DistributionRef = _distributionRef
@@ -195,7 +195,7 @@ namespace Social
     [System.ComponentModel.DescriptionAttribute("Specifies the configuration parameters for a single block.")]
     [Bonsai.CombinatorAttribute()]
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
-    public partial class BlockState
+    public partial class Block
     {
     
         private double _weight;
@@ -208,7 +208,7 @@ namespace Social
     
         private int _maxPelletCount;
     
-        private System.Collections.Generic.IDictionary<string, PatchState> _patches = new System.Collections.Generic.Dictionary<string, PatchState>();
+        private System.Collections.Generic.IDictionary<string, Patch> _patches = new System.Collections.Generic.Dictionary<string, Patch>();
     
         /// <summary>
         /// Specifies the probability mass for the block. Normalization is not required.
@@ -307,7 +307,7 @@ namespace Social
         [Newtonsoft.Json.JsonPropertyAttribute("patches", Required=Newtonsoft.Json.Required.Always)]
         [YamlDotNet.Serialization.YamlMemberAttribute(Alias="patches")]
         [System.ComponentModel.DescriptionAttribute("Specifies the configuration of each foraging patch in the block.")]
-        public System.Collections.Generic.IDictionary<string, PatchState> Patches
+        public System.Collections.Generic.IDictionary<string, Patch> Patches
         {
             get
             {
@@ -319,10 +319,10 @@ namespace Social
             }
         }
     
-        public System.IObservable<BlockState> Process()
+        public System.IObservable<Block> Process()
         {
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(
-                new BlockState
+                new Block
                 {
                     Weight = _weight,
                     MinDueTime = _minDueTime,
@@ -330,6 +330,88 @@ namespace Social
                     MinPelletCount = _minPelletCount,
                     MaxPelletCount = _maxPelletCount,
                     Patches = _patches
+                }));
+        }
+    }
+
+
+    /// <summary>
+    /// Stores the current state of a foraging block.
+    /// </summary>
+    [System.ComponentModel.DescriptionAttribute("Stores the current state of a foraging block.")]
+    [Bonsai.CombinatorAttribute()]
+    [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Source)]
+    public partial class BlockState
+    {
+    
+        private int _pelletCount;
+    
+        private int _maxPellets;
+    
+        private double _dueTime;
+    
+        /// <summary>
+        /// Specifies the number of pellets delivered in the foraging block.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("pelletCount")]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="pelletCount")]
+        [System.ComponentModel.DescriptionAttribute("Specifies the number of pellets delivered in the foraging block.")]
+        public int PelletCount
+        {
+            get
+            {
+                return _pelletCount;
+            }
+            set
+            {
+                _pelletCount = value;
+            }
+        }
+    
+        /// <summary>
+        /// Specifies the optional maximum number of pellets in the foraging block.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("maxPellets")]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="maxPellets")]
+        [System.ComponentModel.DescriptionAttribute("Specifies the optional maximum number of pellets in the foraging block.")]
+        public int MaxPellets
+        {
+            get
+            {
+                return _maxPellets;
+            }
+            set
+            {
+                _maxPellets = value;
+            }
+        }
+    
+        /// <summary>
+        /// Specifies the optional block duration, in minutes.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dueTime")]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="dueTime")]
+        [System.ComponentModel.DescriptionAttribute("Specifies the optional block duration, in minutes.")]
+        public double DueTime
+        {
+            get
+            {
+                return _dueTime;
+            }
+            set
+            {
+                _dueTime = value;
+            }
+        }
+    
+        public System.IObservable<BlockState> Process()
+        {
+            return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(
+                new BlockState
+                {
+                    PelletCount = _pelletCount,
+                    MaxPellets = _maxPellets,
+                    DueTime = _dueTime
                 }));
         }
     }
@@ -346,7 +428,7 @@ namespace Social
     
         private System.Collections.Generic.IDictionary<string, ExponentialDistribution> _distributions;
     
-        private System.Collections.Generic.List<BlockState> _blocks = new System.Collections.Generic.List<BlockState>();
+        private System.Collections.Generic.List<Block> _blocks = new System.Collections.Generic.List<Block>();
     
         /// <summary>
         /// Specifies a pre-defined set of named probability distributions.
@@ -374,7 +456,7 @@ namespace Social
         [Newtonsoft.Json.JsonPropertyAttribute("blocks")]
         [YamlDotNet.Serialization.YamlMemberAttribute(Alias="blocks")]
         [System.ComponentModel.DescriptionAttribute("Specifies the sequence of blocks in a foraging experiment.")]
-        public System.Collections.Generic.List<BlockState> Blocks
+        public System.Collections.Generic.List<Block> Blocks
         {
             get
             {
@@ -422,9 +504,14 @@ namespace Social
             return Process<UniformDistribution>(source);
         }
 
-        public System.IObservable<string> Process(System.IObservable<PatchState> source)
+        public System.IObservable<string> Process(System.IObservable<Patch> source)
         {
-            return Process<PatchState>(source);
+            return Process<Patch>(source);
+        }
+
+        public System.IObservable<string> Process(System.IObservable<Block> source)
+        {
+            return Process<Block>(source);
         }
 
         public System.IObservable<string> Process(System.IObservable<BlockState> source)
@@ -446,7 +533,8 @@ namespace Social
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Transform)]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<ExponentialDistribution>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UniformDistribution>))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<PatchState>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Patch>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Block>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<BlockState>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Environment>))]
     [System.ComponentModel.DescriptionAttribute("Deserializes a sequence of JSON strings into data model objects.")]
@@ -506,9 +594,14 @@ namespace Social
             return Process<UniformDistribution>(source);
         }
 
-        public System.IObservable<string> Process(System.IObservable<PatchState> source)
+        public System.IObservable<string> Process(System.IObservable<Patch> source)
         {
-            return Process<PatchState>(source);
+            return Process<Patch>(source);
+        }
+
+        public System.IObservable<string> Process(System.IObservable<Block> source)
+        {
+            return Process<Block>(source);
         }
 
         public System.IObservable<string> Process(System.IObservable<BlockState> source)
@@ -530,7 +623,8 @@ namespace Social
     [Bonsai.WorkflowElementCategoryAttribute(Bonsai.ElementCategory.Transform)]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<ExponentialDistribution>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<UniformDistribution>))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<PatchState>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Patch>))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Block>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<BlockState>))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(Bonsai.Expressions.TypeMapping<Environment>))]
     [System.ComponentModel.DescriptionAttribute("Deserializes a sequence of YAML strings into data model objects.")]
