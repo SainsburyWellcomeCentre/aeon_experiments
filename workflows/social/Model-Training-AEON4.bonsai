@@ -362,7 +362,9 @@
           <Edges />
         </Workflow>
       </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Extensions\ModelTrainingLogging.bonsai" />
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\ModelTrainingLogging.bonsai">
+        <WorkflowName>Model-Training-AEON4.bonsai</WorkflowName>
+      </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\ModelTrainingControlPanel.bonsai" />
     </Nodes>
     <Edges />
