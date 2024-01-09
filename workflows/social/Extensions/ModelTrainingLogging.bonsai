@@ -6,15 +6,15 @@
     <Nodes>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RepositoryLogController.bonsai">
         <RepositoryPath>..\..\</RepositoryPath>
-        <DataPath>D:\ProjectAeon</DataPath>
-        <FallbackPath>D:\Tests</FallbackPath>
+        <DataPath>D:\ProjectAeon\model-training</DataPath>
+        <FallbackPath>D:\Tests\model-training</FallbackPath>
         <ChunkSize>1</ChunkSize>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="WorkflowName" />
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
-        <WorkflowName></WorkflowName>
+        <WorkflowName />
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>SynchronizerEvents</Name>
