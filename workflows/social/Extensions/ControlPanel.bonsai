@@ -487,14 +487,6 @@
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="SubscribeSubject">
-              <Name>Trajectory</Name>
-            </Expression>
-            <Expression xsi:type="VisualizerMapping" />
-            <Expression xsi:type="SubscribeSubject">
-              <Name>FrameTrajectory</Name>
-            </Expression>
-            <Expression xsi:type="VisualizerMapping" />
-            <Expression xsi:type="SubscribeSubject">
               <Name>PoseTrackingTop</Name>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -510,28 +502,51 @@
             <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="viz:TableLayoutPanelBuilder">
               <viz:Name>SubjectActivity</viz:Name>
-              <viz:ColumnCount>4</viz:ColumnCount>
+              <viz:ColumnCount>3</viz:ColumnCount>
               <viz:RowCount>1</viz:RowCount>
               <viz:ColumnStyles />
               <viz:RowStyles />
               <viz:CellSpans />
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
+            <Expression xsi:type="SubscribeSubject">
+              <Name>SubjectPoses</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value</Selector>
+            </Expression>
+            <Expression xsi:type="Index">
+              <Operand xsi:type="IntProperty">
+                <Value>0</Value>
+              </Operand>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Centroid.Position</Selector>
+            </Expression>
+            <Expression xsi:type="Index">
+              <Operand xsi:type="IntProperty">
+                <Value>1</Value>
+              </Operand>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Centroid.Position</Selector>
+            </Expression>
           </Nodes>
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="12" Label="Source1" />
+            <Edge From="1" To="8" Label="Source1" />
             <Edge From="2" To="3" Label="Source1" />
             <Edge From="3" To="4" Label="Source1" />
             <Edge From="4" To="5" Label="Source1" />
-            <Edge From="5" To="12" Label="Source2" />
+            <Edge From="5" To="8" Label="Source2" />
             <Edge From="6" To="7" Label="Source1" />
-            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="7" To="8" Label="Source3" />
             <Edge From="8" To="9" Label="Source1" />
-            <Edge From="9" To="12" Label="Source3" />
             <Edge From="10" To="11" Label="Source1" />
-            <Edge From="11" To="12" Label="Source4" />
+            <Edge From="11" To="12" Label="Source1" />
+            <Edge From="11" To="14" Label="Source1" />
             <Edge From="12" To="13" Label="Source1" />
+            <Edge From="14" To="15" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -1099,6 +1114,26 @@ FilteredWeight.Value - BaselinedWeight.Value as Baseline)</scr:Expression>
             <Edge From="9" To="10" Label="Source1" />
             <Edge From="10" To="11" Label="Source3" />
             <Edge From="11" To="12" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>OverheadCamera</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Trajectory</Name>
+            </Expression>
+            <Expression xsi:type="VisualizerMapping" />
+            <Expression xsi:type="SubscribeSubject">
+              <Name>FrameTrajectory</Name>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
