@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.8.1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RepositoryLogController.bonsai">
+        <RepositoryPath>..\..\</RepositoryPath>
+        <DataPath>D:\ProjectAeon\model-training</DataPath>
+        <FallbackPath>D:\Tests\model-training</FallbackPath>
+        <ChunkSize>1</ChunkSize>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="WorkflowName" />
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
+        <WorkflowName />
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>SynchronizerEvents</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+        <LogName>ClockSynchronizer</LogName>
+        <Heartbeats />
+        <ClosingDuration xsi:nil="true" />
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>VideoEvents</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+        <LogName>VideoController</LogName>
+        <Heartbeats />
+        <ClosingDuration xsi:nil="true" />
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>CameraTop</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+        <Heartbeats />
+        <ClosingDuration xsi:nil="true" />
+        <LogName>CameraTop</LogName>
+        <FrameRate>50</FrameRate>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>CameraWest</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+        <Heartbeats />
+        <ClosingDuration xsi:nil="true" />
+        <LogName>CameraWest</LogName>
+        <FrameRate>50</FrameRate>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>CameraEast</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+        <Heartbeats />
+        <ClosingDuration xsi:nil="true" />
+        <LogName>CameraEast</LogName>
+        <FrameRate>50</FrameRate>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>CameraNorth</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+        <Heartbeats />
+        <ClosingDuration xsi:nil="true" />
+        <LogName>CameraNorth</LogName>
+        <FrameRate>50</FrameRate>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>CameraSouth</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+        <Heartbeats />
+        <ClosingDuration xsi:nil="true" />
+        <LogName>CameraSouth</LogName>
+        <FrameRate>50</FrameRate>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>CameraNest</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+        <Heartbeats />
+        <ClosingDuration xsi:nil="true" />
+        <LogName>CameraNest</LogName>
+        <FrameRate>50</FrameRate>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>CameraPatch1</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+        <Heartbeats />
+        <ClosingDuration xsi:nil="true" />
+        <LogName>CameraPatch1</LogName>
+        <FrameRate>125</FrameRate>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>CameraPatch2</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+        <Heartbeats />
+        <ClosingDuration xsi:nil="true" />
+        <LogName>CameraPatch2</LogName>
+        <FrameRate>125</FrameRate>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>CameraPatch3</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogVideo.bonsai">
+        <Heartbeats />
+        <ClosingDuration xsi:nil="true" />
+        <LogName>CameraPatch3</LogName>
+        <FrameRate>125</FrameRate>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>SubjectState</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+        <Heartbeats />
+        <ClosingDuration xsi:nil="true" />
+        <LogName>Environment_SubjectState</LogName>
+        <Selector>Seconds,Value.Id,Value.Weight,Value.Type</Selector>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>Annotations</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+        <Heartbeats />
+        <ClosingDuration xsi:nil="true" />
+        <LogName>Environment_MessageLog</LogName>
+        <Selector>Seconds,Value.Priority,Value.Type,Value.Message</Selector>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>EnvironmentState</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+        <Heartbeats />
+        <ClosingDuration xsi:nil="true" />
+        <LogName>Environment_EnvironmentState</LogName>
+        <Selector>Seconds,Value.Type</Selector>
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="5" To="6" Label="Source1" />
+      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="9" To="10" Label="Source1" />
+      <Edge From="11" To="12" Label="Source1" />
+      <Edge From="13" To="14" Label="Source1" />
+      <Edge From="15" To="16" Label="Source1" />
+      <Edge From="17" To="18" Label="Source1" />
+      <Edge From="19" To="20" Label="Source1" />
+      <Edge From="21" To="22" Label="Source1" />
+      <Edge From="23" To="24" Label="Source1" />
+      <Edge From="25" To="26" Label="Source1" />
+      <Edge From="27" To="28" Label="Source1" />
+      <Edge From="29" To="30" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
