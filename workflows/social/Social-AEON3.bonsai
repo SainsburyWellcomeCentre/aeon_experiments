@@ -101,7 +101,7 @@
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>7500</ExposureTime>
                           <SerialNumber>23032816</SerialNumber>
-                          <Gain>0</Gain>
+                          <Gain>10</Gain>
                           <Binning>1</Binning>
                           <FrameEvents>CameraWest</FrameEvents>
                         </Expression>
@@ -131,7 +131,7 @@
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>7500</ExposureTime>
                           <SerialNumber>23032824</SerialNumber>
-                          <Gain>0</Gain>
+                          <Gain>10</Gain>
                           <Binning>1</Binning>
                           <FrameEvents>CameraEast</FrameEvents>
                         </Expression>
@@ -161,7 +161,7 @@
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>7500</ExposureTime>
                           <SerialNumber>23032825</SerialNumber>
-                          <Gain>0</Gain>
+                          <Gain>10</Gain>
                           <Binning>1</Binning>
                           <FrameEvents>CameraNorth</FrameEvents>
                         </Expression>
@@ -191,7 +191,7 @@
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>7500</ExposureTime>
                           <SerialNumber>23031408</SerialNumber>
-                          <Gain>0</Gain>
+                          <Gain>10</Gain>
                           <Binning>1</Binning>
                           <FrameEvents>CameraSouth</FrameEvents>
                         </Expression>
@@ -221,7 +221,7 @@
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>7500</ExposureTime>
                           <SerialNumber>23031407</SerialNumber>
-                          <Gain>0</Gain>
+                          <Gain>10</Gain>
                           <Binning>1</Binning>
                           <FrameEvents>CameraNest</FrameEvents>
                         </Expression>
