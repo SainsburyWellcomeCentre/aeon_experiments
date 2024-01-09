@@ -1004,7 +1004,9 @@
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\Declarations.bonsai" />
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\Visualization.bonsai" />
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\Alerts.bonsai" />
-      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Logging.bonsai" />
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Logging.bonsai">
+        <WorkflowName>Social-AEON4.bonsai</WorkflowName>
+      </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\ControlPanel.bonsai" />
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="EnvironmentConfigPath" />
