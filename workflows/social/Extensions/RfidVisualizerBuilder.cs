@@ -10,6 +10,7 @@ using Bonsai.Design.Visualizers;
 using System.Windows.Forms;
 using Bonsai.Expressions;
 using System.Reactive.Linq;
+using OpenCV.Net;
 
 [Combinator]
 [Description("Display individual RFID tag measurements in a raster plot.")]
@@ -24,6 +25,7 @@ public class RfidVisualizerBuilder
     {
         return source.Select(x => new RfidTaggedMeasurement(
             x.Seconds,
+            x.Value.Location,
             x.Value.TagId,
             x.Value.Location.Y.ToString(),
             (int)x.Value.Location.Y));
@@ -116,13 +118,15 @@ public class RfidMeasurementVisualizer : DialogTypeVisualizer
 public struct RfidTaggedMeasurement
 {
     public double Seconds;
+    public Point2f Location;
     public ulong TagId;
     public string Name;
     public int Index;
 
-    public RfidTaggedMeasurement(double seconds, ulong tagId, string name, int index)
+    public RfidTaggedMeasurement(double seconds, Point2f location, ulong tagId, string name, int index)
     {
         Seconds = seconds;
+        Location = location;
         TagId = tagId;
         Name = name;
         Index = index;

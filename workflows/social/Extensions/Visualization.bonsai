@@ -1270,6 +1270,7 @@ Item1.Value as CurrentWeight,
       <Expression xsi:type="scr:ExpressionTransform">
         <scr:Expression>new(
 Seconds as Seconds,
+Value.Location as Location,
 Value.TagId as TagId,
 "Gate" as Name,
 0 as Index)</scr:Expression>
@@ -1280,6 +1281,7 @@ Value.TagId as TagId,
       <Expression xsi:type="scr:ExpressionTransform">
         <scr:Expression>new(
 Seconds as Seconds,
+Value.Location as Location,
 Value.TagId as TagId,
 "NestRfid1" as Name,
 1 as Index)</scr:Expression>
@@ -1290,6 +1292,7 @@ Value.TagId as TagId,
       <Expression xsi:type="scr:ExpressionTransform">
         <scr:Expression>new(
 Seconds as Seconds,
+Value.Location as Location,
 Value.TagId as TagId,
 "NestRfid2" as Name,
 2 as Index)</scr:Expression>
@@ -1300,6 +1303,7 @@ Value.TagId as TagId,
       <Expression xsi:type="scr:ExpressionTransform">
         <scr:Expression>new(
 Seconds as Seconds,
+Value.Location as Location,
 Value.TagId as TagId,
 "Patch1" as Name,
 3 as Index)</scr:Expression>
@@ -1310,6 +1314,7 @@ Value.TagId as TagId,
       <Expression xsi:type="scr:ExpressionTransform">
         <scr:Expression>new(
 Seconds as Seconds,
+Value.Location as Location,
 Value.TagId as TagId,
 "Patch2" as Name,
 4 as Index)</scr:Expression>
@@ -1320,6 +1325,7 @@ Value.TagId as TagId,
       <Expression xsi:type="scr:ExpressionTransform">
         <scr:Expression>new(
 Seconds as Seconds,
+Value.Location as Location,
 Value.TagId as TagId,
 "Patch3" as Name,
 5 as Index)</scr:Expression>
@@ -1329,7 +1335,7 @@ Value.TagId as TagId,
       </Expression>
       <Expression xsi:type="InputMapping">
         <PropertyMappings />
-        <Selector>Seconds,TagId,Name,Index</Selector>
+        <Selector>Seconds,Location,TagId,Name,Index</Selector>
         <TypeMapping xsi:type="TypeMapping" TypeArguments="p1:RfidTaggedMeasurement" />
       </Expression>
       <Expression xsi:type="rx:PublishSubject">
