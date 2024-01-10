@@ -6,6 +6,7 @@
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
                  xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
                  xmlns:viz="clr-namespace:Bonsai.Design.Visualizers;assembly=Bonsai.Design.Visualizers"
+                 xmlns:p1="clr-namespace:;assembly=Extensions"
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
@@ -302,19 +303,15 @@
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="SubscribeSubject">
-              <Name>TimeSpentOnPatches</Name>
+              <Name>RfidMeasurements</Name>
             </Expression>
-            <Expression xsi:type="viz:BarGraphBuilder">
-              <viz:IndexSelector>Id</viz:IndexSelector>
-              <viz:ValueSelector>Patch1,Patch2,Patch3</viz:ValueSelector>
-              <viz:BaseAxis>X</viz:BaseAxis>
-              <viz:BarType>Cluster</viz:BarType>
-              <viz:Capacity xsi:nil="true" />
-              <viz:Min xsi:nil="true" />
-              <viz:Max xsi:nil="true" />
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="p1:RfidVisualizerBuilder">
+                <p1:Capacity>0</p1:Capacity>
+              </Combinator>
             </Expression>
             <Expression xsi:type="GroupWorkflow">
-              <Name>TimeSpentOnPatches</Name>
+              <Name>RfidRaster</Name>
               <Workflow>
                 <Nodes>
                   <Expression xsi:type="WorkflowInput">

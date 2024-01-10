@@ -7,6 +7,7 @@
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
                  xmlns:num="clr-namespace:Bonsai.Numerics;assembly=Bonsai.Numerics"
+                 xmlns:p1="clr-namespace:;assembly=Extensions"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -1263,6 +1264,77 @@ Item1.Value as CurrentWeight,
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\PersistentCounter.bonsai">
         <Name>Patch3TotalMissedPellets</Name>
       </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>GateRfidInboundDetected</Name>
+      </Expression>
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Expression>new(
+Seconds as Seconds,
+Value.TagId as TagId,
+"Gate" as Name,
+0 as Index)</scr:Expression>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>NestRfid1InboundDetected</Name>
+      </Expression>
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Expression>new(
+Seconds as Seconds,
+Value.TagId as TagId,
+"NestRfid1" as Name,
+1 as Index)</scr:Expression>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>NestRfid2InboundDetected</Name>
+      </Expression>
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Expression>new(
+Seconds as Seconds,
+Value.TagId as TagId,
+"NestRfid2" as Name,
+2 as Index)</scr:Expression>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>Patch1RfidInboundDetected</Name>
+      </Expression>
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Expression>new(
+Seconds as Seconds,
+Value.TagId as TagId,
+"Patch1" as Name,
+3 as Index)</scr:Expression>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>Patch2RfidInboundDetected</Name>
+      </Expression>
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Expression>new(
+Seconds as Seconds,
+Value.TagId as TagId,
+"Patch2" as Name,
+4 as Index)</scr:Expression>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>Patch3RfidInboundDetected</Name>
+      </Expression>
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Expression>new(
+Seconds as Seconds,
+Value.TagId as TagId,
+"Patch3" as Name,
+5 as Index)</scr:Expression>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Merge" />
+      </Expression>
+      <Expression xsi:type="InputMapping">
+        <PropertyMappings />
+        <Selector>Seconds,TagId,Name,Index</Selector>
+        <TypeMapping xsi:type="TypeMapping" TypeArguments="p1:RfidTaggedMeasurement" />
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>RfidMeasurements</Name>
+      </Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
@@ -1427,6 +1499,20 @@ Item1.Value as CurrentWeight,
       <Edge From="190" To="191" Label="Source1" />
       <Edge From="192" To="193" Label="Source1" />
       <Edge From="193" To="194" Label="Source1" />
+      <Edge From="195" To="196" Label="Source1" />
+      <Edge From="196" To="207" Label="Source1" />
+      <Edge From="197" To="198" Label="Source1" />
+      <Edge From="198" To="207" Label="Source2" />
+      <Edge From="199" To="200" Label="Source1" />
+      <Edge From="200" To="207" Label="Source3" />
+      <Edge From="201" To="202" Label="Source1" />
+      <Edge From="202" To="207" Label="Source4" />
+      <Edge From="203" To="204" Label="Source1" />
+      <Edge From="204" To="207" Label="Source5" />
+      <Edge From="205" To="206" Label="Source1" />
+      <Edge From="206" To="207" Label="Source6" />
+      <Edge From="207" To="208" Label="Source1" />
+      <Edge From="208" To="209" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

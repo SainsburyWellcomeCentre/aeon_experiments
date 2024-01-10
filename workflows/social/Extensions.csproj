@@ -1,7 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,6 +11,9 @@
     <PackageReference Include="YamlDotNet" Version="13.1.1" />
     <PackageReference Include="Bonsai.Harp" Version="3.5.0" />
     <PackageReference Include="Bonsai.Sleap" Version="0.2.1" />
+    <PackageReference Include="Bonsai.Design.Visualizers" Version="2.8.0" />
+    <PackageReference Include="Aeon.Environment" Version="0.1.0-build231209" />
+    <PackageReference Include="ZedGraph" Version="5.1.7" />
   </ItemGroup>
 
 </Project>
