@@ -307,7 +307,7 @@
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="p1:RfidVisualizerBuilder">
-                <p1:Capacity>0</p1:Capacity>
+                <p1:Capacity>200</p1:Capacity>
               </Combinator>
             </Expression>
             <Expression xsi:type="GroupWorkflow">
