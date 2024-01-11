@@ -41,7 +41,7 @@ public class RfidMeasurementVisualizer : DialogTypeVisualizer
 {
     int capacity;
     GraphControl graph;
-    Dictionary<ulong, RollingPointPairList> seriesMap;
+    Dictionary<ulong, IPointListEdit> seriesMap;
     Dictionary<int, string> locationMap;
 
     public override void Load(IServiceProvider provider)
@@ -76,7 +76,7 @@ public class RfidMeasurementVisualizer : DialogTypeVisualizer
         timeAxis.Scale.MinorUnit = DateUnit.Millisecond;
         timeAxis.MinorTic.IsAllTics = false;
 
-        seriesMap = new Dictionary<ulong, RollingPointPairList>();
+        seriesMap = new Dictionary<ulong, IPointListEdit>();
         locationMap = new Dictionary<int, string>();
         var visualizerService = (IDialogTypeVisualizerService)provider.GetService(typeof(IDialogTypeVisualizerService));
         if (visualizerService != null)
@@ -87,12 +87,12 @@ public class RfidMeasurementVisualizer : DialogTypeVisualizer
 
     public override void Show(object value)
     {
-        RollingPointPairList series;
+        IPointListEdit series;
         var measurement = (RfidTaggedMeasurement)value;
         var tagId = measurement.TagId;
         if (!seriesMap.TryGetValue(tagId, out series))
         {
-            series = new RollingPointPairList(capacity);
+            series = capacity > 0 ? (IPointListEdit)new RollingPointPairList(capacity) : new PointPairList();
             var curve = graph.GraphPane.AddCurve(tagId.ToString(), series, graph.GetNextColor(), SymbolType.Circle);
             curve.Line.IsVisible = false;
             curve.Symbol.Fill.Type = FillType.Solid;
