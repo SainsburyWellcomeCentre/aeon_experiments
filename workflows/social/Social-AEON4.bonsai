@@ -541,6 +541,7 @@
                           <Property Name="HardwareNotificationsState" />
                           <Property Name="PortName" />
                           <Property Name="RfidEvents" />
+                          <Property Name="Location" />
                           <Property Name="InboundRfidDetected" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
@@ -569,6 +570,7 @@
                           <Property Name="HardwareNotificationsState" />
                           <Property Name="PortName" />
                           <Property Name="RfidEvents" />
+                          <Property Name="Location" />
                           <Property Name="InboundRfidDetected" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
@@ -597,6 +599,7 @@
                           <Property Name="HardwareNotificationsState" />
                           <Property Name="PortName" />
                           <Property Name="RfidEvents" />
+                          <Property Name="Location" />
                           <Property Name="InboundRfidDetected" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
@@ -625,6 +628,7 @@
                           <Property Name="HardwareNotificationsState" />
                           <Property Name="PortName" />
                           <Property Name="RfidEvents" />
+                          <Property Name="Location" />
                           <Property Name="InboundRfidDetected" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
@@ -653,6 +657,7 @@
                           <Property Name="HardwareNotificationsState" />
                           <Property Name="PortName" />
                           <Property Name="RfidEvents" />
+                          <Property Name="Location" />
                           <Property Name="InboundRfidDetected" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
@@ -681,6 +686,7 @@
                           <Property Name="HardwareNotificationsState" />
                           <Property Name="PortName" />
                           <Property Name="RfidEvents" />
+                          <Property Name="Location" />
                           <Property Name="InboundRfidDetected" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
