@@ -259,9 +259,9 @@
                     <VisualizerSettings>
                       <MatVisualizer>
                         <XMin>0</XMin>
-                        <XMax>1500</XMax>
-                        <YMin>-1</YMin>
-                        <YMax>1</YMax>
+                        <XMax>1</XMax>
+                        <YMin>0</YMin>
+                        <YMax>1.1</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
                         <SelectedPage>0</SelectedPage>
@@ -278,9 +278,9 @@
                     <VisualizerSettings>
                       <MatVisualizer>
                         <XMin>0</XMin>
-                        <XMax>1500</XMax>
-                        <YMin>-1</YMin>
-                        <YMax>1</YMax>
+                        <XMax>1</XMax>
+                        <YMin>0</YMin>
+                        <YMax>1.1</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
                         <SelectedPage>0</SelectedPage>
@@ -297,9 +297,9 @@
                     <VisualizerSettings>
                       <MatVisualizer>
                         <XMin>0</XMin>
-                        <XMax>1500</XMax>
-                        <YMin>-1</YMin>
-                        <YMax>1</YMax>
+                        <XMax>1</XMax>
+                        <YMin>0</YMin>
+                        <YMax>1.1</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
                         <SelectedPage>0</SelectedPage>
@@ -316,8 +316,8 @@
                     <VisualizerSettings>
                       <RollingGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>-1</Min>
-                        <Max>1</Max>
+                        <Min>0</Min>
+                        <Max>1.1</Max>
                         <AutoScale>true</AutoScale>
                       </RollingGraphVisualizer>
                     </VisualizerSettings>
@@ -327,8 +327,8 @@
                     <VisualizerSettings>
                       <RollingGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>-1</Min>
-                        <Max>1</Max>
+                        <Min>0</Min>
+                        <Max>1.1</Max>
                         <AutoScale>true</AutoScale>
                       </RollingGraphVisualizer>
                     </VisualizerSettings>
@@ -338,8 +338,8 @@
                     <VisualizerSettings>
                       <RollingGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>-1</Min>
-                        <Max>1</Max>
+                        <Min>0</Min>
+                        <Max>1.1</Max>
                         <AutoScale>true</AutoScale>
                       </RollingGraphVisualizer>
                     </VisualizerSettings>
@@ -395,14 +395,9 @@
                     </VisualizerSettings>
                   </MashupSettings>
                   <MashupSettings>
-                    <VisualizerTypeName>Bonsai.Design.Visualizers.BarGraphVisualizer</VisualizerTypeName>
+                    <VisualizerTypeName>RfidMeasurementVisualizer</VisualizerTypeName>
                     <VisualizerSettings>
-                      <BarGraphVisualizer>
-                        <Capacity>0</Capacity>
-                        <Min>0</Min>
-                        <Max>1.1</Max>
-                        <AutoScale>true</AutoScale>
-                      </BarGraphVisualizer>
+                      <RfidMeasurementVisualizer />
                     </VisualizerSettings>
                   </MashupSettings>
                   <MashupSettings>
@@ -421,8 +416,8 @@
                     <VisualizerSettings>
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>-1</Min>
-                        <Max>1</Max>
+                        <Min>0</Min>
+                        <Max>1.1</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -463,22 +458,6 @@
               <VisualizerTypeName>Bonsai.Vision.Design.IplImageVisualizer</VisualizerTypeName>
               <VisualizerSettings>
                 <IplImageVisualizer />
-              </VisualizerSettings>
-            </MashupSettings>
-            <MashupSettings>
-              <VisualizerTypeName>Bonsai.Vision.Design.IplImageVisualizer</VisualizerTypeName>
-              <VisualizerSettings>
-                <IplImageVisualizer>
-                  <MashupSettings>
-                    <VisualizerTypeName>Bonsai.Vision.Design.PointOverlay</VisualizerTypeName>
-                    <VisualizerSettings>
-                      <PointOverlay>
-                        <Tracking>None</Tracking>
-                        <Capacity>1</Capacity>
-                      </PointOverlay>
-                    </VisualizerSettings>
-                  </MashupSettings>
-                </IplImageVisualizer>
               </VisualizerSettings>
             </MashupSettings>
             <MashupSettings>
@@ -611,8 +590,8 @@
               <VisualizerSettings>
                 <RollingGraphVisualizer>
                   <Capacity>640</Capacity>
-                  <Min>-1</Min>
-                  <Max>1</Max>
+                  <Min>0</Min>
+                  <Max>1.1</Max>
                   <AutoScale>true</AutoScale>
                 </RollingGraphVisualizer>
               </VisualizerSettings>
@@ -631,6 +610,18 @@
           </Size>
           <WindowState>Normal</WindowState>
         </EditorDialogSettings>
+      </DialogSettings>
+      <DialogSettings>
+        <Visible>false</Visible>
+        <Location>
+          <X>0</X>
+          <Y>0</Y>
+        </Location>
+        <Size>
+          <Width>0</Width>
+          <Height>0</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
       </DialogSettings>
     </EditorVisualizerLayout>
   </DialogSettings>
