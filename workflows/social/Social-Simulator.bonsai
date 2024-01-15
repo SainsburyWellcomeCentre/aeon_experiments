@@ -4,6 +4,7 @@
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns:beh="clr-namespace:Harp.Behavior;assembly=Harp.Behavior"
+                 xmlns:aeon-env="clr-namespace:Aeon.Environment;assembly=Aeon.Environment"
                  xmlns:p1="clr-namespace:System.Reactive.Linq;assembly=System.Reactive.Interfaces"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
                  xmlns:sleap="clr-namespace:Bonsai.Sleap;assembly=Bonsai.Sleap"
@@ -313,6 +314,24 @@
                         <Edge From="1" To="2" Label="Source1" />
                       </Edges>
                     </Workflow>
+                  </Expression>
+                  <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon-env:RfidMeasurement)">
+                    <rx:Name>GateRfidInboundDetected</rx:Name>
+                  </Expression>
+                  <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon-env:RfidMeasurement)">
+                    <rx:Name>NestRfid1InboundDetected</rx:Name>
+                  </Expression>
+                  <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon-env:RfidMeasurement)">
+                    <rx:Name>NestRfid2InboundDetected</rx:Name>
+                  </Expression>
+                  <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon-env:RfidMeasurement)">
+                    <rx:Name>Patch1RfidInboundDetected</rx:Name>
+                  </Expression>
+                  <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon-env:RfidMeasurement)">
+                    <rx:Name>Patch2RfidInboundDetected</rx:Name>
+                  </Expression>
+                  <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon-env:RfidMeasurement)">
+                    <rx:Name>Patch3RfidInboundDetected</rx:Name>
                   </Expression>
                 </Nodes>
                 <Edges />
