@@ -9,7 +9,7 @@ using Bonsai.Sleap;
 
 [Combinator]
 [Description("Extracts the subject with the specified identity from the list of active poses.")]
-[WorkflowElementCategory(ElementCategory.Transform)]
+[WorkflowElementCategory(ElementCategory.Combinator)]
 public class GetActiveSubject
 {
     [Description("The identity of the pose to retrieve.")]
@@ -18,7 +18,8 @@ public class GetActiveSubject
     public IObservable<Timestamped<PoseIdentity>> Process(IObservable<Timestamped<IList<PoseIdentity>>> source)
     {
         return source.Select(timestampedPoses => Timestamped.Create(
-            timestampedPoses.Value.First(pose => pose.Identity == Identity),
-            timestampedPoses.Seconds));
+            timestampedPoses.Value.FirstOrDefault(pose => pose.Identity == Identity),
+            timestampedPoses.Seconds))
+            .Where(pose => pose.Value != null);
     }
 }
