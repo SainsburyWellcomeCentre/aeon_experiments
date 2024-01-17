@@ -1045,12 +1045,10 @@ P3 (rate: {8}, d0: {7}, thr: {6:0.##})</Format>
             <Expression xsi:type="SubscribeSubject">
               <Name>AverageWeights</Name>
             </Expression>
-            <Expression xsi:type="viz:RollingGraphBuilder">
-              <viz:SymbolType>None</viz:SymbolType>
-              <viz:LineWidth>1</viz:LineWidth>
-              <viz:Capacity xsi:nil="true" />
-              <viz:Min xsi:nil="true" />
-              <viz:Max xsi:nil="true" />
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="p1:LabeledSeriesVisualizerBuilder">
+                <p1:Capacity>120</p1:Capacity>
+              </Combinator>
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="SubscribeSubject">
