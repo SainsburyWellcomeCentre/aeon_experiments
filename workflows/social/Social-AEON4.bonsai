@@ -1055,6 +1055,119 @@
         <WorkflowName>Social-AEON4.bonsai</WorkflowName>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\ControlPanel.bonsai" />
+      <Expression xsi:type="GroupWorkflow">
+        <Name>SoundCardController</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>SoundBoardEvents</Name>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+              <LogName>SoundCard</LogName>
+              <Heartbeats />
+              <ClosingDuration xsi:nil="true" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="wie:KeyDown">
+                <wie:Filter>LButton MButton XButton1 ShiftKey ControlKey Capital CapsLock KanaMode HanguelMode HangulMode Space Prior PageUp Home Left D0 D1 D4 D5 A D E P Q T U NumPad0 NumPad1 NumPad4 NumPad5 F1 F2 F5 F6 Shift Alt</wie:Filter>
+                <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="p1:CreateMessage">
+              <harp:MessageType>Write</harp:MessageType>
+              <harp:Payload xsi:type="p1:CreatePlaySoundOrFrequencyPayload">
+                <p1:PlaySoundOrFrequency>5</p1:PlaySoundOrFrequency>
+              </harp:Payload>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>SoundBoardCommands</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="wie:KeyDown">
+                <wie:Filter>RButton MButton XButton2 ShiftKey Menu Capital CapsLock Space Next PageDown Home Up D0 D2 D4 D6 B D F P R T V NumPad0 NumPad2 NumPad4 NumPad6 F1 F3 F5 F7 Shift Alt</wie:Filter>
+                <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="p1:CreateMessage">
+              <harp:MessageType>Write</harp:MessageType>
+              <harp:Payload xsi:type="p1:CreatePlaySoundOrFrequencyPayload">
+                <p1:PlaySoundOrFrequency>7</p1:PlaySoundOrFrequency>
+              </harp:Payload>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>SoundBoardCommands</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="wie:KeyDown">
+                <wie:Filter>LButton RButton Cancel MButton XButton1 XButton2 ShiftKey ControlKey Menu Pause Capital CapsLock KanaMode HanguelMode HangulMode JunjaMode Space Prior PageUp Next PageDown End Home Left Up Right D0 D1 D2 D3 D4 D5 D6 D7 A B C D E F G P Q R S T U V W NumPad0 NumPad1 NumPad2 NumPad3 NumPad4 NumPad5 NumPad6 NumPad7 F1 F2 F3 F4 F5 F6 F7 F8 Shift Alt</wie:Filter>
+                <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="p1:CreateMessage">
+              <harp:MessageType>Write</harp:MessageType>
+              <harp:Payload xsi:type="p1:CreatePlaySoundOrFrequencyPayload">
+                <p1:PlaySoundOrFrequency>9</p1:PlaySoundOrFrequency>
+              </harp:Payload>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>SoundBoardCommands</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="wie:KeyDown">
+                <wie:Filter>Back ShiftKey FinalMode Space Down D0 D8 H P X NumPad0 NumPad8 F1 F9 Shift Alt</wie:Filter>
+                <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="p1:CreateMessage">
+              <harp:MessageType>Write</harp:MessageType>
+              <harp:Payload xsi:type="p1:CreatePlaySoundOrFrequencyPayload">
+                <p1:PlaySoundOrFrequency>11</p1:PlaySoundOrFrequency>
+              </harp:Payload>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>SoundBoardCommands</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>SoundBoardEvents</Name>
+            </Expression>
+            <Expression xsi:type="harp:Parse">
+              <harp:Register xsi:type="harp:ParseMessagePayload">
+                <harp:PayloadType>Timestamp</harp:PayloadType>
+                <harp:IsArray>false</harp:IsArray>
+              </harp:Register>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>SynchronizerEvents</Name>
+            </Expression>
+            <Expression xsi:type="harp:Parse">
+              <harp:Register xsi:type="harp:ParseMessagePayload">
+                <harp:PayloadType>Timestamp</harp:PayloadType>
+                <harp:IsArray>false</harp:IsArray>
+              </harp:Register>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WithLatestFrom" />
+            </Expression>
+            <Expression xsi:type="Subtract" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="5" To="6" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="8" To="9" Label="Source1" />
+            <Edge From="9" To="10" Label="Source1" />
+            <Edge From="11" To="12" Label="Source1" />
+            <Edge From="12" To="13" Label="Source1" />
+            <Edge From="14" To="15" Label="Source1" />
+            <Edge From="15" To="18" Label="Source1" />
+            <Edge From="16" To="17" Label="Source1" />
+            <Edge From="17" To="18" Label="Source2" />
+            <Edge From="18" To="19" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="EnvironmentConfigPath" />
       </Expression>
