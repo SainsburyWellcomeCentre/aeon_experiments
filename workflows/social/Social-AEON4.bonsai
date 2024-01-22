@@ -549,8 +549,8 @@
                           <PortName>COM14</PortName>
                           <RfidEvents>NestRfid1Events</RfidEvents>
                           <Location>
-                            <X>0</X>
-                            <Y>0</Y>
+                            <X>1155</X>
+                            <Y>664</Y>
                           </Location>
                           <InboundRfidDetected>NestRfid1InboundDetected</InboundRfidDetected>
                         </Expression>
@@ -578,8 +578,8 @@
                           <PortName>COM15</PortName>
                           <RfidEvents>NestRfid2Events</RfidEvents>
                           <Location>
-                            <X>0</X>
-                            <Y>0</Y>
+                            <X>1164</X>
+                            <Y>465</Y>
                           </Location>
                           <InboundRfidDetected>NestRfid2InboundDetected</InboundRfidDetected>
                         </Expression>
@@ -607,8 +607,8 @@
                           <PortName>COM17</PortName>
                           <RfidEvents>GateRfidEvents</RfidEvents>
                           <Location>
-                            <X>0</X>
-                            <Y>0</Y>
+                            <X>182</X>
+                            <Y>568</Y>
                           </Location>
                           <InboundRfidDetected>GateRfidInboundDetected</InboundRfidDetected>
                         </Expression>
@@ -636,8 +636,8 @@
                           <PortName>COM12</PortName>
                           <RfidEvents>Patch1RfidEvents</RfidEvents>
                           <Location>
-                            <X>0</X>
-                            <Y>0</Y>
+                            <X>902</X>
+                            <Y>565</Y>
                           </Location>
                           <InboundRfidDetected>Patch1RfidInboundDetected</InboundRfidDetected>
                         </Expression>
@@ -665,8 +665,8 @@
                           <PortName>COM13</PortName>
                           <RfidEvents>Patch2RfidEvents</RfidEvents>
                           <Location>
-                            <X>0</X>
-                            <Y>0</Y>
+                            <X>563</X>
+                            <Y>762</Y>
                           </Location>
                           <InboundRfidDetected>Patch2RfidInboundDetected</InboundRfidDetected>
                         </Expression>
@@ -694,8 +694,8 @@
                           <PortName>COM9</PortName>
                           <RfidEvents>Patch3RfidEvents</RfidEvents>
                           <Location>
-                            <X>0</X>
-                            <Y>0</Y>
+                            <X>565</X>
+                            <Y>372</Y>
                           </Location>
                           <InboundRfidDetected>Patch3RfidInboundDetected</InboundRfidDetected>
                         </Expression>
