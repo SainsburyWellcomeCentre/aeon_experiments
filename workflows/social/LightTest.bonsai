@@ -1,26 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns:aeon-env="clr-namespace:Aeon.Environment;assembly=Aeon.Environment"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
       <Expression xsi:type="GroupWorkflow">
-        <Name>ClockSynchronizer</Name>
+        <Name>FakeSynchronizer</Name>
         <Workflow>
           <Nodes>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="PortName" />
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Timer">
+                <rx:DueTime>PT0S</rx:DueTime>
+                <rx:Period>PT1S</rx:Period>
+              </Combinator>
             </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ClockSynchronizer.bonsai">
-              <PortName>COM5</PortName>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Timestamp" />
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Timestamp.UtcDateTime.TimeOfDay.TotalSeconds</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Zip" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="harp:CreateTimestamped" />
+            </Expression>
+            <Expression xsi:type="harp:CreateMessage">
+              <harp:MessageType>Write</harp:MessageType>
+              <harp:Payload xsi:type="harp:CreateTimestampedClockConfigurationPayload">
+                <harp:ClockConfiguration>None</harp:ClockConfiguration>
+              </harp:Payload>
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject">
+              <Name>SynchronizerEvents</Name>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
+            <Edge From="0" To="3" Label="Source1" />
             <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source2" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="5" To="6" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -33,7 +61,7 @@
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:LightClient.bonsai">
         <EventSocket>&gt;tcp://172.24.158.103:4303</EventSocket>
-        <RoomName />
+        <RoomName>AEON3</RoomName>
         <LightEvents>LightEvents</LightEvents>
         <LightCommands>LightCommands</LightCommands>
         <CommandSocket>&gt;tcp://172.24.158.103:4304</CommandSocket>
@@ -46,7 +74,7 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="aeon-env:CreateRoomLightPreset">
-          <aeon-env:ColdWhite>0</aeon-env:ColdWhite>
+          <aeon-env:ColdWhite>40</aeon-env:ColdWhite>
           <aeon-env:WarmWhite>0</aeon-env:WarmWhite>
           <aeon-env:Red>0</aeon-env:Red>
         </Combinator>
