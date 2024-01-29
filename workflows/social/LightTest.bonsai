@@ -1,6 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:aeon-env="clr-namespace:Aeon.Environment;assembly=Aeon.Environment"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
@@ -38,6 +39,12 @@
         <CommandSocket>&gt;tcp://172.24.158.103:4304</CommandSocket>
       </Expression>
       <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Timer">
+          <rx:DueTime>PT0S</rx:DueTime>
+          <rx:Period>PT15S</rx:Period>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
         <Combinator xsi:type="aeon-env:CreateRoomLightPreset">
           <aeon-env:ColdWhite>0</aeon-env:ColdWhite>
           <aeon-env:WarmWhite>0</aeon-env:WarmWhite>
@@ -51,6 +58,7 @@
     <Edges>
       <Edge From="1" To="2" Label="Source1" />
       <Edge From="3" To="4" Label="Source1" />
+      <Edge From="4" To="5" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
