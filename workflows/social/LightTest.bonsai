@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.8.1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:aeon-env="clr-namespace:Aeon.Environment;assembly=Aeon.Environment"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>ClockSynchronizer</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="PortName" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ClockSynchronizer.bonsai">
+              <PortName>COM5</PortName>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="EventSocket" />
+        <Property Name="RoomName" />
+        <Property Name="LightEvents" />
+        <Property Name="LightCommands" />
+        <Property Name="CommandSocket" />
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:LightClient.bonsai">
+        <EventSocket>&gt;tcp://172.24.158.103:4303</EventSocket>
+        <RoomName />
+        <LightEvents>LightEvents</LightEvents>
+        <LightCommands>LightCommands</LightCommands>
+        <CommandSocket>&gt;tcp://172.24.158.103:4304</CommandSocket>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="aeon-env:CreateRoomLightPreset">
+          <aeon-env:ColdWhite>0</aeon-env:ColdWhite>
+          <aeon-env:WarmWhite>0</aeon-env:WarmWhite>
+          <aeon-env:Red>0</aeon-env:Red>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>LightCommands</Name>
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
