@@ -2123,9 +2123,9 @@
                     <VisualizerSettings>
                       <MatVisualizer>
                         <XMin>0</XMin>
-                        <XMax>1500</XMax>
-                        <YMin>-20</YMin>
-                        <YMax>160</YMax>
+                        <XMax>1</XMax>
+                        <YMin>0</YMin>
+                        <YMax>1.1</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
                         <SelectedPage>0</SelectedPage>
@@ -2142,9 +2142,9 @@
                     <VisualizerSettings>
                       <MatVisualizer>
                         <XMin>0</XMin>
-                        <XMax>1500</XMax>
-                        <YMin>-20</YMin>
-                        <YMax>160</YMax>
+                        <XMax>1</XMax>
+                        <YMin>0</YMin>
+                        <YMax>1.1</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
                         <SelectedPage>0</SelectedPage>
@@ -2161,9 +2161,9 @@
                     <VisualizerSettings>
                       <MatVisualizer>
                         <XMin>0</XMin>
-                        <XMax>1500</XMax>
-                        <YMin>-50</YMin>
-                        <YMax>350</YMax>
+                        <XMax>1</XMax>
+                        <YMin>0</YMin>
+                        <YMax>1.1</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
                         <SelectedPage>0</SelectedPage>
@@ -2180,8 +2180,8 @@
                     <VisualizerSettings>
                       <RollingGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>126</Min>
-                        <Max>142</Max>
+                        <Min>0</Min>
+                        <Max>1.1</Max>
                         <AutoScale>true</AutoScale>
                       </RollingGraphVisualizer>
                     </VisualizerSettings>
@@ -2191,8 +2191,8 @@
                     <VisualizerSettings>
                       <RollingGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>132</Min>
-                        <Max>148</Max>
+                        <Min>0</Min>
+                        <Max>1.1</Max>
                         <AutoScale>true</AutoScale>
                       </RollingGraphVisualizer>
                     </VisualizerSettings>
@@ -2202,8 +2202,8 @@
                     <VisualizerSettings>
                       <RollingGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>290</Min>
-                        <Max>330</Max>
+                        <Min>0</Min>
+                        <Max>1.1</Max>
                         <AutoScale>true</AutoScale>
                       </RollingGraphVisualizer>
                     </VisualizerSettings>
@@ -2259,12 +2259,18 @@
                     </VisualizerSettings>
                   </MashupSettings>
                   <MashupSettings>
+                    <VisualizerTypeName>RfidMeasurementVisualizer</VisualizerTypeName>
+                    <VisualizerSettings>
+                      <RfidMeasurementVisualizer />
+                    </VisualizerSettings>
+                  </MashupSettings>
+                  <MashupSettings>
                     <VisualizerTypeName>Bonsai.Design.Visualizers.BarGraphVisualizer</VisualizerTypeName>
                     <VisualizerSettings>
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>-1</Min>
-                        <Max>1</Max>
+                        <Min>0</Min>
+                        <Max>1.1</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -2275,18 +2281,7 @@
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
                         <Min>0</Min>
-                        <Max>100</Max>
-                        <AutoScale>true</AutoScale>
-                      </BarGraphVisualizer>
-                    </VisualizerSettings>
-                  </MashupSettings>
-                  <MashupSettings>
-                    <VisualizerTypeName>Bonsai.Design.Visualizers.BarGraphVisualizer</VisualizerTypeName>
-                    <VisualizerSettings>
-                      <BarGraphVisualizer>
-                        <Capacity>0</Capacity>
-                        <Min>-0.004</Min>
-                        <Max>0.005</Max>
+                        <Max>1.1</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -2330,11 +2325,11 @@
               </VisualizerSettings>
             </MashupSettings>
             <MashupSettings>
-              <VisualizerTypeName>Bonsai.Sleap.Design.PoseIdentityCollectionVisualizer</VisualizerTypeName>
+              <VisualizerTypeName>ActiveSubjectVisualizer</VisualizerTypeName>
               <VisualizerSettings>
-                <PoseIdentityCollectionVisualizer>
+                <ActiveSubjectVisualizer>
                   <DrawIdentity>false</DrawIdentity>
-                </PoseIdentityCollectionVisualizer>
+                </ActiveSubjectVisualizer>
               </VisualizerSettings>
             </MashupSettings>
             <MashupSettings>
@@ -2444,14 +2439,9 @@
               </VisualizerSettings>
             </MashupSettings>
             <MashupSettings>
-              <VisualizerTypeName>Bonsai.Design.Visualizers.RollingGraphVisualizer</VisualizerTypeName>
+              <VisualizerTypeName>LabeledSeriesVisualizer</VisualizerTypeName>
               <VisualizerSettings>
-                <RollingGraphVisualizer>
-                  <Capacity>0</Capacity>
-                  <Min>0</Min>
-                  <Max>1.1</Max>
-                  <AutoScale>true</AutoScale>
-                </RollingGraphVisualizer>
+                <LabeledSeriesVisualizer />
               </VisualizerSettings>
             </MashupSettings>
             <MashupSettings>
@@ -2459,8 +2449,8 @@
               <VisualizerSettings>
                 <RollingGraphVisualizer>
                   <Capacity>640</Capacity>
-                  <Min>-1</Min>
-                  <Max>1</Max>
+                  <Min>11.6</Min>
+                  <Max>11.709999999999999</Max>
                   <AutoScale>true</AutoScale>
                 </RollingGraphVisualizer>
               </VisualizerSettings>
@@ -2506,6 +2496,77 @@
           </IplImageVisualizer>
         </VisualizerSettings>
       </DialogSettings>
+      <DialogSettings>
+        <Visible>true</Visible>
+        <Location>
+          <X>26</X>
+          <Y>475</Y>
+        </Location>
+        <Size>
+          <Width>677</Width>
+          <Height>558</Height>
+        </Size>
+        <WindowState>Normal</WindowState>
+        <VisualizerTypeName>Bonsai.Design.Visualizers.TableLayoutPanelVisualizer</VisualizerTypeName>
+        <VisualizerSettings>
+          <TableLayoutPanelVisualizer>
+            <MashupSettings>
+              <VisualizerTypeName>Bonsai.Vision.Design.IplImageVisualizer</VisualizerTypeName>
+              <VisualizerSettings>
+                <IplImageVisualizer />
+              </VisualizerSettings>
+            </MashupSettings>
+            <MashupSettings>
+              <VisualizerTypeName>Bonsai.Vision.Design.IplImageVisualizer</VisualizerTypeName>
+              <VisualizerSettings>
+                <IplImageVisualizer />
+              </VisualizerSettings>
+            </MashupSettings>
+            <MashupSettings>
+              <VisualizerTypeName>Bonsai.Vision.Design.IplImageVisualizer</VisualizerTypeName>
+              <VisualizerSettings>
+                <IplImageVisualizer />
+              </VisualizerSettings>
+            </MashupSettings>
+            <MashupSettings>
+              <VisualizerTypeName>Bonsai.Vision.Design.IplImageVisualizer</VisualizerTypeName>
+              <VisualizerSettings>
+                <IplImageVisualizer />
+              </VisualizerSettings>
+            </MashupSettings>
+            <MashupSettings>
+              <VisualizerTypeName>Bonsai.Vision.Design.IplImageVisualizer</VisualizerTypeName>
+              <VisualizerSettings>
+                <IplImageVisualizer />
+              </VisualizerSettings>
+            </MashupSettings>
+            <MashupSettings>
+              <VisualizerTypeName>Bonsai.Vision.Design.IplImageVisualizer</VisualizerTypeName>
+              <VisualizerSettings>
+                <IplImageVisualizer />
+              </VisualizerSettings>
+            </MashupSettings>
+            <MashupSettings>
+              <VisualizerTypeName>Bonsai.Vision.Design.IplImageVisualizer</VisualizerTypeName>
+              <VisualizerSettings>
+                <IplImageVisualizer />
+              </VisualizerSettings>
+            </MashupSettings>
+            <MashupSettings>
+              <VisualizerTypeName>Bonsai.Vision.Design.IplImageVisualizer</VisualizerTypeName>
+              <VisualizerSettings>
+                <IplImageVisualizer />
+              </VisualizerSettings>
+            </MashupSettings>
+            <MashupSettings>
+              <VisualizerTypeName>Bonsai.Vision.Design.IplImageVisualizer</VisualizerTypeName>
+              <VisualizerSettings>
+                <IplImageVisualizer />
+              </VisualizerSettings>
+            </MashupSettings>
+          </TableLayoutPanelVisualizer>
+        </VisualizerSettings>
+      </DialogSettings>
     </EditorVisualizerLayout>
   </DialogSettings>
   <DialogSettings>
@@ -2543,29 +2604,5 @@
       </Size>
       <WindowState>Normal</WindowState>
     </EditorDialogSettings>
-  </DialogSettings>
-  <DialogSettings>
-    <Visible>false</Visible>
-    <Location>
-      <X>0</X>
-      <Y>0</Y>
-    </Location>
-    <Size>
-      <Width>0</Width>
-      <Height>0</Height>
-    </Size>
-    <WindowState>Normal</WindowState>
-  </DialogSettings>
-  <DialogSettings>
-    <Visible>false</Visible>
-    <Location>
-      <X>0</X>
-      <Y>0</Y>
-    </Location>
-    <Size>
-      <Width>0</Width>
-      <Height>0</Height>
-    </Size>
-    <WindowState>Normal</WindowState>
   </DialogSettings>
 </VisualizerLayout>
