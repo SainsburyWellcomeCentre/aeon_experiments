@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Bonsai.Expressions;
 using System.Reactive.Linq;
 using OpenCV.Net;
+using Aeon.Acquisition;
 
 [Combinator]
 [Description("Display individual RFID tag measurements in a raster plot.")]
@@ -99,7 +100,7 @@ public class RfidMeasurementVisualizer : DialogTypeVisualizer
             seriesMap.Add(tagId, series);
         }
 
-        var dateTime = DateTime.UtcNow;
+        var dateTime = GetDateTime.FromSeconds(measurement.Seconds);
         var location = measurement.Index;
         locationMap[location] = measurement.Name;
         series.Add((XDate)dateTime, location);

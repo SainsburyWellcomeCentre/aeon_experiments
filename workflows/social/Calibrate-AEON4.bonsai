@@ -202,7 +202,7 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="cv:Threshold">
-          <cv:ThresholdValue>179</cv:ThresholdValue>
+          <cv:ThresholdValue>176</cv:ThresholdValue>
           <cv:MaxValue>255</cv:MaxValue>
           <cv:ThresholdType>Binary</cv:ThresholdType>
         </Combinator>
@@ -248,20 +248,20 @@
                 <cv:Regions>
                   <cv:ArrayOfPoint>
                     <cv:Point>
-                      <cv:X>1267</cv:X>
-                      <cv:Y>504</cv:Y>
+                      <cv:X>1273</cv:X>
+                      <cv:Y>518</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>1177</cv:X>
-                      <cv:Y>503</cv:Y>
+                      <cv:X>1183</cv:X>
+                      <cv:Y>517</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>1177</cv:X>
-                      <cv:Y>609</cv:Y>
+                      <cv:X>1183</cv:X>
+                      <cv:Y>623</cv:Y>
                     </cv:Point>
                     <cv:Point>
-                      <cv:X>1269</cv:X>
-                      <cv:Y>601</cv:Y>
+                      <cv:X>1275</cv:X>
+                      <cv:Y>615</cv:Y>
                     </cv:Point>
                   </cv:ArrayOfPoint>
                 </cv:Regions>
@@ -426,86 +426,86 @@
         <NestRegion>
           <ArrayOfPoint>
             <Point>
-              <X>1267</X>
-              <Y>504</Y>
+              <X>1273</X>
+              <Y>518</Y>
             </Point>
             <Point>
-              <X>1177</X>
-              <Y>503</Y>
+              <X>1183</X>
+              <Y>517</Y>
             </Point>
             <Point>
-              <X>1177</X>
-              <Y>609</Y>
+              <X>1183</X>
+              <Y>623</Y>
             </Point>
             <Point>
-              <X>1269</X>
-              <Y>601</Y>
+              <X>1275</X>
+              <Y>615</Y>
             </Point>
           </ArrayOfPoint>
         </NestRegion>
         <Patch1Region>
           <ArrayOfPoint>
             <Point>
-              <X>863</X>
-              <Y>544</Y>
+              <X>861</X>
+              <Y>558</Y>
             </Point>
             <Point>
-              <X>886</X>
-              <Y>542</Y>
+              <X>884</X>
+              <Y>556</Y>
             </Point>
             <Point>
-              <X>885</X>
-              <Y>563</Y>
+              <X>883</X>
+              <Y>577</Y>
             </Point>
             <Point>
-              <X>863</X>
-              <Y>563</Y>
+              <X>861</X>
+              <Y>577</Y>
             </Point>
           </ArrayOfPoint>
         </Patch1Region>
         <Patch2Region>
           <ArrayOfPoint>
             <Point>
-              <X>580</X>
-              <Y>706</Y>
+              <X>577</X>
+              <Y>723</Y>
             </Point>
             <Point>
-              <X>598</X>
-              <Y>715</Y>
+              <X>595</X>
+              <Y>732</Y>
             </Point>
             <Point>
-              <X>587</X>
-              <Y>736</Y>
+              <X>584</X>
+              <Y>753</Y>
             </Point>
             <Point>
-              <X>570</X>
-              <Y>727</Y>
+              <X>567</X>
+              <Y>744</Y>
             </Point>
           </ArrayOfPoint>
         </Patch2Region>
         <Patch3Region>
           <ArrayOfPoint>
             <Point>
-              <X>569</X>
-              <Y>380</Y>
+              <X>565</X>
+              <Y>394</Y>
             </Point>
             <Point>
-              <X>587</X>
-              <Y>369</Y>
+              <X>583</X>
+              <Y>383</Y>
             </Point>
             <Point>
-              <X>598</X>
-              <Y>389</Y>
+              <X>594</X>
+              <Y>403</Y>
             </Point>
             <Point>
-              <X>580</X>
-              <Y>401</Y>
+              <X>576</X>
+              <Y>415</Y>
             </Point>
           </ArrayOfPoint>
         </Patch3Region>
         <ArenaCenter>
           <X>680</X>
-          <Y>552</Y>
+          <Y>565</Y>
         </ArenaCenter>
         <ArenaInnerRadius>487</ArenaInnerRadius>
         <ArenaOuterRadius>515</ArenaOuterRadius>

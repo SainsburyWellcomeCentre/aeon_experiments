@@ -549,8 +549,8 @@
                           <PortName>COM14</PortName>
                           <RfidEvents>NestRfid1Events</RfidEvents>
                           <Location>
-                            <X>0</X>
-                            <Y>0</Y>
+                            <X>1155</X>
+                            <Y>664</Y>
                           </Location>
                           <InboundRfidDetected>NestRfid1InboundDetected</InboundRfidDetected>
                         </Expression>
@@ -578,8 +578,8 @@
                           <PortName>COM15</PortName>
                           <RfidEvents>NestRfid2Events</RfidEvents>
                           <Location>
-                            <X>0</X>
-                            <Y>0</Y>
+                            <X>1164</X>
+                            <Y>465</Y>
                           </Location>
                           <InboundRfidDetected>NestRfid2InboundDetected</InboundRfidDetected>
                         </Expression>
@@ -607,8 +607,8 @@
                           <PortName>COM17</PortName>
                           <RfidEvents>GateRfidEvents</RfidEvents>
                           <Location>
-                            <X>0</X>
-                            <Y>0</Y>
+                            <X>182</X>
+                            <Y>568</Y>
                           </Location>
                           <InboundRfidDetected>GateRfidInboundDetected</InboundRfidDetected>
                         </Expression>
@@ -636,8 +636,8 @@
                           <PortName>COM12</PortName>
                           <RfidEvents>Patch1RfidEvents</RfidEvents>
                           <Location>
-                            <X>0</X>
-                            <Y>0</Y>
+                            <X>902</X>
+                            <Y>565</Y>
                           </Location>
                           <InboundRfidDetected>Patch1RfidInboundDetected</InboundRfidDetected>
                         </Expression>
@@ -665,8 +665,8 @@
                           <PortName>COM13</PortName>
                           <RfidEvents>Patch2RfidEvents</RfidEvents>
                           <Location>
-                            <X>0</X>
-                            <Y>0</Y>
+                            <X>563</X>
+                            <Y>762</Y>
                           </Location>
                           <InboundRfidDetected>Patch2RfidInboundDetected</InboundRfidDetected>
                         </Expression>
@@ -694,8 +694,8 @@
                           <PortName>COM9</PortName>
                           <RfidEvents>Patch3RfidEvents</RfidEvents>
                           <Location>
-                            <X>0</X>
-                            <Y>0</Y>
+                            <X>565</X>
+                            <Y>372</Y>
                           </Location>
                           <InboundRfidDetected>Patch3RfidInboundDetected</InboundRfidDetected>
                         </Expression>
@@ -769,7 +769,7 @@
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PositionTracking.bonsai">
                     <ThresholdValue>83</ThresholdValue>
-                    <Mask>Config\ArenaMask-AEON4_2023-11-16.png</Mask>
+                    <Mask>Config\ArenaMask-AEON4_2024-01-19.png</Mask>
                     <TrackingCount>1</TrackingCount>
                     <TrackingEvents>TrackingTop</TrackingEvents>
                   </Expression>
@@ -911,86 +911,86 @@
                     <NestRegion>
                       <ArrayOfPoint>
                         <Point>
-                          <X>1267</X>
-                          <Y>504</Y>
+                          <X>1273</X>
+                          <Y>518</Y>
                         </Point>
                         <Point>
-                          <X>1177</X>
-                          <Y>503</Y>
+                          <X>1183</X>
+                          <Y>517</Y>
                         </Point>
                         <Point>
-                          <X>1177</X>
-                          <Y>609</Y>
+                          <X>1183</X>
+                          <Y>623</Y>
                         </Point>
                         <Point>
-                          <X>1269</X>
-                          <Y>601</Y>
+                          <X>1275</X>
+                          <Y>615</Y>
                         </Point>
                       </ArrayOfPoint>
                     </NestRegion>
                     <Patch1Region>
                       <ArrayOfPoint>
                         <Point>
-                          <X>863</X>
-                          <Y>544</Y>
+                          <X>861</X>
+                          <Y>558</Y>
                         </Point>
                         <Point>
-                          <X>886</X>
-                          <Y>542</Y>
+                          <X>884</X>
+                          <Y>556</Y>
                         </Point>
                         <Point>
-                          <X>885</X>
-                          <Y>563</Y>
+                          <X>883</X>
+                          <Y>577</Y>
                         </Point>
                         <Point>
-                          <X>863</X>
-                          <Y>563</Y>
+                          <X>861</X>
+                          <Y>577</Y>
                         </Point>
                       </ArrayOfPoint>
                     </Patch1Region>
                     <Patch2Region>
                       <ArrayOfPoint>
                         <Point>
-                          <X>580</X>
-                          <Y>706</Y>
+                          <X>577</X>
+                          <Y>723</Y>
                         </Point>
                         <Point>
-                          <X>598</X>
-                          <Y>715</Y>
+                          <X>595</X>
+                          <Y>732</Y>
                         </Point>
                         <Point>
-                          <X>587</X>
-                          <Y>736</Y>
+                          <X>584</X>
+                          <Y>753</Y>
                         </Point>
                         <Point>
-                          <X>570</X>
-                          <Y>727</Y>
+                          <X>567</X>
+                          <Y>744</Y>
                         </Point>
                       </ArrayOfPoint>
                     </Patch2Region>
                     <Patch3Region>
                       <ArrayOfPoint>
                         <Point>
-                          <X>569</X>
-                          <Y>380</Y>
+                          <X>565</X>
+                          <Y>394</Y>
                         </Point>
                         <Point>
-                          <X>587</X>
-                          <Y>369</Y>
+                          <X>583</X>
+                          <Y>383</Y>
                         </Point>
                         <Point>
-                          <X>598</X>
-                          <Y>389</Y>
+                          <X>594</X>
+                          <Y>403</Y>
                         </Point>
                         <Point>
-                          <X>580</X>
-                          <Y>401</Y>
+                          <X>576</X>
+                          <Y>415</Y>
                         </Point>
                       </ArrayOfPoint>
                     </Patch3Region>
                     <ArenaCenter>
                       <X>680</X>
-                      <Y>552</Y>
+                      <Y>565</Y>
                     </ArenaCenter>
                     <ArenaInnerRadius>487</ArenaInnerRadius>
                     <ArenaOuterRadius>515</ArenaOuterRadius>
