@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.8.0"
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.8.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:p1="clr-namespace:Bonsai.Harp.Expander;assembly=Bonsai.Harp.Expander"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
@@ -1237,7 +1237,7 @@
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PositionTracking.bonsai">
                     <ThresholdValue>72</ThresholdValue>
-                    <Mask>Config\ArenaMask-AEON2_2023-02-24.png</Mask>
+                    <Mask>Config\ArenaMask-AEON2_2024-01-30.png</Mask>
                     <TrackingCount>1</TrackingCount>
                     <TrackingEvents>TrackingTop</TrackingEvents>
                   </Expression>
@@ -1326,85 +1326,69 @@
                     <NestRegion>
                       <ArrayOfPoint>
                         <Point>
-                          <X>135</X>
-                          <Y>472</Y>
+                          <X>1325</X>
+                          <Y>541</Y>
                         </Point>
                         <Point>
-                          <X>201</X>
-                          <Y>482</Y>
+                          <X>1260</X>
+                          <Y>536</Y>
                         </Point>
                         <Point>
-                          <X>198</X>
-                          <Y>518</Y>
+                          <X>1253</X>
+                          <Y>637</Y>
                         </Point>
                         <Point>
-                          <X>234</X>
-                          <Y>521</Y>
-                        </Point>
-                        <Point>
-                          <X>232</X>
-                          <Y>543</Y>
-                        </Point>
-                        <Point>
-                          <X>195</X>
-                          <Y>542</Y>
-                        </Point>
-                        <Point>
-                          <X>191</X>
-                          <Y>571</Y>
-                        </Point>
-                        <Point>
-                          <X>127</X>
-                          <Y>569</Y>
+                          <X>1325</X>
+                          <Y>641</Y>
                         </Point>
                       </ArrayOfPoint>
                     </NestRegion>
                     <Patch1Region>
                       <ArrayOfPoint>
                         <Point>
-                          <X>536</X>
-                          <Y>826</Y>
+                          <X>899</X>
+                          <Y>264</Y>
                         </Point>
                         <Point>
-                          <X>553</X>
-                          <Y>838</Y>
+                          <X>922</X>
+                          <Y>262</Y>
                         </Point>
                         <Point>
-                          <X>543</X>
-                          <Y>858</Y>
+                          <X>921</X>
+                          <Y>283</Y>
                         </Point>
                         <Point>
-                          <X>524</X>
-                          <Y>843</Y>
+                          <X>899</X>
+                          <Y>283</Y>
                         </Point>
                       </ArrayOfPoint>
                     </Patch1Region>
                     <Patch2Region>
                       <ArrayOfPoint>
                         <Point>
-                          <X>567</X>
-                          <Y>248</Y>
+                          <X>891</X>
+                          <Y>842</Y>
                         </Point>
                         <Point>
-                          <X>586</X>
-                          <Y>237</Y>
+                          <X>909</X>
+                          <Y>851</Y>
                         </Point>
                         <Point>
-                          <X>595</X>
-                          <Y>255</Y>
+                          <X>898</X>
+                          <Y>872</Y>
                         </Point>
                         <Point>
-                          <X>576</X>
-                          <Y>266</Y>
+                          <X>881</X>
+                          <Y>863</Y>
                         </Point>
                       </ArrayOfPoint>
                     </Patch2Region>
                     <ArenaCenter>
-                      <X>683</X>
-                      <Y>544</Y>
+                      <X>730</X>
+                      <Y>565</Y>
                     </ArenaCenter>
-                    <ArenaInnerRadius>474</ArenaInnerRadius>
-                    <ArenaOuterRadius>494</ArenaOuterRadius>
+                    <ArenaInnerRadius>485</ArenaInnerRadius>
+                    <ArenaOuterRadius>510</ArenaOuterRadius>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
@@ -1492,7 +1476,7 @@
               <ChunkSize>1</ChunkSize>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
-              <WorkflowName>PreSocial0.1-AEON2.bonsai</WorkflowName>
+              <WorkflowName>TestLinearDrive.bonsai</WorkflowName>
             </Expression>
             <Expression xsi:type="SubscribeSubject" TypeArguments="harp:HarpMessage">
               <Name>SynchronizerEvents</Name>
@@ -4471,7 +4455,7 @@ Item3 as Delta)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Timer">
-                      <rx:DueTime>PT8.605S</rx:DueTime>
+                      <rx:DueTime>PT12.762S</rx:DueTime>
                       <rx:Period>PT0S</rx:Period>
                     </Combinator>
                   </Expression>
