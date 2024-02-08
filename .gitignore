@@ -12,6 +12,7 @@ Packages
 *.avi
 *.dll
 *.exe
+*.sln
 *.exe.settings
 *.WebView2
 SessionSummary
