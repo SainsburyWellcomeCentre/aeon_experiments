@@ -1013,7 +1013,12 @@
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\Logging.bonsai">
         <WorkflowName>Social-AEON4.bonsai</WorkflowName>
       </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Extensions\ControlPanel.bonsai" />
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="SelectedStream" />
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\ControlPanel.bonsai">
+        <SelectedStream>CameraTop</SelectedStream>
+      </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="EnvironmentConfigPath" />
       </Expression>
@@ -1022,7 +1027,8 @@
       </Expression>
     </Nodes>
     <Edges>
-      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="5" To="6" Label="Source1" />
+      <Edge From="7" To="8" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
