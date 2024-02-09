@@ -131,6 +131,121 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
+                    <Name>CameraWest</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="TriggerSource" />
+                          <Property Name="FrameEvents" />
+                          <Property Name="TriggerFrequency" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:FileVideoSource.bonsai">
+                          <TriggerSource>GlobalTrigger</TriggerSource>
+                          <FileName>Config\ArenaMask-AEON3_2023-11-10.png</FileName>
+                          <FrameEvents>CameraWest</FrameEvents>
+                          <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>CameraEast</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="TriggerSource" />
+                          <Property Name="FrameEvents" />
+                          <Property Name="TriggerFrequency" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:FileVideoSource.bonsai">
+                          <TriggerSource>GlobalTrigger</TriggerSource>
+                          <FileName>Config\ArenaMask-AEON3_2023-11-10.png</FileName>
+                          <FrameEvents>CameraEast</FrameEvents>
+                          <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>CameraNorth</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="TriggerSource" />
+                          <Property Name="FrameEvents" />
+                          <Property Name="TriggerFrequency" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:FileVideoSource.bonsai">
+                          <TriggerSource>GlobalTrigger</TriggerSource>
+                          <FileName>Config\ArenaMask-AEON3_2023-11-10.png</FileName>
+                          <FrameEvents>CameraNorth</FrameEvents>
+                          <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>CameraSouth</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="TriggerSource" />
+                          <Property Name="FrameEvents" />
+                          <Property Name="TriggerFrequency" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:FileVideoSource.bonsai">
+                          <TriggerSource>GlobalTrigger</TriggerSource>
+                          <FileName>Config\ArenaMask-AEON3_2023-11-10.png</FileName>
+                          <FrameEvents>CameraSouth</FrameEvents>
+                          <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>CameraNest</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="TriggerSource" />
+                          <Property Name="FrameEvents" />
+                          <Property Name="TriggerFrequency" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:FileVideoSource.bonsai">
+                          <TriggerSource>GlobalTrigger</TriggerSource>
+                          <FileName>Config\ArenaMask-AEON3_2023-11-10.png</FileName>
+                          <FrameEvents>CameraNest</FrameEvents>
+                          <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
                     <Name>CameraPatch1</Name>
                     <Workflow>
                       <Nodes>
@@ -438,7 +553,9 @@
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\Declarations.bonsai" />
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\Visualization.bonsai" />
-      <Expression xsi:type="IncludeWorkflow" Path="Extensions\ControlPanel.bonsai" />
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\ControlPanel.bonsai">
+        <SelectedStream>CameraTop</SelectedStream>
+      </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="EnvironmentConfigPath" />
       </Expression>
