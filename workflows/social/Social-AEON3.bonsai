@@ -251,7 +251,7 @@
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
                           <SerialNumber>23032815</SerialNumber>
-                          <Gain>0</Gain>
+                          <Gain>4</Gain>
                           <Binning>2</Binning>
                           <FrameEvents>CameraPatch1</FrameEvents>
                         </Expression>
@@ -281,7 +281,7 @@
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
                           <SerialNumber>23032817</SerialNumber>
-                          <Gain>0</Gain>
+                          <Gain>4</Gain>
                           <Binning>2</Binning>
                           <FrameEvents>CameraPatch2</FrameEvents>
                         </Expression>
@@ -311,7 +311,7 @@
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>INF</ExposureTime>
                           <SerialNumber>23032829</SerialNumber>
-                          <Gain>0</Gain>
+                          <Gain>4</Gain>
                           <Binning>2</Binning>
                           <FrameEvents>CameraPatch3</FrameEvents>
                         </Expression>
