@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xmlns:spk="clr-namespace:Bonsai.Spinnaker;assembly=Bonsai.Spinnaker"
+                 xmlns:port="clr-namespace:Bonsai.IO.Ports;assembly=Bonsai.System"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:spk="clr-namespace:Bonsai.Spinnaker;assembly=Bonsai.Spinnaker"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
@@ -11,10 +12,55 @@
                  xmlns:viz="clr-namespace:Bonsai.Design.Visualizers;assembly=Bonsai.Design.Visualizers"
                  xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
+                 xmlns:p1="clr-namespace:Harp.OutputExpander;assembly=Harp.OutputExpander"
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>Pico</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="port:CreateSerialPort">
+                <port:Name>pico</port:Name>
+                <port:PortName>COM4</port:PortName>
+                <port:BaudRate>9600</port:BaudRate>
+                <port:NewLine>\r\n</port:NewLine>
+                <port:Parity>None</port:Parity>
+                <port:ParityReplace>63</port:ParityReplace>
+                <port:DataBits>8</port:DataBits>
+                <port:StopBits>One</port:StopBits>
+                <port:Handshake>None</port:Handshake>
+                <port:DiscardNull>false</port:DiscardNull>
+                <port:DtrEnable>true</port:DtrEnable>
+                <port:RtsEnable>false</port:RtsEnable>
+                <port:ReadBufferSize>4096</port:ReadBufferSize>
+                <port:WriteBufferSize>2048</port:WriteBufferSize>
+                <port:ReceivedBytesThreshold>1</port:ReceivedBytesThreshold>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="port:SerialReadLine">
+                <port:PortName>pico</port:PortName>
+                <port:NewLine />
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Parse">
+              <Pattern>%l</Pattern>
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject">
+              <Name>PicoEvents</Name>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="4" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="spk:SpinnakerCapture">
           <spk:Index xsi:nil="true" />
@@ -773,7 +819,7 @@ True as Value)</scr:Expression>
               </PropertyMappings>
             </Expression>
             <Expression xsi:type="io:CsvWriter">
-              <io:FileName>D:\ProjectAeon\PatchTest\Collection2024_01_22_11_13_41\PelletsDetected.csv</io:FileName>
+              <io:FileName>D:\ProjectAeon\PatchTest\Collection2024_03_06_12_01_28\PelletsDetected.csv</io:FileName>
               <io:Append>false</io:Append>
               <io:Overwrite>false</io:Overwrite>
               <io:Suffix>None</io:Suffix>
@@ -818,7 +864,7 @@ True as Value)</scr:Expression>
               </PropertyMappings>
             </Expression>
             <Expression xsi:type="io:CsvWriter">
-              <io:FileName>D:\ProjectAeon\PatchTest\Collection2024_01_22_11_13_41\PixelSum.csv</io:FileName>
+              <io:FileName>D:\ProjectAeon\PatchTest\Collection2024_03_06_12_01_28\PixelSum.csv</io:FileName>
               <io:Append>false</io:Append>
               <io:Overwrite>false</io:Overwrite>
               <io:Suffix>None</io:Suffix>
@@ -1024,7 +1070,7 @@ True as Value)</scr:Expression>
                         </Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="dsp:MatrixWriter">
-                            <dsp:Path>D:\ProjectAeon\PatchTest\Collection2024_01_22_11_13_41\Streams_100</dsp:Path>
+                            <dsp:Path>D:\ProjectAeon\PatchTest\Collection2024_03_06_12_01_28\Streams_49</dsp:Path>
                             <dsp:Suffix>None</dsp:Suffix>
                             <dsp:Overwrite>false</dsp:Overwrite>
                             <dsp:Layout>ColumnMajor</dsp:Layout>
@@ -1113,7 +1159,7 @@ True as Value)</scr:Expression>
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="io:CsvWriter">
-                    <io:FileName>D:\ProjectAeon\PatchTest\Collection2024_01_22_11_13_41\CameraFrameIndex.csv</io:FileName>
+                    <io:FileName>D:\ProjectAeon\PatchTest\Collection2024_03_06_12_01_28\CameraFrameIndex.csv</io:FileName>
                     <io:Append>false</io:Append>
                     <io:Overwrite>false</io:Overwrite>
                     <io:Suffix>None</io:Suffix>
@@ -1155,7 +1201,7 @@ True as Value)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="cv:VideoWriter">
-                      <cv:FileName>D:\ProjectAeon\PatchTest\Collection2024_01_22_11_13_41\PatchVideo.avi</cv:FileName>
+                      <cv:FileName>D:\ProjectAeon\PatchTest\Collection2024_03_06_12_01_28\PatchVideo.avi</cv:FileName>
                       <cv:Suffix>None</cv:Suffix>
                       <cv:Buffered>true</cv:Buffered>
                       <cv:Overwrite>false</cv:Overwrite>
@@ -1228,7 +1274,7 @@ True as Value)</scr:Expression>
               </PropertyMappings>
             </Expression>
             <Expression xsi:type="io:CsvWriter">
-              <io:FileName>D:\ProjectAeon\PatchTest\Collection2024_01_22_11_13_41\PelletMonitor.csv</io:FileName>
+              <io:FileName>D:\ProjectAeon\PatchTest\Collection2024_03_06_12_01_28\PelletMonitor.csv</io:FileName>
               <io:Append>false</io:Append>
               <io:Overwrite>false</io:Overwrite>
               <io:Suffix>None</io:Suffix>
@@ -1259,11 +1305,53 @@ True as Value)</scr:Expression>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="dsp:MatrixWriter">
-                <dsp:Path>D:\ProjectAeon\PatchTest\Collection2024_01_22_11_13_41\PatchMonitor.bin</dsp:Path>
+                <dsp:Path>D:\ProjectAeon\PatchTest\Collection2024_03_06_12_01_28\PatchMonitor.bin</dsp:Path>
                 <dsp:Suffix>None</dsp:Suffix>
                 <dsp:Overwrite>false</dsp:Overwrite>
                 <dsp:Layout>ColumnMajor</dsp:Layout>
               </Combinator>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>PicoEvents</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>PatchEvents</Name>
+            </Expression>
+            <Expression xsi:type="p1:Parse">
+              <harp:Register xsi:type="p1:TimestampedMagneticEncoder" />
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Seconds</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:WithLatestFrom" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>LoggingPath</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="StringProperty">
+                <Value>PicoMonitor.csv</Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Zip" />
+            </Expression>
+            <Expression xsi:type="Format">
+              <Format>{0}\{1}</Format>
+              <Selector>Item1,Item2</Selector>
+            </Expression>
+            <Expression xsi:type="PropertyMapping">
+              <PropertyMappings>
+                <Property Name="FileName" />
+              </PropertyMappings>
+            </Expression>
+            <Expression xsi:type="io:CsvWriter">
+              <io:FileName>D:\ProjectAeon\PatchTest\Collection2024_03_06_12_01_28\PelletMonitor.csv</io:FileName>
+              <io:Append>false</io:Append>
+              <io:Overwrite>false</io:Overwrite>
+              <io:Suffix>None</io:Suffix>
+              <io:IncludeHeader>true</io:IncludeHeader>
             </Expression>
           </Nodes>
           <Edges>
@@ -1290,6 +1378,16 @@ True as Value)</scr:Expression>
             <Edge From="23" To="24" Label="Source1" />
             <Edge From="24" To="25" Label="Source1" />
             <Edge From="25" To="26" Label="Source2" />
+            <Edge From="27" To="31" Label="Source1" />
+            <Edge From="28" To="29" Label="Source1" />
+            <Edge From="29" To="30" Label="Source1" />
+            <Edge From="30" To="31" Label="Source2" />
+            <Edge From="31" To="37" Label="Source1" />
+            <Edge From="32" To="34" Label="Source1" />
+            <Edge From="33" To="34" Label="Source2" />
+            <Edge From="34" To="35" Label="Source1" />
+            <Edge From="35" To="36" Label="Source1" />
+            <Edge From="36" To="37" Label="Source2" />
           </Edges>
         </Workflow>
       </Expression>
@@ -1437,18 +1535,18 @@ True as Value)</scr:Expression>
       </Expression>
     </Nodes>
     <Edges>
-      <Edge From="0" To="1" Label="Source1" />
-      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="1" To="2" Label="Source1" />
       <Edge From="5" To="6" Label="Source1" />
-      <Edge From="9" To="10" Label="Source1" />
-      <Edge From="9" To="12" Label="Source1" />
+      <Edge From="6" To="7" Label="Source1" />
       <Edge From="10" To="11" Label="Source1" />
-      <Edge From="16" To="17" Label="Source1" />
-      <Edge From="17" To="20" Label="Source1" />
-      <Edge From="18" To="19" Label="Source1" />
-      <Edge From="19" To="20" Label="Source2" />
-      <Edge From="20" To="21" Label="Source1" />
-      <Edge From="23" To="24" Label="Source1" />
+      <Edge From="10" To="13" Label="Source1" />
+      <Edge From="11" To="12" Label="Source1" />
+      <Edge From="17" To="18" Label="Source1" />
+      <Edge From="18" To="21" Label="Source1" />
+      <Edge From="19" To="20" Label="Source1" />
+      <Edge From="20" To="21" Label="Source2" />
+      <Edge From="21" To="22" Label="Source1" />
+      <Edge From="24" To="25" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
