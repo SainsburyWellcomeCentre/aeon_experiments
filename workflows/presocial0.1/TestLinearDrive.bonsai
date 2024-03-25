@@ -315,7 +315,7 @@
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <SerialNumber>21053810</SerialNumber>
-                          <Gain>4</Gain>
+                          <Gain>10</Gain>
                           <Binning>1</Binning>
                           <FrameEvents>CameraTop</FrameEvents>
                         </Expression>
@@ -4383,7 +4383,7 @@ Item3 as Delta)</scr:Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="aeon:EnvironmentSubjectState">
                       <aeon:DatabasePath>Z:\aeon\colony\colony.csv</aeon:DatabasePath>
-                      <aeon:EnvironmentState>Maintenance</aeon:EnvironmentState>
+                      <aeon:EnvironmentState>Experiment</aeon:EnvironmentState>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="MulticastSubject">
@@ -4455,7 +4455,7 @@ Item3 as Delta)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Timer">
-                      <rx:DueTime>PT12.762S</rx:DueTime>
+                      <rx:DueTime>PT15.271S</rx:DueTime>
                       <rx:Period>PT0S</rx:Period>
                     </Combinator>
                   </Expression>
