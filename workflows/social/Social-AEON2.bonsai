@@ -2,6 +2,7 @@
 <WorkflowBuilder Version="2.8.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:p1="clr-namespace:;assembly=Extensions"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -864,6 +865,51 @@
                 <Edges>
                   <Edge From="0" To="1" Label="Source1" />
                   <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>LinearMotorController</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="FloatProperty">
+                      <Value>NaN</Value>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="rx:BehaviorSubject">
+                    <Name>HeadStageLinearDriveSetPosition</Name>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>TrackingTop</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Value</Selector>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="p1:GetLinearDrivePosition">
+                      <p1:ArenaCenter>
+                        <p1:X>731</p1:X>
+                        <p1:Y>561</p1:Y>
+                      </p1:ArenaCenter>
+                      <p1:ArenaRadiusPixels>510</p1:ArenaRadiusPixels>
+                      <p1:ArenaRadiusCentimeters>100</p1:ArenaRadiusCentimeters>
+                      <p1:TetherGuideAltitude>129.5</p1:TetherGuideAltitude>
+                      <p1:TetherGuideHeight>17</p1:TetherGuideHeight>
+                      <p1:TetherMaxSlackLength>58.523</p1:TetherMaxSlackLength>
+                      <p1:LinearRailLength>56</p1:LinearRailLength>
+                      <p1:RadialDistanceOffset>0</p1:RadialDistanceOffset>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="MulticastSubject">
+                    <Name>HeadStageLinearDriveSetPosition</Name>
+                  </Expression>
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                  <Edge From="3" To="4" Label="Source1" />
+                  <Edge From="4" To="5" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>

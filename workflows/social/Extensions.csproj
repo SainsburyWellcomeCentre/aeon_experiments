@@ -15,6 +15,7 @@
     <PackageReference Include="Bonsai.Design.Visualizers" Version="2.8.0" />
     <PackageReference Include="Aeon.Environment" Version="0.1.0-build240101" />
     <PackageReference Include="ZedGraph" Version="5.1.7" />
+    <PackageReference Include="Bonsai.Vision" Version="2.8.1" />
   </ItemGroup>
 
 </Project>
