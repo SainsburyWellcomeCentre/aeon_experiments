@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.8.1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:p1="clr-namespace:;assembly=Extensions"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Description>Continuously determines the linear drive position that optimizes tether slack for the current tracking position.</Description>
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Name" DisplayName="TrackingEvents" />
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>TrackingTop</Name>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Value</Selector>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="ArenaCenter" />
+        <Property Name="ArenaRadiusPixels" />
+        <Property Name="ArenaRadiusCentimeters" />
+        <Property Name="TetherGuideAltitude" />
+        <Property Name="TetherGuideHeight" />
+        <Property Name="TetherMaxSlackLength" />
+        <Property Name="LinearRailLength" />
+        <Property Name="RadialDistanceOffset" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:GetLinearDrivePosition">
+          <p1:ArenaCenter>
+            <p1:X>731</p1:X>
+            <p1:Y>561</p1:Y>
+          </p1:ArenaCenter>
+          <p1:ArenaRadiusPixels>510</p1:ArenaRadiusPixels>
+          <p1:ArenaRadiusCentimeters>100</p1:ArenaRadiusCentimeters>
+          <p1:TetherGuideAltitude>129.5</p1:TetherGuideAltitude>
+          <p1:TetherGuideHeight>17</p1:TetherGuideHeight>
+          <p1:TetherMaxSlackLength>58.523</p1:TetherMaxSlackLength>
+          <p1:LinearRailLength>56</p1:LinearRailLength>
+          <p1:RadialDistanceOffset>0</p1:RadialDistanceOffset>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Name" DisplayName="LinearDriveSetPosition" />
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>LinearDriveSetPosition</Name>
+      </Expression>
+      <Expression xsi:type="WorkflowOutput" />
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="1" Label="Source1" />
+      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="2" To="4" Label="Source1" />
+      <Edge From="3" To="4" Label="Source2" />
+      <Edge From="4" To="6" Label="Source1" />
+      <Edge From="5" To="6" Label="Source2" />
+      <Edge From="6" To="7" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>

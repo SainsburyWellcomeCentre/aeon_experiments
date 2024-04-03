@@ -8,7 +8,8 @@ using Bonsai.Vision;
 using OpenCV.Net;
 
 [Combinator]
-[Description("")]
+[Description("Calculates the normalized horizontal position of the linear drive, where zero is the position where" +
+             "tether is fully retracted and one is the position where tether is fully extended.")]
 [WorkflowElementCategory(ElementCategory.Transform)]
 public class GetLinearDrivePosition
 {
