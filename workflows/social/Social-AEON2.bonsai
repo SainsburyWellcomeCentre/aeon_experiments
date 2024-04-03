@@ -2,7 +2,7 @@
 <WorkflowBuilder Version="2.8.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
-                 xmlns:p1="clr-namespace:;assembly=Extensions"
+                 xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -198,8 +198,8 @@
                           <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
-                          <TriggerSource>GlobalTrigger</TriggerSource>
-                          <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
+                          <TriggerSource>LocalTrigger</TriggerSource>
+                          <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>7500</ExposureTime>
                           <SerialNumber>21199221</SerialNumber>
                           <Gain>10</Gain>
@@ -597,6 +597,36 @@
                       </Edges>
                     </Workflow>
                   </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>LinearDriveController</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="LinearDrivePosition" />
+                          <Property Name="LimitContinuousCurrent" />
+                          <Property Name="LimitPeakCurrent" />
+                          <Property Name="LimitSpeed" />
+                          <Property Name="LinearDriveSetPosition" />
+                          <Property Name="PortName" />
+                          <Property Name="LinearDriveEvents" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\LinearDriveController.bonsai">
+                          <LinearDrivePosition>LinearDrivePosition</LinearDrivePosition>
+                          <LimitContinuousCurrent>900</LimitContinuousCurrent>
+                          <LimitPeakCurrent>900</LimitPeakCurrent>
+                          <LimitSpeed>20000</LimitSpeed>
+                          <LinearDriveSetPosition>LinearDriveSetPosition</LinearDriveSetPosition>
+                          <PortName>COM12</PortName>
+                          <LinearDriveEvents>LinearDriveEvents</LinearDriveEvents>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
                 </Nodes>
                 <Edges />
               </Workflow>
@@ -869,47 +899,42 @@
               </Workflow>
             </Expression>
             <Expression xsi:type="GroupWorkflow">
-              <Name>LinearMotorController</Name>
+              <Name>TetherSlackController</Name>
+              <Description />
               <Workflow>
                 <Nodes>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="FloatProperty">
-                      <Value>NaN</Value>
-                    </Combinator>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="TrackingEvents" />
+                    <Property Name="ArenaCenter" />
+                    <Property Name="ArenaRadiusPixels" />
+                    <Property Name="ArenaRadiusCentimeters" />
+                    <Property Name="TetherGuideAltitude" />
+                    <Property Name="TetherGuideHeight" />
+                    <Property Name="TetherMaxSlackLength" />
+                    <Property Name="LinearRailLength" />
+                    <Property Name="RadialDistanceOffset" />
+                    <Property Name="LinearDriveSetPosition" />
                   </Expression>
-                  <Expression xsi:type="rx:BehaviorSubject">
-                    <Name>HeadStageLinearDriveSetPosition</Name>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\TetherSlackController.bonsai">
+                    <TrackingEvents>TrackingTop</TrackingEvents>
+                    <ArenaCenter>
+                      <X>731</X>
+                      <Y>561</Y>
+                    </ArenaCenter>
+                    <ArenaRadiusPixels>510</ArenaRadiusPixels>
+                    <ArenaRadiusCentimeters>100</ArenaRadiusCentimeters>
+                    <TetherGuideAltitude>129.5</TetherGuideAltitude>
+                    <TetherGuideHeight>17</TetherGuideHeight>
+                    <TetherMaxSlackLength>58.523</TetherMaxSlackLength>
+                    <LinearRailLength>56</LinearRailLength>
+                    <RadialDistanceOffset>0</RadialDistanceOffset>
+                    <LinearDriveSetPosition>LinearDriveSetPosition</LinearDriveSetPosition>
                   </Expression>
-                  <Expression xsi:type="SubscribeSubject">
-                    <Name>TrackingTop</Name>
-                  </Expression>
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Value</Selector>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p1:GetLinearDrivePosition">
-                      <p1:ArenaCenter>
-                        <p1:X>731</p1:X>
-                        <p1:Y>561</p1:Y>
-                      </p1:ArenaCenter>
-                      <p1:ArenaRadiusPixels>510</p1:ArenaRadiusPixels>
-                      <p1:ArenaRadiusCentimeters>100</p1:ArenaRadiusCentimeters>
-                      <p1:TetherGuideAltitude>129.5</p1:TetherGuideAltitude>
-                      <p1:TetherGuideHeight>17</p1:TetherGuideHeight>
-                      <p1:TetherMaxSlackLength>58.523</p1:TetherMaxSlackLength>
-                      <p1:LinearRailLength>56</p1:LinearRailLength>
-                      <p1:RadialDistanceOffset>0</p1:RadialDistanceOffset>
-                    </Combinator>
-                  </Expression>
-                  <Expression xsi:type="MulticastSubject">
-                    <Name>HeadStageLinearDriveSetPosition</Name>
-                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
                 <Edges>
                   <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source1" />
-                  <Edge From="3" To="4" Label="Source1" />
-                  <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
@@ -935,10 +960,49 @@
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentLogic.bonsai">
         <EnvironmentConfigPath>EnvironmentRandom.yml</EnvironmentConfigPath>
       </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>LinearDriveEvents</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+        <LogName>LinearDriveController</LogName>
+        <Heartbeats />
+        <ClosingDuration xsi:nil="true" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="wie:KeyDown">
+          <wie:Filter>RButton ShiftKey Menu Space Next PageDown D0 D2 B P R NumPad0 NumPad2 F1 F3 Shift</wie:Filter>
+          <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>EnableMotor</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="wie:KeyDown">
+          <wie:Filter>LButton RButton Cancel ShiftKey ControlKey Menu Pause Space Prior PageUp Next PageDown End D0 D1 D2 D3 A B C P Q R S NumPad0 NumPad1 NumPad2 NumPad3 F1 F2 F3 F4 Shift</wie:Filter>
+          <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>DisableMotor</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="wie:KeyDown">
+          <wie:Filter>LButton Back Tab ShiftKey ControlKey FinalMode HanjaMode KanjiMode Space Prior PageUp Down Select D0 D1 D8 D9 A H I P Q X Y NumPad0 NumPad1 NumPad8 NumPad9 F1 F2 F9 F10 Shift</wie:Filter>
+          <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>CalibrateMotorLimits</Name>
+      </Expression>
     </Nodes>
     <Edges>
       <Edge From="5" To="6" Label="Source1" />
       <Edge From="7" To="8" Label="Source1" />
+      <Edge From="9" To="10" Label="Source1" />
+      <Edge From="11" To="12" Label="Source1" />
+      <Edge From="13" To="14" Label="Source1" />
+      <Edge From="15" To="16" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
