@@ -612,8 +612,8 @@
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Extensions\LinearDriveController.bonsai">
                           <LinearDrivePosition>LinearDrivePosition</LinearDrivePosition>
-                          <LimitContinuousCurrent>900</LimitContinuousCurrent>
-                          <LimitPeakCurrent>900</LimitPeakCurrent>
+                          <LimitContinuousCurrent>1500</LimitContinuousCurrent>
+                          <LimitPeakCurrent>1500</LimitPeakCurrent>
                           <LimitSpeed>20000</LimitSpeed>
                           <LinearDriveSetPosition>LinearDriveSetPosition</LinearDriveSetPosition>
                           <PortName>COM12</PortName>
