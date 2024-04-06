@@ -4,6 +4,7 @@
                  xmlns:onix="clr-namespace:OpenEphys.Onix;assembly=OpenEphys.Onix"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns="https://bonsai-rx.org/2018/workflow">
+  <Description>Contains control and acquisition functionality for ONIX NeuropixelsV2Beta probes.</Description>
   <Workflow>
     <Nodes>
       <Expression xsi:type="ExternalizedMapping">
@@ -58,10 +59,13 @@
           <onix:WriteSize>2048</onix:WriteSize>
         </Combinator>
       </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="BufferSize" />
+      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="onix:NeuropixelsV2eBetaData">
           <onix:DeviceName>NeuropixelsV2eBetaHeadstage.NeuropixelsV2eBeta</onix:DeviceName>
-          <onix:BufferSize>600</onix:BufferSize>
+          <onix:BufferSize>300</onix:BufferSize>
           <onix:ProbeIndex>ProbeA</onix:ProbeIndex>
         </Combinator>
       </Expression>
@@ -71,7 +75,7 @@
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="onix:NeuropixelsV2eBetaData">
           <onix:DeviceName>NeuropixelsV2eBetaHeadstage.NeuropixelsV2eBeta</onix:DeviceName>
-          <onix:BufferSize>600</onix:BufferSize>
+          <onix:BufferSize>300</onix:BufferSize>
           <onix:ProbeIndex>ProbeB</onix:ProbeIndex>
         </Combinator>
       </Expression>
@@ -120,12 +124,14 @@
       <Edge From="4" To="5" Label="Source2" />
       <Edge From="5" To="6" Label="Source1" />
       <Edge From="7" To="8" Label="Source1" />
-      <Edge From="9" To="10" Label="Source1" />
-      <Edge From="11" To="12" Label="Source1" />
-      <Edge From="13" To="14" Label="Source1" />
-      <Edge From="15" To="16" Label="Source1" />
+      <Edge From="7" To="10" Label="Source1" />
+      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="12" To="13" Label="Source1" />
+      <Edge From="14" To="15" Label="Source1" />
       <Edge From="16" To="17" Label="Source1" />
       <Edge From="17" To="18" Label="Source1" />
+      <Edge From="18" To="19" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
