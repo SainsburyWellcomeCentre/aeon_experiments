@@ -1,0 +1,3 @@
+[submodule "workflows/ephys/onix-refactor"]
+	path = workflows/ephys/onix-refactor
+	url = https://github.com/neurogears/onix-refactor.git
