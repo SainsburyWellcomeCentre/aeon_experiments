@@ -138,7 +138,7 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:WindowCount">
-          <rx:Count>360000</rx:Count>
+          <rx:Count>144000</rx:Count>
           <rx:Skip xsi:nil="true" />
         </Combinator>
       </Expression>
