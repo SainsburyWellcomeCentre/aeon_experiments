@@ -70,7 +70,8 @@
                     <Property Name="GlobalTriggerFrequency" />
                     <Property Name="LocalTriggerFrequency" />
                   </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:CameraController.bonsai">
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoController.bonsai">
+                    <DeviceType>OutputExpander</DeviceType>
                     <PortName>COM3</PortName>
                     <GlobalTriggerFrequency>50</GlobalTriggerFrequency>
                     <LocalTriggerFrequency>125</LocalTriggerFrequency>
