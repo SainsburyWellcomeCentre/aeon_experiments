@@ -121,23 +121,7 @@
           </Edges>
         </Workflow>
       </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>Logging</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RepositoryLogController.bonsai">
-              <RepositoryPath>..\..\</RepositoryPath>
-              <DataPath>D:\ProjectAeon</DataPath>
-              <FallbackPath>D:\Tests</FallbackPath>
-              <ChunkSize>1</ChunkSize>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
-              <WorkflowName>Ephys-AEONX1.bonsai</WorkflowName>
-            </Expression>
-          </Nodes>
-          <Edges />
-        </Workflow>
-      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Logging.bonsai" />
     </Nodes>
     <Edges />
   </Workflow>

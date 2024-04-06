@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.8.1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:p1="clr-namespace:;assembly=Extensions"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RepositoryLogController.bonsai">
+        <RepositoryPath>..\..\</RepositoryPath>
+        <DataPath>D:\ProjectAeon</DataPath>
+        <FallbackPath>D:\Tests</FallbackPath>
+        <ChunkSize>1</ChunkSize>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
+        <WorkflowName>Ephys-AEONX1.bonsai</WorkflowName>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>OnixHarpSync</Name>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>HarpTime</Selector>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="p1:ConvertToHarpTimestamp" />
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>HarpClock</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Zip" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="harp:CreateTimestamped" />
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+        <Heartbeats />
+        <ClosingDuration xsi:nil="true" />
+        <LogName>NeuropixelsV2Beta_HarpSync</LogName>
+        <Selector />
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="2" To="6" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="5" To="6" Label="Source2" />
+      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="7" To="8" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
