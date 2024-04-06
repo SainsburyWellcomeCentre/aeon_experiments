@@ -58,7 +58,7 @@
                           <PositiveTurnKey>Q</PositiveTurnKey>
                           <NegativeTurnKey>A</NegativeTurnKey>
                           <MotorFeedbackPeriod>PT0.1S</MotorFeedbackPeriod>
-                          <MotorFeedback>MotorFeedback</MotorFeedback>
+                          <CommutatorTurns>CommutatorTurns</CommutatorTurns>
                           <PortName>COM3</PortName>
                           <CommutatorCommands>CommutatorCommands</CommutatorCommands>
                         </Expression>
@@ -106,7 +106,10 @@
               <scr:Expression>250000000.0/it</scr:Expression>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>MotorFeedback</Name>
+              <Name>CommutatorTurns</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Item1</Selector>
             </Expression>
             <Expression xsi:type="rx:Accumulate" />
           </Nodes>
@@ -119,6 +122,7 @@
             <Edge From="4" To="5" Label="Source1" />
             <Edge From="5" To="6" Label="Source1" />
             <Edge From="7" To="8" Label="Source1" />
+            <Edge From="8" To="9" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>

@@ -2,8 +2,8 @@
 <WorkflowBuilder Version="2.8.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
-                 xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
                  xmlns:p1="clr-namespace:;assembly=Extensions"
                  xmlns:port="clr-namespace:Bonsai.IO.Ports;assembly=Bonsai.System"
                  xmlns="https://bonsai-rx.org/2018/workflow">
@@ -16,13 +16,11 @@
       <Expression xsi:type="SubscribeSubject">
         <Name>NeuropixelsV2Bno055</Name>
       </Expression>
-      <Expression xsi:type="MemberSelector">
-        <Selector>Quaternion</Selector>
-      </Expression>
       <Expression xsi:type="ExternalizedMapping">
-        <Property Name="PositiveTurnKey" Category="MotorFeedback" />
-        <Property Name="NegativeTurnKey" Category="MotorFeedback" />
-        <Property Name="MotorFeedbackPeriod" Category="MotorFeedback" />
+        <Property Name="PositiveTurnKey" />
+        <Property Name="NegativeTurnKey" />
+        <Property Name="MotorFeedbackPeriod" />
+        <Property Name="CommutatorTurns" />
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>GetMotorFeedback</Name>
@@ -60,10 +58,6 @@
             <Expression xsi:type="WorkflowInput">
               <Name>Source1</Name>
             </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Name>Heading</scr:Name>
-              <scr:Expression>Math.Atan2((2 * (W * Z + X * Y)), (1 - 2 * (Y * Y + Z * Z)))</scr:Expression>
-            </Expression>
             <Expression xsi:type="ExternalizedMapping">
               <Property Name="Period" DisplayName="MotorFeedbackPeriod" />
             </Expression>
@@ -76,6 +70,13 @@
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Sample" />
             </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Quaternion</Selector>
+            </Expression>
+            <Expression xsi:type="scr:ExpressionTransform">
+              <scr:Name>Heading</scr:Name>
+              <scr:Expression>Math.Atan2((2 * (W * Z + X * Y)), (1 - 2 * (Y * Y + Z * Z)))</scr:Expression>
+            </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Skip">
                 <rx:Count>1</rx:Count>
@@ -87,6 +88,26 @@
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="p1:MotorFeedback" />
             </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Clock</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Skip">
+                <rx:Count>1</rx:Count>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Zip" />
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Name" DisplayName="CommutatorTurns" />
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject">
+              <Name>CommutatorTurns</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Item1</Selector>
+            </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Merge" />
             </Expression>
@@ -95,28 +116,30 @@
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
             <Edge From="1" To="2" Label="Source1" />
-            <Edge From="2" To="14" Label="Source1" />
+            <Edge From="2" To="21" Label="Source1" />
             <Edge From="3" To="4" Label="Source1" />
             <Edge From="4" To="5" Label="Source1" />
-            <Edge From="5" To="14" Label="Source2" />
-            <Edge From="6" To="7" Label="Source1" />
-            <Edge From="7" To="10" Label="Source1" />
-            <Edge From="8" To="9" Label="Source1" />
-            <Edge From="9" To="10" Label="Source2" />
+            <Edge From="5" To="21" Label="Source2" />
+            <Edge From="6" To="9" Label="Source1" />
+            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="8" To="9" Label="Source2" />
+            <Edge From="9" To="10" Label="Source1" />
+            <Edge From="9" To="15" Label="Source1" />
             <Edge From="10" To="11" Label="Source1" />
-            <Edge From="10" To="12" Label="Source1" />
-            <Edge From="11" To="12" Label="Source2" />
-            <Edge From="12" To="13" Label="Source1" />
-            <Edge From="13" To="14" Label="Source3" />
-            <Edge From="14" To="15" Label="Source1" />
+            <Edge From="11" To="12" Label="Source1" />
+            <Edge From="11" To="13" Label="Source1" />
+            <Edge From="12" To="13" Label="Source2" />
+            <Edge From="13" To="14" Label="Source1" />
+            <Edge From="14" To="17" Label="Source1" />
+            <Edge From="15" To="16" Label="Source1" />
+            <Edge From="16" To="17" Label="Source2" />
+            <Edge From="17" To="19" Label="Source1" />
+            <Edge From="18" To="19" Label="Source2" />
+            <Edge From="19" To="20" Label="Source1" />
+            <Edge From="20" To="21" Label="Source3" />
+            <Edge From="21" To="22" Label="Source1" />
           </Edges>
         </Workflow>
-      </Expression>
-      <Expression xsi:type="ExternalizedMapping">
-        <Property Name="Name" DisplayName="MotorFeedback" />
-      </Expression>
-      <Expression xsi:type="rx:PublishSubject">
-        <Name>MotorFeedback</Name>
       </Expression>
       <Expression xsi:type="Format">
         <Format>{{turn : {0}}}</Format>
@@ -141,17 +164,14 @@
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
-      <Edge From="1" To="2" Label="Source1" />
-      <Edge From="2" To="4" Label="Source1" />
-      <Edge From="3" To="4" Label="Source2" />
+      <Edge From="1" To="3" Label="Source1" />
+      <Edge From="2" To="3" Label="Source2" />
+      <Edge From="3" To="4" Label="Source1" />
       <Edge From="4" To="6" Label="Source1" />
       <Edge From="5" To="6" Label="Source2" />
-      <Edge From="6" To="7" Label="Source1" />
-      <Edge From="7" To="9" Label="Source1" />
-      <Edge From="8" To="9" Label="Source2" />
-      <Edge From="9" To="11" Label="Source1" />
-      <Edge From="10" To="11" Label="Source2" />
-      <Edge From="11" To="12" Label="Source1" />
+      <Edge From="6" To="8" Label="Source1" />
+      <Edge From="7" To="8" Label="Source2" />
+      <Edge From="8" To="9" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

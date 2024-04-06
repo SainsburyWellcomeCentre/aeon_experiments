@@ -292,6 +292,65 @@
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
         <LogName>NeuropixelsV2Beta_Bno055_HubSyncCounter</LogName>
       </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>CommutatorTurns</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:WindowCount">
+          <rx:Count>36000</rx:Count>
+          <rx:Skip xsi:nil="true" />
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="rx:CreateObservable">
+        <Name>Turn</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Item1</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="p1:ConvertToBytes" />
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+        <LogName>NeuropixelsV2Beta_Commutator_Turns</LogName>
+      </Expression>
+      <Expression xsi:type="rx:CreateObservable">
+        <Name>Clock</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Item2</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="p1:ConvertToBytes" />
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+        <LogName>NeuropixelsV2Beta_Commutator_Clock</LogName>
+      </Expression>
     </Nodes>
     <Edges>
       <Edge From="2" To="3" Label="Source1" />
@@ -323,6 +382,11 @@
       <Edge From="27" To="28" Label="Source1" />
       <Edge From="29" To="30" Label="Source1" />
       <Edge From="31" To="32" Label="Source1" />
+      <Edge From="33" To="34" Label="Source1" />
+      <Edge From="34" To="35" Label="Source1" />
+      <Edge From="34" To="37" Label="Source1" />
+      <Edge From="35" To="36" Label="Source1" />
+      <Edge From="37" To="38" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
