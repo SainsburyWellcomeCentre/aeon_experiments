@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
+                 xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
+                 xmlns:p1="clr-namespace:System.Reactive;assembly=System.Reactive.Core"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -102,8 +104,8 @@
                           <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:FileVideoSource.bonsai">
-                          <TriggerSource>GlobalTrigger</TriggerSource>
-                          <FileName>Config\ArenaMask-AEON3_2023-11-10.png</FileName>
+                          <TriggerSource>SurrogateTrigger</TriggerSource>
+                          <FileName>Config\GlobalCameraSurrogate.png</FileName>
                           <FrameEvents>CameraSouth</FrameEvents>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                         </Expression>
@@ -125,8 +127,8 @@
                           <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:FileVideoSource.bonsai">
-                          <TriggerSource>GlobalTrigger</TriggerSource>
-                          <FileName>Config\ArenaMask-AEON3_2023-11-10.png</FileName>
+                          <TriggerSource>SurrogateTrigger</TriggerSource>
+                          <FileName>Config\GlobalCameraSurrogate.png</FileName>
                           <FrameEvents>CameraNorth</FrameEvents>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                         </Expression>
@@ -148,8 +150,8 @@
                           <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:FileVideoSource.bonsai">
-                          <TriggerSource>GlobalTrigger</TriggerSource>
-                          <FileName>Config\ArenaMask-AEON3_2023-11-10.png</FileName>
+                          <TriggerSource>SurrogateTrigger</TriggerSource>
+                          <FileName>Config\GlobalCameraSurrogate.png</FileName>
                           <FrameEvents>CameraEast</FrameEvents>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                         </Expression>
@@ -171,8 +173,8 @@
                           <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:FileVideoSource.bonsai">
-                          <TriggerSource>GlobalTrigger</TriggerSource>
-                          <FileName>Config\ArenaMask-AEON3_2023-11-10.png</FileName>
+                          <TriggerSource>SurrogateTrigger</TriggerSource>
+                          <FileName>Config\GlobalCameraSurrogate.png</FileName>
                           <FrameEvents>CameraWest</FrameEvents>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                         </Expression>
@@ -224,8 +226,8 @@
                           <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:FileVideoSource.bonsai">
-                          <TriggerSource>LocalTrigger</TriggerSource>
-                          <FileName>Config\ArenaMask-AEON3_2023-11-10.png</FileName>
+                          <TriggerSource>SurrogateTrigger</TriggerSource>
+                          <FileName>Config\LocalCameraSurrogate.png</FileName>
                           <FrameEvents>CameraPatch1</FrameEvents>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                         </Expression>
@@ -277,8 +279,8 @@
                           <Property Name="TriggerFrequency" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:FileVideoSource.bonsai">
-                          <TriggerSource>LocalTrigger</TriggerSource>
-                          <FileName>Config\ArenaMask-AEON3_2023-11-10.png</FileName>
+                          <TriggerSource>SurrogateTrigger</TriggerSource>
+                          <FileName>Config\LocalCameraSurrogate.png</FileName>
                           <FrameEvents>CameraPatch3</FrameEvents>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                         </Expression>
@@ -994,6 +996,9 @@
       </Expression>
       <Expression xsi:type="MulticastSubject">
         <Name>CalibrateMotorLimits</Name>
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p1:Unit)">
+        <rx:Name>SurrogateTrigger</rx:Name>
       </Expression>
     </Nodes>
     <Edges>
