@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.8.1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:onix="clr-namespace:OpenEphys.Onix;assembly=OpenEphys.Onix"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
+                 xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
+                 xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
+                 xmlns:p1="clr-namespace:;assembly=Extensions"
+                 xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
+                 xmlns:port="clr-namespace:Bonsai.IO.Ports;assembly=Bonsai.System"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix:CreateContext">
+          <onix:Driver>riffa</onix:Driver>
+          <onix:Index>0</onix:Index>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix:ConfigureHarpSyncInput">
+          <onix:DeviceName>HarpSync</onix:DeviceName>
+          <onix:DeviceAddress>12</onix:DeviceAddress>
+          <onix:Enable>true</onix:Enable>
+          <onix:Source>ClockAdapter</onix:Source>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix:ConfigureMemoryMonitor">
+          <onix:DeviceName>Memory</onix:DeviceName>
+          <onix:DeviceAddress>10</onix:DeviceAddress>
+          <onix:Enable>false</onix:Enable>
+          <onix:SampleFrequency>10</onix:SampleFrequency>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix:ConfigureNeuropixelsV2eBetaHeadstage">
+          <onix:Name>NeuropixelsV2eBetaHeadstage</onix:Name>
+          <onix:NeuropixelsV2Beta>
+            <onix:DeviceName>NeuropixelsV2eBetaHeadstage.NeuropixelsV2eBeta</onix:DeviceName>
+            <onix:DeviceAddress>512</onix:DeviceAddress>
+            <onix:Enable>true</onix:Enable>
+            <onix:EnableLed>true</onix:EnableLed>
+          </onix:NeuropixelsV2Beta>
+          <onix:Bno055>
+            <onix:DeviceName>NeuropixelsV2eBetaHeadstage.NeuropixelsV2eBno055</onix:DeviceName>
+            <onix:DeviceAddress>513</onix:DeviceAddress>
+            <onix:Enable>true</onix:Enable>
+          </onix:Bno055>
+          <onix:Port>PortB</onix:Port>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix:StartAcquisition">
+          <onix:ReadSize>2048</onix:ReadSize>
+          <onix:WriteSize>2048</onix:WriteSize>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix:NeuropixelsV2eBetaData">
+          <onix:DeviceName>NeuropixelsV2eBetaHeadstage.NeuropixelsV2eBeta</onix:DeviceName>
+          <onix:BufferSize>600</onix:BufferSize>
+          <onix:ProbeIndex>ProbeB</onix:ProbeIndex>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>AmplifierData</Selector>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Timer">
+          <rx:DueTime>PT0S</rx:DueTime>
+          <rx:Period>PT0.025S</rx:Period>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix:NeuropixelsV2eBno055Data">
+          <onix:DeviceName>NeuropixelsV2eBetaHeadstage.NeuropixelsV2eBno055</onix:DeviceName>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>BNO055 9-Axis IMU</Name>
+        <Description>BNO055  9-Axis IMU</Description>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Quaternion</Selector>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>Commutator</Name>
+              <Description>Drives ONIX Commutator from BNO055 Quaterion data. Pressing down/up keys will manually turn the commutator, overrding the BNO055 heading input.
+</Description>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="wie:KeyDown">
+                      <wie:Filter>Q</wie:Filter>
+                      <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="DoubleProperty">
+                      <Value>0.1</Value>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="wie:KeyDown">
+                      <wie:Filter>A</wie:Filter>
+                      <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="DoubleProperty">
+                      <Value>-0.1</Value>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Name>Heading</scr:Name>
+                    <scr:Expression>Math.Atan2((2 * (W * Z + X * Y)), (1 - 2 * (Y * Y + Z * Z)))</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="Disable">
+                    <Builder xsi:type="io:CsvWriter">
+                      <io:FileName>heading_.csv</io:FileName>
+                      <io:Append>false</io:Append>
+                      <io:Overwrite>false</io:Overwrite>
+                      <io:Suffix>Timestamp</io:Suffix>
+                      <io:IncludeHeader>false</io:IncludeHeader>
+                    </Builder>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Timer">
+                      <rx:DueTime>PT0S</rx:DueTime>
+                      <rx:Period>PT0.1S</rx:Period>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Sample" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Skip">
+                      <rx:Count>1</rx:Count>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Zip" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="p1:MotorFeedback" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Merge" />
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="12" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                  <Edge From="3" To="12" Label="Source2" />
+                  <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="5" To="6" Label="Source1" />
+                  <Edge From="6" To="8" Label="Source1" />
+                  <Edge From="7" To="8" Label="Source2" />
+                  <Edge From="8" To="9" Label="Source1" />
+                  <Edge From="8" To="10" Label="Source1" />
+                  <Edge From="9" To="10" Label="Source2" />
+                  <Edge From="10" To="11" Label="Source1" />
+                  <Edge From="11" To="12" Label="Source3" />
+                  <Edge From="12" To="13" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="Combinator">
+                <Combinator xsi:type="dsp:MatrixWriter">
+                  <dsp:Path>bno055-quaternion_.raw</dsp:Path>
+                  <dsp:Suffix>Timestamp</dsp:Suffix>
+                  <dsp:Overwrite>false</dsp:Overwrite>
+                  <dsp:Layout>RowMajor</dsp:Layout>
+                </Combinator>
+              </Builder>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Temperature</Selector>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Acceleration</Selector>
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="Combinator">
+                <Combinator xsi:type="dsp:MatrixWriter">
+                  <dsp:Path>bno055-linear-accel_.raw</dsp:Path>
+                  <dsp:Suffix>Timestamp</dsp:Suffix>
+                  <dsp:Overwrite>false</dsp:Overwrite>
+                  <dsp:Layout>RowMajor</dsp:Layout>
+                </Combinator>
+              </Builder>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Gravity</Selector>
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="Combinator">
+                <Combinator xsi:type="dsp:MatrixWriter">
+                  <dsp:Path>bno055-gravity-vector_.raw</dsp:Path>
+                  <dsp:Suffix>Timestamp</dsp:Suffix>
+                  <dsp:Overwrite>false</dsp:Overwrite>
+                  <dsp:Layout>RowMajor</dsp:Layout>
+                </Combinator>
+              </Builder>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>EulerAngle</Selector>
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="Combinator">
+                <Combinator xsi:type="dsp:MatrixWriter">
+                  <dsp:Path>bno055-euler_.raw</dsp:Path>
+                  <dsp:Suffix>Timestamp</dsp:Suffix>
+                  <dsp:Overwrite>false</dsp:Overwrite>
+                  <dsp:Layout>RowMajor</dsp:Layout>
+                </Combinator>
+              </Builder>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Timestamp" />
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="io:CsvWriter">
+                <io:FileName>bno055-other_.csv</io:FileName>
+                <io:Append>false</io:Append>
+                <io:Overwrite>false</io:Overwrite>
+                <io:Suffix>Timestamp</io:Suffix>
+                <io:IncludeHeader>false</io:IncludeHeader>
+                <io:Selector>Timestamp,Value.Clock,Value.Temperature,Value.Calibration</io:Selector>
+              </Builder>
+            </Expression>
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="0" To="5" Label="Source1" />
+            <Edge From="0" To="6" Label="Source1" />
+            <Edge From="0" To="8" Label="Source1" />
+            <Edge From="0" To="10" Label="Source1" />
+            <Edge From="0" To="12" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="1" To="4" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="8" To="9" Label="Source1" />
+            <Edge From="10" To="11" Label="Source1" />
+            <Edge From="12" To="13" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>CommutatorCommands</Name>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>CommutatorController</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="Format">
+              <Format>{{turn : {0}}}</Format>
+              <Selector>it</Selector>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="PortName" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="port:SerialWriteLine">
+                <port:PortName>COM3</port:PortName>
+                <port:NewLine>\r\n</port:NewLine>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="3" Label="Source1" />
+            <Edge From="2" To="3" Label="Source2" />
+            <Edge From="3" To="4" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix:HarpSyncInputData">
+          <onix:DeviceName>HarpSync</onix:DeviceName>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Clock</Selector>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>HarpTime</Selector>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>CommutatorCommands</Name>
+      </Expression>
+      <Expression xsi:type="rx:Accumulate" />
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix:MemoryUsage">
+          <onix:DeviceName>Memory</onix:DeviceName>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>BytesUsed</Selector>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>FrameClock</Selector>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Skip">
+          <rx:Count>1</rx:Count>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Zip" />
+      </Expression>
+      <Expression xsi:type="Subtract" />
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Expression>250000000.0/it</scr:Expression>
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="1" Label="Source1" />
+      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="5" To="6" Label="Source1" />
+      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="9" To="10" Label="Source1" />
+      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="12" To="13" Label="Source1" />
+      <Edge From="12" To="14" Label="Source1" />
+      <Edge From="15" To="16" Label="Source1" />
+      <Edge From="17" To="18" Label="Source1" />
+      <Edge From="17" To="19" Label="Source1" />
+      <Edge From="19" To="20" Label="Source1" />
+      <Edge From="19" To="21" Label="Source2" />
+      <Edge From="20" To="21" Label="Source1" />
+      <Edge From="21" To="22" Label="Source1" />
+      <Edge From="22" To="23" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
