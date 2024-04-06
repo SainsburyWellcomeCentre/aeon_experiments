@@ -979,6 +979,19 @@
       <Expression xsi:type="MulticastSubject">
         <Name>EnableMotor</Name>
       </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>Patch2Events</Name>
+      </Expression>
+      <Expression xsi:type="harp:FilterRegister">
+        <harp:FilterType>Include</harp:FilterType>
+        <harp:Register xsi:type="harp:TimestampSeconds" />
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>Patch1Events</Name>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>Patch3Events</Name>
+      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="wie:KeyDown">
           <wie:Filter>LButton RButton Cancel ShiftKey ControlKey Menu Pause Space Prior PageUp Next PageDown End D0 D1 D2 D3 A B C P Q R S NumPad0 NumPad1 NumPad2 NumPad3 F1 F2 F3 F4 Shift</wie:Filter>
@@ -1007,7 +1020,10 @@
       <Edge From="9" To="10" Label="Source1" />
       <Edge From="11" To="12" Label="Source1" />
       <Edge From="13" To="14" Label="Source1" />
+      <Edge From="14" To="15" Label="Source1" />
       <Edge From="15" To="16" Label="Source1" />
+      <Edge From="17" To="18" Label="Source1" />
+      <Edge From="19" To="20" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
