@@ -17,7 +17,7 @@
                 <Nodes>
                   <Expression xsi:type="GroupWorkflow">
                     <Name>NeuropixelsV2Beta</Name>
-                    <Description>Contains control and acquisition functionality for ONIX NeuropixelsV2Beta probes.</Description>
+                    <Description />
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
@@ -30,6 +30,7 @@
                           <Driver>riffa</Driver>
                           <Index>0</Index>
                           <Port>PortB</Port>
+                          <BufferSize>300</BufferSize>
                           <ImuSamplingPeriod>PT0.025S</ImuSamplingPeriod>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
