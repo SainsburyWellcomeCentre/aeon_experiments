@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.8.1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:onix="clr-namespace:OpenEphys.Onix;assembly=OpenEphys.Onix"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Driver" />
+        <Property Name="Index" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix:CreateContext">
+          <onix:Driver>riffa</onix:Driver>
+          <onix:Index>0</onix:Index>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix:ConfigureHarpSyncInput">
+          <onix:DeviceName>HarpSync</onix:DeviceName>
+          <onix:DeviceAddress>12</onix:DeviceAddress>
+          <onix:Enable>true</onix:Enable>
+          <onix:Source>ClockAdapter</onix:Source>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix:ConfigureMemoryMonitor">
+          <onix:DeviceName>Memory</onix:DeviceName>
+          <onix:DeviceAddress>10</onix:DeviceAddress>
+          <onix:Enable>false</onix:Enable>
+          <onix:SampleFrequency>10</onix:SampleFrequency>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Port" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix:ConfigureNeuropixelsV2eBetaHeadstage">
+          <onix:Name>NeuropixelsV2eBetaHeadstage</onix:Name>
+          <onix:NeuropixelsV2Beta>
+            <onix:DeviceName>NeuropixelsV2eBetaHeadstage.NeuropixelsV2eBeta</onix:DeviceName>
+            <onix:DeviceAddress>512</onix:DeviceAddress>
+            <onix:Enable>true</onix:Enable>
+            <onix:EnableLed>true</onix:EnableLed>
+          </onix:NeuropixelsV2Beta>
+          <onix:Bno055>
+            <onix:DeviceName>NeuropixelsV2eBetaHeadstage.NeuropixelsV2eBno055</onix:DeviceName>
+            <onix:DeviceAddress>513</onix:DeviceAddress>
+            <onix:Enable>true</onix:Enable>
+          </onix:Bno055>
+          <onix:Port>PortB</onix:Port>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix:StartAcquisition">
+          <onix:ReadSize>2048</onix:ReadSize>
+          <onix:WriteSize>2048</onix:WriteSize>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix:NeuropixelsV2eBetaData">
+          <onix:DeviceName>NeuropixelsV2eBetaHeadstage.NeuropixelsV2eBeta</onix:DeviceName>
+          <onix:BufferSize>600</onix:BufferSize>
+          <onix:ProbeIndex>ProbeA</onix:ProbeIndex>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>NeuropixelsV2BetaProbeA</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix:NeuropixelsV2eBetaData">
+          <onix:DeviceName>NeuropixelsV2eBetaHeadstage.NeuropixelsV2eBeta</onix:DeviceName>
+          <onix:BufferSize>600</onix:BufferSize>
+          <onix:ProbeIndex>ProbeB</onix:ProbeIndex>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>NeuropixelsV2BetaProbeB</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix:HarpSyncInputData">
+          <onix:DeviceName>HarpSync</onix:DeviceName>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>OnixHarpSync</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix:MemoryUsage">
+          <onix:DeviceName>Memory</onix:DeviceName>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>OnixMemoryUsage</Name>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Period" DisplayName="ImuSamplingPeriod" Category="BNO055" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Timer">
+          <rx:DueTime>PT0S</rx:DueTime>
+          <rx:Period>PT0.025S</rx:Period>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="onix:NeuropixelsV2eBno055Data">
+          <onix:DeviceName>NeuropixelsV2eBetaHeadstage.NeuropixelsV2eBno055</onix:DeviceName>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>NeuropixelsV2Bno055</Name>
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="1" Label="Source1" />
+      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="3" To="5" Label="Source1" />
+      <Edge From="4" To="5" Label="Source2" />
+      <Edge From="5" To="6" Label="Source1" />
+      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="9" To="10" Label="Source1" />
+      <Edge From="11" To="12" Label="Source1" />
+      <Edge From="13" To="14" Label="Source1" />
+      <Edge From="15" To="16" Label="Source1" />
+      <Edge From="16" To="17" Label="Source1" />
+      <Edge From="17" To="18" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
