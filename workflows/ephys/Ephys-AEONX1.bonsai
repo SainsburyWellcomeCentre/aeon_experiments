@@ -102,7 +102,7 @@
               <Name>OnixHarpSync</Name>
             </Expression>
             <Expression xsi:type="MemberSelector">
-              <Selector>HarpTime</Selector>
+              <Selector>Value.HarpTime</Selector>
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="SubscribeSubject">
