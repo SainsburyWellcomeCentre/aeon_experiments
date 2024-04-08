@@ -17,8 +17,8 @@
         <Name>NeuropixelsV2Bno055</Name>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
-        <Property Name="PositiveTurnKey" />
-        <Property Name="NegativeTurnKey" />
+        <Property Name="AntiClockwiseTurnKey" />
+        <Property Name="ClockwiseTurnKey" />
         <Property Name="MotorFeedbackPeriod" />
         <Property Name="CommutatorTurns" />
       </Expression>
@@ -28,11 +28,11 @@
         <Workflow>
           <Nodes>
             <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Filter" DisplayName="PositiveTurnKey" />
+              <Property Name="Filter" DisplayName="AntiClockwiseTurnKey" />
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="wie:KeyDown">
-                <wie:Filter>Q</wie:Filter>
+                <wie:Filter>RButton ShiftKey Menu Space Next PageDown D0 D2 B P R NumPad0 NumPad2 F1 F3 Shift</wie:Filter>
                 <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
               </Combinator>
             </Expression>
@@ -42,11 +42,11 @@
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Filter" DisplayName="NegativeTurnKey" />
+              <Property Name="Filter" DisplayName="ClockwiseTurnKey" />
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="wie:KeyDown">
-                <wie:Filter>A</wie:Filter>
+                <wie:Filter>LButton RButton Cancel ShiftKey ControlKey Menu Pause Space Prior PageUp Next PageDown End D0 D1 D2 D3 A B C P Q R S NumPad0 NumPad1 NumPad2 NumPad3 F1 F2 F3 F4 Shift</wie:Filter>
                 <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
               </Combinator>
             </Expression>

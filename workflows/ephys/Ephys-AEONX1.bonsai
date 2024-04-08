@@ -47,16 +47,17 @@
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
                           <Property Name="Bno055" />
-                          <Property Name="PositiveTurnKey" />
-                          <Property Name="NegativeTurnKey" />
+                          <Property Name="AntiClockwiseTurnKey" />
+                          <Property Name="ClockwiseTurnKey" />
                           <Property Name="MotorFeedbackPeriod" />
+                          <Property Name="CommutatorTurns" />
                           <Property Name="PortName" />
                           <Property Name="CommutatorCommands" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Extensions\CommutatorController.bonsai">
                           <Bno055>NeuropixelsV2Bno055</Bno055>
-                          <PositiveTurnKey>Q</PositiveTurnKey>
-                          <NegativeTurnKey>A</NegativeTurnKey>
+                          <AntiClockwiseTurnKey>RButton ShiftKey Menu Space Next PageDown D0 D2 B P R NumPad0 NumPad2 F1 F3 Shift</AntiClockwiseTurnKey>
+                          <ClockwiseTurnKey>LButton RButton Cancel ShiftKey ControlKey Menu Pause Space Prior PageUp Next PageDown End D0 D1 D2 D3 A B C P Q R S NumPad0 NumPad1 NumPad2 NumPad3 F1 F2 F3 F4 Shift</ClockwiseTurnKey>
                           <MotorFeedbackPeriod>PT0.1S</MotorFeedbackPeriod>
                           <CommutatorTurns>CommutatorTurns</CommutatorTurns>
                           <PortName>COM3</PortName>
