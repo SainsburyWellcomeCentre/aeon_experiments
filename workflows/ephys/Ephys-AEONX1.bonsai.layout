@@ -20,8 +20,8 @@
         <Y>5</Y>
       </Location>
       <Size>
-        <Width>850</Width>
-        <Height>720</Height>
+        <Width>949</Width>
+        <Height>872</Height>
       </Size>
       <WindowState>Normal</WindowState>
     </EditorDialogSettings>
@@ -29,12 +29,12 @@
   <DialogSettings xsi:type="WorkflowEditorSettings">
     <Visible>true</Visible>
     <Location>
-      <X>723</X>
-      <Y>506</Y>
+      <X>719</X>
+      <Y>634</Y>
     </Location>
     <Size>
-      <Width>660</Width>
-      <Height>620</Height>
+      <Width>837</Width>
+      <Height>568</Height>
     </Size>
     <WindowState>Normal</WindowState>
     <VisualizerTypeName>Bonsai.Design.Visualizers.TableLayoutPanelVisualizer</VisualizerTypeName>
@@ -46,8 +46,8 @@
             <MatVisualizer>
               <XMin>0</XMin>
               <XMax>30000</XMax>
-              <YMin>8000</YMin>
-              <YMax>17000</YMax>
+              <YMin>7500</YMin>
+              <YMax>10000</YMax>
               <AutoScaleX>true</AutoScaleX>
               <AutoScaleY>true</AutoScaleY>
               <SelectedPage>0</SelectedPage>
@@ -65,7 +65,7 @@
             <TimeSeriesVisualizer>
               <Capacity>640</Capacity>
               <Min>0</Min>
-              <Max>30000</Max>
+              <Max>5000</Max>
               <AutoScale>true</AutoScale>
             </TimeSeriesVisualizer>
           </VisualizerSettings>
@@ -75,8 +75,8 @@
           <VisualizerSettings>
             <TimeSeriesVisualizer>
               <Capacity>640</Capacity>
-              <Min>3795254219</Min>
-              <Max>3795254226</Max>
+              <Min>3795425490</Min>
+              <Max>3795425600</Max>
               <AutoScale>true</AutoScale>
             </TimeSeriesVisualizer>
           </VisualizerSettings>
@@ -86,8 +86,8 @@
           <VisualizerSettings>
             <TimeSeriesVisualizer>
               <Capacity>640</Capacity>
-              <Min>-0.2501472</Min>
-              <Max>-0.25014717</Max>
+              <Min>0</Min>
+              <Max>0.034999999999999996</Max>
               <AutoScale>true</AutoScale>
             </TimeSeriesVisualizer>
           </VisualizerSettings>
@@ -289,7 +289,7 @@
       </DialogSettings>
     </EditorVisualizerLayout>
   </DialogSettings>
-  <DialogSettings>
+  <DialogSettings xsi:type="WorkflowEditorSettings">
     <Visible>false</Visible>
     <Location>
       <X>0</X>
@@ -300,5 +300,41 @@
       <Height>0</Height>
     </Size>
     <WindowState>Normal</WindowState>
+    <EditorDialogSettings>
+      <Visible>false</Visible>
+      <Location>
+        <X>4</X>
+        <Y>5</Y>
+      </Location>
+      <Size>
+        <Width>949</Width>
+        <Height>872</Height>
+      </Size>
+      <WindowState>Normal</WindowState>
+    </EditorDialogSettings>
+  </DialogSettings>
+  <DialogSettings xsi:type="WorkflowEditorSettings">
+    <Visible>false</Visible>
+    <Location>
+      <X>0</X>
+      <Y>0</Y>
+    </Location>
+    <Size>
+      <Width>0</Width>
+      <Height>0</Height>
+    </Size>
+    <WindowState>Normal</WindowState>
+    <EditorDialogSettings>
+      <Visible>false</Visible>
+      <Location>
+        <X>4</X>
+        <Y>5</Y>
+      </Location>
+      <Size>
+        <Width>949</Width>
+        <Height>872</Height>
+      </Size>
+      <WindowState>Normal</WindowState>
+    </EditorDialogSettings>
   </DialogSettings>
 </VisualizerLayout>

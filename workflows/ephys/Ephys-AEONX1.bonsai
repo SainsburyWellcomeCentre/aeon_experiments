@@ -141,6 +141,7 @@
           </Edges>
         </Workflow>
       </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Alerts.bonsai" />
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\Logging.bonsai" />
     </Nodes>
     <Edges />
