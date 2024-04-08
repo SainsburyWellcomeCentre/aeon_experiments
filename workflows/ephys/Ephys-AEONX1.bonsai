@@ -78,6 +78,7 @@
           <Edges />
         </Workflow>
       </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Declarations.bonsai" />
       <Expression xsi:type="GroupWorkflow">
         <Name>Visualization</Name>
         <Workflow>
