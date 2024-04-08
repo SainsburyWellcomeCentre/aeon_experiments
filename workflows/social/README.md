@@ -11,3 +11,19 @@ dotnet bonsai.sgen --serializer YamlDotNet --serializer NewtonsoftJson --schema 
 ```
 
 The resulting class definition files may have to be checked for `$ref` type resolution failures, e.g. `Anonymous` types which can usually be fixed by targeted find-and-replace. These issues are due to be fixed upstream.
+
+## Starting AEON2 Ephys Experiments - CHECKLIST
+
+1. If needed (if motor PSU has been switched off), manually move the motor head to the centre roughly of the drive. N.B. Leave motor power OFF! 
+2. Switch Motor PSU on.
+3. Open workflow (run from shortcut on desktop) on both AEON2 and AEONX2.
+4. On AEON2, calibrate the linear drive by pressing Shift + F10 - the motor head should move slowly to the end of the drive shaft, then stop.
+	N.B. The motors are now ENABLED.
+5. Add your mouse and prepare experimental arena.
+6. Start the cameras and tracking with Shift + F1. From this point on, nothing new (like your hand) should enter the arena / camera view.
+
+N.B. 
+
+1. If you need to grab the mouse or go into the camera frame, DISABLE the motor first with Shift + F4 on AEON2.
+2. To manually commutate the commutator on AEONX2, use Shift + F3 (anti-clockwise) and Shift + F4 (clockwise).
+
