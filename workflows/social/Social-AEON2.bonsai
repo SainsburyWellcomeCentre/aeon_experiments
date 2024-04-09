@@ -52,7 +52,7 @@
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoController.bonsai">
                           <DeviceType>OutputExpander</DeviceType>
-                          <PortName>COM3</PortName>
+                          <PortName>COM9</PortName>
                           <GlobalTriggerFrequency>50</GlobalTriggerFrequency>
                           <LocalTriggerFrequency>125</LocalTriggerFrequency>
                         </Expression>
@@ -368,7 +368,7 @@
                           <DueTime>PT1S</DueTime>
                           <Count>2</Count>
                           <ResetFeeder>Patch2ResetFeeder</ResetFeeder>
-                          <PortName>COM4</PortName>
+                          <PortName>COM10</PortName>
                           <Radius>-4</Radius>
                           <WheelDisplacement>Patch2WheelDisplacement</WheelDisplacement>
                         </Expression>
@@ -415,15 +415,13 @@
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
-                          <Property Name="PortName" />
                           <Property Name="BaselineWeightTrigger" />
                           <Property Name="FilterWindow" />
                           <Property Name="WeightData" />
                           <Property Name="TareCommands" />
                           <Property Name="TareEvents" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:WeightScale.bonsai">
-                          <PortName>COM8</PortName>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\VirtualWeightScale.bonsai">
                           <BaselineWeightTrigger>NestBaselineWeight</BaselineWeightTrigger>
                           <FilterWindow>40</FilterWindow>
                           <WeightData>NestWeightData</WeightData>
