@@ -81,14 +81,18 @@
       <Expression xsi:type="MulticastSubject">
         <Name>StartCameras</Name>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="wie:KeyDown">
-          <wie:Filter>LButton ShiftKey ControlKey Space Prior PageUp D0 D1 A P Q NumPad0 NumPad1 F1 F2 Shift</wie:Filter>
-          <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
-        </Combinator>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="Combinator">
+          <Combinator xsi:type="wie:KeyDown">
+            <wie:Filter>LButton ShiftKey ControlKey Space Prior PageUp D0 D1 A P Q NumPad0 NumPad1 F1 F2 Shift</wie:Filter>
+            <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+          </Combinator>
+        </Builder>
       </Expression>
-      <Expression xsi:type="MulticastSubject">
-        <Name>StopCameras</Name>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="MulticastSubject">
+          <Name>StopCameras</Name>
+        </Builder>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>PatchActivity</Name>
