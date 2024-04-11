@@ -32,9 +32,15 @@ public class GetQuaternionTwist
         {
             var direction = Direction;
             var rotationAxis = new Vector3(rotation.X, rotation.Y, rotation.Z);
-            var projection = Dot(rotationAxis, direction) / Dot(direction, direction) * direction;
+            var dotProduct = Dot(rotationAxis, direction);
+            var projection = dotProduct / Dot(direction, direction) * direction;
             var twist = new Quaternion(projection, rotation.W);
             twist = Quaternion.Normalize(twist);
+            if (dotProduct < 0) // account for angle-axis flipping
+            {
+                twist = -twist;
+            }
+
             return twist;
         });
     }
