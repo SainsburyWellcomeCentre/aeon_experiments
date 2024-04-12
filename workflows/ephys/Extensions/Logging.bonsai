@@ -34,6 +34,99 @@
         <Selector>Seconds,Value.Priority,Value.Type,Value.Message</Selector>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
+        <Name>NeuropixelsV2BetaProbeA</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:WindowCount">
+          <rx:Count>360000</rx:Count>
+          <rx:Skip xsi:nil="true" />
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="rx:CreateObservable">
+        <Name>AmplifierData</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>AmplifierData</Selector>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+        <LogName>NeuropixelsV2Beta_ProbeA_AmplifierData</LogName>
+      </Expression>
+      <Expression xsi:type="rx:CreateObservable">
+        <Name>FrameCounter</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>FrameCounter</Selector>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+        <LogName>NeuropixelsV2Beta_ProbeA_FrameCounter</LogName>
+      </Expression>
+      <Expression xsi:type="rx:CreateObservable">
+        <Name>Clock</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Clock</Selector>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+        <LogName>NeuropixelsV2Beta_ProbeA_Clock</LogName>
+      </Expression>
+      <Expression xsi:type="rx:CreateObservable">
+        <Name>HubSyncCounter</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>HubClock</Selector>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+        <LogName>NeuropixelsV2Beta_ProbeA_HubSyncCounter</LogName>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
         <Name>NeuropixelsV2BetaProbeB</Name>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -362,19 +455,28 @@
       <Edge From="17" To="20" Label="Source1" />
       <Edge From="17" To="22" Label="Source1" />
       <Edge From="17" To="24" Label="Source1" />
-      <Edge From="17" To="26" Label="Source1" />
-      <Edge From="17" To="28" Label="Source1" />
       <Edge From="18" To="19" Label="Source1" />
       <Edge From="20" To="21" Label="Source1" />
       <Edge From="22" To="23" Label="Source1" />
       <Edge From="24" To="25" Label="Source1" />
       <Edge From="26" To="27" Label="Source1" />
+      <Edge From="27" To="28" Label="Source1" />
+      <Edge From="27" To="30" Label="Source1" />
+      <Edge From="27" To="32" Label="Source1" />
+      <Edge From="27" To="34" Label="Source1" />
+      <Edge From="27" To="36" Label="Source1" />
+      <Edge From="27" To="38" Label="Source1" />
       <Edge From="28" To="29" Label="Source1" />
       <Edge From="30" To="31" Label="Source1" />
-      <Edge From="31" To="32" Label="Source1" />
-      <Edge From="31" To="34" Label="Source1" />
       <Edge From="32" To="33" Label="Source1" />
       <Edge From="34" To="35" Label="Source1" />
+      <Edge From="36" To="37" Label="Source1" />
+      <Edge From="38" To="39" Label="Source1" />
+      <Edge From="40" To="41" Label="Source1" />
+      <Edge From="41" To="42" Label="Source1" />
+      <Edge From="41" To="44" Label="Source1" />
+      <Edge From="42" To="43" Label="Source1" />
+      <Edge From="44" To="45" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
