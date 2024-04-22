@@ -958,7 +958,7 @@
         <Property Name="EnvironmentConfigPath" />
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentLogic.bonsai">
-        <EnvironmentConfigPath>EnvironmentRandom.yml</EnvironmentConfigPath>
+        <EnvironmentConfigPath>EnvironmentEphys.yml</EnvironmentConfigPath>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>LinearDriveEvents</Name>
