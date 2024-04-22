@@ -37,6 +37,7 @@
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="Port" />
+        <Property Name="NeuropixelsV2Beta" />
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="onix:ConfigureNeuropixelsV2eBetaHeadstage">
@@ -46,6 +47,7 @@
             <onix:DeviceAddress>512</onix:DeviceAddress>
             <onix:Enable>true</onix:Enable>
             <onix:EnableLed>true</onix:EnableLed>
+            <onix:Reference>External</onix:Reference>
           </onix:NeuropixelsV2Beta>
           <onix:Bno055>
             <onix:DeviceName>NeuropixelsV2eBetaHeadstage.NeuropixelsV2eBno055</onix:DeviceName>

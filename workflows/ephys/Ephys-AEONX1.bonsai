@@ -30,6 +30,13 @@
                           <Driver>riffa</Driver>
                           <Index>0</Index>
                           <Port>PortB</Port>
+                          <NeuropixelsV2Beta>
+                            <DeviceName>NeuropixelsV2eBetaHeadstage.NeuropixelsV2eBeta</DeviceName>
+                            <DeviceAddress>512</DeviceAddress>
+                            <Enable>true</Enable>
+                            <EnableLed>true</EnableLed>
+                            <Reference>Tip</Reference>
+                          </NeuropixelsV2Beta>
                           <BufferSize>300</BufferSize>
                           <ImuSamplingPeriod>PT0.025S</ImuSamplingPeriod>
                         </Expression>
@@ -75,6 +82,48 @@
                 <Edges />
               </Workflow>
             </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>SpikeDetection</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Probe" />
+                    <Property Name="AdcScale" />
+                    <Property Name="SampleRate" />
+                    <Property Name="Cutoff1" />
+                    <Property Name="Cutoff2" />
+                    <Property Name="FilterOrder" />
+                    <Property Name="FilterType" />
+                    <Property Name="ProbeHighPass" />
+                    <Property Name="Delay" />
+                    <Property Name="Length" />
+                    <Property Name="Threshold" />
+                    <Property Name="WaveformRefinement" />
+                    <Property Name="ProbeSpikeWaveforms" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\SpikeDetection.bonsai">
+                    <Probe>NeuropixelsV2BetaProbeA</Probe>
+                    <AdcScale>500</AdcScale>
+                    <SampleRate>30000</SampleRate>
+                    <Cutoff1>300</Cutoff1>
+                    <Cutoff2>5000</Cutoff2>
+                    <FilterOrder>3</FilterOrder>
+                    <FilterType>HighPass</FilterType>
+                    <ProbeHighPass>ProbeAHighPass</ProbeHighPass>
+                    <Delay>30</Delay>
+                    <Length>60</Length>
+                    <Threshold />
+                    <WaveformRefinement>AlignPeaks</WaveformRefinement>
+                    <ProbeSpikeWaveforms>ProbeASpikeWaveforms</ProbeSpikeWaveforms>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
           </Nodes>
           <Edges />
         </Workflow>
@@ -84,13 +133,6 @@
         <Name>Visualization</Name>
         <Workflow>
           <Nodes>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>NeuropixelsV2BetaProbeB</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>AmplifierData</Selector>
-            </Expression>
-            <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="onix:MemoryUsage">
                 <onix:DeviceName>Memory</onix:DeviceName>
@@ -128,24 +170,35 @@
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
             <Edge From="1" To="2" Label="Source1" />
-            <Edge From="2" To="13" Label="Source1" />
+            <Edge From="2" To="10" Label="Source1" />
             <Edge From="3" To="4" Label="Source1" />
             <Edge From="4" To="5" Label="Source1" />
-            <Edge From="5" To="13" Label="Source2" />
+            <Edge From="5" To="10" Label="Source2" />
             <Edge From="6" To="7" Label="Source1" />
             <Edge From="7" To="8" Label="Source1" />
-            <Edge From="8" To="13" Label="Source3" />
-            <Edge From="9" To="10" Label="Source1" />
+            <Edge From="8" To="9" Label="Source1" />
+            <Edge From="9" To="10" Label="Source3" />
             <Edge From="10" To="11" Label="Source1" />
-            <Edge From="11" To="12" Label="Source1" />
-            <Edge From="12" To="13" Label="Source4" />
-            <Edge From="13" To="14" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\Alerts.bonsai" />
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\Logging.bonsai" />
+      <Expression xsi:type="SubscribeSubject">
+        <Name>NeuropixelsV2BetaProbeA</Name>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>AmplifierData</Selector>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>ProbeAHighPass</Name>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>ProbeASpikeWaveforms</Name>
+      </Expression>
     </Nodes>
-    <Edges />
+    <Edges>
+      <Edge From="5" To="6" Label="Source1" />
+    </Edges>
   </Workflow>
 </WorkflowBuilder>
