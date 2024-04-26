@@ -4,6 +4,7 @@
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:p1="clr-namespace:;assembly=Extensions"
+                 xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
                  xmlns:port="clr-namespace:Bonsai.IO.Ports;assembly=Bonsai.System"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Description>Drives the turns of an ONIX rotary commutator.</Description>
@@ -73,26 +74,24 @@
               <Selector>Quaternion</Selector>
             </Expression>
             <Expression xsi:type="Combinator">
-              <Combinator xsi:type="p1:GetQuaternionHeading" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Skip">
-                <rx:Count>1</rx:Count>
+              <Combinator xsi:type="p1:GetQuaternionTwistAngle">
+                <p1:Direction>
+                  <p1:X>0</p1:X>
+                  <p1:Y>0</p1:Y>
+                  <p1:Z>1</p1:Z>
+                </p1:Direction>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Zip" />
+              <Combinator xsi:type="dsp:Difference">
+                <dsp:Order>1</dsp:Order>
+              </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
-              <Combinator xsi:type="p1:MotorFeedback" />
+              <Combinator xsi:type="p1:NormalizeAngle" />
             </Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Clock</Selector>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Skip">
-                <rx:Count>1</rx:Count>
-              </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Zip" />
@@ -114,28 +113,25 @@
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
             <Edge From="1" To="2" Label="Source1" />
-            <Edge From="2" To="21" Label="Source1" />
+            <Edge From="2" To="19" Label="Source1" />
             <Edge From="3" To="4" Label="Source1" />
             <Edge From="4" To="5" Label="Source1" />
-            <Edge From="5" To="21" Label="Source2" />
+            <Edge From="5" To="19" Label="Source2" />
             <Edge From="6" To="9" Label="Source1" />
             <Edge From="7" To="8" Label="Source1" />
             <Edge From="8" To="9" Label="Source2" />
             <Edge From="9" To="10" Label="Source1" />
-            <Edge From="9" To="15" Label="Source1" />
+            <Edge From="9" To="14" Label="Source1" />
             <Edge From="10" To="11" Label="Source1" />
             <Edge From="11" To="12" Label="Source1" />
-            <Edge From="11" To="13" Label="Source1" />
-            <Edge From="12" To="13" Label="Source2" />
-            <Edge From="13" To="14" Label="Source1" />
-            <Edge From="14" To="17" Label="Source1" />
-            <Edge From="15" To="16" Label="Source1" />
+            <Edge From="12" To="13" Label="Source1" />
+            <Edge From="13" To="15" Label="Source1" />
+            <Edge From="14" To="15" Label="Source2" />
+            <Edge From="15" To="17" Label="Source1" />
             <Edge From="16" To="17" Label="Source2" />
-            <Edge From="17" To="19" Label="Source1" />
-            <Edge From="18" To="19" Label="Source2" />
+            <Edge From="17" To="18" Label="Source1" />
+            <Edge From="18" To="19" Label="Source3" />
             <Edge From="19" To="20" Label="Source1" />
-            <Edge From="20" To="21" Label="Source3" />
-            <Edge From="21" To="22" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
