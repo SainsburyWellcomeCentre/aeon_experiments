@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
@@ -918,16 +918,16 @@
                   <Expression xsi:type="IncludeWorkflow" Path="Extensions\TetherSlackController.bonsai">
                     <TrackingEvents>TrackingTop</TrackingEvents>
                     <ArenaCenter>
-                      <X>731</X>
+                      <X>700</X>
                       <Y>561</Y>
                     </ArenaCenter>
                     <ArenaRadiusPixels>510</ArenaRadiusPixels>
-                    <ArenaRadiusCentimeters>100</ArenaRadiusCentimeters>
+                    <ArenaRadiusCentimeters>105</ArenaRadiusCentimeters>
                     <TetherGuideAltitude>129.5</TetherGuideAltitude>
                     <TetherGuideHeight>17</TetherGuideHeight>
                     <TetherMaxSlackLength>58.523</TetherMaxSlackLength>
                     <LinearRailLength>56</LinearRailLength>
-                    <RadialDistanceOffset>0</RadialDistanceOffset>
+                    <RadialDistanceOffset>10</RadialDistanceOffset>
                     <LinearDriveSetPosition>LinearDriveSetPosition</LinearDriveSetPosition>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
