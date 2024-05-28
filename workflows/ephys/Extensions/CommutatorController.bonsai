@@ -77,7 +77,7 @@
               <Combinator xsi:type="p1:GetQuaternionTwistAngle">
                 <p1:Direction>
                   <p1:X>0</p1:X>
-                  <p1:Y>0</p1:Y>
+                  <p1:Y>1</p1:Y>
                   <p1:Z>1</p1:Z>
                 </p1:Direction>
               </Combinator>
