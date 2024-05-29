@@ -59,8 +59,8 @@
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="onix:StartAcquisition">
-          <onix:ReadSize>2048</onix:ReadSize>
-          <onix:WriteSize>2048</onix:WriteSize>
+          <onix:ReadSize>4096</onix:ReadSize>
+          <onix:WriteSize>4096</onix:WriteSize>
         </Combinator>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">

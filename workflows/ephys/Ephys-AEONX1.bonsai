@@ -26,6 +26,8 @@
                           <Property Name="Index" />
                           <Property Name="Port" />
                           <Property Name="ImuSamplingPeriod" />
+                          <Property Name="NeuropixelsV2Beta" />
+                          <Property Name="BufferSize" />
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Extensions\NeuropixelsV2Beta.bonsai">
                           <Driver>riffa</Driver>
@@ -36,7 +38,7 @@
                             <DeviceAddress>512</DeviceAddress>
                             <Enable>true</Enable>
                             <EnableLed>true</EnableLed>
-                            <Reference>Tip</Reference>
+                            <Reference>Internal</Reference>
                           </NeuropixelsV2Beta>
                           <BufferSize>300</BufferSize>
                           <ImuSamplingPeriod>PT0.025S</ImuSamplingPeriod>
