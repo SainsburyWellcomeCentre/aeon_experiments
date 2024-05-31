@@ -416,7 +416,7 @@
             <TimeSeriesVisualizer>
               <Capacity>640</Capacity>
               <Min>0</Min>
-              <Max>1200000</Max>
+              <Max>400000</Max>
               <AutoScale>true</AutoScale>
             </TimeSeriesVisualizer>
           </VisualizerSettings>
@@ -426,8 +426,8 @@
           <VisualizerSettings>
             <TimeSeriesVisualizer>
               <Capacity>640</Capacity>
-              <Min>3796625350</Min>
-              <Max>3796625420</Max>
+              <Min>3800013408</Min>
+              <Max>3800013416</Max>
               <AutoScale>true</AutoScale>
             </TimeSeriesVisualizer>
           </VisualizerSettings>
@@ -437,8 +437,8 @@
           <VisualizerSettings>
             <TimeSeriesVisualizer>
               <Capacity>640</Capacity>
-              <Min>-0.2</Min>
-              <Max>0.7</Max>
+              <Min>-0</Min>
+              <Max>0.004</Max>
               <AutoScale>true</AutoScale>
             </TimeSeriesVisualizer>
           </VisualizerSettings>
@@ -507,6 +507,18 @@
     <WindowState>Normal</WindowState>
   </DialogSettings>
   <DialogSettings>
+    <Visible>false</Visible>
+    <Location>
+      <X>0</X>
+      <Y>0</Y>
+    </Location>
+    <Size>
+      <Width>0</Width>
+      <Height>0</Height>
+    </Size>
+    <WindowState>Normal</WindowState>
+  </DialogSettings>
+  <DialogSettings>
     <Visible>true</Visible>
     <Location>
       <X>210</X>
@@ -522,11 +534,11 @@
       <MatVisualizer>
         <XMin>0</XMin>
         <XMax>30000</XMax>
-        <YMin>-500000</YMin>
+        <YMin>-499999.99999999994</YMin>
         <YMax>3500000</YMax>
         <AutoScaleX>true</AutoScaleX>
         <AutoScaleY>true</AutoScaleY>
-        <SelectedPage>2</SelectedPage>
+        <SelectedPage>0</SelectedPage>
         <ChannelsPerPage>32</ChannelsPerPage>
         <OverlayChannels>true</OverlayChannels>
         <ChannelOffset>100000</ChannelOffset>
@@ -551,11 +563,11 @@
       <SpikeWaveformCollectionVisualizer>
         <XMin>0</XMin>
         <XMax>60</XMax>
-        <YMin>-400000</YMin>
-        <YMax>399999.99999999994</YMax>
+        <YMin>-200000</YMin>
+        <YMax>200000</YMax>
         <AutoScaleX>true</AutoScaleX>
         <AutoScaleY>true</AutoScaleY>
-        <SelectedPage>2</SelectedPage>
+        <SelectedPage>0</SelectedPage>
         <ChannelsPerPage>32</ChannelsPerPage>
         <OverlayChannels>false</OverlayChannels>
         <ChannelOffset>0</ChannelOffset>
