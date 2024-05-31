@@ -198,7 +198,7 @@ Item2.Seconds as Timestamp)</scr:Expression>
               <Name>StreamTimeoutMonitor</Name>
               <Workflow>
                 <Nodes>
-                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\StreamTimeout.bonsai">
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\HarpSyncTimeout.bonsai">
                     <StreamEvents>OnixHarpSync</StreamEvents>
                     <DueTime>PT2S</DueTime>
                   </Expression>
