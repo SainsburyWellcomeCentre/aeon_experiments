@@ -454,6 +454,42 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
+                    <Name>PatchDummy1</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="PortName" />
+                          <Property Name="WheelDisplacement" />
+                          <Property Name="PelletDelivered" />
+                          <Property Name="DeliverPellet" />
+                          <Property Name="PatchEvents" />
+                          <Property Name="Radius" />
+                          <Property Name="SampleRate" />
+                          <Property Name="ResetFeeder" />
+                          <Property Name="DueTime" />
+                          <Property Name="Count" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:UndergroundFeeder.bonsai">
+                          <PatchEvents>PatchDummy1Events</PatchEvents>
+                          <SampleRate>SampleRate500Hz</SampleRate>
+                          <DeliverPellet>PatchDummy1DeliverPellet</DeliverPellet>
+                          <PelletDelivered>PatchDummy1PelletDelivered</PelletDelivered>
+                          <DueTime>PT1S</DueTime>
+                          <Count>2</Count>
+                          <ResetFeeder>PatchDummy1ResetFeeder</ResetFeeder>
+                          <PortName>COM20</PortName>
+                          <Radius>-4</Radius>
+                          <WheelDisplacement>PatchDummy1WheelDisplacement</WheelDisplacement>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
                     <Name>Nest</Name>
                     <Workflow>
                       <Nodes>
@@ -646,6 +682,35 @@
                             <Y>348</Y>
                           </Location>
                           <InboundRfidDetected>Patch3RfidInboundDetected</InboundRfidDetected>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>PatchDummy1Rfid</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="HardwareNotificationsState" />
+                          <Property Name="PortName" />
+                          <Property Name="RfidEvents" />
+                          <Property Name="Location" />
+                          <Property Name="InboundRfidDetected" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
+                          <HardwareNotificationsState>None</HardwareNotificationsState>
+                          <PortName>COM21</PortName>
+                          <RfidEvents>PatchDummy1RfidEvents</RfidEvents>
+                          <Location>
+                            <X>565</X>
+                            <Y>372</Y>
+                          </Location>
+                          <InboundRfidDetected>PatchDummy1RfidInboundDetected</InboundRfidDetected>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
