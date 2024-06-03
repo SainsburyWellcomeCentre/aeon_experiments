@@ -198,7 +198,7 @@ Item2.Seconds as Timestamp)</scr:Expression>
               <Name>StreamTimeoutMonitor</Name>
               <Workflow>
                 <Nodes>
-                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\StreamTimeout.bonsai">
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\HarpSyncTimeout.bonsai">
                     <StreamEvents>OnixHarpSync</StreamEvents>
                     <DueTime>PT2S</DueTime>
                   </Expression>
@@ -238,6 +238,9 @@ Item2.Seconds as Timestamp)</scr:Expression>
                 </Edges>
               </Workflow>
             </Expression>
+            <Expression xsi:type="rx:PublishSubject">
+              <Name>TimeoutAlerts</Name>
+            </Expression>
             <Expression xsi:type="Format">
               <Format>## **Stream Timeout**
 **Stream**: {0}
@@ -274,9 +277,10 @@ Item2.Seconds as Timestamp)</scr:Expression>
             <Edge From="13" To="14" Label="Source1" />
             <Edge From="15" To="16" Label="Source1" />
             <Edge From="17" To="18" Label="Source1" />
-            <Edge From="17" To="20" Label="Source1" />
             <Edge From="18" To="19" Label="Source1" />
-            <Edge From="20" To="21" Label="Source1" />
+            <Edge From="18" To="21" Label="Source1" />
+            <Edge From="19" To="20" Label="Source1" />
+            <Edge From="21" To="22" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>

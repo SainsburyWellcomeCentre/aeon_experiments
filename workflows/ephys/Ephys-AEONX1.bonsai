@@ -577,6 +577,7 @@
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\Alerts.bonsai" />
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\Logging.bonsai" />
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\StreamMonitor.bonsai" />
       <Expression xsi:type="SubscribeSubject">
         <Name>NeuropixelsV2BetaProbeA</Name>
       </Expression>
@@ -591,7 +592,7 @@
       </Expression>
     </Nodes>
     <Edges>
-      <Edge From="5" To="6" Label="Source1" />
+      <Edge From="6" To="7" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
