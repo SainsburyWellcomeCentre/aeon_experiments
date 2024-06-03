@@ -661,6 +661,22 @@ new(Value.Id as Id,
         <ClosingDuration>PT2S</ClosingDuration>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
+        <Name>GateEastRfidEvents</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+        <LogName>GateEastRfid</LogName>
+        <Heartbeats>Heartbeats</Heartbeats>
+        <ClosingDuration>PT2S</ClosingDuration>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>GateWestRfidEvents</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+        <LogName>GateWestRfid</LogName>
+        <Heartbeats>Heartbeats</Heartbeats>
+        <ClosingDuration>PT2S</ClosingDuration>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
         <Name>Patch1RfidEvents</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
@@ -883,23 +899,25 @@ new(Value.Id as Id,
       <Edge From="135" To="136" Label="Source1" />
       <Edge From="137" To="138" Label="Source1" />
       <Edge From="139" To="140" Label="Source1" />
-      <Edge From="140" To="143" Label="Source1" />
       <Edge From="141" To="142" Label="Source1" />
-      <Edge From="142" To="143" Label="Source2" />
       <Edge From="143" To="144" Label="Source1" />
-      <Edge From="144" To="145" Label="Source1" />
-      <Edge From="146" To="147" Label="Source1" />
+      <Edge From="144" To="147" Label="Source1" />
+      <Edge From="145" To="146" Label="Source1" />
+      <Edge From="146" To="147" Label="Source2" />
       <Edge From="147" To="148" Label="Source1" />
-      <Edge From="148" To="156" Label="Source1" />
-      <Edge From="149" To="150" Label="Source1" />
-      <Edge From="150" To="156" Label="Source2" />
+      <Edge From="148" To="149" Label="Source1" />
+      <Edge From="150" To="151" Label="Source1" />
       <Edge From="151" To="152" Label="Source1" />
-      <Edge From="152" To="153" Label="Source1" />
-      <Edge From="153" To="156" Label="Source3" />
-      <Edge From="154" To="155" Label="Source1" />
-      <Edge From="155" To="156" Label="Source4" />
+      <Edge From="152" To="160" Label="Source1" />
+      <Edge From="153" To="154" Label="Source1" />
+      <Edge From="154" To="160" Label="Source2" />
+      <Edge From="155" To="156" Label="Source1" />
       <Edge From="156" To="157" Label="Source1" />
+      <Edge From="157" To="160" Label="Source3" />
       <Edge From="158" To="159" Label="Source1" />
+      <Edge From="159" To="160" Label="Source4" />
+      <Edge From="160" To="161" Label="Source1" />
+      <Edge From="162" To="163" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
