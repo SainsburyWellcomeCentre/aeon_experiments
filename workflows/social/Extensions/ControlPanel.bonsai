@@ -136,18 +136,6 @@
               <Combinator xsi:type="dsp:SelectChannels">
                 <dsp:Channels>
                   <dsp:int>0</dsp:int>
-                  <dsp:int>3</dsp:int>
-                </dsp:Channels>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="VisualizerMapping" />
-            <Expression xsi:type="SubscribeSubject">
-              <Name>PatchState</Name>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="dsp:SelectChannels">
-                <dsp:Channels>
-                  <dsp:int>1</dsp:int>
                   <dsp:int>4</dsp:int>
                 </dsp:Channels>
               </Combinator>
@@ -159,8 +147,20 @@
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="dsp:SelectChannels">
                 <dsp:Channels>
-                  <dsp:int>2</dsp:int>
+                  <dsp:int>1</dsp:int>
                   <dsp:int>5</dsp:int>
+                </dsp:Channels>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="VisualizerMapping" />
+            <Expression xsi:type="SubscribeSubject">
+              <Name>PatchState</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="dsp:SelectChannels">
+                <dsp:Channels>
+                  <dsp:int>2</dsp:int>
+                  <dsp:int>6</dsp:int>
                 </dsp:Channels>
               </Combinator>
             </Expression>
@@ -276,32 +276,6 @@
               </viz:CellSpans>
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
-            <Expression xsi:type="aeon-env:ExperimentProperties">
-              <aeon-env:HelpVisible>false</aeon-env:HelpVisible>
-              <aeon-env:ToolbarVisible>false</aeon-env:ToolbarVisible>
-            </Expression>
-            <Expression xsi:type="VisualizerMapping" />
-            <Expression xsi:type="SubscribeSubject">
-              <Name>VideoEvents</Name>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="aeon-env:ButtonSource">
-                <aeon-env:Text>Reload Environment</aeon-env:Text>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>ReloadEnvironment</Name>
-            </Expression>
-            <Expression xsi:type="VisualizerMapping" />
-            <Expression xsi:type="viz:TableLayoutPanelBuilder">
-              <viz:Name>PatchStatistics</viz:Name>
-              <viz:ColumnCount>1</viz:ColumnCount>
-              <viz:RowCount>2</viz:RowCount>
-              <viz:ColumnStyles />
-              <viz:RowStyles />
-              <viz:CellSpans />
-            </Expression>
-            <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="SubscribeSubject">
               <Name>RfidMeasurements</Name>
             </Expression>
@@ -323,6 +297,18 @@
                   <Edge From="0" To="1" Label="Source1" />
                 </Edges>
               </Workflow>
+            </Expression>
+            <Expression xsi:type="VisualizerMapping" />
+            <Expression xsi:type="SubscribeSubject">
+              <Name>PatchState</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="dsp:SelectChannels">
+                <dsp:Channels>
+                  <dsp:int>3</dsp:int>
+                  <dsp:int>7</dsp:int>
+                </dsp:Channels>
+              </Combinator>
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="SubscribeSubject">
@@ -448,30 +434,25 @@
             <Edge From="37" To="38" Label="Source1" />
             <Edge From="38" To="39" Label="Source12" />
             <Edge From="39" To="40" Label="Source1" />
-            <Edge From="40" To="63" Label="Source1" />
+            <Edge From="40" To="58" Label="Source1" />
             <Edge From="41" To="42" Label="Source1" />
-            <Edge From="42" To="47" Label="Source1" />
+            <Edge From="42" To="43" Label="Source1" />
             <Edge From="43" To="44" Label="Source1" />
-            <Edge From="44" To="45" Label="Source1" />
+            <Edge From="44" To="56" Label="Source1" />
             <Edge From="45" To="46" Label="Source1" />
-            <Edge From="46" To="47" Label="Source2" />
-            <Edge From="47" To="48" Label="Source1" />
-            <Edge From="48" To="61" Label="Source1" />
+            <Edge From="46" To="47" Label="Source1" />
+            <Edge From="47" To="56" Label="Source2" />
+            <Edge From="48" To="49" Label="Source1" />
             <Edge From="49" To="50" Label="Source1" />
             <Edge From="50" To="51" Label="Source1" />
-            <Edge From="51" To="52" Label="Source1" />
-            <Edge From="52" To="61" Label="Source2" />
+            <Edge From="51" To="56" Label="Source3" />
+            <Edge From="52" To="53" Label="Source1" />
             <Edge From="53" To="54" Label="Source1" />
             <Edge From="54" To="55" Label="Source1" />
-            <Edge From="55" To="56" Label="Source1" />
-            <Edge From="56" To="61" Label="Source3" />
-            <Edge From="57" To="58" Label="Source1" />
+            <Edge From="55" To="56" Label="Source4" />
+            <Edge From="56" To="57" Label="Source1" />
+            <Edge From="57" To="58" Label="Source2" />
             <Edge From="58" To="59" Label="Source1" />
-            <Edge From="59" To="60" Label="Source1" />
-            <Edge From="60" To="61" Label="Source4" />
-            <Edge From="61" To="62" Label="Source1" />
-            <Edge From="62" To="63" Label="Source2" />
-            <Edge From="63" To="64" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -479,8 +460,30 @@
         <Name>SubjectActivity</Name>
         <Workflow>
           <Nodes>
+            <Expression xsi:type="aeon-env:ExperimentProperties">
+              <aeon-env:HelpVisible>false</aeon-env:HelpVisible>
+              <aeon-env:ToolbarVisible>false</aeon-env:ToolbarVisible>
+            </Expression>
+            <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="SubscribeSubject">
-              <Name>Heatmap</Name>
+              <Name>VideoEvents</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="aeon-env:ButtonSource">
+                <aeon-env:Text>Reload Environment</aeon-env:Text>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>ReloadEnvironment</Name>
+            </Expression>
+            <Expression xsi:type="VisualizerMapping" />
+            <Expression xsi:type="viz:TableLayoutPanelBuilder">
+              <viz:Name>Environment</viz:Name>
+              <viz:ColumnCount>1</viz:ColumnCount>
+              <viz:RowCount>2</viz:RowCount>
+              <viz:ColumnStyles />
+              <viz:RowStyles />
+              <viz:CellSpans />
             </Expression>
             <Expression xsi:type="VisualizerMapping" />
             <Expression xsi:type="SubscribeSubject">
@@ -521,18 +524,24 @@
           </Nodes>
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="12" Label="Source1" />
+            <Edge From="1" To="6" Label="Source1" />
             <Edge From="2" To="3" Label="Source1" />
-            <Edge From="3" To="7" Label="Source1" />
+            <Edge From="3" To="4" Label="Source1" />
             <Edge From="4" To="5" Label="Source1" />
-            <Edge From="5" To="6" Label="Source1" />
-            <Edge From="6" To="7" Label="Source2" />
-            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="5" To="6" Label="Source2" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="18" Label="Source1" />
             <Edge From="8" To="9" Label="Source1" />
-            <Edge From="9" To="12" Label="Source2" />
+            <Edge From="9" To="13" Label="Source1" />
             <Edge From="10" To="11" Label="Source1" />
-            <Edge From="11" To="12" Label="Source3" />
-            <Edge From="12" To="13" Label="Source1" />
+            <Edge From="11" To="12" Label="Source1" />
+            <Edge From="12" To="13" Label="Source2" />
+            <Edge From="13" To="14" Label="Source1" />
+            <Edge From="14" To="15" Label="Source1" />
+            <Edge From="15" To="18" Label="Source2" />
+            <Edge From="16" To="17" Label="Source1" />
+            <Edge From="17" To="18" Label="Source3" />
+            <Edge From="18" To="19" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -1190,6 +1199,9 @@ FilteredWeight.Value - BaselinedWeight.Value as Baseline)</scr:Expression>
             <Expression xsi:type="MemberSelector">
               <Selector>Value.Image</Selector>
             </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Heatmap</Name>
+            </Expression>
             <Expression xsi:type="ExternalizedMapping">
               <Property Name="SelectedStream" />
             </Expression>
@@ -1206,6 +1218,7 @@ FilteredWeight.Value - BaselinedWeight.Value as Baseline)</scr:Expression>
                   <p1:string>CameraPatch1</p1:string>
                   <p1:string>CameraPatch2</p1:string>
                   <p1:string>CameraPatch3</p1:string>
+                  <p1:string>HeatMap</p1:string>
                 </p1:StreamNames>
               </Combinator>
             </Expression>
@@ -1213,25 +1226,26 @@ FilteredWeight.Value - BaselinedWeight.Value as Baseline)</scr:Expression>
           </Nodes>
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="19" Label="Source1" />
+            <Edge From="1" To="20" Label="Source1" />
             <Edge From="2" To="3" Label="Source1" />
-            <Edge From="3" To="19" Label="Source2" />
+            <Edge From="3" To="20" Label="Source2" />
             <Edge From="4" To="5" Label="Source1" />
-            <Edge From="5" To="19" Label="Source3" />
+            <Edge From="5" To="20" Label="Source3" />
             <Edge From="6" To="7" Label="Source1" />
-            <Edge From="7" To="19" Label="Source4" />
+            <Edge From="7" To="20" Label="Source4" />
             <Edge From="8" To="9" Label="Source1" />
-            <Edge From="9" To="19" Label="Source5" />
+            <Edge From="9" To="20" Label="Source5" />
             <Edge From="10" To="11" Label="Source1" />
-            <Edge From="11" To="19" Label="Source6" />
+            <Edge From="11" To="20" Label="Source6" />
             <Edge From="12" To="13" Label="Source1" />
-            <Edge From="13" To="19" Label="Source7" />
+            <Edge From="13" To="20" Label="Source7" />
             <Edge From="14" To="15" Label="Source1" />
-            <Edge From="15" To="19" Label="Source8" />
+            <Edge From="15" To="20" Label="Source8" />
             <Edge From="16" To="17" Label="Source1" />
-            <Edge From="17" To="19" Label="Source9" />
-            <Edge From="18" To="19" Label="Source10" />
-            <Edge From="19" To="20" Label="Source1" />
+            <Edge From="17" To="20" Label="Source9" />
+            <Edge From="18" To="20" Label="Source10" />
+            <Edge From="19" To="20" Label="Source11" />
+            <Edge From="20" To="21" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
