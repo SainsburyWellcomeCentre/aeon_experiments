@@ -9,3 +9,4 @@ blocks:
       patch1: { distributionRef: easy }
       patch2: { distributionRef: easy }
       patch3: { distributionRef: easy }
+      patchDummy1: { distributionRef: easy }

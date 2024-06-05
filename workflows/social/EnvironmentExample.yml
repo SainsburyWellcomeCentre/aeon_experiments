@@ -20,13 +20,16 @@ blocks:
       patch1: { distributionRef: easy }
       patch2: { distributionRef: easy }
       patch3: { distributionRef: easy }
+      patchDummy1: { distributionRef: easy }
   - <<: *baseParameters
     patches:
       patch1: { distributionRef: easy }
       patch2: { distributionRef: medium }
       patch3: { distributionRef: hard }
+      patchDummy1: { distributionRef: easy }
   - <<: *baseParameters
     patches:
       patch1: { distributionRef: hard }
       patch2: { distributionRef: hard }
       patch3: { distributionRef: hard }
+      patchDummy1: { distributionRef: easy }

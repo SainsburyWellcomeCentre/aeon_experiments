@@ -489,6 +489,8 @@
   Item1["patch2"].Distribution.Rate as RatePatch2,
   Item1["patch3"].Distribution.Offset as ThresholdPatch3,
   Item1["patch3"].Distribution.Rate as RatePatch3,
+  Item1["patchDummy1"].Distribution.Offset as ThresholdPatchDummy1,
+  Item1["patchDummy1"].Distribution.Rate as RatePatchDummy1,
   0 as BlockPelletCount,
   Item2 as BlockMaxPellets,
   Item3 as BlockDueTime
@@ -577,17 +579,33 @@ RatePatch3 as Rate)</scr:Expression>
                   <Expression xsi:type="MulticastSubject">
                     <Name>Patch3State</Name>
                   </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Expression>new(
+Double.NaN as Threshold,
+ThresholdPatchDummy1 as D0,
+RatePatchDummy1 as Rate)</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Threshold,D0,Rate</Selector>
+                    <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
+                  </Expression>
+                  <Expression xsi:type="MulticastSubject">
+                    <Name>PatchDummy1State</Name>
+                  </Expression>
                 </Nodes>
                 <Edges>
                   <Edge From="0" To="1" Label="Source1" />
                   <Edge From="0" To="4" Label="Source1" />
                   <Edge From="0" To="7" Label="Source1" />
+                  <Edge From="0" To="10" Label="Source1" />
                   <Edge From="1" To="2" Label="Source1" />
                   <Edge From="2" To="3" Label="Source1" />
                   <Edge From="4" To="5" Label="Source1" />
                   <Edge From="5" To="6" Label="Source1" />
                   <Edge From="7" To="8" Label="Source1" />
                   <Edge From="8" To="9" Label="Source1" />
+                  <Edge From="10" To="11" Label="Source1" />
+                  <Edge From="11" To="12" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
