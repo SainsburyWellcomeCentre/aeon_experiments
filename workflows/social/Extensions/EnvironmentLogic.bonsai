@@ -907,9 +907,61 @@ RatePatchDummy1 as Rate)</scr:Expression>
               <Combinator xsi:type="rx:DistinctUntilChanged" />
             </Expression>
             <Expression xsi:type="rx:SelectMany">
+              <Name>GetEnvironmentFiles</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Path" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="io:GetFiles">
+                      <io:Path>Environments</io:Path>
+                      <io:SearchPattern>*.yml</io:SearchPattern>
+                      <io:SearchOption>TopDirectoryOnly</io:SearchOption>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="rx:Condition">
+              <Name>NonEmpty</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Length</Selector>
+                  </Expression>
+                  <Expression xsi:type="GreaterThan">
+                    <Operand xsi:type="IntProperty">
+                      <Value>0</Value>
+                    </Operand>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="rx:SelectMany">
               <Name>SampleEnvironment</Name>
               <Workflow>
                 <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="rx:AsyncSubject">
+                    <Name>EnvironmentFiles</Name>
+                  </Expression>
                   <Expression xsi:type="SubscribeSubject">
                     <Name>EnvironmentFiles</Name>
                   </Expression>
@@ -951,15 +1003,16 @@ RatePatchDummy1 as Rate)</scr:Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
                 <Edges>
-                  <Edge From="0" To="8" Label="Source1" />
-                  <Edge From="1" To="2" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source1" />
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="2" To="10" Label="Source1" />
                   <Edge From="3" To="4" Label="Source1" />
                   <Edge From="4" To="5" Label="Source1" />
                   <Edge From="5" To="6" Label="Source1" />
                   <Edge From="6" To="7" Label="Source1" />
-                  <Edge From="7" To="8" Label="Source2" />
+                  <Edge From="7" To="8" Label="Source1" />
                   <Edge From="8" To="9" Label="Source1" />
+                  <Edge From="9" To="10" Label="Source2" />
+                  <Edge From="10" To="11" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
@@ -972,26 +1025,17 @@ RatePatchDummy1 as Rate)</scr:Expression>
             <Expression xsi:type="MulticastSubject">
               <Name>ReloadEnvironment</Name>
             </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="io:GetFiles">
-                <io:Path>.</io:Path>
-                <io:SearchPattern>Environment*.yml</io:SearchPattern>
-                <io:SearchOption>TopDirectoryOnly</io:SearchOption>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="rx:AsyncSubject">
-              <Name>EnvironmentFiles</Name>
-            </Expression>
           </Nodes>
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
-            <Edge From="0" To="5" Label="Source2" />
+            <Edge From="0" To="7" Label="Source2" />
             <Edge From="1" To="2" Label="Source1" />
             <Edge From="2" To="3" Label="Source1" />
             <Edge From="3" To="4" Label="Source1" />
             <Edge From="4" To="5" Label="Source1" />
             <Edge From="5" To="6" Label="Source1" />
             <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="8" Label="Source1" />
             <Edge From="8" To="9" Label="Source1" />
           </Edges>
         </Workflow>
