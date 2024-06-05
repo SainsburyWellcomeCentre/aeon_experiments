@@ -620,8 +620,8 @@
                           <PortName>COM22</PortName>
                           <RfidEvents>GateEastRfidEvents</RfidEvents>
                           <Location>
-                            <X>182</X>
-                            <Y>568</Y>
+                            <X>977</X>
+                            <Y>984</Y>
                           </Location>
                           <InboundRfidDetected>GateEastRfidInboundDetected</InboundRfidDetected>
                         </Expression>
@@ -649,8 +649,8 @@
                           <PortName>COM23</PortName>
                           <RfidEvents>GateWestRfidEvents</RfidEvents>
                           <Location>
-                            <X>182</X>
-                            <Y>568</Y>
+                            <X>955</X>
+                            <Y>95</Y>
                           </Location>
                           <InboundRfidDetected>GateWestRfidInboundDetected</InboundRfidDetected>
                         </Expression>
@@ -765,8 +765,8 @@
                           <PortName>COM21</PortName>
                           <RfidEvents>PatchDummy1RfidEvents</RfidEvents>
                           <Location>
-                            <X>565</X>
-                            <Y>372</Y>
+                            <X>675</X>
+                            <Y>594</Y>
                           </Location>
                           <InboundRfidDetected>PatchDummy1RfidInboundDetected</InboundRfidDetected>
                         </Expression>
