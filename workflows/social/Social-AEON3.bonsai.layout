@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <VisualizerLayout xmlns:xsd="http://www.w3.org/2001/XMLSchema"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  >
@@ -2166,28 +2166,28 @@
               <VisualizerSettings>
                 <TableLayoutPanelVisualizer>
                   <MashupSettings>
-                    <VisualizerTypeName>Bonsai.Design.Visualizers.TableLayoutPanelVisualizer</VisualizerTypeName>
-                    <VisualizerSettings>
-                      <TableLayoutPanelVisualizer>
-                        <MashupSettings>
-                          <VisualizerTypeName>Aeon.Environment.ExternalizedPropertiesVisualizer</VisualizerTypeName>
-                          <VisualizerSettings>
-                            <ExternalizedPropertiesVisualizer />
-                          </VisualizerSettings>
-                        </MashupSettings>
-                        <MashupSettings>
-                          <VisualizerTypeName>Aeon.Environment.ButtonSourceVisualizer</VisualizerTypeName>
-                          <VisualizerSettings>
-                            <ButtonSourceVisualizer />
-                          </VisualizerSettings>
-                        </MashupSettings>
-                      </TableLayoutPanelVisualizer>
-                    </VisualizerSettings>
-                  </MashupSettings>
-                  <MashupSettings>
                     <VisualizerTypeName>RfidMeasurementVisualizer</VisualizerTypeName>
                     <VisualizerSettings>
                       <RfidMeasurementVisualizer />
+                          </VisualizerSettings>
+                        </MashupSettings>
+                        <MashupSettings>
+                    <VisualizerTypeName>Bonsai.Dsp.Design.MatVisualizer</VisualizerTypeName>
+                          <VisualizerSettings>
+                      <MatVisualizer>
+                        <XMin>0</XMin>
+                        <XMax>1500</XMax>
+                        <YMin>0</YMin>
+                        <YMax>400</YMax>
+                        <AutoScaleX>true</AutoScaleX>
+                        <AutoScaleY>true</AutoScaleY>
+                        <SelectedPage>0</SelectedPage>
+                        <ChannelsPerPage>16</ChannelsPerPage>
+                        <OverlayChannels>true</OverlayChannels>
+                        <ChannelOffset>0</ChannelOffset>
+                        <HistoryLength>100</HistoryLength>
+                        <WaveformBufferLength>1</WaveformBufferLength>
+                      </MatVisualizer>
                     </VisualizerSettings>
                   </MashupSettings>
                   <MashupSettings>
@@ -2245,9 +2245,22 @@
         <VisualizerSettings>
           <TableLayoutPanelVisualizer>
             <MashupSettings>
-              <VisualizerTypeName>Bonsai.Vision.Design.IplImageVisualizer</VisualizerTypeName>
+              <VisualizerTypeName>Bonsai.Design.Visualizers.TableLayoutPanelVisualizer</VisualizerTypeName>
               <VisualizerSettings>
-                <IplImageVisualizer />
+                <TableLayoutPanelVisualizer>
+                  <MashupSettings>
+                    <VisualizerTypeName>Aeon.Environment.ExternalizedPropertiesVisualizer</VisualizerTypeName>
+                    <VisualizerSettings>
+                      <ExternalizedPropertiesVisualizer />
+                    </VisualizerSettings>
+                  </MashupSettings>
+                  <MashupSettings>
+                    <VisualizerTypeName>Aeon.Environment.ButtonSourceVisualizer</VisualizerTypeName>
+                    <VisualizerSettings>
+                      <ButtonSourceVisualizer />
+                    </VisualizerSettings>
+                  </MashupSettings>
+                </TableLayoutPanelVisualizer>
               </VisualizerSettings>
             </MashupSettings>
             <MashupSettings>
