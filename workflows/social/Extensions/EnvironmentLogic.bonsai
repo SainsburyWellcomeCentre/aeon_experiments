@@ -4,10 +4,10 @@
                  xmlns:num="clr-namespace:Bonsai.Numerics;assembly=Bonsai.Numerics"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
+                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns:p1="clr-namespace:Bonsai.Numerics.Distributions;assembly=Bonsai.Numerics"
-                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns:p2="clr-namespace:Social;assembly=Extensions"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
                  xmlns="https://bonsai-rx.org/2018/workflow">
@@ -32,12 +32,11 @@
         <Workflow>
           <Nodes>
             <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Path" DisplayName="EnvironmentConfigPath" Description="The relative or absolute path of the file describing environment configuration parameters." />
+              <Property Name="Value" DisplayName="EnvironmentConfigPath" Description="The relative or absolute path of the file describing environment configuration parameters." />
             </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="io:ReadAllText">
-                <io:Path>EnvironmentRandom.yml</io:Path>
-              </Combinator>
+            <Expression xsi:type="PropertySource" TypeArguments="io:ReadAllText,sys:String">
+              <MemberName>Path</MemberName>
+              <Value />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\LoadEnvironment.bonsai" />
             <Expression xsi:type="WorkflowOutput" />
@@ -51,6 +50,12 @@
       </Expression>
       <Expression xsi:type="MulticastSubject">
         <Name>EnvironmentConfiguration</Name>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>EnvironmentConfiguration</Name>
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>EnvironmentLoaded</Name>
       </Expression>
       <Expression xsi:type="rx:Defer">
         <Name>BlockLogic</Name>
@@ -216,7 +221,7 @@
               </Workflow>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>ReloadEnvironment</Name>
+              <Name>EnvironmentLoaded</Name>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="IntProperty">
@@ -420,8 +425,8 @@
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="p1:CreateDiscreteUniform">
-                      <p1:Lower>5</p1:Lower>
-                      <p1:Upper>15</p1:Upper>
+                      <p1:Lower>0</p1:Lower>
+                      <p1:Upper>0</p1:Upper>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="Combinator">
@@ -973,7 +978,7 @@ RatePatchDummy1 as Rate)</scr:Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="p1:CreateDiscreteUniform">
                       <p1:Lower>0</p1:Lower>
-                      <p1:Upper>1</p1:Upper>
+                      <p1:Upper>0</p1:Upper>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="Combinator">
@@ -1029,13 +1034,14 @@ RatePatchDummy1 as Rate)</scr:Expression>
       <Edge From="3" To="4" Label="Source2" />
       <Edge From="4" To="5" Label="Source1" />
       <Edge From="6" To="7" Label="Source1" />
-      <Edge From="7" To="8" Label="Source1" />
       <Edge From="8" To="9" Label="Source1" />
-      <Edge From="8" To="11" Label="Source2" />
       <Edge From="9" To="10" Label="Source1" />
       <Edge From="10" To="11" Label="Source1" />
+      <Edge From="10" To="13" Label="Source2" />
       <Edge From="11" To="12" Label="Source1" />
+      <Edge From="12" To="13" Label="Source1" />
       <Edge From="13" To="14" Label="Source1" />
+      <Edge From="15" To="16" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
