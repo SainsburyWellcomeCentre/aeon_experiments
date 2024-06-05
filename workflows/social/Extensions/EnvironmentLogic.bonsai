@@ -890,6 +890,9 @@ RatePatchDummy1 as Rate)</scr:Expression>
           </Edges>
         </Workflow>
       </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="SampledEnvironments" />
+      </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>EnvironmentSampler</Name>
         <Workflow>
@@ -972,11 +975,15 @@ RatePatchDummy1 as Rate)</scr:Expression>
             <Expression xsi:type="MulticastSubject">
               <Name>ReloadEnvironment</Name>
             </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Values" DisplayName="SampledEnvironments" />
+            </Expression>
             <Expression xsi:type="Combinator">
-              <Combinator xsi:type="io:GetFiles">
-                <io:Path>.</io:Path>
-                <io:SearchPattern>Environment*.yml</io:SearchPattern>
-                <io:SearchOption>TopDirectoryOnly</io:SearchOption>
+              <Combinator xsi:type="p2:StringCollection">
+                <p2:Values>
+                  <p2:string>EnvironmentEasy.yml</p2:string>
+                  <p2:string>EnvironmentRandom.yml</p2:string>
+                </p2:Values>
               </Combinator>
             </Expression>
             <Expression xsi:type="rx:AsyncSubject">
@@ -993,6 +1000,7 @@ RatePatchDummy1 as Rate)</scr:Expression>
             <Edge From="5" To="6" Label="Source1" />
             <Edge From="6" To="7" Label="Source1" />
             <Edge From="8" To="9" Label="Source1" />
+            <Edge From="9" To="10" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -1010,6 +1018,7 @@ RatePatchDummy1 as Rate)</scr:Expression>
       <Edge From="10" To="11" Label="Source1" />
       <Edge From="11" To="12" Label="Source1" />
       <Edge From="13" To="14" Label="Source1" />
+      <Edge From="20" To="21" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

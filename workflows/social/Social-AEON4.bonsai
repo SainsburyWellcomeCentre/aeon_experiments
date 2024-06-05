@@ -1147,6 +1147,10 @@
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentLogic.bonsai">
         <EnvironmentConfigPath>EnvironmentRandom.yml</EnvironmentConfigPath>
+        <SampledEnvironments>
+          <string>EnvironmentEasy.yml</string>
+          <string>EnvironmentRandom.yml</string>
+        </SampledEnvironments>
       </Expression>
     </Nodes>
     <Edges>
