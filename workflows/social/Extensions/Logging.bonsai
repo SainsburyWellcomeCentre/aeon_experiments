@@ -528,13 +528,15 @@ Item3 as Delta)</scr:Expression>
         <Selector xsi:nil="true" />
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>ReloadEnvironment</Name>
+        <Name>EnvironmentConfiguration</Name>
       </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
+      <Expression xsi:type="IncludeWorkflow" Path="Bonsai.Harp:WithLatestTimestamp.bonsai">
+        <Name>Patch1Events</Name>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogJson.bonsai">
         <Heartbeats>Heartbeats</Heartbeats>
         <ClosingDuration>PT2S</ClosingDuration>
         <LogName>Environment_ActiveConfiguration</LogName>
-        <Selector xsi:nil="true" />
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>AudioAmbient</Name>
@@ -878,56 +880,57 @@ new(Value.Id as Id,
       <Edge From="93" To="94" Label="Source1" />
       <Edge From="94" To="95" Label="Source1" />
       <Edge From="96" To="97" Label="Source1" />
-      <Edge From="98" To="99" Label="Source1" />
-      <Edge From="100" To="101" Label="Source1" />
-      <Edge From="102" To="104" Label="Source1" />
-      <Edge From="103" To="104" Label="Source2" />
-      <Edge From="104" To="105" Label="Source1" />
-      <Edge From="106" To="107" Label="Source1" />
-      <Edge From="108" To="109" Label="Source1" />
-      <Edge From="110" To="111" Label="Source1" />
-      <Edge From="111" To="124" Label="Source1" />
-      <Edge From="112" To="113" Label="Source1" />
-      <Edge From="113" To="124" Label="Source2" />
-      <Edge From="114" To="115" Label="Source1" />
-      <Edge From="115" To="124" Label="Source3" />
-      <Edge From="116" To="117" Label="Source1" />
-      <Edge From="117" To="124" Label="Source4" />
-      <Edge From="118" To="119" Label="Source1" />
-      <Edge From="119" To="124" Label="Source5" />
-      <Edge From="120" To="121" Label="Source1" />
-      <Edge From="121" To="124" Label="Source6" />
-      <Edge From="122" To="123" Label="Source1" />
-      <Edge From="123" To="124" Label="Source7" />
-      <Edge From="124" To="125" Label="Source1" />
+      <Edge From="97" To="98" Label="Source1" />
+      <Edge From="99" To="100" Label="Source1" />
+      <Edge From="101" To="102" Label="Source1" />
+      <Edge From="103" To="105" Label="Source1" />
+      <Edge From="104" To="105" Label="Source2" />
+      <Edge From="105" To="106" Label="Source1" />
+      <Edge From="107" To="108" Label="Source1" />
+      <Edge From="109" To="110" Label="Source1" />
+      <Edge From="111" To="112" Label="Source1" />
+      <Edge From="112" To="125" Label="Source1" />
+      <Edge From="113" To="114" Label="Source1" />
+      <Edge From="114" To="125" Label="Source2" />
+      <Edge From="115" To="116" Label="Source1" />
+      <Edge From="116" To="125" Label="Source3" />
+      <Edge From="117" To="118" Label="Source1" />
+      <Edge From="118" To="125" Label="Source4" />
+      <Edge From="119" To="120" Label="Source1" />
+      <Edge From="120" To="125" Label="Source5" />
+      <Edge From="121" To="122" Label="Source1" />
+      <Edge From="122" To="125" Label="Source6" />
+      <Edge From="123" To="124" Label="Source1" />
+      <Edge From="124" To="125" Label="Source7" />
       <Edge From="125" To="126" Label="Source1" />
-      <Edge From="127" To="128" Label="Source1" />
-      <Edge From="129" To="130" Label="Source1" />
-      <Edge From="131" To="132" Label="Source1" />
-      <Edge From="133" To="134" Label="Source1" />
-      <Edge From="135" To="136" Label="Source1" />
-      <Edge From="137" To="138" Label="Source1" />
-      <Edge From="139" To="140" Label="Source1" />
-      <Edge From="141" To="142" Label="Source1" />
-      <Edge From="143" To="144" Label="Source1" />
-      <Edge From="145" To="146" Label="Source1" />
-      <Edge From="146" To="149" Label="Source1" />
-      <Edge From="147" To="148" Label="Source1" />
-      <Edge From="148" To="149" Label="Source2" />
-      <Edge From="149" To="150" Label="Source1" />
+      <Edge From="126" To="127" Label="Source1" />
+      <Edge From="128" To="129" Label="Source1" />
+      <Edge From="130" To="131" Label="Source1" />
+      <Edge From="132" To="133" Label="Source1" />
+      <Edge From="134" To="135" Label="Source1" />
+      <Edge From="136" To="137" Label="Source1" />
+      <Edge From="138" To="139" Label="Source1" />
+      <Edge From="140" To="141" Label="Source1" />
+      <Edge From="142" To="143" Label="Source1" />
+      <Edge From="144" To="145" Label="Source1" />
+      <Edge From="146" To="147" Label="Source1" />
+      <Edge From="147" To="150" Label="Source1" />
+      <Edge From="148" To="149" Label="Source1" />
+      <Edge From="149" To="150" Label="Source2" />
       <Edge From="150" To="151" Label="Source1" />
-      <Edge From="152" To="153" Label="Source1" />
+      <Edge From="151" To="152" Label="Source1" />
       <Edge From="153" To="154" Label="Source1" />
-      <Edge From="154" To="162" Label="Source1" />
-      <Edge From="155" To="156" Label="Source1" />
-      <Edge From="156" To="162" Label="Source2" />
-      <Edge From="157" To="158" Label="Source1" />
+      <Edge From="154" To="155" Label="Source1" />
+      <Edge From="155" To="163" Label="Source1" />
+      <Edge From="156" To="157" Label="Source1" />
+      <Edge From="157" To="163" Label="Source2" />
       <Edge From="158" To="159" Label="Source1" />
-      <Edge From="159" To="162" Label="Source3" />
-      <Edge From="160" To="161" Label="Source1" />
-      <Edge From="161" To="162" Label="Source4" />
-      <Edge From="162" To="163" Label="Source1" />
-      <Edge From="164" To="165" Label="Source1" />
+      <Edge From="159" To="160" Label="Source1" />
+      <Edge From="160" To="163" Label="Source3" />
+      <Edge From="161" To="162" Label="Source1" />
+      <Edge From="162" To="163" Label="Source4" />
+      <Edge From="163" To="164" Label="Source1" />
+      <Edge From="165" To="166" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

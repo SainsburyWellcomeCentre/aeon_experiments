@@ -4,12 +4,11 @@
                  xmlns:num="clr-namespace:Bonsai.Numerics;assembly=Bonsai.Numerics"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
-                 xmlns:p1="clr-namespace:Social;assembly=Extensions"
-                 xmlns:p2="clr-namespace:;assembly=Extensions"
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
-                 xmlns:p3="clr-namespace:Bonsai.Numerics.Distributions;assembly=Bonsai.Numerics"
+                 xmlns:p1="clr-namespace:Bonsai.Numerics.Distributions;assembly=Bonsai.Numerics"
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                 xmlns:p2="clr-namespace:Social;assembly=Extensions"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
@@ -40,23 +39,13 @@
                 <io:Path>EnvironmentRandom.yml</io:Path>
               </Combinator>
             </Expression>
-            <Expression xsi:type="p1:DeserializeFromYaml">
-              <p1:Type xsi:type="TypeMapping" TypeArguments="p1:Environment" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="p2:ValidateEnvironment" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Catch" />
-            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LoadEnvironment.bonsai" />
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
             <Edge From="1" To="2" Label="Source1" />
             <Edge From="2" To="3" Label="Source1" />
-            <Edge From="3" To="4" Label="Source1" />
-            <Edge From="4" To="5" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -354,16 +343,16 @@
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:CreateCategorical">
-                      <p3:ProbabilityMass>
-                        <p3:double>1</p3:double>
-                        <p3:double>1</p3:double>
-                        <p3:double>1</p3:double>
-                      </p3:ProbabilityMass>
+                    <Combinator xsi:type="p1:CreateCategorical">
+                      <p1:ProbabilityMass>
+                        <p1:double>1</p1:double>
+                        <p1:double>1</p1:double>
+                        <p1:double>1</p1:double>
+                      </p1:ProbabilityMass>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:Sample" />
+                    <Combinator xsi:type="p1:Sample" />
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Take">
@@ -430,13 +419,13 @@
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:CreateDiscreteUniform">
-                      <p3:Lower>5</p3:Lower>
-                      <p3:Upper>15</p3:Upper>
+                    <Combinator xsi:type="p1:CreateDiscreteUniform">
+                      <p1:Lower>5</p1:Lower>
+                      <p1:Upper>15</p1:Upper>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:Sample" />
+                    <Combinator xsi:type="p1:Sample" />
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
                     <Name>Random</Name>
@@ -451,13 +440,13 @@
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:CreateContinuousUniform">
-                      <p3:Lower>0</p3:Lower>
-                      <p3:Upper>0</p3:Upper>
+                    <Combinator xsi:type="p1:CreateContinuousUniform">
+                      <p1:Lower>0</p1:Lower>
+                      <p1:Upper>0</p1:Upper>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:Sample" />
+                    <Combinator xsi:type="p1:Sample" />
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
                     <Name>Heartbeats</Name>
@@ -631,10 +620,10 @@ RatePatchDummy1 as Rate)</scr:Expression>
                           </PropertyMappings>
                         </Expression>
                         <Expression xsi:type="Combinator">
-                          <Combinator xsi:type="p1:BlockState">
-                            <p1:PelletCount>0</p1:PelletCount>
-                            <p1:MaxPellets>0</p1:MaxPellets>
-                            <p1:DueTime>0</p1:DueTime>
+                          <Combinator xsi:type="p2:BlockState">
+                            <p2:PelletCount>0</p2:PelletCount>
+                            <p2:MaxPellets>0</p2:MaxPellets>
+                            <p2:DueTime>0</p2:DueTime>
                           </Combinator>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
@@ -861,10 +850,10 @@ RatePatchDummy1 as Rate)</scr:Expression>
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p1:BlockState">
-                      <p1:PelletCount>0</p1:PelletCount>
-                      <p1:MaxPellets>0</p1:MaxPellets>
-                      <p1:DueTime>0</p1:DueTime>
+                    <Combinator xsi:type="p2:BlockState">
+                      <p2:PelletCount>0</p2:PelletCount>
+                      <p2:MaxPellets>0</p2:MaxPellets>
+                      <p2:DueTime>0</p2:DueTime>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
@@ -982,13 +971,13 @@ RatePatchDummy1 as Rate)</scr:Expression>
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:CreateDiscreteUniform">
-                      <p3:Lower>0</p3:Lower>
-                      <p3:Upper>1</p3:Upper>
+                    <Combinator xsi:type="p1:CreateDiscreteUniform">
+                      <p1:Lower>0</p1:Lower>
+                      <p1:Upper>1</p1:Upper>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:Sample" />
+                    <Combinator xsi:type="p1:Sample" />
                   </Expression>
                   <Expression xsi:type="PropertyMapping">
                     <PropertyMappings>
@@ -1016,19 +1005,13 @@ RatePatchDummy1 as Rate)</scr:Expression>
                 </Edges>
               </Workflow>
             </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:WithLatestFrom" />
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="harp:CreateTimestamped" />
-            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Extensions\LoadEnvironment.bonsai" />
             <Expression xsi:type="MulticastSubject">
-              <Name>ReloadEnvironment</Name>
+              <Name>EnvironmentConfiguration</Name>
             </Expression>
           </Nodes>
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
-            <Edge From="0" To="7" Label="Source2" />
             <Edge From="1" To="2" Label="Source1" />
             <Edge From="2" To="3" Label="Source1" />
             <Edge From="3" To="4" Label="Source1" />
@@ -1036,7 +1019,6 @@ RatePatchDummy1 as Rate)</scr:Expression>
             <Edge From="5" To="6" Label="Source1" />
             <Edge From="6" To="7" Label="Source1" />
             <Edge From="7" To="8" Label="Source1" />
-            <Edge From="8" To="9" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
