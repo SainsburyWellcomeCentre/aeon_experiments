@@ -426,9 +426,29 @@ namespace Social
     public partial class Environment
     {
     
+        private string _name;
+    
         private System.Collections.Generic.IDictionary<string, ExponentialDistribution> _distributions;
     
         private System.Collections.Generic.List<Block> _blocks = new System.Collections.Generic.List<Block>();
+    
+        /// <summary>
+        /// An optional name for the environment configuration.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        [YamlDotNet.Serialization.YamlMemberAttribute(Alias="name")]
+        [System.ComponentModel.DescriptionAttribute("An optional name for the environment configuration.")]
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+            }
+        }
     
         /// <summary>
         /// Specifies a pre-defined set of named probability distributions.
@@ -473,6 +493,7 @@ namespace Social
             return System.Reactive.Linq.Observable.Defer(() => System.Reactive.Linq.Observable.Return(
                 new Environment
                 {
+                    Name = _name,
                     Distributions = _distributions,
                     Blocks = _blocks
                 }));
