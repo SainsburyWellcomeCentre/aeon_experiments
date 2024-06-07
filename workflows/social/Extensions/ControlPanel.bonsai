@@ -810,11 +810,6 @@ P3 (rate: {8}, d0: {7}, thr: {6:0.##})</Format>
             <Expression xsi:type="SubscribeSubject">
               <Name>Patch1Controller</Name>
             </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Skip">
-                <rx:Count>1</rx:Count>
-              </Combinator>
-            </Expression>
             <Expression xsi:type="rx:Condition">
               <Name>Reset</Name>
               <Workflow>
@@ -876,11 +871,6 @@ P3 (rate: {8}, d0: {7}, thr: {6:0.##})</Format>
             <Expression xsi:type="SubscribeSubject">
               <Name>Patch2Controller</Name>
             </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Skip">
-                <rx:Count>1</rx:Count>
-              </Combinator>
-            </Expression>
             <Expression xsi:type="rx:Condition">
               <Name>Reset</Name>
               <Workflow>
@@ -941,11 +931,6 @@ P3 (rate: {8}, d0: {7}, thr: {6:0.##})</Format>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>Patch3Controller</Name>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Skip">
-                <rx:Count>1</rx:Count>
-              </Combinator>
             </Expression>
             <Expression xsi:type="rx:Condition">
               <Name>Reset</Name>
@@ -1054,23 +1039,20 @@ P3 (rate: {8}, d0: {7}, thr: {6:0.##})</Format>
             <Edge From="45" To="46" Label="Source1" />
             <Edge From="46" To="47" Label="Source1" />
             <Edge From="48" To="49" Label="Source1" />
+            <Edge From="48" To="51" Label="Source1" />
             <Edge From="49" To="50" Label="Source1" />
-            <Edge From="49" To="52" Label="Source1" />
-            <Edge From="50" To="51" Label="Source1" />
+            <Edge From="51" To="52" Label="Source1" />
             <Edge From="52" To="53" Label="Source1" />
-            <Edge From="53" To="54" Label="Source1" />
+            <Edge From="54" To="55" Label="Source1" />
+            <Edge From="54" To="57" Label="Source1" />
             <Edge From="55" To="56" Label="Source1" />
-            <Edge From="56" To="57" Label="Source1" />
-            <Edge From="56" To="59" Label="Source1" />
             <Edge From="57" To="58" Label="Source1" />
-            <Edge From="59" To="60" Label="Source1" />
+            <Edge From="58" To="59" Label="Source1" />
             <Edge From="60" To="61" Label="Source1" />
-            <Edge From="62" To="63" Label="Source1" />
+            <Edge From="60" To="63" Label="Source1" />
+            <Edge From="61" To="62" Label="Source1" />
             <Edge From="63" To="64" Label="Source1" />
-            <Edge From="63" To="66" Label="Source1" />
             <Edge From="64" To="65" Label="Source1" />
-            <Edge From="66" To="67" Label="Source1" />
-            <Edge From="67" To="68" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
