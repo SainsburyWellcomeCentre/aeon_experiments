@@ -1271,6 +1271,28 @@ Value.TagId as TagId,
 0 as Index)</scr:Expression>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
+        <Name>GateEastRfidInboundDetected</Name>
+      </Expression>
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Expression>new(
+Seconds as Seconds,
+Value.Location as Location,
+Value.TagId as TagId,
+"GateEast" as Name,
+1 as Index)</scr:Expression>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>GateWestRfidInboundDetected</Name>
+      </Expression>
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Expression>new(
+Seconds as Seconds,
+Value.Location as Location,
+Value.TagId as TagId,
+"GateWest" as Name,
+2 as Index)</scr:Expression>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
         <Name>NestRfid1InboundDetected</Name>
       </Expression>
       <Expression xsi:type="scr:ExpressionTransform">
@@ -1279,7 +1301,7 @@ Seconds as Seconds,
 Value.Location as Location,
 Value.TagId as TagId,
 "NestRfid1" as Name,
-1 as Index)</scr:Expression>
+3 as Index)</scr:Expression>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>NestRfid2InboundDetected</Name>
@@ -1290,7 +1312,7 @@ Seconds as Seconds,
 Value.Location as Location,
 Value.TagId as TagId,
 "NestRfid2" as Name,
-2 as Index)</scr:Expression>
+4 as Index)</scr:Expression>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>Patch1RfidInboundDetected</Name>
@@ -1301,7 +1323,7 @@ Seconds as Seconds,
 Value.Location as Location,
 Value.TagId as TagId,
 "Patch1" as Name,
-3 as Index)</scr:Expression>
+5 as Index)</scr:Expression>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>Patch2RfidInboundDetected</Name>
@@ -1312,7 +1334,7 @@ Seconds as Seconds,
 Value.Location as Location,
 Value.TagId as TagId,
 "Patch2" as Name,
-4 as Index)</scr:Expression>
+6 as Index)</scr:Expression>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>Patch3RfidInboundDetected</Name>
@@ -1323,7 +1345,18 @@ Seconds as Seconds,
 Value.Location as Location,
 Value.TagId as TagId,
 "Patch3" as Name,
-5 as Index)</scr:Expression>
+7 as Index)</scr:Expression>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>PatchDummy1RfidInboundDetected</Name>
+      </Expression>
+      <Expression xsi:type="scr:ExpressionTransform">
+        <scr:Expression>new(
+Seconds as Seconds,
+Value.Location as Location,
+Value.TagId as TagId,
+"PatchDummy1" as Name,
+8 as Index)</scr:Expression>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:Merge" />
@@ -1494,19 +1527,25 @@ Value.TagId as TagId,
       <Edge From="185" To="186" Label="Source1" />
       <Edge From="186" To="187" Label="Source1" />
       <Edge From="188" To="189" Label="Source1" />
-      <Edge From="189" To="200" Label="Source1" />
+      <Edge From="189" To="206" Label="Source1" />
       <Edge From="190" To="191" Label="Source1" />
-      <Edge From="191" To="200" Label="Source2" />
+      <Edge From="191" To="206" Label="Source2" />
       <Edge From="192" To="193" Label="Source1" />
-      <Edge From="193" To="200" Label="Source3" />
+      <Edge From="193" To="206" Label="Source3" />
       <Edge From="194" To="195" Label="Source1" />
-      <Edge From="195" To="200" Label="Source4" />
+      <Edge From="195" To="206" Label="Source4" />
       <Edge From="196" To="197" Label="Source1" />
-      <Edge From="197" To="200" Label="Source5" />
+      <Edge From="197" To="206" Label="Source5" />
       <Edge From="198" To="199" Label="Source1" />
-      <Edge From="199" To="200" Label="Source6" />
+      <Edge From="199" To="206" Label="Source6" />
       <Edge From="200" To="201" Label="Source1" />
-      <Edge From="201" To="202" Label="Source1" />
+      <Edge From="201" To="206" Label="Source7" />
+      <Edge From="202" To="203" Label="Source1" />
+      <Edge From="203" To="206" Label="Source8" />
+      <Edge From="204" To="205" Label="Source1" />
+      <Edge From="205" To="206" Label="Source9" />
+      <Edge From="206" To="207" Label="Source1" />
+      <Edge From="207" To="208" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
