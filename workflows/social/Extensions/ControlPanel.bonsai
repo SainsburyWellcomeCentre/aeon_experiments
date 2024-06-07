@@ -768,11 +768,11 @@ P3 (rate: {8}, d0: {7}, thr: {6:0.##})</Format>
               <viz:RowStyles>
                 <viz:RowStyle>
                   <viz:SizeType>Percent</viz:SizeType>
-                  <viz:Height>60</viz:Height>
+                  <viz:Height>57.5</viz:Height>
                 </viz:RowStyle>
                 <viz:RowStyle>
                   <viz:SizeType>Percent</viz:SizeType>
-                  <viz:Height>40</viz:Height>
+                  <viz:Height>42.5</viz:Height>
                 </viz:RowStyle>
               </viz:RowStyles>
               <viz:CellSpans />
@@ -1070,6 +1070,7 @@ P3 (rate: {8}, d0: {7}, thr: {6:0.##})</Format>
           </Edges>
         </Workflow>
       </Expression>
+      <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="GroupWorkflow">
         <Name>EnvironmentSubjectState</Name>
         <Workflow>
@@ -1142,6 +1143,24 @@ FilteredWeight.Value - BaselinedWeight.Value as Baseline)</scr:Expression>
             <Edge From="11" To="12" Label="Source1" />
           </Edges>
         </Workflow>
+      </Expression>
+      <Expression xsi:type="VisualizerMapping" />
+      <Expression xsi:type="viz:TableLayoutPanelBuilder">
+        <viz:Name>EnvironmentState</viz:Name>
+        <viz:ColumnCount>1</viz:ColumnCount>
+        <viz:RowCount>2</viz:RowCount>
+        <viz:ColumnStyles />
+        <viz:RowStyles>
+          <viz:RowStyle>
+            <viz:SizeType>Percent</viz:SizeType>
+            <viz:Height>40</viz:Height>
+          </viz:RowStyle>
+          <viz:RowStyle>
+            <viz:SizeType>Percent</viz:SizeType>
+            <viz:Height>60</viz:Height>
+          </viz:RowStyle>
+        </viz:RowStyles>
+        <viz:CellSpans />
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="SelectedStream" />
@@ -1262,7 +1281,11 @@ FilteredWeight.Value - BaselinedWeight.Value as Baseline)</scr:Expression>
       <Edge From="3" To="4" Label="Source1" />
       <Edge From="5" To="6" Label="Source1" />
       <Edge From="7" To="8" Label="Source1" />
+      <Edge From="11" To="12" Label="Source1" />
+      <Edge From="12" To="15" Label="Source1" />
       <Edge From="13" To="14" Label="Source1" />
+      <Edge From="14" To="15" Label="Source2" />
+      <Edge From="16" To="17" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
