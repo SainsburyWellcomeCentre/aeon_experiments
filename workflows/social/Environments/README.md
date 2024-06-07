@@ -1,7 +1,5 @@
 ## Randomly Sampled Environments
 
-This folder may contain dynamic YAML configuration files to be sampled. The workflow will randomly sample from the list of files at the start of the epoch and at midnight each day. If the list is empty, or if the sampled file is invalid, the current environment configuration will be maintained.
+This folder contains dynamic YAML configuration files to be sampled. The workflow will randomly sample from the list of files when manually reloading the environment and at midnight each day. If the list is empty, or if the sampled file is invalid, the current environment configuration will be maintained.
 
-If at the start of the epoch there are no files in this folder, the default configuration file specified in the workflow properties will be used.
-
-Environment configuration may also be changed manually, but it will be overridden by this random sampling process at midnight.
+The default environment configuration will be used if no configuration file is loaded. In this case, the environment configuration name will be empty in the experiment metadata text box.
