@@ -1,5 +1,4 @@
 # yaml-language-server: $schema=./Extensions/Environment.json
-name: ExampleEnvironment
 distributions:
   easy:
     rate: 0.01

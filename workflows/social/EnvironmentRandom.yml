@@ -1,5 +1,4 @@
 # yaml-language-server: $schema=./Extensions/Environment.json
-name: EnvironmentRandom
 distributions:
   easy:
     rate: 0.01
