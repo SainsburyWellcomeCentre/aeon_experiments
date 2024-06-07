@@ -435,7 +435,7 @@ namespace Social
         /// <summary>
         /// An optional name for the environment configuration.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        [Newtonsoft.Json.JsonPropertyAttribute("name", Order = int.MinValue)]
         [YamlDotNet.Serialization.YamlMemberAttribute(Alias="name")]
         [System.ComponentModel.DescriptionAttribute("An optional name for the environment configuration.")]
         public string Name
