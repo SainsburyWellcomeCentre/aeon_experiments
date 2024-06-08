@@ -327,127 +327,6 @@
       <Expression xsi:type="rx:PublishSubject">
         <Name>EnvironmentLoaded</Name>
       </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>PatchLogic</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>Patch1WheelDisplacement</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value</Selector>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="DistanceThreshold" DisplayName="ThresholdPatch1" />
-              <Property Name="Rate" DisplayName="RatePatch1" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
-              <Name>Patch1DistanceState</Name>
-              <DistanceThreshold>75</DistanceThreshold>
-              <Rate>0.01</Rate>
-              <DeliveryCount>Patch1DeliveryCount</DeliveryCount>
-              <PatchState>Patch1State</PatchState>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>Patch1DeliverPellet</Name>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>Patch1ThresholdCrossing</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>Patch2WheelDisplacement</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value</Selector>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="DistanceThreshold" DisplayName="ThresholdPatch2" />
-              <Property Name="Rate" DisplayName="RatePatch2" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
-              <Name>Patch2DistanceState</Name>
-              <DistanceThreshold>75</DistanceThreshold>
-              <Rate>0.01</Rate>
-              <DeliveryCount>Patch2DeliveryCount</DeliveryCount>
-              <PatchState>Patch2State</PatchState>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>Patch2DeliverPellet</Name>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>Patch2ThresholdCrossing</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>Patch3WheelDisplacement</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value</Selector>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="DistanceThreshold" DisplayName="ThresholdPatch3" />
-              <Property Name="Rate" DisplayName="RatePatch3" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
-              <Name>Patch3DistanceState</Name>
-              <DistanceThreshold>75</DistanceThreshold>
-              <Rate>0.01</Rate>
-              <DeliveryCount>Patch3DeliveryCount</DeliveryCount>
-              <PatchState>Patch3State</PatchState>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>Patch3DeliverPellet</Name>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>Patch3ThresholdCrossing</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>PatchDummy1WheelDisplacement</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value</Selector>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="DistanceThreshold" DisplayName="ThresholdPatchDummy1" />
-              <Property Name="Rate" DisplayName="RatePatchDummy1" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
-              <Name>PatchDummy1DistanceState</Name>
-              <DistanceThreshold>75</DistanceThreshold>
-              <Rate>0.01</Rate>
-              <DeliveryCount>PatchDummy1DeliveryCount</DeliveryCount>
-              <PatchState>PatchDummy1State</PatchState>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>PatchDummy1DeliverPellet</Name>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>PatchDummy1ThresholdCrossing</Name>
-            </Expression>
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="3" Label="Source1" />
-            <Edge From="2" To="3" Label="Source2" />
-            <Edge From="3" To="4" Label="Source1" />
-            <Edge From="4" To="5" Label="Source1" />
-            <Edge From="6" To="7" Label="Source1" />
-            <Edge From="7" To="9" Label="Source1" />
-            <Edge From="8" To="9" Label="Source2" />
-            <Edge From="9" To="10" Label="Source1" />
-            <Edge From="10" To="11" Label="Source1" />
-            <Edge From="12" To="13" Label="Source1" />
-            <Edge From="13" To="15" Label="Source1" />
-            <Edge From="14" To="15" Label="Source2" />
-            <Edge From="15" To="16" Label="Source1" />
-            <Edge From="16" To="17" Label="Source1" />
-            <Edge From="18" To="19" Label="Source1" />
-            <Edge From="19" To="21" Label="Source1" />
-            <Edge From="20" To="21" Label="Source2" />
-            <Edge From="21" To="22" Label="Source1" />
-            <Edge From="22" To="23" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
       <Expression xsi:type="rx:Defer">
         <Name>BlockLogic</Name>
         <Workflow>
@@ -1062,6 +941,137 @@ RatePatchDummy1 as Rate)</scr:Expression>
           </Edges>
         </Workflow>
       </Expression>
+      <Expression xsi:type="PropertyMapping">
+        <PropertyMappings>
+          <Property Name="ThresholdPatch1" Selector="ThresholdPatch1" />
+          <Property Name="RatePatch1" Selector="RatePatch1" />
+          <Property Name="ThresholdPatch2" Selector="ThresholdPatch2" />
+          <Property Name="RatePatch2" Selector="RatePatch2" />
+          <Property Name="ThresholdPatch3" Selector="ThresholdPatch3" />
+          <Property Name="RatePatch3" Selector="RatePatch3" />
+        </PropertyMappings>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>PatchLogic</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Patch1WheelDisplacement</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value</Selector>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="DistanceThreshold" DisplayName="ThresholdPatch1" />
+              <Property Name="Rate" DisplayName="RatePatch1" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
+              <Name>Patch1DistanceState</Name>
+              <DistanceThreshold>75</DistanceThreshold>
+              <Rate>0.01</Rate>
+              <DeliveryCount>Patch1DeliveryCount</DeliveryCount>
+              <PatchState>Patch1State</PatchState>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>Patch1DeliverPellet</Name>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>Patch1ThresholdCrossing</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Patch2WheelDisplacement</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value</Selector>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="DistanceThreshold" DisplayName="ThresholdPatch2" />
+              <Property Name="Rate" DisplayName="RatePatch2" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
+              <Name>Patch2DistanceState</Name>
+              <DistanceThreshold>75</DistanceThreshold>
+              <Rate>0.01</Rate>
+              <DeliveryCount>Patch2DeliveryCount</DeliveryCount>
+              <PatchState>Patch2State</PatchState>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>Patch2DeliverPellet</Name>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>Patch2ThresholdCrossing</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Patch3WheelDisplacement</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value</Selector>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="DistanceThreshold" DisplayName="ThresholdPatch3" />
+              <Property Name="Rate" DisplayName="RatePatch3" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
+              <Name>Patch3DistanceState</Name>
+              <DistanceThreshold>75</DistanceThreshold>
+              <Rate>0.01</Rate>
+              <DeliveryCount>Patch3DeliveryCount</DeliveryCount>
+              <PatchState>Patch3State</PatchState>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>Patch3DeliverPellet</Name>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>Patch3ThresholdCrossing</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>PatchDummy1WheelDisplacement</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value</Selector>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="DistanceThreshold" DisplayName="ThresholdPatchDummy1" />
+              <Property Name="Rate" DisplayName="RatePatchDummy1" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
+              <Name>PatchDummy1DistanceState</Name>
+              <DistanceThreshold>75</DistanceThreshold>
+              <Rate>0.01</Rate>
+              <DeliveryCount>PatchDummy1DeliveryCount</DeliveryCount>
+              <PatchState>PatchDummy1State</PatchState>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>PatchDummy1DeliverPellet</Name>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>PatchDummy1ThresholdCrossing</Name>
+            </Expression>
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="3" Label="Source1" />
+            <Edge From="2" To="3" Label="Source2" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="9" Label="Source1" />
+            <Edge From="8" To="9" Label="Source2" />
+            <Edge From="9" To="10" Label="Source1" />
+            <Edge From="10" To="11" Label="Source1" />
+            <Edge From="12" To="13" Label="Source1" />
+            <Edge From="13" To="15" Label="Source1" />
+            <Edge From="14" To="15" Label="Source2" />
+            <Edge From="15" To="16" Label="Source1" />
+            <Edge From="16" To="17" Label="Source1" />
+            <Edge From="18" To="19" Label="Source1" />
+            <Edge From="19" To="21" Label="Source1" />
+            <Edge From="20" To="21" Label="Source2" />
+            <Edge From="21" To="22" Label="Source1" />
+            <Edge From="22" To="23" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:TakeUntil" />
       </Expression>
@@ -1151,12 +1161,14 @@ RatePatchDummy1 as Rate)</scr:Expression>
       <Edge From="5" To="6" Label="Source1" />
       <Edge From="6" To="7" Label="Source1" />
       <Edge From="7" To="8" Label="Source1" />
-      <Edge From="9" To="13" Label="Source1" />
+      <Edge From="9" To="10" Label="Source1" />
       <Edge From="10" To="11" Label="Source1" />
       <Edge From="11" To="12" Label="Source1" />
-      <Edge From="12" To="13" Label="Source2" />
+      <Edge From="11" To="14" Label="Source2" />
+      <Edge From="12" To="13" Label="Source1" />
       <Edge From="13" To="14" Label="Source1" />
-      <Edge From="15" To="16" Label="Source1" />
+      <Edge From="14" To="15" Label="Source1" />
+      <Edge From="16" To="17" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
