@@ -171,7 +171,7 @@
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogPoseTracking.bonsai">
               <Address>202</Address>
               <IdentityIndex xsi:nil="true" />
-              <LogName>CameraTop</LogName>
+              <LogName>CameraTop_202</LogName>
               <Name>PoseTrackingMetadata</Name>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
