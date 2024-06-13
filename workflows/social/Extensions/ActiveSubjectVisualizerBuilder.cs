@@ -25,7 +25,7 @@ public class ActiveSubjectVisualizer : PoseIdentityCollectionVisualizer
     {
         var sourceValue = (Tuple<IList<PoseIdentity>, IplImage>)value;
         var image = sourceValue.Item2;
-        var poseIdentities = new PoseIdentityCollection(image);
+        var poseIdentities = new PoseIdentityCollection(image, null);
         foreach (var pose in sourceValue.Item1)
         {
             poseIdentities.Add(pose);
