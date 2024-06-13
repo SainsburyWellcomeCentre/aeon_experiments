@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -324,7 +323,7 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
-                    <Name>CameraEnvironment</Name>
+                    <Name>CameraLightMonitor</Name>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
@@ -343,35 +342,13 @@
                           <SerialNumber>23032826</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
-                          <FrameEvents>CameraEnvironment</FrameEvents>
-                        </Expression>
-                        <Expression xsi:type="rx:Sink">
-                          <Workflow>
-                            <Nodes>
-                              <Expression xsi:type="WorkflowInput">
-                                <Name>Source1</Name>
-                              </Expression>
-                              <Expression xsi:type="MemberSelector">
-                                <Selector>Value.Image</Selector>
-                              </Expression>
-                              <Expression xsi:type="MulticastSubject">
-                                <Name>LightMonitor</Name>
-                              </Expression>
-                              <Expression xsi:type="WorkflowOutput" />
-                            </Nodes>
-                            <Edges>
-                              <Edge From="0" To="1" Label="Source1" />
-                              <Edge From="1" To="2" Label="Source1" />
-                              <Edge From="2" To="3" Label="Source1" />
-                            </Edges>
-                          </Workflow>
+                          <FrameEvents>CameraLightMonitor</FrameEvents>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
                       <Edges>
                         <Edge From="0" To="1" Label="Source1" />
                         <Edge From="1" To="2" Label="Source1" />
-                        <Edge From="2" To="3" Label="Source1" />
                       </Edges>
                     </Workflow>
                   </Expression>
@@ -1117,6 +1094,26 @@
                     </ArenaCenter>
                     <ArenaInnerRadius>487</ArenaInnerRadius>
                     <ArenaOuterRadius>515</ArenaOuterRadius>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>AverageLightIntensity</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="FrameEvents" />
+                    <Property Name="LightMonitorEvents" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\AverageLightIntensity.bonsai">
+                    <FrameEvents>CameraLightMonitor</FrameEvents>
+                    <LightMonitorEvents>LightMonitor</LightMonitorEvents>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
