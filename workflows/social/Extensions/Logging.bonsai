@@ -263,7 +263,7 @@
         <Name>LightMonitor</Name>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-        <LogName>LightMonitor</LogName>
+        <LogName>CameraLightMonitor</LogName>
         <Heartbeats />
         <ClosingDuration xsi:nil="true" />
       </Expression>

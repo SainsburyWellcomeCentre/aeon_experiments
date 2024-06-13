@@ -323,7 +323,7 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
-                    <Name>LightMonitor</Name>
+                    <Name>CameraLightMonitor</Name>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
@@ -1104,14 +1104,14 @@
               </Workflow>
             </Expression>
             <Expression xsi:type="GroupWorkflow">
-              <Name>LightMonitor</Name>
+              <Name>AverageLightIntensity</Name>
               <Workflow>
                 <Nodes>
                   <Expression xsi:type="ExternalizedMapping">
                     <Property Name="FrameEvents" />
                     <Property Name="LightMonitorEvents" />
                   </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\LightMonitor.bonsai">
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\AverageLightIntensity.bonsai">
                     <FrameEvents>CameraLightMonitor</FrameEvents>
                     <LightMonitorEvents>LightMonitor</LightMonitorEvents>
                   </Expression>
