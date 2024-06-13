@@ -15,7 +15,7 @@ public class GetActiveSubject
     [Description("The identity of the pose to retrieve.")]
     public string Identity { get; set; }
 
-    public IObservable<Timestamped<PoseIdentity>> Process(IObservable<Timestamped<IList<PoseIdentity>>> source)
+    public IObservable<Timestamped<PoseIdentity>> Process(IObservable<Timestamped<PoseIdentityCollection>> source)
     {
         return source.Select(timestampedPoses => Timestamped.Create(
             timestampedPoses.Value.FirstOrDefault(pose => pose.Identity == Identity),
