@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.8.1"
+<WorkflowBuilder Version="2.8.2"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
@@ -169,9 +169,9 @@
               <Property Name="LogName" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogPoseTracking.bonsai">
-              <Address>202</Address>
               <IdentityIndex xsi:nil="true" />
-              <LogName>CameraTop_202</LogName>
+              <Address>202</Address>
+              <LogName>CameraTop</LogName>
               <Name>PoseTrackingMetadata</Name>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
