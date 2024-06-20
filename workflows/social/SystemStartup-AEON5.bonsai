@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.8.2"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Timer">
+          <rx:DueTime>PT0S</rx:DueTime>
+          <rx:Period>PT0S</rx:Period>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Synchronize" />
+      </Expression>
+      <Expression xsi:type="rx:Condition">
+        <Name>StartSynchronizer</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Value" DisplayName="Synchronize" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="BooleanProperty">
+                <Value>false</Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="2" Label="Source1" />
+            <Edge From="1" To="2" Label="Source2" />
+            <Edge From="2" To="3" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="rx:SelectMany">
+        <Name>StartSynchronizer</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>ClockSynchronizer</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="PortName" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ClockSynchronizer.bonsai">
+                    <PortName>COM6</PortName>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>VideoController</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="PortName" />
+                    <Property Name="GlobalTriggerFrequency" />
+                    <Property Name="LocalTriggerFrequency" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoController.bonsai">
+                    <DeviceType>OutputExpander</DeviceType>
+                    <PortName>COM9</PortName>
+                    <GlobalTriggerFrequency>50</GlobalTriggerFrequency>
+                    <LocalTriggerFrequency>125</LocalTriggerFrequency>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="GroupWorkflow">
+                <Name>Patch1</Name>
+                <Workflow>
+                  <Nodes>
+                    <Expression xsi:type="ExternalizedMapping">
+                      <Property Name="PortName" />
+                      <Property Name="WheelDisplacement" />
+                      <Property Name="PelletDelivered" />
+                      <Property Name="DeliverPellet" />
+                      <Property Name="PatchEvents" />
+                      <Property Name="Radius" />
+                      <Property Name="SampleRate" />
+                      <Property Name="ResetFeeder" />
+                      <Property Name="DueTime" />
+                      <Property Name="Count" />
+                    </Expression>
+                    <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:UndergroundFeeder.bonsai">
+                      <PatchEvents>Patch1</PatchEvents>
+                      <SampleRate>SampleRate500Hz</SampleRate>
+                      <DeliverPellet>Patch1DeliverPellet</DeliverPellet>
+                      <PelletDelivered>Patch1PelletDelivered</PelletDelivered>
+                      <DueTime>PT1S</DueTime>
+                      <Count>2</Count>
+                      <ResetFeeder>Patch1ResetFeeder</ResetFeeder>
+                      <PortName>COM3</PortName>
+                      <Radius>-4</Radius>
+                      <WheelDisplacement>Patch1WheelDisplacement</WheelDisplacement>
+                    </Expression>
+                    <Expression xsi:type="WorkflowOutput" />
+                  </Nodes>
+                  <Edges>
+                    <Edge From="0" To="1" Label="Source1" />
+                    <Edge From="1" To="2" Label="Source1" />
+                  </Edges>
+                </Workflow>
+              </Builder>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>Patch2</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="PortName" />
+                    <Property Name="WheelDisplacement" />
+                    <Property Name="PelletDelivered" />
+                    <Property Name="DeliverPellet" />
+                    <Property Name="PatchEvents" />
+                    <Property Name="Radius" />
+                    <Property Name="SampleRate" />
+                    <Property Name="ResetFeeder" />
+                    <Property Name="DueTime" />
+                    <Property Name="Count" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:UndergroundFeeder.bonsai">
+                    <PatchEvents>Patch2</PatchEvents>
+                    <SampleRate>SampleRate500Hz</SampleRate>
+                    <DeliverPellet>Patch2DeliverPellet</DeliverPellet>
+                    <PelletDelivered>Patch2PelletDelivered</PelletDelivered>
+                    <DueTime>PT1S</DueTime>
+                    <Count>2</Count>
+                    <ResetFeeder>Patch2ResetFeeder</ResetFeeder>
+                    <PortName>COM10</PortName>
+                    <Radius>-4</Radius>
+                    <WheelDisplacement>Patch2WheelDisplacement</WheelDisplacement>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="GroupWorkflow">
+                <Name>Patch3</Name>
+                <Workflow>
+                  <Nodes>
+                    <Expression xsi:type="ExternalizedMapping">
+                      <Property Name="PortName" />
+                      <Property Name="WheelDisplacement" />
+                      <Property Name="PelletDelivered" />
+                      <Property Name="DeliverPellet" />
+                      <Property Name="PatchEvents" />
+                      <Property Name="Radius" />
+                      <Property Name="SampleRate" />
+                      <Property Name="ResetFeeder" />
+                      <Property Name="DueTime" />
+                      <Property Name="Count" />
+                    </Expression>
+                    <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:UndergroundFeeder.bonsai">
+                      <PatchEvents>Patch3</PatchEvents>
+                      <SampleRate>SampleRate500Hz</SampleRate>
+                      <DeliverPellet>Patch3DeliverPellet</DeliverPellet>
+                      <PelletDelivered>Patch3PelletDelivered</PelletDelivered>
+                      <DueTime>PT1S</DueTime>
+                      <Count>2</Count>
+                      <ResetFeeder>Patch3ResetFeeder</ResetFeeder>
+                      <PortName>COM16</PortName>
+                      <Radius>-4</Radius>
+                      <WheelDisplacement>Patch3WheelDisplacement</WheelDisplacement>
+                    </Expression>
+                    <Expression xsi:type="WorkflowOutput" />
+                  </Nodes>
+                  <Edges>
+                    <Edge From="0" To="1" Label="Source1" />
+                    <Edge From="1" To="2" Label="Source1" />
+                  </Edges>
+                </Workflow>
+              </Builder>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>HeartbeatSources</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="Disable">
+                    <Builder xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:HeartbeatMonitor.bonsai">
+                      <Name>Patch1</Name>
+                    </Builder>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:HeartbeatMonitor.bonsai">
+                    <Name>Patch2</Name>
+                  </Expression>
+                  <Expression xsi:type="Disable">
+                    <Builder xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:HeartbeatMonitor.bonsai">
+                      <Name>Patch3</Name>
+                    </Builder>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:HeartbeatMonitor.bonsai">
+                    <Name>VideoEvents</Name>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:HeartbeatMonitor.bonsai">
+                    <Name>SynchronizerEvents</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Merge" />
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="5" Label="Source1" />
+                  <Edge From="1" To="5" Label="Source2" />
+                  <Edge From="2" To="5" Label="Source3" />
+                  <Edge From="3" To="5" Label="Source4" />
+                  <Edge From="4" To="5" Label="Source5" />
+                  <Edge From="5" To="6" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SynchronizerMonitor.bonsai" />
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:WriteLine" />
+            </Expression>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>SynchronizeTimestamp</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Delay">
+                <rx:DueTime>PT5S</rx:DueTime>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="5" To="6" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="8" To="9" Label="Source1" />
+            <Edge From="9" To="10" Label="Source1" />
+            <Edge From="10" To="11" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="Unit" />
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Timer">
+          <rx:DueTime>PT0S</rx:DueTime>
+          <rx:Period>PT1H</rx:Period>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="rx:SelectMany">
+        <Name>Robocopy</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="StringProperty">
+                <Value>D:\ProjectAeon</Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="StringProperty">
+                <Value>Z:\aeon\data\raw\AEON5</Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Zip" />
+            </Expression>
+            <Expression xsi:type="Format">
+              <Format>..\..\calibration\robocopy.py {0} {1}</Format>
+              <Selector>Item1,Item2</Selector>
+            </Expression>
+            <Expression xsi:type="PropertyMapping">
+              <PropertyMappings>
+                <Property Name="Arguments" />
+              </PropertyMappings>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="io:StartProcess">
+                <io:FileName>..\..\python\.venv\Scripts\python.exe</io:FileName>
+                <io:Arguments>..\..\calibration\robocopy.py D:\ProjectAeon Z:\aeon\data\raw\%COMPUTERNAME%</io:Arguments>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="2" Label="Source1" />
+            <Edge From="1" To="2" Label="Source2" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="5" To="6" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="Unit" />
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Concat" />
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="2" Label="Source1" />
+      <Edge From="1" To="2" Label="Source2" />
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="4" To="8" Label="Source1" />
+      <Edge From="5" To="6" Label="Source1" />
+      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="7" To="8" Label="Source2" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
