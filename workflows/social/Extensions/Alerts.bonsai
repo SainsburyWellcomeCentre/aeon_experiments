@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.8.1"
+<WorkflowBuilder Version="2.8.2"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
@@ -618,7 +618,9 @@ Item2.Value.Id as Id)</scr:Expression>
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p1:GetActiveSubject" />
+                    <Combinator xsi:type="p1:GetActiveSubject">
+                      <p1:Identity>Test1</p1:Identity>
+                    </Combinator>
                   </Expression>
                   <Expression xsi:type="rx:PublishSubject">
                     <Name>ActiveSubjectPose</Name>
@@ -742,15 +744,6 @@ Item1 as Value)</scr:Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Extensions\AlertGate.bonsai">
                     <AlertRefractoryPeriod>PT5M</AlertRefractoryPeriod>
                   </Expression>
-                  <Expression xsi:type="Format">
-                    <Format>## **Tracking Unstable**
-**Subject**: {0}  
-</Format>
-                    <Selector>Identity</Selector>
-                  </Expression>
-                  <Expression xsi:type="MulticastSubject">
-                    <Name>SubjectAlertMessages</Name>
-                  </Expression>
                   <Expression xsi:type="aeon:FormatLogMessage">
                     <Format>{0}</Format>
                     <Selector>Identity</Selector>
@@ -779,9 +772,7 @@ Item1 as Value)</scr:Expression>
                   <Edge From="16" To="17" Label="Source1" />
                   <Edge From="17" To="18" Label="Source1" />
                   <Edge From="18" To="19" Label="Source1" />
-                  <Edge From="18" To="21" Label="Source1" />
                   <Edge From="19" To="20" Label="Source1" />
-                  <Edge From="21" To="22" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
