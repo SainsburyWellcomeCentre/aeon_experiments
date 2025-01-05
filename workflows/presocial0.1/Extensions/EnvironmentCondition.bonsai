@@ -26,9 +26,9 @@
               <Property Name="Value" />
             </Expression>
             <Expression xsi:type="Equal">
-              <Operand xsi:type="WorkflowProperty" TypeArguments="aeon:EnvironmentStateType">
+              <!-- <Operand xsi:type="WorkflowProperty" TypeArguments="aeon:EnvironmentStateType">
                 <Value>Experiment</Value>
-              </Operand>
+              </Operand> -->
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.7.1"
+<WorkflowBuilder Version="2.8.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
                  xmlns="https://bonsai-rx.org/2018/workflow">
@@ -12,6 +12,7 @@
         <Property Name="Regions" DisplayName="NestRegion" />
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RegionTracking.bonsai">
+        <FrameEvents>CameraTop</FrameEvents>
         <Regions>
           <ArrayOfPoint>
             <Point>
@@ -49,12 +50,12 @@
           </ArrayOfPoint>
         </Regions>
         <RegionEvents>InNest</RegionEvents>
-        <FrameEvents>CameraTop</FrameEvents>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="Regions" DisplayName="Patch1Region" />
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RegionTracking.bonsai">
+        <FrameEvents>CameraTop</FrameEvents>
         <Regions>
           <ArrayOfPoint>
             <Point>
@@ -76,12 +77,12 @@
           </ArrayOfPoint>
         </Regions>
         <RegionEvents>InPatch1</RegionEvents>
-        <FrameEvents>CameraTop</FrameEvents>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="Regions" DisplayName="Patch2Region" />
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RegionTracking.bonsai">
+        <FrameEvents>CameraTop</FrameEvents>
         <Regions>
           <ArrayOfPoint>
             <Point>
@@ -103,7 +104,33 @@
           </ArrayOfPoint>
         </Regions>
         <RegionEvents>InPatch2</RegionEvents>
+      </Expression>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Regions" DisplayName="Patch3Region" />
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RegionTracking.bonsai">
         <FrameEvents>CameraTop</FrameEvents>
+        <Regions>
+          <ArrayOfPoint>
+            <Point>
+              <X>579</X>
+              <Y>253</Y>
+            </Point>
+            <Point>
+              <X>596</X>
+              <Y>243</Y>
+            </Point>
+            <Point>
+              <X>601</X>
+              <Y>261</Y>
+            </Point>
+            <Point>
+              <X>585</X>
+              <Y>270</Y>
+            </Point>
+          </ArrayOfPoint>
+        </Regions>
+        <RegionEvents>InPatch3</RegionEvents>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>TrackingTop</Name>
@@ -133,9 +160,9 @@
               <Property Name="Upper" DisplayName="InnerRadius" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:InRange.bonsai">
-              <RangeEvents>InArena</RangeEvents>
               <Lower xsi:nil="true" />
               <Upper>480</Upper>
+              <RangeEvents>InArena</RangeEvents>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
@@ -161,9 +188,9 @@
               <Property Name="Upper" DisplayName="OuterRadius" />
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:InRange.bonsai">
-              <RangeEvents>InCorridor</RangeEvents>
               <Lower>480</Lower>
               <Upper>502</Upper>
+              <RangeEvents>InCorridor</RangeEvents>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
@@ -179,16 +206,18 @@
       <Edge From="0" To="2" Label="Source1" />
       <Edge From="0" To="4" Label="Source1" />
       <Edge From="0" To="6" Label="Source1" />
+      <Edge From="0" To="8" Label="Source1" />
       <Edge From="1" To="2" Label="Source2" />
       <Edge From="3" To="4" Label="Source2" />
       <Edge From="5" To="6" Label="Source2" />
-      <Edge From="7" To="9" Label="Source1" />
-      <Edge From="8" To="9" Label="Source2" />
+      <Edge From="7" To="8" Label="Source2" />
       <Edge From="9" To="11" Label="Source1" />
-      <Edge From="9" To="13" Label="Source1" />
       <Edge From="10" To="11" Label="Source2" />
-      <Edge From="10" To="13" Label="Source2" />
-      <Edge From="12" To="13" Label="Source3" />
+      <Edge From="11" To="13" Label="Source1" />
+      <Edge From="11" To="15" Label="Source1" />
+      <Edge From="12" To="13" Label="Source2" />
+      <Edge From="12" To="15" Label="Source2" />
+      <Edge From="14" To="15" Label="Source3" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
