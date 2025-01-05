@@ -10,9 +10,8 @@ parser.add_argument('destination', type=str, help="The remote path where data is
 args = parser.parse_args()
 source = Path(args.source)
 destination = Path(args.destination)
-dataset = Path(os.getcwd()).name
-robocopy_parameters = ["/E", "/MOVE", "/J", "/R:2", "/W:30"]
+robocopy_parameters = ["/E", "/MOVE", "/J", "/R:2", "/W:30", "/NP"]
 process = subprocess.run(
-    ["robocopy", source.joinpath(dataset), destination.joinpath(dataset)] + robocopy_parameters,
+    ["robocopy", source, destination] + robocopy_parameters,
     shell=True)
 sys.exit(process.returncode)
