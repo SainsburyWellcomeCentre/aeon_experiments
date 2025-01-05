@@ -381,26 +381,6 @@
                       </Edges>
                     </Workflow>
                   </Expression>
-                  <Expression xsi:type="GroupWorkflow">
-                    <Name>Rfid</Name>
-                    <Workflow>
-                      <Nodes>
-                        <Expression xsi:type="ExternalizedMapping">
-                          <Property Name="PortName" />
-                          <Property Name="RfidEvents" />
-                        </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\Rfid Reader.bonsai">
-                          <PortName>COM8</PortName>
-                          <RfidEvents>RfidEvents</RfidEvents>
-                        </Expression>
-                        <Expression xsi:type="WorkflowOutput" />
-                      </Nodes>
-                      <Edges>
-                        <Edge From="0" To="1" Label="Source1" />
-                        <Edge From="1" To="2" Label="Source1" />
-                      </Edges>
-                    </Workflow>
-                  </Expression>
                 </Nodes>
                 <Edges />
               </Workflow>
@@ -658,7 +638,7 @@
               <ChunkSize>1</ChunkSize>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
-              <WorkflowName>PreSocial0.1-AEON2.bonsai</WorkflowName>
+              <WorkflowName>PreSocial0.1-AEON3.bonsai</WorkflowName>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>SynchronizerEvents</Name>
@@ -1008,12 +988,6 @@ new(Value.Id as Id,
               <LogName>ExperimentalMetadata_SubjectVisits</LogName>
               <Selector>Seconds,Value.Id,Value.Event,Value.Value</Selector>
             </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>RfidEvents</Name>
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
-              <LogName>Rfid</LogName>
-            </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="rx:Timer">
                 <rx:DueTime>PT0S</rx:DueTime>
@@ -1100,11 +1074,10 @@ new(Value.Id as Id,
             <Edge From="80" To="81" Label="Source1" />
             <Edge From="81" To="82" Label="Source1" />
             <Edge From="83" To="84" Label="Source1" />
-            <Edge From="85" To="86" Label="Source1" />
-            <Edge From="86" To="88" Label="Source1" />
-            <Edge From="87" To="88" Label="Source2" />
-            <Edge From="88" To="89" Label="Source1" />
-            <Edge From="89" To="90" Label="Source1" />
+            <Edge From="84" To="86" Label="Source1" />
+            <Edge From="85" To="86" Label="Source2" />
+            <Edge From="86" To="87" Label="Source1" />
+            <Edge From="87" To="88" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -2404,14 +2377,18 @@ Mode: {1}</Format>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Merge" />
                   </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SendAlert.bonsai">
-                    <ConfigFile>Z:\aeon\config\status.config</ConfigFile>
+                  <Expression xsi:type="Disable">
+                    <Builder xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SendAlert.bonsai">
+                      <ConfigFile>Z:\aeon\config\status.config</ConfigFile>
+                    </Builder>
                   </Expression>
                   <Expression xsi:type="rx:PublishSubject" TypeArguments="sys:String">
                     <rx:Name>EnvironmentAlertMessages</rx:Name>
                   </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SendAlert.bonsai">
-                    <ConfigFile>Z:\aeon\config\alerts.config</ConfigFile>
+                  <Expression xsi:type="Disable">
+                    <Builder xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SendAlert.bonsai">
+                      <ConfigFile>Z:\aeon\config\alerts.config</ConfigFile>
+                    </Builder>
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
                     <Name>VideoEvents</Name>
