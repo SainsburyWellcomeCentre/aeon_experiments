@@ -74,12 +74,14 @@
                           <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
+                          <Property Name="ExposureTime" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\VideoSource.bonsai">
                           <SerialNumber>23032909</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
                           <TriggerSource>GlobalTrigger</TriggerSource>
+                          <ExposureTime>5000</ExposureTime>
                           <FrameEvents>CameraTop</FrameEvents>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                         </Expression>
@@ -102,12 +104,14 @@
                           <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
+                          <Property Name="ExposureTime" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\VideoSource.bonsai">
                           <SerialNumber>23032816</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
                           <TriggerSource>GlobalTrigger</TriggerSource>
+                          <ExposureTime>5000</ExposureTime>
                           <FrameEvents>CameraWest</FrameEvents>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                         </Expression>
@@ -130,12 +134,14 @@
                           <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
+                          <Property Name="ExposureTime" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\VideoSource.bonsai">
                           <SerialNumber>23032824</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
                           <TriggerSource>GlobalTrigger</TriggerSource>
+                          <ExposureTime>5000</ExposureTime>
                           <FrameEvents>CameraEast</FrameEvents>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                         </Expression>
@@ -158,12 +164,14 @@
                           <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
+                          <Property Name="ExposureTime" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\VideoSource.bonsai">
                           <SerialNumber>23032825</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
                           <TriggerSource>GlobalTrigger</TriggerSource>
+                          <ExposureTime>5000</ExposureTime>
                           <FrameEvents>CameraNorth</FrameEvents>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                         </Expression>
@@ -186,12 +194,14 @@
                           <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
+                          <Property Name="ExposureTime" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\VideoSource.bonsai">
                           <SerialNumber>23031408</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
                           <TriggerSource>GlobalTrigger</TriggerSource>
+                          <ExposureTime>5000</ExposureTime>
                           <FrameEvents>CameraSouth</FrameEvents>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                         </Expression>
@@ -214,12 +224,14 @@
                           <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
+                          <Property Name="ExposureTime" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\VideoSource.bonsai">
                           <SerialNumber>23031407</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
                           <TriggerSource>GlobalTrigger</TriggerSource>
+                          <ExposureTime>5000</ExposureTime>
                           <FrameEvents>CameraNest</FrameEvents>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                         </Expression>
@@ -242,12 +254,14 @@
                           <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
+                          <Property Name="ExposureTime" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\VideoSource.bonsai">
                           <SerialNumber>23032817</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
                           <TriggerSource>LocalTrigger</TriggerSource>
+                          <ExposureTime>3000</ExposureTime>
                           <FrameEvents>CameraPatch1</FrameEvents>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                         </Expression>
@@ -270,12 +284,14 @@
                           <Property Name="TriggerSource" />
                           <Property Name="FrameEvents" />
                           <Property Name="TriggerFrequency" />
+                          <Property Name="ExposureTime" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:VideoSource.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\VideoSource.bonsai">
                           <SerialNumber>23032815</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
                           <TriggerSource>LocalTrigger</TriggerSource>
+                          <ExposureTime>3000</ExposureTime>
                           <FrameEvents>CameraPatch2</FrameEvents>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                         </Expression>
