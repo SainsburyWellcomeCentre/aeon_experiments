@@ -420,7 +420,7 @@
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PositionTracking.bonsai">
                     <ThresholdValue>83</ThresholdValue>
-                    <Mask>Config\ArenaMask-AEON3_2023-03-06.png</Mask>
+                    <Mask>Config\ArenaMask-AEON3_2023-11-10.png</Mask>
                     <TrackingCount>1</TrackingCount>
                     <TrackingEvents>TrackingTop</TrackingEvents>
                   </Expression>
