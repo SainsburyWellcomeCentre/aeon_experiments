@@ -3439,7 +3439,7 @@ Item3 as Delta)</scr:Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:PatchDispenser.bonsai">
                     <ControllerEvents>Patch1Controller</ControllerEvents>
                     <DispenserState>Patch1Dispenser</DispenserState>
-                    <Name xsi:nil="true" />
+                    <Name>Patch1</Name>
                   </Expression>
                   <Expression xsi:type="VisualizerMapping" />
                   <Expression xsi:type="SubscribeSubject">
@@ -3466,7 +3466,7 @@ Item3 as Delta)</scr:Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:PatchDispenser.bonsai">
                     <ControllerEvents>Patch2Controller</ControllerEvents>
                     <DispenserState>Patch2Dispenser</DispenserState>
-                    <Name xsi:nil="true" />
+                    <Name>Patch2</Name>
                   </Expression>
                   <Expression xsi:type="VisualizerMapping" />
                   <Expression xsi:type="SubscribeSubject">
