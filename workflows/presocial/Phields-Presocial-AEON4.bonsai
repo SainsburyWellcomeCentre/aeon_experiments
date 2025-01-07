@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.2"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
@@ -619,11 +619,11 @@
             <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon-env:EnvironmentStateMetadata)">
               <rx:Name>EnvironmentState</rx:Name>
             </Expression>
-            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="aeon-frg:DispenserState">
-              <rx:Name>Patch1Dispenser</rx:Name>
+            <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="aeon-frg:DispenserState">
+              <aeon:Name>Patch2Dispenser</aeon:Name>
             </Expression>
-            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="aeon-frg:DispenserState">
-              <rx:Name>Patch2Dispenser</rx:Name>
+            <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="aeon-frg:DispenserState">
+              <aeon:Name>Patch1Dispenser</aeon:Name>
             </Expression>
             <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon-env:EnvironmentSubjectStateMetadata)">
               <rx:Name>SubjectState</rx:Name>
