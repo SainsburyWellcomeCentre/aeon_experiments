@@ -619,11 +619,11 @@
             <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon-env:EnvironmentStateMetadata)">
               <rx:Name>EnvironmentState</rx:Name>
             </Expression>
-            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="aeon-frg:DispenserState">
-              <rx:Name>Patch1Dispenser</rx:Name>
+            <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="aeon-frg:DispenserState">
+              <aeon:Name>Patch2Dispenser</aeon:Name>
             </Expression>
-            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="aeon-frg:DispenserState">
-              <rx:Name>Patch2Dispenser</rx:Name>
+            <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="aeon-frg:DispenserState">
+              <aeon:Name>Patch1Dispenser</aeon:Name>
             </Expression>
             <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon-env:EnvironmentSubjectStateMetadata)">
               <rx:Name>SubjectState</rx:Name>
@@ -3439,7 +3439,7 @@ Item3 as Delta)</scr:Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:PatchDispenser.bonsai">
                     <ControllerEvents>Patch1Controller</ControllerEvents>
                     <DispenserState>Patch1Dispenser</DispenserState>
-                    <Name xsi:nil="true" />
+                    <Name>Patch1</Name>
                   </Expression>
                   <Expression xsi:type="VisualizerMapping" />
                   <Expression xsi:type="SubscribeSubject">
@@ -3466,7 +3466,7 @@ Item3 as Delta)</scr:Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:PatchDispenser.bonsai">
                     <ControllerEvents>Patch2Controller</ControllerEvents>
                     <DispenserState>Patch2Dispenser</DispenserState>
-                    <Name xsi:nil="true" />
+                    <Name>Patch12</Name>
                   </Expression>
                   <Expression xsi:type="VisualizerMapping" />
                   <Expression xsi:type="SubscribeSubject">
