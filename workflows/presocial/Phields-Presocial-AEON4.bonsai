@@ -619,11 +619,11 @@
             <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon-env:EnvironmentStateMetadata)">
               <rx:Name>EnvironmentState</rx:Name>
             </Expression>
-            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="aeon-frg:DispenserState">
-              <rx:Name>Patch1Dispenser</rx:Name>
+            <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="aeon-frg:DispenserState">
+              <aeon:Name>Patch2Dispenser</aeon:Name>
             </Expression>
-            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="aeon-frg:DispenserState">
-              <rx:Name>Patch2Dispenser</rx:Name>
+            <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="aeon-frg:DispenserState">
+              <aeon:Name>Patch1Dispenser</aeon:Name>
             </Expression>
             <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:Timestamped(aeon-env:EnvironmentSubjectStateMetadata)">
               <rx:Name>SubjectState</rx:Name>
@@ -3439,7 +3439,7 @@ Item3 as Delta)</scr:Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:PatchDispenser.bonsai">
                     <ControllerEvents>Patch1Controller</ControllerEvents>
                     <DispenserState>Patch1Dispenser</DispenserState>
-                    <Name xsi:nil="true" />
+                    <Name>Patch1</Name>
                   </Expression>
                   <Expression xsi:type="VisualizerMapping" />
                   <Expression xsi:type="SubscribeSubject">
@@ -3466,7 +3466,7 @@ Item3 as Delta)</scr:Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:PatchDispenser.bonsai">
                     <ControllerEvents>Patch2Controller</ControllerEvents>
                     <DispenserState>Patch2Dispenser</DispenserState>
-                    <Name xsi:nil="true" />
+                    <Name>Patch2</Name>
                   </Expression>
                   <Expression xsi:type="VisualizerMapping" />
                   <Expression xsi:type="SubscribeSubject">
@@ -3507,11 +3507,6 @@ Item3 as Delta)</scr:Expression>
                   <Expression xsi:type="SubscribeSubject">
                     <Name>Patch1Controller</Name>
                   </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:Skip">
-                      <rx:Count>1</rx:Count>
-                    </Combinator>
-                  </Expression>
                   <Expression xsi:type="rx:Condition">
                     <Name>Reset</Name>
                     <Workflow>
@@ -3539,13 +3534,39 @@ Item3 as Delta)</scr:Expression>
                   <Expression xsi:type="MulticastSubject">
                     <Name>ResetFeederPatch1</Name>
                   </Expression>
+                  <Expression xsi:type="rx:Condition">
+                    <Name>Discount</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>EventType</Selector>
+                        </Expression>
+                        <Expression xsi:type="Equal">
+                          <Operand xsi:type="WorkflowProperty" TypeArguments="aeon-frg:DispenserEventType">
+                            <Value>Discount</Value>
+                          </Operand>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:TriggerPellet.bonsai">
+                    <PatchEvents>Patch1</PatchEvents>
+                    <DeliverPellet>DeliverPelletPatch1</DeliverPellet>
+                  </Expression>
+                  <Expression xsi:type="MulticastSubject">
+                    <Name>ManualPellet1</Name>
+                  </Expression>
                   <Expression xsi:type="SubscribeSubject">
                     <Name>Patch2Controller</Name>
-                  </Expression>
-                  <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="rx:Skip">
-                      <rx:Count>1</rx:Count>
-                    </Combinator>
                   </Expression>
                   <Expression xsi:type="rx:Condition">
                     <Name>Reset</Name>
@@ -3574,6 +3595,37 @@ Item3 as Delta)</scr:Expression>
                   <Expression xsi:type="MulticastSubject">
                     <Name>ResetFeederPatch2</Name>
                   </Expression>
+                  <Expression xsi:type="rx:Condition">
+                    <Name>Discount</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>EventType</Selector>
+                        </Expression>
+                        <Expression xsi:type="Equal">
+                          <Operand xsi:type="WorkflowProperty" TypeArguments="aeon-frg:DispenserEventType">
+                            <Value>Discount</Value>
+                          </Operand>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:TriggerPellet.bonsai">
+                    <PatchEvents>Patch2</PatchEvents>
+                    <DeliverPellet>DeliverPelletPatch2</DeliverPellet>
+                  </Expression>
+                  <Expression xsi:type="MulticastSubject">
+                    <Name>ManualPellet2</Name>
+                  </Expression>
                 </Nodes>
                 <Edges>
                   <Edge From="0" To="1" Label="Source1" />
@@ -3594,11 +3646,15 @@ Item3 as Delta)</scr:Expression>
                   <Edge From="15" To="16" Label="Source4" />
                   <Edge From="16" To="17" Label="Source1" />
                   <Edge From="18" To="19" Label="Source1" />
+                  <Edge From="18" To="21" Label="Source1" />
                   <Edge From="19" To="20" Label="Source1" />
-                  <Edge From="20" To="21" Label="Source1" />
+                  <Edge From="21" To="22" Label="Source1" />
                   <Edge From="22" To="23" Label="Source1" />
-                  <Edge From="23" To="24" Label="Source1" />
                   <Edge From="24" To="25" Label="Source1" />
+                  <Edge From="24" To="27" Label="Source1" />
+                  <Edge From="25" To="26" Label="Source1" />
+                  <Edge From="27" To="28" Label="Source1" />
+                  <Edge From="28" To="29" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
