@@ -292,7 +292,7 @@
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>3000</ExposureTime>
-                          <SerialNumber>23032811</SerialNumber>
+                          <SerialNumber>23032823</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
                           <FrameEvents>CameraPatch2</FrameEvents>
