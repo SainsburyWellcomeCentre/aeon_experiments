@@ -653,7 +653,7 @@
           <Nodes>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RepositoryLogController.bonsai">
               <RepositoryPath>..\..\</RepositoryPath>
-              <DataPath>D:\ProjectAeon</DataPath>
+              <DataPath>D:\ProjectPhieldsn</DataPath>
               <FallbackPath>D:\Tests</FallbackPath>
               <ChunkSize>1</ChunkSize>
             </Expression>
