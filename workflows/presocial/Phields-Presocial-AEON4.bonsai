@@ -32,7 +32,7 @@
                         <Expression xsi:type="ExternalizedMapping">
                           <Property Name="PortName" />
                         </Expression>
-                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:Synchronizer.bonsai">
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ClockSynchronizer.bonsai">
                           <PortName>COM5</PortName>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
@@ -82,7 +82,7 @@
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>5000</ExposureTime>
-                          <SerialNumber>23032909</SerialNumber>
+                          <SerialNumber>23101736</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
                           <FrameEvents>CameraTop</FrameEvents>
@@ -112,7 +112,7 @@
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>5000</ExposureTime>
-                          <SerialNumber>23032816</SerialNumber>
+                          <SerialNumber>23100956</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
                           <FrameEvents>CameraWest</FrameEvents>
@@ -142,7 +142,7 @@
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>5000</ExposureTime>
-                          <SerialNumber>23032824</SerialNumber>
+                          <SerialNumber>23106241</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
                           <FrameEvents>CameraEast</FrameEvents>
@@ -172,7 +172,7 @@
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>5000</ExposureTime>
-                          <SerialNumber>23032825</SerialNumber>
+                          <SerialNumber>23106245</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
                           <FrameEvents>CameraNorth</FrameEvents>
@@ -202,7 +202,7 @@
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>5000</ExposureTime>
-                          <SerialNumber>23031408</SerialNumber>
+                          <SerialNumber>23106227</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
                           <FrameEvents>CameraSouth</FrameEvents>
@@ -232,7 +232,7 @@
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>5000</ExposureTime>
-                          <SerialNumber>23031407</SerialNumber>
+                          <SerialNumber>23106287</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
                           <FrameEvents>CameraNest</FrameEvents>
@@ -262,7 +262,7 @@
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>3000</ExposureTime>
-                          <SerialNumber>23032817</SerialNumber>
+                          <SerialNumber>23101737</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
                           <FrameEvents>CameraPatch1</FrameEvents>
@@ -292,7 +292,7 @@
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
                           <ExposureTime>3000</ExposureTime>
-                          <SerialNumber>23032815</SerialNumber>
+                          <SerialNumber>23032811</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
                           <FrameEvents>CameraPatch2</FrameEvents>
@@ -420,7 +420,7 @@
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:PositionTracking.bonsai">
                     <ThresholdValue>83</ThresholdValue>
-                    <Mask>Config\ArenaMask-AEON3_2023-11-10.png</Mask>
+                    <Mask>Config\ArenaMask-AEON4_2024-01-19.png</Mask>
                     <TrackingCount>1</TrackingCount>
                     <TrackingEvents>TrackingTop</TrackingEvents>
                   </Expression>
@@ -658,7 +658,7 @@
               <ChunkSize>1</ChunkSize>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
-              <WorkflowName>Phields-Presocial-AEON3.bonsai</WorkflowName>
+              <WorkflowName>Phields-Presocial-AEON4.bonsai</WorkflowName>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>SynchronizerEvents</Name>
