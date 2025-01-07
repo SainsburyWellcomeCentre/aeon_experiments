@@ -81,7 +81,7 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
-                          <ExposureTime>INF</ExposureTime>
+                          <ExposureTime>5000</ExposureTime>
                           <SerialNumber>23032909</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
@@ -111,7 +111,7 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
-                          <ExposureTime>INF</ExposureTime>
+                          <ExposureTime>5000</ExposureTime>
                           <SerialNumber>23032816</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
@@ -141,7 +141,7 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
-                          <ExposureTime>INF</ExposureTime>
+                          <ExposureTime>5000</ExposureTime>
                           <SerialNumber>23032824</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
@@ -171,7 +171,7 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
-                          <ExposureTime>INF</ExposureTime>
+                          <ExposureTime>5000</ExposureTime>
                           <SerialNumber>23032825</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
@@ -201,7 +201,7 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
-                          <ExposureTime>INF</ExposureTime>
+                          <ExposureTime>5000</ExposureTime>
                           <SerialNumber>23031408</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
@@ -231,7 +231,7 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
-                          <ExposureTime>INF</ExposureTime>
+                          <ExposureTime>5000</ExposureTime>
                           <SerialNumber>23031407</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
@@ -261,7 +261,7 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
-                          <ExposureTime>INF</ExposureTime>
+                          <ExposureTime>3000</ExposureTime>
                           <SerialNumber>23032817</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
@@ -291,7 +291,7 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>LocalTrigger</TriggerSource>
                           <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
-                          <ExposureTime>INF</ExposureTime>
+                          <ExposureTime>3000</ExposureTime>
                           <SerialNumber>23032815</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>

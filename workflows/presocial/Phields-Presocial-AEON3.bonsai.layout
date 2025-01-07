@@ -16,12 +16,12 @@
     <EditorDialogSettings>
       <Visible>false</Visible>
       <Location>
-        <X>4</X>
-        <Y>5</Y>
+        <X>3</X>
+        <Y>3</Y>
       </Location>
       <Size>
-        <Width>1294</Width>
-        <Height>762</Height>
+        <Width>1506</Width>
+        <Height>903</Height>
       </Size>
       <WindowState>Normal</WindowState>
     </EditorDialogSettings>
@@ -112,12 +112,12 @@
     <EditorDialogSettings>
       <Visible>true</Visible>
       <Location>
-        <X>4</X>
-        <Y>5</Y>
+        <X>3</X>
+        <Y>3</Y>
       </Location>
       <Size>
-        <Width>1294</Width>
-        <Height>762</Height>
+        <Width>1506</Width>
+        <Height>903</Height>
       </Size>
       <WindowState>Normal</WindowState>
     </EditorDialogSettings>
@@ -445,9 +445,9 @@
                     <VisualizerSettings>
                       <MatVisualizer>
                         <XMin>0</XMin>
-                        <XMax>1500</XMax>
-                        <YMin>-10</YMin>
-                        <YMax>80</YMax>
+                        <XMax>1</XMax>
+                        <YMin>0</YMin>
+                        <YMax>1.1</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
                         <SelectedPage>0</SelectedPage>
@@ -464,9 +464,9 @@
                     <VisualizerSettings>
                       <MatVisualizer>
                         <XMin>0</XMin>
-                        <XMax>1500</XMax>
-                        <YMin>-10</YMin>
-                        <YMax>80</YMax>
+                        <XMax>1</XMax>
+                        <YMin>0</YMin>
+                        <YMax>1.1</YMax>
                         <AutoScaleX>true</AutoScaleX>
                         <AutoScaleY>true</AutoScaleY>
                         <SelectedPage>0</SelectedPage>
@@ -483,8 +483,8 @@
                     <VisualizerSettings>
                       <RollingGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>71</Min>
-                        <Max>79</Max>
+                        <Min>0</Min>
+                        <Max>1.1</Max>
                         <AutoScale>true</AutoScale>
                       </RollingGraphVisualizer>
                     </VisualizerSettings>
@@ -494,8 +494,8 @@
                     <VisualizerSettings>
                       <RollingGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>71</Min>
-                        <Max>79</Max>
+                        <Min>0</Min>
+                        <Max>1.1</Max>
                         <AutoScale>true</AutoScale>
                       </RollingGraphVisualizer>
                     </VisualizerSettings>
@@ -524,7 +524,7 @@
               <VisualizerSettings>
                 <TableLayoutPanelVisualizer>
                   <MashupSettings>
-                    <VisualizerTypeName>Aeon.Acquisition.ExternalizedPropertiesVisualizer</VisualizerTypeName>
+                    <VisualizerTypeName>Aeon.Environment.ExternalizedPropertiesVisualizer</VisualizerTypeName>
                     <VisualizerSettings>
                       <ExternalizedPropertiesVisualizer />
                     </VisualizerSettings>
@@ -534,8 +534,8 @@
                     <VisualizerSettings>
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
-                        <Min>-1</Min>
-                        <Max>1</Max>
+                        <Min>0</Min>
+                        <Max>1.1</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -546,7 +546,7 @@
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
                         <Min>0</Min>
-                        <Max>120</Max>
+                        <Max>1.1</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -557,7 +557,7 @@
                       <BarGraphVisualizer>
                         <Capacity>0</Capacity>
                         <Min>0</Min>
-                        <Max>0.0035</Max>
+                        <Max>1.1</Max>
                         <AutoScale>true</AutoScale>
                       </BarGraphVisualizer>
                     </VisualizerSettings>
@@ -622,25 +622,25 @@
         <VisualizerSettings>
           <TableLayoutPanelVisualizer>
             <MashupSettings>
-              <VisualizerTypeName>Aeon.Acquisition.DispenserStateVisualizer</VisualizerTypeName>
+              <VisualizerTypeName>Aeon.Foraging.DispenserEventVisualizer</VisualizerTypeName>
               <VisualizerSettings>
-                <DispenserStateVisualizer />
+                <DispenserEventVisualizer />
               </VisualizerSettings>
             </MashupSettings>
             <MashupSettings>
-              <VisualizerTypeName>Aeon.Acquisition.DispenserStateVisualizer</VisualizerTypeName>
+              <VisualizerTypeName>Aeon.Foraging.DispenserEventVisualizer</VisualizerTypeName>
               <VisualizerSettings>
-                <DispenserStateVisualizer />
+                <DispenserEventVisualizer />
               </VisualizerSettings>
             </MashupSettings>
             <MashupSettings>
-              <VisualizerTypeName>Aeon.Acquisition.AnnotationSourceVisualizer</VisualizerTypeName>
+              <VisualizerTypeName>Aeon.Environment.AnnotationSourceVisualizer</VisualizerTypeName>
               <VisualizerSettings>
                 <AnnotationSourceVisualizer />
               </VisualizerSettings>
             </MashupSettings>
             <MashupSettings>
-              <VisualizerTypeName>Aeon.Acquisition.EnvironmentStateVisualizer</VisualizerTypeName>
+              <VisualizerTypeName>Aeon.Environment.EnvironmentStateVisualizer</VisualizerTypeName>
               <VisualizerSettings>
                 <EnvironmentStateVisualizer />
               </VisualizerSettings>
@@ -671,7 +671,7 @@
           <Height>384</Height>
         </Size>
         <WindowState>Normal</WindowState>
-        <VisualizerTypeName>Aeon.Acquisition.EnvironmentSubjectStateVisualizer</VisualizerTypeName>
+        <VisualizerTypeName>Aeon.Environment.EnvironmentSubjectStateVisualizer</VisualizerTypeName>
         <VisualizerSettings>
           <EnvironmentSubjectStateVisualizer />
         </VisualizerSettings>
