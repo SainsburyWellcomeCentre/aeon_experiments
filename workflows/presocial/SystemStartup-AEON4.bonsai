@@ -50,7 +50,7 @@
                   <Expression xsi:type="ExternalizedMapping">
                     <Property Name="PortName" />
                   </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimestampGenerator.bonsai">
+                  <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ClockSynchronizer.bonsai">
                     <PortName>COM5</PortName>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
