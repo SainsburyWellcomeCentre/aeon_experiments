@@ -82,316 +82,312 @@
       <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
         <aeon:Name>PatchState</aeon:Name>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="GroupWorkflow">
-          <Name>UndergroundFeeder</Name>
-          <Description>Contains control and acquisition functionality for an underground feeder module.</Description>
-          <Workflow>
-            <Nodes>
-              <Expression xsi:type="ExternalizedMapping">
-                <Property Name="Name" DisplayName="PatchEvents" Description="The name of the output sequence containing all patch events." />
-              </Expression>
-              <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:HarpMessage">
-                <rx:Name>PatchEvents</rx:Name>
-              </Expression>
-              <Expression xsi:type="WorkflowOutput" />
-              <Expression xsi:type="Disable">
-                <Builder xsi:type="ExternalizedMapping">
-                  <Property Name="SampleRate" />
-                </Builder>
-              </Expression>
-              <Expression xsi:type="Disable">
-                <Builder xsi:type="Combinator">
-                  <Combinator xsi:type="p1:ConfigureMagneticEncoder">
-                    <p1:SampleRate>SampleRate500Hz</p1:SampleRate>
-                  </Combinator>
-                </Builder>
-              </Expression>
-              <Expression xsi:type="ExternalizedMapping">
-                <Property Name="Name" DisplayName="DeliverPellet" Description="The name of the input sequence used to trigger pellet delivery." />
-              </Expression>
-              <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Object">
-                <rx:Name>DeliverPellet</rx:Name>
-              </Expression>
-              <Expression xsi:type="ExternalizedMapping">
-                <Property Name="Name" DisplayName="PelletDelivered" Description="The name of the output sequence carrying pellet delivery notifications." />
-              </Expression>
-              <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Boolean)">
-                <rx:Name>PelletDelivered</rx:Name>
-              </Expression>
-              <Expression xsi:type="ExternalizedMapping">
-                <Property Name="DueTime" Category="RetryDelivery" />
-                <Property Name="Count" Category="RetryDelivery" />
-              </Expression>
-              <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimedRetryCount.bonsai">
-                <DueTime>PT1S</DueTime>
-                <Count>2</Count>
-              </Expression>
-              <Expression xsi:type="MemberSelector">
-                <Selector>Value</Selector>
-              </Expression>
-              <Expression xsi:type="GroupWorkflow">
-                <Name>DeliverPellet</Name>
-                <Workflow>
-                  <Nodes>
-                    <Expression xsi:type="WorkflowInput">
-                      <Name>Source1</Name>
-                    </Expression>
-                    <Expression xsi:type="p1:CreateMessage">
+      <Expression xsi:type="GroupWorkflow">
+        <Name>UndergroundFeeder</Name>
+        <Description>Contains control and acquisition functionality for an underground feeder module.</Description>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Name" DisplayName="PatchEvents" Description="The name of the output sequence containing all patch events." />
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:HarpMessage">
+              <rx:Name>PatchEvents</rx:Name>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="SampleRate" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="p1:ConfigureMagneticEncoder">
+                <p1:SampleRate>SampleRate500Hz</p1:SampleRate>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Name" DisplayName="DeliverPellet" Description="The name of the input sequence used to trigger pellet delivery." />
+            </Expression>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Object">
+              <rx:Name>DeliverPellet</rx:Name>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Name" DisplayName="PelletDelivered" Description="The name of the output sequence carrying pellet delivery notifications." />
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(sys:Boolean)">
+              <rx:Name>PelletDelivered</rx:Name>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="DueTime" Category="RetryDelivery" />
+              <Property Name="Count" Category="RetryDelivery" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:TimedRetryCount.bonsai">
+              <DueTime>PT1S</DueTime>
+              <Count>2</Count>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value</Selector>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>DeliverPellet</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="p1:CreateMessage">
+                    <harp:MessageType>Write</harp:MessageType>
+                    <harp:Payload xsi:type="p1:CreateOutputSetPayload">
+                      <p1:OutputSet>Out0</p1:OutputSet>
+                    </harp:Payload>
+                  </Expression>
+                  <Expression xsi:type="p1:CreateMessage">
+                    <harp:MessageType>Write</harp:MessageType>
+                    <harp:Payload xsi:type="p1:CreateOutputClearPayload">
+                      <p1:OutputClear>Out0</p1:OutputClear>
+                    </harp:Payload>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Merge" />
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="1" To="3" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source2" />
+                  <Edge From="3" To="4" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Name" DisplayName="ResetFeeder" Description="The name of the input sequence used to reset the underground feeder." />
+            </Expression>
+            <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Object">
+              <rx:Name>ResetFeeder</rx:Name>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>ResetFeeder</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="p1:CreateMessage">
+                    <harp:MessageType>Write</harp:MessageType>
+                    <harp:Payload xsi:type="p1:CreateOutputSetPayload">
+                      <p1:OutputSet>Out0</p1:OutputSet>
+                    </harp:Payload>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Delay">
+                      <rx:DueTime>PT0.5S</rx:DueTime>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="p1:CreateMessage">
+                    <harp:MessageType>Write</harp:MessageType>
+                    <harp:Payload xsi:type="p1:CreateOutputClearPayload">
+                      <p1:OutputClear>Out0</p1:OutputClear>
+                    </harp:Payload>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Merge" />
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="1" To="4" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                  <Edge From="3" To="4" Label="Source2" />
+                  <Edge From="4" To="5" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Merge" />
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="PortName" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="harp:Device">
+                <harp:OperationMode>Active</harp:OperationMode>
+                <harp:OperationLed>On</harp:OperationLed>
+                <harp:DumpRegisters>true</harp:DumpRegisters>
+                <harp:VisualIndicators>On</harp:VisualIndicators>
+                <harp:Heartbeat>Disabled</harp:Heartbeat>
+                <harp:IgnoreErrors>false</harp:IgnoreErrors>
+                <harp:PortName>COM5</harp:PortName>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="rx:Condition">
+              <Name>IsRepetition</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Repetition</Selector>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="rx:SelectMany">
+              <Name>PairRepetitions</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Name" />
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>PatchEvents</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="harp:FilterMessageType">
+                      <harp:FilterType>Include</harp:FilterType>
                       <harp:MessageType>Write</harp:MessageType>
-                      <harp:Payload xsi:type="p1:CreateOutputSetPayload">
-                        <p1:OutputSet>Out0</p1:OutputSet>
-                      </harp:Payload>
-                    </Expression>
-                    <Expression xsi:type="p1:CreateMessage">
-                      <harp:MessageType>Write</harp:MessageType>
-                      <harp:Payload xsi:type="p1:CreateOutputClearPayload">
-                        <p1:OutputClear>Out0</p1:OutputClear>
-                      </harp:Payload>
-                    </Expression>
-                    <Expression xsi:type="Combinator">
-                      <Combinator xsi:type="rx:Merge" />
-                    </Expression>
-                    <Expression xsi:type="WorkflowOutput" />
-                  </Nodes>
-                  <Edges>
-                    <Edge From="0" To="1" Label="Source1" />
-                    <Edge From="1" To="2" Label="Source1" />
-                    <Edge From="1" To="3" Label="Source1" />
-                    <Edge From="2" To="3" Label="Source2" />
-                    <Edge From="3" To="4" Label="Source1" />
-                  </Edges>
-                </Workflow>
-              </Expression>
-              <Expression xsi:type="ExternalizedMapping">
-                <Property Name="Name" DisplayName="ResetFeeder" Description="The name of the input sequence used to reset the underground feeder." />
-              </Expression>
-              <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Object">
-                <rx:Name>ResetFeeder</rx:Name>
-              </Expression>
-              <Expression xsi:type="GroupWorkflow">
-                <Name>ResetFeeder</Name>
-                <Workflow>
-                  <Nodes>
-                    <Expression xsi:type="WorkflowInput">
-                      <Name>Source1</Name>
-                    </Expression>
-                    <Expression xsi:type="p1:CreateMessage">
-                      <harp:MessageType>Write</harp:MessageType>
-                      <harp:Payload xsi:type="p1:CreateOutputSetPayload">
-                        <p1:OutputSet>Out0</p1:OutputSet>
-                      </harp:Payload>
-                    </Expression>
-                    <Expression xsi:type="Combinator">
-                      <Combinator xsi:type="rx:Delay">
-                        <rx:DueTime>PT0.5S</rx:DueTime>
-                      </Combinator>
-                    </Expression>
-                    <Expression xsi:type="p1:CreateMessage">
-                      <harp:MessageType>Write</harp:MessageType>
-                      <harp:Payload xsi:type="p1:CreateOutputClearPayload">
-                        <p1:OutputClear>Out0</p1:OutputClear>
-                      </harp:Payload>
-                    </Expression>
-                    <Expression xsi:type="Combinator">
-                      <Combinator xsi:type="rx:Merge" />
-                    </Expression>
-                    <Expression xsi:type="WorkflowOutput" />
-                  </Nodes>
-                  <Edges>
-                    <Edge From="0" To="1" Label="Source1" />
-                    <Edge From="1" To="2" Label="Source1" />
-                    <Edge From="1" To="4" Label="Source1" />
-                    <Edge From="2" To="3" Label="Source1" />
-                    <Edge From="3" To="4" Label="Source2" />
-                    <Edge From="4" To="5" Label="Source1" />
-                  </Edges>
-                </Workflow>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="rx:Merge" />
-              </Expression>
-              <Expression xsi:type="ExternalizedMapping">
-                <Property Name="PortName" />
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="harp:Device">
-                  <harp:OperationMode>Active</harp:OperationMode>
-                  <harp:OperationLed>On</harp:OperationLed>
-                  <harp:DumpRegisters>true</harp:DumpRegisters>
-                  <harp:VisualIndicators>On</harp:VisualIndicators>
-                  <harp:Heartbeat>Disabled</harp:Heartbeat>
-                  <harp:IgnoreErrors>false</harp:IgnoreErrors>
-                  <harp:PortName>COM5</harp:PortName>
-                </Combinator>
-              </Expression>
-              <Expression xsi:type="rx:Condition">
-                <Name>IsRepetition</Name>
-                <Workflow>
-                  <Nodes>
-                    <Expression xsi:type="WorkflowInput">
-                      <Name>Source1</Name>
-                    </Expression>
-                    <Expression xsi:type="MemberSelector">
-                      <Selector>Repetition</Selector>
-                    </Expression>
-                    <Expression xsi:type="WorkflowOutput" />
-                  </Nodes>
-                  <Edges>
-                    <Edge From="0" To="1" Label="Source1" />
-                    <Edge From="1" To="2" Label="Source1" />
-                  </Edges>
-                </Workflow>
-              </Expression>
-              <Expression xsi:type="rx:SelectMany">
-                <Name>PairRepetitions</Name>
-                <Workflow>
-                  <Nodes>
-                    <Expression xsi:type="WorkflowInput">
-                      <Name>Source1</Name>
-                    </Expression>
-                    <Expression xsi:type="ExternalizedMapping">
-                      <Property Name="Name" />
-                    </Expression>
-                    <Expression xsi:type="SubscribeSubject">
-                      <Name>PatchEvents</Name>
-                    </Expression>
-                    <Expression xsi:type="Combinator">
-                      <Combinator xsi:type="harp:FilterMessageType">
-                        <harp:FilterType>Include</harp:FilterType>
-                        <harp:MessageType>Write</harp:MessageType>
-                      </Combinator>
-                    </Expression>
-                    <Expression xsi:type="p1:Parse">
-                      <harp:Register xsi:type="p1:TimestampedOutputClear" />
-                    </Expression>
-                    <Expression xsi:type="rx:Condition">
-                      <Workflow>
-                        <Nodes>
-                          <Expression xsi:type="WorkflowInput">
-                            <Name>Source1</Name>
-                          </Expression>
-                          <Expression xsi:type="MemberSelector">
-                            <Selector>Value</Selector>
-                          </Expression>
-                          <Expression xsi:type="ExternalizedMapping">
-                            <Property Name="Value" />
-                          </Expression>
-                          <Expression xsi:type="HasFlag">
-                            <Operand xsi:type="WorkflowProperty" TypeArguments="p1:DigitalOutputs">
-                              <Value>Out0</Value>
-                            </Operand>
-                          </Expression>
-                          <Expression xsi:type="WorkflowOutput" />
-                        </Nodes>
-                        <Edges>
-                          <Edge From="0" To="1" Label="Source1" />
-                          <Edge From="1" To="3" Label="Source1" />
-                          <Edge From="2" To="3" Label="Source2" />
-                          <Edge From="3" To="4" Label="Source1" />
-                        </Edges>
-                      </Workflow>
-                    </Expression>
-                    <Expression xsi:type="Combinator">
-                      <Combinator xsi:type="rx:Take">
-                        <rx:Count>1</rx:Count>
-                      </Combinator>
-                    </Expression>
-                    <Expression xsi:type="Combinator">
-                      <Combinator xsi:type="rx:Zip" />
-                    </Expression>
-                    <Expression xsi:type="scr:ExpressionTransform">
-                      <scr:Expression>new(
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="p1:Parse">
+                    <harp:Register xsi:type="p1:TimestampedOutputClear" />
+                  </Expression>
+                  <Expression xsi:type="rx:Condition">
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Value</Selector>
+                        </Expression>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="Value" />
+                        </Expression>
+                        <Expression xsi:type="HasFlag">
+                          <Operand xsi:type="WorkflowProperty" TypeArguments="p1:DigitalOutputs">
+                            <Value>Out0</Value>
+                          </Operand>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="3" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source2" />
+                        <Edge From="3" To="4" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Take">
+                      <rx:Count>1</rx:Count>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Zip" />
+                  </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Expression>new(
 1 as Value,
 Item2.Seconds as Seconds)</scr:Expression>
-                    </Expression>
-                    <Expression xsi:type="InputMapping">
-                      <PropertyMappings />
-                    </Expression>
-                    <Expression xsi:type="harp:Format">
-                      <harp:MessageType>Write</harp:MessageType>
-                      <harp:Register xsi:type="harp:FormatMessagePayload">
-                        <harp:Address>203</harp:Address>
-                        <harp:PayloadType>TimestampedU8</harp:PayloadType>
-                      </harp:Register>
-                    </Expression>
-                    <Expression xsi:type="WorkflowOutput" />
-                  </Nodes>
-                  <Edges>
-                    <Edge From="0" To="7" Label="Source1" />
-                    <Edge From="1" To="2" Label="Source1" />
-                    <Edge From="2" To="3" Label="Source1" />
-                    <Edge From="3" To="4" Label="Source1" />
-                    <Edge From="4" To="5" Label="Source1" />
-                    <Edge From="5" To="6" Label="Source1" />
-                    <Edge From="6" To="7" Label="Source2" />
-                    <Edge From="7" To="8" Label="Source1" />
-                    <Edge From="8" To="9" Label="Source1" />
-                    <Edge From="9" To="10" Label="Source1" />
-                    <Edge From="10" To="11" Label="Source1" />
-                  </Edges>
-                </Workflow>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="rx:Merge" />
-              </Expression>
-              <Expression xsi:type="MulticastSubject">
-                <Name>PatchEvents</Name>
-              </Expression>
-              <Expression xsi:type="Disable">
-                <Builder xsi:type="p1:Parse">
-                  <harp:Register xsi:type="p1:TimestampedMagneticEncoder" />
-                </Builder>
-              </Expression>
-              <Expression xsi:type="Disable">
-                <Builder xsi:type="ExternalizedMapping">
-                  <Property Name="Radius" />
-                </Builder>
-              </Expression>
-              <Expression xsi:type="Disable">
-                <Builder xsi:type="aeon:TransformTimestamped">
-                  <Workflow>
-                    <Nodes>
-                      <Expression xsi:type="WorkflowInput">
-                        <Name>Source1</Name>
-                      </Expression>
-                      <Expression xsi:type="MemberSelector">
-                        <Selector>Angle</Selector>
-                      </Expression>
-                      <Expression xsi:type="ExternalizedMapping">
-                        <Property Name="Radius" />
-                      </Expression>
-                      <Expression xsi:type="Combinator">
-                        <Combinator xsi:type="aeon:WheelDisplacement">
-                          <aeon:Radius>-4</aeon:Radius>
-                        </Combinator>
-                      </Expression>
-                      <Expression xsi:type="WorkflowOutput" />
-                    </Nodes>
-                    <Edges>
-                      <Edge From="0" To="1" Label="Source1" />
-                      <Edge From="1" To="3" Label="Source1" />
-                      <Edge From="2" To="3" Label="Source2" />
-                      <Edge From="3" To="4" Label="Source1" />
-                    </Edges>
-                  </Workflow>
-                  <aeon:IncludeTimestamp>false</aeon:IncludeTimestamp>
-                </Builder>
-              </Expression>
-              <Expression xsi:type="Disable">
-                <Builder xsi:type="ExternalizedMapping">
-                  <Property Name="Name" DisplayName="WheelDisplacement" Description="The name of the output sequence carrying total distance travelled on the wheel." />
-                </Builder>
-              </Expression>
-              <Expression xsi:type="Disable">
-                <Builder xsi:type="rx:PublishSubject">
-                  <Name>WheelDisplacement</Name>
-                </Builder>
-              </Expression>
-              <Expression xsi:type="p1:Parse">
+                  </Expression>
+                  <Expression xsi:type="InputMapping">
+                    <PropertyMappings />
+                  </Expression>
+                  <Expression xsi:type="harp:Format">
+                    <harp:MessageType>Write</harp:MessageType>
+                    <harp:Register xsi:type="harp:FormatMessagePayload">
+                      <harp:Address>203</harp:Address>
+                      <harp:PayloadType>TimestampedU8</harp:PayloadType>
+                    </harp:Register>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="7" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                  <Edge From="3" To="4" Label="Source1" />
+                  <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="5" To="6" Label="Source1" />
+                  <Edge From="6" To="7" Label="Source2" />
+                  <Edge From="7" To="8" Label="Source1" />
+                  <Edge From="8" To="9" Label="Source1" />
+                  <Edge From="9" To="10" Label="Source1" />
+                  <Edge From="10" To="11" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Merge" />
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>PatchEvents</Name>
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="p1:Parse">
+                <harp:Register xsi:type="p1:TimestampedMagneticEncoder" />
+              </Builder>
+            </Expression>
+            <Expression xsi:type="harp:Parse">
+              <harp:Register xsi:type="harp:ParseMessagePayload">
+                <harp:PayloadType>U8</harp:PayloadType>
+                <harp:IsArray>false</harp:IsArray>
+              </harp:Register>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Radius" />
+            </Expression>
+            <Expression xsi:type="aeon:TransformTimestamped">
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Angle</Selector>
+                  </Expression>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Radius" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="aeon:WheelDisplacement">
+                      <aeon:Radius>-4</aeon:Radius>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="3" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source2" />
+                  <Edge From="3" To="4" Label="Source1" />
+                </Edges>
+              </Workflow>
+              <aeon:IncludeTimestamp>false</aeon:IncludeTimestamp>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Name" DisplayName="WheelDisplacement" Description="The name of the output sequence carrying total distance travelled on the wheel." />
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject">
+              <Name>WheelDisplacement</Name>
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="p1:Parse">
                 <harp:Register xsi:type="p1:TimestampedAuxInState" />
-              </Expression>
-              <Expression xsi:type="aeon:TransformTimestamped">
+              </Builder>
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="aeon:TransformTimestamped">
                 <Workflow>
                   <Nodes>
                     <Expression xsi:type="WorkflowInput">
@@ -410,8 +406,10 @@ Item2.Seconds as Seconds)</scr:Expression>
                   </Edges>
                 </Workflow>
                 <aeon:IncludeTimestamp>false</aeon:IncludeTimestamp>
-              </Expression>
-              <Expression xsi:type="rx:Condition">
+              </Builder>
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="rx:Condition">
                 <Name>PelletDelivered</Name>
                 <Workflow>
                   <Nodes>
@@ -428,98 +426,52 @@ Item2.Seconds as Seconds)</scr:Expression>
                     <Edge From="1" To="2" Label="Source1" />
                   </Edges>
                 </Workflow>
-              </Expression>
-              <Expression xsi:type="MulticastSubject">
+              </Builder>
+            </Expression>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="MulticastSubject">
                 <Name>PelletDelivered</Name>
-              </Expression>
-              <Expression xsi:type="harp:Parse">
-                <harp:Register xsi:type="harp:ParseMessagePayload">
-                  <harp:Address>90</harp:Address>
-                  <harp:PayloadType>TimestampedU16</harp:PayloadType>
-                  <harp:IsArray>false</harp:IsArray>
-                </harp:Register>
-              </Expression>
-              <Expression xsi:type="aeon:TransformTimestamped">
-                <Workflow>
-                  <Nodes>
-                    <Expression xsi:type="WorkflowInput">
-                      <Name>Source1</Name>
-                    </Expression>
-                    <Expression xsi:type="ExternalizedMapping">
-                      <Property Name="Radius" />
-                    </Expression>
-                    <Expression xsi:type="Combinator">
-                      <Combinator xsi:type="aeon:WheelDisplacement">
-                        <aeon:Radius>-4</aeon:Radius>
-                      </Combinator>
-                    </Expression>
-                    <Expression xsi:type="WorkflowOutput" />
-                  </Nodes>
-                  <Edges>
-                    <Edge From="0" To="2" Label="Source1" />
-                    <Edge From="1" To="2" Label="Source2" />
-                    <Edge From="2" To="3" Label="Source1" />
-                  </Edges>
-                </Workflow>
-                <aeon:IncludeTimestamp>false</aeon:IncludeTimestamp>
-              </Expression>
-              <Expression xsi:type="rx:PublishSubject">
-                <Name>WheelDisplacement</Name>
-              </Expression>
-            </Nodes>
-            <Edges>
-              <Edge From="0" To="1" Label="Source1" />
-              <Edge From="0" To="20" Label="Source2" />
-              <Edge From="0" To="22" Label="Source2" />
-              <Edge From="1" To="2" Label="Source1" />
-              <Edge From="3" To="4" Label="Source1" />
-              <Edge From="4" To="16" Label="Source1" />
-              <Edge From="5" To="6" Label="Source1" />
-              <Edge From="6" To="10" Label="Source1" />
-              <Edge From="7" To="8" Label="Source1" />
-              <Edge From="7" To="31" Label="Source2" />
-              <Edge From="8" To="10" Label="Source2" />
-              <Edge From="9" To="10" Label="Source3" />
-              <Edge From="10" To="11" Label="Source1" />
-              <Edge From="10" To="19" Label="Source1" />
-              <Edge From="11" To="12" Label="Source1" />
-              <Edge From="12" To="16" Label="Source2" />
-              <Edge From="13" To="14" Label="Source1" />
-              <Edge From="14" To="15" Label="Source1" />
-              <Edge From="15" To="16" Label="Source3" />
-              <Edge From="16" To="18" Label="Source1" />
-              <Edge From="17" To="18" Label="Source2" />
-              <Edge From="18" To="21" Label="Source1" />
-              <Edge From="19" To="20" Label="Source1" />
-              <Edge From="20" To="21" Label="Source2" />
-              <Edge From="21" To="22" Label="Source1" />
-              <Edge From="22" To="23" Label="Source1" />
-              <Edge From="22" To="28" Label="Source1" />
-              <Edge From="22" To="32" Label="Source1" />
-              <Edge From="23" To="25" Label="Source1" />
-              <Edge From="24" To="25" Label="Source2" />
-              <Edge From="25" To="27" Label="Source1" />
-              <Edge From="26" To="27" Label="Source2" />
-              <Edge From="28" To="29" Label="Source1" />
-              <Edge From="29" To="30" Label="Source1" />
-              <Edge From="30" To="31" Label="Source1" />
-              <Edge From="32" To="33" Label="Source1" />
-              <Edge From="33" To="34" Label="Source1" />
-            </Edges>
-          </Workflow>
-        </Builder>
-      </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:UndergroundFeeder.bonsai">
-        <PatchEvents>PatchEvents</PatchEvents>
-        <SampleRate>SampleRate500Hz</SampleRate>
-        <DeliverPellet>DeliverPellet</DeliverPellet>
-        <PelletDelivered>PelletDelivered</PelletDelivered>
-        <DueTime>PT0S</DueTime>
-        <Count>0</Count>
-        <ResetFeeder>ResetFeeder</ResetFeeder>
-        <PortName>COM3</PortName>
-        <Radius>-4</Radius>
-        <WheelDisplacement>WheelDisplacement</WheelDisplacement>
+              </Builder>
+            </Expression>
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="0" To="20" Label="Source2" />
+            <Edge From="0" To="22" Label="Source2" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="4" To="16" Label="Source1" />
+            <Edge From="5" To="6" Label="Source1" />
+            <Edge From="6" To="10" Label="Source1" />
+            <Edge From="7" To="8" Label="Source1" />
+            <Edge From="7" To="32" Label="Source2" />
+            <Edge From="8" To="10" Label="Source2" />
+            <Edge From="9" To="10" Label="Source3" />
+            <Edge From="10" To="11" Label="Source1" />
+            <Edge From="10" To="19" Label="Source1" />
+            <Edge From="11" To="12" Label="Source1" />
+            <Edge From="12" To="16" Label="Source2" />
+            <Edge From="13" To="14" Label="Source1" />
+            <Edge From="14" To="15" Label="Source1" />
+            <Edge From="15" To="16" Label="Source3" />
+            <Edge From="16" To="18" Label="Source1" />
+            <Edge From="17" To="18" Label="Source2" />
+            <Edge From="18" To="21" Label="Source1" />
+            <Edge From="19" To="20" Label="Source1" />
+            <Edge From="20" To="21" Label="Source2" />
+            <Edge From="21" To="22" Label="Source1" />
+            <Edge From="22" To="23" Label="Source1" />
+            <Edge From="22" To="29" Label="Source1" />
+            <Edge From="23" To="24" Label="Source1" />
+            <Edge From="24" To="26" Label="Source1" />
+            <Edge From="25" To="26" Label="Source2" />
+            <Edge From="26" To="28" Label="Source1" />
+            <Edge From="27" To="28" Label="Source2" />
+            <Edge From="29" To="30" Label="Source1" />
+            <Edge From="30" To="31" Label="Source1" />
+            <Edge From="31" To="32" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>WheelDisplacement</Name>
@@ -1187,8 +1139,8 @@ True as Value)</scr:Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="cv:Crop">
                 <cv:RegionOfInterest>
-                  <cv:X>1179</cv:X>
-                  <cv:Y>697</cv:Y>
+                  <cv:X>1166</cv:X>
+                  <cv:Y>643</cv:Y>
                   <cv:Width>65</cv:Width>
                   <cv:Height>313</cv:Height>
                 </cv:RegionOfInterest>
@@ -1261,7 +1213,7 @@ True as Value)</scr:Expression>
               </PropertyMappings>
             </Expression>
             <Expression xsi:type="io:CsvWriter">
-              <io:FileName>D:\ProjectAeon\PatchTestNewBlackMaterial\Collection2025_01_23_11_17_04\PelletsDetected.csv</io:FileName>
+              <io:FileName>D:\ProjectAeon\PatchTestNewBlackMaterial\Collection2024_11_04_11_59_41\PelletsDetected.csv</io:FileName>
               <io:Append>false</io:Append>
               <io:Overwrite>false</io:Overwrite>
               <io:Suffix>None</io:Suffix>
@@ -1306,7 +1258,7 @@ True as Value)</scr:Expression>
               </PropertyMappings>
             </Expression>
             <Expression xsi:type="io:CsvWriter">
-              <io:FileName>D:\ProjectAeon\PatchTestNewBlackMaterial\Collection2025_01_23_11_17_04\PixelSum.csv</io:FileName>
+              <io:FileName>D:\ProjectAeon\PatchTestNewBlackMaterial\Collection2024_11_04_11_59_41\PixelSum.csv</io:FileName>
               <io:Append>false</io:Append>
               <io:Overwrite>false</io:Overwrite>
               <io:Suffix>None</io:Suffix>
@@ -1354,7 +1306,7 @@ True as Value)</scr:Expression>
               </PropertyMappings>
             </Expression>
             <Expression xsi:type="io:CsvWriter">
-              <io:FileName>D:\ProjectAeon\PatchTestNewBlackMaterial\Collection2025_01_23_11_17_04\LargestBinaryRegionArea.csv</io:FileName>
+              <io:FileName>D:\ProjectAeon\PatchTestNewBlackMaterial\Collection2024_11_04_11_59_41\LargestBinaryRegionArea.csv</io:FileName>
               <io:Append>false</io:Append>
               <io:Overwrite>false</io:Overwrite>
               <io:Suffix>None</io:Suffix>
@@ -1575,7 +1527,7 @@ True as Value)</scr:Expression>
                         </Expression>
                         <Expression xsi:type="Combinator">
                           <Combinator xsi:type="dsp:MatrixWriter">
-                            <dsp:Path>D:\ProjectAeon\PatchTestNewBlackMaterial\Collection2025_01_23_11_17_04\Streams_100</dsp:Path>
+                            <dsp:Path>D:\ProjectAeon\PatchTestNewBlackMaterial\Collection2024_11_04_11_59_41\Streams_90</dsp:Path>
                             <dsp:Suffix>None</dsp:Suffix>
                             <dsp:Overwrite>false</dsp:Overwrite>
                             <dsp:Layout>ColumnMajor</dsp:Layout>
@@ -1664,7 +1616,7 @@ True as Value)</scr:Expression>
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="io:CsvWriter">
-                    <io:FileName>D:\ProjectAeon\PatchTestNewBlackMaterial\Collection2025_01_23_11_17_04\CameraFrameIndex.csv</io:FileName>
+                    <io:FileName>D:\ProjectAeon\PatchTestNewBlackMaterial\Collection2024_11_04_11_59_41\CameraFrameIndex.csv</io:FileName>
                     <io:Append>false</io:Append>
                     <io:Overwrite>false</io:Overwrite>
                     <io:Suffix>None</io:Suffix>
@@ -1706,7 +1658,7 @@ True as Value)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="cv:VideoWriter">
-                      <cv:FileName>D:\ProjectAeon\PatchTestNewBlackMaterial\Collection2025_01_23_11_17_04\PatchVideo.avi</cv:FileName>
+                      <cv:FileName>D:\ProjectAeon\PatchTestNewBlackMaterial\Collection2024_11_04_11_59_41\PatchVideo.avi</cv:FileName>
                       <cv:Suffix>None</cv:Suffix>
                       <cv:Buffered>true</cv:Buffered>
                       <cv:Overwrite>false</cv:Overwrite>
@@ -1746,75 +1698,109 @@ True as Value)</scr:Expression>
                 </Edges>
               </Workflow>
             </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>PelletMonitor</Name>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="SubscribeSubject">
+                <Name>PelletMonitor</Name>
+              </Builder>
             </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Timestamp</Selector>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="MemberSelector">
+                <Selector>Timestamp</Selector>
+              </Builder>
             </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value</Selector>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="MemberSelector">
+                <Selector>Value</Selector>
+              </Builder>
             </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Zip" />
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="Combinator">
+                <Combinator xsi:type="rx:Zip" />
+              </Builder>
             </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>LoggingPath</Name>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="SubscribeSubject">
+                <Name>LoggingPath</Name>
+              </Builder>
             </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="StringProperty">
-                <Value>PelletMonitor.csv</Value>
-              </Combinator>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="Combinator">
+                <Combinator xsi:type="StringProperty">
+                  <Value>PelletMonitor.csv</Value>
+                </Combinator>
+              </Builder>
             </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Zip" />
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="Combinator">
+                <Combinator xsi:type="rx:Zip" />
+              </Builder>
             </Expression>
-            <Expression xsi:type="Format">
-              <Format>{0}\{1}</Format>
-              <Selector>Item1,Item2</Selector>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="Format">
+                <Format>{0}\{1}</Format>
+                <Selector>Item1,Item2</Selector>
+              </Builder>
             </Expression>
-            <Expression xsi:type="PropertyMapping">
-              <PropertyMappings>
-                <Property Name="FileName" />
-              </PropertyMappings>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="PropertyMapping">
+                <PropertyMappings>
+                  <Property Name="FileName" />
+                </PropertyMappings>
+              </Builder>
             </Expression>
-            <Expression xsi:type="io:CsvWriter">
-              <io:FileName>D:\ProjectAeon\PatchTestNewBlackMaterial\Collection2025_01_23_11_17_04\PelletMonitor.csv</io:FileName>
-              <io:Append>false</io:Append>
-              <io:Overwrite>false</io:Overwrite>
-              <io:Suffix>None</io:Suffix>
-              <io:IncludeHeader>true</io:IncludeHeader>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="io:CsvWriter">
+                <io:FileName>D:\ProjectAeon\PatchTestNewBlackMaterial\Collection2024_11_04_11_57_11\PelletMonitor.csv</io:FileName>
+                <io:Append>false</io:Append>
+                <io:Overwrite>false</io:Overwrite>
+                <io:Suffix>None</io:Suffix>
+                <io:IncludeHeader>true</io:IncludeHeader>
+              </Builder>
             </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>PatchMonitor</Name>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="SubscribeSubject">
+                <Name>PatchMonitor</Name>
+              </Builder>
             </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>LoggingPath</Name>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="SubscribeSubject">
+                <Name>LoggingPath</Name>
+              </Builder>
             </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="StringProperty">
-                <Value>PatchMonitor.bin</Value>
-              </Combinator>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="Combinator">
+                <Combinator xsi:type="StringProperty">
+                  <Value>PatchMonitor.bin</Value>
+                </Combinator>
+              </Builder>
             </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Zip" />
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="Combinator">
+                <Combinator xsi:type="rx:Zip" />
+              </Builder>
             </Expression>
-            <Expression xsi:type="Format">
-              <Format>{0}\{1}</Format>
-              <Selector>Item1,Item2</Selector>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="Format">
+                <Format>{0}\{1}</Format>
+                <Selector>Item1,Item2</Selector>
+              </Builder>
             </Expression>
-            <Expression xsi:type="PropertyMapping">
-              <PropertyMappings>
-                <Property Name="Path" />
-              </PropertyMappings>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="PropertyMapping">
+                <PropertyMappings>
+                  <Property Name="Path" />
+                </PropertyMappings>
+              </Builder>
             </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="dsp:MatrixWriter">
-                <dsp:Path>D:\ProjectAeon\PatchTestNewBlackMaterial\Collection2025_01_23_11_17_04\PatchMonitor.bin</dsp:Path>
-                <dsp:Suffix>None</dsp:Suffix>
-                <dsp:Overwrite>false</dsp:Overwrite>
-                <dsp:Layout>ColumnMajor</dsp:Layout>
-              </Combinator>
+            <Expression xsi:type="Disable">
+              <Builder xsi:type="Combinator">
+                <Combinator xsi:type="dsp:MatrixWriter">
+                  <dsp:Path>D:\ProjectAeon\PatchTestNewBlackMaterial\Collection2024_11_04_11_57_11\PatchMonitor.bin</dsp:Path>
+                  <dsp:Suffix>None</dsp:Suffix>
+                  <dsp:Overwrite>false</dsp:Overwrite>
+                  <dsp:Layout>ColumnMajor</dsp:Layout>
+                </Combinator>
+              </Builder>
             </Expression>
             <Expression xsi:type="Disable">
               <Builder xsi:type="rx:PublishSubject" TypeArguments="sys:Int64">
@@ -1873,7 +1859,7 @@ True as Value)</scr:Expression>
             </Expression>
             <Expression xsi:type="Disable">
               <Builder xsi:type="io:CsvWriter">
-                <io:FileName>D:\ProjectAeon\PatchTestNewBlackMaterial\Collection2024_11_25_14_41_08\pico_monitor_light_on_blocking_on_cover_off.csv</io:FileName>
+                <io:FileName>D:\ProjectAeon\PatchTestNewBlackMaterial\Collection2024_11_04_11_57_11\pico_monitor_light_on_blocking_on_cover_off.csv</io:FileName>
                 <io:Append>false</io:Append>
                 <io:Overwrite>false</io:Overwrite>
                 <io:Suffix>None</io:Suffix>
@@ -2066,17 +2052,17 @@ True as Value)</scr:Expression>
     </Nodes>
     <Edges>
       <Edge From="1" To="2" Label="Source1" />
+      <Edge From="5" To="6" Label="Source1" />
       <Edge From="6" To="7" Label="Source1" />
-      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="10" To="13" Label="Source1" />
       <Edge From="11" To="12" Label="Source1" />
-      <Edge From="11" To="14" Label="Source1" />
-      <Edge From="12" To="13" Label="Source1" />
-      <Edge From="18" To="19" Label="Source1" />
-      <Edge From="19" To="22" Label="Source1" />
-      <Edge From="20" To="21" Label="Source1" />
-      <Edge From="21" To="22" Label="Source2" />
-      <Edge From="22" To="23" Label="Source1" />
-      <Edge From="24" To="25" Label="Source1" />
+      <Edge From="17" To="18" Label="Source1" />
+      <Edge From="18" To="21" Label="Source1" />
+      <Edge From="19" To="20" Label="Source1" />
+      <Edge From="20" To="21" Label="Source2" />
+      <Edge From="21" To="22" Label="Source1" />
+      <Edge From="23" To="24" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
