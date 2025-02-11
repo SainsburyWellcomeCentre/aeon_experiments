@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:port="clr-namespace:Bonsai.IO.Ports;assembly=Bonsai.System"
@@ -1201,10 +1201,10 @@ True as Value)</scr:Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="cv:Crop">
                 <cv:RegionOfInterest>
-                  <cv:X>1179</cv:X>
-                  <cv:Y>697</cv:Y>
-                  <cv:Width>65</cv:Width>
-                  <cv:Height>313</cv:Height>
+                  <cv:X>587</cv:X>
+                  <cv:Y>333</cv:Y>
+                  <cv:Width>31</cv:Width>
+                  <cv:Height>156</cv:Height>
                 </cv:RegionOfInterest>
               </Combinator>
             </Expression>
@@ -1216,9 +1216,24 @@ True as Value)</scr:Expression>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="cv:Threshold">
-                <cv:ThresholdValue>145</cv:ThresholdValue>
+                <cv:ThresholdValue>142</cv:ThresholdValue>
                 <cv:MaxValue>255</cv:MaxValue>
                 <cv:ThresholdType>Binary</cv:ThresholdType>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="cv:MorphologicalOperator">
+                <cv:Size>
+                  <cv:Width>3</cv:Width>
+                  <cv:Height>3</cv:Height>
+                </cv:Size>
+                <cv:Anchor>
+                  <cv:X>-1</cv:X>
+                  <cv:Y>-1</cv:Y>
+                </cv:Anchor>
+                <cv:Shape>Rectangle</cv:Shape>
+                <cv:Iterations>1</cv:Iterations>
+                <cv:Operation>Open</cv:Operation>
               </Combinator>
             </Expression>
             <Expression xsi:type="Combinator">
@@ -1229,7 +1244,7 @@ True as Value)</scr:Expression>
                   <cv:X>0</cv:X>
                   <cv:Y>0</cv:Y>
                 </cv:Offset>
-                <cv:MinArea>50</cv:MinArea>
+                <cv:MinArea>25</cv:MinArea>
                 <cv:MaxArea xsi:nil="true" />
               </Combinator>
             </Expression>
@@ -1404,53 +1419,54 @@ True as Value)</scr:Expression>
             <Edge From="4" To="6" Label="Source1" />
             <Edge From="5" To="6" Label="Source2" />
             <Edge From="6" To="7" Label="Source1" />
-            <Edge From="6" To="22" Label="Source1" />
             <Edge From="7" To="8" Label="Source1" />
+            <Edge From="7" To="23" Label="Source1" />
             <Edge From="8" To="9" Label="Source1" />
             <Edge From="9" To="10" Label="Source1" />
             <Edge From="10" To="11" Label="Source1" />
             <Edge From="11" To="12" Label="Source1" />
-            <Edge From="11" To="14" Label="Source1" />
             <Edge From="12" To="13" Label="Source1" />
-            <Edge From="13" To="15" Label="Source1" />
-            <Edge From="14" To="15" Label="Source2" />
-            <Edge From="15" To="21" Label="Source1" />
-            <Edge From="16" To="18" Label="Source1" />
-            <Edge From="17" To="18" Label="Source2" />
-            <Edge From="18" To="19" Label="Source1" />
+            <Edge From="12" To="15" Label="Source1" />
+            <Edge From="13" To="14" Label="Source1" />
+            <Edge From="14" To="16" Label="Source1" />
+            <Edge From="15" To="16" Label="Source2" />
+            <Edge From="16" To="22" Label="Source1" />
+            <Edge From="17" To="19" Label="Source1" />
+            <Edge From="18" To="19" Label="Source2" />
             <Edge From="19" To="20" Label="Source1" />
-            <Edge From="20" To="21" Label="Source2" />
-            <Edge From="22" To="23" Label="Source1" />
+            <Edge From="20" To="21" Label="Source1" />
+            <Edge From="21" To="22" Label="Source2" />
             <Edge From="23" To="24" Label="Source1" />
             <Edge From="24" To="25" Label="Source1" />
-            <Edge From="24" To="26" Label="Source1" />
+            <Edge From="25" To="26" Label="Source1" />
             <Edge From="25" To="27" Label="Source1" />
-            <Edge From="26" To="27" Label="Source2" />
-            <Edge From="27" To="33" Label="Source1" />
-            <Edge From="28" To="30" Label="Source1" />
-            <Edge From="29" To="30" Label="Source2" />
-            <Edge From="30" To="31" Label="Source1" />
+            <Edge From="26" To="28" Label="Source1" />
+            <Edge From="27" To="28" Label="Source2" />
+            <Edge From="28" To="34" Label="Source1" />
+            <Edge From="29" To="31" Label="Source1" />
+            <Edge From="30" To="31" Label="Source2" />
             <Edge From="31" To="32" Label="Source1" />
-            <Edge From="32" To="33" Label="Source2" />
-            <Edge From="34" To="35" Label="Source1" />
+            <Edge From="32" To="33" Label="Source1" />
+            <Edge From="33" To="34" Label="Source2" />
             <Edge From="35" To="36" Label="Source1" />
             <Edge From="36" To="37" Label="Source1" />
             <Edge From="37" To="38" Label="Source1" />
-            <Edge From="37" To="39" Label="Source1" />
+            <Edge From="38" To="39" Label="Source1" />
             <Edge From="38" To="40" Label="Source1" />
-            <Edge From="39" To="40" Label="Source2" />
-            <Edge From="40" To="46" Label="Source1" />
-            <Edge From="41" To="43" Label="Source1" />
-            <Edge From="42" To="43" Label="Source2" />
-            <Edge From="43" To="44" Label="Source1" />
+            <Edge From="39" To="41" Label="Source1" />
+            <Edge From="40" To="41" Label="Source2" />
+            <Edge From="41" To="47" Label="Source1" />
+            <Edge From="42" To="44" Label="Source1" />
+            <Edge From="43" To="44" Label="Source2" />
             <Edge From="44" To="45" Label="Source1" />
-            <Edge From="45" To="46" Label="Source2" />
-            <Edge From="47" To="48" Label="Source1" />
+            <Edge From="45" To="46" Label="Source1" />
+            <Edge From="46" To="47" Label="Source2" />
             <Edge From="48" To="49" Label="Source1" />
-            <Edge From="48" To="50" Label="Source2" />
             <Edge From="49" To="50" Label="Source1" />
+            <Edge From="49" To="51" Label="Source2" />
             <Edge From="50" To="51" Label="Source1" />
             <Edge From="51" To="52" Label="Source1" />
+            <Edge From="52" To="53" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -1730,7 +1746,7 @@ True as Value)</scr:Expression>
                       <cv:Buffered>true</cv:Buffered>
                       <cv:Overwrite>false</cv:Overwrite>
                       <cv:FourCC>FMP4</cv:FourCC>
-                      <cv:FrameRate>30</cv:FrameRate>
+                      <cv:FrameRate>120</cv:FrameRate>
                       <cv:FrameSize>
                         <cv:Width>0</cv:Width>
                         <cv:Height>0</cv:Height>
@@ -2088,19 +2104,21 @@ True as Value)</scr:Expression>
     </Nodes>
     <Edges>
       <Edge From="1" To="2" Label="Source1" />
-      <Edge From="6" To="7" Label="Source1" />
-      <Edge From="7" To="8" Label="Source1" />
-      <Edge From="11" To="12" Label="Source1" />
-      <Edge From="11" To="14" Label="Source1" />
-      <Edge From="12" To="13" Label="Source1" />
-      <Edge From="15" To="16" Label="Source1" />
-      <Edge From="19" To="20" Label="Source1" />
-      <Edge From="20" To="23" Label="Source1" />
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="9" To="10" Label="Source1" />
+      <Edge From="13" To="14" Label="Source1" />
+      <Edge From="13" To="16" Label="Source1" />
+      <Edge From="14" To="15" Label="Source1" />
+      <Edge From="17" To="18" Label="Source1" />
       <Edge From="21" To="22" Label="Source1" />
-      <Edge From="22" To="23" Label="Source2" />
+      <Edge From="22" To="25" Label="Source1" />
       <Edge From="23" To="24" Label="Source1" />
+      <Edge From="24" To="25" Label="Source2" />
       <Edge From="25" To="26" Label="Source1" />
-      <Edge From="26" To="27" Label="Source1" />
+      <Edge From="27" To="28" Label="Source1" />
+      <Edge From="28" To="29" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
