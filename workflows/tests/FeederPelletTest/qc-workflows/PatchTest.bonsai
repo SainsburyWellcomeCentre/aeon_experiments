@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:port="clr-namespace:Bonsai.IO.Ports;assembly=Bonsai.System"
@@ -78,6 +78,14 @@
       </Expression>
       <Expression xsi:type="rx:PublishSubject">
         <Name>CameraPatch</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:BufferTime">
+          <rx:TimeSpan>PT1S</rx:TimeSpan>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Count</Selector>
       </Expression>
       <Expression xsi:type="aeon:StateRecoverySubject" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)">
         <aeon:Name>PatchState</aeon:Name>
