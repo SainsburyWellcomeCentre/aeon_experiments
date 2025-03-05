@@ -1,14 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.8.1"
+<WorkflowBuilder Version="2.8.2"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:num="clr-namespace:Bonsai.Numerics;assembly=Bonsai.Numerics"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
                  xmlns:io="clr-namespace:Bonsai.IO;assembly=Bonsai.System"
-                 xmlns:p1="clr-namespace:Social;assembly=Extensions"
-                 xmlns:p2="clr-namespace:;assembly=Extensions"
+                 xmlns:p1="clr-namespace:Bonsai.Numerics.Distributions;assembly=Bonsai.Numerics"
+                 xmlns:p2="clr-namespace:Social;assembly=Extensions"
+                 xmlns:p3="clr-namespace:;assembly=Extensions"
+                 xmlns:p4="clr-namespace:System.Reactive;assembly=System.Reactive.Core"
                  xmlns:scr="clr-namespace:Bonsai.Scripting.Expressions;assembly=Bonsai.Scripting.Expressions"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
-                 xmlns:p3="clr-namespace:Bonsai.Numerics.Distributions;assembly=Bonsai.Numerics"
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
@@ -21,32 +23,292 @@
       <Expression xsi:type="rx:AsyncSubject">
         <Name>Random</Name>
       </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>DayTransition</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Heartbeats</Name>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="aeon:GetDateTime" />
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Day</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:DistinctUntilChanged" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Skip">
+                <rx:Count>1</rx:Count>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="StringProperty">
+                <Value>DayTransition</Value>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="5" To="6" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>ReloadEnvironment</Name>
       </Expression>
-      <Expression xsi:type="ExternalizedMapping">
-        <Property Name="EnvironmentConfigPath" />
+      <Expression xsi:type="MemberSelector">
+        <Selector>Value</Selector>
       </Expression>
-      <Expression xsi:type="rx:SelectMany">
-        <Name>ReadEnvironment</Name>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Merge" />
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>ReloadEnvironment</Name>
         <Workflow>
           <Nodes>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Path" DisplayName="EnvironmentConfigPath" Description="The relative or absolute path of the file describing environment configuration parameters." />
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
             </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="io:ReadAllText">
-                <io:Path>EnvironmentRandom.yml</io:Path>
-              </Combinator>
+            <Expression xsi:type="rx:SelectMany">
+              <Name>GetEnvironmentFiles</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Path" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="io:GetFiles">
+                      <io:Path>Environments</io:Path>
+                      <io:SearchPattern>*.yml</io:SearchPattern>
+                      <io:SearchOption>TopDirectoryOnly</io:SearchOption>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
             </Expression>
-            <Expression xsi:type="p1:DeserializeFromYaml">
-              <p1:Type xsi:type="TypeMapping" TypeArguments="p1:Environment" />
+            <Expression xsi:type="rx:Condition">
+              <Name>NonEmpty</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Length</Selector>
+                  </Expression>
+                  <Expression xsi:type="GreaterThan">
+                    <Operand xsi:type="IntProperty">
+                      <Value>0</Value>
+                    </Operand>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                </Edges>
+              </Workflow>
             </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="p2:ValidateEnvironment" />
+            <Expression xsi:type="rx:SelectMany">
+              <Name>SampleEnvironment</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="rx:AsyncSubject">
+                    <Name>EnvironmentFiles</Name>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>EnvironmentFiles</Name>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>EnvironmentFiles</Name>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Length</Selector>
+                  </Expression>
+                  <Expression xsi:type="Subtract">
+                    <Operand xsi:type="IntProperty">
+                      <Value>1</Value>
+                    </Operand>
+                  </Expression>
+                  <Expression xsi:type="PropertyMapping">
+                    <PropertyMappings>
+                      <Property Name="Upper" />
+                    </PropertyMappings>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="p1:CreateDiscreteUniform">
+                      <p1:Lower>0</p1:Lower>
+                      <p1:Upper>0</p1:Upper>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="p1:Sample" />
+                  </Expression>
+                  <Expression xsi:type="PropertyMapping">
+                    <PropertyMappings>
+                      <Property Name="Value" />
+                    </PropertyMappings>
+                  </Expression>
+                  <Expression xsi:type="Index">
+                    <Operand xsi:type="IntProperty">
+                      <Value>0</Value>
+                    </Operand>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="2" To="10" Label="Source1" />
+                  <Edge From="3" To="4" Label="Source1" />
+                  <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="5" To="6" Label="Source1" />
+                  <Edge From="6" To="7" Label="Source1" />
+                  <Edge From="7" To="8" Label="Source1" />
+                  <Edge From="8" To="9" Label="Source1" />
+                  <Edge From="9" To="10" Label="Source2" />
+                  <Edge From="10" To="11" Label="Source1" />
+                </Edges>
+              </Workflow>
             </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Catch" />
+            <Expression xsi:type="rx:SelectMany">
+              <Name>ReadEnvironment</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="rx:AsyncSubject">
+                    <Name>Path</Name>
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>Path</Name>
+                  </Expression>
+                  <Expression xsi:type="PropertyMapping">
+                    <PropertyMappings>
+                      <Property Name="Path" />
+                    </PropertyMappings>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="io:ReadAllText" />
+                  </Expression>
+                  <Expression xsi:type="p2:DeserializeFromYaml">
+                    <p2:Type xsi:type="TypeMapping" TypeArguments="p2:Environment" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="p3:ValidateEnvironment" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:Materialize" />
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>Path</Name>
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="rx:WithLatestFrom" />
+                  </Expression>
+                  <Expression xsi:type="rx:Sink">
+                    <Name>WriteErrorTrace</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="rx:Condition">
+                          <Name>OnError</Name>
+                          <Workflow>
+                            <Nodes>
+                              <Expression xsi:type="WorkflowInput">
+                                <Name>Source1</Name>
+                              </Expression>
+                              <Expression xsi:type="MemberSelector">
+                                <Selector>Item1.Kind</Selector>
+                              </Expression>
+                              <Expression xsi:type="Equal">
+                                <Operand xsi:type="WorkflowProperty" TypeArguments="p4:NotificationKind">
+                                  <Value>OnError</Value>
+                                </Operand>
+                              </Expression>
+                              <Expression xsi:type="WorkflowOutput" />
+                            </Nodes>
+                            <Edges>
+                              <Edge From="0" To="1" Label="Source1" />
+                              <Edge From="1" To="2" Label="Source1" />
+                              <Edge From="2" To="3" Label="Source1" />
+                            </Edges>
+                          </Workflow>
+                        </Expression>
+                        <Expression xsi:type="scr:ExpressionTransform">
+                          <scr:Expression>"[LoadEnvironment Error]: (" + Item2 + ") " + Item1.Exception.ToString()</scr:Expression>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="io:WriteLine" />
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                        <Edge From="3" To="4" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="rx:Condition">
+                    <Name>OnNext</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Item1.HasValue</Selector>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Item1.Value</Selector>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="2" To="3" Label="Source1" />
+                  <Edge From="3" To="4" Label="Source1" />
+                  <Edge From="3" To="6" Label="Source2" />
+                  <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="5" To="6" Label="Source1" />
+                  <Edge From="6" To="7" Label="Source1" />
+                  <Edge From="7" To="9" Label="Source1" />
+                  <Edge From="8" To="9" Label="Source2" />
+                  <Edge From="9" To="10" Label="Source1" />
+                  <Edge From="10" To="11" Label="Source1" />
+                  <Edge From="11" To="12" Label="Source1" />
+                  <Edge From="12" To="13" Label="Source1" />
+                </Edges>
+              </Workflow>
             </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
@@ -61,6 +323,130 @@
       </Expression>
       <Expression xsi:type="MulticastSubject">
         <Name>EnvironmentConfiguration</Name>
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>EnvironmentLoaded</Name>
+      </Expression>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>PatchLogic</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Patch1WheelDisplacement</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value</Selector>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="DistanceThreshold" DisplayName="ThresholdPatch1" />
+              <Property Name="Rate" DisplayName="RatePatch1" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
+              <Name>Patch1DistanceState</Name>
+              <DistanceThreshold>75</DistanceThreshold>
+              <Rate>0.01</Rate>
+              <DeliveryCount>Patch1DeliveryCount</DeliveryCount>
+              <PatchState>Patch1State</PatchState>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>Patch1DeliverPellet</Name>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>Patch1ThresholdCrossing</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Patch2WheelDisplacement</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value</Selector>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="DistanceThreshold" DisplayName="ThresholdPatch2" />
+              <Property Name="Rate" DisplayName="RatePatch2" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
+              <Name>Patch2DistanceState</Name>
+              <DistanceThreshold>75</DistanceThreshold>
+              <Rate>0.01</Rate>
+              <DeliveryCount>Patch2DeliveryCount</DeliveryCount>
+              <PatchState>Patch2State</PatchState>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>Patch2DeliverPellet</Name>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>Patch2ThresholdCrossing</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>Patch3WheelDisplacement</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value</Selector>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="DistanceThreshold" DisplayName="ThresholdPatch3" />
+              <Property Name="Rate" DisplayName="RatePatch3" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
+              <Name>Patch3DistanceState</Name>
+              <DistanceThreshold>75</DistanceThreshold>
+              <Rate>0.01</Rate>
+              <DeliveryCount>Patch3DeliveryCount</DeliveryCount>
+              <PatchState>Patch3State</PatchState>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>Patch3DeliverPellet</Name>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>Patch3ThresholdCrossing</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>PatchDummy1WheelDisplacement</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Value</Selector>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="DistanceThreshold" DisplayName="ThresholdPatchDummy1" />
+              <Property Name="Rate" DisplayName="RatePatchDummy1" />
+            </Expression>
+            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
+              <Name>PatchDummy1DistanceState</Name>
+              <DistanceThreshold>75</DistanceThreshold>
+              <Rate>0.01</Rate>
+              <DeliveryCount>PatchDummy1DeliveryCount</DeliveryCount>
+              <PatchState>PatchDummy1State</PatchState>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>PatchDummy1DeliverPellet</Name>
+            </Expression>
+            <Expression xsi:type="MulticastSubject">
+              <Name>PatchDummy1ThresholdCrossing</Name>
+            </Expression>
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="3" Label="Source1" />
+            <Edge From="2" To="3" Label="Source2" />
+            <Edge From="3" To="4" Label="Source1" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="9" Label="Source1" />
+            <Edge From="8" To="9" Label="Source2" />
+            <Edge From="9" To="10" Label="Source1" />
+            <Edge From="10" To="11" Label="Source1" />
+            <Edge From="12" To="13" Label="Source1" />
+            <Edge From="13" To="15" Label="Source1" />
+            <Edge From="14" To="15" Label="Source2" />
+            <Edge From="15" To="16" Label="Source1" />
+            <Edge From="16" To="17" Label="Source1" />
+            <Edge From="18" To="19" Label="Source1" />
+            <Edge From="19" To="21" Label="Source1" />
+            <Edge From="20" To="21" Label="Source2" />
+            <Edge From="21" To="22" Label="Source1" />
+            <Edge From="22" To="23" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
       <Expression xsi:type="rx:Defer">
         <Name>BlockLogic</Name>
@@ -226,7 +612,7 @@
               </Workflow>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
-              <Name>ReloadEnvironment</Name>
+              <Name>EnvironmentLoaded</Name>
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="IntProperty">
@@ -353,16 +739,14 @@
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:CreateCategorical">
-                      <p3:ProbabilityMass>
-                        <p3:double>1</p3:double>
-                        <p3:double>1</p3:double>
-                        <p3:double>1</p3:double>
-                      </p3:ProbabilityMass>
+                    <Combinator xsi:type="p1:CreateCategorical">
+                      <p1:ProbabilityMass>
+                        <p1:double>1</p1:double>
+                      </p1:ProbabilityMass>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:Sample" />
+                    <Combinator xsi:type="p1:Sample" />
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Take">
@@ -429,13 +813,13 @@
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:CreateDiscreteUniform">
-                      <p3:Lower>5</p3:Lower>
-                      <p3:Upper>15</p3:Upper>
+                    <Combinator xsi:type="p1:CreateDiscreteUniform">
+                      <p1:Lower>0</p1:Lower>
+                      <p1:Upper>0</p1:Upper>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:Sample" />
+                    <Combinator xsi:type="p1:Sample" />
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
                     <Name>Random</Name>
@@ -450,13 +834,13 @@
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:CreateContinuousUniform">
-                      <p3:Lower>0</p3:Lower>
-                      <p3:Upper>0</p3:Upper>
+                    <Combinator xsi:type="p1:CreateContinuousUniform">
+                      <p1:Lower>0</p1:Lower>
+                      <p1:Upper>0</p1:Upper>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p3:Sample" />
+                    <Combinator xsi:type="p1:Sample" />
                   </Expression>
                   <Expression xsi:type="SubscribeSubject">
                     <Name>Heartbeats</Name>
@@ -489,6 +873,8 @@
   Item1["patch2"].Distribution.Rate as RatePatch2,
   Item1["patch3"].Distribution.Offset as ThresholdPatch3,
   Item1["patch3"].Distribution.Rate as RatePatch3,
+  Item1["patchDummy1"].Distribution.Offset as ThresholdPatchDummy1,
+  Item1["patchDummy1"].Distribution.Rate as RatePatchDummy1,
   0 as BlockPelletCount,
   Item2 as BlockMaxPellets,
   Item3 as BlockDueTime
@@ -577,17 +963,33 @@ RatePatch3 as Rate)</scr:Expression>
                   <Expression xsi:type="MulticastSubject">
                     <Name>Patch3State</Name>
                   </Expression>
+                  <Expression xsi:type="scr:ExpressionTransform">
+                    <scr:Expression>new(
+Double.NaN as Threshold,
+ThresholdPatchDummy1 as D0,
+RatePatchDummy1 as Rate)</scr:Expression>
+                  </Expression>
+                  <Expression xsi:type="MemberSelector">
+                    <Selector>Threshold,D0,Rate</Selector>
+                    <TypeMapping xsi:type="TypeMapping" TypeArguments="sys:ValueTuple(sys:Double,sys:Double,sys:Double)" />
+                  </Expression>
+                  <Expression xsi:type="MulticastSubject">
+                    <Name>PatchDummy1State</Name>
+                  </Expression>
                 </Nodes>
                 <Edges>
                   <Edge From="0" To="1" Label="Source1" />
                   <Edge From="0" To="4" Label="Source1" />
                   <Edge From="0" To="7" Label="Source1" />
+                  <Edge From="0" To="10" Label="Source1" />
                   <Edge From="1" To="2" Label="Source1" />
                   <Edge From="2" To="3" Label="Source1" />
                   <Edge From="4" To="5" Label="Source1" />
                   <Edge From="5" To="6" Label="Source1" />
                   <Edge From="7" To="8" Label="Source1" />
                   <Edge From="8" To="9" Label="Source1" />
+                  <Edge From="10" To="11" Label="Source1" />
+                  <Edge From="11" To="12" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
@@ -612,10 +1014,10 @@ RatePatch3 as Rate)</scr:Expression>
                           </PropertyMappings>
                         </Expression>
                         <Expression xsi:type="Combinator">
-                          <Combinator xsi:type="p1:BlockState">
-                            <p1:PelletCount>0</p1:PelletCount>
-                            <p1:MaxPellets>0</p1:MaxPellets>
-                            <p1:DueTime>0</p1:DueTime>
+                          <Combinator xsi:type="p2:BlockState">
+                            <p2:PelletCount>0</p2:PelletCount>
+                            <p2:MaxPellets>0</p2:MaxPellets>
+                            <p2:DueTime>0</p2:DueTime>
                           </Combinator>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
@@ -639,15 +1041,6 @@ RatePatch3 as Rate)</scr:Expression>
                 </Edges>
               </Workflow>
             </Expression>
-            <Expression xsi:type="scr:ExpressionTransform">
-              <scr:Expression>new(
-  ThresholdPatch1 as ThresholdPatch1,
-  RatePatch1 as RatePatch1,
-  ThresholdPatch2 as ThresholdPatch2,
-  RatePatch2 as RatePatch2,
-  ThresholdPatch3 as ThresholdPatch3,
-  RatePatch3 as RatePatch3)</scr:Expression>
-            </Expression>
             <Expression xsi:type="WorkflowOutput" />
           </Nodes>
           <Edges>
@@ -656,110 +1049,6 @@ RatePatch3 as Rate)</scr:Expression>
             <Edge From="2" To="3" Label="Source1" />
             <Edge From="3" To="4" Label="Source1" />
             <Edge From="4" To="5" Label="Source1" />
-            <Edge From="5" To="6" Label="Source1" />
-          </Edges>
-        </Workflow>
-      </Expression>
-      <Expression xsi:type="PropertyMapping">
-        <PropertyMappings>
-          <Property Name="ThresholdPatch1" Selector="ThresholdPatch1" />
-          <Property Name="RatePatch1" Selector="RatePatch1" />
-          <Property Name="ThresholdPatch2" Selector="ThresholdPatch2" />
-          <Property Name="RatePatch2" Selector="RatePatch2" />
-          <Property Name="ThresholdPatch3" Selector="ThresholdPatch3" />
-          <Property Name="RatePatch3" Selector="RatePatch3" />
-        </PropertyMappings>
-      </Expression>
-      <Expression xsi:type="GroupWorkflow">
-        <Name>PatchLogic</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>Patch1WheelDisplacement</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value</Selector>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="DistanceThreshold" DisplayName="ThresholdPatch1" />
-              <Property Name="Rate" DisplayName="RatePatch1" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
-              <Name>Patch1DistanceState</Name>
-              <DistanceThreshold>75</DistanceThreshold>
-              <Rate>0.01</Rate>
-              <DeliveryCount>Patch1DeliveryCount</DeliveryCount>
-              <PatchState>Patch1State</PatchState>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>Patch1DeliverPellet</Name>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>Patch1ThresholdCrossing</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>Patch2WheelDisplacement</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value</Selector>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="DistanceThreshold" DisplayName="ThresholdPatch2" />
-              <Property Name="Rate" DisplayName="RatePatch2" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
-              <Name>Patch2DistanceState</Name>
-              <DistanceThreshold>75</DistanceThreshold>
-              <Rate>0.01</Rate>
-              <DeliveryCount>Patch2DeliveryCount</DeliveryCount>
-              <PatchState>Patch2State</PatchState>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>Patch2DeliverPellet</Name>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>Patch2ThresholdCrossing</Name>
-            </Expression>
-            <Expression xsi:type="SubscribeSubject">
-              <Name>Patch3WheelDisplacement</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>Value</Selector>
-            </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="DistanceThreshold" DisplayName="ThresholdPatch3" />
-              <Property Name="Rate" DisplayName="RatePatch3" />
-            </Expression>
-            <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:RandomDepletion.bonsai">
-              <Name>Patch3DistanceState</Name>
-              <DistanceThreshold>75</DistanceThreshold>
-              <Rate>0.01</Rate>
-              <DeliveryCount>Patch3DeliveryCount</DeliveryCount>
-              <PatchState>Patch3State</PatchState>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>Patch3DeliverPellet</Name>
-            </Expression>
-            <Expression xsi:type="MulticastSubject">
-              <Name>Patch3ThresholdCrossing</Name>
-            </Expression>
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="3" Label="Source1" />
-            <Edge From="2" To="3" Label="Source2" />
-            <Edge From="3" To="4" Label="Source1" />
-            <Edge From="4" To="5" Label="Source1" />
-            <Edge From="6" To="7" Label="Source1" />
-            <Edge From="7" To="9" Label="Source1" />
-            <Edge From="8" To="9" Label="Source2" />
-            <Edge From="9" To="10" Label="Source1" />
-            <Edge From="10" To="11" Label="Source1" />
-            <Edge From="12" To="13" Label="Source1" />
-            <Edge From="13" To="15" Label="Source1" />
-            <Edge From="14" To="15" Label="Source2" />
-            <Edge From="15" To="16" Label="Source1" />
-            <Edge From="16" To="17" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
@@ -783,6 +1072,9 @@ RatePatch3 as Rate)</scr:Expression>
       </Expression>
       <Expression xsi:type="rx:PublishSubject" TypeArguments="sys:Int32">
         <rx:Name>Patch3ThresholdCrossing</rx:Name>
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject" TypeArguments="sys:Int32">
+        <rx:Name>PatchDummy1ThresholdCrossing</rx:Name>
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>UpdatePelletCount</Name>
@@ -811,10 +1103,10 @@ RatePatch3 as Rate)</scr:Expression>
                     </PropertyMappings>
                   </Expression>
                   <Expression xsi:type="Combinator">
-                    <Combinator xsi:type="p1:BlockState">
-                      <p1:PelletCount>0</p1:PelletCount>
-                      <p1:MaxPellets>0</p1:MaxPellets>
-                      <p1:DueTime>0</p1:DueTime>
+                    <Combinator xsi:type="p2:BlockState">
+                      <p2:PelletCount>0</p2:PelletCount>
+                      <p2:MaxPellets>0</p2:MaxPellets>
+                      <p2:DueTime>0</p2:DueTime>
                     </Combinator>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
@@ -843,17 +1135,18 @@ RatePatch3 as Rate)</scr:Expression>
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
-      <Edge From="2" To="4" Label="Source1" />
-      <Edge From="3" To="4" Label="Source2" />
-      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="2" To="5" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="4" To="5" Label="Source2" />
+      <Edge From="5" To="6" Label="Source1" />
       <Edge From="6" To="7" Label="Source1" />
       <Edge From="7" To="8" Label="Source1" />
-      <Edge From="8" To="9" Label="Source1" />
-      <Edge From="8" To="11" Label="Source2" />
-      <Edge From="9" To="10" Label="Source1" />
+      <Edge From="9" To="13" Label="Source1" />
       <Edge From="10" To="11" Label="Source1" />
       <Edge From="11" To="12" Label="Source1" />
+      <Edge From="12" To="13" Label="Source2" />
       <Edge From="13" To="14" Label="Source1" />
+      <Edge From="15" To="16" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
