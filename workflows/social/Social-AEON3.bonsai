@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.2"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
@@ -1171,7 +1171,7 @@
                     <Property Name="TetherGuideHeight" />
                     <Property Name="TetherMaxSlackLength" />
                     <Property Name="LinearRailLength" />
-                    <Property Name="RadialDistanceOffset" />
+                    <Property Name="MotorPlumbLine" />
                     <Property Name="LinearDriveSetPosition" />
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Extensions\TetherSlackController.bonsai">
@@ -1186,7 +1186,10 @@
                     <TetherGuideHeight>17</TetherGuideHeight>
                     <TetherMaxSlackLength>58.523</TetherMaxSlackLength>
                     <LinearRailLength>56</LinearRailLength>
-                    <RadialDistanceOffset>15</RadialDistanceOffset>
+                    <MotorPlumbLine>
+                      <X>728</X>
+                      <Y>628</Y>
+                    </MotorPlumbLine>
                     <LinearDriveSetPosition>LinearDriveSetPosition</LinearDriveSetPosition>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />

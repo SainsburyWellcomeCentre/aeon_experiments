@@ -1,7 +1,6 @@
 using Bonsai;
 using System;
 using System.ComponentModel;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
 using Bonsai.Vision;
@@ -26,6 +25,9 @@ public class GetLinearDrivePosition
     [Description("The coordinates of the arena center, in pixels.")]
     public Point ArenaCenter { get; set; }
 
+    [Description("The coordinates of the motor plumb line on the floor of the arena, in pixels.")]
+    public Point MotorPlumbLine { get; set; }
+
     [Description("The radius of the circular arena, in pixels.")]
     public double ArenaRadiusPixels { get; set; }
 
@@ -44,9 +46,6 @@ public class GetLinearDrivePosition
     [Description("Length of the linear drive rail, in centimeters.")]
     public double LinearRailLength { get; set; }
 
-    [Description("Horizontal distance between center of the arena and the plumb line from the bottom of the tether guide, in centimeters.")]
-    public double RadialDistanceOffset { get; set; }
-
     public IObservable<double> Process(IObservable<ConnectedComponentCollection> source)
     {
         return source.Select(value =>
@@ -57,13 +56,22 @@ public class GetLinearDrivePosition
             var center = ArenaCenter;
             var tetherGuideAltitude = TetherGuideAltitude; // c2
             var tetherGuideHeight = TetherGuideHeight;
+            var motorPlumbLine = MotorPlumbLine;
             var pixelsToCentimeters = ArenaRadiusCentimeters / ArenaRadiusPixels;
             var centroid = value[0].Centroid;
             centroid.X -= center.X;
             centroid.Y -= center.Y;
-            var radialDistance = Math.Sqrt(centroid.X * centroid.X + centroid.Y * centroid.Y) * pixelsToCentimeters + RadialDistanceOffset; // c1
+
+            // Get motor plumb line position relative to the arena center
+            var motorOffsetX = motorPlumbLine.X - center.X;
+            var motorOffsetY = motorPlumbLine.Y - center.Y;
+
+            // Compute radial distance from the motor's plumb line
+            var radialDistance = Math.Sqrt((centroid.X - motorOffsetX) * (centroid.X - motorOffsetX) + (centroid.Y - motorOffsetY) * (centroid.Y - motorOffsetY)) * pixelsToCentimeters;
             var distanceToTetherGuide = Math.Sqrt(radialDistance * radialDistance + tetherGuideAltitude * tetherGuideAltitude);
-            var tetherGuideSlack = distanceToTetherGuide - tetherGuideAltitude; // D
+
+            // Slack adjustment and motor position
+            var tetherGuideSlack = distanceToTetherGuide - tetherGuideAltitude;
             var remainingSlack = TetherMaxSlackLength - tetherGuideSlack;
             var linearMotorPosition = Math.Sqrt(remainingSlack * remainingSlack - tetherGuideHeight * tetherGuideHeight);
             return linearMotorPosition / LinearRailLength;
