@@ -708,7 +708,7 @@
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
                           <HardwareNotificationsState>None</HardwareNotificationsState>
-                          <PortName>COM12</PortName>
+                          <PortName>COM35</PortName>
                           <RfidEvents>Patch1RfidEvents</RfidEvents>
                           <Location>
                             <X>940</X>
