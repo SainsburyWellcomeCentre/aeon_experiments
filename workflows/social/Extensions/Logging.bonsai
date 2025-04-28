@@ -21,7 +21,7 @@
         <Property Name="WorkflowName" />
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
-        <WorkflowName>Phields-Social-AEON4.bonsai</WorkflowName>
+<WorkflowName />
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>SynchronizerEvents</Name>
