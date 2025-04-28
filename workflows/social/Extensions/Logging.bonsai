@@ -13,7 +13,7 @@
     <Nodes>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:RepositoryLogController.bonsai">
         <RepositoryPath>..\..\</RepositoryPath>
-        <DataPath>D:\ProjectAeon</DataPath>
+        <DataPath>D:\ProjectPhields</DataPath>
         <FallbackPath>D:\Tests</FallbackPath>
         <ChunkSize>1</ChunkSize>
       </Expression>
@@ -21,7 +21,7 @@
         <Property Name="WorkflowName" />
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:ExportMetadata.bonsai">
-        <WorkflowName />
+<WorkflowName />
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>SynchronizerEvents</Name>
