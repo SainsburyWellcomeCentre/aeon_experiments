@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.8.1"
+<WorkflowBuilder Version="2.8.2"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
@@ -1131,7 +1131,7 @@
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\Visualization.bonsai" />
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\Alerts.bonsai" />
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\Logging.bonsai">
-        <WorkflowName>Social-AEON4.bonsai</WorkflowName>
+        <WorkflowName>Phields-Social-AEON4.bonsai</WorkflowName>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="SelectedStream" />
