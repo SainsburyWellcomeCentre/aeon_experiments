@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.2"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
@@ -72,7 +72,7 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
-                          <ExposureTime>7500</ExposureTime>
+                          <ExposureTime>4500</ExposureTime>
                           <SerialNumber>23032909</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
