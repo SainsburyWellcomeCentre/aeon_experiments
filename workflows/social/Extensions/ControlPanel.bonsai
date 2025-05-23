@@ -1196,6 +1196,9 @@ FilteredWeight.Value - BaselinedWeight.Value as Baseline)</scr:Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>Heatmap</Name>
             </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>LedTrackingImage</Name>
+            </Expression>
             <Expression xsi:type="ExternalizedMapping">
               <Property Name="SelectedStream" />
             </Expression>
@@ -1213,6 +1216,7 @@ FilteredWeight.Value - BaselinedWeight.Value as Baseline)</scr:Expression>
                   <p1:string>CameraPatch2</p1:string>
                   <p1:string>CameraPatch3</p1:string>
                   <p1:string>HeatMap</p1:string>
+                  <p1:string>LedTrackingTop</p1:string>
                 </p1:StreamNames>
               </Combinator>
             </Expression>
@@ -1220,26 +1224,27 @@ FilteredWeight.Value - BaselinedWeight.Value as Baseline)</scr:Expression>
           </Nodes>
           <Edges>
             <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="20" Label="Source1" />
+            <Edge From="1" To="21" Label="Source1" />
             <Edge From="2" To="3" Label="Source1" />
-            <Edge From="3" To="20" Label="Source2" />
+            <Edge From="3" To="21" Label="Source2" />
             <Edge From="4" To="5" Label="Source1" />
-            <Edge From="5" To="20" Label="Source3" />
+            <Edge From="5" To="21" Label="Source3" />
             <Edge From="6" To="7" Label="Source1" />
-            <Edge From="7" To="20" Label="Source4" />
+            <Edge From="7" To="21" Label="Source4" />
             <Edge From="8" To="9" Label="Source1" />
-            <Edge From="9" To="20" Label="Source5" />
+            <Edge From="9" To="21" Label="Source5" />
             <Edge From="10" To="11" Label="Source1" />
-            <Edge From="11" To="20" Label="Source6" />
+            <Edge From="11" To="21" Label="Source6" />
             <Edge From="12" To="13" Label="Source1" />
-            <Edge From="13" To="20" Label="Source7" />
+            <Edge From="13" To="21" Label="Source7" />
             <Edge From="14" To="15" Label="Source1" />
-            <Edge From="15" To="20" Label="Source8" />
+            <Edge From="15" To="21" Label="Source8" />
             <Edge From="16" To="17" Label="Source1" />
-            <Edge From="17" To="20" Label="Source9" />
-            <Edge From="18" To="20" Label="Source10" />
-            <Edge From="19" To="20" Label="Source11" />
-            <Edge From="20" To="21" Label="Source1" />
+            <Edge From="17" To="21" Label="Source9" />
+            <Edge From="18" To="21" Label="Source10" />
+            <Edge From="19" To="21" Label="Source11" />
+            <Edge From="20" To="21" Label="Source12" />
+            <Edge From="21" To="22" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
