@@ -5,6 +5,7 @@
                  xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
+                 xmlns:drw="clr-namespace:Bonsai.Vision.Drawing;assembly=Bonsai.Vision"
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
                  xmlns:p1="clr-namespace:System.Reactive;assembly=System.Reactive.Core"
                  xmlns="https://bonsai-rx.org/2018/workflow">
@@ -931,7 +932,9 @@
                   </Expression>
                   <Expression xsi:type="ExternalizedMapping">
                     <Property Name="ThresholdValue" />
-                    <Property Name="TrackingEvents" />
+                  </Expression>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="LedTrackingEvents" />
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
                     <Name>LedPositionTracking</Name>
@@ -1219,7 +1222,7 @@
                           <Combinator xsi:type="harp:CreateTimestamped" />
                         </Expression>
                         <Expression xsi:type="ExternalizedMapping">
-                          <Property Name="Name" DisplayName="TrackingEvents" />
+                          <Property Name="Name" DisplayName="LedTrackingEvents" />
                         </Expression>
                         <Expression xsi:type="rx:PublishSubject">
                           <Name>LedTrackingTop</Name>
@@ -1248,16 +1251,161 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
-                  <Expression xsi:type="MemberSelector">
-                    <Selector>Value.Count</Selector>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>LedTrackingImage</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>CameraTop</Name>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="drw:CreateCanvas">
+                            <drw:Size>
+                              <drw:Width>1440</drw:Width>
+                              <drw:Height>1080</drw:Height>
+                            </drw:Size>
+                            <drw:Depth>U8</drw:Depth>
+                            <drw:Channels>3</drw:Channels>
+                            <drw:Color>
+                              <drw:Val0>0</drw:Val0>
+                              <drw:Val1>0</drw:Val1>
+                              <drw:Val2>0</drw:Val2>
+                              <drw:Val3>0</drw:Val3>
+                            </drw:Color>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>CameraTop</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Value.Image</Selector>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="cv:ConvertColor">
+                            <cv:Conversion>Gray2Bgr</cv:Conversion>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="PropertyMapping">
+                          <PropertyMappings>
+                            <Property Name="Image" />
+                          </PropertyMappings>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="drw:AddImage">
+                            <drw:Destination>
+                              <drw:X>0</drw:X>
+                              <drw:Y>0</drw:Y>
+                              <drw:Width>0</drw:Width>
+                              <drw:Height>0</drw:Height>
+                            </drw:Destination>
+                            <drw:Interpolation>Linear</drw:Interpolation>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="Name" DisplayName="LedTrackingEvents" />
+                        </Expression>
+                        <Expression xsi:type="rx:Condition">
+                          <Workflow>
+                            <Nodes>
+                              <Expression xsi:type="ExternalizedMapping">
+                                <Property Name="Name" />
+                              </Expression>
+                              <Expression xsi:type="SubscribeSubject">
+                                <Name>LedTrackingTop</Name>
+                              </Expression>
+                              <Expression xsi:type="MemberSelector">
+                                <Selector>Value.Count</Selector>
+                              </Expression>
+                              <Expression xsi:type="GreaterThanOrEqual">
+                                <Operand xsi:type="IntProperty">
+                                  <Value>1</Value>
+                                </Operand>
+                              </Expression>
+                              <Expression xsi:type="WorkflowOutput" />
+                            </Nodes>
+                            <Edges>
+                              <Edge From="0" To="1" Label="Source1" />
+                              <Edge From="1" To="2" Label="Source1" />
+                              <Edge From="2" To="3" Label="Source1" />
+                              <Edge From="3" To="4" Label="Source1" />
+                            </Edges>
+                          </Workflow>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>LedTrackingTop</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Value</Selector>
+                        </Expression>
+                        <Expression xsi:type="Index">
+                          <Operand xsi:type="IntProperty">
+                            <Value>0</Value>
+                          </Operand>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Centroid</Selector>
+                        </Expression>
+                        <Expression xsi:type="PropertyMapping">
+                          <PropertyMappings>
+                            <Property Name="Center" />
+                          </PropertyMappings>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="drw:Circle">
+                            <drw:Center>
+                              <drw:X>-2147483648</drw:X>
+                              <drw:Y>-2147483648</drw:Y>
+                            </drw:Center>
+                            <drw:Radius>10</drw:Radius>
+                            <drw:Color>
+                              <drw:Val0>0</drw:Val0>
+                              <drw:Val1>0</drw:Val1>
+                              <drw:Val2>255</drw:Val2>
+                              <drw:Val3>255</drw:Val3>
+                            </drw:Color>
+                            <drw:Thickness>1</drw:Thickness>
+                            <drw:LineType>Connected8</drw:LineType>
+                            <drw:Shift>0</drw:Shift>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="drw:DrawCanvas" />
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="6" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                        <Edge From="3" To="4" Label="Source1" />
+                        <Edge From="4" To="5" Label="Source1" />
+                        <Edge From="5" To="6" Label="Source2" />
+                        <Edge From="6" To="8" Label="Source1" />
+                        <Edge From="7" To="8" Label="Source2" />
+                        <Edge From="7" To="9" Label="Source1" />
+                        <Edge From="8" To="14" Label="Source1" />
+                        <Edge From="9" To="10" Label="Source1" />
+                        <Edge From="10" To="11" Label="Source1" />
+                        <Edge From="11" To="12" Label="Source1" />
+                        <Edge From="12" To="13" Label="Source1" />
+                        <Edge From="13" To="14" Label="Source2" />
+                        <Edge From="14" To="15" Label="Source1" />
+                        <Edge From="15" To="16" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="rx:PublishSubject">
+                    <Name>LedTrackingImage</Name>
                   </Expression>
                 </Nodes>
                 <Edges>
                   <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="1" To="3" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source2" />
-                  <Edge From="3" To="4" Label="Source1" />
-                  <Edge From="3" To="5" Label="Source1" />
+                  <Edge From="1" To="4" Label="Source1" />
+                  <Edge From="2" To="4" Label="Source2" />
+                  <Edge From="3" To="4" Label="Source3" />
+                  <Edge From="3" To="6" Label="Source1" />
+                  <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="6" To="7" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
@@ -1558,7 +1706,7 @@
         <Property Name="SelectedStream" />
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\ControlPanel.bonsai">
-        <SelectedStream>CameraTop</SelectedStream>
+        <SelectedStream>LedTrackingTop</SelectedStream>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentLogic.bonsai" />
       <Expression xsi:type="SubscribeSubject">
