@@ -1,21 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-  <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
-    <UseWindowsForms>true</UseWindowsForms>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net472</TargetFramework>
+        <UseWindowsForms>true</UseWindowsForms>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Bonsai.Core" Version="2.8.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="YamlDotNet" Version="13.1.1" />
-    <PackageReference Include="Bonsai.Harp" Version="3.5.0" />
-    <PackageReference Include="Bonsai.Sleap" Version="0.3.0" />
-    <PackageReference Include="Bonsai.Sleap.Design" Version="0.3.0" />
-    <PackageReference Include="Bonsai.Design.Visualizers" Version="2.8.0" />
-    <PackageReference Include="Aeon.Environment" Version="0.1.0-build240101" />
-    <PackageReference Include="ZedGraph" Version="5.1.7" />
-    <PackageReference Include="Bonsai.Vision" Version="2.8.1" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Bonsai.Core" Version="2.8.2" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="YamlDotNet" Version="13.1.1" />
+        <PackageReference Include="Bonsai.Harp" Version="3.5.2" />
+        <PackageReference Include="Bonsai.Sleap" Version="0.3.0" />
+        <PackageReference Include="Bonsai.Sleap.Design" Version="0.3.0" />
+        <PackageReference Include="Bonsai.Design.Visualizers" Version="2.8.0" />
+        <PackageReference Include="Aeon.Environment" Version="0.1.0-build240101" />
+        <PackageReference Include="ZedGraph" Version="5.1.7" />
+        <PackageReference Include="Bonsai.Vision" Version="2.8.1" />
+    </ItemGroup>
 
 </Project>
