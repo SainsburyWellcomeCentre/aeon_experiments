@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <WorkflowBuilder Version="2.8.1"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -324,7 +323,7 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
-                    <Name>CameraEnvironment</Name>
+                    <Name>CameraLightMonitor</Name>
                     <Workflow>
                       <Nodes>
                         <Expression xsi:type="ExternalizedMapping">
@@ -343,35 +342,13 @@
                           <SerialNumber>23032826</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>2</Binning>
-                          <FrameEvents>CameraEnvironment</FrameEvents>
-                        </Expression>
-                        <Expression xsi:type="rx:Sink">
-                          <Workflow>
-                            <Nodes>
-                              <Expression xsi:type="WorkflowInput">
-                                <Name>Source1</Name>
-                              </Expression>
-                              <Expression xsi:type="MemberSelector">
-                                <Selector>Value.Image</Selector>
-                              </Expression>
-                              <Expression xsi:type="MulticastSubject">
-                                <Name>LightMonitor</Name>
-                              </Expression>
-                              <Expression xsi:type="WorkflowOutput" />
-                            </Nodes>
-                            <Edges>
-                              <Edge From="0" To="1" Label="Source1" />
-                              <Edge From="1" To="2" Label="Source1" />
-                              <Edge From="2" To="3" Label="Source1" />
-                            </Edges>
-                          </Workflow>
+                          <FrameEvents>CameraLightMonitor</FrameEvents>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
                       <Edges>
                         <Edge From="0" To="1" Label="Source1" />
                         <Edge From="1" To="2" Label="Source1" />
-                        <Edge From="2" To="3" Label="Source1" />
                       </Edges>
                     </Workflow>
                   </Expression>
@@ -506,6 +483,42 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
+                    <Name>PatchDummy1</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="PortName" />
+                          <Property Name="WheelDisplacement" />
+                          <Property Name="PelletDelivered" />
+                          <Property Name="DeliverPellet" />
+                          <Property Name="PatchEvents" />
+                          <Property Name="Radius" />
+                          <Property Name="SampleRate" />
+                          <Property Name="ResetFeeder" />
+                          <Property Name="DueTime" />
+                          <Property Name="Count" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:UndergroundFeeder.bonsai">
+                          <PatchEvents>PatchDummy1Events</PatchEvents>
+                          <SampleRate>SampleRate500Hz</SampleRate>
+                          <DeliverPellet>PatchDummy1DeliverPellet</DeliverPellet>
+                          <PelletDelivered>PatchDummy1PelletDelivered</PelletDelivered>
+                          <DueTime>PT1S</DueTime>
+                          <Count>2</Count>
+                          <ResetFeeder>PatchDummy1ResetFeeder</ResetFeeder>
+                          <PortName>COM20</PortName>
+                          <Radius>-4</Radius>
+                          <WheelDisplacement>PatchDummy1WheelDisplacement</WheelDisplacement>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
                     <Name>Nest</Name>
                     <Workflow>
                       <Nodes>
@@ -621,6 +634,64 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
+                    <Name>GateEastRfid</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="HardwareNotificationsState" />
+                          <Property Name="PortName" />
+                          <Property Name="RfidEvents" />
+                          <Property Name="Location" />
+                          <Property Name="InboundRfidDetected" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
+                          <HardwareNotificationsState>None</HardwareNotificationsState>
+                          <PortName>COM22</PortName>
+                          <RfidEvents>GateEastRfidEvents</RfidEvents>
+                          <Location>
+                            <X>930</X>
+                            <Y>993</Y>
+                          </Location>
+                          <InboundRfidDetected>GateEastRfidInboundDetected</InboundRfidDetected>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>GateWestRfid</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="HardwareNotificationsState" />
+                          <Property Name="PortName" />
+                          <Property Name="RfidEvents" />
+                          <Property Name="Location" />
+                          <Property Name="InboundRfidDetected" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
+                          <HardwareNotificationsState>None</HardwareNotificationsState>
+                          <PortName>COM23</PortName>
+                          <RfidEvents>GateWestRfidEvents</RfidEvents>
+                          <Location>
+                            <X>928</X>
+                            <Y>134</Y>
+                          </Location>
+                          <InboundRfidDetected>GateWestRfidInboundDetected</InboundRfidDetected>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
                     <Name>Patch1Rfid</Name>
                     <Workflow>
                       <Nodes>
@@ -698,6 +769,35 @@
                             <Y>372</Y>
                           </Location>
                           <InboundRfidDetected>Patch3RfidInboundDetected</InboundRfidDetected>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>PatchDummy1Rfid</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="HardwareNotificationsState" />
+                          <Property Name="PortName" />
+                          <Property Name="RfidEvents" />
+                          <Property Name="Location" />
+                          <Property Name="InboundRfidDetected" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
+                          <HardwareNotificationsState>None</HardwareNotificationsState>
+                          <PortName>COM21</PortName>
+                          <RfidEvents>PatchDummy1RfidEvents</RfidEvents>
+                          <Location>
+                            <X>639</X>
+                            <Y>566</Y>
+                          </Location>
+                          <InboundRfidDetected>PatchDummy1RfidInboundDetected</InboundRfidDetected>
                         </Expression>
                         <Expression xsi:type="WorkflowOutput" />
                       </Nodes>
@@ -1003,6 +1103,26 @@
                 </Edges>
               </Workflow>
             </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>AverageLightIntensity</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="FrameEvents" />
+                    <Property Name="LightMonitorEvents" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\AverageLightIntensity.bonsai">
+                    <FrameEvents>CameraLightMonitor</FrameEvents>
+                    <LightMonitorEvents>LightMonitor</LightMonitorEvents>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
           </Nodes>
           <Edges />
         </Workflow>
@@ -1019,16 +1139,10 @@
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\ControlPanel.bonsai">
         <SelectedStream>CameraTop</SelectedStream>
       </Expression>
-      <Expression xsi:type="ExternalizedMapping">
-        <Property Name="EnvironmentConfigPath" />
-      </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentLogic.bonsai">
-        <EnvironmentConfigPath>EnvironmentRandom.yml</EnvironmentConfigPath>
-      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentLogic.bonsai" />
     </Nodes>
     <Edges>
       <Edge From="5" To="6" Label="Source1" />
-      <Edge From="7" To="8" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

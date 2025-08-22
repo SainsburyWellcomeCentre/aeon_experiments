@@ -1,7 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.8.1"
+<WorkflowBuilder Version="2.8.2"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
+                 xmlns:aeon="clr-namespace:Aeon.Acquisition;assembly=Aeon.Acquisition"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
+                 xmlns:drw="clr-namespace:Bonsai.Vision.Drawing;assembly=Bonsai.Vision"
+                 xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
+                 xmlns:p1="clr-namespace:System.Reactive;assembly=System.Reactive.Core"
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
@@ -69,7 +75,7 @@
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
                           <TriggerSource>GlobalTrigger</TriggerSource>
                           <TriggerFrequency>GlobalTriggerFrequency</TriggerFrequency>
-                          <ExposureTime>7500</ExposureTime>
+                          <ExposureTime>4500</ExposureTime>
                           <SerialNumber>23032909</SerialNumber>
                           <Gain>0</Gain>
                           <Binning>1</Binning>
@@ -324,6 +330,36 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
+                    <Name>CameraLightMonitor</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="SerialNumber" />
+                          <Property Name="Gain" />
+                          <Property Name="Binning" />
+                          <Property Name="ExposureTime" />
+                          <Property Name="TriggerSource" />
+                          <Property Name="FrameEvents" />
+                          <Property Name="TriggerFrequency" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:SpinnakerVideoSource.bonsai">
+                          <TriggerSource>LocalTrigger</TriggerSource>
+                          <TriggerFrequency>LocalTriggerFrequency</TriggerFrequency>
+                          <ExposureTime>INF</ExposureTime>
+                          <SerialNumber>21199218</SerialNumber>
+                          <Gain>0</Gain>
+                          <Binning>2</Binning>
+                          <FrameEvents>CameraLightMonitor</FrameEvents>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
                     <Name>AudioAmbient</Name>
                     <Workflow>
                       <Nodes>
@@ -454,6 +490,42 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
+                    <Name>PatchDummy1</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="PortName" />
+                          <Property Name="WheelDisplacement" />
+                          <Property Name="PelletDelivered" />
+                          <Property Name="DeliverPellet" />
+                          <Property Name="PatchEvents" />
+                          <Property Name="Radius" />
+                          <Property Name="SampleRate" />
+                          <Property Name="ResetFeeder" />
+                          <Property Name="DueTime" />
+                          <Property Name="Count" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Foraging:UndergroundFeeder.bonsai">
+                          <PatchEvents>PatchDummy1Events</PatchEvents>
+                          <SampleRate>SampleRate500Hz</SampleRate>
+                          <DeliverPellet>PatchDummy1DeliverPellet</DeliverPellet>
+                          <PelletDelivered>PatchDummy1PelletDelivered</PelletDelivered>
+                          <DueTime>PT1S</DueTime>
+                          <Count>2</Count>
+                          <ResetFeeder>PatchDummy1ResetFeeder</ResetFeeder>
+                          <PortName>COM20</PortName>
+                          <Radius>-4</Radius>
+                          <WheelDisplacement>PatchDummy1WheelDisplacement</WheelDisplacement>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
                     <Name>Nest</Name>
                     <Workflow>
                       <Nodes>
@@ -569,6 +641,64 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
+                    <Name>GateEastRfid</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="HardwareNotificationsState" />
+                          <Property Name="PortName" />
+                          <Property Name="RfidEvents" />
+                          <Property Name="Location" />
+                          <Property Name="InboundRfidDetected" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
+                          <HardwareNotificationsState>None</HardwareNotificationsState>
+                          <PortName>COM22</PortName>
+                          <RfidEvents>GateEastRfidEvents</RfidEvents>
+                          <Location>
+                            <X>977</X>
+                            <Y>984</Y>
+                          </Location>
+                          <InboundRfidDetected>GateEastRfidInboundDetected</InboundRfidDetected>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>GateWestRfid</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="HardwareNotificationsState" />
+                          <Property Name="PortName" />
+                          <Property Name="RfidEvents" />
+                          <Property Name="Location" />
+                          <Property Name="InboundRfidDetected" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
+                          <HardwareNotificationsState>None</HardwareNotificationsState>
+                          <PortName>COM23</PortName>
+                          <RfidEvents>GateWestRfidEvents</RfidEvents>
+                          <Location>
+                            <X>955</X>
+                            <Y>95</Y>
+                          </Location>
+                          <InboundRfidDetected>GateWestRfidInboundDetected</InboundRfidDetected>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
                     <Name>Patch1Rfid</Name>
                     <Workflow>
                       <Nodes>
@@ -581,7 +711,7 @@
                         </Expression>
                         <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
                           <HardwareNotificationsState>None</HardwareNotificationsState>
-                          <PortName>COM12</PortName>
+                          <PortName>COM35</PortName>
                           <RfidEvents>Patch1RfidEvents</RfidEvents>
                           <Location>
                             <X>940</X>
@@ -656,6 +786,35 @@
                     </Workflow>
                   </Expression>
                   <Expression xsi:type="GroupWorkflow">
+                    <Name>PatchDummy1Rfid</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="HardwareNotificationsState" />
+                          <Property Name="PortName" />
+                          <Property Name="RfidEvents" />
+                          <Property Name="Location" />
+                          <Property Name="InboundRfidDetected" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Aeon.Environment:RfidReader.bonsai">
+                          <HardwareNotificationsState>None</HardwareNotificationsState>
+                          <PortName>COM21</PortName>
+                          <RfidEvents>PatchDummy1RfidEvents</RfidEvents>
+                          <Location>
+                            <X>675</X>
+                            <Y>594</Y>
+                          </Location>
+                          <InboundRfidDetected>PatchDummy1RfidInboundDetected</InboundRfidDetected>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
                     <Name>LightCycle</Name>
                     <Workflow>
                       <Nodes>
@@ -696,6 +855,36 @@
                       </Edges>
                     </Workflow>
                   </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>LinearDriveController</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="LinearDrivePosition" />
+                          <Property Name="LimitContinuousCurrent" />
+                          <Property Name="LimitPeakCurrent" />
+                          <Property Name="LimitSpeed" />
+                          <Property Name="LinearDriveSetPosition" />
+                          <Property Name="PortName" />
+                          <Property Name="LinearDriveEvents" />
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\LinearDriveController.bonsai">
+                          <LinearDrivePosition>LinearDrivePosition</LinearDrivePosition>
+                          <LimitContinuousCurrent>4500</LimitContinuousCurrent>
+                          <LimitPeakCurrent>5500</LimitPeakCurrent>
+                          <LimitSpeed>50000</LimitSpeed>
+                          <LinearDriveSetPosition>LinearDriveSetPosition</LinearDriveSetPosition>
+                          <PortName>COM30</PortName>
+                          <LinearDriveEvents>LinearDriveEvents</LinearDriveEvents>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
                 </Nodes>
                 <Edges />
               </Workflow>
@@ -728,6 +917,495 @@
                   <Edge From="1" To="3" Label="Source1" />
                   <Edge From="2" To="3" Label="Source2" />
                   <Edge From="3" To="4" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>LedTrackingTop</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="Name" DisplayName="FrameEvents" />
+                  </Expression>
+                  <Expression xsi:type="SubscribeSubject">
+                    <Name>CameraTop</Name>
+                  </Expression>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="ThresholdValue" />
+                  </Expression>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="LedTrackingEvents" />
+                  </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>LedPositionTracking</Name>
+                    <Description>Extracts information on the largest binary blob in the input image.</Description>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="WorkflowInput">
+                          <Name>Source1</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Value.Image</Selector>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="cv:Crop">
+                            <cv:RegionOfInterest>
+                              <cv:X>0</cv:X>
+                              <cv:Y>0</cv:Y>
+                              <cv:Width>0</cv:Width>
+                              <cv:Height>0</cv:Height>
+                            </cv:RegionOfInterest>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="cv:CropPolygon">
+                            <cv:Regions>
+                              <cv:ArrayOfPoint>
+                                <cv:Point>
+                                  <cv:X>1245</cv:X>
+                                  <cv:Y>480</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>1353</cv:X>
+                                  <cv:Y>482</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>1353</cv:X>
+                                  <cv:Y>581</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>1246</cv:X>
+                                  <cv:Y>587</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>1246</cv:X>
+                                  <cv:Y>634</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>1222</cv:X>
+                                  <cv:Y>724</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>1182</cv:X>
+                                  <cv:Y>810</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>1128</cv:X>
+                                  <cv:Y>886</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>1062</cv:X>
+                                  <cv:Y>953</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>985</cv:X>
+                                  <cv:Y>1007</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>900</cv:X>
+                                  <cv:Y>1046</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>809</cv:X>
+                                  <cv:Y>1071</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>715</cv:X>
+                                  <cv:Y>1079</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>622</cv:X>
+                                  <cv:Y>1071</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>531</cv:X>
+                                  <cv:Y>1046</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>446</cv:X>
+                                  <cv:Y>1007</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>369</cv:X>
+                                  <cv:Y>953</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>303</cv:X>
+                                  <cv:Y>886</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>249</cv:X>
+                                  <cv:Y>810</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>209</cv:X>
+                                  <cv:Y>724</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>185</cv:X>
+                                  <cv:Y>634</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>177</cv:X>
+                                  <cv:Y>540</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>185</cv:X>
+                                  <cv:Y>446</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>209</cv:X>
+                                  <cv:Y>356</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>249</cv:X>
+                                  <cv:Y>270</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>303</cv:X>
+                                  <cv:Y>194</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>369</cv:X>
+                                  <cv:Y>127</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>446</cv:X>
+                                  <cv:Y>73</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>531</cv:X>
+                                  <cv:Y>34</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>622</cv:X>
+                                  <cv:Y>9</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>715</cv:X>
+                                  <cv:Y>1</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>809</cv:X>
+                                  <cv:Y>9</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>900</cv:X>
+                                  <cv:Y>34</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>985</cv:X>
+                                  <cv:Y>73</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>1062</cv:X>
+                                  <cv:Y>127</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>1128</cv:X>
+                                  <cv:Y>194</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>1182</cv:X>
+                                  <cv:Y>271</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>1222</cv:X>
+                                  <cv:Y>356</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>1246</cv:X>
+                                  <cv:Y>446</cv:Y>
+                                </cv:Point>
+                              </cv:ArrayOfPoint>
+                              <cv:ArrayOfPoint>
+                                <cv:Point>
+                                  <cv:X>1415</cv:X>
+                                  <cv:Y>1040</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>1439</cv:X>
+                                  <cv:Y>1040</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>1439</cv:X>
+                                  <cv:Y>1079</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>1415</cv:X>
+                                  <cv:Y>1079</cv:Y>
+                                </cv:Point>
+                              </cv:ArrayOfPoint>
+                              <cv:ArrayOfPoint>
+                                <cv:Point>
+                                  <cv:X>24</cv:X>
+                                  <cv:Y>0</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>0</cv:X>
+                                  <cv:Y>0</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>0</cv:X>
+                                  <cv:Y>27</cv:Y>
+                                </cv:Point>
+                                <cv:Point>
+                                  <cv:X>24</cv:X>
+                                  <cv:Y>27</cv:Y>
+                                </cv:Point>
+                              </cv:ArrayOfPoint>
+                            </cv:Regions>
+                            <cv:MaskType>ToZero</cv:MaskType>
+                            <cv:FillValue>
+                              <cv:Val0>0</cv:Val0>
+                              <cv:Val1>0</cv:Val1>
+                              <cv:Val2>0</cv:Val2>
+                              <cv:Val3>0</cv:Val3>
+                            </cv:FillValue>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="ThresholdValue" />
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="cv:Threshold">
+                            <cv:ThresholdValue>241</cv:ThresholdValue>
+                            <cv:MaxValue>255</cv:MaxValue>
+                            <cv:ThresholdType>Binary</cv:ThresholdType>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="cv:MorphologicalOperator">
+                            <cv:Size>
+                              <cv:Width>3</cv:Width>
+                              <cv:Height>3</cv:Height>
+                            </cv:Size>
+                            <cv:Anchor>
+                              <cv:X>-1</cv:X>
+                              <cv:Y>-1</cv:Y>
+                            </cv:Anchor>
+                            <cv:Shape>Rectangle</cv:Shape>
+                            <cv:Iterations>1</cv:Iterations>
+                            <cv:Operation>Dilate</cv:Operation>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="cv:FindContours">
+                            <cv:Mode>External</cv:Mode>
+                            <cv:Method>ChainApproxNone</cv:Method>
+                            <cv:Offset>
+                              <cv:X>0</cv:X>
+                              <cv:Y>0</cv:Y>
+                            </cv:Offset>
+                            <cv:MinArea>0</cv:MinArea>
+                            <cv:MaxArea>500</cv:MaxArea>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="cv:BinaryRegionAnalysis" />
+                        </Expression>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="Count" DisplayName="TrackingCount" Description="Specifies the maximum number of objects to track." />
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="aeon:TakeLargestRegions">
+                            <aeon:Count>1</aeon:Count>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Seconds</Selector>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="rx:Zip" />
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="harp:CreateTimestamped" />
+                        </Expression>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="Name" DisplayName="LedTrackingEvents" />
+                        </Expression>
+                        <Expression xsi:type="rx:PublishSubject">
+                          <Name>LedTrackingTop</Name>
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="0" To="11" Label="Source1" />
+                        <Edge From="1" To="2" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                        <Edge From="3" To="5" Label="Source1" />
+                        <Edge From="4" To="5" Label="Source2" />
+                        <Edge From="5" To="6" Label="Source1" />
+                        <Edge From="6" To="7" Label="Source1" />
+                        <Edge From="7" To="8" Label="Source1" />
+                        <Edge From="8" To="10" Label="Source1" />
+                        <Edge From="9" To="10" Label="Source2" />
+                        <Edge From="10" To="12" Label="Source1" />
+                        <Edge From="11" To="12" Label="Source2" />
+                        <Edge From="12" To="13" Label="Source1" />
+                        <Edge From="13" To="15" Label="Source1" />
+                        <Edge From="14" To="15" Label="Source2" />
+                        <Edge From="15" To="16" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>LedTrackingImage</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>CameraTop</Name>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="drw:CreateCanvas">
+                            <drw:Size>
+                              <drw:Width>1440</drw:Width>
+                              <drw:Height>1080</drw:Height>
+                            </drw:Size>
+                            <drw:Depth>U8</drw:Depth>
+                            <drw:Channels>3</drw:Channels>
+                            <drw:Color>
+                              <drw:Val0>0</drw:Val0>
+                              <drw:Val1>0</drw:Val1>
+                              <drw:Val2>0</drw:Val2>
+                              <drw:Val3>0</drw:Val3>
+                            </drw:Color>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>CameraTop</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Value.Image</Selector>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="cv:ConvertColor">
+                            <cv:Conversion>Gray2Bgr</cv:Conversion>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="PropertyMapping">
+                          <PropertyMappings>
+                            <Property Name="Image" />
+                          </PropertyMappings>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="drw:AddImage">
+                            <drw:Destination>
+                              <drw:X>0</drw:X>
+                              <drw:Y>0</drw:Y>
+                              <drw:Width>0</drw:Width>
+                              <drw:Height>0</drw:Height>
+                            </drw:Destination>
+                            <drw:Interpolation>Linear</drw:Interpolation>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="Name" DisplayName="LedTrackingEvents" />
+                        </Expression>
+                        <Expression xsi:type="rx:Condition">
+                          <Workflow>
+                            <Nodes>
+                              <Expression xsi:type="ExternalizedMapping">
+                                <Property Name="Name" />
+                              </Expression>
+                              <Expression xsi:type="SubscribeSubject">
+                                <Name>LedTrackingTop</Name>
+                              </Expression>
+                              <Expression xsi:type="MemberSelector">
+                                <Selector>Value.Count</Selector>
+                              </Expression>
+                              <Expression xsi:type="GreaterThanOrEqual">
+                                <Operand xsi:type="IntProperty">
+                                  <Value>1</Value>
+                                </Operand>
+                              </Expression>
+                              <Expression xsi:type="WorkflowOutput" />
+                            </Nodes>
+                            <Edges>
+                              <Edge From="0" To="1" Label="Source1" />
+                              <Edge From="1" To="2" Label="Source1" />
+                              <Edge From="2" To="3" Label="Source1" />
+                              <Edge From="3" To="4" Label="Source1" />
+                            </Edges>
+                          </Workflow>
+                        </Expression>
+                        <Expression xsi:type="SubscribeSubject">
+                          <Name>LedTrackingTop</Name>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Value</Selector>
+                        </Expression>
+                        <Expression xsi:type="Index">
+                          <Operand xsi:type="IntProperty">
+                            <Value>0</Value>
+                          </Operand>
+                        </Expression>
+                        <Expression xsi:type="MemberSelector">
+                          <Selector>Centroid</Selector>
+                        </Expression>
+                        <Expression xsi:type="PropertyMapping">
+                          <PropertyMappings>
+                            <Property Name="Center" />
+                          </PropertyMappings>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="drw:Circle">
+                            <drw:Center>
+                              <drw:X>-2147483648</drw:X>
+                              <drw:Y>-2147483648</drw:Y>
+                            </drw:Center>
+                            <drw:Radius>10</drw:Radius>
+                            <drw:Color>
+                              <drw:Val0>0</drw:Val0>
+                              <drw:Val1>0</drw:Val1>
+                              <drw:Val2>255</drw:Val2>
+                              <drw:Val3>255</drw:Val3>
+                            </drw:Color>
+                            <drw:Thickness>1</drw:Thickness>
+                            <drw:LineType>Connected8</drw:LineType>
+                            <drw:Shift>0</drw:Shift>
+                          </Combinator>
+                        </Expression>
+                        <Expression xsi:type="Combinator">
+                          <Combinator xsi:type="drw:DrawCanvas" />
+                        </Expression>
+                        <Expression xsi:type="WorkflowOutput" />
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="1" To="6" Label="Source1" />
+                        <Edge From="2" To="3" Label="Source1" />
+                        <Edge From="3" To="4" Label="Source1" />
+                        <Edge From="4" To="5" Label="Source1" />
+                        <Edge From="5" To="6" Label="Source2" />
+                        <Edge From="6" To="8" Label="Source1" />
+                        <Edge From="7" To="8" Label="Source2" />
+                        <Edge From="7" To="9" Label="Source1" />
+                        <Edge From="8" To="14" Label="Source1" />
+                        <Edge From="9" To="10" Label="Source1" />
+                        <Edge From="10" To="11" Label="Source1" />
+                        <Edge From="11" To="12" Label="Source1" />
+                        <Edge From="12" To="13" Label="Source1" />
+                        <Edge From="13" To="14" Label="Source2" />
+                        <Edge From="14" To="15" Label="Source1" />
+                        <Edge From="15" To="16" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
+                  <Expression xsi:type="rx:PublishSubject">
+                    <Name>LedTrackingImage</Name>
+                  </Expression>
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="4" Label="Source1" />
+                  <Edge From="2" To="4" Label="Source2" />
+                  <Edge From="3" To="4" Label="Source3" />
+                  <Edge From="3" To="6" Label="Source1" />
+                  <Edge From="4" To="5" Label="Source1" />
+                  <Edge From="6" To="7" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
@@ -951,6 +1629,69 @@
                 </Edges>
               </Workflow>
             </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>AverageLightIntensity</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="FrameEvents" />
+                    <Property Name="LightMonitorEvents" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\AverageLightIntensity.bonsai">
+                    <FrameEvents>CameraLightMonitor</FrameEvents>
+                    <LightMonitorEvents>LightMonitor</LightMonitorEvents>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="GroupWorkflow">
+              <Name>TetherSlackController</Name>
+              <Description />
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="TrackingEvents" />
+                    <Property Name="ArenaCenter" />
+                    <Property Name="ArenaRadiusPixels" />
+                    <Property Name="ArenaRadiusCentimeters" />
+                    <Property Name="TetherGuideAltitude" />
+                    <Property Name="TetherGuideHeight" />
+                    <Property Name="TetherMaxSlackLength" />
+                    <Property Name="LinearRailLength" />
+                    <Property Name="MotorPlumbLine" />
+                    <Property Name="LinearDriveSetPosition" />
+                  </Expression>
+                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\TetherSlackController.bonsai">
+                    <TrackingEvents>LedTrackingTop</TrackingEvents>
+                    <ArenaCenter>
+                      <X>710</X>
+                      <Y>555</Y>
+                    </ArenaCenter>
+                    <ArenaRadiusPixels>550</ArenaRadiusPixels>
+                    <ArenaRadiusCentimeters>100</ArenaRadiusCentimeters>
+                    <TetherGuideAltitude>172</TetherGuideAltitude>
+                    <TetherGuideHeight>17</TetherGuideHeight>
+                    <TetherMaxSlackLength>48</TetherMaxSlackLength>
+                    <LinearRailLength>58</LinearRailLength>
+                    <MotorPlumbLine>
+                      <X>792</X>
+                      <Y>606</Y>
+                    </MotorPlumbLine>
+                    <LinearDriveSetPosition>LinearDriveSetPosition</LinearDriveSetPosition>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
           </Nodes>
           <Edges />
         </Workflow>
@@ -965,28 +1706,70 @@
         <Property Name="SelectedStream" />
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\ControlPanel.bonsai">
-        <SelectedStream>CameraTop</SelectedStream>
+        <SelectedStream>LedTrackingTop</SelectedStream>
       </Expression>
-      <Expression xsi:type="ExternalizedMapping">
-        <Property Name="EnvironmentConfigPath" />
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentLogic.bonsai" />
+      <Expression xsi:type="SubscribeSubject">
+        <Name>LinearDriveEvents</Name>
       </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Extensions\EnvironmentLogic.bonsai">
-        <EnvironmentConfigPath>EnvironmentRandom.yml</EnvironmentConfigPath>
+      <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogHarpState.bonsai">
+        <LogName>LinearDriveController</LogName>
+        <Heartbeats />
+        <ClosingDuration xsi:nil="true" />
       </Expression>
       <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:CameraCapture">
-          <cv:Index>0</cv:Index>
-          <cv:CaptureProperties />
+        <Combinator xsi:type="wie:KeyDown">
+          <wie:Filter>RButton ShiftKey Menu Space Next PageDown D0 D2 B P R NumPad0 NumPad2 F1 F3 Shift</wie:Filter>
+          <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
         </Combinator>
       </Expression>
       <Expression xsi:type="MulticastSubject">
-        <Name>LightMonitor</Name>
+        <Name>EnableMotor</Name>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>Patch2Events</Name>
+      </Expression>
+      <Expression xsi:type="harp:FilterRegister">
+        <harp:FilterType>Include</harp:FilterType>
+        <harp:Register xsi:type="harp:TimestampSeconds" />
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>Patch1Events</Name>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>Patch3Events</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="wie:KeyDown">
+          <wie:Filter>LButton RButton Cancel ShiftKey ControlKey Menu Pause Space Prior PageUp Next PageDown End D0 D1 D2 D3 A B C P Q R S NumPad0 NumPad1 NumPad2 NumPad3 F1 F2 F3 F4 Shift</wie:Filter>
+          <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>DisableMotor</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="wie:KeyDown">
+          <wie:Filter>LButton Back Tab ShiftKey ControlKey FinalMode HanjaMode KanjiMode Space Prior PageUp Down Select D0 D1 D8 D9 A H I P Q X Y NumPad0 NumPad1 NumPad8 NumPad9 F1 F2 F9 F10 Shift</wie:Filter>
+          <wie:SuppressRepetitions>false</wie:SuppressRepetitions>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>CalibrateMotorLimits</Name>
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject" TypeArguments="harp:Timestamped(p1:Unit)">
+        <rx:Name>SurrogateTrigger</rx:Name>
       </Expression>
     </Nodes>
     <Edges>
       <Edge From="5" To="6" Label="Source1" />
-      <Edge From="7" To="8" Label="Source1" />
-      <Edge From="9" To="10" Label="Source1" />
+      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="10" To="11" Label="Source1" />
+      <Edge From="12" To="13" Label="Source1" />
+      <Edge From="13" To="14" Label="Source1" />
+      <Edge From="14" To="15" Label="Source1" />
+      <Edge From="16" To="17" Label="Source1" />
+      <Edge From="18" To="19" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

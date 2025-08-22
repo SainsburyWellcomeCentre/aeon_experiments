@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.8.1"
+<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.8.2"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:p1="clr-namespace:;assembly=Extensions"
                  xmlns="https://bonsai-rx.org/2018/workflow">
@@ -23,7 +23,7 @@
         <Property Name="TetherGuideHeight" />
         <Property Name="TetherMaxSlackLength" />
         <Property Name="LinearRailLength" />
-        <Property Name="RadialDistanceOffset" />
+        <Property Name="MotorPlumbLine" />
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="p1:GetLinearDrivePosition">
@@ -31,6 +31,10 @@
             <p1:X>731</p1:X>
             <p1:Y>561</p1:Y>
           </p1:ArenaCenter>
+          <p1:MotorPlumbLine>
+            <p1:X>0</p1:X>
+            <p1:Y>0</p1:Y>
+          </p1:MotorPlumbLine>
           <p1:ArenaRadiusPixels>510</p1:ArenaRadiusPixels>
           <p1:ArenaRadiusCentimeters>100</p1:ArenaRadiusCentimeters>
           <p1:TetherGuideAltitude>129.5</p1:TetherGuideAltitude>
