@@ -239,9 +239,11 @@ Item2.Seconds as Timestamp)</scr:Expression>
                     <StreamEvents>OnixMemoryUsage</StreamEvents>
                     <DueTime>PT2S</DueTime>
                   </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\StreamTimeout.bonsai">
-                    <StreamEvents>CommutatorCommands</StreamEvents>
-                    <DueTime>PT1S</DueTime>
+                  <Expression xsi:type="Disable">
+                    <Builder xsi:type="IncludeWorkflow" Path="Extensions\StreamTimeout.bonsai">
+                      <StreamEvents>CommutatorCommands</StreamEvents>
+                      <DueTime>PT1S</DueTime>
+                    </Builder>
                   </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="rx:Merge" />
