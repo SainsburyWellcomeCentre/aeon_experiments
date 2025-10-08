@@ -723,21 +723,7 @@
         <Probe>NeuropixelsV2BetaProbeB</Probe>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\StreamMonitor.bonsai" />
-      <Expression xsi:type="SubscribeSubject">
-        <Name>NeuropixelsV2BetaProbeB</Name>
-      </Expression>
-      <Expression xsi:type="MemberSelector">
-        <Selector>AmplifierData</Selector>
-      </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>ProbeBHighPass</Name>
-      </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>ProbeBSpikeWaveforms</Name>
-      </Expression>
     </Nodes>
-    <Edges>
-      <Edge From="6" To="7" Label="Source1" />
-    </Edges>
+    <Edges />
   </Workflow>
 </WorkflowBuilder>
