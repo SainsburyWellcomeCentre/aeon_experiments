@@ -40,7 +40,7 @@
           <onix1:AnalogIO>
             <onix1:DeviceName>BreakoutBoard/AnalogIO</onix1:DeviceName>
             <onix1:DeviceAddress>6</onix1:DeviceAddress>
-            <onix1:Enable>false</onix1:Enable>
+            <onix1:Enable>true</onix1:Enable>
             <onix1:InputRange0>TenVolts</onix1:InputRange0>
             <onix1:InputRange1>TenVolts</onix1:InputRange1>
             <onix1:InputRange2>TenVolts</onix1:InputRange2>
@@ -53,7 +53,7 @@
             <onix1:InputRange9>TenVolts</onix1:InputRange9>
             <onix1:InputRange10>TenVolts</onix1:InputRange10>
             <onix1:InputRange11>TenVolts</onix1:InputRange11>
-            <onix1:Direction0>Input</onix1:Direction0>
+            <onix1:Direction0>Output</onix1:Direction0>
             <onix1:Direction1>Input</onix1:Direction1>
             <onix1:Direction2>Input</onix1:Direction2>
             <onix1:Direction3>Input</onix1:Direction3>
@@ -69,14 +69,14 @@
           <onix1:DigitalIO>
             <onix1:DeviceName>BreakoutBoard/DigitalIO</onix1:DeviceName>
             <onix1:DeviceAddress>7</onix1:DeviceAddress>
-            <onix1:Enable>false</onix1:Enable>
+            <onix1:Enable>true</onix1:Enable>
             <onix1:DeadTime>0</onix1:DeadTime>
             <onix1:SampleRate xsi:nil="true" />
           </onix1:DigitalIO>
           <onix1:ClockOutput>
             <onix1:DeviceName>BreakoutBoard/OutputClock</onix1:DeviceName>
             <onix1:DeviceAddress>5</onix1:DeviceAddress>
-            <onix1:ClockGate>false</onix1:ClockGate>
+            <onix1:ClockGate>true</onix1:ClockGate>
             <onix1:Frequency>1000000</onix1:Frequency>
             <onix1:DutyCycle>50</onix1:DutyCycle>
             <onix1:Delay>0</onix1:Delay>
