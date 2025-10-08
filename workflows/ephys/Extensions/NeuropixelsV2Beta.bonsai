@@ -192,18 +192,14 @@
       <Expression xsi:type="rx:PublishSubject">
         <Name>OnixMemoryUsage</Name>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="ExternalizedMapping">
-          <Property Name="Period" DisplayName="ImuSamplingPeriod" Category="BNO055" />
-        </Builder>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="Period" DisplayName="ImuSamplingPeriod" Category="BNO055" />
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="rx:Timer">
-            <rx:DueTime>PT0S</rx:DueTime>
-            <rx:Period>PT0.05S</rx:Period>
-          </Combinator>
-        </Builder>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Timer">
+          <rx:DueTime>PT0S</rx:DueTime>
+          <rx:Period>PT0.05S</rx:Period>
+        </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="onix1:PolledBno055Data">
