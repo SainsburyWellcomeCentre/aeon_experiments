@@ -209,10 +209,6 @@ Item2.Seconds as Timestamp)</scr:Expression>
                     <StreamEvents>NeuropixelsV2Bno055</StreamEvents>
                     <DueTime>PT2S</DueTime>
                   </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\StreamTimeout.bonsai">
-                    <StreamEvents>NeuropixelsV2BetaProbeB</StreamEvents>
-                    <DueTime>PT2S</DueTime>
-                  </Expression>
                   <Expression xsi:type="Combinator">
                     <Combinator xsi:type="StringProperty">
                       <Value>NeuropixelsV2Beta</Value>
@@ -253,19 +249,18 @@ Item2.Seconds as Timestamp)</scr:Expression>
                   <Expression xsi:type="WorkflowOutput" />
                 </Nodes>
                 <Edges>
-                  <Edge From="0" To="12" Label="Source1" />
-                  <Edge From="1" To="12" Label="Source2" />
-                  <Edge From="2" To="12" Label="Source3" />
-                  <Edge From="3" To="6" Label="Source1" />
-                  <Edge From="4" To="5" Label="Source1" />
-                  <Edge From="5" To="6" Label="Source2" />
+                  <Edge From="0" To="11" Label="Source1" />
+                  <Edge From="1" To="11" Label="Source2" />
+                  <Edge From="2" To="5" Label="Source1" />
+                  <Edge From="3" To="4" Label="Source1" />
+                  <Edge From="4" To="5" Label="Source2" />
+                  <Edge From="5" To="6" Label="Source1" />
                   <Edge From="6" To="7" Label="Source1" />
                   <Edge From="7" To="8" Label="Source1" />
-                  <Edge From="8" To="9" Label="Source1" />
-                  <Edge From="9" To="12" Label="Source4" />
-                  <Edge From="10" To="12" Label="Source5" />
-                  <Edge From="11" To="12" Label="Source6" />
-                  <Edge From="12" To="13" Label="Source1" />
+                  <Edge From="8" To="11" Label="Source3" />
+                  <Edge From="9" To="11" Label="Source4" />
+                  <Edge From="10" To="11" Label="Source5" />
+                  <Edge From="11" To="12" Label="Source1" />
                 </Edges>
               </Workflow>
             </Expression>
