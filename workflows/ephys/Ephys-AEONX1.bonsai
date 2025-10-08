@@ -70,7 +70,8 @@
                       </Edges>
                     </Workflow>
                   </Expression>
-                  <Expression xsi:type="GroupWorkflow">
+                  <Expression xsi:type="Disable">
+                    <Builder xsi:type="GroupWorkflow">
                     <Name>CommutatorController</Name>
                     <Workflow>
                       <Nodes>
@@ -99,6 +100,7 @@
                         <Edge From="1" To="2" Label="Source1" />
                       </Edges>
                     </Workflow>
+                    </Builder>
                   </Expression>
                 </Nodes>
                 <Edges>
