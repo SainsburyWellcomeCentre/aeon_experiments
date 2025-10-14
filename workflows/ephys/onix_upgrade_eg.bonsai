@@ -70,7 +70,7 @@
             <onix1:DeviceName>BreakoutBoard/HarpSyncInput</onix1:DeviceName>
             <onix1:DeviceAddress>12</onix1:DeviceAddress>
             <onix1:Enable>true</onix1:Enable>
-            <onix1:Source>Breakout</onix1:Source>
+            <onix1:Source>ClockAdapter</onix1:Source>
           </onix1:HarpInput>
           <onix1:MemoryMonitor>
             <onix1:DeviceName>BreakoutBoard/MemoryMonitor</onix1:DeviceName>
@@ -455,8 +455,8 @@
       <Edge From="35" To="36" Label="Source1" />
       <Edge From="36" To="37" Label="Source1" />
       <Edge From="38" To="39" Label="Source1" />
+      <Edge From="38" To="41" Label="Source1" />
       <Edge From="39" To="40" Label="Source1" />
-      <Edge From="39" To="41" Label="Source1" />
       <Edge From="42" To="43" Label="Source1" />
       <Edge From="42" To="45" Label="Source1" />
       <Edge From="43" To="44" Label="Source1" />
