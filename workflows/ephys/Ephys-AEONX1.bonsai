@@ -828,7 +828,7 @@
         <ui:Size xsi:nil="true" />
         <ui:WindowState xsi:nil="true" />
       </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Alerts.bonsai" />
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\Alerts_NP2.bonsai" />
       <Expression xsi:type="GroupWorkflow">
         <Name>Logging</Name>
         <Workflow>
