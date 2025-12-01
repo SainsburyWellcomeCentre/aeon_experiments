@@ -33,11 +33,9 @@
         <LogName>Environment_EphysMessageLog</LogName>
         <Selector>Seconds,Value.Priority,Value.Type,Value.Message</Selector>
       </Expression>
-      <Expression xsi:type="ExternalizedMapping">
-        <Property Name="Name" DisplayName="Probe" />
-      </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>NeuropixelsV2BetaProbeB</Name>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\SelectV2BetaProbe.bonsai" />
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="IncludeWorkflow" Path="Extensions\SelectV2Probe.bonsai" />
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:WindowCount">
@@ -66,26 +64,30 @@
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
         <LogName>NeuropixelsV2Beta_ProbeB_AmplifierData</LogName>
       </Expression>
-      <Expression xsi:type="rx:CreateObservable">
-        <Name>FrameCounter</Name>
-        <Workflow>
-          <Nodes>
-            <Expression xsi:type="WorkflowInput">
-              <Name>Source1</Name>
-            </Expression>
-            <Expression xsi:type="MemberSelector">
-              <Selector>FrameCount</Selector>
-            </Expression>
-            <Expression xsi:type="WorkflowOutput" />
-          </Nodes>
-          <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="2" Label="Source1" />
-          </Edges>
-        </Workflow>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="rx:CreateObservable">
+          <Name>FrameCounter</Name>
+          <Workflow>
+            <Nodes>
+              <Expression xsi:type="WorkflowInput">
+                <Name>Source1</Name>
+              </Expression>
+              <Expression xsi:type="MemberSelector">
+                <Selector>FrameCount</Selector>
+              </Expression>
+              <Expression xsi:type="WorkflowOutput" />
+            </Nodes>
+            <Edges>
+              <Edge From="0" To="1" Label="Source1" />
+              <Edge From="1" To="2" Label="Source1" />
+            </Edges>
+          </Workflow>
+        </Builder>
       </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
-        <LogName>NeuropixelsV2Beta_ProbeB_FrameCounter</LogName>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+          <LogName>NeuropixelsV2Beta_ProbeB_FrameCounter</LogName>
+        </Builder>
       </Expression>
       <Expression xsi:type="rx:CreateObservable">
         <Name>Clock</Name>
@@ -288,76 +290,64 @@
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
         <LogName>NeuropixelsV2Beta_Bno055_HubSyncCounter</LogName>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="SubscribeSubject">
-          <Name>CommutatorTurns</Name>
-        </Builder>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>CommutatorTurns</Name>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="Combinator">
-          <Combinator xsi:type="rx:WindowCount">
-            <rx:Count>36000</rx:Count>
-            <rx:Skip xsi:nil="true" />
-          </Combinator>
-        </Builder>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:WindowCount">
+          <rx:Count>36000</rx:Count>
+          <rx:Skip xsi:nil="true" />
+        </Combinator>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="rx:CreateObservable">
-          <Name>Turn</Name>
-          <Workflow>
-            <Nodes>
-              <Expression xsi:type="WorkflowInput">
-                <Name>Source1</Name>
-              </Expression>
-              <Expression xsi:type="MemberSelector">
-                <Selector>Item1</Selector>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="p1:ConvertToBytes" />
-              </Expression>
-              <Expression xsi:type="WorkflowOutput" />
-            </Nodes>
-            <Edges>
-              <Edge From="0" To="1" Label="Source1" />
-              <Edge From="1" To="2" Label="Source1" />
-              <Edge From="2" To="3" Label="Source1" />
-            </Edges>
-          </Workflow>
-        </Builder>
+      <Expression xsi:type="rx:CreateObservable">
+        <Name>Turn</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Item1</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="p1:ConvertToBytes" />
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
-          <LogName>NeuropixelsV2Beta_Commutator_Turns</LogName>
-        </Builder>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+        <LogName>NeuropixelsV2Beta_Commutator_Turns</LogName>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="rx:CreateObservable">
-          <Name>Clock</Name>
-          <Workflow>
-            <Nodes>
-              <Expression xsi:type="WorkflowInput">
-                <Name>Source1</Name>
-              </Expression>
-              <Expression xsi:type="MemberSelector">
-                <Selector>Item2</Selector>
-              </Expression>
-              <Expression xsi:type="Combinator">
-                <Combinator xsi:type="p1:ConvertToBytes" />
-              </Expression>
-              <Expression xsi:type="WorkflowOutput" />
-            </Nodes>
-            <Edges>
-              <Edge From="0" To="1" Label="Source1" />
-              <Edge From="1" To="2" Label="Source1" />
-              <Edge From="2" To="3" Label="Source1" />
-            </Edges>
-          </Workflow>
-        </Builder>
+      <Expression xsi:type="rx:CreateObservable">
+        <Name>Clock</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>Item2</Selector>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="p1:ConvertToBytes" />
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="3" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
-      <Expression xsi:type="Disable">
-        <Builder xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
-          <LogName>NeuropixelsV2Beta_Commutator_Clock</LogName>
-        </Builder>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
+        <LogName>NeuropixelsV2Beta_Commutator_Clock</LogName>
       </Expression>
     </Nodes>
     <Edges>

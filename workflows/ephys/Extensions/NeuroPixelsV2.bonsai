@@ -14,22 +14,13 @@
         <Property Name="Port" />
         <Property Name="NeuropixelsV2e" />
         <Property Name="BufferSize" />
+        <Property Name="PortVoltage" />
       </Expression>
       <Expression xsi:type="GroupWorkflow">
         <Name>NeuropixelsV2</Name>
         <Description>Contains control and acquisition functionality for ONIX NeuropixelsV2Beta probes.</Description>
         <Workflow>
           <Nodes>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Value" DisplayName="ProbeIndex" />
-            </Expression>
-            <Expression xsi:type="PropertySource" TypeArguments="onix1:NeuropixelsV2eBetaData,onix1:NeuropixelsV2Probe">
-              <MemberName>ProbeIndex</MemberName>
-              <Value>ProbeA</Value>
-            </Expression>
-            <Expression xsi:type="rx:AsyncSubject">
-              <Name>ProbeIndex</Name>
-            </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="onix1:CreateContext">
                 <onix1:Driver>riffa</onix1:Driver>
@@ -108,6 +99,7 @@
             <Expression xsi:type="ExternalizedMapping">
               <Property Name="Port" />
               <Property Name="NeuropixelsV2e" />
+              <Property Name="PortVoltage" />
             </Expression>
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="onix1:ConfigureHeadstageNeuropixelsV2e">
@@ -150,22 +142,113 @@
               </Combinator>
             </Expression>
             <Expression xsi:type="ExternalizedMapping">
-              <Property Name="BufferSize" />
+              <Property Name="Value" DisplayName="ProbeIndex" />
+            </Expression>
+            <Expression xsi:type="PropertySource" TypeArguments="onix1:NeuropixelsV2eBetaData,onix1:NeuropixelsV2Probe">
+              <MemberName>ProbeIndex</MemberName>
+              <Value>ProbeB</Value>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="rx:Take">
+                <rx:Count>1</rx:Count>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="rx:AsyncSubject">
+              <Name>ProbeIndex</Name>
             </Expression>
             <Expression xsi:type="SubscribeSubject">
               <Name>ProbeIndex</Name>
             </Expression>
-            <Expression xsi:type="PropertyMapping">
-              <PropertyMappings>
-                <Property Name="ProbeIndex" />
-              </PropertyMappings>
+            <Expression xsi:type="rx:Condition">
+              <Name>ProbeA</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="Equal">
+                    <Operand xsi:type="WorkflowProperty" TypeArguments="onix1:NeuropixelsV2Probe">
+                      <Value>ProbeA</Value>
+                    </Operand>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
             </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="onix1:NeuropixelsV2eData">
-                <onix1:DeviceName>HeadstageNeuropixelsV2e/NeuropixelsV2e</onix1:DeviceName>
-                <onix1:BufferSize>30</onix1:BufferSize>
-                <onix1:ProbeIndex>ProbeA</onix1:ProbeIndex>
-              </Combinator>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="BufferSize" />
+            </Expression>
+            <Expression xsi:type="rx:SelectMany">
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="BufferSize" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="onix1:NeuropixelsV2eData">
+                      <onix1:DeviceName>HeadstageNeuropixelsV2e/NeuropixelsV2e</onix1:DeviceName>
+                      <onix1:BufferSize>30</onix1:BufferSize>
+                      <onix1:ProbeIndex>ProbeA</onix1:ProbeIndex>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject">
+              <Name>NeuropixelsV2ProbeA</Name>
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>ProbeIndex</Name>
+            </Expression>
+            <Expression xsi:type="rx:Condition">
+              <Name>ProbeB</Name>
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="WorkflowInput">
+                    <Name>Source1</Name>
+                  </Expression>
+                  <Expression xsi:type="Equal">
+                    <Operand xsi:type="WorkflowProperty" TypeArguments="onix1:NeuropixelsV2Probe">
+                      <Value>ProbeB</Value>
+                    </Operand>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
+            </Expression>
+            <Expression xsi:type="rx:SelectMany">
+              <Workflow>
+                <Nodes>
+                  <Expression xsi:type="ExternalizedMapping">
+                    <Property Name="BufferSize" />
+                  </Expression>
+                  <Expression xsi:type="Combinator">
+                    <Combinator xsi:type="onix1:NeuropixelsV2eData">
+                      <onix1:DeviceName>HeadstageNeuropixelsV2e/NeuropixelsV2e</onix1:DeviceName>
+                      <onix1:BufferSize>30</onix1:BufferSize>
+                      <onix1:ProbeIndex>ProbeB</onix1:ProbeIndex>
+                    </Combinator>
+                  </Expression>
+                  <Expression xsi:type="WorkflowOutput" />
+                </Nodes>
+                <Edges>
+                  <Edge From="0" To="1" Label="Source1" />
+                  <Edge From="1" To="2" Label="Source1" />
+                </Edges>
+              </Workflow>
             </Expression>
             <Expression xsi:type="rx:PublishSubject">
               <Name>NeuropixelsV2ProbeB</Name>
@@ -221,28 +304,33 @@
             </Expression>
           </Nodes>
           <Edges>
-            <Edge From="0" To="1" Label="Source1" />
-            <Edge From="1" To="2" Label="Source1" />
-            <Edge From="3" To="5" Label="Source1" />
-            <Edge From="4" To="5" Label="Source2" />
-            <Edge From="5" To="7" Label="Source1" />
-            <Edge From="6" To="7" Label="Source2" />
+            <Edge From="0" To="2" Label="Source1" />
+            <Edge From="1" To="2" Label="Source2" />
+            <Edge From="2" To="4" Label="Source1" />
+            <Edge From="3" To="4" Label="Source2" />
+            <Edge From="4" To="5" Label="Source1" />
+            <Edge From="6" To="7" Label="Source1" />
             <Edge From="7" To="8" Label="Source1" />
-            <Edge From="9" To="12" Label="Source1" />
+            <Edge From="8" To="9" Label="Source1" />
             <Edge From="10" To="11" Label="Source1" />
-            <Edge From="11" To="12" Label="Source2" />
-            <Edge From="12" To="13" Label="Source1" />
-            <Edge From="14" To="15" Label="Source1" />
-            <Edge From="14" To="18" Label="Source1" />
+            <Edge From="11" To="13" Label="Source1" />
+            <Edge From="12" To="13" Label="Source2" />
+            <Edge From="12" To="17" Label="Source2" />
+            <Edge From="13" To="14" Label="Source1" />
             <Edge From="15" To="16" Label="Source1" />
             <Edge From="16" To="17" Label="Source1" />
-            <Edge From="17" To="18" Label="Source2" />
-            <Edge From="18" To="19" Label="Source1" />
+            <Edge From="17" To="18" Label="Source1" />
             <Edge From="19" To="20" Label="Source1" />
+            <Edge From="19" To="23" Label="Source1" />
+            <Edge From="20" To="21" Label="Source1" />
             <Edge From="21" To="22" Label="Source1" />
+            <Edge From="22" To="23" Label="Source2" />
             <Edge From="23" To="24" Label="Source1" />
             <Edge From="24" To="25" Label="Source1" />
-            <Edge From="25" To="26" Label="Source1" />
+            <Edge From="26" To="27" Label="Source1" />
+            <Edge From="28" To="29" Label="Source1" />
+            <Edge From="29" To="30" Label="Source1" />
+            <Edge From="30" To="31" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>
