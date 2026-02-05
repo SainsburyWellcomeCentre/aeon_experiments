@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.9.0"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="ExternalizedMapping">
+        <Property Name="HarpInput" />
+        <Property Name="Port" />
+        <Property Name="NeuropixelsV2e" />
+        <Property Name="BufferSize" />
+        <Property Name="ProbeA" />
+        <Property Name="ProbeB" />
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\NeuroPixelsV2e.bonsai">
+        <HarpInput>
+          <DeviceName>BreakoutBoard/HarpSyncInput</DeviceName>
+          <DeviceAddress>12</DeviceAddress>
+          <Enable>true</Enable>
+          <Source>ClockAdapter</Source>
+        </HarpInput>
+        <Port>PortA</Port>
+        <NeuropixelsV2e>
+          <DeviceName>HeadstageNeuropixelsV2e/NeuropixelsV2e</DeviceName>
+          <DeviceAddress>256</DeviceAddress>
+          <Enable>true</Enable>
+          <ProbeConfigurationA>
+            <Probe xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">ProbeA</Probe>
+            <InvertPolarity xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">true</InvertPolarity>
+            <GainCalibrationFileName xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">Z:\aeon\code\probecalibrations\BrokenTestProbe\23409404231\23409404231_gainCalValues.csv</GainCalibrationFileName>
+            <Reference xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">External</Reference>
+            <ProbeInterfaceFileName xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1" />
+          </ProbeConfigurationA>
+          <ProbeConfigurationB>
+            <Probe xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">ProbeA</Probe>
+            <InvertPolarity xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">true</InvertPolarity>
+            <GainCalibrationFileName xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">Z:\aeon\code\probecalibrations\BrokenTestProbe\23409404231\23409404231_gainCalValues.csv</GainCalibrationFileName>
+            <Reference xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">External</Reference>
+            <ProbeInterfaceFileName xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1" />
+          </ProbeConfigurationB>
+        </NeuropixelsV2e>
+        <BufferSize>30</BufferSize>
+        <PortVoltage>
+          <Requested>6</Requested>
+        </PortVoltage>
+        <ProbeA>true</ProbeA>
+        <ProbeB>false</ProbeB>
+      </Expression>
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\OepsCommutatorController.bonsai">
+        <CommutatorCommands>CommutatorTurns</CommutatorCommands>
+        <PortName>COM3</PortName>
+        <Enable>true</Enable>
+        <EnableLed>true</EnableLed>
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="1" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
