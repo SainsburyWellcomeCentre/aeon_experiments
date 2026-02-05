@@ -7,88 +7,500 @@
   <Workflow>
     <Nodes>
       <Expression xsi:type="ExternalizedMapping">
-        <Property Name="Name" DisplayName="Probe" />
+        <Property Name="AdcScale" />
+        <Property Name="SampleRate" />
+        <Property Name="Cutoff1" />
+        <Property Name="Cutoff2" />
+        <Property Name="FilterOrder" />
+        <Property Name="FilterType" />
+        <Property Name="ProbeHighPass" />
+        <Property Name="Delay" />
+        <Property Name="Length" />
+        <Property Name="Threshold" />
+        <Property Name="WaveformRefinement" />
+        <Property Name="ProbeSpikeWaveforms" />
+        <Property Name="Probe" />
       </Expression>
-      <Expression xsi:type="SubscribeSubject">
-        <Name>NeuropixelsV2BetaProbeB</Name>
-      </Expression>
-      <Expression xsi:type="MemberSelector">
-        <Selector>AmplifierData</Selector>
-      </Expression>
-      <Expression xsi:type="ExternalizedMapping">
-        <Property Name="Scale" DisplayName="AdcScale" />
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="dsp:ConvertScale">
-          <dsp:Depth>F32</dsp:Depth>
-          <dsp:Scale>500</dsp:Scale>
-          <dsp:Shift>0</dsp:Shift>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="ExternalizedMapping">
-        <Property Name="SampleRate" Category="Filter" />
-        <Property Name="Cutoff1" Category="Filter" />
-        <Property Name="Cutoff2" Category="Filter" />
-        <Property Name="FilterOrder" Category="Filter" />
-        <Property Name="FilterType" Category="Filter" />
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="dsp:Butterworth">
-          <dsp:SampleRate>30000</dsp:SampleRate>
-          <dsp:Cutoff1>300</dsp:Cutoff1>
-          <dsp:Cutoff2>5000</dsp:Cutoff2>
-          <dsp:FilterOrder>3</dsp:FilterOrder>
-          <dsp:FilterType>HighPass</dsp:FilterType>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="dsp:ReferenceChannels">
-          <dsp:Channels />
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="ExternalizedMapping">
-        <Property Name="Name" DisplayName="ProbeHighPass" />
-      </Expression>
-      <Expression xsi:type="rx:PublishSubject">
-        <Name>ProbeBHighPass</Name>
-      </Expression>
-      <Expression xsi:type="ExternalizedMapping">
-        <Property Name="Delay" Category="Spike Detection" />
-        <Property Name="Length" Category="Spike Detection" />
-        <Property Name="Threshold" Category="Spike Detection" />
-        <Property Name="WaveformRefinement" Category="Spike Detection" />
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="dsp:DetectSpikes">
-          <dsp:Delay>30</dsp:Delay>
-          <dsp:Length>60</dsp:Length>
-          <dsp:Threshold />
-          <dsp:WaveformRefinement>AlignPeaks</dsp:WaveformRefinement>
-        </Combinator>
-      </Expression>
-      <Expression xsi:type="ExternalizedMapping">
-        <Property Name="Name" DisplayName="ProbeSpikeWaveforms" />
-      </Expression>
-      <Expression xsi:type="rx:PublishSubject">
-        <Name>ProbeBSpikeWaveforms</Name>
+      <Expression xsi:type="GroupWorkflow">
+        <Name>SpikeDetection</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Name" DisplayName="Probe" />
+            </Expression>
+            <Expression xsi:type="SubscribeSubject">
+              <Name>NeuropixelsProbeA</Name>
+            </Expression>
+            <Expression xsi:type="MemberSelector">
+              <Selector>AmplifierData</Selector>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Scale" DisplayName="AdcScale" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="dsp:ConvertScale">
+                <dsp:Depth>F32</dsp:Depth>
+                <dsp:Scale>-500</dsp:Scale>
+                <dsp:Shift>0</dsp:Shift>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="SampleRate" Category="Filter" />
+              <Property Name="Cutoff1" Category="Filter" />
+              <Property Name="Cutoff2" Category="Filter" />
+              <Property Name="FilterOrder" Category="Filter" />
+              <Property Name="FilterType" Category="Filter" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="dsp:Butterworth">
+                <dsp:SampleRate>30000</dsp:SampleRate>
+                <dsp:Cutoff1>300</dsp:Cutoff1>
+                <dsp:Cutoff2>5000</dsp:Cutoff2>
+                <dsp:FilterOrder>3</dsp:FilterOrder>
+                <dsp:FilterType>HighPass</dsp:FilterType>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="dsp:ReferenceChannels">
+                <dsp:Channels />
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Name" DisplayName="ProbeHighPass" />
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject">
+              <Name>ProbeAHighPass</Name>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Delay" Category="Spike Detection" />
+              <Property Name="Length" Category="Spike Detection" />
+              <Property Name="Threshold" Category="Spike Detection" />
+              <Property Name="WaveformRefinement" Category="Spike Detection" />
+            </Expression>
+            <Expression xsi:type="Combinator">
+              <Combinator xsi:type="dsp:DetectSpikes">
+                <dsp:Delay>30</dsp:Delay>
+                <dsp:Length>60</dsp:Length>
+                <dsp:Threshold>
+                  <dsp:double>-71106.002662550571</dsp:double>
+                  <dsp:double>-70106.838573584784</dsp:double>
+                  <dsp:double>-69024.26399164254</dsp:double>
+                  <dsp:double>-70488.124047827572</dsp:double>
+                  <dsp:double>-66503.530929567569</dsp:double>
+                  <dsp:double>-67432.068584262626</dsp:double>
+                  <dsp:double>-68887.287520019177</dsp:double>
+                  <dsp:double>-64471.732307750266</dsp:double>
+                  <dsp:double>-67428.306846735</dsp:double>
+                  <dsp:double>-66023.940834320834</dsp:double>
+                  <dsp:double>-67740.424423109</dsp:double>
+                  <dsp:double>-66748.373727764541</dsp:double>
+                  <dsp:double>-66621.754676833865</dsp:double>
+                  <dsp:double>-66659.996715844973</dsp:double>
+                  <dsp:double>-70301.195530720783</dsp:double>
+                  <dsp:double>-63854.339380937432</dsp:double>
+                  <dsp:double>-69860.5575463613</dsp:double>
+                  <dsp:double>-66045.0982155545</dsp:double>
+                  <dsp:double>-71737.112142517231</dsp:double>
+                  <dsp:double>-67718.366304597424</dsp:double>
+                  <dsp:double>-71725.134285352528</dsp:double>
+                  <dsp:double>-66922.408015893234</dsp:double>
+                  <dsp:double>-74368.1074631975</dsp:double>
+                  <dsp:double>-67877.76985684727</dsp:double>
+                  <dsp:double>-105560.81968483071</dsp:double>
+                  <dsp:double>-106556.21517415995</dsp:double>
+                  <dsp:double>-86245.7445863429</dsp:double>
+                  <dsp:double>-79904.356860527027</dsp:double>
+                  <dsp:double>-76007.506213222485</dsp:double>
+                  <dsp:double>-72313.758086774484</dsp:double>
+                  <dsp:double>-71455.599001674549</dsp:double>
+                  <dsp:double>-71518.296470148241</dsp:double>
+                  <dsp:double>-67054.92307327989</dsp:double>
+                  <dsp:double>-68208.695821137779</dsp:double>
+                  <dsp:double>-68792.09434912054</dsp:double>
+                  <dsp:double>-65224.471708504359</dsp:double>
+                  <dsp:double>-67337.00138525285</dsp:double>
+                  <dsp:double>-64924.409671861918</dsp:double>
+                  <dsp:double>-70780.441087650266</dsp:double>
+                  <dsp:double>-65922.029061369452</dsp:double>
+                  <dsp:double>-74113.604437192873</dsp:double>
+                  <dsp:double>-63754.69960368285</dsp:double>
+                  <dsp:double>-71397.2595160598</dsp:double>
+                  <dsp:double>-64634.110200612275</dsp:double>
+                  <dsp:double>-70915.101914777944</dsp:double>
+                  <dsp:double>-67114.095446214313</dsp:double>
+                  <dsp:double>-69740.68550169238</dsp:double>
+                  <dsp:double>-64853.907205811527</dsp:double>
+                  <dsp:double>-68925.384040899051</dsp:double>
+                  <dsp:double>-64490.680739837757</dsp:double>
+                  <dsp:double>-68602.103115159553</dsp:double>
+                  <dsp:double>-61878.738658792441</dsp:double>
+                  <dsp:double>-68926.415593725775</dsp:double>
+                  <dsp:double>-62958.546592330633</dsp:double>
+                  <dsp:double>-72714.870252181136</dsp:double>
+                  <dsp:double>-65325.059305578652</dsp:double>
+                  <dsp:double>-69878.217883239646</dsp:double>
+                  <dsp:double>-69472.648884095048</dsp:double>
+                  <dsp:double>-67806.178385375038</dsp:double>
+                  <dsp:double>-69598.514143502733</dsp:double>
+                  <dsp:double>-68064.038601793014</dsp:double>
+                  <dsp:double>-69298.513826986469</dsp:double>
+                  <dsp:double>-67687.593098481622</dsp:double>
+                  <dsp:double>-70591.941316795113</dsp:double>
+                  <dsp:double>-128372.384542771</dsp:double>
+                  <dsp:double>-94935.109391182516</dsp:double>
+                  <dsp:double>-130786.46497761515</dsp:double>
+                  <dsp:double>-103625.0597994805</dsp:double>
+                  <dsp:double>-124853.8589406292</dsp:double>
+                  <dsp:double>-111912.08252034649</dsp:double>
+                  <dsp:double>-119015.84296358976</dsp:double>
+                  <dsp:double>-115964.77095851395</dsp:double>
+                  <dsp:double>-114054.02025241363</dsp:double>
+                  <dsp:double>-114774.77704574064</dsp:double>
+                  <dsp:double>-101199.11491907761</dsp:double>
+                  <dsp:double>-109956.82866762437</dsp:double>
+                  <dsp:double>-94706.290447387961</dsp:double>
+                  <dsp:double>-96244.670333225673</dsp:double>
+                  <dsp:double>-88777.203353149467</dsp:double>
+                  <dsp:double>-84790.286401655641</dsp:double>
+                  <dsp:double>-81788.60221011519</dsp:double>
+                  <dsp:double>-74988.764980512307</dsp:double>
+                  <dsp:double>-71003.583937486546</dsp:double>
+                  <dsp:double>-69727.270939060414</dsp:double>
+                  <dsp:double>-64072.522978109337</dsp:double>
+                  <dsp:double>-65636.3353664194</dsp:double>
+                  <dsp:double>-62320.058963375137</dsp:double>
+                  <dsp:double>-62558.766625402983</dsp:double>
+                  <dsp:double>-79512.024203390843</dsp:double>
+                  <dsp:double>-69518.237870464247</dsp:double>
+                  <dsp:double>-86621.747019644783</dsp:double>
+                  <dsp:double>-76486.552706672286</dsp:double>
+                  <dsp:double>-92491.161044703171</dsp:double>
+                  <dsp:double>-82291.850041667276</dsp:double>
+                  <dsp:double>-101437.27626069372</dsp:double>
+                  <dsp:double>-88246.058368686063</dsp:double>
+                  <dsp:double>-71937.437414997286</dsp:double>
+                  <dsp:double>-63902.189816426668</dsp:double>
+                  <dsp:double>-67485.285124547634</dsp:double>
+                  <dsp:double>-64364.968000365865</dsp:double>
+                  <dsp:double>-61777.412271819587</dsp:double>
+                  <dsp:double>-64095.922142905867</dsp:double>
+                  <dsp:double>-64346.099826237973</dsp:double>
+                  <dsp:double>-65501.234466713206</dsp:double>
+                  <dsp:double>-65900.928200062452</dsp:double>
+                  <dsp:double>-63686.251803634026</dsp:double>
+                  <dsp:double>-68541.26763847562</dsp:double>
+                  <dsp:double>-66636.196203885833</dsp:double>
+                  <dsp:double>-72335.194544056911</dsp:double>
+                  <dsp:double>-69800.686345230977</dsp:double>
+                  <dsp:double>-75194.508674105557</dsp:double>
+                  <dsp:double>-71120.2078093357</dsp:double>
+                  <dsp:double>-69603.4906905594</dsp:double>
+                  <dsp:double>-69484.267813016864</dsp:double>
+                  <dsp:double>-68779.484749014446</dsp:double>
+                  <dsp:double>-68277.273884964743</dsp:double>
+                  <dsp:double>-65592.923240300224</dsp:double>
+                  <dsp:double>-63569.551940050675</dsp:double>
+                  <dsp:double>-63279.637853965352</dsp:double>
+                  <dsp:double>-87656.159917286</dsp:double>
+                  <dsp:double>-74520.851445203793</dsp:double>
+                  <dsp:double>-71411.236111060309</dsp:double>
+                  <dsp:double>-70717.5703438132</dsp:double>
+                  <dsp:double>-71816.974917229309</dsp:double>
+                  <dsp:double>-66861.611412552316</dsp:double>
+                  <dsp:double>-65883.994524809168</dsp:double>
+                  <dsp:double>-67235.409765324948</dsp:double>
+                  <dsp:double>-65641.654347148549</dsp:double>
+                  <dsp:double>-72499.6421930532</dsp:double>
+                  <dsp:double>-65307.47352542678</dsp:double>
+                  <dsp:double>-67085.468253183164</dsp:double>
+                  <dsp:double>-64300.634153631421</dsp:double>
+                  <dsp:double>-66310.995884314267</dsp:double>
+                  <dsp:double>-61227.054354029882</dsp:double>
+                  <dsp:double>-66976.219218448561</dsp:double>
+                  <dsp:double>-59917.469362027383</dsp:double>
+                  <dsp:double>-61875.533491381873</dsp:double>
+                  <dsp:double>-60417.6683762133</dsp:double>
+                  <dsp:double>-62514.428148838204</dsp:double>
+                  <dsp:double>-59238.121168887774</dsp:double>
+                  <dsp:double>-59332.044061074281</dsp:double>
+                  <dsp:double>-57253.832485814462</dsp:double>
+                  <dsp:double>-61049.789392702973</dsp:double>
+                  <dsp:double>-58678.485155452516</dsp:double>
+                  <dsp:double>-62216.198397265471</dsp:double>
+                  <dsp:double>-57023.383111329487</dsp:double>
+                  <dsp:double>-57540.1696955183</dsp:double>
+                  <dsp:double>-56948.307819656</dsp:double>
+                  <dsp:double>-55545.612213081775</dsp:double>
+                  <dsp:double>-55207.666708794692</dsp:double>
+                  <dsp:double>-57386.935314381626</dsp:double>
+                  <dsp:double>-58436.088241829639</dsp:double>
+                  <dsp:double>-64142.636355040791</dsp:double>
+                  <dsp:double>-66158.138084477687</dsp:double>
+                  <dsp:double>-67392.312584907355</dsp:double>
+                  <dsp:double>-68527.072962303777</dsp:double>
+                  <dsp:double>-68073.620856010486</dsp:double>
+                  <dsp:double>-66570.627856334846</dsp:double>
+                  <dsp:double>-69587.86353758497</dsp:double>
+                  <dsp:double>-67376.096565967469</dsp:double>
+                  <dsp:double>-59867.572141152014</dsp:double>
+                  <dsp:double>-63842.579296859425</dsp:double>
+                  <dsp:double>-58716.200317298164</dsp:double>
+                  <dsp:double>-60389.928643113068</dsp:double>
+                  <dsp:double>-56878.226718147846</dsp:double>
+                  <dsp:double>-58613.7898920975</dsp:double>
+                  <dsp:double>-55435.6726904802</dsp:double>
+                  <dsp:double>-57268.178257401174</dsp:double>
+                  <dsp:double>-54314.719295382121</dsp:double>
+                  <dsp:double>-53688.023524677119</dsp:double>
+                  <dsp:double>-52959.514877684443</dsp:double>
+                  <dsp:double>-50859.651442268696</dsp:double>
+                  <dsp:double>-52641.487009052682</dsp:double>
+                  <dsp:double>-55218.843429088469</dsp:double>
+                  <dsp:double>-51955.768110962919</dsp:double>
+                  <dsp:double>-61424.270531818795</dsp:double>
+                  <dsp:double>-53674.732813772767</dsp:double>
+                  <dsp:double>-61513.344777264465</dsp:double>
+                  <dsp:double>-58050.346125425523</dsp:double>
+                  <dsp:double>-59236.29159421334</dsp:double>
+                  <dsp:double>-55800.580394564488</dsp:double>
+                  <dsp:double>-54862.838808715445</dsp:double>
+                  <dsp:double>-52152.370649474622</dsp:double>
+                  <dsp:double>-54106.407684599857</dsp:double>
+                  <dsp:double>-54994.512380906948</dsp:double>
+                  <dsp:double>-59222.181165377129</dsp:double>
+                  <dsp:double>-55577.875618440688</dsp:double>
+                  <dsp:double>-58938.064421864547</dsp:double>
+                  <dsp:double>-54478.154149278955</dsp:double>
+                  <dsp:double>-58938.003004892234</dsp:double>
+                  <dsp:double>-54363.49603413658</dsp:double>
+                  <dsp:double>-60369.269149551314</dsp:double>
+                  <dsp:double>-65145.020494585442</dsp:double>
+                  <dsp:double>-61912.424519789471</dsp:double>
+                  <dsp:double>-62859.146906898786</dsp:double>
+                  <dsp:double>-63505.3526200579</dsp:double>
+                  <dsp:double>-61398.636736866923</dsp:double>
+                  <dsp:double>-60629.241575146305</dsp:double>
+                  <dsp:double>-64431.1390200753</dsp:double>
+                  <dsp:double>-62301.862629016505</dsp:double>
+                  <dsp:double>-63668.417976011711</dsp:double>
+                  <dsp:double>-65458.901540715051</dsp:double>
+                  <dsp:double>-65669.817941170768</dsp:double>
+                  <dsp:double>-66668.836821037446</dsp:double>
+                  <dsp:double>-69485.074197416237</dsp:double>
+                  <dsp:double>-70986.6924451855</dsp:double>
+                  <dsp:double>-72793.887899711874</dsp:double>
+                  <dsp:double>-79680.43739674268</dsp:double>
+                  <dsp:double>-73537.786568394426</dsp:double>
+                  <dsp:double>-77880.514012230647</dsp:double>
+                  <dsp:double>-69358.255082048665</dsp:double>
+                  <dsp:double>-72061.052226930842</dsp:double>
+                  <dsp:double>-69951.0245780934</dsp:double>
+                  <dsp:double>-68234.962345865046</dsp:double>
+                  <dsp:double>-75533.316678221119</dsp:double>
+                  <dsp:double>-69095.519148691237</dsp:double>
+                  <dsp:double>-63055.477048109489</dsp:double>
+                  <dsp:double>-60171.925000292147</dsp:double>
+                  <dsp:double>-63471.07314155341</dsp:double>
+                  <dsp:double>-61547.495134194643</dsp:double>
+                  <dsp:double>-64542.624879170246</dsp:double>
+                  <dsp:double>-61671.761520083019</dsp:double>
+                  <dsp:double>-62838.955303878123</dsp:double>
+                  <dsp:double>-61487.204305718558</dsp:double>
+                  <dsp:double>-64575.065741007391</dsp:double>
+                  <dsp:double>-61553.217666143821</dsp:double>
+                  <dsp:double>-59736.126017580093</dsp:double>
+                  <dsp:double>-60148.336095009043</dsp:double>
+                  <dsp:double>-57455.312025046282</dsp:double>
+                  <dsp:double>-59159.156339065717</dsp:double>
+                  <dsp:double>-55426.320318366619</dsp:double>
+                  <dsp:double>-56490.9430052696</dsp:double>
+                  <dsp:double>-92939.522831536859</dsp:double>
+                  <dsp:double>-74526.048049986348</dsp:double>
+                  <dsp:double>-83507.119031424678</dsp:double>
+                  <dsp:double>-87269.577089303712</dsp:double>
+                  <dsp:double>-72780.687557020108</dsp:double>
+                  <dsp:double>-80787.751659942878</dsp:double>
+                  <dsp:double>-69218.240500438143</dsp:double>
+                  <dsp:double>-71830.7339858388</dsp:double>
+                  <dsp:double>-69000.260677669168</dsp:double>
+                  <dsp:double>-75529.7042676778</dsp:double>
+                  <dsp:double>-68391.27138609867</dsp:double>
+                  <dsp:double>-78525.997294916786</dsp:double>
+                  <dsp:double>-66772.6355243267</dsp:double>
+                  <dsp:double>-70631.52926605173</dsp:double>
+                  <dsp:double>-66786.7533443498</dsp:double>
+                  <dsp:double>-67627.291649178238</dsp:double>
+                  <dsp:double>-76276.052328935839</dsp:double>
+                  <dsp:double>-74866.067479088815</dsp:double>
+                  <dsp:double>-81342.784724146448</dsp:double>
+                  <dsp:double>-79572.995990900163</dsp:double>
+                  <dsp:double>-76898.080460048979</dsp:double>
+                  <dsp:double>-68838.045008354646</dsp:double>
+                  <dsp:double>-69907.75307308315</dsp:double>
+                  <dsp:double>-65451.030416741065</dsp:double>
+                  <dsp:double>-68335.576670354116</dsp:double>
+                  <dsp:double>-66533.324653786069</dsp:double>
+                  <dsp:double>-68387.456115308669</dsp:double>
+                  <dsp:double>-64201.806774568511</dsp:double>
+                  <dsp:double>-65373.177017077331</dsp:double>
+                  <dsp:double>-65093.561770528475</dsp:double>
+                  <dsp:double>-62938.169549791921</dsp:double>
+                  <dsp:double>-62694.718259136229</dsp:double>
+                  <dsp:double>-60205.116931690696</dsp:double>
+                  <dsp:double>-61842.943924952968</dsp:double>
+                  <dsp:double>-59875.986728239048</dsp:double>
+                  <dsp:double>-60027.471602423189</dsp:double>
+                  <dsp:double>-57879.611846734406</dsp:double>
+                  <dsp:double>-58560.119787913231</dsp:double>
+                  <dsp:double>-61552.013842802255</dsp:double>
+                  <dsp:double>-56310.5635228259</dsp:double>
+                  <dsp:double>-60538.87034319972</dsp:double>
+                  <dsp:double>-59259.695095526993</dsp:double>
+                  <dsp:double>-59978.631842130388</dsp:double>
+                  <dsp:double>-58730.777907219141</dsp:double>
+                  <dsp:double>-57450.48461457283</dsp:double>
+                  <dsp:double>-56676.875317477628</dsp:double>
+                  <dsp:double>-58925.34311396697</dsp:double>
+                  <dsp:double>-54432.442390026583</dsp:double>
+                  <dsp:double>-70488.9352464911</dsp:double>
+                  <dsp:double>-66499.14344238778</dsp:double>
+                  <dsp:double>-71780.536579318476</dsp:double>
+                  <dsp:double>-66006.332219089163</dsp:double>
+                  <dsp:double>-72028.465655104214</dsp:double>
+                  <dsp:double>-65118.279459348843</dsp:double>
+                  <dsp:double>-70674.501295919836</dsp:double>
+                  <dsp:double>-64943.770857924261</dsp:double>
+                  <dsp:double>-64418.676641143458</dsp:double>
+                  <dsp:double>-62845.275572795843</dsp:double>
+                  <dsp:double>-65283.487512446532</dsp:double>
+                  <dsp:double>-67933.35834148727</dsp:double>
+                  <dsp:double>-66742.034842497189</dsp:double>
+                  <dsp:double>-66570.969739524808</dsp:double>
+                  <dsp:double>-67880.581069132342</dsp:double>
+                  <dsp:double>-67501.321925714641</dsp:double>
+                  <dsp:double>-66908.8949232373</dsp:double>
+                  <dsp:double>-66074.093080067993</dsp:double>
+                  <dsp:double>-67733.703088214519</dsp:double>
+                  <dsp:double>-67902.576006658273</dsp:double>
+                  <dsp:double>-70016.2408439333</dsp:double>
+                  <dsp:double>-69815.901361877972</dsp:double>
+                  <dsp:double>-70925.35093558862</dsp:double>
+                  <dsp:double>-72525.67559747069</dsp:double>
+                  <dsp:double>-73092.077611468616</dsp:double>
+                  <dsp:double>-73533.2249686237</dsp:double>
+                  <dsp:double>-71066.9723657578</dsp:double>
+                  <dsp:double>-70696.314571400115</dsp:double>
+                  <dsp:double>-71053.67671723706</dsp:double>
+                  <dsp:double>-71299.742255178178</dsp:double>
+                  <dsp:double>-73183.582528657033</dsp:double>
+                  <dsp:double>-74237.040219306684</dsp:double>
+                  <dsp:double>-58162.484125748539</dsp:double>
+                  <dsp:double>-56405.856803858915</dsp:double>
+                  <dsp:double>-59883.718275254694</dsp:double>
+                  <dsp:double>-59369.833111226326</dsp:double>
+                  <dsp:double>-60657.448925749086</dsp:double>
+                  <dsp:double>-59838.98900949143</dsp:double>
+                  <dsp:double>-63028.366746623768</dsp:double>
+                  <dsp:double>-61934.235367376066</dsp:double>
+                  <dsp:double>-81884.976532877976</dsp:double>
+                  <dsp:double>-97138.496505302217</dsp:double>
+                  <dsp:double>-82831.789867423882</dsp:double>
+                  <dsp:double>-85560.7673410993</dsp:double>
+                  <dsp:double>-80680.466793160638</dsp:double>
+                  <dsp:double>-78176.675485703163</dsp:double>
+                  <dsp:double>-83705.922552060088</dsp:double>
+                  <dsp:double>-72380.409458031063</dsp:double>
+                  <dsp:double>-57913.695423389167</dsp:double>
+                  <dsp:double>-58213.286168608764</dsp:double>
+                  <dsp:double>-65049.510024736686</dsp:double>
+                  <dsp:double>-59071.775508456223</dsp:double>
+                  <dsp:double>-73044.949416494856</dsp:double>
+                  <dsp:double>-62789.720148043154</dsp:double>
+                  <dsp:double>-72695.159422103112</dsp:double>
+                  <dsp:double>-61534.353207011227</dsp:double>
+                  <dsp:double>-61036.2402159948</dsp:double>
+                  <dsp:double>-58446.960035199154</dsp:double>
+                  <dsp:double>-55261.118729346861</dsp:double>
+                  <dsp:double>-56003.91534727515</dsp:double>
+                  <dsp:double>-54211.942401052409</dsp:double>
+                  <dsp:double>-54081.8769434926</dsp:double>
+                  <dsp:double>-53796.399521283311</dsp:double>
+                  <dsp:double>-54975.647065337733</dsp:double>
+                  <dsp:double>-77232.8051916414</dsp:double>
+                  <dsp:double>-80671.958088377753</dsp:double>
+                  <dsp:double>-79426.536584929636</dsp:double>
+                  <dsp:double>-81524.166002166938</dsp:double>
+                  <dsp:double>-79607.2882028752</dsp:double>
+                  <dsp:double>-81228.4863787534</dsp:double>
+                  <dsp:double>-79353.660417295847</dsp:double>
+                  <dsp:double>-84912.6534007115</dsp:double>
+                  <dsp:double>-56843.934419737736</dsp:double>
+                  <dsp:double>-57376.705830108825</dsp:double>
+                  <dsp:double>-57102.974475999414</dsp:double>
+                  <dsp:double>-58674.087481518567</dsp:double>
+                  <dsp:double>-58880.740308055938</dsp:double>
+                  <dsp:double>-64066.346936901005</dsp:double>
+                  <dsp:double>-56708.455548706283</dsp:double>
+                  <dsp:double>-63368.6257894504</dsp:double>
+                  <dsp:double>-59445.182789653314</dsp:double>
+                  <dsp:double>-57691.714878277664</dsp:double>
+                  <dsp:double>-56669.900947013732</dsp:double>
+                  <dsp:double>-57270.543849774214</dsp:double>
+                  <dsp:double>-55237.648014214668</dsp:double>
+                  <dsp:double>-55953.881413032432</dsp:double>
+                  <dsp:double>-56418.780664122591</dsp:double>
+                  <dsp:double>-61196.669877437052</dsp:double>
+                  <dsp:double>-57799.271166114821</dsp:double>
+                  <dsp:double>-63122.455393063807</dsp:double>
+                  <dsp:double>-58577.164851534289</dsp:double>
+                  <dsp:double>-59870.912899924355</dsp:double>
+                  <dsp:double>-59896.221932242159</dsp:double>
+                  <dsp:double>-59657.771438743039</dsp:double>
+                  <dsp:double>-64362.041416360771</dsp:double>
+                  <dsp:double>-61342.2120578828</dsp:double>
+                  <dsp:double>-54461.4874855414</dsp:double>
+                  <dsp:double>-53922.857206179266</dsp:double>
+                  <dsp:double>-56154.141089385193</dsp:double>
+                  <dsp:double>-56207.290178502146</dsp:double>
+                  <dsp:double>-56874.28854965778</dsp:double>
+                  <dsp:double>-59881.82480852968</dsp:double>
+                  <dsp:double>-57389.158096525571</dsp:double>
+                  <dsp:double>-60778.575860918492</dsp:double>
+                </dsp:Threshold>
+                <dsp:WaveformRefinement>AlignPeaks</dsp:WaveformRefinement>
+              </Combinator>
+            </Expression>
+            <Expression xsi:type="ExternalizedMapping">
+              <Property Name="Name" DisplayName="ProbeSpikeWaveforms" />
+            </Expression>
+            <Expression xsi:type="rx:PublishSubject">
+              <Name>ProbeASpikeWaveforms</Name>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+            <Edge From="1" To="2" Label="Source1" />
+            <Edge From="2" To="4" Label="Source1" />
+            <Edge From="3" To="4" Label="Source2" />
+            <Edge From="4" To="6" Label="Source1" />
+            <Edge From="5" To="6" Label="Source2" />
+            <Edge From="6" To="7" Label="Source1" />
+            <Edge From="7" To="9" Label="Source1" />
+            <Edge From="8" To="9" Label="Source2" />
+            <Edge From="9" To="11" Label="Source1" />
+            <Edge From="10" To="11" Label="Source2" />
+            <Edge From="11" To="13" Label="Source1" />
+            <Edge From="12" To="13" Label="Source2" />
+            <Edge From="13" To="14" Label="Source1" />
+          </Edges>
+        </Workflow>
       </Expression>
       <Expression xsi:type="WorkflowOutput" />
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
       <Edge From="1" To="2" Label="Source1" />
-      <Edge From="2" To="4" Label="Source1" />
-      <Edge From="3" To="4" Label="Source2" />
-      <Edge From="4" To="6" Label="Source1" />
-      <Edge From="5" To="6" Label="Source2" />
-      <Edge From="6" To="7" Label="Source1" />
-      <Edge From="7" To="9" Label="Source1" />
-      <Edge From="8" To="9" Label="Source2" />
-      <Edge From="9" To="11" Label="Source1" />
-      <Edge From="10" To="11" Label="Source2" />
-      <Edge From="11" To="13" Label="Source1" />
-      <Edge From="12" To="13" Label="Source2" />
-      <Edge From="13" To="14" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
