@@ -17,8 +17,8 @@
                     <HarpInput>
                       <DeviceName>BreakoutBoard/HarpSyncInput</DeviceName>
                       <DeviceAddress>12</DeviceAddress>
-                      <Enable>false</Enable>
-                      <Source>Breakout</Source>
+                      <Enable>true</Enable>
+                      <Source>ClockAdapter</Source>
                     </HarpInput>
                     <Port>PortA</Port>
                     <PortVoltage>

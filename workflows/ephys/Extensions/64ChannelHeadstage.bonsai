@@ -83,13 +83,13 @@
                 <onix1:HarpInput>
                   <onix1:DeviceName>BreakoutBoard/HarpSyncInput</onix1:DeviceName>
                   <onix1:DeviceAddress>12</onix1:DeviceAddress>
-                  <onix1:Enable>false</onix1:Enable>
-                  <onix1:Source>Breakout</onix1:Source>
+                  <onix1:Enable>true</onix1:Enable>
+                  <onix1:Source>ClockAdapter</onix1:Source>
                 </onix1:HarpInput>
                 <onix1:MemoryMonitor>
                   <onix1:DeviceName>BreakoutBoard/MemoryMonitor</onix1:DeviceName>
                   <onix1:DeviceAddress>10</onix1:DeviceAddress>
-                  <onix1:Enable>false</onix1:Enable>
+                  <onix1:Enable>true</onix1:Enable>
                   <onix1:SamplesPerSecond>10</onix1:SamplesPerSecond>
                 </onix1:MemoryMonitor>
               </Combinator>
