@@ -12,7 +12,6 @@
         <Property Name="HarpInput" />
         <Property Name="Port" />
         <Property Name="PortVoltage" />
-        <Property Name="ImuSamplingPeriod" />
         <Property Name="BufferSize" />
       </Expression>
       <Expression xsi:type="GroupWorkflow">
@@ -123,35 +122,10 @@
                 <onix1:ElectricalStimulator>
                   <onix1:DeviceName>Headstage64/Headstage64ElectricalStimulator</onix1:DeviceName>
                   <onix1:DeviceAddress>259</onix1:DeviceAddress>
-                  <onix1:Enable>false</onix1:Enable>
-                  <onix1:StimEnable>false</onix1:StimEnable>
-                  <onix1:PowerEnable>false</onix1:PowerEnable>
-                  <onix1:TriggerDelay>0</onix1:TriggerDelay>
-                  <onix1:PhaseOneCurrent>0</onix1:PhaseOneCurrent>
-                  <onix1:InterPhaseCurrent>0</onix1:InterPhaseCurrent>
-                  <onix1:PhaseTwoCurrent>0</onix1:PhaseTwoCurrent>
-                  <onix1:PhaseOneDuration>0</onix1:PhaseOneDuration>
-                  <onix1:InterPhaseInterval>0</onix1:InterPhaseInterval>
-                  <onix1:PhaseTwoDuration>0</onix1:PhaseTwoDuration>
-                  <onix1:InterPulseInterval>0</onix1:InterPulseInterval>
-                  <onix1:InterBurstInterval>0</onix1:InterBurstInterval>
-                  <onix1:BurstPulseCount>0</onix1:BurstPulseCount>
-                  <onix1:TrainBurstCount>0</onix1:TrainBurstCount>
                 </onix1:ElectricalStimulator>
                 <onix1:OpticalStimulator>
                   <onix1:DeviceName>Headstage64/Headstage64OpticalStimulator</onix1:DeviceName>
                   <onix1:DeviceAddress>260</onix1:DeviceAddress>
-                  <onix1:Enable>false</onix1:Enable>
-                  <onix1:StimEnable>false</onix1:StimEnable>
-                  <onix1:Delay>0</onix1:Delay>
-                  <onix1:MaxCurrent>100</onix1:MaxCurrent>
-                  <onix1:ChannelOneCurrent>100</onix1:ChannelOneCurrent>
-                  <onix1:ChannelTwoCurrent>0</onix1:ChannelTwoCurrent>
-                  <onix1:PulseDuration>5</onix1:PulseDuration>
-                  <onix1:PulsesPerSecond>50</onix1:PulsesPerSecond>
-                  <onix1:PulsesPerBurst>20</onix1:PulsesPerBurst>
-                  <onix1:InterBurstInterval>0</onix1:InterBurstInterval>
-                  <onix1:BurstsPerTrain>1</onix1:BurstsPerTrain>
                 </onix1:OpticalStimulator>
                 <onix1:Port>PortA</onix1:Port>
                 <onix1:PortVoltage>
@@ -208,23 +182,13 @@
             <Expression xsi:type="MulticastSubject">
               <Name>OnixMemoryUsage</Name>
             </Expression>
-            <Expression xsi:type="ExternalizedMapping">
-              <Property Name="Period" DisplayName="ImuSamplingPeriod" Category="BNO055" />
-            </Expression>
             <Expression xsi:type="Combinator">
-              <Combinator xsi:type="rx:Timer">
-                <rx:DueTime>PT0S</rx:DueTime>
-                <rx:Period>PT0.05S</rx:Period>
-              </Combinator>
-            </Expression>
-            <Expression xsi:type="Combinator">
-              <Combinator xsi:type="onix1:PolledBno055Data">
-                <onix1:DeviceName>HeadstageNeuropixelsV2e/PolledBno055</onix1:DeviceName>
-                <onix1:PolledRegisters>All</onix1:PolledRegisters>
+              <Combinator xsi:type="onix1:Bno055Data">
+                <onix1:DeviceName>Headstage64/Bno055</onix1:DeviceName>
               </Combinator>
             </Expression>
             <Expression xsi:type="MulticastSubject">
-              <Name>NeuropixelsBno055</Name>
+              <Name>Bno055</Name>
             </Expression>
           </Nodes>
           <Edges>
@@ -244,8 +208,6 @@
             <Edge From="14" To="15" Label="Source1" />
             <Edge From="16" To="17" Label="Source1" />
             <Edge From="18" To="19" Label="Source1" />
-            <Edge From="19" To="20" Label="Source1" />
-            <Edge From="20" To="21" Label="Source1" />
           </Edges>
         </Workflow>
       </Expression>

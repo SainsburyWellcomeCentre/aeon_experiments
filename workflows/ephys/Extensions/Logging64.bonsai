@@ -106,7 +106,7 @@
         <LogName>NeuropixelsV2_ProbeA_HubSyncCounter</LogName>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>NeuropixelsBno055</Name>
+        <Name>Bno055</Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:WindowCount">

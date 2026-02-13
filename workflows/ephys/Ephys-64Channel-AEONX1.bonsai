@@ -24,7 +24,6 @@
                     <PortVoltage>
                       <Requested>8.2</Requested>
                     </PortVoltage>
-                    <ImuSamplingPeriod>PT0.05S</ImuSamplingPeriod>
                     <BufferSize>30</BufferSize>
                   </Expression>
                   <Expression xsi:type="ExternalizedMapping">

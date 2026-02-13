@@ -22,7 +22,7 @@
         <rx:Name>OnixMemoryUsage</rx:Name>
       </Expression>
       <Expression xsi:type="rx:PublishSubject" TypeArguments="onix1:Bno055DataFrame">
-        <rx:Name>NeuropixelsBno055</rx:Name>
+        <rx:Name>Bno055</rx:Name>
       </Expression>
     </Nodes>
     <Edges />

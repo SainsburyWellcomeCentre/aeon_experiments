@@ -203,7 +203,7 @@ Item2.Seconds as Timestamp)</scr:Expression>
                     <DueTime>PT2S</DueTime>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Extensions\StreamTimeout.bonsai">
-                    <StreamEvents>NeuropixelsBno055</StreamEvents>
+                    <StreamEvents>Bno055</StreamEvents>
                     <DueTime>PT2S</DueTime>
                   </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Extensions\StreamTimeout.bonsai">
