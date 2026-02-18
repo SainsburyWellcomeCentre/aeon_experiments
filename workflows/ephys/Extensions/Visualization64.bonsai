@@ -19,10 +19,10 @@
       </Expression>
       <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="gui:GroupBoxBuilder">
-        <gui:Name>NpxClock</gui:Name>
+        <gui:Name>HeadstageClock</gui:Name>
         <gui:Enabled>true</gui:Enabled>
         <gui:Visible>true</gui:Visible>
-        <gui:Text>Npx Clock</gui:Text>
+        <gui:Text>Headstage Clock</gui:Text>
       </Expression>
       <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="MemberSelector">

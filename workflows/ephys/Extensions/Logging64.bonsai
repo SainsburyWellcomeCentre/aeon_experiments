@@ -21,7 +21,7 @@
       <Expression xsi:type="IncludeWorkflow" Path="Aeon.Acquisition:LogData.bonsai">
         <Heartbeats />
         <ClosingDuration xsi:nil="true" />
-        <LogName>NeuropixelsV2_HarpSync</LogName>
+        <LogName>64Channel_HarpSync</LogName>
         <Selector />
       </Expression>
       <Expression xsi:type="SubscribeSubject">
@@ -61,7 +61,7 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
-        <LogName>NeuropixelsV2_ProbeA_AmplifierData</LogName>
+        <LogName>64Channel_Probe_AmplifierData</LogName>
       </Expression>
       <Expression xsi:type="rx:CreateObservable">
         <Name>Clock</Name>
@@ -82,7 +82,7 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
-        <LogName>NeuropixelsV2_ProbeA_Clock</LogName>
+        <LogName>64Channel_Probe_Clock</LogName>
       </Expression>
       <Expression xsi:type="rx:CreateObservable">
         <Name>HubSyncCounter</Name>
@@ -103,7 +103,7 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
-        <LogName>NeuropixelsV2_ProbeA_HubSyncCounter</LogName>
+        <LogName>64Channel_Probe_HubSyncCounter</LogName>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>Bno055</Name>
@@ -137,7 +137,7 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
-        <LogName>NeuropixelsV2_Bno055_Quaternion</LogName>
+        <LogName>64Channel_Bno055_Quaternion</LogName>
       </Expression>
       <Expression xsi:type="rx:CreateObservable">
         <Name>LinearAcceleration</Name>
@@ -162,7 +162,7 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
-        <LogName>NeuropixelsV2_Bno055_LinearAcceleration</LogName>
+        <LogName>64Channel_Bno055_LinearAcceleration</LogName>
       </Expression>
       <Expression xsi:type="rx:CreateObservable">
         <Name>GravityVector</Name>
@@ -187,7 +187,7 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
-        <LogName>NeuropixelsV2_Bno055_GravityVector</LogName>
+        <LogName>64Channel_Bno055_GravityVector</LogName>
       </Expression>
       <Expression xsi:type="rx:CreateObservable">
         <Name>Euler</Name>
@@ -212,7 +212,7 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
-        <LogName>NeuropixelsV2_Bno055_Euler</LogName>
+        <LogName>64Channel_Bno055_Euler</LogName>
       </Expression>
       <Expression xsi:type="rx:CreateObservable">
         <Name>Clock</Name>
@@ -237,7 +237,7 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
-        <LogName>NeuropixelsV2_Bno055_Clock</LogName>
+        <LogName>64Channel_Bno055_Clock</LogName>
       </Expression>
       <Expression xsi:type="rx:CreateObservable">
         <Name>HubSyncCounter</Name>
@@ -262,7 +262,7 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
-        <LogName>NeuropixelsV2_Bno055_HubSyncCounter</LogName>
+        <LogName>64Channel_Bno055_HubSyncCounter</LogName>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
         <Name>CommutatorTurns</Name>
@@ -296,7 +296,7 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
-        <LogName>NeuropixelsV2_Commutator_Turns</LogName>
+        <LogName>64Channel_Commutator_Turns</LogName>
       </Expression>
       <Expression xsi:type="rx:CreateObservable">
         <Name>Clock</Name>
@@ -321,7 +321,7 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\LogBinaryData.bonsai">
-        <LogName>NeuropixelsV2_Commutator_Clock</LogName>
+        <LogName>64Channel_Commutator_Clock</LogName>
       </Expression>
     </Nodes>
     <Edges>
