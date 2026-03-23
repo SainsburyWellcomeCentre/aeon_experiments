@@ -37,8 +37,8 @@
                 </ProbeConfigurationB>
               </NeuropixelsV2e>
               <BufferSize>330</BufferSize>
-              <ProbeA>true</ProbeA>
-              <ProbeB>true</ProbeB>
+              <ProbeA>false</ProbeA>
+              <ProbeB>false</ProbeB>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\SpikeDetection.bonsai">
               <AdcScale>-500</AdcScale>
