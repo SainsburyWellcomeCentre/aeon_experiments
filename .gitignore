@@ -25,4 +25,5 @@ __pycache__/
 # Environments
 .venv
 winpython
-bonsai/Settings/workflows/ephys/Ephys-AEONX1.editor
+*.editor
+*.layout
