@@ -40,12 +40,13 @@
               <q2:ProbeInterfaceFileName />
             </ConfigurationB>
           </NeuropixelsV2e>
-          <BufferSize>330</BufferSize>
           <PortVoltage>
             <Requested>6</Requested>
           </PortVoltage>
           <ProbeA>false</ProbeA>
+          <BufferSize>30</BufferSize>
           <ProbeB>false</ProbeB>
+          <ImuSamplingPeriod>PT0.05S</ImuSamplingPeriod>
         </Builder>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
@@ -54,8 +55,6 @@
         <Property Name="NeuropixelsV2eBeta" />
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\NeuropixelsV2Beta.bonsai">
-        <Driver>riffa</Driver>
-        <Index>0</Index>
         <HarpInput>
           <DeviceName>BreakoutBoard/HarpSyncInput</DeviceName>
           <DeviceAddress>12</DeviceAddress>
@@ -87,6 +86,27 @@
         <ProbeB>false</ProbeB>
         <ImuSamplingPeriod>PT0.05S</ImuSamplingPeriod>
       </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="ExternalizedMapping">
+          <Property Name="HarpInput" />
+          <Property Name="Port" />
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="IncludeWorkflow" Path="Extensions\64ChannelHeadstage.bonsai">
+          <HarpInput>
+            <DeviceName>BreakoutBoard/HarpSyncInput</DeviceName>
+            <DeviceAddress>12</DeviceAddress>
+            <Enable>true</Enable>
+            <Source>ClockAdapter</Source>
+          </HarpInput>
+          <Port>PortA</Port>
+          <PortVoltage>
+            <Requested>8.2</Requested>
+          </PortVoltage>
+          <BufferSize>30</BufferSize>
+        </Builder>
+      </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\OepsCommutatorController.bonsai">
         <CommutatorCommands>CommutatorTurns</CommutatorCommands>
         <AntiClockwiseKey>RButton ShiftKey Menu Space Next PageDown D0 D2 B P R NumPad0 NumPad2 F1 F3 Shift</AntiClockwiseKey>
@@ -99,6 +119,7 @@
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
       <Edge From="2" To="3" Label="Source1" />
+      <Edge From="4" To="5" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
