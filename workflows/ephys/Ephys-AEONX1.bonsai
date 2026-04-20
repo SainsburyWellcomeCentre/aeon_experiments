@@ -17,28 +17,22 @@
                 <Source>ClockAdapter</Source>
               </HarpInput>
               <Port>PortA</Port>
-              <NeuropixelsV2e>
-                <DeviceName>HeadstageNeuropixelsV2e/NeuropixelsV2e</DeviceName>
+              <NeuropixelsV2eBeta>
+                <DeviceName>HeadstageNeuropixelsV2eBeta/NeuropixelsV2eBeta</DeviceName>
                 <DeviceAddress>256</DeviceAddress>
                 <Enable>true</Enable>
-                <ProbeConfigurationA>
-                  <Probe xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">ProbeA</Probe>
-                  <InvertPolarity xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">true</InvertPolarity>
-                  <GainCalibrationFileName xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">Z:\aeon\code\probecalibrations\SpoofProbe\23299123163\23299123163_gainCalValues.csv</GainCalibrationFileName>
-                  <Reference xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">External</Reference>
-                  <ProbeInterfaceFileName xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1" />
-                </ProbeConfigurationA>
-                <ProbeConfigurationB>
-                  <Probe xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">ProbeA</Probe>
-                  <InvertPolarity xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">true</InvertPolarity>
-                  <GainCalibrationFileName xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">Z:\aeon\code\probecalibrations\SpoofProbe\23409404231\23409404231_gainCalValues.csv</GainCalibrationFileName>
-                  <Reference xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">External</Reference>
-                  <ProbeInterfaceFileName xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1" />
-                </ProbeConfigurationB>
-              </NeuropixelsV2e>
-              <BufferSize>330</BufferSize>
-              <ProbeA>false</ProbeA>
-              <ProbeB>false</ProbeB>
+                <EnableLed>true</EnableLed>
+                <ConfigurationA xmlns:q1="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1" xsi:type="q1:NeuropixelsV2QuadShankProbeConfiguration">
+                  <q1:InvertPolarity>true</q1:InvertPolarity>
+                  <q1:GainCalibrationFileName />
+                  <q1:Reference>External</q1:Reference>
+                </ConfigurationA>
+                <ConfigurationB xmlns:q2="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1" xsi:type="q2:NeuropixelsV2QuadShankProbeConfiguration">
+                  <q2:InvertPolarity>true</q2:InvertPolarity>
+                  <q2:GainCalibrationFileName />
+                  <q2:Reference>External</q2:Reference>
+                </ConfigurationB>
+              </NeuropixelsV2eBeta>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\SpikeDetection.bonsai">
               <AdcScale>-500</AdcScale>

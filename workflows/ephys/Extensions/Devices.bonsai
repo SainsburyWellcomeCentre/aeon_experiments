@@ -4,50 +4,93 @@
                  xmlns="https://bonsai-rx.org/2018/workflow">
   <Workflow>
     <Nodes>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="ExternalizedMapping">
+          <Property Name="HarpInput" />
+          <Property Name="Port" />
+          <Property Name="NeuropixelsV2e" />
+          <Property Name="BufferSize" />
+          <Property Name="ProbeA" />
+          <Property Name="ProbeB" />
+        </Builder>
+      </Expression>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="IncludeWorkflow" Path="Extensions\NeuroPixelsV2e.bonsai">
+          <HarpInput>
+            <DeviceName>BreakoutBoard/HarpSyncInput</DeviceName>
+            <DeviceAddress>12</DeviceAddress>
+            <Enable>true</Enable>
+            <Source>ClockAdapter</Source>
+          </HarpInput>
+          <Port>PortA</Port>
+          <NeuropixelsV2e>
+            <DeviceName>HeadstageNeuropixelsV2e/NeuropixelsV2e</DeviceName>
+            <DeviceAddress>256</DeviceAddress>
+            <Enable>true</Enable>
+            <ConfigurationA xmlns:q1="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1" xsi:type="q1:NeuropixelsV2QuadShankProbeConfiguration">
+              <q1:InvertPolarity>true</q1:InvertPolarity>
+              <q1:GainCalibrationFileName>Z:\aeon\code\probecalibrations\SpoofProbe\23299123163\23299123163_gainCalValues.csv</q1:GainCalibrationFileName>
+              <q1:Reference>External</q1:Reference>
+              <q1:ProbeInterfaceFileName />
+            </ConfigurationA>
+            <ConfigurationB xmlns:q2="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1" xsi:type="q2:NeuropixelsV2QuadShankProbeConfiguration">
+              <q2:InvertPolarity>true</q2:InvertPolarity>
+              <q2:GainCalibrationFileName>Z:\aeon\code\probecalibrations\SpoofProbe\23409404231\23409404231_gainCalValues.csv</q2:GainCalibrationFileName>
+              <q2:Reference>External</q2:Reference>
+              <q2:ProbeInterfaceFileName />
+            </ConfigurationB>
+          </NeuropixelsV2e>
+          <BufferSize>330</BufferSize>
+          <PortVoltage>
+            <Requested>6</Requested>
+          </PortVoltage>
+          <ProbeA>false</ProbeA>
+          <ProbeB>false</ProbeB>
+        </Builder>
+      </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="HarpInput" />
         <Property Name="Port" />
-        <Property Name="NeuropixelsV2e" />
-        <Property Name="BufferSize" />
-        <Property Name="ProbeA" />
-        <Property Name="ProbeB" />
+        <Property Name="NeuropixelsV2eBeta" />
       </Expression>
-      <Expression xsi:type="IncludeWorkflow" Path="Extensions\NeuroPixelsV2e.bonsai">
+      <Expression xsi:type="IncludeWorkflow" Path="Extensions\NeuropixelsV2Beta.bonsai">
+        <Driver>riffa</Driver>
+        <Index>0</Index>
         <HarpInput>
           <DeviceName>BreakoutBoard/HarpSyncInput</DeviceName>
           <DeviceAddress>12</DeviceAddress>
           <Enable>true</Enable>
           <Source>ClockAdapter</Source>
         </HarpInput>
-        <Port>PortA</Port>
-        <NeuropixelsV2e>
-          <DeviceName>HeadstageNeuropixelsV2e/NeuropixelsV2e</DeviceName>
+        <NeuropixelsV2eBeta>
+          <DeviceName>HeadstageNeuropixelsV2eBeta/NeuropixelsV2eBeta</DeviceName>
           <DeviceAddress>256</DeviceAddress>
           <Enable>true</Enable>
-          <ProbeConfigurationA>
-            <Probe xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">ProbeA</Probe>
-            <InvertPolarity xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">true</InvertPolarity>
-            <GainCalibrationFileName xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">Z:\aeon\code\probecalibrations\BrokenTestProbe\23409404231\23409404231_gainCalValues.csv</GainCalibrationFileName>
-            <Reference xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">External</Reference>
-            <ProbeInterfaceFileName xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1" />
-          </ProbeConfigurationA>
-          <ProbeConfigurationB>
-            <Probe xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">ProbeA</Probe>
-            <InvertPolarity xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">true</InvertPolarity>
-            <GainCalibrationFileName xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">Z:\aeon\code\probecalibrations\BrokenTestProbe\23409404231\23409404231_gainCalValues.csv</GainCalibrationFileName>
-            <Reference xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">External</Reference>
-            <ProbeInterfaceFileName xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1" />
-          </ProbeConfigurationB>
-        </NeuropixelsV2e>
-        <BufferSize>30</BufferSize>
+          <EnableLed>true</EnableLed>
+          <ConfigurationA xmlns:q1="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1" xsi:type="q1:NeuropixelsV2QuadShankProbeConfiguration">
+            <q1:InvertPolarity>true</q1:InvertPolarity>
+            <q1:GainCalibrationFileName />
+            <q1:Reference>External</q1:Reference>
+          </ConfigurationA>
+          <ConfigurationB xmlns:q2="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1" xsi:type="q2:NeuropixelsV2QuadShankProbeConfiguration">
+            <q2:InvertPolarity>true</q2:InvertPolarity>
+            <q2:GainCalibrationFileName />
+            <q2:Reference>External</q2:Reference>
+          </ConfigurationB>
+        </NeuropixelsV2eBeta>
+        <Port>PortA</Port>
         <PortVoltage>
           <Requested>6</Requested>
         </PortVoltage>
-        <ProbeA>true</ProbeA>
+        <ProbeA>false</ProbeA>
+        <BufferSize>30</BufferSize>
         <ProbeB>false</ProbeB>
+        <ImuSamplingPeriod>PT0.05S</ImuSamplingPeriod>
       </Expression>
       <Expression xsi:type="IncludeWorkflow" Path="Extensions\OepsCommutatorController.bonsai">
         <CommutatorCommands>CommutatorTurns</CommutatorCommands>
+        <AntiClockwiseKey>RButton ShiftKey Menu Space Next PageDown D0 D2 B P R NumPad0 NumPad2 F1 F3 Shift</AntiClockwiseKey>
+        <ClockwiseKey>LButton RButton Cancel ShiftKey ControlKey Menu Pause Space Prior PageUp Next PageDown End D0 D1 D2 D3 A B C P Q R S NumPad0 NumPad1 NumPad2 NumPad3 F1 F2 F3 F4 Shift</ClockwiseKey>
         <PortName>COM3</PortName>
         <Enable>true</Enable>
         <EnableLed>true</EnableLed>
@@ -55,6 +98,7 @@
     </Nodes>
     <Edges>
       <Edge From="0" To="1" Label="Source1" />
+      <Edge From="2" To="3" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
