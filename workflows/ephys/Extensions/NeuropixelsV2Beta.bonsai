@@ -6,13 +6,9 @@
                  xmlns:p1="clr-namespace:;assembly=Extensions"
                  xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
                  xmlns="https://bonsai-rx.org/2018/workflow">
-  <Description>Contains control and acquisition functionality for ONIX NeuropixelsV2Beta probes.</Description>
+  <Description>Contains control and acquisition functionality for ONIX NeuropixelsV2Beta headstage.</Description>
   <Workflow>
     <Nodes>
-      <Expression xsi:type="ExternalizedMapping">
-        <Property Name="Driver" />
-        <Property Name="Index" />
-      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="onix1:CreateContext">
           <onix1:Driver>riffa</onix1:Driver>
@@ -131,6 +127,7 @@
           <onix1:WriteSize>2048</onix1:WriteSize>
         </Combinator>
       </Expression>
+      <Expression xsi:type="WorkflowOutput" />
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="Value" DisplayName="ProbeA" Category="Connected Probes" />
       </Expression>
@@ -179,7 +176,7 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="rx:PublishSubject">
-        <Name>NeuropixelsProbeA</Name>
+        <Name>EphysProbeA</Name>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="Value" DisplayName="ProbeB" Category="Connected Probes" />
@@ -226,7 +223,7 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="rx:PublishSubject">
-        <Name>NeuropixelsProbeB</Name>
+        <Name>EphysProbeB</Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="onix1:HarpSyncInputData">
@@ -275,15 +272,15 @@
         </Combinator>
       </Expression>
       <Expression xsi:type="rx:PublishSubject">
-        <Name>NeuropixelsBno055</Name>
+        <Name>EphysBno055</Name>
       </Expression>
     </Nodes>
     <Edges>
-      <Edge From="0" To="1" Label="Source1" />
-      <Edge From="1" To="3" Label="Source1" />
-      <Edge From="2" To="3" Label="Source2" />
-      <Edge From="3" To="5" Label="Source1" />
-      <Edge From="4" To="5" Label="Source2" />
+      <Edge From="0" To="2" Label="Source1" />
+      <Edge From="1" To="2" Label="Source2" />
+      <Edge From="2" To="4" Label="Source1" />
+      <Edge From="3" To="4" Label="Source2" />
+      <Edge From="4" To="5" Label="Source1" />
       <Edge From="5" To="6" Label="Source1" />
       <Edge From="7" To="8" Label="Source1" />
       <Edge From="8" To="9" Label="Source1" />

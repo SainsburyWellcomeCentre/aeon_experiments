@@ -9,7 +9,7 @@
   <Workflow>
     <Nodes>
       <Expression xsi:type="SubscribeSubject">
-        <Name>NeuropixelsBno055</Name>
+        <Name>EphysBno055</Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:SampleInterval">
@@ -72,7 +72,7 @@
         <Combinator xsi:type="rx:Merge" />
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>NeuropixelsBno055</Name>
+        <Name>EphysBno055</Name>
       </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>Clock</Selector>

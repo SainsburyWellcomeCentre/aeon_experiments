@@ -7,7 +7,7 @@
   <Workflow>
     <Nodes>
       <Expression xsi:type="SubscribeSubject">
-        <Name>NeuropixelsProbeA</Name>
+        <Name>EphysProbeA</Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:SampleInterval">
@@ -59,7 +59,7 @@
       </Expression>
       <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="SubscribeSubject">
-        <Name>NeuropixelsProbeB</Name>
+        <Name>EphysProbeB</Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:SampleInterval">
@@ -162,7 +162,7 @@
       </Expression>
       <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="SubscribeSubject">
-        <Name>NeuropixelsBno055</Name>
+        <Name>EphysBno055</Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:SampleInterval">

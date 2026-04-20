@@ -432,7 +432,7 @@
               </Threshold>
               <WaveformRefinement>AlignPeaks</WaveformRefinement>
               <ProbeSpikeWaveforms>ProbeASpikeWaveforms</ProbeSpikeWaveforms>
-              <Probe>NeuropixelsProbeA</Probe>
+              <Probe>EphysProbeA</Probe>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\SpikeDetection.bonsai">
               <AdcScale>-500</AdcScale>
@@ -832,7 +832,7 @@
               </Threshold>
               <WaveformRefinement>AlignPeaks</WaveformRefinement>
               <ProbeSpikeWaveforms>ProbeBSpikeWaveforms</ProbeSpikeWaveforms>
-              <Probe>NeuropixelsProbeB</Probe>
+              <Probe>EphysProbeB</Probe>
             </Expression>
           </Nodes>
           <Edges />

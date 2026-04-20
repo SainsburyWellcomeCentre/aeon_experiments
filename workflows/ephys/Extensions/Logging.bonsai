@@ -34,7 +34,7 @@
         <Selector>Seconds,Value.Priority,Value.Type,Value.Message</Selector>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>NeuropixelsProbeA</Name>
+        <Name>EphysProbeA</Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:WindowCount">
@@ -106,7 +106,7 @@
         <LogName>NeuropixelsV2_ProbeA_HubSyncCounter</LogName>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>NeuropixelsProbeB</Name>
+        <Name>EphysProbeB</Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:WindowCount">
@@ -178,7 +178,7 @@
         <LogName>NeuropixelsV2_ProbeB_HubSyncCounter</LogName>
       </Expression>
       <Expression xsi:type="SubscribeSubject">
-        <Name>NeuropixelsBno055</Name>
+        <Name>EphysBno055</Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="rx:WindowCount">
