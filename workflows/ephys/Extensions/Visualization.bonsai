@@ -191,7 +191,7 @@
         <gui:Name>CommutatorTurns</gui:Name>
         <gui:Enabled>true</gui:Enabled>
         <gui:Visible>true</gui:Visible>
-        <gui:Text>Onix HarpSync</gui:Text>
+        <gui:Text>Commutator Turns</gui:Text>
       </Expression>
       <Expression xsi:type="VisualizerMapping" />
       <Expression xsi:type="gui:TableLayoutPanelBuilder">
