@@ -47,10 +47,10 @@
                       </ConfigurationB>
                     </NeuropixelsV2e>
                     <PortVoltage>
-                      <Requested>6</Requested>
+                      <Requested>8</Requested>
                     </PortVoltage>
                     <ProbeA>false</ProbeA>
-                    <BufferSize>30</BufferSize>
+                    <BufferSize>300</BufferSize>
                     <ProbeB>false</ProbeB>
                     <ImuSamplingPeriod>PT0.05S</ImuSamplingPeriod>
                   </Expression>
