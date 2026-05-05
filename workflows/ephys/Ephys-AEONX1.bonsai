@@ -41,9 +41,9 @@
                       </ConfigurationA>
                       <ConfigurationB xmlns:q2="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1" xsi:type="q2:NeuropixelsV2QuadShankProbeConfiguration">
                         <q2:InvertPolarity>true</q2:InvertPolarity>
-                        <q2:GainCalibrationFileName>Z:\aeon\code\probecalibrations\SpoofProbe\23409404231\23409404231_gainCalValues.csv</q2:GainCalibrationFileName>
+                        <q2:GainCalibrationFileName>Z:\aeon\code\probecalibrations\ABC_Project\23299108854\23299108854_gainCalValues.csv</q2:GainCalibrationFileName>
                         <q2:Reference>External</q2:Reference>
-                        <q2:ProbeInterfaceFileName />
+                        <q2:ProbeInterfaceFileName>Z:\aeon\data\raw\AEONX1\recording_configurations\M81_ProbeB_4Shanks_1000_to_1700_um.json</q2:ProbeInterfaceFileName>
                       </ConfigurationB>
                     </NeuropixelsV2e>
                     <PortVoltage>
@@ -51,8 +51,7 @@
                     </PortVoltage>
                     <ProbeA>false</ProbeA>
                     <BufferSize>300</BufferSize>
-                    <ProbeB>false</ProbeB>
-                    <ImuSamplingPeriod>PT0.02S</ImuSamplingPeriod>
+                    <ProbeB>true</ProbeB>
                   </Expression>
                   <Expression xsi:type="Disable">
                     <Builder xsi:type="ExternalizedMapping">
