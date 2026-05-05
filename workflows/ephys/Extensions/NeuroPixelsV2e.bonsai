@@ -255,15 +255,6 @@
       <Expression xsi:type="rx:PublishSubject">
         <Name>OnixMemoryUsage</Name>
       </Expression>
-      <Expression xsi:type="ExternalizedMapping">
-        <Property Name="Period" DisplayName="ImuSamplingPeriod" Category="BNO055" />
-      </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="rx:Timer">
-          <rx:DueTime>PT0S</rx:DueTime>
-          <rx:Period>PT0.05S</rx:Period>
-        </Combinator>
-      </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="onix1:PolledBno055Data">
           <onix1:DeviceName>HeadstageNeuropixelsV2e/PolledBno055</onix1:DeviceName>
@@ -299,8 +290,6 @@
       <Edge From="22" To="23" Label="Source1" />
       <Edge From="24" To="25" Label="Source1" />
       <Edge From="26" To="27" Label="Source1" />
-      <Edge From="27" To="28" Label="Source1" />
-      <Edge From="28" To="29" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
