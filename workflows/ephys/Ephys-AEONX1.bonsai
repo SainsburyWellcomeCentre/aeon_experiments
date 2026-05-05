@@ -52,7 +52,7 @@
                     <ProbeA>false</ProbeA>
                     <BufferSize>300</BufferSize>
                     <ProbeB>false</ProbeB>
-                    <ImuSamplingPeriod>PT0.05S</ImuSamplingPeriod>
+                    <ImuSamplingPeriod>PT0.02S</ImuSamplingPeriod>
                   </Expression>
                   <Expression xsi:type="Disable">
                     <Builder xsi:type="ExternalizedMapping">
