@@ -26,4 +26,3 @@ __pycache__/
 .venv
 winpython
 *.editor
-*.layout
