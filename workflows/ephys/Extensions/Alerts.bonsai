@@ -163,7 +163,7 @@ Item2.Seconds as Timestamp)</scr:Expression>
                   </Expression>
                   <Expression xsi:type="GreaterThan">
                     <Operand xsi:type="IntProperty">
-                      <Value>500</Value>
+                      <Value>50</Value>
                     </Operand>
                   </Expression>
                   <Expression xsi:type="WorkflowOutput" />
