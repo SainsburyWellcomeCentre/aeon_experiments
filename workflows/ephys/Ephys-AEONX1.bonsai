@@ -51,7 +51,7 @@
                       <Requested>8</Requested>
                     </PortVoltage>
                     <ProbeA>true</ProbeA>
-                    <BufferSize>300</BufferSize>
+                    <BufferSize>3000</BufferSize>
                     <ProbeB>true</ProbeB>
                   </Expression>
                   <Expression xsi:type="Disable">
