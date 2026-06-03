@@ -97,15 +97,15 @@
             <onix1:Enable>true</onix1:Enable>
             <onix1:ConfigurationA xsi:type="onix1:NeuropixelsV2QuadShankProbeConfiguration">
               <onix1:InvertPolarity>true</onix1:InvertPolarity>
-              <onix1:GainCalibrationFileName>Z:\aeon\code\probecalibrations\SpoofProbe\23299123163\23299123163_gainCalValues.csv</onix1:GainCalibrationFileName>
+              <onix1:GainCalibrationFileName>Z:\aeon\code\probecalibrations\23299123163\23299123163_gainCalValues.csv</onix1:GainCalibrationFileName>
               <onix1:Reference>External</onix1:Reference>
-              <onix1:ProbeInterfaceFileName />
+              <onix1:ProbeInterfaceFileName>D:\probe_settings\M82_ProbeA_4Shanks_1000_to_1700_um.json</onix1:ProbeInterfaceFileName>
             </onix1:ConfigurationA>
             <onix1:ConfigurationB xsi:type="onix1:NeuropixelsV2QuadShankProbeConfiguration">
               <onix1:InvertPolarity>true</onix1:InvertPolarity>
-              <onix1:GainCalibrationFileName>Z:\aeon\code\probecalibrations\SpoofProbe\23409404231\23409404231_gainCalValues.csv</onix1:GainCalibrationFileName>
+              <onix1:GainCalibrationFileName>Z:\aeon\code\probecalibrations\23409404231\23409404231_gainCalValues.csv</onix1:GainCalibrationFileName>
               <onix1:Reference>External</onix1:Reference>
-              <onix1:ProbeInterfaceFileName />
+              <onix1:ProbeInterfaceFileName>D:\probe_settings\M82_ProbeB_3Shanks_2500_to_3200_um_S1_2x_LFP.json</onix1:ProbeInterfaceFileName>
             </onix1:ConfigurationB>
           </onix1:NeuropixelsV2e>
           <onix1:Bno055>
@@ -117,7 +117,7 @@
           </onix1:Bno055>
           <onix1:Port>PortA</onix1:Port>
           <onix1:PortVoltage>
-            <onix1:Requested>6</onix1:Requested>
+            <onix1:Requested>8</onix1:Requested>
           </onix1:PortVoltage>
         </Combinator>
       </Expression>
@@ -149,7 +149,20 @@
         </Workflow>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
-        <Property Name="BufferSize" />
+        <Property Name="Value" DisplayName="BufferSize" Description="The read buffer size of the ONIX headstage" Category="Configuration" />
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="IntProperty">
+          <Value>3000</Value>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="rx:BehaviorSubject">
+        <Name>ReadBufferSize</Name>
+      </Expression>
+      <Expression xsi:type="PropertyMapping">
+        <PropertyMappings>
+          <Property Name="BufferSize" />
+        </PropertyMappings>
       </Expression>
       <Expression xsi:type="rx:SelectMany">
         <Name>GetProbeA</Name>
@@ -161,7 +174,7 @@
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="onix1:NeuropixelsV2eData">
                 <onix1:DeviceName>HeadstageNeuropixelsV2e/NeuropixelsV2e</onix1:DeviceName>
-                <onix1:BufferSize>30</onix1:BufferSize>
+                <onix1:BufferSize>3000</onix1:BufferSize>
                 <onix1:ProbeIndex>ProbeA</onix1:ProbeIndex>
                 <onix1:OrderByDepth>false</onix1:OrderByDepth>
               </Combinator>
@@ -208,7 +221,7 @@
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="onix1:NeuropixelsV2eData">
                 <onix1:DeviceName>HeadstageNeuropixelsV2e/NeuropixelsV2e</onix1:DeviceName>
-                <onix1:BufferSize>30</onix1:BufferSize>
+                <onix1:BufferSize>3000</onix1:BufferSize>
                 <onix1:ProbeIndex>ProbeB</onix1:ProbeIndex>
                 <onix1:OrderByDepth>false</onix1:OrderByDepth>
               </Combinator>
@@ -273,23 +286,26 @@
       <Edge From="4" To="5" Label="Source1" />
       <Edge From="6" To="7" Label="Source1" />
       <Edge From="7" To="8" Label="Source1" />
-      <Edge From="8" To="10" Label="Source1" />
-      <Edge From="9" To="10" Label="Source2" />
-      <Edge From="9" To="15" Label="Source2" />
+      <Edge From="8" To="13" Label="Source1" />
+      <Edge From="9" To="10" Label="Source1" />
       <Edge From="10" To="11" Label="Source1" />
-      <Edge From="12" To="13" Label="Source1" />
+      <Edge From="11" To="12" Label="Source1" />
+      <Edge From="12" To="13" Label="Source2" />
+      <Edge From="12" To="18" Label="Source2" />
       <Edge From="13" To="14" Label="Source1" />
-      <Edge From="14" To="15" Label="Source1" />
       <Edge From="15" To="16" Label="Source1" />
+      <Edge From="16" To="17" Label="Source1" />
       <Edge From="17" To="18" Label="Source1" />
-      <Edge From="17" To="21" Label="Source1" />
       <Edge From="18" To="19" Label="Source1" />
-      <Edge From="19" To="20" Label="Source1" />
-      <Edge From="20" To="21" Label="Source2" />
+      <Edge From="20" To="21" Label="Source1" />
+      <Edge From="20" To="24" Label="Source1" />
       <Edge From="21" To="22" Label="Source1" />
       <Edge From="22" To="23" Label="Source1" />
+      <Edge From="23" To="24" Label="Source2" />
       <Edge From="24" To="25" Label="Source1" />
-      <Edge From="26" To="27" Label="Source1" />
+      <Edge From="25" To="26" Label="Source1" />
+      <Edge From="27" To="28" Label="Source1" />
+      <Edge From="29" To="30" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>
