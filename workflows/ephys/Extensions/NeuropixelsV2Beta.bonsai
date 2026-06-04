@@ -85,32 +85,37 @@
         </Combinator>
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
-        <Property Name="NeuropixelsV2eBeta" />
         <Property Name="Port" />
         <Property Name="PortVoltage" />
+        <Property Name="NeuropixelsV2B" />
+        <Property Name="NeuropixelsV2A" />
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="onix1:ConfigureHeadstageNeuropixelsV2eBeta">
           <onix1:Name>HeadstageNeuropixelsV2eBeta</onix1:Name>
-          <onix1:NeuropixelsV2eBeta>
-            <onix1:DeviceName>HeadstageNeuropixelsV2eBeta/NeuropixelsV2eBeta</onix1:DeviceName>
+          <onix1:NeuropixelsV2A>
+            <onix1:DeviceName>HeadstageNeuropixelsV2eBeta/NeuropixelsV2A</onix1:DeviceName>
             <onix1:DeviceAddress>256</onix1:DeviceAddress>
             <onix1:Enable>true</onix1:Enable>
             <onix1:EnableLed>true</onix1:EnableLed>
-            <onix1:ConfigurationA xsi:type="onix1:NeuropixelsV2QuadShankProbeConfiguration">
+            <onix1:ProbeConfiguration>
               <onix1:InvertPolarity>true</onix1:InvertPolarity>
-              <onix1:GainCalibrationFileName />
               <onix1:Reference>External</onix1:Reference>
-            </onix1:ConfigurationA>
-            <onix1:ConfigurationB xsi:type="onix1:NeuropixelsV2QuadShankProbeConfiguration">
+            </onix1:ProbeConfiguration>
+          </onix1:NeuropixelsV2A>
+          <onix1:NeuropixelsV2B>
+            <onix1:DeviceName>HeadstageNeuropixelsV2eBeta/NeuropixelsV2B</onix1:DeviceName>
+            <onix1:DeviceAddress>257</onix1:DeviceAddress>
+            <onix1:Enable>true</onix1:Enable>
+            <onix1:EnableLed>true</onix1:EnableLed>
+            <onix1:ProbeConfiguration>
               <onix1:InvertPolarity>true</onix1:InvertPolarity>
-              <onix1:GainCalibrationFileName />
               <onix1:Reference>External</onix1:Reference>
-            </onix1:ConfigurationB>
-          </onix1:NeuropixelsV2eBeta>
+            </onix1:ProbeConfiguration>
+          </onix1:NeuropixelsV2B>
           <onix1:Bno055>
             <onix1:DeviceName>HeadstageNeuropixelsV2eBeta/PolledBno055</onix1:DeviceName>
-            <onix1:DeviceAddress>257</onix1:DeviceAddress>
+            <onix1:DeviceAddress>258</onix1:DeviceAddress>
             <onix1:Enable>true</onix1:Enable>
             <onix1:AxisMap>YZX</onix1:AxisMap>
             <onix1:AxisSign>MirrorY MirrorX</onix1:AxisSign>
@@ -119,6 +124,7 @@
           <onix1:PortVoltage>
             <onix1:Requested>6</onix1:Requested>
           </onix1:PortVoltage>
+          <onix1:TrackingLed>true</onix1:TrackingLed>
         </Combinator>
       </Expression>
       <Expression xsi:type="Combinator">
@@ -162,7 +168,6 @@
               <Combinator xsi:type="onix1:NeuropixelsV2eBetaData">
                 <onix1:DeviceName>HeadstageNeuropixelsV2eBeta/NeuropixelsV2eBeta</onix1:DeviceName>
                 <onix1:BufferSize>30</onix1:BufferSize>
-                <onix1:ProbeIndex>ProbeA</onix1:ProbeIndex>
                 <onix1:OrderByDepth>false</onix1:OrderByDepth>
               </Combinator>
             </Expression>
@@ -209,7 +214,6 @@
               <Combinator xsi:type="onix1:NeuropixelsV2eBetaData">
                 <onix1:DeviceName>HeadstageNeuropixelsV2eBeta/NeuropixelsV2eBeta</onix1:DeviceName>
                 <onix1:BufferSize>30</onix1:BufferSize>
-                <onix1:ProbeIndex>ProbeB</onix1:ProbeIndex>
                 <onix1:OrderByDepth>false</onix1:OrderByDepth>
               </Combinator>
             </Expression>

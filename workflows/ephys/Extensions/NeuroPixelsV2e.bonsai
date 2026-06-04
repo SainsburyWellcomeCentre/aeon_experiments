@@ -85,32 +85,34 @@
       </Expression>
       <Expression xsi:type="ExternalizedMapping">
         <Property Name="Port" />
-        <Property Name="NeuropixelsV2e" />
         <Property Name="PortVoltage" />
+        <Property Name="NeuropixelsV2A" />
+        <Property Name="NeuropixelsV2B" />
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="onix1:ConfigureHeadstageNeuropixelsV2e">
           <onix1:Name>HeadstageNeuropixelsV2e</onix1:Name>
-          <onix1:NeuropixelsV2e>
-            <onix1:DeviceName>HeadstageNeuropixelsV2e/NeuropixelsV2e</onix1:DeviceName>
+          <onix1:NeuropixelsV2A>
+            <onix1:DeviceName>HeadstageNeuropixelsV2e/NeuropixelsV2A</onix1:DeviceName>
             <onix1:DeviceAddress>256</onix1:DeviceAddress>
             <onix1:Enable>true</onix1:Enable>
-            <onix1:ConfigurationA xsi:type="onix1:NeuropixelsV2QuadShankProbeConfiguration">
+            <onix1:ProbeConfiguration>
               <onix1:InvertPolarity>true</onix1:InvertPolarity>
-              <onix1:GainCalibrationFileName>Z:\aeon\code\probecalibrations\23299123163\23299123163_gainCalValues.csv</onix1:GainCalibrationFileName>
               <onix1:Reference>External</onix1:Reference>
-              <onix1:ProbeInterfaceFileName>D:\probe_settings\M82_ProbeA_4Shanks_1000_to_1700_um.json</onix1:ProbeInterfaceFileName>
-            </onix1:ConfigurationA>
-            <onix1:ConfigurationB xsi:type="onix1:NeuropixelsV2QuadShankProbeConfiguration">
+            </onix1:ProbeConfiguration>
+          </onix1:NeuropixelsV2A>
+          <onix1:NeuropixelsV2B>
+            <onix1:DeviceName>HeadstageNeuropixelsV2e/NeuropixelsV2B</onix1:DeviceName>
+            <onix1:DeviceAddress>257</onix1:DeviceAddress>
+            <onix1:Enable>true</onix1:Enable>
+            <onix1:ProbeConfiguration>
               <onix1:InvertPolarity>true</onix1:InvertPolarity>
-              <onix1:GainCalibrationFileName>Z:\aeon\code\probecalibrations\23409404231\23409404231_gainCalValues.csv</onix1:GainCalibrationFileName>
               <onix1:Reference>External</onix1:Reference>
-              <onix1:ProbeInterfaceFileName>D:\probe_settings\M82_ProbeB_3Shanks_2500_to_3200_um_S1_2x_LFP.json</onix1:ProbeInterfaceFileName>
-            </onix1:ConfigurationB>
-          </onix1:NeuropixelsV2e>
+            </onix1:ProbeConfiguration>
+          </onix1:NeuropixelsV2B>
           <onix1:Bno055>
             <onix1:DeviceName>HeadstageNeuropixelsV2e/PolledBno055</onix1:DeviceName>
-            <onix1:DeviceAddress>257</onix1:DeviceAddress>
+            <onix1:DeviceAddress>258</onix1:DeviceAddress>
             <onix1:Enable>true</onix1:Enable>
             <onix1:AxisMap>YZX</onix1:AxisMap>
             <onix1:AxisSign>MirrorY MirrorX</onix1:AxisSign>
@@ -175,7 +177,6 @@
               <Combinator xsi:type="onix1:NeuropixelsV2eData">
                 <onix1:DeviceName>HeadstageNeuropixelsV2e/NeuropixelsV2e</onix1:DeviceName>
                 <onix1:BufferSize>3000</onix1:BufferSize>
-                <onix1:ProbeIndex>ProbeA</onix1:ProbeIndex>
                 <onix1:OrderByDepth>false</onix1:OrderByDepth>
               </Combinator>
             </Expression>
@@ -222,7 +223,6 @@
               <Combinator xsi:type="onix1:NeuropixelsV2eData">
                 <onix1:DeviceName>HeadstageNeuropixelsV2e/NeuropixelsV2e</onix1:DeviceName>
                 <onix1:BufferSize>3000</onix1:BufferSize>
-                <onix1:ProbeIndex>ProbeB</onix1:ProbeIndex>
                 <onix1:OrderByDepth>false</onix1:OrderByDepth>
               </Combinator>
             </Expression>
