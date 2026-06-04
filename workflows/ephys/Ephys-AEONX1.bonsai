@@ -12,87 +12,6 @@
               <Name>Devices</Name>
               <Workflow>
                 <Nodes>
-                  <Expression xsi:type="ExternalizedMapping">
-                    <Property Name="HarpInput" />
-                    <Property Name="Port" />
-                    <Property Name="NeuropixelsV2e" />
-                    <Property Name="BufferSize" />
-                    <Property Name="ProbeA" />
-                    <Property Name="ProbeB" />
-                  </Expression>
-                  <Expression xsi:type="IncludeWorkflow" Path="Extensions\NeuroPixelsV2e.bonsai">
-                    <HarpInput>
-                      <DeviceName>BreakoutBoard/HarpSyncInput</DeviceName>
-                      <DeviceAddress>12</DeviceAddress>
-                      <Enable>true</Enable>
-                      <Source>ClockAdapter</Source>
-                    </HarpInput>
-                    <Port>PortA</Port>
-                    <NeuropixelsV2e>
-                      <DeviceName>HeadstageNeuropixelsV2e/NeuropixelsV2e</DeviceName>
-                      <DeviceAddress>256</DeviceAddress>
-                      <Enable>true</Enable>
-                      <ConfigurationA xmlns:q1="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1" xsi:type="q1:NeuropixelsV2QuadShankProbeConfiguration">
-                        <q1:InvertPolarity>true</q1:InvertPolarity>
-                        <q1:GainCalibrationFileName>Z:\aeon\code\probecalibrations\23299123163\23299123163_gainCalValues.csv</q1:GainCalibrationFileName>
-                        <q1:Reference>External</q1:Reference>
-                        <q1:ProbeInterfaceFileName>D:\probe_settings\M82_ProbeA_4Shanks_1000_to_1700_um.json</q1:ProbeInterfaceFileName>
-                      </ConfigurationA>
-                      <ConfigurationB xmlns:q2="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1" xsi:type="q2:NeuropixelsV2QuadShankProbeConfiguration">
-                        <q2:InvertPolarity>true</q2:InvertPolarity>
-                        <q2:GainCalibrationFileName>Z:\aeon\code\probecalibrations\23409404231\23409404231_gainCalValues.csv</q2:GainCalibrationFileName>
-                        <q2:Reference>External</q2:Reference>
-                        <q2:ProbeInterfaceFileName>D:\probe_settings\M82_ProbeB_3Shanks_2500_to_3200_um_S1_2x_LFP.json</q2:ProbeInterfaceFileName>
-                      </ConfigurationB>
-                    </NeuropixelsV2e>
-                    <PortVoltage>
-                      <Requested>8</Requested>
-                    </PortVoltage>
-                    <ProbeA>true</ProbeA>
-                    <BufferSize>3000</BufferSize>
-                    <ProbeB>true</ProbeB>
-                  </Expression>
-                  <Expression xsi:type="Disable">
-                    <Builder xsi:type="ExternalizedMapping">
-                      <Property Name="HarpInput" />
-                      <Property Name="Port" />
-                      <Property Name="NeuropixelsV2eBeta" />
-                    </Builder>
-                  </Expression>
-                  <Expression xsi:type="Disable">
-                    <Builder xsi:type="IncludeWorkflow" Path="Extensions\NeuropixelsV2Beta.bonsai">
-                      <HarpInput>
-                        <DeviceName>BreakoutBoard/HarpSyncInput</DeviceName>
-                        <DeviceAddress>12</DeviceAddress>
-                        <Enable>true</Enable>
-                        <Source>ClockAdapter</Source>
-                      </HarpInput>
-                      <NeuropixelsV2eBeta>
-                        <DeviceName>HeadstageNeuropixelsV2eBeta/NeuropixelsV2eBeta</DeviceName>
-                        <DeviceAddress>256</DeviceAddress>
-                        <Enable>true</Enable>
-                        <EnableLed>true</EnableLed>
-                        <ConfigurationA xmlns:q1="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1" xsi:type="q1:NeuropixelsV2QuadShankProbeConfiguration">
-                          <q1:InvertPolarity>true</q1:InvertPolarity>
-                          <q1:GainCalibrationFileName>Z:\aeon\code\probecalibrations\SpoofProbe\23409404231\23409404231_gainCalValues.csv</q1:GainCalibrationFileName>
-                          <q1:Reference>External</q1:Reference>
-                        </ConfigurationA>
-                        <ConfigurationB xmlns:q2="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1" xsi:type="q2:NeuropixelsV2QuadShankProbeConfiguration">
-                          <q2:InvertPolarity>true</q2:InvertPolarity>
-                          <q2:GainCalibrationFileName />
-                          <q2:Reference>External</q2:Reference>
-                        </ConfigurationB>
-                      </NeuropixelsV2eBeta>
-                      <Port>PortA</Port>
-                      <PortVoltage>
-                        <Requested>6</Requested>
-                      </PortVoltage>
-                      <ProbeA>false</ProbeA>
-                      <BufferSize>30</BufferSize>
-                      <ProbeB>false</ProbeB>
-                      <ImuSamplingPeriod>PT0.05S</ImuSamplingPeriod>
-                    </Builder>
-                  </Expression>
                   <Expression xsi:type="IncludeWorkflow" Path="Extensions\OepsCommutatorController.bonsai">
                     <CommutatorCommands>CommutatorTurns</CommutatorCommands>
                     <AntiClockwiseKey>RButton ShiftKey Menu Space Next PageDown D0 D2 B P R NumPad0 NumPad2 F1 F3 Shift</AntiClockwiseKey>
@@ -101,11 +20,112 @@
                     <Enable>true</Enable>
                     <EnableLed>true</EnableLed>
                   </Expression>
+                  <Expression xsi:type="GroupWorkflow">
+                    <Name>Headstage</Name>
+                    <Workflow>
+                      <Nodes>
+                        <Expression xsi:type="ExternalizedMapping">
+                          <Property Name="HarpInput" />
+                          <Property Name="Port" />
+                          <Property Name="PortVoltage" />
+                          <Property Name="BufferSize" />
+                        </Expression>
+                        <Expression xsi:type="Disable">
+                          <Builder xsi:type="IncludeWorkflow" Path="Extensions\64ChannelHeadstage.bonsai">
+                            <HarpInput>
+                              <DeviceName>BreakoutBoard/HarpSyncInput</DeviceName>
+                              <DeviceAddress>12</DeviceAddress>
+                              <Enable>true</Enable>
+                              <Source>ClockAdapter</Source>
+                            </HarpInput>
+                            <Port>PortA</Port>
+                            <PortVoltage>
+                              <Requested>8.2</Requested>
+                            </PortVoltage>
+                            <BufferSize>30</BufferSize>
+                          </Builder>
+                        </Expression>
+                        <Expression xsi:type="IncludeWorkflow" Path="Extensions\NeuroPixelsV2e.bonsai">
+                          <HarpInput>
+                            <DeviceName>BreakoutBoard/HarpSyncInput</DeviceName>
+                            <DeviceAddress>12</DeviceAddress>
+                            <Enable>true</Enable>
+                            <Source>ClockAdapter</Source>
+                          </HarpInput>
+                          <Port>PortA</Port>
+                          <PortVoltage>
+                            <Requested>8</Requested>
+                          </PortVoltage>
+                          <NeuropixelsV2A>
+                            <DeviceName>HeadstageNeuropixelsV2e/NeuropixelsV2A</DeviceName>
+                            <DeviceAddress>256</DeviceAddress>
+                            <Enable>true</Enable>
+                            <ProbeConfiguration>
+                              <InvertPolarity xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">true</InvertPolarity>
+                              <Reference xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">External</Reference>
+                            </ProbeConfiguration>
+                          </NeuropixelsV2A>
+                          <NeuropixelsV2B>
+                            <DeviceName>HeadstageNeuropixelsV2e/NeuropixelsV2B</DeviceName>
+                            <DeviceAddress>257</DeviceAddress>
+                            <Enable>true</Enable>
+                            <ProbeConfiguration>
+                              <InvertPolarity xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">true</InvertPolarity>
+                              <Reference xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">External</Reference>
+                            </ProbeConfiguration>
+                          </NeuropixelsV2B>
+                          <ProbeA>true</ProbeA>
+                          <BufferSize>3000</BufferSize>
+                          <ProbeB>true</ProbeB>
+                        </Expression>
+                        <Expression xsi:type="Disable">
+                          <Builder xsi:type="IncludeWorkflow" Path="Extensions\NeuropixelsV2Beta.bonsai">
+                            <HarpInput>
+                              <DeviceName>BreakoutBoard/HarpSyncInput</DeviceName>
+                              <DeviceAddress>12</DeviceAddress>
+                              <Enable>true</Enable>
+                              <Source>ClockAdapter</Source>
+                            </HarpInput>
+                            <Port>PortA</Port>
+                            <PortVoltage>
+                              <Requested>6</Requested>
+                            </PortVoltage>
+                            <NeuropixelsV2B>
+                              <DeviceName>HeadstageNeuropixelsV2eBeta/NeuropixelsV2B</DeviceName>
+                              <DeviceAddress>257</DeviceAddress>
+                              <Enable>true</Enable>
+                              <EnableLed>true</EnableLed>
+                              <ProbeConfiguration>
+                                <InvertPolarity xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">true</InvertPolarity>
+                                <Reference xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">External</Reference>
+                              </ProbeConfiguration>
+                            </NeuropixelsV2B>
+                            <NeuropixelsV2A>
+                              <DeviceName>HeadstageNeuropixelsV2eBeta/NeuropixelsV2A</DeviceName>
+                              <DeviceAddress>256</DeviceAddress>
+                              <Enable>true</Enable>
+                              <EnableLed>true</EnableLed>
+                              <ProbeConfiguration>
+                                <InvertPolarity xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">true</InvertPolarity>
+                                <Reference xmlns="clr-namespace:OpenEphys.Onix1;assembly=OpenEphys.Onix1">External</Reference>
+                              </ProbeConfiguration>
+                            </NeuropixelsV2A>
+                            <ProbeA>false</ProbeA>
+                            <BufferSize>30</BufferSize>
+                            <ProbeB>false</ProbeB>
+                            <ImuSamplingPeriod>PT0.05S</ImuSamplingPeriod>
+                          </Builder>
+                        </Expression>
+                      </Nodes>
+                      <Edges>
+                        <Edge From="0" To="1" Label="Source1" />
+                        <Edge From="0" To="2" Label="Source1" />
+                        <Edge From="0" To="3" Label="Source1" />
+                      </Edges>
+                    </Workflow>
+                  </Expression>
                 </Nodes>
-                <Edges>
-                  <Edge From="0" To="1" Label="Source1" />
-                  <Edge From="2" To="3" Label="Source1" />
-                </Edges>
+                <Edges />
               </Workflow>
             </Expression>
             <Expression xsi:type="IncludeWorkflow" Path="Extensions\SpikeDetection.bonsai">
